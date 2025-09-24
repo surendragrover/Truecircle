@@ -23,7 +23,7 @@ flutter run
 ```
 
 ## 🤝 Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Please contact the owner before making any contributions. This is proprietary software.
 
 ## 📄 License
-This project is licensed under the MIT License.
+This project is proprietary software. All rights reserved by Surendra Grover.
