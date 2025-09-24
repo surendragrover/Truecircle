@@ -1,0 +1,103 @@
+{
+  "@@locale": "en",
+  
+  "helloWorld": "Hello World",
+  "welcomeMessage": "Welcome to TrueCircle!",
+  
+  "appName": "TrueCircle",
+  "appTagline": "Understand who's emotionally close to you… and why that matters",
+  
+  "relationshipDashboard": "Relationship Dashboard",
+  "overview": "Overview",
+  "insights": "Insights",
+  "advice": "Advice",
+  
+  "allContacts": "All Contacts",
+  "needsAttention": "Needs Attention",
+  "thriving": "Thriving",
+  "atRisk": "At Risk",
+  
+  "analyzingRelationships": "Analyzing relationships...",
+  "pleaseWait": "Please wait",
+  
+  "noContacts": "No Contacts",
+  "noContactsDescription": "Import your contacts and see TrueCircle magic",
+  "addContacts": "Add Contacts",
+  
+  "contactedToday": "Contacted today",
+  "contactedYesterday": "Contacted yesterday",
+  "daysAgo": "{count} days ago",
+  "weeksAgo": "{count} weeks ago", 
+  "monthsAgo": "{count} months ago",
+  
+  "urgentAttentionNeeded": "🚨 Urgent Attention Needed",
+  "greatJob": "Great job!",
+  "allRelationshipsGood": "All your relationships are in good shape",
+  
+  "keyInsights": "💡 Key Insights",
+  "communicationPatterns": "Communication Patterns",
+  "conversationBalance": "Conversation Balance",
+  "bestContactTime": "Best Contact Time",
+  
+  "todaysRecommendations": "🎯 Today's Recommendations",
+  "details": "Details",
+  "sendMessage": "Send Message",
+  
+  "refresh": "Refresh",
+  "update": "Update",
+  
+  "privacySettings": "Privacy Settings",
+  "basicPrivacy": "Contacts only - Basic analysis",
+  "standardPrivacy": "Contacts + Call patterns - Balanced analysis", 
+  "advancedPrivacy": "Full analysis - Maximum insights",
+  
+  "contactAnalysis": "Contact Analysis",
+  "callPatterns": "Call Patterns",
+  "messagePatterns": "Message Patterns",
+  "sentimentAnalysis": "Sentiment Analysis",
+  "aiInsights": "AI Insights",
+  
+  "privacyGuarantees": "Privacy Guarantees",
+  "dataStaysLocal": "🔒 All data stays on your device only",
+  "neverUploaded": "🚫 Never uploaded to cloud servers",
+  "yourDataYours": "👤 Your data belongs only to you",
+  "deleteAnytime": "🗑️ Delete data anytime you want",
+  "toggleFeatures": "⚙️ Toggle any feature on/off",
+  "worksOffline": "📱 Works 100% offline",
+  
+  "strongRelationship": "Strong Relationship",
+  "goodConnection": "Good Connection", 
+  "relationshipNeedsAttention": "Needs Attention",
+  "relationshipAtRisk": "At Risk",
+  
+  "relationshipWeakening": "Relationship weakening",
+  "infrequentCommunication": "Infrequent Communication",
+  "delayedResponses": "Delayed Responses",
+  "oneSidedCommunication": "One-sided Communication",
+  
+  "timeToReachOut": "Time to reach out",
+  "reachOutDescription": "It's been {days} days. Send a friendly message!",
+  
+  "casualCheckIn": "Casual Check-in",
+  "sharedInterest": "Shared Interest", 
+  "currentEvents": "Current Events",
+  "memorySharing": "Memory Sharing",
+  
+  "conversationStarters": "Conversation Starters",
+  "howAreYou": "Hey! How have you been? It's been a while!",
+  "thoughtOfYou": "Saw this and thought of you! [share something relevant]",
+  "yourPerspective": "What do you think about {topic}? Would love your perspective!",
+  "rememberWhen": "Remember when we {memory}? That was such a good time!",
+  
+  "culturalTips": "Cultural Tips",
+  "useRespectfulLanguage": "Use respectful language",
+  "rememberFestivals": "Remember festivals and occasions",
+  "askAboutFamily": "Ask about family",
+  
+  "ok": "OK",
+  "cancel": "Cancel",
+  "save": "Save",
+  "delete": "Delete",
+  "edit": "Edit",
+  "done": "Done"
+}

@@ -1,0 +1,87 @@
+﻿name: truecircle
+description: Dr. Iris – Your personal AI therapist, bringing clarity, emotional insight, and a bridge to meaningful relationships.
+publish_to: 'none'
+version: 1.0.0-beta+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # TrueCircle Core Dependencies following coding instructions
+  cupertino_icons: ^1.0.6
+  
+  # Privacy-First Data Storage (Hive for EmotionEntry, Contact, ContactInteraction)
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  
+  # HuggingFace Integration for emotion analysis
+  http: ^1.1.0
+  
+  # Contact Management (AGP 8 compatible - replaces contacts_service)
+  permission_handler: ^11.0.1
+  flutter_contacts: ^1.1.7+1
+  
+  # Bilingual UI Support (Hindi/English per coding instructions)
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
+  
+  # Additional TrueCircle Features
+  shared_preferences: ^2.2.2
+  path_provider: ^2.1.1
+  url_launcher: ^6.2.1
+  fl_chart: ^0.66.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  # Code generation and linting
+  flutter_lints: ^3.0.0
+  
+  # Hive Code Generation (must match hive version exactly)
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.7
+  flutter_launcher_icons: ^0.13.1
+
+# TrueCircle Flutter Configuration following coding instructions
+flutter:
+  uses-material-design: true
+  generate: true  # Enable localization generation
+  
+  # Privacy-First Asset Configuration
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/cultural/
+    - assets/festivals/
+    - Demo_data/  # Demo data JSON files
+    - logo.png  # TrueCircle main logo for all screens
+    - assets/images/avatar.jpg  # Dr. Iris avatar
+    - api.env
+
+# TrueCircle App Icon Configuration with cultural branding
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/truecircle_logo.png"
+  min_sdk_android: 21
+  
+  # Material 3 seed color (blue) for relationships per instructions
+  adaptive_icon_background: "#2196F3"
+  adaptive_icon_foreground: "assets/icons/truecircle_adaptive.png"
+  
+  # Multi-platform TrueCircle branding
+  windows:
+    generate: true
+    image_path: "assets/images/truecircle_logo.png"
+    icon_size: 48
+  
+  web:
+    generate: true
+    image_path: "assets/images/truecircle_logo.png"
+    background_color: "#2196F3"
+    theme_color: "#2196F3"

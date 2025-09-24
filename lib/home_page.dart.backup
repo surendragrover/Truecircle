@@ -1,0 +1,915 @@
+import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'models/emotion_entry.dart';
+import 'models/contact.dart';
+import 'models/contact_interaction.dart';
+import 'models/privacy_settings.dart';
+import 'services/emotion_service.dart';
+import 'pages/charts_page.dart';
+import 'pages/export_page.dart';
+import 'pages/search_page.dart';
+import 'pages/reminders_page.dart';
+import 'pages/relationship_dashboard.dart';
+import 'pages/app_settings_page.dart';
+import 'widgets/truecircle_logo.dart';
+import 'widgets/cultural_ai_dashboard.dart';
+import 'widgets/interactive_ai_ui.dart';
+import 'widgets/future_ai_dashboard.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final _formKey = GlobalKey<FormState>();
+  late final EmotionService emotionService;
+  DateTime _selectedDate = DateTime.now();
+  String _emotion = '';
+  int _intensity = 1;
+  String? _note;
+
+  @override
+  void initState() {
+    super.initState();
+    final box = Hive.box<EmotionEntry>('emotion_entries');
+    emotionService = EmotionService(box);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final entries = emotionService.getAllEntries();
+
+    return Scaffold(
+      backgroundColor: const Color(0xFFF8F9FF),
+      appBar: AppBar(
+        title: const Row(
+          children: [
+            TrueCircleLogo(style: LogoStyle.minimal, size: 28),
+            const const SizedBox(width: 12),
+            const Text('TrueCircle',
+                style: const TextStyle(fontWeight: FontWeight.w600)),
+          ],
+        ),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.blueGrey[800],
+        elevation: 0,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1),
+          child: Container(
+            height: 1,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.blue.withValues(alpha: 0.3),
+                  Colors.orange.withValues(alpha: 0.3),
+                  Colors.green.withValues(alpha: 0.3),
+                  Colors.yellow.withValues(alpha: 0.3),
+                ],
+              ),
+            ),
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => SearchPage(
+                    entries: entries,
+                    emotionService: emotionService,
+                  ),
+                ),
+              );
+            },
+          ),
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert),
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: 'charts',
+                child: Row(
+                  children: [
+                    Icon(Icons.bar_chart, size: 20),
+                    const const SizedBox(width: 8),
+                    Text('Charts'),
+                  ],
+                ),
+              ),
+              const PopupMenuItem(
+                value: 'export',
+                child: Row(
+                  children: [
+                    Icon(Icons.file_download, size: 20),
+                    const const SizedBox(width: 8),
+                    Text('Export Data'),
+                  ],
+                ),
+              ),
+              const PopupMenuItem(
+                value: 'reminders',
+                child: Row(
+                  children: [
+                    Icon(Icons.notifications, size: 20),
+                    const const SizedBox(width: 8),
+                    Text('Reminders'),
+                  ],
+                ),
+              ),
+              const PopupMenuItem(
+                value: 'settings',
+                child: Row(
+                  children: [
+                    Icon(Icons.settings, size: 20),
+                    const const SizedBox(width: 8),
+                    Text('Settings'),
+                  ],
+                ),
+              ),
+            ],
+            onSelected: (value) {
+              if (value == 'charts') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ChartsPage(entries: entries),
+                  ),
+                );
+              } else if (value == 'export') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => ExportPage(entries: entries),
+                  ),
+                );
+              } else if (value == 'reminders') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const RemindersPage(),
+                  ),
+                );
+              } else if (value == 'settings') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const AppSettingsPage(),
+                  ),
+                );
+              }
+            },
+          ),
+        ],
+      ),
+      body: entries.isEmpty
+          ? _buildEmptyState()
+          : Column(
+              children: [
+                _buildQuickStats(entries),
+                _buildAIFeaturesSection(),
+                Expanded(
+                  child: ListView.builder(
+                    padding: const const EdgeInsets.all(16),
+                    itemCount: entries.length,
+                    itemBuilder: (context, index) {
+                      final entry = entries[index];
+                      return _buildEntryCard(entry, index);
+                    },
+                  ),
+                ),
+              ],
+            ),
+      floatingActionButton: _buildFloatingActionButtons(),
+    );
+  }
+
+  Widget _buildAIFeaturesSection() {
+    return Container(
+      margin: const const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            '🤖 AI-Powered Relationship Tools',
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.deepPurple,
+            ),
+          ),
+          const const SizedBox(height: 12),
+          Row(
+            children: [
+              Expanded(
+                child: _buildAIFeatureCard(
+                  title: 'Cultural AI',
+                  subtitle: 'Festival & Regional Intelligence',
+                  icon: '🎭',
+                  color: Colors.orange,
+                  onTap: _openCulturalAI,
+                ),
+              ),
+              const const SizedBox(width: 12),
+              Expanded(
+                child: _buildAIFeatureCard(
+                  title: 'Relationship Dashboard',
+                  subtitle: 'Smart Contact Analysis',
+                  icon: '📊',
+                  color: Colors.blue,
+                  onTap: _openRelationshipDashboard,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAIFeatureCard({
+    required String title,
+    required String subtitle,
+    required String icon,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(
+              color: color.withValues(alpha: 0.1),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
+          border: Border.all(color: color.withValues(alpha: 0.2)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(
+                  icon,
+                  style: const const TextStyle(fontSize: 24),
+                ),
+                const Spacer(),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 16,
+                  color: color,
+                ),
+              ],
+            ),
+            const const SizedBox(height: 12),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: color,
+              ),
+            ),
+            const const SizedBox(height: 4),
+            Text(
+              subtitle,
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.grey[600],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEmptyState() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: const const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: Colors.blue.withValues(alpha: 0.3),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.mood,
+              size: 64,
+              color: Colors.blue[400],
+            ),
+          ),
+          const const SizedBox(height: 24),
+          Text(
+            'Welcome to TrueCircle! 🎉',
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                ),
+          ),
+          const const SizedBox(height: 8),
+          Text(
+            'Track emotions & build better relationships\nwith AI-powered insights',
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              color: Colors.grey[600],
+              fontSize: 16,
+            ),
+          ),
+          const const SizedBox(height: 32),
+          ElevatedButton.icon(
+            onPressed: () => _showEntryDialog(context, emotionService),
+            icon: const Icon(Icons.add),
+            label: const Text('Add Your First Entry'),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.deepPurple,
+              foregroundColor: Colors.white,
+              padding: const const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(25),
+              ),
+            ),
+          ),
+          const const SizedBox(height: 16),
+          TextButton.icon(
+            onPressed: _openCulturalAI,
+            icon: const Text('🎭'),
+            label: const Text('Explore Cultural AI'),
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.orange,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildQuickStats(List<EmotionEntry> entries) {
+    if (entries.isEmpty) return const SizedBox.shrink();
+
+    final recentEntries = entries.take(7).toList();
+    final avgMood =
+        recentEntries.map((e) => e.intensity).reduce((a, b) => a + b) /
+            recentEntries.length;
+
+    return Container(
+      margin: const const EdgeInsets.all(16),
+      padding: const const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.blue.shade50, Colors.purple.shade50],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.blue.withValues(alpha: 0.3)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          _buildStatItem(
+            icon: Icons.mood,
+            label: 'Avg Mood',
+            value: avgMood.toStringAsFixed(1),
+            color: _getMoodColor(avgMood),
+          ),
+          _buildStatItem(
+            icon: Icons.calendar_today,
+            label: 'This Week',
+            value: '${recentEntries.length}',
+            color: Colors.green,
+          ),
+          _buildStatItem(
+            icon: Icons.trending_up,
+            label: 'Total',
+            value: '${entries.length}',
+            color: Colors.orange,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatItem({
+    required IconData icon,
+    required String label,
+    required String value,
+    required Color color,
+  }) {
+    return Column(
+      children: [
+        Container(
+          padding: const const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: color.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Icon(icon, color: color, size: 24),
+        ),
+        const const SizedBox(height: 8),
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: color,
+          ),
+        ),
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 12,
+            color: Colors.grey[600],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildEntryCard(EmotionEntry entry, int index) {
+    return Card(
+      elevation: 2,
+      margin: const const EdgeInsets.only(bottom: 12),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: ListTile(
+        contentPadding: const const EdgeInsets.all(16),
+        leading: Container(
+          width: 50,
+          height: 50,
+          decoration: BoxDecoration(
+            color: _getEmotionColor(entry.emotion).withValues(alpha: 0.8),
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: Center(
+            child: Text(
+              _getEmotionEmoji(entry.emotion),
+              style: const const TextStyle(fontSize: 24),
+            ),
+          ),
+        ),
+        title: Text(
+          entry.emotion,
+          style: const const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const const SizedBox(height: 4),
+            Row(
+              children: [
+                Icon(Icons.favorite,
+                    size: 16, color: _getIntensityColor(entry.intensity)),
+                const const SizedBox(width: 4),
+                Text('Intensity: ${entry.intensity}/5'),
+                const Spacer(),
+                Text(
+                  _formatDate(entry.timestamp),
+                  style: const TextStyle(color: Colors.grey[600], fontSize: 12),
+                ),
+              ],
+            ),
+            if (entry.note != null && entry.note!.isNotEmpty) ...[
+              const const SizedBox(height: 8),
+              Text(
+                entry.note!,
+                style: const TextStyle(color: Colors.grey[700]),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ],
+        ),
+        trailing: PopupMenuButton(
+          itemBuilder: (context) => [
+            const PopupMenuItem(
+              value: 'edit',
+              child: Row(
+                children: [
+                  Icon(Icons.edit, size: 20),
+                  const const SizedBox(width: 8),
+                  Text('Edit'),
+                ],
+              ),
+            ),
+            const PopupMenuItem(
+              value: 'delete',
+              child: Row(
+                children: [
+                  Icon(Icons.delete, size: 20, color: Colors.red),
+                  const const SizedBox(width: 8),
+                  Text('Delete', style: const TextStyle(color: Colors.red)),
+                ],
+              ),
+            ),
+          ],
+          onSelected: (value) {
+            if (value == 'edit') {
+              _showEntryDialog(context, emotionService,
+                  entry: entry, index: index);
+            } else if (value == 'delete') {
+              _showDeleteConfirmation(entry, index);
+            }
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFloatingActionButtons() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        FloatingActionButton(
+          onPressed: _openFutureAI,
+          heroTag: "future_ai",
+          backgroundColor: const Color(0xFF4285F4),
+          child: const Icon(Icons.auto_awesome, color: Colors.white),
+          tooltip: '🚀 Future AI Possibilities',
+        ),
+        const const SizedBox(height: 12),
+        FloatingActionButton(
+          onPressed: _openInteractiveAI,
+          heroTag: "interactive_ai",
+          backgroundColor: Colors.purple,
+          child: const Icon(Icons.psychology, color: Colors.white),
+          tooltip: '🎙️ Interactive AI Assistant',
+        ),
+        const const SizedBox(height: 12),
+        FloatingActionButton(
+          onPressed: _openCulturalAI,
+          heroTag: "cultural_ai",
+          backgroundColor: Colors.orange,
+          child: const Text('🎭', style: const TextStyle(fontSize: 20)),
+          tooltip: 'Cultural AI Dashboard',
+        ),
+        const const SizedBox(height: 12),
+        FloatingActionButton(
+          onPressed: _openRelationshipDashboard,
+          heroTag: "relationship",
+          backgroundColor: Colors.blue[400],
+          child: const Icon(Icons.people),
+          tooltip: 'Relationship Dashboard',
+        ),
+        const const SizedBox(height: 12),
+        FloatingActionButton(
+          onPressed: () => _showEntryDialog(context, emotionService),
+          heroTag: "emotion",
+          backgroundColor: Colors.deepPurple,
+          child: const Icon(Icons.add),
+          tooltip: 'Add Emotion Entry',
+        ),
+      ],
+    );
+  }
+
+  // Action Methods
+  void _openInteractiveAI() {
+    final sampleContacts = _getSampleContacts();
+    final sampleInteractions = _getSampleInteractions();
+    final entries = emotionService.getAllEntries();
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => InteractiveAIUI(
+          contacts: sampleContacts,
+          interactions: sampleInteractions,
+          moodEntries: entries,
+        ),
+      ),
+    );
+  }
+
+  void _openCulturalAI() {
+    final sampleContacts = _getSampleContacts();
+    final sampleInteractions = _getSampleInteractions();
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => CulturalAIDashboard(
+          contacts: sampleContacts,
+          interactions: sampleInteractions,
+        ),
+      ),
+    );
+  }
+
+  void _openRelationshipDashboard() {
+    final sampleContacts = _getSampleContacts();
+    final samplePrivacySettings = PrivacySettings();
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => RelationshipDashboard(
+          contacts: sampleContacts,
+          privacySettings: samplePrivacySettings,
+        ),
+      ),
+    );
+  }
+
+  void _openFutureAI() {
+    final sampleContacts = _getSampleContacts();
+    final sampleInteractions = _getSampleInteractions();
+    final entries = emotionService.getAllEntries();
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => FutureAIDashboard(
+          contacts: sampleContacts,
+          interactions: sampleInteractions,
+          moodEntries: entries,
+        ),
+      ),
+    );
+  }
+
+  List<Contact> _getSampleContacts() {
+    return [
+      Contact(
+        id: '1',
+        displayName: 'अमित शर्मा',
+        phoneNumbers: ['+91 98765 43210'],
+        emails: ['amit@example.com'],
+        lastContacted: DateTime.now().subtract(const Duration(days: 2)),
+        totalCalls: 45,
+        totalMessages: 100,
+        callsInitiatedByMe: 25,
+        messagesInitiatedByMe: 60,
+        averageResponseTime: 0.25,
+        emotionalScore: EmotionalScore.VERY_WARM,
+        emotionalScoreValue: 85.0,
+        tags: ['परिवार', 'काम'],
+        notes: 'भाई जी - हमेशा मदद करते हैं',
+        isFavorite: true,
+      ),
+      Contact(
+        id: '2',
+        displayName: 'प्रिया पटेल',
+        phoneNumbers: ['+91 87654 32109'],
+        emails: ['priya@example.com'],
+        lastContacted: DateTime.now().subtract(const Duration(hours: 6)),
+        totalCalls: 29,
+        totalMessages: 60,
+        callsInitiatedByMe: 15,
+        messagesInitiatedByMe: 35,
+        averageResponseTime: 0.42,
+        emotionalScore: EmotionalScore.FRIENDLY_BUT_FADING,
+        emotionalScoreValue: 65.0,
+        tags: ['दोस्त', 'कॉलेज'],
+        notes: 'कॉलेज की दोस्त - बहुत अच्छी',
+      ),
+      Contact(
+        id: '3',
+        displayName: 'राज कुमार',
+        phoneNumbers: ['+91 76543 21098'],
+        emails: ['raj@example.com'],
+        lastContacted: DateTime.now().subtract(const Duration(days: 15)),
+        totalCalls: 12,
+        totalMessages: 25,
+        callsInitiatedByMe: 8,
+        messagesInitiatedByMe: 20,
+        averageResponseTime: 2.5,
+        emotionalScore: EmotionalScore.COLD,
+        emotionalScoreValue: 30.0,
+        tags: ['काम', 'बिजनेस'],
+        notes: 'काम का साथी - कम बात करते हैं',
+      ),
+    ];
+  }
+
+  List<ContactInteraction> _getSampleInteractions() {
+    return [
+      ContactInteraction(
+        contactId: '1',
+        type: InteractionType.message,
+        content: 'दीवाली की हार्दिक शुभकामनाएं भाई! 🪔✨',
+        timestamp: DateTime.now().subtract(const Duration(days: 10)),
+        initiatedByMe: false,
+      ),
+      ContactInteraction(
+        contactId: '2',
+        type: InteractionType.message,
+        content: 'Happy Holi! Hope you had fun with colors 🌈🎨',
+        timestamp: DateTime.now().subtract(const Duration(days: 180)),
+        initiatedByMe: true,
+      ),
+    ];
+  }
+
+  // Dialog Methods
+  void _showEntryDialog(BuildContext context, EmotionService service,
+      {EmotionEntry? entry, int? index}) {
+    if (entry != null) {
+      _selectedDate = entry.timestamp;
+      _emotion = entry.emotion;
+      _intensity = entry.intensity;
+      _note = entry.note;
+    } else {
+      _selectedDate = DateTime.now();
+      _emotion = '';
+      _intensity = 1;
+      _note = null;
+    }
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(entry == null ? 'Add Emotion Entry' : 'Edit Entry'),
+        content: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: const Text('Date'),
+                subtitle: Text(_formatDate(_selectedDate)),
+                trailing: const Icon(Icons.calendar_today),
+                onTap: () async {
+                  final date = await showDatePicker(
+                    context: context,
+                    initialDate: _selectedDate,
+                    firstDate: DateTime(2020),
+                    lastDate: DateTime.now(),
+                  );
+                  if (date != null) {
+                    setState(() => _selectedDate = date);
+                  }
+                },
+              ),
+              TextFormField(
+                initialValue: _emotion,
+                decoration: const InputDecoration(labelText: 'Emotion'),
+                validator: (value) =>
+                    value?.isEmpty == true ? 'Required' : null,
+                onSaved: (value) => _emotion = value!,
+              ),
+              const const SizedBox(height: 16),
+              Text('Intensity: $_intensity'),
+              Slider(
+                value: _intensity.toDouble(),
+                min: 1,
+                max: 5,
+                divisions: 4,
+                onChanged: (value) =>
+                    setState(() => _intensity = value.round()),
+              ),
+              TextFormField(
+                initialValue: _note,
+                decoration: const InputDecoration(labelText: 'Note (optional)'),
+                maxLines: 3,
+                onSaved: (value) => _note = value,
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                _formKey.currentState!.save();
+                final newEntry = EmotionEntry(
+                  emotion: _emotion,
+                  intensity: _intensity,
+                  timestamp: _selectedDate,
+                  note: _note,
+                );
+
+                if (entry == null) {
+                  service.addEntry(newEntry);
+                } else {
+                  service.updateEntry(index!, newEntry);
+                }
+
+                setState(() {});
+                Navigator.pop(context);
+              }
+            },
+            child: Text(entry == null ? 'Add' : 'Update'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _showDeleteConfirmation(EmotionEntry entry, int index) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete Entry'),
+        content: Text(
+            'Are you sure you want to delete this ${entry.emotion} entry?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              emotionService.deleteEntry(index);
+              setState(() {});
+              Navigator.pop(context);
+            },
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Helper Methods
+  Color _getMoodColor(double mood) {
+    if (mood >= 4) return Colors.green;
+    if (mood >= 3) return Colors.orange;
+    return Colors.red;
+  }
+
+  Color _getEmotionColor(String emotion) {
+    switch (emotion.toLowerCase()) {
+      case 'happy':
+      case 'joy':
+      case 'excited':
+        return Colors.yellow;
+      case 'sad':
+      case 'depressed':
+        return Colors.blue;
+      case 'angry':
+      case 'frustrated':
+        return Colors.red;
+      case 'calm':
+      case 'peaceful':
+        return Colors.green;
+      case 'anxious':
+      case 'worried':
+        return Colors.orange;
+      default:
+        return Colors.grey;
+    }
+  }
+
+  String _getEmotionEmoji(String emotion) {
+    switch (emotion.toLowerCase()) {
+      case 'happy':
+        return '😊';
+      case 'sad':
+        return '😢';
+      case 'angry':
+        return '😠';
+      case 'excited':
+        return '🤗';
+      case 'calm':
+        return '😌';
+      case 'anxious':
+        return '😰';
+      case 'love':
+        return '🥰';
+      case 'tired':
+        return '😴';
+      default:
+        return '😐';
+    }
+  }
+
+  Color _getIntensityColor(int intensity) {
+    switch (intensity) {
+      case 1:
+        return Colors.green;
+      case 2:
+        return Colors.lightGreen;
+      case 3:
+        return Colors.yellow;
+      case 4:
+        return Colors.orange;
+      case 5:
+        return Colors.red;
+      default:
+        return Colors.grey;
+    }
+  }
+
+  String _formatDate(DateTime date) {
+    return '${date.day}/${date.month}/${date.year}';
+  }
+}

@@ -1,0 +1,572 @@
+{
+    "daily_entries": [
+        {
+            "date": "2025-08-25",
+            "time": "Morning",
+            "emotion": {
+                "en": "overwhelmed",
+                "hi": "बेहद व्यस्त"
+            },
+            "intensity": 3,
+            "trigger": {
+                "en": "exercise",
+                "hi": "व्यायाम"
+            },
+            "notes": {
+                "en": "Stressful meeting with manager.",
+                "hi": "मैनेजर के साथ तनावपूर्ण बैठक।"
+            }
+        },
+        {
+            "date": "2025-08-26",
+            "time": "Afternoon",
+            "emotion": {
+                "en": "overwhelmed",
+                "hi": "बेहद व्यस्त"
+            },
+            "intensity": 9,
+            "trigger": {
+                "en": "social events",
+                "hi": "सामाजिक कार्यक्रम"
+            },
+            "notes": {
+                "en": "Met friends after a long time.",
+                "hi": "पसंदीदा फिल्म देखी और आराम किया।"
+            }
+        },
+        {
+            "date": "2025-08-27",
+            "time": "Afternoon",
+            "emotion": {
+                "en": "sad",
+                "hi": "उदास"
+            },
+            "intensity": 4,
+            "trigger": {
+                "en": "social events",
+                "hi": "सामाजिक कार्यक्रम"
+            },
+            "notes": {
+                "en": "Met friends after a long time.",
+                "hi": "मैनेजर के साथ तनावपूर्ण बैठक।"
+            }
+        },
+        {
+            "date": "2025-08-28",
+            "time": "Morning",
+            "emotion": {
+                "en": "sad",
+                "hi": "उदास"
+            },
+            "intensity": 4,
+            "trigger": {
+                "en": "family time",
+                "hi": "परिवार के साथ समय"
+            },
+            "notes": {
+                "en": "Watched a favorite movie and relaxed.",
+                "hi": "सुबह दौड़ने के बाद ऊर्जावान महसूस किया।"
+            }
+        },
+        {
+            "date": "2025-08-29",
+            "time": "Evening",
+            "emotion": {
+                "en": "frustrated",
+                "hi": "निराश"
+            },
+            "intensity": 6,
+            "trigger": {
+                "en": "sleep quality",
+                "hi": "नींद की गुणवत्ता"
+            },
+            "notes": {
+                "en": "Spent quality time with kids.",
+                "hi": "बच्चों के साथ अच्छा समय बिताया।"
+            }
+        },
+        {
+            "date": "2025-08-30",
+            "time": "Morning",
+            "emotion": {
+                "en": "excited",
+                "hi": "उत्साहित"
+            },
+            "intensity": 4,
+            "trigger": {
+                "en": "weekend activity",
+                "hi": "सप्ताहांत गतिविधि"
+            },
+            "notes": {
+                "en": "Watched a favorite movie and relaxed.",
+                "hi": "पिछली रात अच्छी नींद नहीं आई।"
+            }
+        },
+        {
+            "date": "2025-08-31",
+            "time": "Afternoon",
+            "emotion": {
+                "en": "grateful",
+                "hi": "कृतज्ञ"
+            },
+            "intensity": 9,
+            "trigger": {
+                "en": "sleep quality",
+                "hi": "नींद की गुणवत्ता"
+            },
+            "notes": {
+                "en": "Watched a favorite movie and relaxed.",
+                "hi": "पिछली रात अच्छी नींद नहीं आई।"
+            }
+        },
+        {
+            "date": "2025-09-01",
+            "time": "Evening",
+            "emotion": {
+                "en": "happy",
+                "hi": "खुश"
+            },
+            "intensity": 3,
+            "trigger": {
+                "en": "work stress",
+                "hi": "काम का तनाव"
+            },
+            "notes": {
+                "en": "Watched a favorite movie and relaxed.",
+                "hi": "मैनेजर के साथ तनावपूर्ण बैठक।"
+            }
+        },
+        {
+            "date": "2025-09-02",
+            "time": "Afternoon",
+            "emotion": {
+                "en": "excited",
+                "hi": "उत्साहित"
+            },
+            "intensity": 3,
+            "trigger": {
+                "en": "news",
+                "hi": "समाचार"
+            },
+            "notes": {
+                "en": "Met friends after a long time.",
+                "hi": "सुबह दौड़ने के बाद ऊर्जावान महसूस किया।"
+            }
+        },
+        {
+            "date": "2025-09-03",
+            "time": "Afternoon",
+            "emotion": {
+                "en": "happy",
+                "hi": "खुश"
+            },
+            "intensity": 3,
+            "trigger": {
+                "en": "exercise",
+                "hi": "व्यायाम"
+            },
+            "notes": {
+                "en": "Stressful meeting with manager.",
+                "hi": "पिछली रात अच्छी नींद नहीं आई।"
+            }
+        },
+        {
+            "date": "2025-09-04",
+            "time": "Morning",
+            "emotion": {
+                "en": "frustrated",
+                "hi": "निराश"
+            },
+            "intensity": 7,
+            "trigger": {
+                "en": "social events",
+                "hi": "सामाजिक कार्यक्रम"
+            },
+            "notes": {
+                "en": "Met friends after a long time.",
+                "hi": "लंबे समय बाद दोस्तों से मिला।"
+            }
+        },
+        {
+            "date": "2025-09-05",
+            "time": "Morning",
+            "emotion": {
+                "en": "calm",
+                "hi": "शांत"
+            },
+            "intensity": 3,
+            "trigger": {
+                "en": "news",
+                "hi": "समाचार"
+            },
+            "notes": {
+                "en": "Met friends after a long time.",
+                "hi": "पसंदीदा फिल्म देखी और आराम किया।"
+            }
+        },
+        {
+            "date": "2025-09-06",
+            "time": "Morning",
+            "emotion": {
+                "en": "calm",
+                "hi": "शांत"
+            },
+            "intensity": 5,
+            "trigger": {
+                "en": "weekend activity",
+                "hi": "सप्ताहांत गतिविधि"
+            },
+            "notes": {
+                "en": "Could not sleep well last night.",
+                "hi": "सुबह दौड़ने के बाद ऊर्जावान महसूस किया।"
+            }
+        },
+        {
+            "date": "2025-09-07",
+            "time": "Afternoon",
+            "emotion": {
+                "en": "grateful",
+                "hi": "कृतज्ञ"
+            },
+            "intensity": 4,
+            "trigger": {
+                "en": "social events",
+                "hi": "सामाजिक कार्यक्रम"
+            },
+            "notes": {
+                "en": "Watched a favorite movie and relaxed.",
+                "hi": "सुबह दौड़ने के बाद ऊर्जावान महसूस किया।"
+            }
+        },
+        {
+            "date": "2025-09-08",
+            "time": "Morning",
+            "emotion": {
+                "en": "anxious",
+                "hi": "चिंतित"
+            },
+            "intensity": 8,
+            "trigger": {
+                "en": "commute",
+                "hi": "आवागमन"
+            },
+            "notes": {
+                "en": "Stressful meeting with manager.",
+                "hi": "पिछली रात अच्छी नींद नहीं आई।"
+            }
+        },
+        {
+            "date": "2025-09-09",
+            "time": "Afternoon",
+            "emotion": {
+                "en": "happy",
+                "hi": "खुश"
+            },
+            "intensity": 4,
+            "trigger": {
+                "en": "exercise",
+                "hi": "व्यायाम"
+            },
+            "notes": {
+                "en": "Felt energetic after morning run.",
+                "hi": "बच्चों के साथ अच्छा समय बिताया।"
+            }
+        },
+        {
+            "date": "2025-09-10",
+            "time": "Morning",
+            "emotion": {
+                "en": "happy",
+                "hi": "खुश"
+            },
+            "intensity": 8,
+            "trigger": {
+                "en": "exercise",
+                "hi": "व्यायाम"
+            },
+            "notes": {
+                "en": "Watched a favorite movie and relaxed.",
+                "hi": "मैनेजर के साथ तनावपूर्ण बैठक।"
+            }
+        },
+        {
+            "date": "2025-09-11",
+            "time": "Afternoon",
+            "emotion": {
+                "en": "calm",
+                "hi": "शांत"
+            },
+            "intensity": 8,
+            "trigger": {
+                "en": "exercise",
+                "hi": "व्यायाम"
+            },
+            "notes": {
+                "en": "Spent quality time with kids.",
+                "hi": "मैनेजर के साथ तनावपूर्ण बैठक।"
+            }
+        },
+        {
+            "date": "2025-09-12",
+            "time": "Morning",
+            "emotion": {
+                "en": "sad",
+                "hi": "उदास"
+            },
+            "intensity": 6,
+            "trigger": {
+                "en": "work stress",
+                "hi": "काम का तनाव"
+            },
+            "notes": {
+                "en": "Felt energetic after morning run.",
+                "hi": "सुबह दौड़ने के बाद ऊर्जावान महसूस किया।"
+            }
+        },
+        {
+            "date": "2025-09-13",
+            "time": "Afternoon",
+            "emotion": {
+                "en": "happy",
+                "hi": "खुश"
+            },
+            "intensity": 4,
+            "trigger": {
+                "en": "work stress",
+                "hi": "काम का तनाव"
+            },
+            "notes": {
+                "en": "Spent quality time with kids.",
+                "hi": "सुबह दौड़ने के बाद ऊर्जावान महसूस किया।"
+            }
+        },
+        {
+            "date": "2025-09-14",
+            "time": "Morning",
+            "emotion": {
+                "en": "excited",
+                "hi": "उत्साहित"
+            },
+            "intensity": 8,
+            "trigger": {
+                "en": "social events",
+                "hi": "सामाजिक कार्यक्रम"
+            },
+            "notes": {
+                "en": "Spent quality time with kids.",
+                "hi": "पसंदीदा फिल्म देखी और आराम किया।"
+            }
+        },
+        {
+            "date": "2025-09-15",
+            "time": "Evening",
+            "emotion": {
+                "en": "calm",
+                "hi": "शांत"
+            },
+            "intensity": 4,
+            "trigger": {
+                "en": "family time",
+                "hi": "परिवार के साथ समय"
+            },
+            "notes": {
+                "en": "Spent quality time with kids.",
+                "hi": "लंबे समय बाद दोस्तों से मिला।"
+            }
+        },
+        {
+            "date": "2025-09-16",
+            "time": "Morning",
+            "emotion": {
+                "en": "sad",
+                "hi": "उदास"
+            },
+            "intensity": 8,
+            "trigger": {
+                "en": "exercise",
+                "hi": "व्यायाम"
+            },
+            "notes": {
+                "en": "Spent quality time with kids.",
+                "hi": "लंबे समय बाद दोस्तों से मिला।"
+            }
+        },
+        {
+            "date": "2025-09-17",
+            "time": "Morning",
+            "emotion": {
+                "en": "overwhelmed",
+                "hi": "बेहद व्यस्त"
+            },
+            "intensity": 3,
+            "trigger": {
+                "en": "family time",
+                "hi": "परिवार के साथ समय"
+            },
+            "notes": {
+                "en": "Could not sleep well last night.",
+                "hi": "पसंदीदा फिल्म देखी और आराम किया।"
+            }
+        },
+        {
+            "date": "2025-09-18",
+            "time": "Evening",
+            "emotion": {
+                "en": "happy",
+                "hi": "खुश"
+            },
+            "intensity": 6,
+            "trigger": {
+                "en": "work stress",
+                "hi": "काम का तनाव"
+            },
+            "notes": {
+                "en": "Spent quality time with kids.",
+                "hi": "लंबे समय बाद दोस्तों से मिला।"
+            }
+        },
+        {
+            "date": "2025-09-19",
+            "time": "Morning",
+            "emotion": {
+                "en": "frustrated",
+                "hi": "निराश"
+            },
+            "intensity": 7,
+            "trigger": {
+                "en": "news",
+                "hi": "समाचार"
+            },
+            "notes": {
+                "en": "Spent quality time with kids.",
+                "hi": "मैनेजर के साथ तनावपूर्ण बैठक।"
+            }
+        },
+        {
+            "date": "2025-09-20",
+            "time": "Evening",
+            "emotion": {
+                "en": "sad",
+                "hi": "उदास"
+            },
+            "intensity": 4,
+            "trigger": {
+                "en": "family time",
+                "hi": "परिवार के साथ समय"
+            },
+            "notes": {
+                "en": "Stressful meeting with manager.",
+                "hi": "मैनेजर के साथ तनावपूर्ण बैठक।"
+            }
+        },
+        {
+            "date": "2025-09-21",
+            "time": "Morning",
+            "emotion": {
+                "en": "excited",
+                "hi": "उत्साहित"
+            },
+            "intensity": 7,
+            "trigger": {
+                "en": "commute",
+                "hi": "आवागमन"
+            },
+            "notes": {
+                "en": "Met friends after a long time.",
+                "hi": "मैनेजर के साथ तनावपूर्ण बैठक।"
+            }
+        },
+        {
+            "date": "2025-09-22",
+            "time": "Afternoon",
+            "emotion": {
+                "en": "happy",
+                "hi": "खुश"
+            },
+            "intensity": 8,
+            "trigger": {
+                "en": "weekend activity",
+                "hi": "सप्ताहांत गतिविधि"
+            },
+            "notes": {
+                "en": "Watched a favorite movie and relaxed.",
+                "hi": "सुबह दौड़ने के बाद ऊर्जावान महसूस किया।"
+            }
+        },
+        {
+            "date": "2025-09-23",
+            "time": "Morning",
+            "emotion": {
+                "en": "frustrated",
+                "hi": "निराश"
+            },
+            "intensity": 9,
+            "trigger": {
+                "en": "weekend activity",
+                "hi": "सप्ताहांत गतिविधि"
+            },
+            "notes": {
+                "en": "Could not sleep well last night.",
+                "hi": "पिछली रात अच्छी नींद नहीं आई।"
+            }
+        }
+    ],
+    "emotion_patterns": {
+        "weekly_trends": {
+            "en": "Mood improves significantly on Saturdays and Sundays.",
+            "hi": "शनिवार और रविवार को मनोभाव में उल्लेखनीय सुधार होता है।"
+        },
+        "common_emotions": {
+            "en": "Most common emotion: Calm. Most common trigger: Family time.",
+            "hi": "सबसे आम भावना: शांत। सबसे आम कारण: परिवार के साथ समय।"
+        },
+        "time_of_day_patterns": {
+            "en": "Anxiety peaks in the afternoon; happiness highest in the evening.",
+            "hi": "दोपहर में चिंता चरम पर होती है; शाम को खुशी सबसे अधिक होती है।"
+        },
+        "correlation_insights": {
+            "en": "Better sleep quality leads to higher morning calmness scores.",
+            "hi": "बेहतर नींद की गुणवत्ता से सुबह की शांति स्कोर में वृद्धि होती है।"
+        }
+    },
+    "personalized_insights": [
+        {
+            "en": "You tend to feel most positive on weekends.",
+            "hi": "आप सप्ताहांत में सबसे अधिक सकारात्मक महसूस करते हैं।"
+        },
+        {
+            "en": "Your mood improves after exercise sessions.",
+            "hi": "व्यायाम सत्र के बाद आपका मनोभाव सुधरता है।"
+        },
+        {
+            "en": "Work meetings often trigger anxiety - consider breathing exercises.",
+            "hi": "काम की बैठकों से अक्सर चिंता होती है - श्वास अभ्यास पर विचार करें।"
+        }
+    ],
+    "progress_tracking": {
+        "monthly_emotion_distribution": {
+            "happy": 8,
+            "calm": 6,
+            "anxious": 5,
+            "frustrated": 4,
+            "grateful": 3,
+            "sad": 2,
+            "excited": 1,
+            "overwhelmed": 1
+        },
+        "suggestions": {
+            "en": "Increase morning exercise to boost daily happiness levels.",
+            "hi": "दैनिक खुशी स्तर बढ़ाने के लिए सुबह का व्यायाम बढ़ाएँ।"
+        },
+        "milestones": [
+            {
+                "en": "Logged emotions for 30 consecutive days!",
+                "hi": "लगातार 30 दिनों तक भावनाएँ दर्ज कीं!"
+            },
+            {
+                "en": "Achieved consistent calmness scores above 7.",
+                "hi": "लगातार शांति स्कोर 7 से ऊपर प्राप्त किए।"
+            }
+        ]
+    }
+}
