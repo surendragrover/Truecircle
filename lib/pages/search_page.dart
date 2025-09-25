@@ -111,13 +111,16 @@ class _SearchPageState extends State<SearchPage> {
                     decoration: InputDecoration(
                       labelText: 'Search emotions or notes...',
                       labelStyle: const TextStyle(color: Colors.white70),
-                      prefixIcon: const Icon(Icons.search, color: Colors.white70),
+                      prefixIcon:
+                          const Icon(Icons.search, color: Colors.white70),
                       border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.5)),
+                        borderSide: BorderSide(
+                            color: Colors.white.withValues(alpha: 0.5)),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white.withValues(alpha: 0.5)),
+                        borderSide: BorderSide(
+                            color: Colors.white.withValues(alpha: 0.5)),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       focusedBorder: const OutlineInputBorder(
@@ -128,7 +131,8 @@ class _SearchPageState extends State<SearchPage> {
                       fillColor: Colors.white.withValues(alpha: 0.1),
                       suffixIcon: _searchText.isNotEmpty
                           ? IconButton(
-                              icon: const Icon(Icons.clear, color: Colors.white70),
+                              icon: const Icon(Icons.clear,
+                                  color: Colors.white70),
                               onPressed: () {
                                 setState(() {
                                   _searchText = '';
@@ -194,7 +198,8 @@ class _SearchPageState extends State<SearchPage> {
                               ),
                               child: ListTile(
                                 leading: CircleAvatar(
-                                  backgroundColor: _getIntensityColor(entry.intensity),
+                                  backgroundColor:
+                                      _getIntensityColor(entry.intensity),
                                   child: Text(
                                     '${entry.intensity}',
                                     style: const TextStyle(
@@ -213,7 +218,8 @@ class _SearchPageState extends State<SearchPage> {
                                 subtitle: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    if (entry.note != null && entry.note!.isNotEmpty) ...[
+                                    if (entry.note != null &&
+                                        entry.note!.isNotEmpty) ...[
                                       const SizedBox(height: 4),
                                       Text(
                                         entry.note!,
@@ -251,25 +257,33 @@ class _SearchPageState extends State<SearchPage> {
                                       value: 'delete',
                                       child: Row(
                                         children: [
-                                          Icon(Icons.delete, size: 16, color: Colors.red),
+                                          Icon(Icons.delete,
+                                              size: 16, color: Colors.red),
                                           SizedBox(width: 8),
-                                          Text('Delete', style: TextStyle(color: Colors.red)),
+                                          Text('Delete',
+                                              style:
+                                                  TextStyle(color: Colors.red)),
                                         ],
                                       ),
                                     ),
                                   ],
                                   onSelected: (value) async {
                                     if (value == 'delete') {
-                                      final originalIndex = widget.entries.indexOf(entry);
+                                      final originalIndex =
+                                          widget.entries.indexOf(entry);
                                       if (originalIndex != -1) {
-                                        await widget.emotionService.deleteEntry(originalIndex);
+                                        await widget.emotionService
+                                            .deleteEntry(originalIndex);
                                         setState(() {
-                                          widget.entries.removeAt(originalIndex);
+                                          widget.entries
+                                              .removeAt(originalIndex);
                                         });
                                         _filterEntries();
                                         if (context.mounted) {
-                                          ScaffoldMessenger.of(context).showSnackBar(
-                                            const SnackBar(content: Text('Entry deleted')),
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                                content: Text('Entry deleted')),
                                           );
                                         }
                                       }
@@ -354,17 +368,20 @@ class _SearchPageState extends State<SearchPage> {
                   emotion: emotionController.text,
                   intensity: newIntensity,
                   timestamp: entry.timestamp,
-                  note: noteController.text.isNotEmpty ? noteController.text : null,
+                  note: noteController.text.isNotEmpty
+                      ? noteController.text
+                      : null,
                 );
 
                 final originalIndex = widget.entries.indexOf(entry);
                 if (originalIndex != -1) {
-                  await widget.emotionService.updateEntry(originalIndex, updatedEntry);
+                  await widget.emotionService
+                      .updateEntry(originalIndex, updatedEntry);
                   setState(() {
                     widget.entries[originalIndex] = updatedEntry;
                   });
                   _filterEntries();
-                  
+
                   if (context.mounted) {
                     Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(

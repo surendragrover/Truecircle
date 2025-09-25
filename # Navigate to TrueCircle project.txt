@@ -1,0 +1,16 @@
+# Navigate to TrueCircle project
+cd c:\Users\CC\flutter_app\truecircle
+
+# Execute the fixed build script
+.\truecircle_complete_build_fix.ps1
+
+
+script iske anusar fix karo aur ab koi galti n ho
+images ka path
+C:\Users\CC\flutter_app\truecircle\assets\images
+icon.ico 
+truecirclr_logo.png
+welcome_screen.png
+
+project root me
+truecircle_complete_build_fix.ps1

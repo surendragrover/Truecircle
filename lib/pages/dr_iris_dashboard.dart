@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class DrIrisDashboard extends StatefulWidget {
   final bool isFullMode;
-  
-  const DrIrisDashboard({super.key, this.isFullMode = true});
+
+  const DrIrisDashboard({super.key, this.isFullMode = false});
 
   @override
   State<DrIrisDashboard> createState() => _DrIrisDashboardState();
@@ -11,14 +11,15 @@ class DrIrisDashboard extends StatefulWidget {
 
 class _DrIrisDashboardState extends State<DrIrisDashboard> {
   String selectedLanguage = 'English';
-  
+
   // Sample data for demonstration
   final List<Map<String, dynamic>> _therapyTopics = [
     {
       'titleEn': 'Emotional Wellness Check',
       'titleHi': 'भावनात्मक कल्याण जांच',
       'descEn': 'How are you feeling today? Let\'s explore your emotions.',
-      'descHi': 'आज आप कैसा महसूस कर रहे हैं? आइए अपनी भावनाओं का पता लगाते हैं।',
+      'descHi':
+          'आज आप कैसा महसूस कर रहे हैं? आइए अपनी भावनाओं का पता लगाते हैं।',
       'icon': Icons.favorite,
       'color': Colors.pink,
       'responses': [
@@ -114,7 +115,7 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
               children: [
                 // Header with Dr. Iris
                 _buildHeader(),
-                
+
                 // Therapy Topics List
                 Expanded(
                   child: _buildTherapyTopics(),
@@ -137,9 +138,9 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
             icon: const Icon(Icons.arrow_back, color: Colors.white, size: 24),
             onPressed: () => Navigator.pop(context),
           ),
-          
+
           const SizedBox(width: 12),
-          
+
           // Dr. Iris Avatar
           Container(
             padding: const EdgeInsets.all(2),
@@ -149,7 +150,7 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
             ),
             child: ClipOval(
               child: Image.asset(
-                'assets/images/avatar.jpg',
+                'assets/images/truecircle_logo.png', // Using proper TrueCircle logo
                 width: 50,
                 height: 50,
                 fit: BoxFit.cover,
@@ -161,22 +162,25 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
                       color: Colors.blue,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.psychology, color: Colors.white, size: 30),
+                    child: const Icon(Icons.psychology,
+                        color: Colors.white, size: 30),
                   );
                 },
               ),
             ),
           ),
-          
+
           const SizedBox(width: 16),
-          
+
           // Welcome text
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  selectedLanguage == 'English' ? 'Dr. Iris Therapy Session' : 'डॉ. आइरिस थेरेपी सेशन',
+                  selectedLanguage == 'English'
+                      ? 'Dr. Iris Therapy Session'
+                      : 'डॉ. आइरिस थेरेपी सेशन',
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -186,7 +190,9 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
                 Row(
                   children: [
                     Text(
-                      selectedLanguage == 'English' ? 'Your AI Therapist' : 'आपका एआई चिकित्सक',
+                      selectedLanguage == 'English'
+                          ? 'Your AI Therapist'
+                          : 'आपका एआई चिकित्सक',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.white.withValues(alpha: 0.8),
@@ -195,25 +201,28 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
                     const SizedBox(width: 8),
                     // Mode indicator
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 6, vertical: 2),
                       decoration: BoxDecoration(
-                        color: widget.isFullMode 
-                          ? Colors.green.withValues(alpha: 0.3)
-                          : Colors.orange.withValues(alpha: 0.3),
+                        color: widget.isFullMode
+                            ? Colors.green.withValues(alpha: 0.3)
+                            : Colors.orange.withValues(alpha: 0.3),
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                          color: widget.isFullMode ? Colors.green : Colors.orange,
+                          color:
+                              widget.isFullMode ? Colors.green : Colors.orange,
                           width: 1,
                         ),
                       ),
                       child: Text(
-                        widget.isFullMode 
-                          ? (selectedLanguage == 'English' ? 'FULL' : 'पूर्ण')
-                          : (selectedLanguage == 'English' ? 'DEMO' : 'डेमो'),
+                        widget.isFullMode
+                            ? (selectedLanguage == 'English' ? 'FULL' : 'पूर्ण')
+                            : (selectedLanguage == 'English' ? 'DEMO' : 'डेमो'),
                         style: TextStyle(
                           fontSize: 10,
                           fontWeight: FontWeight.bold,
-                          color: widget.isFullMode ? Colors.green : Colors.orange,
+                          color:
+                              widget.isFullMode ? Colors.green : Colors.orange,
                         ),
                       ),
                     ),
@@ -222,12 +231,13 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
               ],
             ),
           ),
-          
+
           // Language Toggle
           GestureDetector(
             onTap: () {
               setState(() {
-                selectedLanguage = selectedLanguage == 'English' ? 'हिंदी' : 'English';
+                selectedLanguage =
+                    selectedLanguage == 'English' ? 'हिंदी' : 'English';
               });
             },
             child: Container(
@@ -284,16 +294,18 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
                       color: topic['color'],
                     ),
                   ),
-                  
+
                   const SizedBox(width: 20),
-                  
+
                   // Topic Content
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          selectedLanguage == 'English' ? topic['titleEn'] : topic['titleHi'],
+                          selectedLanguage == 'English'
+                              ? topic['titleEn']
+                              : topic['titleHi'],
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -302,7 +314,9 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          selectedLanguage == 'English' ? topic['descEn'] : topic['descHi'],
+                          selectedLanguage == 'English'
+                              ? topic['descEn']
+                              : topic['descHi'],
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey[600],
@@ -312,7 +326,7 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
                       ],
                     ),
                   ),
-                  
+
                   // Arrow Icon
                   Icon(
                     Icons.arrow_forward_ios,
@@ -329,9 +343,13 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
   }
 
   void _showTherapyDialog(Map<String, dynamic> topic) {
-    final responses = selectedLanguage == 'English' ? topic['responses'] : topic['responsesHi'];
-    final randomResponse = responses[(responses.length * (DateTime.now().millisecond / 1000)).floor() % responses.length];
-    
+    final responses = selectedLanguage == 'English'
+        ? topic['responses']
+        : topic['responsesHi'];
+    final randomResponse = responses[
+        (responses.length * (DateTime.now().millisecond / 1000)).floor() %
+            responses.length];
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -387,7 +405,8 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: (widget.isFullMode ? Colors.green : Colors.orange).withValues(alpha: 0.1),
+                color: (widget.isFullMode ? Colors.green : Colors.orange)
+                    .withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
                   color: widget.isFullMode ? Colors.green : Colors.orange,
@@ -405,12 +424,12 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
                   Expanded(
                     child: Text(
                       widget.isFullMode
-                        ? (selectedLanguage == 'English' 
-                            ? '✨ Full Mode: Personalized therapy with real AI processing'
-                            : '✨ पूर्ण मोड: वास्तविक एआई प्रोसेसिंग के साथ व्यक्तिगत चिकित्सा')
-                        : (selectedLanguage == 'English'
-                            ? '🎯 Demo Mode: Sample responses for exploration'
-                            : '🎯 डेमो मोड: अन्वेषण के लिए नमूना प्रतिक्रियाएं'),
+                          ? (selectedLanguage == 'English'
+                              ? '✨ Full Mode: Personalized therapy with real AI processing'
+                              : '✨ पूर्ण मोड: वास्तविक एआई प्रोसेसिंग के साथ व्यक्तिगत चिकित्सा')
+                          : (selectedLanguage == 'English'
+                              ? '🎯 Demo Mode: Sample responses for exploration'
+                              : '🎯 डेमो मोड: अन्वेषण के लिए नमूना प्रतिक्रियाएं'),
                       style: TextStyle(
                         fontSize: 12,
                         color: widget.isFullMode ? Colors.green : Colors.orange,
@@ -427,7 +446,9 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              selectedLanguage == 'English' ? 'Continue Session' : 'सेशन जारी रखें',
+              selectedLanguage == 'English'
+                  ? 'Continue Session'
+                  : 'सेशन जारी रखें',
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
@@ -478,60 +499,199 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
             ),
           ],
         ),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.green.withValues(alpha: 0.05),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: Colors.green.withValues(alpha: 0.2),
+        content: SizedBox(
+          width: double.maxFinite,
+          height: MediaQuery.of(context).size.height * 0.6,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.green.withValues(alpha: 0.05),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: Colors.green.withValues(alpha: 0.2),
+                    ),
+                  ),
+                  child: Text(
+                    selectedLanguage == 'English'
+                        ? '🌟 I can see you\'re interested in exploring this further. In a full session, we would:\n\n• Dive deeper into your specific situation\n• Create personalized coping strategies\n• Set achievable goals together\n• Track your progress over time\n\nWould you like to continue with more topics or schedule a longer session?'
+                        : '🌟 मैं देख सकती हूं कि आप इसे और गहराई से जानना चाहते हैं। एक पूर्ण सेशन में, हम करेंगे:\n\n• आपकी विशिष्ट स्थिति में गहराई से जाना\n• व्यक्तिगत मुकाबला रणनीतियां बनाना\n• एक साथ प्राप्त करने योग्य लक्ष्य निर्धारित करना\n• समय के साथ आपकी प्रगति को ट्रैक करना\n\nक्या आप और विषयों के साथ जारी रखना चाहते हैं या एक लंबा सेशन शेड्यूल करना चाहते हैं?',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      height: 1.5,
+                    ),
+                  ),
                 ),
-              ),
-              child: Text(
-                selectedLanguage == 'English'
-                  ? '🌟 I can see you\'re interested in exploring this further. In a full session, we would:\n\n• Dive deeper into your specific situation\n• Create personalized coping strategies\n• Set achievable goals together\n• Track your progress over time\n\nWould you like to continue with more topics or schedule a longer session?'
-                  : '🌟 मैं देख सकती हूं कि आप इसे और गहराई से जानना चाहते हैं। एक पूर्ण सेशन में, हम करेंगे:\n\n• आपकी विशिष्ट स्थिति में गहराई से जाना\n• व्यक्तिगत मुकाबला रणनीतियां बनाना\n• एक साथ प्राप्त करने योग्य लक्ष्य निर्धारित करना\n• समय के साथ आपकी प्रगति को ट्रैक करना\n\nक्या आप और विषयों के साथ जारी रखना चाहते हैं या एक लंबा सेशन शेड्यूल करना चाहते हैं?',
-                style: const TextStyle(
-                  fontSize: 16,
-                  height: 1.5,
-                ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              selectedLanguage == 'English' ? 'Explore More Topics' : 'और विषय देखें',
+              selectedLanguage == 'English'
+                  ? 'Explore More Topics'
+                  : 'और विषय देखें',
             ),
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    selectedLanguage == 'English' 
-                      ? '✨ Full therapy sessions available in Full Mode!' 
-                      : '✨ पूर्ण थेरेपी सेशन फुल मोड में उपलब्ध हैं!',
-                  ),
-                  backgroundColor: Colors.green,
-                ),
-              );
+              _showScheduleSessionDialog(context);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.green,
               foregroundColor: Colors.white,
             ),
             child: Text(
-              selectedLanguage == 'English' ? 'Schedule Session' : 'सेशन शेड्यूल करें',
+              selectedLanguage == 'English'
+                  ? 'Schedule Session'
+                  : 'सेशन शेड्यूल करें',
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  void _showScheduleSessionDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Row(
+            children: [
+              const Icon(Icons.schedule, color: Colors.green),
+              const SizedBox(width: 8),
+              Text(
+                selectedLanguage == 'English'
+                    ? 'Schedule Session'
+                    : 'सेशन शेड्यूल करें',
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  selectedLanguage == 'English'
+                      ? 'Choose your preferred session time:'
+                      : 'अपना पसंदीदा सेशन समय चुनें:',
+                  style: const TextStyle(fontWeight: FontWeight.w500),
+                ),
+                const SizedBox(height: 16),
+                _buildTimeSlot('Morning (9:00 AM - 12:00 PM)', 'सुबह (9:00 AM - 12:00 PM)'),
+                _buildTimeSlot('Afternoon (1:00 PM - 4:00 PM)', 'दोपहर (1:00 PM - 4:00 PM)'),
+                _buildTimeSlot('Evening (5:00 PM - 8:00 PM)', 'शाम (5:00 PM - 8:00 PM)'),
+                const SizedBox(height: 16),
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.shade50,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(color: Colors.blue.shade200),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.info, color: Colors.blue, size: 20),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          selectedLanguage == 'English'
+                              ? 'Sessions are currently available in Demo Mode with AI-powered insights. Full personalized sessions coming soon!'
+                              : 'डेमो मोड में AI-संचालित अंतर्दृष्टि के साथ सेशन वर्तमान में उपलब्ध हैं। पूर्ण व्यक्तिगत सेशन जल्द ही आ रहे हैं!',
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.blue.shade700,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                selectedLanguage == 'English' ? 'Cancel' : 'रद्द करें',
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      selectedLanguage == 'English'
+                          ? '✨ Session preferences saved! You can start chatting anytime.'
+                          : '✨ सेशन प्राथमिकताएं सहेजी गईं! आप कभी भी चैट शुरू कर सकते हैं।',
+                    ),
+                    backgroundColor: Colors.green,
+                    behavior: SnackBarBehavior.floating,
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.white,
+              ),
+              child: Text(
+                selectedLanguage == 'English'
+                    ? 'Save Preferences'
+                    : 'प्राथमिकताएं सहेजें',
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _buildTimeSlot(String englishTime, String hindiTime) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: InkWell(
+        onTap: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                selectedLanguage == 'English'
+                    ? 'Time slot selected: ${englishTime.split(' (')[0]}'
+                    : 'समय स्लॉट चुना गया: ${hindiTime.split(' (')[0]}',
+              ),
+              duration: const Duration(seconds: 1),
+              backgroundColor: Colors.green,
+            ),
+          );
+        },
+        child: Container(
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.grey.shade300),
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.grey.shade50,
+          ),
+          child: Row(
+            children: [
+              Icon(Icons.access_time, color: Colors.grey.shade600, size: 20),
+              const SizedBox(width: 12),
+              Text(
+                selectedLanguage == 'English' ? englishTime : hindiTime,
+                style: const TextStyle(fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

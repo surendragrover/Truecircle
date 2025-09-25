@@ -65,7 +65,7 @@ class _CulturalAIDashboardState extends State<CulturalAIDashboard>
     try {
       // Load festival reminders
       festivalReminders =
-          CulturalRegionalAI.generateFestivalReminders(widget.contacts);
+          await CulturalRegionalAI.generateFestivalReminders(widget.contacts);
 
       // Analyze regional profiles for key contacts
       for (final contact in widget.contacts.take(10)) {

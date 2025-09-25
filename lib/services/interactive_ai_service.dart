@@ -60,11 +60,11 @@ class InteractiveAIService {
   }
 
   /// 🧠 Smart Notification Generation
-  static List<AINotification> generateSmartNotifications(
+  static Future<List<AINotification>> generateSmartNotifications(
     List<Contact> contacts,
     List<ContactInteraction> interactions,
     List<EmotionEntry> moodEntries,
-  ) {
+  ) async {
     final notifications = <AINotification>[];
 
     // Check for long-overdue contacts with emotional priority
@@ -133,7 +133,7 @@ class InteractiveAIService {
 
     // Festival and cultural reminders
     final festivalReminders =
-        CulturalRegionalAI.generateFestivalReminders(contacts);
+        await CulturalRegionalAI.generateFestivalReminders(contacts);
     for (final reminder in festivalReminders.take(2)) {
       notifications.add(AINotification(
         id: 'festival_${reminder.festival.name}',

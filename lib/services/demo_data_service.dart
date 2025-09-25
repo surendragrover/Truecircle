@@ -8,8 +8,9 @@ import 'package:truecircle/models/emotion_entry.dart';
 class DemoDataService {
   static final Random _random = Random();
   static DemoDataService? _instance;
-  static DemoDataService get instance => _instance ??= DemoDataService._internal();
-  
+  static DemoDataService get instance =>
+      _instance ??= DemoDataService._internal();
+
   DemoDataService._internal();
 
   // Cache for loaded JSON data
@@ -492,11 +493,15 @@ class DemoDataService {
 
   /// Load Emotional Check-in Demo Data from JSON
   static Future<Map<String, dynamic>> getEmotionalCheckinJsonData() async {
-    if (_emotionalCheckinData != null) return _emotionalCheckinData!;
-    
+    // Temporarily disabled cache to ensure fresh data load
+    // if (_emotionalCheckinData != null) return _emotionalCheckinData!;
+
     try {
-      final String jsonString = await rootBundle.loadString('Demo_data/TrueCircle_Emotional_Checkin_Demo_Data.json');
+      final String jsonString = await rootBundle
+          .loadString('Demo_data/TrueCircle_Emotional_Checkin_Demo_Data.json');
       _emotionalCheckinData = json.decode(jsonString);
+      final dailyEntries = _emotionalCheckinData!['daily_entries'] as List? ?? [];
+      debugPrint('Loaded ${dailyEntries.length} emotional checkin entries');
       return _emotionalCheckinData!;
     } catch (e) {
       debugPrint('Error loading emotional checkin data: $e');
@@ -508,23 +513,30 @@ class DemoDataService {
   Future<List<Map<String, dynamic>>> getFormattedEmotionalInsights() async {
     final data = await getEmotionalCheckinJsonData();
     final entries = data['daily_entries'] as List<dynamic>? ?? [];
-    
-    return entries.map((entry) => {
-      'date': entry['date'] ?? 'Unknown',
-      'emotion': entry['emotion'] ?? {'en': 'neutral', 'hi': 'सामान्य'},
-      'intensity': entry['intensity'] ?? 5,
-      'trigger': entry['trigger'] ?? {'en': 'unknown', 'hi': 'अज्ञात'},
-      'notes': entry['notes'] ?? {'en': 'No notes', 'hi': 'कोई नोट नहीं'},
-    }).cast<Map<String, dynamic>>().toList();
+
+    return entries
+        .map((entry) => {
+              'date': entry['date'] ?? 'Unknown',
+              'emotion': entry['emotion'] ?? {'en': 'neutral', 'hi': 'सामान्य'},
+              'intensity': entry['intensity'] ?? 5,
+              'trigger': entry['trigger'] ?? {'en': 'unknown', 'hi': 'अज्ञात'},
+              'notes':
+                  entry['notes'] ?? {'en': 'No notes', 'hi': 'कोई नोट नहीं'},
+            })
+        .cast<Map<String, dynamic>>()
+        .toList();
   }
 
   /// Load Mood Journal Data from JSON
   static Future<List<dynamic>> getMoodJournalJsonData() async {
-    if (_moodJournalData != null) return _moodJournalData!;
-    
+    // Temporarily disabled cache to ensure fresh data load
+    // if (_moodJournalData != null) return _moodJournalData!;
+
     try {
-      final String jsonString = await rootBundle.loadString('Demo_data/Mood_Journal_Demo_Data.json');
+      final String jsonString =
+          await rootBundle.loadString('Demo_data/Mood_Journal_Demo_Data.json');
       _moodJournalData = json.decode(jsonString);
+      debugPrint('Loaded ${_moodJournalData!.length} mood journal entries');
       return _moodJournalData!;
     } catch (e) {
       debugPrint('Error loading mood journal data: $e');
@@ -535,7 +547,8 @@ class DemoDataService {
   /// Load Sleep Tracker Data from JSON
   static Future<Map<String, dynamic>> getSleepTrackerJsonData() async {
     try {
-      final String jsonString = await rootBundle.loadString('Demo_data/Sleep_Tracker.json');
+      final String jsonString =
+          await rootBundle.loadString('Demo_data/Sleep_Tracker.json');
       return json.decode(jsonString);
     } catch (e) {
       debugPrint('Error loading sleep tracker data: $e');

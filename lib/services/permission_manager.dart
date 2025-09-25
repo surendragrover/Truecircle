@@ -372,75 +372,57 @@ class PermissionManager {
     };
   }
 
-  // 📚 EDUCATIONAL DEMO CONTACTS
+  // 📚 EDUCATIONAL DEMO CONTACTS - 30 days of data
   static List<ContactInteraction> getDemoContacts() {
-    return [
-      ContactInteraction(
-        contactId: 'demo_1',
-        timestamp: DateTime.now().subtract(const Duration(days: 1)),
-        type: InteractionType.call,
-        duration: 300,
-        initiatedByMe: true,
-        sentimentScore: 0.8,
-        metadata: {
-          'contactName': 'राज शर्मा',
-          'contactPhone': '+91-9876543210',
-          'demoContact': true
-        },
-      ),
-      ContactInteraction(
-        contactId: 'demo_2',
-        timestamp: DateTime.now().subtract(const Duration(hours: 3)),
-        type: InteractionType.message,
-        duration: 0,
-        initiatedByMe: false,
-        sentimentScore: 0.9,
-        metadata: {
-          'contactName': 'प्रिया गुप्ता',
-          'contactPhone': '+91-9876543211',
-          'demoContact': true
-        },
-      ),
-      ContactInteraction(
-        contactId: 'demo_3',
-        timestamp: DateTime.now().subtract(const Duration(days: 2)),
-        type: InteractionType.call,
-        duration: 180,
-        initiatedByMe: true,
-        sentimentScore: 0.7,
-        metadata: {
-          'contactName': 'अमित कुमार',
-          'contactPhone': '+91-9876543212',
-          'demoContact': true
-        },
-      ),
-      ContactInteraction(
-        contactId: 'demo_4',
-        timestamp: DateTime.now().subtract(const Duration(hours: 5)),
-        type: InteractionType.message,
-        duration: 0,
-        initiatedByMe: false,
-        sentimentScore: 0.8,
-        metadata: {
-          'contactName': 'स्नेहा सिंह',
-          'contactPhone': '+91-9876543213',
-          'demoContact': true
-        },
-      ),
-      ContactInteraction(
-        contactId: 'demo_5',
-        timestamp: DateTime.now().subtract(const Duration(days: 3)),
-        type: InteractionType.call,
-        duration: 420,
-        initiatedByMe: true,
-        sentimentScore: 0.85,
-        metadata: {
-          'contactName': 'विकास अग्रवाल',
-          'contactPhone': '+91-9876543214',
-          'demoContact': true
-        },
-      ),
+    List<ContactInteraction> contacts = [];
+    
+    // Generate 30 days of demo data
+    for (int i = 0; i < 30; i++) {
+      contacts.addAll([
+        ContactInteraction(
+          contactId: 'demo_${i}_1',
+          timestamp: DateTime.now().subtract(Duration(days: i)),
+          type: InteractionType.call,
+          duration: 120 + (i * 10),
+          initiatedByMe: i % 2 == 0,
+          sentimentScore: 0.6 + (i * 0.01),
+          metadata: {
+            'contactName': _getDemoName(i % 8),
+            'contactPhone': '+91-987654${3210 + i}',
+            'demoContact': true
+          },
+        ),
+        ContactInteraction(
+          contactId: 'demo_${i}_2',
+          timestamp: DateTime.now().subtract(Duration(days: i, hours: 2)),
+          type: InteractionType.message,
+          duration: 0,
+          initiatedByMe: i % 3 != 0,
+          sentimentScore: 0.5 + (i * 0.015),
+          metadata: {
+            'contactName': _getDemoName((i + 1) % 8),
+            'contactPhone': '+91-987654${3220 + i}',
+            'demoContact': true
+          },
+        ),
+      ]);
+    }
+    
+    return contacts;
+  }
+  
+  static String _getDemoName(int index) {
+    List<String> names = [
+      'राज शर्मा',
+      'प्रिया गुप्ता', 
+      'अमित कुमार',
+      'स्नेहा सिंह',
+      'विकास अग्रवाल',
+      'सुनीता वर्मा',
+      'रोहित जैन',
+      'मीरा चौधरी'
     ];
+    return names[index];
   }
 
   // Check if educational feature is available (always true)

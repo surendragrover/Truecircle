@@ -98,7 +98,8 @@ class AppSettingsPage extends StatelessWidget {
                 _buildInfoTile(
                   icon: Icons.chat_bubble_outline,
                   title: 'Dr. Iris - Your Emotional Therapist',
-                  subtitle: 'Chat with Dr. Iris for emotional support • Demo mode ready',
+                  subtitle:
+                      'Chat with Dr. Iris for emotional support • Demo mode ready',
                   trailing: Container(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 4),

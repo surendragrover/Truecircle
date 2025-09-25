@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../home_page.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -9,34 +10,88 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
+    with TickerProviderStateMixin {
+  String _selectedLanguage = 'English';
+
+  late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
-  String selectedLanguage = 'English'; // Default to English only
 
   @override
   void initState() {
     super.initState();
-    _animationController = AnimationController(
-      duration: const Duration(seconds: 2),
+    _fadeController = AnimationController(
+      duration: const Duration(milliseconds: 1000),
       vsync: this,
     );
-
     _fadeAnimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
     ).animate(CurvedAnimation(
-      parent: _animationController,
+      parent: _fadeController,
       curve: Curves.easeInOut,
     ));
-
-    _animationController.forward();
+    _fadeController.forward();
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    _fadeController.dispose();
     super.dispose();
+  }
+
+  void _navigateToHome() {
+    HapticFeedback.lightImpact();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const HomePage()),
+    );
+  }
+
+  void _changeLanguage(String language) {
+    setState(() {
+      _selectedLanguage = language;
+    });
+  }
+
+  Widget _buildLanguageSelector() {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.2),
+        borderRadius: BorderRadius.circular(25),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.3), width: 1),
+      ),
+      child: Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: const Color(0xFF1A1A2E),
+        ),
+        child: DropdownButton<String>(
+          value: _selectedLanguage,
+          onChanged: (String? newValue) {
+            if (newValue != null) {
+              _changeLanguage(newValue);
+            }
+          },
+          items: ['English', 'Hindi'].map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(
+                value,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            );
+          }).toList(),
+          icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
+          underline: Container(),
+          dropdownColor: const Color(0xFF1A1A2E),
+          style: const TextStyle(color: Colors.white),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        ),
+      ),
+    );
   }
 
   @override
@@ -44,261 +99,137 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/welcome_screen.png'),
-            fit: BoxFit.cover,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFF1A1A2E),
+              Color(0xFF16213E),
+              Color(0xFF0F3460),
+            ],
           ),
         ),
-        child: Container(
-          // No overlay needed since you have blue gradient background
-          decoration: const BoxDecoration(),
-          child: SafeArea(
+        child: SafeArea(
+          child: FadeTransition(
+            opacity: _fadeAnimation,
             child: Padding(
               padding: const EdgeInsets.all(24.0),
               child: Column(
                 children: [
-                  // Dr. Iris at Top - Main Content
-                  Column(
-                    children: [
-                      // Dr. Iris Avatar - Top Position
-                      FadeTransition(
-                        opacity: _fadeAnimation,
-                        child: Container(
-                          padding: const EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.95),
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.15),
-                                blurRadius: 20,
-                                spreadRadius: 2,
-                              ),
-                            ],
-                          ),
-                          child: ClipOval(
-                            child: Image.asset(
-                              'assets/images/avatar.jpg',
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
-                              errorBuilder: (context, error, stackTrace) {
-                                // Fallback to logo if avatar not found
-                                return Image.asset(
-                                  'logo.png',
-                                  width: 100,
-                                  height: 100,
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(height: 24),
-
-                      // Dr. Iris Name - Bigger and Bold
-                      FadeTransition(
-                        opacity: _fadeAnimation,
-                        child: Text(
-                          selectedLanguage == 'English' ? 'Dr. Iris' : 'डॉ. आइरिस',
-                          style: TextStyle(
-                            fontSize: 48,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                offset: const Offset(0, 2),
-                                blurRadius: 8,
-                                color: Colors.black.withValues(alpha: 0.5),
-                              ),
-                              Shadow(
-                                offset: const Offset(0, 4),
-                                blurRadius: 16,
-                                color: Colors.black.withValues(alpha: 0.3),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(height: 16),
-
-                      // Your Emotional Therapist Tagline
-                      FadeTransition(
-                        opacity: _fadeAnimation,
-                        child: Text(
-                          selectedLanguage == 'English' 
-                            ? 'Your Emotional Therapist'
-                            : 'आपका भावनात्मक चिकित्सक',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white.withValues(alpha: 0.95),
-                            shadows: [
-                              Shadow(
-                                offset: const Offset(0, 1),
-                                blurRadius: 4,
-                                color: Colors.black.withValues(alpha: 0.3),
-                              ),
-                            ],
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-
-                      const SizedBox(height: 32),
-
-                      // Description Box - More prominent
-                      FadeTransition(
-                        opacity: _fadeAnimation,
-                        child: Container(
-                          padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withValues(alpha: 0.85),
-                            borderRadius: BorderRadius.circular(16),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.15),
-                                blurRadius: 12,
-                                spreadRadius: 2,
-                              ),
-                            ],
-                          ),
-                          child: Text(
-                            selectedLanguage == 'English'
-                              ? 'Bringing clarity, emotional insight, and a bridge to meaningful relationships. Start your journey to mental wellness with AI-powered guidance.'
-                              : 'स्पष्टता, भावनात्मक अंतर्दृष्टि, और सार्थक रिश्तों के लिए एक सेतु। एआई-संचालित मार्गदर्शन के साथ मानसिक कल्याण की अपनी यात्रा शुरू करें।',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.grey[800],
-                              height: 1.4,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
-
-                      const SizedBox(height: 40),
-
-                      // Language Selector moved down
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.language, color: Colors.white, size: 20),
-                          const SizedBox(width: 8),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                            decoration: BoxDecoration(
-                              color: Colors.white.withValues(alpha: 0.9),
-                              borderRadius: BorderRadius.circular(25),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withValues(alpha: 0.1),
-                                  blurRadius: 6,
-                                  spreadRadius: 1,
-                                ),
-                              ],
-                            ),
-                            child: DropdownButton<String>(
-                              value: selectedLanguage,
-                              underline: const SizedBox(),
-                              items: ['English', 'हिंदी'].map((String language) {
-                                return DropdownMenuItem<String>(
-                                  value: language,
-                                  child: Text(language, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500)),
-                                );
-                              }).toList(),
-                              onChanged: (String? newLanguage) {
-                                setState(() {
-                                  selectedLanguage = newLanguage ?? 'English';
-                                });
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                  // Top Section - Bringing clarity text
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Bringing clarity',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                      letterSpacing: 0.5,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-
-                  const Spacer(),
-
-                  // Bottom section with button and privacy note
-                  Column(
-                    children: [
-                      // Start Journey Button - English only, proper sizing
-                      FadeTransition(
-                        opacity: _fadeAnimation,
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 56,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const HomePage(),
-                                ),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue[700],
-                              foregroundColor: Colors.white,
-                              elevation: 8,
-                              shadowColor: Colors.blue.withValues(alpha: 0.3),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
+                  
+                  // Spacer to push content to center
+                  const Spacer(flex: 2),
+                  
+                  // Center Section - Logo and welcome text
+                  Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(60),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.3),
+                          blurRadius: 20,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(60),
+                      child: Image.asset(
+                        'assets/images/avtar.png',
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.blue.withValues(alpha: 0.2),
+                              borderRadius: BorderRadius.circular(60),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(Icons.psychology, size: 22),
-                                const SizedBox(width: 12),
-                                Text(
-                                  selectedLanguage == 'English' ? 'Begin Your Journey' : 'अपनी यात्रा शुरू करें',
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
+                            child: const Icon(
+                              Icons.person,
+                              size: 60,
+                              color: Colors.white,
                             ),
-                          ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  
+                  const SizedBox(height: 32),
+                  
+                  const Text(
+                    'TrueCircle',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 1.5,
+                    ),
+                  ),
+                  
+                  const SizedBox(height: 16),
+                  
+                  Text(
+                    _selectedLanguage == 'Hindi' 
+                        ? 'रिश्तों को समझें, भावनाओं को पहचानें'
+                        : 'Understanding relationships through emotional intelligence',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white.withValues(alpha: 0.8),
+                      height: 1.5,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  
+                  // Spacer to push language selector and button to bottom
+                  const Spacer(flex: 2),
+                  
+                  // Bottom Section - Language selector and button
+                  _buildLanguageSelector(),
+                  
+                  const SizedBox(height: 32),
+                  
+                  SizedBox(
+                    width: double.infinity,
+                    height: 56,
+                    child: ElevatedButton(
+                      onPressed: _navigateToHome,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: const Color(0xFF1A1A2E),
+                        elevation: 8,
+                        shadowColor: Colors.black.withValues(alpha: 0.3),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(28),
                         ),
                       ),
-
-                      const SizedBox(height: 16),
-
-                        // Privacy Note with better visibility on blue gradient
-                        FadeTransition(
-                          opacity: _fadeAnimation,
-                          child: Container(
-                            padding: const EdgeInsets.all(12),
-                            decoration: BoxDecoration(
-                              color: Colors.black.withValues(alpha: 0.2),
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(
-                                color: Colors.white.withValues(alpha: 0.3),
-                                width: 1,
-                              ),
-                            ),
-                            child: Text(
-                              selectedLanguage == 'English'
-                                ? '🔒 100% Private • All data stays on your device'
-                                : '🔒 १००% निजी • सभी डेटा आपके डिवाइस पर रहता है',
-                              style: const TextStyle(
-                                fontSize: 12,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
+                      child: Text(
+                        _selectedLanguage == 'Hindi' 
+                            ? 'अपनी यात्रा शुरू करें'
+                            : 'Start your journey',
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.5,
                         ),
-                    ],
+                      ),
+                    ),
                   ),
+                  
+                  const SizedBox(height: 20),
                 ],
               ),
             ),

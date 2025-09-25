@@ -60,7 +60,7 @@ flutter:
     - assets/festivals/
     - Demo_data/  # Demo data JSON files
     - logo.png  # TrueCircle main logo for all screens
-    - assets/images/avatar.jpg  # Dr. Iris avatar
+    # - assets/images/avatar.jpg  # Dr. Iris avatar (file not found)
     - api.env
 
 # TrueCircle App Icon Configuration with cultural branding

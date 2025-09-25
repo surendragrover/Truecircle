@@ -1,13 +1,35 @@
+import 'dart:convert';
+import 'package:flutter/services.dart';
 import '../models/contact.dart';
 import '../models/contact_interaction.dart';
 
 /// 🎭 Cultural & Regional AI - Deep Indian cultural intelligence for relationship management
 /// Understands Indian festivals, family dynamics, regional communication styles, and language preferences
 class CulturalRegionalAI {
+  // Cache for festivals data
+  static Map<String, dynamic>? _festivalsData;
+
+  /// 🎉 Load Festivals Data from JSON
+  static Future<Map<String, dynamic>> _loadFestivalsData() async {
+    if (_festivalsData != null) return _festivalsData!;
+
+    try {
+      final String jsonString = await rootBundle.loadString('Demo_data/TrueCircle_Festivals_Data.json');
+      _festivalsData = json.decode(jsonString);
+      return _festivalsData!;
+    } catch (e) {
+      // Error handling without print in production
+      // In debug mode, this would show in development console
+      return {
+        'festivals': [],
+        'metadata': {'totalFestivals': 0}
+      };
+    }
+  }
   /// 🎉 Festival & Cultural Event Management
-  static FestivalAnalysis analyzeFestivalConnections(
-      Contact contact, List<ContactInteraction> interactions) {
-    final upcomingFestivals = _getUpcomingFestivals();
+  static Future<FestivalAnalysis> analyzeFestivalConnections(
+      Contact contact, List<ContactInteraction> interactions) async {
+    final upcomingFestivals = await getUpcomingFestivals();
     final contactFestivalData =
         _analyzeContactFestivalHistory(contact, interactions);
     final recommendations = _generateFestivalRecommendations(
@@ -22,7 +44,7 @@ class CulturalRegionalAI {
           contact,
           upcomingFestivals.isNotEmpty
               ? upcomingFestivals.first
-              : _getDefaultFestival()),
+              : await _getDefaultFestival()),
     );
   }
 
@@ -81,10 +103,10 @@ class CulturalRegionalAI {
   }
 
   /// 🎊 Smart Festival Reminder System
-  static List<FestivalReminder> generateFestivalReminders(
-      List<Contact> allContacts) {
+  static Future<List<FestivalReminder>> generateFestivalReminders(
+      List<Contact> allContacts) async {
     final reminders = <FestivalReminder>[];
-    final upcomingFestivals = _getUpcomingFestivals();
+    final upcomingFestivals = await getUpcomingFestivals();
 
     for (final festival in upcomingFestivals.take(3)) {
       final priorityContacts =
@@ -107,7 +129,7 @@ class CulturalRegionalAI {
 
   // Private Helper Methods
 
-  static IndianFestival _getDefaultFestival() {
+  static Future<IndianFestival> _getDefaultFestival() async {
     return IndianFestival(
       name: 'New Year',
       hindiName: 'नव वर्ष',
@@ -123,7 +145,62 @@ class CulturalRegionalAI {
     );
   }
 
-  static List<IndianFestival> _getUpcomingFestivals() {
+  /// 🎉 Get Upcoming Festivals (Loaded from JSON)
+  static Future<List<IndianFestival>> getUpcomingFestivals() async {
+    try {
+      final festivalsData = await _loadFestivalsData();
+      final festivalsList = festivalsData['festivals'] as List<dynamic>? ?? [];
+      
+      final now = DateTime.now();
+      final currentYear = now.year;
+      
+      List<IndianFestival> upcomingFestivals = [];
+      
+      for (final festivalData in festivalsList) {
+        final festival = IndianFestival(
+          name: festivalData['name'] ?? '',
+          hindiName: festivalData['hindiName'] ?? '',
+          date: _getFestivalDateForYear(festivalData['month'], currentYear),
+          type: festivalData['type'] == 'major' ? FestivalType.major : FestivalType.regional,
+          regions: List<String>.from(festivalData['regions'] ?? []),
+          description: festivalData['description'] ?? '',
+          greetingMessages: Map<String, String>.from(festivalData['greetingMessages'] ?? {}),
+          culturalTips: List<String>.from(festivalData['culturalTips'] ?? []),
+          conversationStarters: List<String>.from(festivalData['conversationStarters'] ?? []),
+        );
+        
+        // Only include festivals that are upcoming (within next 3 months)
+        if (festival.date.isAfter(now) && festival.date.isBefore(now.add(const Duration(days: 90)))) {
+          upcomingFestivals.add(festival);
+        }
+      }
+      
+      // Sort by date
+      upcomingFestivals.sort((a, b) => a.date.compareTo(b.date));
+      return upcomingFestivals;
+      
+    } catch (e) {
+      // Error handling without print in production
+      // In debug mode, this would show in development console
+      return _getFallbackFestivals();
+    }
+  }
+
+  /// 🗓️ Get approximate festival date for given month and year
+  static DateTime _getFestivalDateForYear(String month, int year) {
+    final monthMap = {
+      'January': 1, 'February': 2, 'March': 3, 'April': 4,
+      'May': 5, 'June': 6, 'July': 7, 'August': 8,
+      'September': 9, 'October': 10, 'November': 11, 'December': 12,
+    };
+    
+    final monthNumber = monthMap[month] ?? 1;
+    // Use middle of month as approximate date
+    return DateTime(year, monthNumber, 15);
+  }
+
+  /// 🛡️ Fallback festivals if JSON loading fails
+  static List<IndianFestival> _getFallbackFestivals() {
     final now = DateTime.now();
     final currentYear = now.year;
 
@@ -711,6 +788,8 @@ class IndianFestival {
   final List<String> regions;
   final String description;
   final Map<String, String> greetingMessages;
+  final List<String> culturalTips;
+  final List<String> conversationStarters;
 
   IndianFestival({
     required this.name,
@@ -720,6 +799,8 @@ class IndianFestival {
     required this.regions,
     required this.description,
     required this.greetingMessages,
+    this.culturalTips = const [],
+    this.conversationStarters = const [],
   });
 }
 

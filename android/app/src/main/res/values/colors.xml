@@ -25,13 +25,4 @@
     <color name="tier_1_safe">#4CAF50</color>
     <color name="tier_2_permission">#FF9800</color>
     <color name="tier_3_optin">#F44336</color>
-    
-    <!-- Cultural Intelligence Colors -->
-    <color name="hindi_context">#FF5722</color>
-    <color name="english_context">#2196F3</color>
-    
-    <!-- Status Colors -->
-    <color name="success_color">#4CAF50</color>
-    <color name="warning_color">#FF9800</color>
-    <color name="info_color">#2196F3</color>
 </resources>
