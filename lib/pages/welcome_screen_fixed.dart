@@ -172,7 +172,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(isWeb ? 70 : 60),
                                   child: Image.asset(
-                                    'assets/images/truecircle_logo.png',
+                                    'assets/images/truecircle_logo.png', // Fixed logo path
                                     fit: BoxFit.cover,
                                     errorBuilder: (context, error, stackTrace) {
                                       return Container(

@@ -500,7 +500,8 @@ class DemoDataService {
       final String jsonString = await rootBundle
           .loadString('Demo_data/TrueCircle_Emotional_Checkin_Demo_Data.json');
       _emotionalCheckinData = json.decode(jsonString);
-      final dailyEntries = _emotionalCheckinData!['daily_entries'] as List? ?? [];
+      final dailyEntries =
+          _emotionalCheckinData!['daily_entries'] as List? ?? [];
       debugPrint('Loaded ${dailyEntries.length} emotional checkin entries');
       return _emotionalCheckinData!;
     } catch (e) {

@@ -310,7 +310,8 @@ class _CulturalAIDashboardState extends State<CulturalAIDashboard>
                 decoration: BoxDecoration(
                   color: Colors.orange.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.orange.withValues(alpha: 0.3)),
+                  border:
+                      Border.all(color: Colors.orange.withValues(alpha: 0.3)),
                 ),
                 child: Text(
                   '$showCount',

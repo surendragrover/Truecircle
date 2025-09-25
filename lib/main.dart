@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'firebase_options.dart';
 import 'pages/welcome_screen.dart';
 import 'models/emotion_entry.dart';
 import 'models/contact.dart';
@@ -11,6 +13,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   try {
+    // Initialize Firebase first
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    debugPrint('✅ Firebase initialized');
+
     // Initialize Hive with simpler error handling
     await Hive.initFlutter('truecircle_data');
     debugPrint('✅ Hive path initialized');

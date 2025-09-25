@@ -14,7 +14,8 @@ class CulturalRegionalAI {
     if (_festivalsData != null) return _festivalsData!;
 
     try {
-      final String jsonString = await rootBundle.loadString('Demo_data/TrueCircle_Festivals_Data.json');
+      final String jsonString = await rootBundle
+          .loadString('Demo_data/TrueCircle_Festivals_Data.json');
       _festivalsData = json.decode(jsonString);
       return _festivalsData!;
     } catch (e) {
@@ -26,6 +27,7 @@ class CulturalRegionalAI {
       };
     }
   }
+
   /// 🎉 Festival & Cultural Event Management
   static Future<FestivalAnalysis> analyzeFestivalConnections(
       Contact contact, List<ContactInteraction> interactions) async {
@@ -150,35 +152,39 @@ class CulturalRegionalAI {
     try {
       final festivalsData = await _loadFestivalsData();
       final festivalsList = festivalsData['festivals'] as List<dynamic>? ?? [];
-      
+
       final now = DateTime.now();
       final currentYear = now.year;
-      
+
       List<IndianFestival> upcomingFestivals = [];
-      
+
       for (final festivalData in festivalsList) {
         final festival = IndianFestival(
           name: festivalData['name'] ?? '',
           hindiName: festivalData['hindiName'] ?? '',
           date: _getFestivalDateForYear(festivalData['month'], currentYear),
-          type: festivalData['type'] == 'major' ? FestivalType.major : FestivalType.regional,
+          type: festivalData['type'] == 'major'
+              ? FestivalType.major
+              : FestivalType.regional,
           regions: List<String>.from(festivalData['regions'] ?? []),
           description: festivalData['description'] ?? '',
-          greetingMessages: Map<String, String>.from(festivalData['greetingMessages'] ?? {}),
+          greetingMessages:
+              Map<String, String>.from(festivalData['greetingMessages'] ?? {}),
           culturalTips: List<String>.from(festivalData['culturalTips'] ?? []),
-          conversationStarters: List<String>.from(festivalData['conversationStarters'] ?? []),
+          conversationStarters:
+              List<String>.from(festivalData['conversationStarters'] ?? []),
         );
-        
+
         // Only include festivals that are upcoming (within next 3 months)
-        if (festival.date.isAfter(now) && festival.date.isBefore(now.add(const Duration(days: 90)))) {
+        if (festival.date.isAfter(now) &&
+            festival.date.isBefore(now.add(const Duration(days: 90)))) {
           upcomingFestivals.add(festival);
         }
       }
-      
+
       // Sort by date
       upcomingFestivals.sort((a, b) => a.date.compareTo(b.date));
       return upcomingFestivals;
-      
     } catch (e) {
       // Error handling without print in production
       // In debug mode, this would show in development console
@@ -189,11 +195,20 @@ class CulturalRegionalAI {
   /// 🗓️ Get approximate festival date for given month and year
   static DateTime _getFestivalDateForYear(String month, int year) {
     final monthMap = {
-      'January': 1, 'February': 2, 'March': 3, 'April': 4,
-      'May': 5, 'June': 6, 'July': 7, 'August': 8,
-      'September': 9, 'October': 10, 'November': 11, 'December': 12,
+      'January': 1,
+      'February': 2,
+      'March': 3,
+      'April': 4,
+      'May': 5,
+      'June': 6,
+      'July': 7,
+      'August': 8,
+      'September': 9,
+      'October': 10,
+      'November': 11,
+      'December': 12,
     };
-    
+
     final monthNumber = monthMap[month] ?? 1;
     // Use middle of month as approximate date
     return DateTime(year, monthNumber, 15);

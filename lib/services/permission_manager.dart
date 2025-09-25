@@ -88,7 +88,8 @@ class PermissionManager {
                                 color: Colors.blue.shade700),
                           ),
                           const SizedBox(height: 6),
-                          const Text('• Sample relationship data से सीखने का अवसर'),
+                          const Text(
+                              '• Sample relationship data से सीखने का अवसर'),
                           const Text(
                               '• Offline AI analysis (कोई internet आवश्यक नहीं)'),
                           const Text(
@@ -375,7 +376,7 @@ class PermissionManager {
   // 📚 EDUCATIONAL DEMO CONTACTS - 30 days of data
   static List<ContactInteraction> getDemoContacts() {
     List<ContactInteraction> contacts = [];
-    
+
     // Generate 30 days of demo data
     for (int i = 0; i < 30; i++) {
       contacts.addAll([
@@ -407,14 +408,14 @@ class PermissionManager {
         ),
       ]);
     }
-    
+
     return contacts;
   }
-  
+
   static String _getDemoName(int index) {
     List<String> names = [
       'राज शर्मा',
-      'प्रिया गुप्ता', 
+      'प्रिया गुप्ता',
       'अमित कुमार',
       'स्नेहा सिंह',
       'विकास अग्रवाल',

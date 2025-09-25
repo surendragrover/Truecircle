@@ -587,9 +587,12 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
                   style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
                 const SizedBox(height: 16),
-                _buildTimeSlot('Morning (9:00 AM - 12:00 PM)', 'सुबह (9:00 AM - 12:00 PM)'),
-                _buildTimeSlot('Afternoon (1:00 PM - 4:00 PM)', 'दोपहर (1:00 PM - 4:00 PM)'),
-                _buildTimeSlot('Evening (5:00 PM - 8:00 PM)', 'शाम (5:00 PM - 8:00 PM)'),
+                _buildTimeSlot('Morning (9:00 AM - 12:00 PM)',
+                    'सुबह (9:00 AM - 12:00 PM)'),
+                _buildTimeSlot('Afternoon (1:00 PM - 4:00 PM)',
+                    'दोपहर (1:00 PM - 4:00 PM)'),
+                _buildTimeSlot(
+                    'Evening (5:00 PM - 8:00 PM)', 'शाम (5:00 PM - 8:00 PM)'),
                 const SizedBox(height: 16),
                 Container(
                   padding: const EdgeInsets.all(12),

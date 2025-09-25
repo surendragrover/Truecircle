@@ -13,6 +13,12 @@ dependencies:
   # TrueCircle Core Dependencies following coding instructions
   cupertino_icons: ^1.0.6
   
+  # Firebase Integration
+  firebase_core: ^2.24.2
+  firebase_auth: ^4.15.3
+  cloud_firestore: ^4.13.6
+  firebase_analytics: ^10.7.4
+  
   # Privacy-First Data Storage (Hive for EmotionEntry, Contact, ContactInteraction)
   hive: ^2.2.3
   hive_flutter: ^1.1.0

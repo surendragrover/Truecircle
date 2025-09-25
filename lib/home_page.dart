@@ -1134,8 +1134,11 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                selectedLanguage == 'English' ? 'Meditation Guide' : 'ध्यान गाइड',
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                selectedLanguage == 'English'
+                    ? 'Meditation Guide'
+                    : 'ध्यान गाइड',
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
           ],
@@ -1150,7 +1153,9 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(12),
                 margin: const EdgeInsets.only(bottom: 16),
                 decoration: BoxDecoration(
-                  color: _isFullFunctionalMode ? Colors.green[50] : Colors.purple[50],
+                  color: _isFullFunctionalMode
+                      ? Colors.green[50]
+                      : Colors.purple[50],
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
                     color: _isFullFunctionalMode ? Colors.green : Colors.purple,
@@ -1160,18 +1165,27 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   children: [
                     Icon(
-                      _isFullFunctionalMode ? Icons.all_inclusive : Icons.play_circle,
-                      color: _isFullFunctionalMode ? Colors.green : Colors.purple,
+                      _isFullFunctionalMode
+                          ? Icons.all_inclusive
+                          : Icons.play_circle,
+                      color:
+                          _isFullFunctionalMode ? Colors.green : Colors.purple,
                       size: 20,
                     ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        _isFullFunctionalMode 
-                          ? (selectedLanguage == 'English' ? 'Full Library Access' : 'पूर्ण पुस्तकालय पहुंच')
-                          : (selectedLanguage == 'English' ? 'Demo Sessions Available' : 'डेमो सत्र उपलब्ध'),
+                        _isFullFunctionalMode
+                            ? (selectedLanguage == 'English'
+                                ? 'Full Library Access'
+                                : 'पूर्ण पुस्तकालय पहुंच')
+                            : (selectedLanguage == 'English'
+                                ? 'Demo Sessions Available'
+                                : 'डेमो सत्र उपलब्ध'),
                         style: TextStyle(
-                          color: _isFullFunctionalMode ? Colors.green[700] : Colors.purple[700],
+                          color: _isFullFunctionalMode
+                              ? Colors.green[700]
+                              : Colors.purple[700],
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -1183,73 +1197,72 @@ class _HomePageState extends State<HomePage> {
               // Description
               Text(
                 selectedLanguage == 'English'
-                  ? 'Guided meditation sessions for relaxation, mindfulness, and emotional well-being.'
-                  : 'आराम, माइंडफुलनेस और भावनात्मक कल्याण के लिए निर्देशित ध्यान सत्र।',
+                    ? 'Guided meditation sessions for relaxation, mindfulness, and emotional well-being.'
+                    : 'आराम, माइंडफुलनेस और भावनात्मक कल्याण के लिए निर्देशित ध्यान सत्र।',
                 style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
               const SizedBox(height: 16),
 
               // Available Sessions
               Text(
-                selectedLanguage == 'English' ? 'Available Sessions:' : 'उपलब्ध सत्र:',
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                selectedLanguage == 'English'
+                    ? 'Available Sessions:'
+                    : 'उपलब्ध सत्र:',
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               const SizedBox(height: 12),
 
               // Meditation sessions list
-              _buildMeditationSession(
-                'Mindful Breathing', 'माइंडफुल सांस लेना',
-                '5 min', Icons.air, Colors.blue,
-                description: selectedLanguage == 'English' 
-                  ? 'Focus on your breath for inner calm'
-                  : 'आंतरिक शांति के लिए अपनी सांस पर ध्यान दें'
-              ),
+              _buildMeditationSession('Mindful Breathing', 'माइंडफुल सांस लेना',
+                  '5 min', Icons.air, Colors.blue,
+                  description: selectedLanguage == 'English'
+                      ? 'Focus on your breath for inner calm'
+                      : 'आंतरिक शांति के लिए अपनी सांस पर ध्यान दें'),
               const SizedBox(height: 8),
               _buildMeditationSession(
-                'Body Scan Relaxation', 'शरीर स्कैन विश्राम',
-                '10 min', Icons.accessibility_new, Colors.green,
-                description: selectedLanguage == 'English' 
-                  ? 'Progressive muscle relaxation technique'
-                  : 'प्रगतिशील मांसपेशी विश्राम तकनीक'
-              ),
+                  'Body Scan Relaxation',
+                  'शरीर स्कैन विश्राम',
+                  '10 min',
+                  Icons.accessibility_new,
+                  Colors.green,
+                  description: selectedLanguage == 'English'
+                      ? 'Progressive muscle relaxation technique'
+                      : 'प्रगतिशील मांसपेशी विश्राम तकनीक'),
               const SizedBox(height: 8),
-              _buildMeditationSession(
-                'Loving Kindness', 'प्रेम कृपा',
-                '8 min', Icons.favorite, Colors.pink,
-                description: selectedLanguage == 'English' 
-                  ? 'Cultivate compassion and self-love'
-                  : 'करुणा और स्व-प्रेम विकसित करें'
-              ),
-              
+              _buildMeditationSession('Loving Kindness', 'प्रेम कृपा', '8 min',
+                  Icons.favorite, Colors.pink,
+                  description: selectedLanguage == 'English'
+                      ? 'Cultivate compassion and self-love'
+                      : 'करुणा और स्व-प्रेम विकसित करें'),
+
               if (_isFullFunctionalMode) ...[
                 const SizedBox(height: 8),
-                _buildMeditationSession(
-                  'Sleep Stories', 'नींद की कहानियां',
-                  '20-30 min', Icons.bedtime, Colors.indigo,
-                  description: selectedLanguage == 'English' 
-                    ? 'Gentle stories to help you fall asleep'
-                    : 'आपको सोने में मदद करने वाली कोमल कहानियां',
-                  isLocked: false
-                ),
+                _buildMeditationSession('Sleep Stories', 'नींद की कहानियां',
+                    '20-30 min', Icons.bedtime, Colors.indigo,
+                    description: selectedLanguage == 'English'
+                        ? 'Gentle stories to help you fall asleep'
+                        : 'आपको सोने में मदद करने वाली कोमल कहानियां',
+                    isLocked: false),
                 const SizedBox(height: 8),
                 _buildMeditationSession(
-                  'Advanced Mindfulness', 'उन्नत माइंडफुलनेस',
-                  '15-45 min', Icons.psychology, Colors.orange,
-                  description: selectedLanguage == 'English' 
-                    ? 'Deep meditation for experienced practitioners'
-                    : 'अनुभवी अभ्यासकर्ताओं के लिए गहरा ध्यान',
-                  isLocked: false
-                ),
+                    'Advanced Mindfulness',
+                    'उन्नत माइंडफुलनेस',
+                    '15-45 min',
+                    Icons.psychology,
+                    Colors.orange,
+                    description: selectedLanguage == 'English'
+                        ? 'Deep meditation for experienced practitioners'
+                        : 'अनुभवी अभ्यासकर्ताओं के लिए गहरा ध्यान',
+                    isLocked: false),
               ] else ...[
                 const SizedBox(height: 8),
-                _buildMeditationSession(
-                  'Premium Sessions', 'प्रीमियम सत्र',
-                  '15+ min', Icons.lock, Colors.amber,
-                  description: selectedLanguage == 'English' 
-                    ? 'Unlock advanced meditation sessions'
-                    : 'उन्नत ध्यान सत्र अनलॉक करें',
-                  isLocked: true
-                ),
+                _buildMeditationSession('Premium Sessions', 'प्रीमियम सत्र',
+                    '15+ min', Icons.lock, Colors.amber,
+                    description: selectedLanguage == 'English'
+                        ? 'Unlock advanced meditation sessions'
+                        : 'उन्नत ध्यान सत्र अनलॉक करें',
+                    isLocked: true),
               ],
 
               const SizedBox(height: 16),
@@ -1268,19 +1281,22 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Row(
                         children: [
-                          const Icon(Icons.timeline, color: Colors.purple, size: 20),
+                          const Icon(Icons.timeline,
+                              color: Colors.purple, size: 20),
                           const SizedBox(width: 8),
                           Text(
-                            selectedLanguage == 'English' ? 'Your Progress' : 'आपकी प्रगति',
+                            selectedLanguage == 'English'
+                                ? 'Your Progress'
+                                : 'आपकी प्रगति',
                             style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        selectedLanguage == 'English' 
-                          ? '🧘 Sessions completed: 7\n✨ Streak: 3 days\n⏱️ Total time: 45 minutes'
-                          : '🧘 पूर्ण सत्र: 7\n✨ लगातार: 3 दिन\n⏱️ कुल समय: 45 मिनट',
+                        selectedLanguage == 'English'
+                            ? '🧘 Sessions completed: 7\n✨ Streak: 3 days\n⏱️ Total time: 45 minutes'
+                            : '🧘 पूर्ण सत्र: 7\n✨ लगातार: 3 दिन\n⏱️ कुल समय: 45 मिनट',
                         style: const TextStyle(fontSize: 13),
                       ),
                     ],
@@ -1299,7 +1315,9 @@ class _HomePageState extends State<HomePage> {
               },
               icon: const Icon(Icons.play_arrow, color: Colors.purple),
               label: Text(
-                selectedLanguage == 'English' ? 'Try Demo Session' : 'डेमो सत्र करें',
+                selectedLanguage == 'English'
+                    ? 'Try Demo Session'
+                    : 'डेमो सत्र करें',
                 style: const TextStyle(color: Colors.purple),
               ),
             ),
@@ -1312,7 +1330,9 @@ class _HomePageState extends State<HomePage> {
               },
               icon: const Icon(Icons.self_improvement, color: Colors.purple),
               label: Text(
-                selectedLanguage == 'English' ? 'Start Session' : 'सत्र शुरू करें',
+                selectedLanguage == 'English'
+                    ? 'Start Session'
+                    : 'सत्र शुरू करें',
                 style: const TextStyle(color: Colors.purple),
               ),
             ),
@@ -1336,8 +1356,11 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                selectedLanguage == 'English' ? 'Breathing Exercises' : 'सांस की व्यायाम',
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                selectedLanguage == 'English'
+                    ? 'Breathing Exercises'
+                    : 'सांस की व्यायाम',
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
           ],
@@ -1352,7 +1375,9 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.all(12),
                 margin: const EdgeInsets.only(bottom: 16),
                 decoration: BoxDecoration(
-                  color: _isFullFunctionalMode ? Colors.green[50] : Colors.teal[50],
+                  color: _isFullFunctionalMode
+                      ? Colors.green[50]
+                      : Colors.teal[50],
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
                     color: _isFullFunctionalMode ? Colors.green : Colors.teal,
@@ -1362,18 +1387,26 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   children: [
                     Icon(
-                      _isFullFunctionalMode ? Icons.all_inclusive : Icons.play_circle,
+                      _isFullFunctionalMode
+                          ? Icons.all_inclusive
+                          : Icons.play_circle,
                       color: _isFullFunctionalMode ? Colors.green : Colors.teal,
                       size: 20,
                     ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        _isFullFunctionalMode 
-                          ? (selectedLanguage == 'English' ? 'All Techniques Available' : 'सभी तकनीकें उपलब्ध')
-                          : (selectedLanguage == 'English' ? 'Demo Techniques Available' : 'डेमो तकनीकें उपलब्ध'),
+                        _isFullFunctionalMode
+                            ? (selectedLanguage == 'English'
+                                ? 'All Techniques Available'
+                                : 'सभी तकनीकें उपलब्ध')
+                            : (selectedLanguage == 'English'
+                                ? 'Demo Techniques Available'
+                                : 'डेमो तकनीकें उपलब्ध'),
                         style: TextStyle(
-                          color: _isFullFunctionalMode ? Colors.green[700] : Colors.teal[700],
+                          color: _isFullFunctionalMode
+                              ? Colors.green[700]
+                              : Colors.teal[700],
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -1384,63 +1417,59 @@ class _HomePageState extends State<HomePage> {
 
               Text(
                 selectedLanguage == 'English'
-                  ? 'Practice proven breathing techniques for stress relief, better sleep, and mental clarity.'
-                  : 'तनाव मुक्ति, बेहतर नींद और मानसिक स्पष्टता के लिए सिद्ध श्वास तकनीकों का अभ्यास करें।',
+                    ? 'Practice proven breathing techniques for stress relief, better sleep, and mental clarity.'
+                    : 'तनाव मुक्ति, बेहतर नींद और मानसिक स्पष्टता के लिए सिद्ध श्वास तकनीकों का अभ्यास करें।',
                 style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
               const SizedBox(height: 16),
 
               Text(
-                selectedLanguage == 'English' ? 'Available Techniques:' : 'उपलब्ध तकनीकें:',
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                selectedLanguage == 'English'
+                    ? 'Available Techniques:'
+                    : 'उपलब्ध तकनीकें:',
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
               const SizedBox(height: 12),
 
               // Breathing techniques
-              _buildBreathingTechnique(
-                '4-7-8 Technique', '4-7-8 तकनीक',
-                'Inhale 4s • Hold 7s • Exhale 8s', Colors.blue,
-                description: selectedLanguage == 'English' 
-                  ? 'Perfect for falling asleep quickly'
-                  : 'जल्दी सो जाने के लिए बिल्कुल सही'
-              ),
+              _buildBreathingTechnique('4-7-8 Technique', '4-7-8 तकनीक',
+                  'Inhale 4s • Hold 7s • Exhale 8s', Colors.blue,
+                  description: selectedLanguage == 'English'
+                      ? 'Perfect for falling asleep quickly'
+                      : 'जल्दी सो जाने के लिए बिल्कुल सही'),
+              const SizedBox(height: 8),
+              _buildBreathingTechnique('Box Breathing', 'बॉक्स ब्रीदिंग',
+                  'Inhale 4s • Hold 4s • Exhale 4s • Hold 4s', Colors.green,
+                  description: selectedLanguage == 'English'
+                      ? 'Reduces anxiety and improves focus'
+                      : 'चिंता कम करता है और फोकस सुधारता है'),
               const SizedBox(height: 8),
               _buildBreathingTechnique(
-                'Box Breathing', 'बॉक्स ब्रीदिंग',
-                'Inhale 4s • Hold 4s • Exhale 4s • Hold 4s', Colors.green,
-                description: selectedLanguage == 'English' 
-                  ? 'Reduces anxiety and improves focus'
-                  : 'चिंता कम करता है और फोकस सुधारता है'
-              ),
-              const SizedBox(height: 8),
-              _buildBreathingTechnique(
-                'Deep Belly Breathing', 'गहरी पेट की सांस',
-                'Slow, deep breaths from diaphragm', Colors.orange,
-                description: selectedLanguage == 'English' 
-                  ? 'Activates relaxation response'
-                  : 'आराम प्रतिक्रिया को सक्रिय करता है'
-              ),
+                  'Deep Belly Breathing',
+                  'गहरी पेट की सांस',
+                  'Slow, deep breaths from diaphragm',
+                  Colors.orange,
+                  description: selectedLanguage == 'English'
+                      ? 'Activates relaxation response'
+                      : 'आराम प्रतिक्रिया को सक्रिय करता है'),
 
               if (_isFullFunctionalMode) ...[
                 const SizedBox(height: 8),
-                _buildBreathingTechnique(
-                  'Alternate Nostril', 'नाड़ी शोधन',
-                  'Traditional yoga breathing technique', Colors.purple,
-                  description: selectedLanguage == 'English' 
-                    ? 'Balances nervous system'
-                    : 'तंत्रिका तंत्र को संतुलित करता है',
-                  isLocked: false
-                ),
+                _buildBreathingTechnique('Alternate Nostril', 'नाड़ी शोधन',
+                    'Traditional yoga breathing technique', Colors.purple,
+                    description: selectedLanguage == 'English'
+                        ? 'Balances nervous system'
+                        : 'तंत्रिका तंत्र को संतुलित करता है',
+                    isLocked: false),
               ] else ...[
                 const SizedBox(height: 8),
-                _buildBreathingTechnique(
-                  'Advanced Techniques', 'उन्नत तकनीकें',
-                  'Unlock 5+ more breathing techniques', Colors.amber,
-                  description: selectedLanguage == 'English' 
-                    ? 'Premium breathing exercises'
-                    : 'प्रीमियम श्वास व्यायाम',
-                  isLocked: true
-                ),
+                _buildBreathingTechnique('Advanced Techniques', 'उन्नत तकनीकें',
+                    'Unlock 5+ more breathing techniques', Colors.amber,
+                    description: selectedLanguage == 'English'
+                        ? 'Premium breathing exercises'
+                        : 'प्रीमियम श्वास व्यायाम',
+                    isLocked: true),
               ],
             ],
           ),
@@ -1454,7 +1483,9 @@ class _HomePageState extends State<HomePage> {
               },
               icon: const Icon(Icons.play_arrow, color: Colors.teal),
               label: Text(
-                selectedLanguage == 'English' ? 'Try 4-7-8 Demo' : '4-7-8 डेमो करें',
+                selectedLanguage == 'English'
+                    ? 'Try 4-7-8 Demo'
+                    : '4-7-8 डेमो करें',
                 style: const TextStyle(color: Colors.teal),
               ),
             ),
@@ -1467,7 +1498,9 @@ class _HomePageState extends State<HomePage> {
               },
               icon: const Icon(Icons.air, color: Colors.teal),
               label: Text(
-                selectedLanguage == 'English' ? 'Start Session' : 'सत्र शुरू करें',
+                selectedLanguage == 'English'
+                    ? 'Start Session'
+                    : 'सत्र शुरू करें',
                 style: const TextStyle(color: Colors.teal),
               ),
             ),
@@ -2258,11 +2291,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   // Helper method to build meditation session cards
-  Widget _buildMeditationSession(
-    String titleEn, String titleHi,
-    String duration, IconData icon, Color color,
-    {required String description, bool isLocked = false}
-  ) {
+  Widget _buildMeditationSession(String titleEn, String titleHi,
+      String duration, IconData icon, Color color,
+      {required String description, bool isLocked = false}) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -2328,7 +2359,9 @@ class _HomePageState extends State<HomePage> {
             const Icon(Icons.self_improvement, color: Colors.purple, size: 24),
             const SizedBox(width: 8),
             Text(
-              selectedLanguage == 'English' ? 'Mindful Breathing Demo' : 'माइंडफुल सांस लेना डेमो',
+              selectedLanguage == 'English'
+                  ? 'Mindful Breathing Demo'
+                  : 'माइंडफुल सांस लेना डेमो',
               style: const TextStyle(fontSize: 16),
             ),
           ],
@@ -2357,13 +2390,14 @@ class _HomePageState extends State<HomePage> {
                       shape: BoxShape.circle,
                       border: Border.all(color: Colors.purple, width: 2),
                     ),
-                    child: const Icon(Icons.air, color: Colors.purple, size: 40),
+                    child:
+                        const Icon(Icons.air, color: Colors.purple, size: 40),
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    selectedLanguage == 'English' 
-                      ? 'Breathe in slowly...' 
-                      : 'धीरे-धीरे सांस लें...',
+                    selectedLanguage == 'English'
+                        ? 'Breathe in slowly...'
+                        : 'धीरे-धीरे सांस लें...',
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -2372,9 +2406,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    selectedLanguage == 'English' 
-                      ? '🌸 Find a comfortable position\n💨 Focus on your natural breath\n✨ Let thoughts pass without judgment'
-                      : '🌸 एक आरामदायक स्थिति खोजें\n💨 अपनी प्राकृतिक सांस पर ध्यान दें\n✨ बिना न्याय के विचारों को जाने दें',
+                    selectedLanguage == 'English'
+                        ? '🌸 Find a comfortable position\n💨 Focus on your natural breath\n✨ Let thoughts pass without judgment'
+                        : '🌸 एक आरामदायक स्थिति खोजें\n💨 अपनी प्राकृतिक सांस पर ध्यान दें\n✨ बिना न्याय के विचारों को जाने दें',
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 13),
                   ),
@@ -2395,9 +2429,9 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      selectedLanguage == 'English' 
-                        ? 'This is a 30-second demo. Full sessions include guided audio, progress tracking, and personalized recommendations.'
-                        : 'यह एक 30-सेकंड का डेमो है। पूर्ण सत्रों में निर्देशित ऑडियो, प्रगति ट्रैकिंग और व्यक्तिगत सिफारिशें शामिल हैं।',
+                      selectedLanguage == 'English'
+                          ? 'This is a 30-second demo. Full sessions include guided audio, progress tracking, and personalized recommendations.'
+                          : 'यह एक 30-सेकंड का डेमो है। पूर्ण सत्रों में निर्देशित ऑडियो, प्रगति ट्रैकिंग और व्यक्तिगत सिफारिशें शामिल हैं।',
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.green[700],
@@ -2417,9 +2451,9 @@ class _HomePageState extends State<HomePage> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                    selectedLanguage == 'English' 
-                      ? '🧘 Demo completed! Upgrade for full guided sessions with audio and progress tracking.'
-                      : '🧘 डेमो पूरा! ऑडियो और प्रगति ट्रैकिंग के साथ पूर्ण निर्देशित सत्रों के लिए अपग्रेड करें।',
+                    selectedLanguage == 'English'
+                        ? '🧘 Demo completed! Upgrade for full guided sessions with audio and progress tracking.'
+                        : '🧘 डेमो पूरा! ऑडियो और प्रगति ट्रैकिंग के साथ पूर्ण निर्देशित सत्रों के लिए अपग्रेड करें।',
                   ),
                   duration: const Duration(seconds: 4),
                   backgroundColor: Colors.purple,
@@ -2427,7 +2461,9 @@ class _HomePageState extends State<HomePage> {
               );
             },
             child: Text(
-              selectedLanguage == 'English' ? 'Complete Session' : 'सत्र समाप्त करें',
+              selectedLanguage == 'English'
+                  ? 'Complete Session'
+                  : 'सत्र समाप्त करें',
               style: const TextStyle(color: Colors.purple),
             ),
           ),
@@ -2445,9 +2481,9 @@ class _HomePageState extends State<HomePage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          selectedLanguage == 'English' 
-            ? 'Starting $sessionName... This would launch the full meditation experience with audio guidance.'
-            : '$sessionName शुरू हो रहा है... यह ऑडियो गाइडेंस के साथ पूर्ण ध्यान अनुभव लॉन्च करेगा।',
+          selectedLanguage == 'English'
+              ? 'Starting $sessionName... This would launch the full meditation experience with audio guidance.'
+              : '$sessionName शुरू हो रहा है... यह ऑडियो गाइडेंस के साथ पूर्ण ध्यान अनुभव लॉन्च करेगा।',
         ),
         duration: const Duration(seconds: 3),
         backgroundColor: Colors.purple,
@@ -2457,10 +2493,8 @@ class _HomePageState extends State<HomePage> {
 
   // Helper method to build breathing technique cards
   Widget _buildBreathingTechnique(
-    String titleEn, String titleHi,
-    String technique, Color color,
-    {required String description, bool isLocked = false}
-  ) {
+      String titleEn, String titleHi, String technique, Color color,
+      {required String description, bool isLocked = false}) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -2527,7 +2561,9 @@ class _HomePageState extends State<HomePage> {
             const Icon(Icons.air, color: Colors.teal, size: 24),
             const SizedBox(width: 8),
             Text(
-              selectedLanguage == 'English' ? '4-7-8 Breathing Demo' : '4-7-8 श्वास डेमो',
+              selectedLanguage == 'English'
+                  ? '4-7-8 Breathing Demo'
+                  : '4-7-8 श्वास डेमो',
               style: const TextStyle(fontSize: 16),
             ),
           ],
@@ -2558,9 +2594,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    selectedLanguage == 'English' 
-                      ? 'Breathe in for 4 seconds...' 
-                      : '4 सेकंड तक सांस लें...',
+                    selectedLanguage == 'English'
+                        ? 'Breathe in for 4 seconds...'
+                        : '4 सेकंड तक सांस लें...',
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -2569,9 +2605,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    selectedLanguage == 'English' 
-                      ? '1. Inhale through nose (4s)\n2. Hold your breath (7s)\n3. Exhale through mouth (8s)\n4. Repeat 3-4 times'
-                      : '1. नाक से सांस लें (4 सेकंड)\n2. सांस रोकें (7 सेकंड)\n3. मुंह से सांस छोड़ें (8 सेकंड)\n4. 3-4 बार दोहराएं',
+                    selectedLanguage == 'English'
+                        ? '1. Inhale through nose (4s)\n2. Hold your breath (7s)\n3. Exhale through mouth (8s)\n4. Repeat 3-4 times'
+                        : '1. नाक से सांस लें (4 सेकंड)\n2. सांस रोकें (7 सेकंड)\n3. मुंह से सांस छोड़ें (8 सेकंड)\n4. 3-4 बार दोहराएं',
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontSize: 13),
                   ),
@@ -2592,9 +2628,9 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      selectedLanguage == 'English' 
-                        ? 'This demo shows the basic pattern. Full sessions include guided audio, timing, and progress tracking.'
-                        : 'यह डेमो बुनियादी पैटर्न दिखाता है। पूर्ण सत्रों में निर्देशित ऑडियो, समय और प्रगति ट्रैकिंग शामिल है।',
+                      selectedLanguage == 'English'
+                          ? 'This demo shows the basic pattern. Full sessions include guided audio, timing, and progress tracking.'
+                          : 'यह डेमो बुनियादी पैटर्न दिखाता है। पूर्ण सत्रों में निर्देशित ऑडियो, समय और प्रगति ट्रैकिंग शामिल है।',
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.green[700],
@@ -2613,9 +2649,9 @@ class _HomePageState extends State<HomePage> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(
-                    selectedLanguage == 'English' 
-                      ? '🌬️ Demo completed! Upgrade for guided sessions with audio timing and breath tracking.'
-                      : '🌬️ डेमो पूरा! ऑडियो समय और सांस ट्रैकिंग के साथ निर्देशित सत्रों के लिए अपग्रेड करें।',
+                    selectedLanguage == 'English'
+                        ? '🌬️ Demo completed! Upgrade for guided sessions with audio timing and breath tracking.'
+                        : '🌬️ डेमो पूरा! ऑडियो समय और सांस ट्रैकिंग के साथ निर्देशित सत्रों के लिए अपग्रेड करें।',
                   ),
                   duration: const Duration(seconds: 4),
                   backgroundColor: Colors.teal,
@@ -2623,7 +2659,9 @@ class _HomePageState extends State<HomePage> {
               );
             },
             child: Text(
-              selectedLanguage == 'English' ? 'Complete Demo' : 'डेमो समाप्त करें',
+              selectedLanguage == 'English'
+                  ? 'Complete Demo'
+                  : 'डेमो समाप्त करें',
               style: const TextStyle(color: Colors.teal),
             ),
           ),
@@ -2641,14 +2679,13 @@ class _HomePageState extends State<HomePage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
-          selectedLanguage == 'English' 
-            ? 'Starting $techniqueName... This would launch the full breathing experience with audio guidance and timing.'
-            : '$techniqueName शुरू हो रहा है... यह ऑडियो गाइडेंस और समय के साथ पूर्ण श्वास अनुभव लॉन्च करेगा।',
+          selectedLanguage == 'English'
+              ? 'Starting $techniqueName... This would launch the full breathing experience with audio guidance and timing.'
+              : '$techniqueName शुरू हो रहा है... यह ऑडियो गाइडेंस और समय के साथ पूर्ण श्वास अनुभव लॉन्च करेगा।',
         ),
         duration: const Duration(seconds: 3),
         backgroundColor: Colors.teal,
       ),
     );
   }
-
 }
