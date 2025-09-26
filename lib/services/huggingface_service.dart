@@ -2,16 +2,15 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:math';
 
-/// 🚀 Advanced HuggingFace AI Service for TrueCircle (Hybrid Mode)
-/// Integrates multiple AI models with offline fallback for comprehensive relationship analysis
 class HuggingFaceService {
   final String _baseUrl = 'https://api-inference.huggingface.co/models';
   final String? _token;
 
   const HuggingFaceService({String? token}) : _token = token;
 
-  /// Load API key from environment - Fixed to handle missing file gracefully
   static Future<HuggingFaceService> create() async {
     try {
       final file = File('api.env');
@@ -29,17 +28,80 @@ class HuggingFaceService {
           }
         }
       }
-
-      // File doesn't exist or no key found - continue without token
       debugPrint('ℹ️ No api.env file found, using offline mode');
     } catch (e) {
       debugPrint('❌ Error loading HuggingFace API key: $e');
     }
 
-    return const HuggingFaceService(); // Return without token as fallback
+    return const HuggingFaceService();
   }
 
-  /// 🧠 Hybrid emotion analysis - tries online first, falls back to offline
+  Future<String> getChatResponse(String message) async {
+    if (await _hasInternetConnection()) {
+      try {
+        final response = await _makeAPICall('microsoft/DialoGPT-medium', {
+          'inputs': {
+            'past_user_inputs': [
+              "What is your name?",
+              "How are you?"
+            ],
+            'generated_responses': [
+              "My name is Dr. Iris.",
+              "I am doing great. How can I help you today?"
+            ],
+            'text': message
+          },
+          'parameters': {
+            'max_length': 100,
+            'num_return_sequences': 1,
+            'temperature': 0.7,
+          }
+        });
+
+        if (response['success'] == true &&
+            response['data'] is Map &&
+            response['data']['generated_text'] != null) {
+          return response['data']['generated_text'];
+        }
+      } catch (e) {
+        debugPrint('Online chat failed: $e');
+      }
+    }
+    return _getChatResponseOffline(message);
+  }
+
+  String _getChatResponseOffline(String message) {
+    final cleanText = message.toLowerCase().trim();
+    final responses = {
+      'relationship':
+          'Relationships can be complex. Could you tell me more about what\'s on your mind?',
+      'stress':
+          'Stress is a common challenge. What are some of the things that are causing you stress?',
+      'sad':
+          'I hear that you\'re feeling sad. It\'s okay to feel that way. What happened?',
+      'happy':
+          'That\'s wonderful to hear! What\'s making you feel happy today?',
+      'default': [
+        'Tell me more about that.',
+        'How does that make you feel?',
+        'I am here to listen. Please continue.'
+      ]
+    };
+
+    if (cleanText.contains('relationship')) {
+      return responses['relationship']!;
+    } else if (cleanText.contains('stress')) {
+      return responses['stress']!;
+    } else if (cleanText.contains('sad')) {
+      return responses['sad']!;
+    } else if (cleanText.contains('happy')) {
+      return responses['happy']!;
+    } else {
+      final defaultResponses = responses['default'] as List<String>;
+      return defaultResponses[Random().nextInt(defaultResponses.length)];
+    }
+  }
+
   Future<Map<String, dynamic>> analyzeEmotion(String text) async {
     if (text.trim().isEmpty) {
       return {
@@ -49,18 +111,15 @@ class HuggingFaceService {
       };
     }
 
-    // 1. Check cache first (fastest response)
     final cachedResult = await _getCachedEmotion(text);
     if (cachedResult != null) {
       return cachedResult;
     }
 
-    // 2. Try online analysis if internet available
     if (await _hasInternetConnection()) {
       try {
         final onlineResult = await _analyzeEmotionOnline(text);
         if (onlineResult['error'] == null) {
-          // Cache successful online result for offline use
           await _cacheEmotion(text, onlineResult);
           return onlineResult;
         }
@@ -69,44 +128,34 @@ class HuggingFaceService {
       }
     }
 
-    // 3. Fallback to offline analysis
     final offlineResult = _analyzeEmotionOffline(text);
-    // Cache offline result too for consistency
     await _cacheEmotion(text, offlineResult);
     return offlineResult;
   }
 
-  /// 🌐 Online emotion analysis using HuggingFace API
   Future<Map<String, dynamic>> _analyzeEmotionOnline(String text) async {
     try {
-      final client = HttpClient();
       final uri =
           Uri.parse('$_baseUrl/j-hartmann/emotion-english-distilroberta-base');
-      final request = await client.postUrl(uri);
-
-      // Set headers
-      request.headers.set('Content-Type', 'application/json');
-      if (_token != null && _token!.isNotEmpty) {
-        request.headers.set('Authorization', 'Bearer $_token');
-      }
-
-      // Set body
-      final body = jsonEncode({
-        'inputs': text,
-        'options': {
-          'wait_for_model': true,
-        }
-      });
-      request.add(utf8.encode(body));
-
-      final response = await request.close();
-      final responseBody = await response.transform(utf8.decoder).join();
+      final response = await http.post(
+        uri,
+        headers: {
+          'Content-Type': 'application/json',
+          if (_token != null && _token!.isNotEmpty)
+            'Authorization': 'Bearer $_token',
+        },
+        body: jsonEncode({
+          'inputs': text,
+          'options': {
+            'wait_for_model': true,
+          }
+        }),
+      );
 
       if (response.statusCode == 200) {
-        final data = jsonDecode(responseBody);
+        final data = jsonDecode(response.body);
 
         if (data is List && data.isNotEmpty) {
-          // Find the emotion with highest confidence
           final emotions = List<Map<String, dynamic>>.from(data[0]);
           emotions.sort(
               (a, b) => (b['score'] as double).compareTo(a['score'] as double));
@@ -148,7 +197,6 @@ class HuggingFaceService {
     };
   }
 
-  /// Maps HuggingFace emotion labels to user-friendly names
   String _mapEmotionLabel(String label) {
     switch (label.toLowerCase()) {
       case 'joy':
@@ -162,7 +210,7 @@ class HuggingFaceService {
       case 'surprise':
         return 'Surprised';
       case 'disgust':
-        return 'Disgusted';
+        return 'Disgusted'
       case 'love':
         return 'Loving';
       default:
@@ -170,7 +218,6 @@ class HuggingFaceService {
     }
   }
 
-  /// 🧠 Advanced Sentiment Analysis with Hindi/English support
   Future<Map<String, dynamic>> analyzeSentiment(String text,
       {String language = 'auto'}) async {
     if (text.trim().isEmpty) {
@@ -182,7 +229,6 @@ class HuggingFaceService {
     }
 
     try {
-      // Use multilingual sentiment model that supports Hindi
       const modelName =
           'cardiffnlp/twitter-xlm-roberta-base-sentiment-multilingual';
       final response = await _makeAPICall(modelName, {'inputs': text});
@@ -214,14 +260,12 @@ class HuggingFaceService {
     }
   }
 
-  /// 📝 Message Tone Detection for relationship context
   Future<Map<String, dynamic>> analyzeMessageTone(String message) async {
     if (message.trim().isEmpty) {
       return {'error': 'Message cannot be empty', 'tone': 'neutral'};
     }
 
     try {
-      // Use emotion classification for tone analysis
       final emotionResult = await analyzeEmotion(message);
       final sentimentResult = await analyzeSentiment(message);
 
@@ -252,7 +296,6 @@ class HuggingFaceService {
     }
   }
 
-  /// 🔮 Relationship Health Prediction
   Future<Map<String, dynamic>> predictRelationshipHealth(
       List<Map<String, dynamic>> recentMessages) async {
     if (recentMessages.isEmpty) {
@@ -265,7 +308,6 @@ class HuggingFaceService {
       int analyzedCount = 0;
 
       for (final messageData in recentMessages.take(10)) {
-        // Analyze last 10 messages
         final message = messageData['content'] as String? ?? '';
         if (message.isNotEmpty) {
           final analysis = await analyzeMessageTone(message);
@@ -297,7 +339,7 @@ class HuggingFaceService {
         'health_score': healthScore,
         'prediction': _getHealthPrediction(healthScore),
         'confidence':
-            analyzedCount / 10.0, // Confidence based on data availability
+            analyzedCount / 10.0, 
         'trend': _calculateTrend(recentMessages),
         'recommendations': _getHealthRecommendations(healthScore),
       };
@@ -306,13 +348,11 @@ class HuggingFaceService {
     }
   }
 
-  /// 💡 Smart Conversation Starters
   Future<Map<String, dynamic>> generateConversationStarters(
       String contactName, Map<String, dynamic> relationshipContext) async {
     try {
       final prompt = _buildConversationPrompt(contactName, relationshipContext);
 
-      // Use text generation model for conversation starters
       final response = await _makeAPICall('microsoft/DialoGPT-medium', {
         'inputs': prompt,
         'parameters': {
@@ -332,7 +372,6 @@ class HuggingFaceService {
         };
       }
 
-      // Fallback to predefined starters
       return {
         'starters': _getFallbackStarters(contactName, relationshipContext),
         'context_based': false,
@@ -346,7 +385,6 @@ class HuggingFaceService {
     }
   }
 
-  /// 📊 Batch Analysis for Multiple Messages
   Future<Map<String, dynamic>> batchAnalyzeMessages(
       List<String> messages) async {
     final results = <Map<String, dynamic>>[];
@@ -362,7 +400,6 @@ class HuggingFaceService {
       }
     }
 
-    // Calculate summary statistics
     if (results.isNotEmpty) {
       final sentiments = results
           .map((r) => r['analysis']['sentiment'] as String? ?? 'neutral')
@@ -387,35 +424,29 @@ class HuggingFaceService {
     };
   }
 
-  // Helper Methods
   Future<Map<String, dynamic>> _makeAPICall(
       String modelName, Map<String, dynamic> payload) async {
     try {
-      final client = HttpClient();
       final uri = Uri.parse('$_baseUrl/$modelName');
-      final request = await client.postUrl(uri);
-
-      request.headers.set('Content-Type', 'application/json');
-      if (_token != null && _token!.isNotEmpty) {
-        request.headers.set('Authorization', 'Bearer $_token');
-      }
-
-      final body = jsonEncode({
-        ...payload,
-        'options': {'wait_for_model': true},
-      });
-      request.add(utf8.encode(body));
-
-      final response = await request.close();
-      final responseBody = await response.transform(utf8.decoder).join();
-      client.close();
+      final response = await http.post(
+        uri,
+        headers: {
+          'Content-Type': 'application/json',
+          if (_token != null && _token!.isNotEmpty)
+            'Authorization': 'Bearer $_token',
+        },
+        body: jsonEncode({
+          ...payload,
+          'options': {'wait_for_model': true},
+        }),
+      );
 
       if (response.statusCode == 200) {
-        return {'success': true, 'data': jsonDecode(responseBody)};
+        return {'success': true, 'data': jsonDecode(response.body)};
       } else if (response.statusCode == 503) {
         return {'error': 'Model is loading, please try again in a moment'};
       } else {
-        return {'error': 'API Error: ${response.statusCode} - $responseBody'};
+        return {'error': 'API Error: ${response.statusCode} - ${response.body}'};
       }
     } catch (e) {
       return {'error': 'Network error: $e'};
@@ -443,7 +474,7 @@ class HuggingFaceService {
     final topScore = sentiments[0]['score'] as double;
     final secondScore = sentiments[1]['score'] as double;
     return topScore -
-        secondScore; // Higher difference = more definitive emotion
+        secondScore; 
   }
 
   String _determineTone(String emotion, String sentiment, double emotionConf,
@@ -554,10 +585,7 @@ class HuggingFaceService {
   }
 
   String _calculateTrend(List<Map<String, dynamic>> messages) {
-    // Simple trend calculation based on recent vs older messages
     if (messages.length < 4) return 'stable';
-
-    // Would implement more sophisticated trend analysis
     return 'stable';
   }
 
@@ -592,7 +620,6 @@ class HuggingFaceService {
 
   List<String> _parseConversationSuggestions(
       dynamic data, Map<String, dynamic> context) {
-    // Parse AI-generated conversation starters
     final suggestions = <String>[];
 
     if (data is List) {
@@ -634,7 +661,6 @@ class HuggingFaceService {
     }
   }
 
-  /// Helper method to find the most common emotion
   static String _findDominantEmotion(List<String> emotions) {
     if (emotions.isEmpty) return 'neutral';
 
@@ -648,9 +674,6 @@ class HuggingFaceService {
         .key;
   }
 
-  // 🔄 HYBRID MODE METHODS
-
-  /// 📱 Check internet connectivity
   Future<bool> _hasInternetConnection() async {
     try {
       final result = await InternetAddress.lookup('google.com');
@@ -660,7 +683,6 @@ class HuggingFaceService {
     }
   }
 
-  /// 💾 Cache emotion analysis results for offline use
   Future<void> _cacheEmotion(String text, Map<String, dynamic> result) async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -675,7 +697,6 @@ class HuggingFaceService {
     }
   }
 
-  /// 📖 Get cached emotion analysis
   Future<Map<String, dynamic>?> _getCachedEmotion(String text) async {
     try {
       final prefs = await SharedPreferences.getInstance();
@@ -687,7 +708,6 @@ class HuggingFaceService {
         final timestamp = cache['timestamp'] as int;
         final cacheAge = DateTime.now().millisecondsSinceEpoch - timestamp;
 
-        // Cache valid for 7 days
         if (cacheAge < 7 * 24 * 60 * 60 * 1000) {
           final result = Map<String, dynamic>.from(cache['result']);
           result['source'] = 'cache';
@@ -700,11 +720,9 @@ class HuggingFaceService {
     return null;
   }
 
-  /// 🤖 Offline emotion analysis using rule-based approach
   Map<String, dynamic> _analyzeEmotionOffline(String text) {
     final cleanText = text.toLowerCase().trim();
 
-    // Hindi emotion keywords
     final hindiEmotions = {
       'खुश': ['खुश', 'प्रसन्न', 'आनंद', 'मज़ा', 'अच्छा', 'बढ़िया', 'शानदार'],
       'गुस्सा': ['गुस्सा', 'नाराज़', 'परेशान', 'चिढ़', 'बुरा', 'क्रोध'],
@@ -713,7 +731,6 @@ class HuggingFaceService {
       'प्रेम': ['प्यार', 'मोहब्बत', 'प्रेम', 'दिल', 'इश्क', 'स्नेह'],
     };
 
-    // English emotion keywords
     final englishEmotions = {
       'joy': [
         'happy',
@@ -751,7 +768,6 @@ class HuggingFaceService {
     double maxScore = 0.0;
     String detectedEmotion = 'neutral';
 
-    // Check Hindi emotions
     for (final entry in hindiEmotions.entries) {
       final emotion = entry.key;
       final keywords = entry.value;
@@ -772,7 +788,6 @@ class HuggingFaceService {
       }
     }
 
-    // Check English emotions
     for (final entry in englishEmotions.entries) {
       final emotion = entry.key;
       final keywords = entry.value;
@@ -796,7 +811,7 @@ class HuggingFaceService {
     return {
       'emotion': detectedEmotion,
       'confidence':
-          maxScore > 0 ? (maxScore * 0.8) : 0.5, // Lower confidence for offline
+          maxScore > 0 ? (maxScore * 0.8) : 0.5, 
       'source': 'offline',
       'method': 'rule_based',
       'all_emotions': [
@@ -805,7 +820,6 @@ class HuggingFaceService {
     };
   }
 
-  /// Map Hindi emotions to English
   String _mapHindiToEnglishEmotion(String hindiEmotion) {
     switch (hindiEmotion) {
       case 'खुश':

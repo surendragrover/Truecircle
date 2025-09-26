@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "239213685086",
+    "project_id": "truecircle-dbcdb",
+    "storage_bucket": "truecircle-dbcdb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239213685086:android:134b416222b5e7fe1107cf",
+        "android_client_info": {
+          "package_name": "com.digitalddn.truecircle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnC1scF347y4tDDZ7PIHZQ1R7UqIh6mTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239213685086:android:f25587f9c1c2b5df1107cf",
+        "android_client_info": {
+          "package_name": "com.example.truecircle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnC1scF347y4tDDZ7PIHZQ1R7UqIh6mTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239213685086:android:a6da963df7a50da61107cf",
+        "android_client_info": {
+          "package_name": "com.truecircle.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnC1scF347y4tDDZ7PIHZQ1R7UqIh6mTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

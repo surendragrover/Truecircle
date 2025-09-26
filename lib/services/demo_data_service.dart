@@ -34,7 +34,7 @@ class DemoDataService {
         'importantDates': ['1995-06-15'], // Birthday
         'interests': ['Technology', 'Sports', 'Movies'],
         'communicationStyle': 'Direct and Friendly',
-        'avatar': '👨‍💼',
+        'avatar': 'assets/images/avatar.png', // <-- FIX HERE
       },
       {
         'id': 'demo_2',
@@ -50,7 +50,7 @@ class DemoDataService {
         'importantDates': ['1992-03-22'], // Birthday
         'interests': ['Reading', 'Cooking', 'Travel'],
         'communicationStyle': 'Supportive and Warm',
-        'avatar': '👩‍🎓',
+        'avatar': 'assets/images/avatar.png', // <-- FIX HERE
       },
       {
         'id': 'demo_3',
@@ -66,7 +66,7 @@ class DemoDataService {
         'importantDates': ['1988-11-30'],
         'interests': ['Business', 'Golf', 'Networking'],
         'communicationStyle': 'Professional and Concise',
-        'avatar': '👨‍💻',
+        'avatar': 'assets/images/avatar.png', // <-- FIX HERE
       },
       {
         'id': 'demo_4',
@@ -82,7 +82,7 @@ class DemoDataService {
         'importantDates': ['1997-08-12'],
         'interests': ['Art', 'Music', 'Photography'],
         'communicationStyle': 'Creative and Expressive',
-        'avatar': '👩‍🎨',
+        'avatar': 'assets/images/avatar.png', // <-- FIX HERE
       },
       {
         'id': 'demo_5',
@@ -98,7 +98,7 @@ class DemoDataService {
         'importantDates': ['1993-12-05', '2023-02-14'], // Birthday, Anniversary
         'interests': ['Music', 'Dancing', 'Cooking'],
         'communicationStyle': 'Romantic and Caring',
-        'avatar': '❤️',
+        'avatar': 'assets/images/avatar.png', // <-- FIX HERE
       },
       {
         'id': 'demo_6',
@@ -114,7 +114,7 @@ class DemoDataService {
         'importantDates': ['1994-05-28'],
         'interests': ['Martial Arts', 'Medicine', 'History'],
         'communicationStyle': 'Thoughtful and Deep',
-        'avatar': '👩‍⚕️',
+        'avatar': 'assets/images/avatar.png', // <-- FIX HERE
       },
       {
         'id': 'demo_7',
@@ -130,7 +130,7 @@ class DemoDataService {
         'importantDates': ['1985-09-17'],
         'interests': ['Gardening', 'Soccer', 'Family'],
         'communicationStyle': 'Warm and Neighborly',
-        'avatar': '🏡',
+        'avatar': 'assets/images/avatar.png', // <-- FIX HERE
       },
       {
         'id': 'demo_8',
@@ -146,7 +146,7 @@ class DemoDataService {
         'importantDates': ['1990-07-21'],
         'interests': ['Entrepreneurship', 'Innovation', 'Fitness'],
         'communicationStyle': 'Strategic and Motivating',
-        'avatar': '💼',
+        'avatar': 'assets/images/avatar.png', // <-- FIX HERE
       },
     ];
   }

@@ -1,4 +1,4 @@
-﻿name: truecircle
+name: truecircle
 description: Dr. Iris – Your personal AI therapist, bringing clarity, emotional insight, and a bridge to meaningful relationships.
 publish_to: 'none'
 version: 1.0.0-beta+1
@@ -64,9 +64,9 @@ flutter:
     - assets/icons/
     - assets/cultural/
     - assets/festivals/
-    - Demo_data/  # Demo data JSON files
-    - logo.png  # TrueCircle main logo for all screens
-    # - assets/images/avatar.jpg  # Dr. Iris avatar (file not found)
+    - Demo_data/
+    - assets/cultural_data.json
+    - logo.png
     - api.env
 
 # TrueCircle App Icon Configuration with cultural branding

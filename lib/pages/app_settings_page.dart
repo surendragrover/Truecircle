@@ -1,8 +1,113 @@
 import 'package:flutter/material.dart';
+import 'package:truecircle/pages/contact_list_page.dart';
+import 'package:truecircle/services/app_mode_service.dart';
+import 'package:truecircle/services/permission_helper.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class AppSettingsPage extends StatelessWidget {
+class AppSettingsPage extends StatefulWidget {
   const AppSettingsPage({super.key});
+
+  @override
+  State<AppSettingsPage> createState() => _AppSettingsPageState();
+}
+
+class _AppSettingsPageState extends State<AppSettingsPage> {
+  bool _isFullMode = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadMode();
+  }
+
+  void _loadMode() async {
+    final isFull = await AppModeService.isFullMode();
+    setState(() {
+      _isFullMode = isFull;
+    });
+  }
+
+  Future<void> _toggleFullMode(bool value) async {
+    if (value) {
+      // Show the informational dialog before requesting permissions
+      final bool? proceed = await _showFullModeActivationDialog();
+      if (proceed ?? false) {
+        final allGranted = await _requestAllPermissions();
+        if (allGranted) {
+          await AppModeService.setFullMode(true);
+          setState(() {
+            _isFullMode = true;
+          });
+        } else {
+          // If permissions are not granted, keep the switch off
+          await AppModeService.setFullMode(false);
+          setState(() {
+            _isFullMode = false;
+          });
+        }
+      } else {
+        // User cancelled the dialog, do nothing
+      }
+    } else {
+      // Instantly switch to Demo Mode
+      await AppModeService.setFullMode(false);
+      setState(() {
+        _isFullMode = false;
+      });
+    }
+  }
+
+  Future<bool?> _showFullModeActivationDialog() {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('🚀 Activate Full Mode'),
+        content: const SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'To unlock real-time relationship insights, TrueCircle needs access to:',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 12),
+              Text('• Call Logs'),
+              Text('• SMS Messages'),
+              Text('• Contacts'),
+              SizedBox(height: 16),
+              Text(
+                '🔒 Your data is 100% private and offline. It never leaves your phone.',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.green),
+              ),
+              SizedBox(height: 8),
+              Text(
+                'By continuing, you will be asked to grant these permissions.',
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          ElevatedButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Continue'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<bool> _requestAllPermissions() async {
+    final contacts = await PermissionHelper.requestContactsPermission(context);
+    final phone = await PermissionHelper.requestPhonePermission(context);
+    final sms = await PermissionHelper.requestSMSPermission(context);
+    return contacts && phone && sms;
+  }
 
   // URLs for hosted policies (truecircle.online domain)
   static const String privacyPolicyUrl =
@@ -24,6 +129,108 @@ class AppSettingsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            _buildSection(
+              title: '🚀 App Mode',
+              children: [
+                ListTile(
+                  leading: Icon(_isFullMode ? Icons.data_usage : Icons.preview, color: Colors.blue.shade700),
+                  title: Text(_isFullMode ? 'Full Mode Active' : 'Demo Mode'),
+                  subtitle: Text(_isFullMode ? 'Using real data from your device' : 'Using sample data'),
+                  trailing: Switch(
+                    value: _isFullMode,
+                    onChanged: _toggleFullMode,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+            
+            // Developer Section
+            _buildSection(
+              title: '🛠️ Developer Options',
+              children: [
+                _buildInfoTile(
+                  icon: Icons.contacts,
+                  title: 'View Device Contacts',
+                  subtitle: 'Test contact fetching feature',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ContactListPage()),
+                    );
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+
+            // About TrueCircle Section
+            _buildSection(
+              title: '🌟 About TrueCircle',
+              children: [
+                _buildInfoTile(
+                  icon: Icons.info_outline,
+                  title: 'Our Mission',
+                  subtitle:
+                      'Monitoring relationships and nurturing mental well-being for a healthier life.',
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+
+            // Dr. Iris Section
+            _buildSection(
+              title: '🤖 Dr. Iris - Your AI Therapist',
+              children: [
+                _buildInfoTile(
+                  icon: Icons.chat_bubble_outline,
+                  title: 'Chat with Dr. Iris',
+                  subtitle:
+                      'Get emotional support and relationship advice. Demo mode is ready!',
+                  onTap: () => _openAIChat(context),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 24),
+
+            // AI Powered App Section
+            _buildSection(
+              title: '⚡ AI Powered Features',
+              children: [
+                _buildInfoTile(
+                  icon: Icons.smart_toy,
+                  title: 'AI Powered Technology',
+                  subtitle: 'This app uses advanced AI for emotional analysis',
+                  trailing: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: Colors.purple,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Text(
+                      'AI',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                _buildInfoTile(
+                  icon: Icons.psychology,
+                  title: 'Smart Suggestions',
+                  subtitle:
+                      'AI-powered relationship insights and recommendations',
+                  onTap: () => _showAISuggestions(context),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 24),
+
             // Privacy & Legal Section
             _buildSection(
               title: '🔒 Privacy & Legal',
@@ -64,66 +271,6 @@ class AppSettingsPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 24),
-
-            // AI Powered App Section
-            _buildSection(
-              title: '🤖 AI Powered App',
-              children: [
-                _buildInfoTile(
-                  icon: Icons.smart_toy,
-                  title: 'AI Powered Technology',
-                  subtitle: 'This app uses advanced AI for emotional analysis',
-                  trailing: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.purple,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: const Text(
-                      'AI',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-                _buildInfoTile(
-                  icon: Icons.chat_bubble_outline,
-                  title: 'Dr. Iris - Your Emotional Therapist',
-                  subtitle:
-                      'Chat with Dr. Iris for emotional support • Demo mode ready',
-                  trailing: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: const Text(
-                      'NEW',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  onTap: () => _openAIChat(context),
-                ),
-                _buildInfoTile(
-                  icon: Icons.psychology,
-                  title: 'Smart Suggestions',
-                  subtitle:
-                      'AI-powered relationship insights और recommendations',
-                  onTap: () => _showAISuggestions(context),
                 ),
               ],
             ),
