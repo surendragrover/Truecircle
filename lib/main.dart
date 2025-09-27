@@ -1,33 +1,36 @@
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'firebase_options.dart';
-import 'pages/welcome_screen.dart';
+import 'auth_wrapper.dart'; // Import the new AuthWrapper
 import 'models/emotion_entry.dart';
 import 'models/contact.dart';
 import 'models/contact_interaction.dart';
 import 'models/privacy_settings.dart';
 import 'l10n/app_localizations.dart';
 
+// Duplicating the main function to ensure all initializations are correctly handled.
+// This is a temporary measure to integrate Firebase Auth.
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
+  // A single, robust initialization for Firebase.
   try {
-    // Initialize Firebase first
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    debugPrint('✅ Firebase initialized');
+    debugPrint('✅ Firebase initialized successfully');
+  } catch (e) {
+    debugPrint('❌ Firebase initialization failed: $e');
+    // We can decide if the app should run without Firebase.
+    // For now, we'll continue, but auth-dependent features will fail.
+  }
 
-    // Initialize Hive with simpler error handling
+  // The existing Hive initialization logic.
+  try {
     await Hive.initFlutter('truecircle_data');
     debugPrint('✅ Hive path initialized');
-
-    // Register adapters with try-catch for each (FIXED TYPE IDs)
     _registerAdapterSafely<EmotionEntry>(0, () => EmotionEntryAdapter());
     _registerAdapterSafely<Contact>(1, () => ContactAdapter());
     _registerAdapterSafely<ContactStatus>(2, () => ContactStatusAdapter());
@@ -36,11 +39,9 @@ void main() async {
     _registerAdapterSafely<InteractionType>(4, () => InteractionTypeAdapter());
     _registerAdapterSafely<EmotionalScore>(5, () => EmotionalScoreAdapter());
     _registerAdapterSafely<PrivacySettings>(6, () => PrivacySettingsAdapter());
-
     debugPrint('✅ All Hive adapters registered');
   } catch (e) {
     debugPrint('❌ Hive initialization failed: $e');
-    // Continue anyway - app will work without local storage
   }
 
   runApp(const TrueCircleApp());
@@ -66,38 +67,32 @@ class TrueCircleApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TrueCircle',
-
-      // Localization support
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple, // Changed to deepPurple for consistency
         brightness: Brightness.light,
         useMaterial3: true,
-
-        // TrueCircle custom theme
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
+          seedColor: Colors.deepPurple, // Changed to deepPurple
           brightness: Brightness.light,
         ),
-
         appBarTheme: AppBarTheme(
-          backgroundColor: Colors.blue[50],
-          foregroundColor: Colors.blue[900],
-          elevation: 0,
+          backgroundColor: Colors.deepPurple, // Consistent AppBar color
+          foregroundColor: Colors.white, // White title for better contrast
+          elevation: 2,
           centerTitle: true,
         ),
-
         cardTheme: CardThemeData(
-          elevation: 2,
+          elevation: 3,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.deepPurple, // Button color
+            foregroundColor: Colors.white, // Button text color
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),
@@ -105,17 +100,16 @@ class TrueCircleApp extends StatelessWidget {
           ),
         ),
       ),
-
       darkTheme: ThemeData(
         brightness: Brightness.dark,
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
+          seedColor: Colors.deepPurple,
           brightness: Brightness.dark,
         ),
       ),
-
-      home: const WelcomeScreen(),
+      // The AuthWrapper is now the entry point of the app.
+      home: const AuthWrapper(), 
     );
   }
 }
