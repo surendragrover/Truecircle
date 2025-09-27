@@ -8,8 +8,6 @@ import 'models/contact.dart';
 import 'models/contact_interaction.dart';
 import 'models/privacy_settings.dart';
 import 'l10n/app_localizations.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

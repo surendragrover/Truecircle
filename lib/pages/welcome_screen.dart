@@ -56,10 +56,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   Widget _buildLanguageSelector() {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.2),
+        color: Colors.white.withOpacity(0.2),
         borderRadius: BorderRadius.circular(25),
         border:
-            Border.all(color: Colors.white.withValues(alpha: 0.3), width: 1),
+            Border.all(color: Colors.white.withOpacity(0.3), width: 1),
       ),
       child: Theme(
         data: Theme.of(context).copyWith(
@@ -132,7 +132,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                       vertical: isSmallScreen ? 16.0 : 24.0,
                     ),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         // Top Section - Bringing clarity text
                         Column(
@@ -152,75 +152,73 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                         ),
 
                         // Center Section - Logo and welcome text
-                        Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Container(
-                                width: isWeb ? 140 : 120,
-                                height: isWeb ? 140 : 120,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(isWeb ? 70 : 60),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withValues(alpha: 0.3),
-                                      blurRadius: 20,
-                                      offset: const Offset(0, 10),
-                                    ),
-                                  ],
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(isWeb ? 70 : 60),
-                                  child: Image.asset(
-                                    'assets/images/truecircle_logo.png',
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      return Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.blue.withValues(alpha: 0.2),
-                                          borderRadius: BorderRadius.circular(isWeb ? 70 : 60),
-                                        ),
-                                        child: Icon(
-                                          Icons.psychology,
-                                          size: isWeb ? 70 : 60,
-                                          color: Colors.white,
-                                        ),
-                                      );
-                                    },
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: isWeb ? 140 : 120,
+                              height: isWeb ? 140 : 120,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(isWeb ? 70 : 60),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.3),
+                                    blurRadius: 20,
+                                    offset: const Offset(0, 10),
                                   ),
+                                ],
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(isWeb ? 70 : 60),
+                                child: Image.asset(
+                                  'assets/images/truecircle_logo.png',
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.blue.withOpacity(0.2),
+                                        borderRadius: BorderRadius.circular(isWeb ? 70 : 60),
+                                      ),
+                                      child: Icon(
+                                        Icons.psychology,
+                                        size: isWeb ? 70 : 60,
+                                        color: Colors.white,
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
+                            ),
 
-                              SizedBox(height: isSmallScreen ? 24 : 32),
+                            SizedBox(height: isSmallScreen ? 24 : 32),
 
-                              Text(
-                                'TrueCircle',
+                            Text(
+                              'TrueCircle',
+                              style: TextStyle(
+                                fontSize: isWeb ? 36 : 32,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                letterSpacing: 1.5,
+                              ),
+                            ),
+
+                            SizedBox(height: isSmallScreen ? 12 : 16),
+
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: isWeb ? 64 : 0),
+                              child: Text(
+                                _selectedLanguage == 'Hindi'
+                                    ? 'रिश्तों को समझें, भावनाओं को पहचानें'
+                                    : 'Understanding relationships through emotional intelligence',
                                 style: TextStyle(
-                                  fontSize: isWeb ? 36 : 32,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                  letterSpacing: 1.5,
+                                  fontSize: isWeb ? 18 : 16,
+                                  color: Colors.white.withOpacity(0.8),
+                                  height: 1.5,
                                 ),
+                                textAlign: TextAlign.center,
                               ),
-
-                              SizedBox(height: isSmallScreen ? 12 : 16),
-
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: isWeb ? 64 : 0),
-                                child: Text(
-                                  _selectedLanguage == 'Hindi'
-                                      ? 'रिश्तों को समझें, भावनाओं को पहचानें'
-                                      : 'Understanding relationships through emotional intelligence',
-                                  style: TextStyle(
-                                    fontSize: isWeb ? 18 : 16,
-                                    color: Colors.white.withValues(alpha: 0.8),
-                                    height: 1.5,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
 
                         // Bottom Section - Language selector and button
@@ -248,7 +246,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                                   backgroundColor: Colors.white,
                                   foregroundColor: const Color(0xFF1A1A2E),
                                   elevation: 8,
-                                  shadowColor: Colors.black.withValues(alpha: 0.3),
+                                  shadowColor: Colors.black.withOpacity(0.3),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(28),
                                   ),
