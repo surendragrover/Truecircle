@@ -27,7 +27,7 @@ class _InteractiveAIUIState extends State<InteractiveAIUI> {
   void _addWelcomeMessage() {
     _messages.add(ChatMessage(
       text:
-          "Hello! I'm Dr. Iris, your AI relationship advisor. How can I help you today?",
+          "Hello! I'm Dr. Iris, your emotional therapist. How can I help you today?",
       isUser: false,
       timestamp: DateTime.now(),
     ));
@@ -37,7 +37,7 @@ class _InteractiveAIUIState extends State<InteractiveAIUI> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dr. Iris - AI Advisor'),
+        title: const Text('Dr. Iris - Your Emotional Therapist'),
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
       ),
@@ -59,7 +59,7 @@ class _InteractiveAIUIState extends State<InteractiveAIUI> {
                 Text('Dr. Iris',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Text('AI Relationship Advisor', style: TextStyle(fontSize: 14)),
+                Text('Your Emotional Therapist', style: TextStyle(fontSize: 14)),
               ],
             ),
           ),
@@ -184,7 +184,7 @@ class _InteractiveAIUIState extends State<InteractiveAIUI> {
       setState(() {
         _messages.add(ChatMessage(
           text:
-              "Thank you for sharing. As your AI advisor, I'm here to help with relationship insights.",
+              "Thank you for sharing. As your emotional therapist, I'm here to help with your emotional wellness.",
           isUser: false,
           timestamp: DateTime.now(),
         ));

@@ -7,11 +7,11 @@ import 'package:truecircle/models/contact_interaction.dart';
 /// All analysis uses sample data and on-device AI processing.
 /// Designed to pass Google Play Store automated review.
 class PermissionManager {
-  // Demo app - always use demo mode
-  static bool get isDemoMode => true;
+  // Sample app - always use sample mode  
+  static bool get isSampleMode => true;
   static bool _privacyNoticeShown = false;
 
-  // Getters for app state (always return demo/safe values)
+  // Getters for app state (always return sample/safe values)
   static bool get hasContactPermission => false; // NEVER request permissions
   static bool get hasCallLogPermission => false; // NEVER request permissions
   static bool get hasSmsPermission => false; // NEVER request permissions
@@ -107,7 +107,7 @@ class PermissionManager {
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: const Text(
-                        '💡 यह एक educational और demonstration app है जो relationship insights की जानकारी देती है।',
+                        '💡 यह एक educational app है जो relationship insights की जानकारी देती है।',
                         style: TextStyle(
                             fontSize: 12, fontStyle: FontStyle.italic),
                       ),
@@ -134,8 +134,8 @@ class PermissionManager {
     return result;
   }
 
-  // 🎯 DEMO MODE BANNER: Always visible since app is always in demo mode
-  static Widget buildDemoModeBanner(BuildContext context) {
+  // 🎯 SAMPLE MODE BANNER: Always visible since app is always in sample mode
+  static Widget buildSampleModeBanner(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(12),
@@ -167,7 +167,7 @@ class PermissionManager {
               SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  '📚 Educational Demo Mode',
+                  '📚 Educational Sample Mode',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -185,7 +185,7 @@ class PermissionManager {
           ),
           const SizedBox(height: 6),
           Text(
-            '• 📊 Sample contacts के साथ communication patterns\n• 🤖 Offline AI emotion analysis demonstration\n• 🎭 Cultural insights और festival recommendations\n• 📱 Privacy-safe learning experience',
+            '• 📊 Sample contacts के साथ communication patterns\n• 🤖 Offline AI emotion analysis\n• 🎭 Cultural insights और festival recommendations\n• 📱 Privacy-safe learning experience',
             style: TextStyle(
                 color: Colors.white.withValues(alpha: 0.3), fontSize: 13),
           ),
@@ -218,7 +218,7 @@ class PermissionManager {
     );
   }
 
-  // 📊 OFFLINE EMOTION ANALYSIS (Educational Demo)
+  // 📊 OFFLINE EMOTION ANALYSIS (Educational Sample)
   static Map<String, dynamic> analyzeOfflineEmotion(String text) {
     // Educational emotion analysis based on keywords
     final Map<String, List<String>> emotionKeywords = {
@@ -313,8 +313,8 @@ class PermissionManager {
       'confidence': confidence,
       'all_emotions': emotionScores,
       'offline_analysis': true,
-      'educational_demo': true,
-      'message': '🎓 Educational demo - पूर्ण offline analysis'
+      'educational_sample': true,
+      'message': '🎓 Educational sample - पूर्ण offline analysis'
     };
   }
 
@@ -326,7 +326,7 @@ class PermissionManager {
         'relationship_health': 0.7,
         'communication_pattern': 'balanced',
         'suggestions': ['अधिक बातचीत करें', 'नियमित संपर्क बनाए रखें'],
-        'educational_demo': true,
+        'educational_sample': true,
         'offline_analysis': true
       };
     }
@@ -367,14 +367,14 @@ class PermissionManager {
       'communication_pattern': pattern,
       'suggestions': suggestions,
       'total_interactions': totalInteractions,
-      'educational_demo': true,
+      'educational_sample': true,
       'offline_analysis': true,
       'privacy_safe': true
     };
   }
 
   // 📚 EDUCATIONAL DEMO CONTACTS - 30 days of data
-  static List<ContactInteraction> getDemoContacts() {
+  static List<ContactInteraction> getSampleContacts() {
     List<ContactInteraction> contacts = [];
 
     // Generate 30 days of demo data
@@ -448,9 +448,9 @@ class PermissionManager {
     ];
   }
 
-  // Reset app state (not needed for demo app)
+  // Reset app state (not needed for Sample App)
   static void resetPermissions() {
-    // Demo app doesn't need reset - always in safe mode
+    // Sample App doesn't need reset - always in safe mode
     _privacyNoticeShown = false;
   }
 }

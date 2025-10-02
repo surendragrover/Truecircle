@@ -1,3 +1,4 @@
+
 import 'package:hive/hive.dart';
 import '../models/emotion_entry.dart';
 
@@ -30,14 +31,14 @@ class EmotionService {
   List<EmotionEntry> getAllEntries() {
     if (box != null) {
       final entries = box!.values.toList();
-      // If box is empty, add sample data for demo/screenshots
+      // If box is empty, add sample data for testing/screenshots
       if (entries.isEmpty) {
         _addSampleData();
         return box!.values.toList();
       }
       return entries;
     } else {
-      // Return rich sample data for demo when no storage available
+      // Return rich sample data for testing when no storage available
       return _getSampleEntries();
     }
   }

@@ -1,0 +1,504 @@
+// Google API Integration Demo for TrueCircle
+// Shows all Google APIs integration in action
+// Following TrueCircle coding instructions for cultural intelligence
+
+import 'package:flutter/material.dart';
+// import '../services/google_services.dart';  // Temporarily disabled
+import '../widgets/truecircle_logo.dart';
+
+class GoogleAPIIntegrationPage extends StatefulWidget {
+  const GoogleAPIIntegrationPage({super.key});
+
+  @override
+  State<GoogleAPIIntegrationPage> createState() => _GoogleAPIIntegrationPageState();
+}
+
+class _GoogleAPIIntegrationPageState extends State<GoogleAPIIntegrationPage> {
+  final _textController = TextEditingController();
+  final _scrollController = ScrollController();
+  
+  String _translationResult = '';
+  String _aiResponse = '';
+  String _detectedLanguage = '';
+  List<Map<String, String>> _festivals = [];
+  bool _isLoading = false;
+  
+  @override
+  void initState() {
+    super.initState();
+    _loadFestivals();
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  /// Load cultural festivals
+  Future<void> _loadFestivals() async {
+    setState(() => _isLoading = true);
+    try {
+      final festivals = await GoogleServices.instance.getFestivalRecommendations();
+      setState(() => _festivals = festivals);
+    } catch (e) {
+      debugPrint('❌ Festival loading error: $e');
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  /// Translate text
+  Future<void> _translateText(bool toHindi) async {
+    if (_textController.text.trim().isEmpty) return;
+    
+    setState(() => _isLoading = true);
+    try {
+      final result = await GoogleServices.instance.translateText(
+        _textController.text,
+        toHindi: toHindi,
+      );
+      setState(() => _translationResult = result);
+    } catch (e) {
+      setState(() => _translationResult = 'Translation error: $e');
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  /// Detect language
+  Future<void> _detectLanguage() async {
+    if (_textController.text.trim().isEmpty) return;
+    
+    setState(() => _isLoading = true);
+    try {
+      final language = await GoogleServices.instance.detectLanguage(_textController.text);
+      setState(() => _detectedLanguage = language ?? 'Unknown');
+    } catch (e) {
+      setState(() => _detectedLanguage = 'Detection error: $e');
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  /// Generate AI response
+  Future<void> _generateAIResponse() async {
+    if (_textController.text.trim().isEmpty) return;
+    
+    setState(() => _isLoading = true);
+    try {
+      final analysis = await GoogleServices.instance.analyzeCulturalRelationship(_textController.text);
+      final response = '${analysis['cultural_insights']}\n\n${analysis['relationship_advice']}';
+      setState(() => _aiResponse = response);
+    } catch (e) {
+      setState(() => _aiResponse = 'AI error: $e');
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  /// Show premium feature demo (Ad-Free Experience)
+  Future<void> _showPremiumDemo() async {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('✅ Premium Ad-Free Experience - All features unlocked!'),
+        backgroundColor: Colors.green,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TrueCircleLogo(size: 24),
+            SizedBox(width: 8),
+            Text('Google APIs Integration'),
+          ],
+        ),
+        backgroundColor: Colors.blue[50],
+        foregroundColor: Colors.blue[900],
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.refresh),
+            onPressed: _loadFestivals,
+            tooltip: 'Refresh Data',
+          ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        controller: _scrollController,
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Header
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  children: [
+                    const Icon(Icons.cloud, size: 48, color: Colors.blue),
+                    const SizedBox(height: 8),
+                    const Text(
+                      'TrueCircle Google APIs',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'All Google services integrated with privacy-first approach',
+                      style: TextStyle(color: Colors.grey[600]),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            
+            // Service Status
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      '📊 Service Status',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 12),
+                    ...GoogleServices.instance.serviceStatus.entries.map(
+                      (entry) => Row(
+                        children: [
+                          Icon(
+                            entry.value ? Icons.check_circle : Icons.cancel,
+                            color: entry.value ? Colors.green : Colors.red,
+                            size: 20,
+                          ),
+                          const SizedBox(width: 8),
+                          Text('${entry.key}: ${entry.value ? 'Active' : 'Inactive'}'),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            
+            // Text Input
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      '✏️ Text Input (Hindi/English)',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 12),
+                    TextField(
+                      controller: _textController,
+                      maxLines: 3,
+                      decoration: const InputDecoration(
+                        hintText: 'Enter text in Hindi or English...\nउदाहरण: मेरे दोस्त से बात करना चाहता हूँ',
+                        border: OutlineInputBorder(),
+                        filled: true,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Wrap(
+                      spacing: 8,
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: _isLoading ? null : () => _translateText(true),
+                          icon: const Icon(Icons.translate),
+                          label: const Text('To Hindi'),
+                        ),
+                        ElevatedButton.icon(
+                          onPressed: _isLoading ? null : () => _translateText(false),
+                          icon: const Icon(Icons.translate),
+                          label: const Text('To English'),
+                        ),
+                        ElevatedButton.icon(
+                          onPressed: _isLoading ? null : _detectLanguage,
+                          icon: const Icon(Icons.language),
+                          label: const Text('Detect'),
+                        ),
+                        ElevatedButton.icon(
+                          onPressed: _isLoading ? null : _generateAIResponse,
+                          icon: const Icon(Icons.psychology),
+                          label: const Text('AI Response'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            
+            // Results
+            if (_detectedLanguage.isNotEmpty) ...[
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '🔍 Detected Language',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(_detectedLanguage),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
+            
+            if (_translationResult.isNotEmpty) ...[
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '🌐 Translation Result',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(_translationResult),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
+            
+            if (_aiResponse.isNotEmpty) ...[
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        '🤖 AI Cultural Response',
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(_aiResponse),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+            ],
+            
+            // Cultural Festivals
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      '🎊 Cultural Festivals (AI Powered)',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 12),
+                    if (_isLoading)
+                      const Center(child: CircularProgressIndicator())
+                    else
+                      ..._festivals.map((festival) => Card(
+                        margin: const EdgeInsets.only(bottom: 8),
+                        child: ListTile(
+                          leading: const Icon(Icons.celebration, color: Colors.orange),
+                          title: Text('${festival['name']} (${festival['hindiName']})'),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('📅 ${festival['date']}'),
+                              Text('${festival['significance']}'),
+                              Text('💡 ${festival['suggestion']}'),
+                            ],
+                          ),
+                          isThreeLine: true,
+                        ),
+                      )),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            
+            // AdMob Demo
+            // Premium Ad-Free Experience
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      '� Ad-Free Premium Experience',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 12),
+                    const Text(
+                      'TrueCircle is completely ad-free! Enjoy uninterrupted cultural AI experience.',
+                      style: TextStyle(color: Colors.green),
+                    ),
+                    const SizedBox(height: 12),
+                    ElevatedButton.icon(
+                      onPressed: _showPremiumDemo,
+                      icon: const Icon(Icons.diamond),
+                      label: const Text('Premium Features'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.purple,
+                        foregroundColor: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            
+            // Google Sign-In Demo
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      '👤 Google Sign-In Integration',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: () async {
+                            final account = await GoogleServices.instance.signInWithGoogle();
+                            if (account != null && context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('✅ Signed in as ${account.email}'),
+                                  backgroundColor: Colors.green,
+                                ),
+                              );
+                            }
+                          },
+                          icon: const Icon(Icons.login),
+                          label: const Text('Sign In'),
+                        ),
+                        const SizedBox(width: 8),
+                        ElevatedButton.icon(
+                          onPressed: () async {
+                            await GoogleServices.instance.signOutFromGoogle();
+                            if (context.mounted) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('✅ Signed out successfully'),
+                                  backgroundColor: Colors.blue,
+                                ),
+                              );
+                            }
+                          },
+                          icon: const Icon(Icons.logout),
+                          label: const Text('Sign Out'),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red,
+                            foregroundColor: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 32),
+            
+            // Footer
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.blue[50],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                children: [
+                  const TrueCircleLogo(size: 32),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'TrueCircle Google APIs Integration',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'Cultural AI • Privacy First • Bilingual Support',
+                    style: TextStyle(color: Colors.grey[600], fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _scrollController.animateTo(
+            0,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInOut,
+          );
+        },
+        tooltip: 'Scroll to Top',
+        child: const Icon(Icons.keyboard_arrow_up),
+      ),
+    );
+  }
+}
+
+/// Google API Status Widget
+class GoogleAPIStatusWidget extends StatelessWidget {
+  const GoogleAPIStatusWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.cloud_done, color: Colors.green),
+            const SizedBox(height: 4),
+            const Text(
+              'Google APIs',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+            ),
+            Text(
+              GoogleServices.instance.isAvailable ? 'Online' : 'Offline',
+              style: TextStyle(
+                color: GoogleServices.instance.isAvailable ? Colors.green : Colors.orange,
+                fontSize: 10,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

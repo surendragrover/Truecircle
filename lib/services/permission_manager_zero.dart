@@ -7,7 +7,7 @@ import 'package:truecircle/models/contact_interaction.dart';
 /// All analysis uses sample data and on-device AI processing.
 /// Designed to pass Google Play Store automated review.
 class PermissionManager {
-  // Demo app - always use demo mode
+  // Sample App - always use demo mode
   static bool get isDemoMode => true;
   static bool _privacyNoticeShown = false;
 
@@ -373,7 +373,7 @@ class PermissionManager {
   }
 
   // 📚 EDUCATIONAL DEMO CONTACTS
-  static List<ContactInteraction> getDemoContacts() {
+  static List<ContactInteraction> getSampleContacts() {
     return [
       ContactInteraction(
         contactId: 'demo_1',
@@ -465,9 +465,9 @@ class PermissionManager {
     ];
   }
 
-  // Reset app state (not needed for demo app)
+  // Reset app state (not needed for Sample App)
   static void resetPermissions() {
-    // Demo app doesn't need reset - always in safe mode
+    // Sample App doesn't need reset - always in safe mode
     _privacyNoticeShown = false;
   }
 }

@@ -4,7 +4,7 @@ import '../models/contact_interaction.dart';
 import '../services/relationship_analyzer.dart';
 import '../widgets/avatar_placeholder.dart';
 import '../widgets/smart_message_widget.dart';
-import '../widgets/simple_analytics_dashboard.dart';
+// import '../widgets/simple_analytics_dashboard.dart'; // Disabled - HuggingFace dependency removed
 import '../models/privacy_settings.dart';
 
 class RelationshipDashboard extends StatefulWidget {
@@ -889,13 +889,11 @@ class ContactDetailsPage extends StatelessWidget {
                 ),
                 trailing: const Icon(Icons.arrow_forward_ios),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SimpleAnalyticsDashboard(
-                        contact: health.contact,
-                        interactions: _generateMockInteractions(health.contact),
-                      ),
+                  // Analytics disabled - HuggingFace dependency removed
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Advanced Analytics temporarily unavailable'),
+                      duration: Duration(seconds: 2),
                     ),
                   );
                 },
@@ -1047,27 +1045,6 @@ class ContactDetailsPage extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  // Generate mock interactions for demo
-  List<ContactInteraction> _generateMockInteractions(Contact contact) {
-    final interactions = <ContactInteraction>[];
-    final now = DateTime.now();
-
-    // Generate some sample interactions
-    for (int i = 0; i < 20; i++) {
-      interactions.add(ContactInteraction(
-        contactId: contact.id,
-        timestamp: now.subtract(Duration(days: i * 2)),
-        type: i % 3 == 0 ? InteractionType.call : InteractionType.message,
-        duration:
-            i % 3 == 0 ? (5 + (i % 10)) * 60 : 0, // Convert minutes to seconds
-        initiatedByMe: i % 3 != 0,
-        content: i % 3 != 0 ? 'Sample message content $i' : null,
-      ));
-    }
-
-    return interactions;
   }
 }
 

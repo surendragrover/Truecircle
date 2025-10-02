@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/privacy_settings.dart' as truecircle;
+import '../widgets/truecircle_logo.dart';
 
 /// 🔒 Privacy Settings Page - Transparency and Control
 class PrivacySettingsPage extends StatefulWidget {
@@ -40,7 +41,17 @@ class _PrivacySettingsPageState extends State<PrivacySettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Privacy & Security'),
+        title: const Row(
+          children: [
+            TrueCircleLogo(
+              size: 30,
+              showText: false,
+              style: LogoStyle.icon,
+            ),
+            SizedBox(width: 12),
+            Text('Privacy & Security'),
+          ],
+        ),
         backgroundColor: Colors.blue.shade800,
         foregroundColor: Colors.white,
         actions: [
@@ -230,9 +241,9 @@ class _PrivacySettingsPageState extends State<PrivacySettingsPage> {
             SwitchListTile(
               title: const Text('Anonymous Analytics'),
               subtitle: const Text('Help improve app performance'),
-              value: false, // Demo app - no analytics
+              value: false, // Sample App - no analytics
               onChanged: (value) {
-                // Demo app - no analytics collection
+                // Sample App - no analytics collection
               },
             ),
             ListTile(

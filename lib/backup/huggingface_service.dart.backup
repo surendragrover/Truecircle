@@ -1,0 +1,839 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'dart:math';
+
+class HuggingFaceService {
+  final String _baseUrl = 'https://api-inference.huggingface.co/models';
+  final String? _token;
+
+  const HuggingFaceService({String? token}) : _token = token;
+
+  static Future<HuggingFaceService> create() async {
+    try {
+      final file = File('api.env');
+      if (await file.exists()) {
+        final contents = await file.readAsString();
+        final lines = contents.split('\n');
+
+        for (final line in lines) {
+          if (line.startsWith('HUGGINGFACE_API_KEY=')) {
+            final token = line.split('=')[1].trim();
+            if (token.isNotEmpty) {
+              debugPrint('✅ HuggingFace API key loaded from api.env');
+              return HuggingFaceService(token: token);
+            }
+          }
+        }
+      }
+      debugPrint('ℹ️ No api.env file found, using offline mode');
+    } catch (e) {
+      debugPrint('❌ Error loading HuggingFace API key: $e');
+    }
+
+    return const HuggingFaceService();
+  }
+
+  Future<String> getChatResponse(String message) async {
+    if (await _hasInternetConnection()) {
+      try {
+        final response = await _makeAPICall('microsoft/DialoGPT-medium', {
+          'inputs': {
+            'past_user_inputs': [
+              "What is your name?",
+              "How are you?"
+            ],
+            'generated_responses': [
+              "My name is Dr. Iris.",
+              "I am doing great. How can I help you today?"
+            ],
+            'text': message
+          },
+          'parameters': {
+            'max_length': 100,
+            'num_return_sequences': 1,
+            'temperature': 0.7,
+          }
+        });
+
+        if (response['success'] == true &&
+            response['data'] is Map &&
+            response['data']['generated_text'] != null) {
+          return response['data']['generated_text'];
+        }
+      } catch (e) {
+        debugPrint('Online chat failed: $e');
+      }
+    }
+    return _getChatResponseOffline(message);
+  }
+
+  String _getChatResponseOffline(String message) {
+    final cleanText = message.toLowerCase().trim();
+    final responses = {
+      'relationship':
+          'Relationships can be complex. Could you tell me more about what\'s on your mind?',
+      'stress':
+          'Stress is a common challenge. What are some of the things that are causing you stress?',
+      'sad':
+          'I hear that you\'re feeling sad. It\'s okay to feel that way. What happened?',
+      'happy':
+          'That\'s wonderful to hear! What\'s making you feel happy today?',
+      'default': [
+        'Tell me more about that.',
+        'How does that make you feel?',
+        'I am here to listen. Please continue.'
+      ]
+    };
+
+    if (cleanText.contains('relationship')) {
+      return responses['relationship']!.toString();
+    } else if (cleanText.contains('stress')) {
+      return responses['stress']!.toString();
+    } else if (cleanText.contains('sad')) {
+      return responses['sad']!.toString();
+    } else if (cleanText.contains('happy')) {
+      return responses['happy']!.toString();
+    } else {
+      final defaultResponses = responses['default'] as List<String>;
+      return defaultResponses[Random().nextInt(defaultResponses.length)];
+    }
+  }
+
+  Future<Map<String, dynamic>> analyzeEmotion(String text) async {
+    if (text.trim().isEmpty) {
+      return {
+        'error': 'Text cannot be empty',
+        'emotion': 'neutral',
+        'confidence': 0.0
+      };
+    }
+
+    final cachedResult = await _getCachedEmotion(text);
+    if (cachedResult != null) {
+      return cachedResult;
+    }
+
+    if (await _hasInternetConnection()) {
+      try {
+        final onlineResult = await _analyzeEmotionOnline(text);
+        if (onlineResult['error'] == null) {
+          await _cacheEmotion(text, onlineResult);
+          return onlineResult;
+        }
+      } catch (e) {
+        debugPrint('Online emotion analysis failed: $e');
+      }
+    }
+
+    final offlineResult = _analyzeEmotionOffline(text);
+    await _cacheEmotion(text, offlineResult);
+    return offlineResult;
+  }
+
+  Future<Map<String, dynamic>> _analyzeEmotionOnline(String text) async {
+    try {
+      final uri =
+          Uri.parse('$_baseUrl/j-hartmann/emotion-english-distilroberta-base');
+      final response = await http.post(
+        uri,
+        headers: {
+          'Content-Type': 'application/json',
+          if (_token != null && _token!.isNotEmpty)
+            'Authorization': 'Bearer $_token',
+        },
+        body: jsonEncode({
+          'inputs': text,
+          'options': {
+            'wait_for_model': true,
+          }
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+
+        if (data is List && data.isNotEmpty) {
+          final emotions = List<Map<String, dynamic>>.from(data[0]);
+          emotions.sort(
+              (a, b) => (b['score'] as double).compareTo(a['score'] as double));
+
+          final topEmotion = emotions.first;
+          return {
+            'emotion': _mapEmotionLabel(topEmotion['label'] as String),
+            'confidence': topEmotion['score'] as double,
+            'source': 'online',
+            'method': 'huggingface_api',
+            'all_emotions': emotions,
+          };
+        }
+      } else if (response.statusCode == 503) {
+        return {
+          'error': 'Model is loading, please try again in a moment',
+          'emotion': 'neutral',
+          'confidence': 0.0
+        };
+      } else {
+        return {
+          'error': 'Failed to analyze emotion: ${response.statusCode}',
+          'emotion': 'neutral',
+          'confidence': 0.0
+        };
+      }
+    } catch (e) {
+      return {
+        'error': 'Network error: $e',
+        'emotion': 'neutral',
+        'confidence': 0.0
+      };
+    }
+
+    return {
+      'error': 'Unknown error occurred',
+      'emotion': 'neutral',
+      'confidence': 0.0
+    };
+  }
+
+  String _mapEmotionLabel(String label) {
+    switch (label.toLowerCase()) {
+      case 'joy':
+        return 'Happy';
+      case 'sadness':
+        return 'Sad';
+      case 'anger':
+        return 'Angry';
+      case 'fear':
+        return 'Anxious';
+      case 'surprise':
+        return 'Surprised';
+      case 'disgust':
+        return 'Disgusted';
+      case 'love':
+        return 'Loving';
+      default:
+        return label;
+    }
+  }
+
+  Future<Map<String, dynamic>> analyzeSentiment(String text,
+      {String language = 'auto'}) async {
+    if (text.trim().isEmpty) {
+      return {
+        'error': 'Text cannot be empty',
+        'sentiment': 'neutral',
+        'confidence': 0.0
+      };
+    }
+
+    try {
+      const modelName =
+          'cardiffnlp/twitter-xlm-roberta-base-sentiment-multilingual';
+      final response = await _makeAPICall(modelName, {'inputs': text});
+
+      if (response['success'] == true) {
+        final data = response['data'];
+        if (data is List && data.isNotEmpty) {
+          final sentiments = List<Map<String, dynamic>>.from(data[0]);
+          sentiments.sort(
+              (a, b) => (b['score'] as double).compareTo(a['score'] as double));
+
+          final topSentiment = sentiments.first;
+          return {
+            'sentiment': _mapSentimentLabel(topSentiment['label'] as String),
+            'confidence': topSentiment['score'] as double,
+            'all_sentiments': sentiments,
+            'emotional_depth': _calculateEmotionalDepth(sentiments),
+          };
+        }
+      }
+
+      return response;
+    } catch (e) {
+      return {
+        'error': 'Sentiment analysis failed: $e',
+        'sentiment': 'neutral',
+        'confidence': 0.0
+      };
+    }
+  }
+
+  Future<Map<String, dynamic>> analyzeMessageTone(String message) async {
+    if (message.trim().isEmpty) {
+      return {'error': 'Message cannot be empty', 'tone': 'neutral'};
+    }
+
+    try {
+      final emotionResult = await analyzeEmotion(message);
+      final sentimentResult = await analyzeSentiment(message);
+
+      if (emotionResult['error'] == null && sentimentResult['error'] == null) {
+        final tone = _determineTone(
+          emotionResult['emotion'] as String,
+          sentimentResult['sentiment'] as String,
+          emotionResult['confidence'] as double,
+          sentimentResult['confidence'] as double,
+        );
+
+        return {
+          'tone': tone,
+          'formality': _detectFormality(message),
+          'warmth': _detectWarmth(message),
+          'urgency': _detectUrgency(message),
+          'emotion': emotionResult['emotion'],
+          'sentiment': sentimentResult['sentiment'],
+          'confidence': ((emotionResult['confidence'] as double) +
+                  (sentimentResult['confidence'] as double)) /
+              2,
+        };
+      }
+
+      return {'error': 'Tone analysis failed'};
+    } catch (e) {
+      return {'error': 'Tone analysis failed: $e'};
+    }
+  }
+
+  Future<Map<String, dynamic>> predictRelationshipHealth(
+      List<Map<String, dynamic>> recentMessages) async {
+    if (recentMessages.isEmpty) {
+      return {'health_score': 0.5, 'prediction': 'neutral', 'confidence': 0.0};
+    }
+
+    try {
+      double totalSentiment = 0.0;
+      double totalWarmth = 0.0;
+      int analyzedCount = 0;
+
+      for (final messageData in recentMessages.take(10)) {
+        final message = messageData['content'] as String? ?? '';
+        if (message.isNotEmpty) {
+          final analysis = await analyzeMessageTone(message);
+          if (analysis['error'] == null) {
+            final sentiment = _sentimentToScore(
+                analysis['sentiment'] as String? ?? 'neutral');
+            final warmth = analysis['warmth'] as double? ?? 0.5;
+
+            totalSentiment += sentiment;
+            totalWarmth += warmth;
+            analyzedCount++;
+          }
+        }
+      }
+
+      if (analyzedCount == 0) {
+        return {
+          'health_score': 0.5,
+          'prediction': 'neutral',
+          'confidence': 0.0
+        };
+      }
+
+      final avgSentiment = totalSentiment / analyzedCount;
+      final avgWarmth = totalWarmth / analyzedCount;
+      final healthScore = (avgSentiment + avgWarmth) / 2;
+
+      return {
+        'health_score': healthScore,
+        'prediction': _getHealthPrediction(healthScore),
+        'confidence':
+            analyzedCount / 10.0, 
+        'trend': _calculateTrend(recentMessages),
+        'recommendations': _getHealthRecommendations(healthScore),
+      };
+    } catch (e) {
+      return {'error': 'Health prediction failed: $e', 'health_score': 0.5};
+    }
+  }
+
+  Future<Map<String, dynamic>> generateConversationStarters(
+      String contactName, Map<String, dynamic> relationshipContext) async {
+    try {
+      final prompt = _buildConversationPrompt(contactName, relationshipContext);
+
+      final response = await _makeAPICall('microsoft/DialoGPT-medium', {
+        'inputs': prompt,
+        'parameters': {
+          'max_length': 100,
+          'num_return_sequences': 3,
+          'temperature': 0.8,
+        }
+      });
+
+      if (response['success'] == true) {
+        final suggestions = _parseConversationSuggestions(
+            response['data'], relationshipContext);
+        return {
+          'starters': suggestions,
+          'context_based': true,
+          'cultural_appropriate': true,
+        };
+      }
+
+      return {
+        'starters': _getFallbackStarters(contactName, relationshipContext),
+        'context_based': false,
+        'cultural_appropriate': true,
+      };
+    } catch (e) {
+      return {
+        'starters': _getFallbackStarters(contactName, relationshipContext),
+        'error': 'Generation failed, using fallback: $e'
+      };
+    }
+  }
+
+  Future<Map<String, dynamic>> batchAnalyzeMessages(
+      List<String> messages) async {
+    final results = <Map<String, dynamic>>[];
+    final summaryStats = <String, dynamic>{};
+
+    for (final message in messages) {
+      if (message.trim().isNotEmpty) {
+        final analysis = await analyzeMessageTone(message);
+        results.add({
+          'message': message,
+          'analysis': analysis,
+        });
+      }
+    }
+
+    if (results.isNotEmpty) {
+      final sentiments = results
+          .map((r) => r['analysis']['sentiment'] as String? ?? 'neutral')
+          .toList();
+      final emotions = results
+          .map((r) => r['analysis']['emotion'] as String? ?? 'neutral')
+          .toList();
+
+      summaryStats['positive_ratio'] =
+          sentiments.where((s) => s == 'positive').length / sentiments.length;
+      summaryStats['dominant_emotion'] = _findDominantEmotion(emotions);
+      summaryStats['warmth_average'] = results
+              .map((r) => r['analysis']['warmth'] as double? ?? 0.5)
+              .fold(0.0, (a, b) => a + b) /
+          results.length;
+    }
+
+    return {
+      'individual_results': results,
+      'summary_stats': summaryStats,
+      'total_analyzed': results.length,
+    };
+  }
+
+  Future<Map<String, dynamic>> _makeAPICall(
+      String modelName, Map<String, dynamic> payload) async {
+    try {
+      final uri = Uri.parse('$_baseUrl/$modelName');
+      final response = await http.post(
+        uri,
+        headers: {
+          'Content-Type': 'application/json',
+          if (_token != null && _token!.isNotEmpty)
+            'Authorization': 'Bearer $_token',
+        },
+        body: jsonEncode({
+          ...payload,
+          'options': {'wait_for_model': true},
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        return {'success': true, 'data': jsonDecode(response.body)};
+      } else if (response.statusCode == 503) {
+        return {'error': 'Model is loading, please try again in a moment'};
+      } else {
+        return {'error': 'API Error: ${response.statusCode} - ${response.body}'};
+      }
+    } catch (e) {
+      return {'error': 'Network error: $e'};
+    }
+  }
+
+  String _mapSentimentLabel(String label) {
+    switch (label.toLowerCase()) {
+      case 'label_0':
+      case 'negative':
+        return 'negative';
+      case 'label_1':
+      case 'neutral':
+        return 'neutral';
+      case 'label_2':
+      case 'positive':
+        return 'positive';
+      default:
+        return 'neutral';
+    }
+  }
+
+  double _calculateEmotionalDepth(List<Map<String, dynamic>> sentiments) {
+    if (sentiments.length < 2) return 0.5;
+    final topScore = sentiments[0]['score'] as double;
+    final secondScore = sentiments[1]['score'] as double;
+    return topScore -
+        secondScore; 
+  }
+
+  String _determineTone(String emotion, String sentiment, double emotionConf,
+      double sentimentConf) {
+    if (sentiment == 'positive' && emotion == 'Happy') return 'joyful';
+    if (sentiment == 'positive' && emotion == 'Loving') return 'affectionate';
+    if (sentiment == 'negative' && emotion == 'Angry') return 'hostile';
+    if (sentiment == 'negative' && emotion == 'Sad') return 'melancholic';
+    if (sentiment == 'neutral') return 'neutral';
+    return 'mixed';
+  }
+
+  double _detectFormality(String message) {
+    final formalWords = [
+      'please',
+      'thank',
+      'sir',
+      'madam',
+      'कृपया',
+      'धन्यवाद',
+      'जी',
+      'साहब'
+    ];
+    final informalWords = ['hey', 'hi', 'bro', 'यार', 'भाई', 'अरे'];
+
+    int formalCount = 0;
+    int informalCount = 0;
+
+    final lowerMessage = message.toLowerCase();
+    for (final word in formalWords) {
+      if (lowerMessage.contains(word)) formalCount++;
+    }
+    for (final word in informalWords) {
+      if (lowerMessage.contains(word)) informalCount++;
+    }
+
+    if (formalCount + informalCount == 0) return 0.5;
+    return formalCount / (formalCount + informalCount);
+  }
+
+  double _detectWarmth(String message) {
+    final warmWords = [
+      'love',
+      'dear',
+      'heart',
+      'प्यार',
+      'दिल',
+      '❤️',
+      '😊',
+      '🤗'
+    ];
+    final coldWords = ['whatever', 'fine', 'ok', 'ठीक', 'जो भी'];
+
+    int warmCount = 0;
+    int coldCount = 0;
+
+    final lowerMessage = message.toLowerCase();
+    for (final word in warmWords) {
+      if (lowerMessage.contains(word)) warmCount++;
+    }
+    for (final word in coldWords) {
+      if (lowerMessage.contains(word)) coldCount++;
+    }
+
+    return warmCount > coldCount
+        ? 0.8
+        : coldCount > warmCount
+            ? 0.2
+            : 0.5;
+  }
+
+  double _detectUrgency(String message) {
+    final urgentWords = [
+      'urgent',
+      'asap',
+      'now',
+      'immediately',
+      'जल्दी',
+      'तुरंत',
+      '!!!'
+    ];
+    int urgentCount = 0;
+
+    final lowerMessage = message.toLowerCase();
+    for (final word in urgentWords) {
+      if (lowerMessage.contains(word)) urgentCount++;
+    }
+
+    return urgentCount > 0 ? 0.8 : 0.2;
+  }
+
+  double _sentimentToScore(String sentiment) {
+    switch (sentiment) {
+      case 'positive':
+        return 0.8;
+      case 'negative':
+        return 0.2;
+      default:
+        return 0.5;
+    }
+  }
+
+  String _getHealthPrediction(double healthScore) {
+    if (healthScore > 0.7) return 'thriving';
+    if (healthScore > 0.5) return 'stable';
+    if (healthScore > 0.3) return 'needs_attention';
+    return 'at_risk';
+  }
+
+  String _calculateTrend(List<Map<String, dynamic>> messages) {
+    if (messages.length < 4) return 'stable';
+    return 'stable';
+  }
+
+  List<String> _getHealthRecommendations(double healthScore) {
+    if (healthScore < 0.3) {
+      return [
+        'रिश्ते में तनाव दिख रहा है - गर्मजोशी से बात करें',
+        'Consider reaching out with a warm, caring message',
+        'शायद मिलने का समय आ गया है',
+      ];
+    } else if (healthScore < 0.6) {
+      return [
+        'रिश्ता स्थिर है लेकिन सुधार की गुंजाइश है',
+        'Try sharing something positive or asking about their day',
+        'एक अच्छी memory share करें',
+      ];
+    } else {
+      return [
+        'बहुत अच्छा रिश्ता! इसे बनाए रखें',
+        'Keep the positive communication flowing',
+        'यह रिश्ता आपके जीवन में खुशियां ला रहा है',
+      ];
+    }
+  }
+
+  String _buildConversationPrompt(String name, Map<String, dynamic> context) {
+    final relationship = context['relationship_type'] as String? ?? 'friend';
+    final lastContact = context['days_since_contact'] as int? ?? 1;
+
+    return "Generate a warm, culturally appropriate conversation starter for $name, who is a $relationship. Last contact was $lastContact days ago.";
+  }
+
+  List<String> _parseConversationSuggestions(
+      dynamic data, Map<String, dynamic> context) {
+    final suggestions = <String>[];
+
+    if (data is List) {
+      for (final item in data) {
+        if (item is Map && item['generated_text'] != null) {
+          suggestions.add(item['generated_text'] as String);
+        }
+      }
+    }
+
+    return suggestions.isNotEmpty
+        ? suggestions
+        : _getFallbackStarters('', context);
+  }
+
+  List<String> _getFallbackStarters(String name, Map<String, dynamic> context) {
+    final relationship = context['relationship_type'] as String? ?? 'friend';
+    final firstName = name.split(' ').first;
+
+    switch (relationship.toLowerCase()) {
+      case 'family':
+        return [
+          '$firstName जी, कैसे हैं आप? घर में सब ठीक तो है?',
+          'Hi $firstName! Hope you and family are doing well 💙',
+          '$firstName भाई/बहन, बहुत दिन हो गए बात किए...',
+        ];
+      case 'friend':
+        return [
+          '$firstName यार, कैसा चल रहा है? 😊',
+          'Hey $firstName! What have you been up to lately?',
+          '$firstName, कुछ नया-पुराना बताओ!',
+        ];
+      default:
+        return [
+          '$firstName, कैसे हैं आप?',
+          'Hi $firstName! How are things going?',
+          '$firstName जी, सब कुछ ठीक तो है?',
+        ];
+    }
+  }
+
+  static String _findDominantEmotion(List<String> emotions) {
+    if (emotions.isEmpty) return 'neutral';
+
+    final emotionCounts = <String, int>{};
+    for (final emotion in emotions) {
+      emotionCounts[emotion] = (emotionCounts[emotion] ?? 0) + 1;
+    }
+
+    return emotionCounts.entries
+        .reduce((a, b) => a.value > b.value ? a : b)
+        .key;
+  }
+
+  Future<bool> _hasInternetConnection() async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<void> _cacheEmotion(String text, Map<String, dynamic> result) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final cacheKey = 'emotion_cache_${text.hashCode}';
+      final cacheData = jsonEncode({
+        'result': result,
+        'timestamp': DateTime.now().millisecondsSinceEpoch,
+      });
+      await prefs.setString(cacheKey, cacheData);
+    } catch (e) {
+      debugPrint('Error caching emotion: $e');
+    }
+  }
+
+  Future<Map<String, dynamic>?> _getCachedEmotion(String text) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final cacheKey = 'emotion_cache_${text.hashCode}';
+      final cacheData = prefs.getString(cacheKey);
+
+      if (cacheData != null) {
+        final cache = jsonDecode(cacheData);
+        final timestamp = cache['timestamp'] as int;
+        final cacheAge = DateTime.now().millisecondsSinceEpoch - timestamp;
+
+        if (cacheAge < 7 * 24 * 60 * 60 * 1000) {
+          final result = Map<String, dynamic>.from(cache['result']);
+          result['source'] = 'cache';
+          return result;
+        }
+      }
+    } catch (e) {
+      debugPrint('Error reading cached emotion: $e');
+    }
+    return null;
+  }
+
+  Map<String, dynamic> _analyzeEmotionOffline(String text) {
+    final cleanText = text.toLowerCase().trim();
+
+    final hindiEmotions = {
+      'खुश': ['खुश', 'प्रसन्न', 'आनंद', 'मज़ा', 'अच्छा', 'बढ़िया', 'शानदार'],
+      'गुस्सा': ['गुस्सा', 'नाराज़', 'परेशान', 'चिढ़', 'बुरा', 'क्रोध'],
+      'उदास': ['उदास', 'दुखी', 'परेशान', 'रो', 'अकेला', 'निराश'],
+      'डर': ['डर', 'चिंता', 'घबराहट', 'भय', 'परेशानी'],
+      'प्रेम': ['प्यार', 'मोहब्बत', 'प्रेम', 'दिल', 'इश्क', 'स्नेह'],
+    };
+
+    final englishEmotions = {
+      'joy': [
+        'happy',
+        'joy',
+        'excited',
+        'love',
+        'amazing',
+        'wonderful',
+        'great',
+        'awesome',
+        'fantastic'
+      ],
+      'anger': [
+        'angry',
+        'mad',
+        'furious',
+        'annoyed',
+        'irritated',
+        'upset',
+        'hate'
+      ],
+      'sadness': [
+        'sad',
+        'depressed',
+        'unhappy',
+        'crying',
+        'lonely',
+        'disappointed'
+      ],
+      'fear': ['scared', 'afraid', 'worried', 'anxious', 'nervous', 'panic'],
+      'surprise': ['surprised', 'shocked', 'amazed', 'astonished', 'wow'],
+      'disgust': ['disgusted', 'sick', 'awful', 'terrible', 'horrible'],
+    };
+
+    double maxScore = 0.0;
+    String detectedEmotion = 'neutral';
+
+    for (final entry in hindiEmotions.entries) {
+      final emotion = entry.key;
+      final keywords = entry.value;
+      int matches = 0;
+
+      for (final keyword in keywords) {
+        if (cleanText.contains(keyword)) {
+          matches++;
+        }
+      }
+
+      if (matches > 0) {
+        final score = matches / keywords.length;
+        if (score > maxScore) {
+          maxScore = score;
+          detectedEmotion = _mapHindiToEnglishEmotion(emotion);
+        }
+      }
+    }
+
+    for (final entry in englishEmotions.entries) {
+      final emotion = entry.key;
+      final keywords = entry.value;
+      int matches = 0;
+
+      for (final keyword in keywords) {
+        if (cleanText.contains(keyword)) {
+          matches++;
+        }
+      }
+
+      if (matches > 0) {
+        final score = matches / keywords.length;
+        if (score > maxScore) {
+          maxScore = score;
+          detectedEmotion = emotion;
+        }
+      }
+    }
+
+    return {
+      'emotion': detectedEmotion,
+      'confidence':
+          maxScore > 0 ? (maxScore * 0.8) : 0.5, 
+      'source': 'offline',
+      'method': 'rule_based',
+      'all_emotions': [
+        {'label': detectedEmotion, 'score': maxScore > 0 ? maxScore * 0.8 : 0.5}
+      ]
+    };
+  }
+
+  String _mapHindiToEnglishEmotion(String hindiEmotion) {
+    switch (hindiEmotion) {
+      case 'खुश':
+        return 'joy';
+      case 'गुस्सा':
+        return 'anger';
+      case 'उदास':
+        return 'sadness';
+      case 'डर':
+        return 'fear';
+      case 'प्रेम':
+        return 'love';
+      default:
+        return 'neutral';
+    }
+  }
+}

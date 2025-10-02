@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 
-/// 🔐 Permission Helper - Zero Permission Demo App
-/// This is a demo app that uses sample data only - no real permissions needed
+/// 🔐 Permission Helper - Zero Permission Sample App
+/// This is a Sample App that uses sample data only - no real permissions needed
 class PermissionHelper {
-  /// Demo app - no real permission needed, returns false to use sample data
+  /// Sample App - no real permission needed, returns false to use sample data
   static Future<bool> requestContactsPermission(BuildContext context) async {
     await _showDemoDialog(context, 'Contacts Access Demo');
     return false; // Always false for demo mode
   }
 
-  /// Demo app - no real permission needed, returns false to use sample data
+  /// Sample App - no real permission needed, returns false to use sample data
   static Future<bool> requestPhonePermission(BuildContext context) async {
     await _showDemoDialog(context, 'Phone Access Demo');
     return false; // Always false for demo mode
   }
 
-  /// Demo app - no real permission needed, returns false to use sample data
+  /// Sample App - no real permission needed, returns false to use sample data
   static Future<bool> requestSMSPermission(BuildContext context) async {
     await _showDemoDialog(context, 'SMS Access Demo');
     return false; // Always false for demo mode
   }
 
-  /// Demo app - no real permission needed, returns false to use sample data
+  /// Sample App - no real permission needed, returns false to use sample data
   static Future<bool> requestStoragePermission(BuildContext context) async {
     await _showDemoDialog(context, 'Storage Access Demo');
     return false; // Always false for demo mode
@@ -73,27 +73,27 @@ class PermissionHelper {
 
   /// Check if permission is granted (always false for demo)
   static Future<bool> isPermissionGranted(dynamic permission) async {
-    return false; // Demo app doesn't need real permissions
+    return false; // Sample App doesn't need real permissions
   }
 
   /// Check contacts permission (always false for demo)
   static Future<bool> hasContactsPermission() async {
-    return false; // Demo app uses sample contacts
+    return false; // Sample App uses sample contacts
   }
 
   /// Check phone permission (always false for demo)
   static Future<bool> hasPhonePermission() async {
-    return false; // Demo app uses sample call data
+    return false; // Sample App uses sample call data
   }
 
   /// Check SMS permission (always false for demo)
   static Future<bool> hasSmsPermission() async {
-    return false; // Demo app uses sample message data
+    return false; // Sample App uses sample message data
   }
 
   /// Check storage permission (always false for demo)
   static Future<bool> hasStoragePermission() async {
-    return false; // Demo app doesn't need file access
+    return false; // Sample App doesn't need file access
   }
 
   /// Get all permission status (all false for demo)
@@ -106,10 +106,10 @@ class PermissionHelper {
     };
   }
 
-  /// Open app settings (not needed for demo app)
+  /// Open app settings (not needed for Sample App)
   static Future<void> openAppSettings() async {
-    // Not implemented for demo app
-    debugPrint('Demo app: No settings needed - zero permissions used');
+    // Not implemented for Sample App
+    debugPrint('Sample App: No settings needed - zero permissions used');
   }
 
   /// Show permission denied dialog (modified for demo)
@@ -128,7 +128,7 @@ class PermissionHelper {
           ],
         ),
         content: Text(
-          'This is a demo app that uses sample data for $permissionName. '
+          'This is a Sample App that uses sample data for $permissionName. '
           'No real permissions are needed to explore the features safely.',
         ),
         actions: [

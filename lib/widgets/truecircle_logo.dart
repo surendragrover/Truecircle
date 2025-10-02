@@ -33,66 +33,75 @@ class TrueCircleLogo extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // Logo graphic
+        // Logo graphic - using actual PNG file
         SizedBox(
           width: size,
           height: size,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              // Background circle
-              Container(
-                width: size * 0.8,
-                height: size * 0.8,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.blue.withValues(alpha: 0.3),
-                      blurRadius: size * 0.1,
-                      spreadRadius: size * 0.02,
+          child: Image.asset(
+            'assets/images/truecircle_logo.png',
+            width: size,
+            height: size,
+            fit: BoxFit.contain,
+            errorBuilder: (context, error, stackTrace) {
+              // Fallback to programmatic design if image not found
+              return Stack(
+                alignment: Alignment.center,
+                children: [
+                  // Background circle
+                  Container(
+                    width: size * 0.8,
+                    height: size * 0.8,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blue.withValues(alpha: 0.3),
+                          blurRadius: size * 0.1,
+                          spreadRadius: size * 0.02,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
+                  ),
 
-              // Emotional hearts in compass positions
-              _buildEmotionalHeart(
-                offset: Offset(0, -size * 0.25), // Top
-                color: const Color(0xFF3B82F6), // Blue - Very close
-                emoji: '💙',
-              ),
-              _buildEmotionalHeart(
-                offset: Offset(size * 0.25, 0), // Right
-                color: const Color(0xFFF59E0B), // Orange - Needs attention
-                emoji: '🧡',
-              ),
-              _buildEmotionalHeart(
-                offset: Offset(0, size * 0.25), // Bottom
-                color: const Color(0xFF10B981), // Green - Healthy
-                emoji: '💚',
-              ),
-              _buildEmotionalHeart(
-                offset: Offset(-size * 0.25, 0), // Left
-                color: const Color(0xFFEAB308), // Yellow - Friendly but fading
-                emoji: '💛',
-              ),
+                  // Emotional hearts in compass positions
+                  _buildEmotionalHeart(
+                    offset: Offset(0, -size * 0.25), // Top
+                    color: const Color(0xFF3B82F6), // Blue - Very close
+                    emoji: '💙',
+                  ),
+                  _buildEmotionalHeart(
+                    offset: Offset(size * 0.25, 0), // Right
+                    color: const Color(0xFFF59E0B), // Orange - Needs attention
+                    emoji: '🧡',
+                  ),
+                  _buildEmotionalHeart(
+                    offset: Offset(0, size * 0.25), // Bottom
+                    color: const Color(0xFF10B981), // Green - Healthy
+                    emoji: '💚',
+                  ),
+                  _buildEmotionalHeart(
+                    offset: Offset(-size * 0.25, 0), // Left
+                    color: const Color(0xFFEAB308), // Yellow - Friendly but fading
+                    emoji: '💛',
+                  ),
 
-              // Center user point
-              Container(
-                width: size * 0.08,
-                height: size * 0.08,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: const Color(0xFF1E293B),
-                  border: Border.all(color: Colors.white, width: size * 0.008),
-                ),
-              ),
+                  // Center user point
+                  Container(
+                    width: size * 0.08,
+                    height: size * 0.08,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: const Color(0xFF1E293B),
+                      border: Border.all(color: Colors.white, width: size * 0.008),
+                    ),
+                  ),
 
-              // Subtle connecting lines
-              _buildConnectionLines(),
-            ],
+                  // Subtle connecting lines
+                  _buildConnectionLines(),
+                ],
+              );
+            },
           ),
         ),
 

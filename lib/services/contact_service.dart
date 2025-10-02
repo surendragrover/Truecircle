@@ -15,7 +15,8 @@ class ContactService {
       return [];
     }
 
-    // In Full Mode, check for permissions first
+    // In Full Mode, check for permissions first - with context safety
+    if (!context.mounted) return [];
     final hasPermission = await PermissionHelper.requestContactsPermission(context);
     if (!hasPermission) {
       // If permission is still not granted, return empty list
@@ -28,13 +29,15 @@ class ContactService {
           withProperties: true, withPhoto: true);
     } catch (e) {
       // Handle potential errors during contact fetching
-      print('Error fetching contacts: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Could not fetch contacts.'),
-          backgroundColor: Colors.red,
-        ),
-      );
+      debugPrint('Error fetching contacts: $e');
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Could not fetch contacts.'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
       return [];
     }
   }

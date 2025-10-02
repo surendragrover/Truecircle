@@ -1,0 +1,350 @@
+import 'package:flutter/material.dart';
+// import '../services/firebase_auth_service.dart';  // Temporarily disabled
+import '../services/auth_service.dart';
+
+class PhoneVerificationPage extends StatefulWidget {
+  final bool isHindi;
+
+  const PhoneVerificationPage({
+    super.key,
+    this.isHindi = false,
+  });
+
+  @override
+  State<PhoneVerificationPage> createState() => _PhoneVerificationPageState();
+}
+
+class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
+  final AuthService _authService = AuthService();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _otpController = TextEditingController();
+
+  bool _isLoading = false;
+  bool _otpSent = false;
+  String _errorMessage = '';
+  String _verificationId = '';
+
+  @override
+  void dispose() {
+    _phoneController.dispose();
+    _otpController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _sendOTP() async {
+    final phoneNumber = _phoneController.text.trim();
+
+    if (phoneNumber.isEmpty || phoneNumber.length < 10) {
+      setState(() {
+        _errorMessage = widget.isHindi
+            ? 'कृपया वैध फोन नंबर दर्ज करें'
+            : 'Please enter a valid phone number';
+      });
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+
+    try {
+      await _authService.signInWithPhoneNumber(
+        phoneNumber: phoneNumber,
+        onCodeSent: (verificationId) {
+          setState(() {
+            _isLoading = false;
+            _otpSent = true;
+            _verificationId = verificationId;
+          });
+        },
+        onError: (error) {
+          setState(() {
+            _isLoading = false;
+            _errorMessage = widget.isHindi
+                ? 'सत्यापन असफल: $error'
+                : 'Verification failed: $error';
+          });
+        },
+        onAutoVerify: (credential) {
+          // Auto verification completed
+          _navigateToHome();
+        },
+      );
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+        _errorMessage = widget.isHindi
+            ? 'OTP भेजने में त्रुटि: ${e.toString()}'
+            : 'Error sending OTP: ${e.toString()}';
+      });
+    }
+  }
+
+  Future<void> _verifyOTP() async {
+    final otp = _otpController.text.trim();
+
+    if (otp.isEmpty || otp.length != 6) {
+      setState(() {
+        _errorMessage = widget.isHindi
+            ? 'कृपया 6 अंकों का OTP दर्ज करें'
+            : 'Please enter 6-digit OTP';
+      });
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+
+    try {
+      final user = await _authService.verifyOTP(
+        verificationId: _verificationId,
+        otp: otp,
+      );
+      if (user != null) {
+        _navigateToHome();
+      } else {
+        setState(() {
+          _isLoading = false;
+          _errorMessage =
+              widget.isHindi ? 'OTP सत्यापन असफल' : 'OTP verification failed';
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+        _errorMessage = widget.isHindi
+            ? 'OTP सत्यापन में त्रुटि: ${e.toString()}'
+            : 'Error verifying OTP: ${e.toString()}';
+      });
+    }
+  }
+
+  void _navigateToHome() {
+    Navigator.of(context).pushReplacementNamed('/home');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blue[50],
+      appBar: AppBar(
+        title: Text(
+          widget.isHindi ? 'फोन सत्यापन' : 'Phone Verification',
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.blue,
+        foregroundColor: Colors.white,
+        elevation: 0,
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 20),
+
+              // Icon and Title
+              Container(
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    Container(
+                      width: 80,
+                      height: 80,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Icon(
+                        Icons.phone_android,
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      _otpSent
+                          ? (widget.isHindi ? 'OTP सत्यापन' : 'Verify OTP')
+                          : (widget.isHindi
+                              ? 'फोन नंबर दर्ज करें'
+                              : 'Enter Phone Number'),
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      _otpSent
+                          ? (widget.isHindi
+                              ? 'आपके फोन पर भेजा गया 6 अंकों का OTP दर्ज करें'
+                              : 'Enter the 6-digit OTP sent to your phone')
+                          : (widget.isHindi
+                              ? 'अपना फोन नंबर दर्ज करें जिस पर OTP भेजा जाएगा'
+                              : 'Enter your phone number to receive an OTP'),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 40),
+
+              // Phone Number Input (if OTP not sent)
+              if (!_otpSent) ...[
+                TextFormField(
+                  controller: _phoneController,
+                  decoration: InputDecoration(
+                    labelText: widget.isHindi ? 'फोन नंबर' : 'Phone Number',
+                    hintText:
+                        widget.isHindi ? '+91 1234567890' : '+91 1234567890',
+                    prefixIcon: const Icon(Icons.phone),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
+                  keyboardType: TextInputType.phone,
+                ),
+                const SizedBox(height: 24),
+              ],
+
+              // OTP Input (if OTP sent)
+              if (_otpSent) ...[
+                TextFormField(
+                  controller: _otpController,
+                  decoration: InputDecoration(
+                    labelText: 'OTP',
+                    hintText: widget.isHindi ? '6 अंकों का OTP' : '6-digit OTP',
+                    prefixIcon: const Icon(Icons.security),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
+                  keyboardType: TextInputType.number,
+                  maxLength: 6,
+                ),
+                const SizedBox(height: 16),
+
+                // Resend OTP
+                TextButton(
+                  onPressed: _isLoading
+                      ? null
+                      : () {
+                          setState(() {
+                            _otpSent = false;
+                            _otpController.clear();
+                          });
+                        },
+                  child: Text(
+                    widget.isHindi
+                        ? 'दूसरा नंबर दर्ज करें'
+                        : 'Enter Different Number',
+                    style: TextStyle(color: Colors.blue[700]),
+                  ),
+                ),
+                const SizedBox(height: 8),
+              ],
+
+              // Error Message
+              if (_errorMessage.isNotEmpty) ...[
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  margin: const EdgeInsets.only(bottom: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.red[50],
+                    border: Border.all(color: Colors.red[200]!),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    _errorMessage,
+                    style: TextStyle(color: Colors.red[700]),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+
+              // Action Button
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed:
+                      _isLoading ? null : (_otpSent ? _verifyOTP : _sendOTP),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: _isLoading
+                      ? const CircularProgressIndicator(color: Colors.white)
+                      : Text(
+                          _otpSent
+                              ? (widget.isHindi
+                                  ? 'OTP सत्यापित करें'
+                                  : 'Verify OTP')
+                              : (widget.isHindi ? 'OTP भेजें' : 'Send OTP'),
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                ),
+              ),
+
+              const SizedBox(height: 32),
+
+              // Demo Mode Notice
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.orange[50],
+                  border: Border.all(color: Colors.orange[200]!),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Column(
+                  children: [
+                    Icon(Icons.info, color: Colors.orange[700]),
+                    const SizedBox(height: 8),
+                    Text(
+                      widget.isHindi ? 'परीक्षण मोड' : 'Test Mode',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.orange[700],
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      widget.isHindi
+                          ? 'यह परीक्षण मोड है। वास्तविक OTP भेजने के लिए Firebase सेटअप आवश्यक है।'
+                          : 'This is test mode. Firebase setup required for actual OTP sending.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.orange[700],
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

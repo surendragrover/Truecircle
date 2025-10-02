@@ -1,0 +1,290 @@
+{
+  "festivals": [
+    // ===== Part 1: जनवरी – अगस्त =====
+    {
+      "name": "Lohri",
+      "hindiName": "लोहड़ी",
+      "type": "minor",
+      "regions": ["Punjab", "Haryana", "North India"],
+      "description": "Harvest festival with bonfire, folk songs and dance, marks end of winter.",
+      "greetingMessages": {
+        "formal": "लोहड़ी की शुभकामनाएं! / Happy Lohri!",
+        "casual": "Happy Lohri! 🔥🎶",
+        "family": "लोहड़ी मुबारक! खुशियों और मिठास से भरा हो यह पर्व 🌾"
+      },
+      "culturalTips": [
+        "🔥 Bonfire के आसपास family/friends के साथ तस्वीर share करें",
+        "🌾 मूंगफली, गजक, गुड़ खाएं और discuss करें",
+        "🎵 लोकगीत और dance की बातें करें"
+      ]
+    },
+    {
+      "name": "Makar Sankranti",
+      "hindiName": "मकर संक्रांति",
+      "type": "major",
+      "regions": ["Pan-India"],
+      "description": "Harvest festival marking Sun's transition into Capricorn. Celebrated with kite flying and sweets made of sesame and jaggery.",
+      "greetingMessages": {
+        "formal": "मकर संक्रांति की शुभकामनाएं! / Happy Makar Sankranti!",
+        "casual": "Happy Makar Sankranti! 🪁🍬",
+        "family": "मकर संक्रांति मुबारक! तिल-गुड़ और खुशियों से भरा दिन 🌞"
+      },
+      "culturalTips": [
+        "🪁 पतंग उड़ाने की फोटो share करें",
+        "🍬 तिल-गुड़ की sweets की चर्चा करें",
+        "🌾 नए फसल और harvest का जिक्र करें"
+      ]
+    },
+    {
+      "name": "Pongal",
+      "hindiName": "पोंगल",
+      "type": "major",
+      "regions": ["Tamil Nadu"],
+      "description": "Tamil harvest festival, offering newly harvested rice to Sun God.",
+      "greetingMessages": {
+        "formal": "पोंगल की शुभकामनाएं! / Happy Pongal!",
+        "casual": "Happy Pongal! 🌾☀️",
+        "family": "पोंगल मुबारक! खुशियों और समृद्धि से भरा हो यह पर्व 🎉"
+      },
+      "culturalTips": [
+        "🌾 freshly harvested rice या Pongal dish की तस्वीर share करें",
+        "🏡 घर की सजावट और रंगोली दिखाएँ",
+        "🍬 sweets और traditional food की बातें करें"
+      ]
+    },
+    {
+      "name": "Republic Day",
+      "hindiName": "गणतंत्र दिवस",
+      "type": "major",
+      "regions": ["All India"],
+      "description": "Celebrates the adoption of the Indian Constitution in 1950.",
+      "greetingMessages": {
+        "formal": "गणतंत्र दिवस की शुभकामनाएं! / Happy Republic Day!",
+        "casual": "Happy Republic Day! 🇮🇳",
+        "family": "गणतंत्र दिवस मुबारक! देशभक्ति और गर्व से भरा दिन"
+      },
+      "culturalTips": [
+        "🇮🇳 flag hoisting ceremony के फोटो share करें",
+        "🎖️ parade और cultural events के बारे में बात करें"
+      ]
+    },
+    {
+      "name": "Vasant Panchami",
+      "hindiName": "वसंत पंचमी",
+      "type": "minor",
+      "regions": ["Pan-India"],
+      "description": "Worship of Goddess Saraswati and celebration of spring season.",
+      "greetingMessages": {
+        "formal": "वसंत पंचमी की शुभकामनाएं! / Happy Vasant Panchami!",
+        "casual": "Happy Vasant Panchami! 🌼📚",
+        "family": "वसंत पंचमी मुबारक! शिक्षा और ज्ञान से भरा दिन 🌸"
+      },
+      "culturalTips": [
+        "📚 Saraswati Puja की फोटो share करें",
+        "🌼 yellow flowers और traditional sweets दिखाएँ"
+      ]
+    },
+    {
+      "name": "Maha Shivratri",
+      "hindiName": "महाशिवरात्रि",
+      "type": "major",
+      "regions": ["Pan-India"],
+      "description": "Night dedicated to worship of Lord Shiva.",
+      "greetingMessages": {
+        "formal": "महाशिवरात्रि की शुभकामनाएं! / Happy Maha Shivratri!",
+        "casual": "Happy Maha Shivratri! 🕉️🌙",
+        "family": "महाशिवरात्रि मुबारक! भगवान शिव की कृपा बनी रहे"
+      },
+      "culturalTips": [
+        "🕉️ Shivling Puja और night vigil की फोटो share करें",
+        "🍬 Prasad और fast breaking की बातें करें"
+      ]
+    },
+    {
+      "name": "Holi",
+      "hindiName": "होली",
+      "type": "major",
+      "regions": ["Pan-India"],
+      "description": "Festival of colors, victory of good over evil, burning of Holika.",
+      "greetingMessages": {
+        "formal": "होली की शुभकामनाएं! / Happy Holi!",
+        "casual": "Happy Holi! 🌈🎉",
+        "family": "होली मुबारक! रंगों और खुशियों से भरा दिन 🥳"
+      },
+      "culturalTips": [
+        "🌈 रंग खेलते और selfies की फोटो share करें",
+        "🍬 Gujiya और traditional sweets की बात करें",
+        "🎶 Holi songs और music की चर्चा करें"
+      ]
+    },
+    {
+      "name": "Ram Navami",
+      "hindiName": "राम नवमी",
+      "type": "minor",
+      "regions": ["Pan-India"],
+      "description": "Birth anniversary of Lord Rama.",
+      "greetingMessages": {
+        "formal": "राम नवमी की शुभकामनाएं! / Happy Ram Navami!",
+        "casual": "Happy Ram Navami! 🙏🌺",
+        "family": "राम नवमी मुबारक! भगवान राम की कृपा बनी रहे"
+      },
+      "culturalTips": [
+        "🛕 Ram temple visit और Puja की फोटो share करें",
+        "📖 Ramayana पढ़ने या सुनने की बातें करें"
+      ]
+    },
+    {
+      "name": "Ugadi",
+      "hindiName": "उगाड़ी",
+      "type": "major",
+      "regions": ["Andhra Pradesh", "Telangana", "Karnataka"],
+      "description": "New Year festival of Andhra Pradesh, Telangana and Karnataka.",
+      "greetingMessages": {
+        "formal": "उगाड़ी की शुभकामनाएं! / Happy Ugadi!",
+        "casual": "Happy Ugadi! 🌸🎊",
+        "family": "उगाड़ी मुबारक! नए साल में खुशियाँ और समृद्धि बनी रहे"
+      },
+      "culturalTips": [
+        "🌾 New Year traditions और dishes की फोटो share करें",
+        "🏡 घर की सफाई और decorations दिखाएँ"
+      ]
+    },
+    {
+      "name": "Gudi Padwa",
+      "hindiName": "गुढ़ी पड़वा",
+      "type": "major",
+      "regions": ["Maharashtra"],
+      "description": "Maharashtrian New Year festival.",
+      "greetingMessages": {
+        "formal": "गुढ़ी पड़वा की शुभकामनाएं! / Happy Gudi Padwa!",
+        "casual": "Happy Gudi Padwa! 🎉🌼",
+        "family": "गुढ़ी पड़वा मुबारक! खुशियों से भरा नया साल"
+      },
+      "culturalTips": [
+        "🎏 Gudi स्थापना की फोटो share करें",
+        "🍬 traditional sweets और food की चर्चा करें"
+      ]
+    },
+    {
+      "name": "Cheti Chand",
+      "hindiName": "चेटी चंद",
+      "type": "minor",
+      "regions": ["Sindhi Community"],
+      "description": "Sindhi New Year and birth anniversary of Jhulelal.",
+      "greetingMessages": {
+        "formal": "चेटी चंद की शुभकामनाएं! / Happy Cheti Chand!",
+        "casual": "Happy Cheti Chand! 🌸✨",
+        "family": "चेटी चंद मुबारक! खुशियों और समृद्धि से भरा दिन"
+      },
+      "culturalTips": [
+        "🛕 Jhulelal Puja की फोटो share करें",
+        "🎶 Sindhi songs और traditions दिखाएँ"
+      ]
+    },
+
+    // ===== Muslim Festivals =====
+    {
+      "name": "Eid-ul-Fitr",
+      "hindiName": "ईद-उल-फ़ित्र",
+      "type": "major",
+      "regions": ["All India", "Muslim Community"],
+      "description": "Festival marking end of Ramadan fasting, with prayers and feasts.",
+      "greetingMessages": {
+        "formal": "ईद-उल-फ़ित्र की शुभकामनाएं! / Eid Mubarak!",
+        "casual": "Eid Mubarak! 🌙✨",
+        "family": "ईद मुबारक! खुशियों और मिठाइयों से भरा दिन 🍬"
+      },
+      "culturalTips": [
+        "🕌 Eid prayers की फोटो share करें",
+        "🍬 Mithai और traditional dishes की बात करें",
+        "🎁 Gifts और family gatherings discuss करें"
+      ]
+    },
+    {
+      "name": "Eid-ul-Adha",
+      "hindiName": "ईद-उल-अजहा / बकरीद",
+      "type": "major",
+      "regions": ["All India", "Muslim Community"],
+      "description": "Commemorates Prophet Ibrahim's sacrifice, involves Qurbani (sacrifice) and prayers.",
+      "greetingMessages": {
+        "formal": "बकरीद की शुभकामनाएं! / Eid-ul-Adha Mubarak!",
+        "casual": "Eid Mubarak! 🐑🌙",
+        "family": "बकरीद मुबारक! खुशियों और आशीर्वाद से भरा दिन"
+      },
+      "culturalTips": [
+        "🐑 Qurbani की फोटो share करें",
+        "🕌 Mosque visit और prayers की बातें करें",
+        "🎁 Gifts और family gatherings discuss करें"
+      ]
+    },
+    {
+      "name": "Muharram",
+      "hindiName": "मुहर्रम / आशूरा",
+      "type": "minor",
+      "regions": ["All India", "Muslim Community"],
+      "description": "Islamic New Year; remembrance of Prophet Muhammad's family and sacrifice of Imam Hussain.",
+      "greetingMessages": {
+        "formal": "मुहर्रम की शुभकामनाएं! / Muharram Mubarak!",
+        "casual": "Muharram Mubarak! 🕌",
+        "family": "मुहर्रम मुबारक! याद और श्रद्धा के साथ"
+      },
+      "culturalTips": [
+        "🕌 Processions और religious gatherings की फोटो share करें",
+        "📖 Islamic history और teachings discuss करें"
+      ]
+    },
+    {
+      "name": "Milad-un-Nabi",
+      "hindiName": "मिलाद-उल-नबी",
+      "type": "minor",
+      "regions": ["All India", "Muslim Community"],
+      "description": "Celebrates birth anniversary of Prophet Muhammad.",
+      "greetingMessages": {
+        "formal": "मिलाद-उल-नबी की शुभकामनाएं! / Milad-un-Nabi Mubarak!",
+        "casual": "Milad-un-Nabi Mubarak! 🌙✨",
+        "family": "मिलाद-उल-नबी मुबारक! आशीर्वाद और खुशियों के साथ"
+      },
+      "culturalTips": [
+        "🕌 Religious gatherings और processions की फोटो share करें",
+        "📖 Quran recitations और naats discuss करें"
+      ]
+    },
+
+    // ===== Sikh Festivals =====
+    {
+      "name": "Gurpurab (Guru Nanak Jayanti)",
+      "hindiName": "गुरुपुरब (गुरु नानक जयंती)",
+      "type": "major",
+      "regions": ["Punjab", "Pan-India"],
+      "description": "Celebrates birth anniversary of Guru Nanak Dev Ji.",
+      "greetingMessages": {
+        "formal": "गुरुपुरब की शुभकामनाएं! / Happy Guru Nanak Jayanti!",
+        "casual": "Happy Guru Nanak Jayanti! 🌼🕉️",
+        "family": "गुरुपुरब मुबारक! आशीर्वाद और खुशियों के साथ"
+      },
+      "culturalTips": [
+        "🛕 Gurudwara visit की फोटो share करें",
+        "🎶 Kirtan और langar discuss करें"
+      ]
+    },
+
+    // ===== Christian Festivals =====
+    {
+      "name": "Christmas",
+      "hindiName": "क्रिसमस",
+      "type": "major",
+      "regions": ["All India", "Christian Community"],
+      "description": "Celebration of birth of Jesus Christ, involves decorations, gift-giving and feasts.",
+      "greetingMessages": {
+        "formal": "क्रिसमस की शुभकामनाएं! / Merry Christmas!",
+        "casual": "Merry Christmas! 🎄✨",
+        "family": "क्रिसमस मुबारक! खुशियों और आशीर्वाद से भरा दिन 🎁"
+      },   
+  "culturalTips": [
+        "🎄 Christmas tree और decorations share करें",
+        "🎶 Carols और church visit की बातें करें",
+        "🎁 Gifts और family gatherings discuss करें"
+      ]
+    }
+  ]
+}

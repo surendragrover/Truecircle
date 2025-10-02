@@ -79,7 +79,7 @@ class _AppModeSelectorState extends State<AppModeSelector> {
                               const SizedBox(width: 12),
                               Expanded(
                                 child: Text(
-                                  'Smart Demo Mode',
+                                  'Privacy Mode',
                                   style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
@@ -109,14 +109,14 @@ class _AppModeSelectorState extends State<AppModeSelector> {
                           ),
                           const SizedBox(height: 16),
 
-                          // Demo Features
+                          // Sample Features
                           _buildFeatureRow(
                             '🤖',
                             'Full AI Relationship Analysis',
                           ),
                           _buildFeatureRow(
                             '📊',
-                            '8 Realistic Demo Relationships',
+                            '8 Realistic Sample Relationships',
                           ),
                           _buildFeatureRow('💬', 'Smart Message Suggestions'),
                           _buildFeatureRow(

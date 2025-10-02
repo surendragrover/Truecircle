@@ -40,6 +40,9 @@ class PrivacySettings extends HiveObject {
   @HiveField(11)
   String language; // 'en' or 'hi'
 
+  @HiveField(12)
+  bool allowCommunicationTracking; // For communication tracker
+
   PrivacySettings({
     this.contactsAccess = false,
     this.callLogAccess = false,
@@ -53,6 +56,7 @@ class PrivacySettings extends HiveObject {
     this.granularPermissions = const <String, bool>{},
     this.hasSeenPrivacyIntro = false,
     this.language = 'en',
+    this.allowCommunicationTracking = false,
   }) : lastUpdated = lastUpdated ?? DateTime.now();
 
   // Privacy Level Presets

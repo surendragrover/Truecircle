@@ -1,7 +1,7 @@
-import 'dart:convert';
-import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
 import '../models/contact.dart';
 import '../models/contact_interaction.dart';
+import 'json_data_service.dart';
 
 /// 🎭 Cultural & Regional AI - Deep Indian cultural intelligence for relationship management
 /// Understands Indian festivals, family dynamics, regional communication styles, and language preferences
@@ -9,18 +9,16 @@ class CulturalRegionalAI {
   // Cache for festivals data
   static Map<String, dynamic>? _festivalsData;
 
-  /// 🎉 Load Festivals Data from JSON
+  /// 🎉 Load Festivals Data from JSON - Updated to use JsonDataService
   static Future<Map<String, dynamic>> _loadFestivalsData() async {
     if (_festivalsData != null) return _festivalsData!;
 
     try {
-      final String jsonString = await rootBundle
-          .loadString('Demo_data/TrueCircle_Festivals_Data.json');
-      _festivalsData = json.decode(jsonString);
+      _festivalsData = await JsonDataService.instance.getFestivalsData();
+      debugPrint('✅ CulturalRegionalAI: Loaded festivals data successfully');
       return _festivalsData!;
     } catch (e) {
-      // Error handling without print in production
-      // In debug mode, this would show in development console
+      debugPrint('❌ CulturalRegionalAI: Error loading festivals: $e');
       return {
         'festivals': [],
         'metadata': {'totalFestivals': 0}

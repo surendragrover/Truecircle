@@ -1,8 +1,14 @@
 
 import 'package:flutter/material.dart';
 import 'pages/dr_iris_dashboard.dart';
-import 'services/demo_data_service.dart';
-import 'pages/gift_marketplace_page.dart'; // Import the new page
+import 'pages/gift_marketplace_page.dart';
+import 'pages/breathing_exercises_page.dart';
+import 'pages/sleep_tracker_page.dart';
+import 'pages/mood_journal_page.dart';
+import 'pages/event_budget_page.dart';
+import 'pages/how_truecircle_works_page.dart';
+import 'pages/feature_page.dart';
+import 'pages/progress_tracker_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,7 +20,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   String selectedLanguage = 'English';
-  bool _isFullFunctionalMode = false; // Default to Demo mode
+  bool _isFullFunctionalMode = false; // Default to Sample mode
 
   // Feature data for the dashboard
   final List<Map<String, dynamic>> _features = [
@@ -39,17 +45,44 @@ class _HomePageState extends State<HomePage> {
     {
       'title': 'Mood Journal',
       'titleHi': 'मूड डायरी',
-      'subtitle': 'Write your thoughts',
-      'subtitleHi': 'अपने विचार लिखें',
+      'subtitle': 'Track your daily moods',
+      'subtitleHi': 'अपने दैनिक मूड को ट्रैक करें',
       'icon': Icons.book,
-      'color': Colors.indigo,
+      'color': Colors.orange,
       'action': 'mood_journal',
+    },
+    {
+      'title': 'Breathing Exercises',
+      'titleHi': 'सांस की एक्सरसाइज',
+      'subtitle': 'Daily breathing techniques',
+      'subtitleHi': 'दैनिक सांस तकनीकें',
+      'icon': Icons.air,
+      'color': Colors.teal,
+      'action': 'breathing_exercises',
+    },
+    {
+      'title': 'Sleep Tracker',
+      'titleHi': 'नींद ट्रैकर',
+      'subtitle': 'Sleep quality insights',
+      'subtitleHi': 'नींद की गुणवत्ता की जानकारी',
+      'icon': Icons.bedtime,
+      'color': Colors.indigo,
+      'action': 'sleep_tracker',
+    },
+    {
+      'title': 'Event Budget',
+      'titleHi': 'इवेंट बजट',
+      'subtitle': 'Upcoming festivals & events',
+      'subtitleHi': 'आगामी त्योहार और कार्यक्रम',
+      'icon': Icons.account_balance_wallet,
+      'color': Colors.green,
+      'action': 'event_budget',
     },
     {
       'title': 'Chat with Dr. Iris',
       'titleHi': 'डॉ. आइरिस से चैट',
-      'subtitle': 'Talk to Dr. Iris',
-      'subtitleHi': 'डॉ. आइरिस से बात करें',
+      'subtitle': 'Your Emotional Therapist',
+      'subtitleHi': 'आपका इमोशनल थेरेपिस्ट',
       'icon': Icons.chat,
       'color': Colors.teal,
       'action': 'ai_chat',
@@ -117,6 +150,24 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: _buildBottomNavigation(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HowTrueCircleWorksPage(),
+            ),
+          );
+        },
+        icon: const Icon(Icons.help_outline, color: Colors.white),
+        label: Text(
+          selectedLanguage == 'English' ? 'How it Works' : 'कैसे काम करता है',
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.orange,
+        elevation: 8,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
@@ -146,6 +197,20 @@ class _HomePageState extends State<HomePage> {
           ),
           Row(
             children: [
+              IconButton(
+                icon: const Icon(Icons.info_outline, color: Colors.white),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HowTrueCircleWorksPage(),
+                    ),
+                  );
+                },
+                tooltip: selectedLanguage == 'English' 
+                    ? 'How TrueCircle Works' 
+                    : 'TrueCircle कैसे काम करता है',
+              ),
               IconButton(
                 icon: const Icon(Icons.settings, color: Colors.white),
                 onPressed: _showSettingsDialog,
@@ -236,7 +301,7 @@ class _HomePageState extends State<HomePage> {
             if (isLocked)
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.3),
+                  color: Colors.black.withValues(alpha: 0.3),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: const Center(
@@ -258,14 +323,14 @@ class _HomePageState extends State<HomePage> {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.2),
+        color: Colors.black.withValues(alpha: 0.2),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            selectedLanguage == 'English' ? 'Demo Mode' : 'डेमो मोड',
+            selectedLanguage == 'English' ? 'Privacy Mode' : 'प्राइवेसी मोड',
             style: TextStyle(
               color: !_isFullFunctionalMode ? Colors.orange : Colors.white,
               fontWeight: FontWeight.bold,
@@ -279,7 +344,7 @@ class _HomePageState extends State<HomePage> {
               });
               _showModeChangeSnackBar(value);
             },
-            activeColor: Colors.green,
+            activeThumbColor: Colors.green,
             inactiveThumbColor: Colors.orange,
           ),
           Text(
@@ -300,11 +365,11 @@ class _HomePageState extends State<HomePage> {
         content: Text(
           selectedLanguage == 'English'
               ? (isFullMode
-                  ? 'Switched to Full Mode - Your data is used.'
-                  : 'Switched to Demo Mode - Using sample data.')
+                  ? 'Full Mode - Your data is used.'
+                  : 'Sample Data Mode - Using sample data.')
               : (isFullMode
-                  ? 'पूर्ण मोड पर स्विच किया गया - आपका डेटा उपयोग किया जाता है।'
-                  : 'डेमो मोड पर स्विच किया गया - नमूना डेटा का उपयोग।'),
+                  ? 'पूर्ण मोड - आपका डेटा उपयोग किया जाता है।'
+                  : 'नमूना डेटा मोड - नमूना डेटा का उपयोग।'),
         ),
         backgroundColor: isFullMode ? Colors.green : Colors.orange,
       ),
@@ -355,7 +420,10 @@ class _HomePageState extends State<HomePage> {
         _showComingSoon(action);
         break;
       case 'mood_journal':
-        _showComingSoon(action);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MoodJournalPage()),
+        );
         break;
       case 'ai_chat':
         Navigator.push(
@@ -367,12 +435,53 @@ class _HomePageState extends State<HomePage> {
         );
         break;
       case 'meditation':
-        _showComingSoon(action);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const FeaturePage(
+              feature: {
+                'title': 'Meditation Guide',
+                'titleHi': 'ध्यान गाइड',
+                'subtitle': 'Daily meditation practices',
+                'subtitleHi': 'दैनिक ध्यान अभ्यास',
+                'icon': Icons.self_improvement,
+                'color': Colors.green,
+              },
+              isHindi: false,
+            ),
+          ),
+        );
         break;
-      case 'gift_marketplace': // New action
+      case 'breathing_exercises':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const BreathingExercisesPage()),
+        );
+        break;
+      case 'sleep_tracker':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const SleepTrackerPage()),
+        );
+        break;
+      case 'event_budget':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const EventBudgetPage()),
+        );
+        break;
+      case 'gift_marketplace':
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const GiftMarketplacePage()),
+        );
+        break;
+      case 'progress':
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ProgressTrackerPage(),
+          ),
         );
         break;
       default:
@@ -395,8 +504,8 @@ class _HomePageState extends State<HomePage> {
             ? 'Full Mode Required'
             : 'पूर्ण मोड आवश्यक है'),
         content: Text(selectedLanguage == 'English'
-            ? 'This feature is only available in Full Mode. Please switch from Demo Mode to continue.'
-            : 'यह सुविधा केवल पूर्ण मोड में उपलब्ध है। जारी रखने के लिए कृपया डेमो मोड से स्विच करें।'),
+            ? 'This feature is only available in Full Mode. Please switch from Sample Data Mode to continue.'
+            : 'यह सुविधा केवल पूर्ण मोड में उपलब्ध है। जारी रखने के लिए कृपया नमूना डेटा मोड से स्विच करें।'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),

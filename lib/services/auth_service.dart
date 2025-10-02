@@ -1,40 +1,94 @@
-
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';  // Temporarily disabled
+import 'package:flutter/foundation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 // This service will handle all user authentication logic (login, signup, logout).
 class AuthService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;  // Temporarily disabled
 
-  // A stream to listen to the user's authentication state in real-time.
-  Stream<User?> get userStream => _auth.authStateChanges();
+  // Mock authentication for now
+  Stream<String?> get userStream => Stream.value(null);
 
   // A helper to get the current logged-in user's ID.
-  String? get currentUserId => _auth.currentUser?.uid;
+  String? get currentUserId => null; // Mock implementation
 
   // Sign up a new user with email and password.
-  Future<UserCredential?> signUp({required String email, required String password}) async {
+  Future<String?> signUp(
+      {required String email, required String password}) async {
     try {
-      return await _auth.createUserWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      // This will catch errors like 'email-already-in-use'.
-      print('Signup Error: ${e.message}');
+      return null; // Mock implementation
+    } catch (e) {
+      debugPrint('Mock signup error: $e');
       return null;
     }
   }
 
   // Sign in an existing user.
-  Future<UserCredential?> signIn({required String email, required String password}) async {
+  Future<String?> signIn(
+      {required String email, required String password}) async {
     try {
-      return await _auth.signInWithEmailAndPassword(email: email, password: password);
-    } on FirebaseAuthException catch (e) {
-      // This will catch errors like 'user-not-found' or 'wrong-password'.
-      print('Signin Error: ${e.message}');
+      return null; // Mock implementation
+    } catch (e) {
+      debugPrint('Mock signin error: $e');
       return null;
     }
   }
 
   // Sign out the current user.
   Future<void> signOut() async {
-    await _auth.signOut();
+    // Mock signOut implementation
+  }
+
+  // Simple flag for test phone authentication
+  static bool _isPhoneVerified = false;
+  static String? _currentPhoneNumber;
+
+  // Get phone verification status
+  bool get isPhoneVerified => _isPhoneVerified;
+
+  // Get current phone number
+  String? get currentPhoneNumber => _currentPhoneNumber;
+
+  // Mock phone authentication for testing purposes - no Firebase needed
+  Future<bool> signInWithPhoneNumber(String phoneNumber) async {
+    try {
+      // Reset verification state first for new login
+      _isPhoneVerified = false;
+      _currentPhoneNumber = null;
+
+      // Simulate verification delay
+      await Future.delayed(const Duration(milliseconds: 500));
+      _isPhoneVerified = true;
+      _currentPhoneNumber = phoneNumber;
+      debugPrint('Mock phone authentication successful for: $phoneNumber');
+      return true;
+    } catch (e) {
+      debugPrint('Mock phone auth error: $e');
+      _isPhoneVerified = false;
+      _currentPhoneNumber = null;
+      return false;
+    }
+  }
+
+  // Reset verification for logout
+  void resetPhoneVerification() {
+    _isPhoneVerified = false;
+    _currentPhoneNumber = null;
+  }
+
+  // Complete logout - clear all user state
+  Future<void> completeLogout() async {
+    try {
+      _isPhoneVerified = false;
+      _currentPhoneNumber = null;
+
+      // Clear current phone number from storage
+      final box = await Hive.openBox('truecircle_settings');
+      await box.delete('current_phone_number');
+
+      debugPrint('Complete logout successful');
+    } catch (e) {
+      debugPrint('Error during logout: $e');
+    }
   }
 }

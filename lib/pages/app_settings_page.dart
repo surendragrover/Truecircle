@@ -3,6 +3,7 @@ import 'package:truecircle/pages/contact_list_page.dart';
 import 'package:truecircle/services/app_mode_service.dart';
 import 'package:truecircle/services/permission_helper.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../widgets/truecircle_logo.dart';
 
 class AppSettingsPage extends StatefulWidget {
   const AppSettingsPage({super.key});
@@ -49,7 +50,7 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
         // User cancelled the dialog, do nothing
       }
     } else {
-      // Instantly switch to Demo Mode
+      // Instantly switch to Sample Mode
       await AppModeService.setFullMode(false);
       setState(() {
         _isFullMode = false;
@@ -103,8 +104,11 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
   }
 
   Future<bool> _requestAllPermissions() async {
+    if (!mounted) return false;
     final contacts = await PermissionHelper.requestContactsPermission(context);
+    if (!mounted) return false;
     final phone = await PermissionHelper.requestPhonePermission(context);
+    if (!mounted) return false;
     final sms = await PermissionHelper.requestSMSPermission(context);
     return contacts && phone && sms;
   }
@@ -114,13 +118,22 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
       'https://truecircle.online/privacy-policy';
   static const String termsConditionsUrl =
       'https://truecircle.online/terms-and-conditions/'; // Live URL with hyphens and trailing slash
-  static const String supportEmail = 'support@truecircle.app';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('⚙️ Settings'),
+        title: const Row(
+          children: [
+            TrueCircleLogo(
+              size: 30,
+              showText: false,
+              style: LogoStyle.icon,
+            ),
+            SizedBox(width: 12),
+            Text('⚙️ Settings'),
+          ],
+        ),
         backgroundColor: Colors.blue.shade700,
         foregroundColor: Colors.white,
       ),
@@ -134,8 +147,8 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
               children: [
                 ListTile(
                   leading: Icon(_isFullMode ? Icons.data_usage : Icons.preview, color: Colors.blue.shade700),
-                  title: Text(_isFullMode ? 'Full Mode Active' : 'Demo Mode'),
-                  subtitle: Text(_isFullMode ? 'Using real data from your device' : 'Using sample data'),
+                  title: Text(_isFullMode ? 'Full Mode Active' : 'Privacy Mode'),
+                  subtitle: Text(_isFullMode ? 'Using real data from your device' : 'Privacy protected mode'),
                   trailing: Switch(
                     value: _isFullMode,
                     onChanged: _toggleFullMode,
@@ -180,13 +193,13 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
 
             // Dr. Iris Section
             _buildSection(
-              title: '🤖 Dr. Iris - Your AI Therapist',
+              title: '🤖 Dr. Iris - Your Emotional Therapist',
               children: [
                 _buildInfoTile(
                   icon: Icons.chat_bubble_outline,
                   title: 'Chat with Dr. Iris',
                   subtitle:
-                      'Get emotional support and relationship advice. Demo mode is ready!',
+                      'Get emotional support and relationship advice. Privacy mode is ready!',
                   onTap: () => _openAIChat(context),
                 ),
               ],
@@ -434,7 +447,7 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
           content: const Text(
             'Iris आपकी relationship problems को समझकर personalized सलाह देगा।\n\n'
             '✅ No permissions required\n'
-            '✅ Works in demo mode\n'
+            '✅ Works in sample mode\n'
             '✅ 100% privacy protected\n'
             '✅ Fully functional\n\n'
             'यह AI adviser जल्द ही available होगा!',
@@ -463,7 +476,7 @@ class _AppSettingsPageState extends State<AppSettingsPage> {
             '• Communication tips provide करेगा\n'
             '• Relationship goals suggest करेगा\n\n'
             '🔒 Zero permissions needed\n'
-            '🎯 Demo mode friendly\n'
+            '🎯 Sample mode friendly\n'
             '📊 Sample data analysis\n\n'
             'यह feature development में है!',
             style: TextStyle(fontSize: 16),

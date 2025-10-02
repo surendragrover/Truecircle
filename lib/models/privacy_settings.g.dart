@@ -29,13 +29,14 @@ class PrivacySettingsAdapter extends TypeAdapter<PrivacySettings> {
       granularPermissions: (fields[9] as Map).cast<String, bool>(),
       hasSeenPrivacyIntro: fields[10] as bool,
       language: fields[11] as String,
+      allowCommunicationTracking: fields[12] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, PrivacySettings obj) {
     writer
-      ..writeByte(12)
+      ..writeByte(13)
       ..writeByte(0)
       ..write(obj.contactsAccess)
       ..writeByte(1)
@@ -59,7 +60,9 @@ class PrivacySettingsAdapter extends TypeAdapter<PrivacySettings> {
       ..writeByte(10)
       ..write(obj.hasSeenPrivacyIntro)
       ..writeByte(11)
-      ..write(obj.language);
+      ..write(obj.language)
+      ..writeByte(12)
+      ..write(obj.allowCommunicationTracking);
   }
 
   @override

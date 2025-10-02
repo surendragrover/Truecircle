@@ -1,79 +1,93 @@
 # TrueCircle - AI Coding Agent Instructions
 
 ## 🎯 Project Overview
-TrueCircle is an emotional-AI Flutter app for analyzing relationship health using communication patterns and cultural intelligence. It's privacy-focused with on-device processing and supports Hindi/English bilingual features.
+TrueCircle is a privacy-first Flutter app for emotional relationship analysis using cultural AI and on-device processing. Currently optimized for Google Play Store compliance with zero-permission architecture and mock data patterns.
 
-## 🏗️ Architecture & Data Flow
+## 🏗️ Architecture & Critical Patterns
 
-### Core Data Models
-- **Hive Storage**: All models in `lib/models/` use Hive for local persistence
-  - `EmotionEntry`: Tracks user emotional states with timestamp and intensity
-  - `Contact`: Rich contact data with emotional scoring and cultural metadata
-  - `ContactInteraction`: Communication history with sentiment analysis
-  - `PrivacySettings`: Granular privacy controls
-- **Generated Files**: Use `*.g.dart` files via `hive_generator` for serialization
+### Zero-Permission Privacy Model
+- **CRITICAL**: App runs in "sample mode" only (`PermissionManager.isSampleMode = true`)
+- NO real device permissions requested (Google Play Store compliant)
+- All analysis uses `Demo_data/*.json` files via `JsonDataService`
+- Mock implementations for all external services (auth, contacts, etc.)
 
-### Service Layer (`lib/services/`)
-- **Cultural AI**: `cultural_regional_ai.dart` - Deep Indian cultural intelligence for festivals, language patterns, family dynamics
-- **HuggingFace Integration**: `huggingface_service.dart` - Emotion/sentiment analysis with multilingual support
-- **Privacy-First**: All AI processing happens on-device, explicit opt-in for content analysis
+### Data Layer Architecture
+- **Hive Storage**: `lib/models/` with `*.g.dart` generated files (run `flutter packages pub run build_runner build`)
+- **JSON Assets**: Real data loaded from `Demo_data/` folder, cached by `JsonDataService.instance`
+- **Cultural AI**: `CulturalRegionalAI` loads festivals data for Indian context
+- **Mock Services**: Firebase disabled, auth uses mock patterns in `AuthService`
 
-### UI Architecture
-- **Material 3**: Uses Material Design 3 with custom theme
-- **Multi-Platform**: Windows, Chrome, Android, iOS support
-- **Bilingual UI**: Hindi/English with cultural context switching
+### Service Dependencies (Current State)
+```yaml  
+# Firebase DISABLED for compatibility - uses mock implementations
+# HuggingFace integration requires null-safety fixes (_token!.isNotEmpty)
+# Permission system always returns safe/sample values
+```
 
-## 🔧 Development Workflow
+## 🔧 Development Workflow & Build Issues
+
+### Current Technical Challenges
+- **Firebase Disabled**: All Firebase deps commented out in pubspec.yaml
+- **Dependency Conflicts**: 17 packages outdated due to version constraints  
+- **Null Safety**: HuggingFace service needs `_token!.isNotEmpty` patterns
+- **Build Failures**: Chrome/Windows builds fail on Firebase type resolution
 
 ### Essential Commands
 ```bash
-# Setup and run
+# Clean build process (required for dependency issues)
+flutter clean
+Remove-Item -Path "build","dart_tool" -Recurse -Force  # PowerShell
 flutter pub get
-flutter packages pub run build_runner build  # Generate Hive adapters
-flutter run -d windows                       # Desktop development
-flutter run -d chrome                        # Web testing
+flutter packages pub run build_runner build
 
-# Use launch script
-launch_truecircle.bat                        # Windows-specific launcher
+# Testing platforms
+flutter run -d chrome    # Web testing (currently failing)
+flutter run -d windows   # Desktop (Firebase C++ compilation issues)
+flutter build apk        # Android build (main target)
 ```
 
-### Code Generation
-- Run `build_runner` after modifying Hive models (`@HiveType` classes)
-- Localization files auto-generated from `lib/l10n/*.arb` files
+### Code Generation Dependencies
+- Hive models require `@HiveType(typeId: X)` with unique IDs
+- Build runner conflicts: use `build_runner: ^2.4.13` (not latest)
+- Always run after model changes: `build_runner build --delete-conflicting-outputs`
 
-### Testing Strategy
-- Widget tests in `test/widget_test.dart` 
-- Focus on bilingual UI and privacy settings
-- Test cultural AI features with sample Hindi/English data
+## 📱 Key Development Patterns
 
-## 📱 Key Patterns & Conventions
-
-### Cultural Intelligence
+### JSON Data Loading Pattern
 ```dart
-// Cultural AI follows specific patterns:
-CulturalRegionalAI.analyzeFestivalConnections(contact, interactions);
-// Returns festival recommendations with Hindi greetings
-// Always include both English/Hindi text in UI responses
+// Standard pattern for loading demo data:
+final jsonService = JsonDataService.instance;
+final festivalsData = await jsonService.getFestivalsData();
+final relationshipData = await jsonService.getRelationshipData();
 ```
 
-### Privacy-First Development
-- **Tier 1**: Basic contact metadata (always safe)
-- **Tier 2**: Communication patterns (user permission required)  
-- **Tier 3**: Content analysis (explicit opt-in only)
-- Check `PrivacySettings` before any data processing
-
-### Emotion Analysis Pipeline
+### Cultural AI Integration
 ```dart
-// Standard pattern for emotion processing:
-final emotionService = EmotionService(Hive.box<EmotionEntry>('emotion_entries'));
-final huggingFaceService = await HuggingFaceService.create(); // Loads API key from api.env
-final analysis = await huggingFaceService.analyzeEmotion(text);
+// CulturalRegionalAI loads from JsonDataService, not hardcoded data:
+final analysis = await CulturalRegionalAI.analyzeFestivalConnections(contact, interactions);
+// Always returns bilingual responses (Hindi/English)
 ```
 
-### Bilingual Implementation
-- Use `AppLocalizations` for static text
-- Dynamic AI responses include both Hindi and English
-- Cultural context influences language choice (family = more Hindi, work = more English)
+### Mock Service Implementation
+```dart
+// All external services use mock patterns:
+class AuthService {
+  bool _isLoggedIn = false;
+  Future<String?> signIn() async => _isLoggedIn = true; // Mock implementation
+}
+```
+
+### Null Safety & Firebase Compatibility
+```dart
+// Current workarounds for build issues:
+if (_token != null && _token!.isNotEmpty)  // HuggingFace pattern
+// import 'package:firebase_core/firebase_core.dart'; // Commented out
+```
+
+### Bilingual UI Implementation
+- Static text: `AppLocalizations` from generated `.arb` files
+- Dynamic AI responses: Both Hindi/English in same response
+- Cultural context switching based on contact relationship type
 
 ## 🎨 UI Components & Styling
 
@@ -125,23 +139,38 @@ final analysis = await huggingFaceService.analyzeEmotion(text);
 
 ## 🐛 Common Issues & Solutions
 
-### Hive Adapter Errors
-- Run `flutter packages pub run build_runner build --delete-conflicting-outputs`
-- Ensure all `@HiveType` classes have unique `typeId`
+### Build Failures
+- **Chrome Build**: Firebase type errors → Comment out Firebase imports
+- **Windows Build**: C++ compilation errors → Use mock auth implementations  
+- **APK Build**: Asset bundling errors → Check pubspec.yaml asset paths
+- **Permission Errors**: Build folders locked → `Remove-Item -Recurse -Force build`
 
-### Permission Issues  
-- Check `PermissionManager.checkPermissions()` before contact access
-- Graceful handling when permissions denied
+### Dependency Version Conflicts
+- **Analyzer Conflicts**: Use `build_runner: ^2.4.13` not latest
+- **HuggingFace Null Safety**: Use `_token!.isNotEmpty` pattern
+- **Firebase Compatibility**: Keep Firebase deps commented out in pubspec.yaml
 
-### Cultural AI Edge Cases
-- Handle mixed language input gracefully
-- Default to neutral tone when cultural context unclear
-- Respect regional communication style preferences
+### Hive Code Generation
+- Run `build_runner build --delete-conflicting-outputs` after model changes
+- Ensure unique `typeId` for each `@HiveType` class
+- Generated `*.g.dart` files must be committed to version control
 
-## 📊 Performance Considerations
-- Batch process contact analysis (max 50 contacts at once)
-- Cache HuggingFace results to avoid redundant API calls  
-- Use `ValueListenableBuilder` with Hive for reactive UI updates
-- Limit emotion analysis to recent interactions (last 30 days)
+## 🚀 Feature Development Guidelines
 
-When working on this codebase, prioritize privacy compliance, cultural sensitivity, and graceful degradation of AI features.
+### Privacy-Safe Implementation
+- Always check `PermissionManager.isSampleMode` (always returns true)
+- Use `Demo_data/*.json` files instead of real device data
+- Implement graceful fallbacks when external APIs unavailable
+- Mock all external service dependencies
+
+### Cultural Features
+- Festival data comes from `Demo_data/TrueCircle_Festivals_Data.json`
+- Regional AI responses include both Hindi/English text
+- Use `CulturalRegionalAI.getUpcomingFestivals()` for current context
+
+### Performance Patterns
+- JsonDataService caches loaded data automatically
+- Use `ValueListenableBuilder` with Hive boxes for reactive UI
+- Batch process large datasets to prevent UI blocking
+
+When working on this codebase, prioritize Google Play Store compliance, mock data patterns, and build compatibility over feature completeness.

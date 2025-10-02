@@ -69,7 +69,7 @@ class _SelectContactPageState extends State<SelectContactPage> {
             icon: const Icon(Icons.cloud_upload_outlined),
             tooltip: _language == 'hi' ? 'टेस्ट डेटा डालें' : 'Seed Test Data',
             onPressed: () {
-              _relationshipService.seedDatabaseWithDummyData();
+              _relationshipService.seedDummyData();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(_language == 'hi' ? 'टेस्ट डेटा डाला जा रहा है...' : 'Seeding test data...'),
@@ -97,7 +97,7 @@ class _SelectContactPageState extends State<SelectContactPage> {
           }
 
           if (snapshot.hasError) {
-            print("Stream Error: ${snapshot.error}");
+            debugPrint("Stream Error: ${snapshot.error}");
             return Center(child: Text(_language == 'hi' ? 'डेटा लोड नहीं हो सका' : 'Could not load data'));
           }
 
@@ -134,10 +134,10 @@ class _SelectContactPageState extends State<SelectContactPage> {
                   ),
                   trailing: Chip(
                     label: Text(
-                      contact.strength,
-                      style: TextStyle(color: _getStrengthTextColor(contact.strength), fontWeight: FontWeight.bold),
+                      contact.strength.toStringAsFixed(1),
+                      style: TextStyle(color: _getStrengthTextColor(contact.strength.toStringAsFixed(1)), fontWeight: FontWeight.bold),
                     ),
-                    backgroundColor: _getStrengthColor(contact.strength),
+                    backgroundColor: _getStrengthColor(contact.strength.toStringAsFixed(1)),
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   ),
                   onTap: () {
