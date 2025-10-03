@@ -170,16 +170,6 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
     });
     _initPrivacySettings();
     CloudSyncService.instance.loadLastSyncFromStorage();
-    // Ensure we have a mock phone identity so CloudSync can write.
-    if (_authService.currentPhoneNumber == null) {
-      // Use deterministic mock phone so same document reused across sessions.
-      _authService.restoreFromStorage().then((_) async {
-        if (_authService.currentPhoneNumber == null) {
-          await _authService.signInWithPhoneNumber('+19999990000');
-          debugPrint('[GiftMarketplace] Mock phone injected for sync');
-        }
-      });
-    }
     // Removed noisy listeners; localized rebuilds handled via ValueListenableBuilder
   }
 

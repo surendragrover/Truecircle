@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../widgets/truecircle_logo.dart';
+import 'color_scheme_preview_page.dart';
 import 'truecircle_faq_page.dart';
 import 'truecircle_features_list_page.dart';
 import '../home_page.dart';
+import '../theme/coral_theme.dart';
+import '../services/cloud_sync_service.dart';
+import '../services/loyalty_points_service.dart';
 
 /// How TrueCircle Works - Comprehensive Guide Page
 class HowTrueCircleWorksPage extends StatefulWidget {
@@ -48,8 +52,13 @@ class _HowTrueCircleWorksPageState extends State<HowTrueCircleWorksPage>
             ),
           ],
         ),
-        backgroundColor: Colors.blue.shade800,
+        backgroundColor: Colors.transparent,
         elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: CoralTheme.appBarGradient,
+          ),
+        ),
         actions: [
           Tooltip(
             message: _isHindi
@@ -130,18 +139,7 @@ class _HowTrueCircleWorksPageState extends State<HowTrueCircleWorksPage>
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.blue.shade800,
-              Colors.blue.shade600,
-              Colors.white,
-            ],
-            stops: const [0.0, 0.3, 1.0],
-          ),
-        ),
+        decoration: CoralTheme.background,
         child: TabBarView(
           controller: _tabController,
           children: [
@@ -184,6 +182,29 @@ class _HowTrueCircleWorksPageState extends State<HowTrueCircleWorksPage>
 • Real-time Analysis - Instant emotional insights''',
           ),
           const SizedBox(height: 16),
+          Center(
+            child: ElevatedButton.icon(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ColorSchemePreviewPage(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.palette, color: Colors.white),
+              label: Text(
+                _isHindi ? 'कलर स्कीम देखें' : 'View Color Scheme',
+                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.orange,
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
           _buildSectionCard(
             title: _isHindi ? '🎯 हमारा Mission' : '🎯 Our Mission',
             content: _isHindi
@@ -794,23 +815,55 @@ Join the TrueCircle community and share experiences with other users. Get valuab
           Center(
             child: ElevatedButton.icon(
               onPressed: () async {
-                // Mark that user has seen this page (phone number specific)
-                final box = Hive.box('truecircle_settings');
-                final phoneNumber = box.get('current_phone_number') as String?;
+                try {
+                  // Ensure the settings box is open (when user arrived here directly after login bypassing AuthWrapper)
+                  final box = Hive.isBoxOpen('truecircle_settings')
+                      ? Hive.box('truecircle_settings')
+                      : await Hive.openBox('truecircle_settings');
 
-                if (phoneNumber != null) {
-                  await box.put('${phoneNumber}_seen_how_works', true);
-                } else {
-                  await box.put(
-                      'has_seen_how_truecircle_works', true); // Fallback
-                }
+                  final phoneNumber = box.get('current_phone_number') as String?;
 
-                // Navigate to main app (HomePage)
-                if (mounted) {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                        builder: (context) => const HomePage()),
+                  // Mark that user has seen this page (phone specific key if available)
+                  if (phoneNumber != null) {
+                    await box.put('${phoneNumber}_seen_how_works', true);
+                  } else {
+                    await box.put('has_seen_how_truecircle_works', true); // Fallback key
+                  }
+
+                  // OPTIONAL: If model download already completed earlier in flow, mark flag so AuthWrapper won't loop back.
+                  // If you still want to show ModelDownloadProgressPage after this, remove the line below.
+                  box.put('${phoneNumber ?? 'global'}_models_downloaded', true);
+
+                  // Cloud sync: push onboarding + model state (loyalty points aggregate only)
+                  final points = LoyaltyPointsService.instance.totalPoints;
+                  CloudSyncService.instance.syncUserState(
+                    loyaltyPoints: points,
+                    featuresCount: 0, // Not available in this context; will update later from dashboard
+                    modelsReady: true,
                   );
+
+                  if (!mounted) return;
+                  // Proceed to main HomePage
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const HomePage()),
+                  );
+                } catch (e) {
+                  // Fallback: still try to navigate even if Hive write failed
+                  if (mounted) {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => const HomePage()),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          _isHindi
+                              ? 'सेटिंग सेव करने में समस्या, बाद में पुनः प्रयास करें'
+                              : 'Issue saving onboarding status, try later',
+                        ),
+                        backgroundColor: Colors.orange,
+                      ),
+                    );
+                  }
                 }
               },
               icon: const Icon(Icons.rocket_launch, color: Colors.white),
