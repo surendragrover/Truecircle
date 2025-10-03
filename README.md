@@ -27,3 +27,37 @@ Please contact the owner before making any contributions. This is proprietary so
 
 ## 📄 License
 This project is proprietary software. All rights reserved by Surendra Grover.
+
+## 🔒 Terminology Guard (Privacy Mode)
+Legacy "Demo" wording has been retired in favor of privacy-first "Sample Data" / "Privacy Mode" language. A token guard ensures old terminology isn’t accidentally reintroduced.
+
+Run locally:
+```bash
+dart run tool/demo_token_guard.dart
+```
+
+If it fails, replace the flagged text. To intentionally keep a deprecated reference (rare), append a comment `// allow_demo_token` on that line.
+
+## 📦 Dependency Stability Strategy
+TrueCircle prioritizes long-term runtime stability over chasing latest major versions. Key policies:
+
+- Firebase packages intentionally pinned (3.x/5.x generation) until a scheduled migration window; upgrading piecemeal risks platform init regressions.
+- build_runner held at 2.4.13 to avoid analyzer & generator churn; Hive codegen is stable here.
+- fl_chart remains on 0.70.x until chart API refactor effort is allocated (1.x introduces breaking constructor/axis changes).
+- flutter_lints kept at 4.x to prevent a large influx of non-critical warnings during active feature work.
+- Discontinued transitive build_* packages are tolerated short-term; they disappear once the toolchain is deliberately modernized in a controlled pass.
+
+Upgrade cadence:
+1. Patch/minor (non-breaking) updates batched quarterly after smoke tests (shared_preferences, url_launcher, path_provider, lottie, etc.).
+2. Major library migrations grouped (Firebase set, charts, lint rules) so regression testing is focused and reproducible.
+3. After each major batch, run: demo token guard, Hive build, minimal sync validation, Android + Web smoke.
+
+Rationale: Predictable emotional AI behavior & privacy sync correctness are higher priority than adopting latest APIs immediately. This policy reduces support load and unexpected CI breakages.
+
+To propose an early upgrade, open an issue titled `Upgrade Proposal: <package>` with:
+- Justification (security, critical bug, required feature)
+- Expected breaking changes & files touched
+- Rollback plan
+
+This section prevents accidental blanket `flutter pub upgrade --major-versions` commits that could destabilize builds without review.
+
