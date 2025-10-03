@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/coral_theme.dart';
+import 'therapy_theme_preview_page.dart';
 
 class ColorSchemePreviewPage extends StatelessWidget {
   const ColorSchemePreviewPage({super.key});
@@ -36,6 +37,44 @@ class ColorSchemePreviewPage extends StatelessWidget {
             const Text(
               'Core palette blocks with usage guidance. Keep contrast for accessibility (WCAG AA).',
               style: TextStyle(fontSize: 12, color: Colors.white70, height: 1.3),
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const TherapyThemePreviewPage(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.waves, color: Colors.white, size: 18),
+                  label: const Text('Therapy Waves', style: TextStyle(color: Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: CoralTheme.therapySun.withOpacity(0.85),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const TherapyThemePreviewPage(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.palette_outlined, color: Colors.white, size: 18),
+                  label: const Text('Therapy Minimal', style: TextStyle(color: Colors.white)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: CoralTheme.therapyDeep.withOpacity(0.65),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 16),
             ...colors.map((c) => _SwatchTile(info: c)),
