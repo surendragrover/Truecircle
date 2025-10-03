@@ -5,6 +5,8 @@ import 'package:truecircle/core/service_locator.dart';
 import 'package:truecircle/services/privacy_mode_manager.dart';
 import 'package:truecircle/services/privacy_service.dart';
 import 'package:truecircle/services/json_data_service.dart';
+import 'package:truecircle/services/ai_orchestrator_service.dart';
+import 'package:truecircle/services/demo_seed_service.dart';
 
 /// ऐप के शुरुआती सेटअप और सेवाओं के इनिशियलाइज़ेशन के लिए मुख्य क्लास
 /// 
@@ -41,10 +43,20 @@ class AppInitialization {
       // 5. AI Services सेटअप करना
       debugPrint('🤖 AI Services सेटअप...');
       await serviceLocator.setupAIServices();
+
+      // 5b. AI Orchestrator auto-start (proactive feature readiness)
+      debugPrint('🧠 AI Orchestrator check...');
+      AIOrchestratorService().startIfPossible();
+
+  // 5c. Seed demo scenario data (sample mode only, idempotent)
+  debugPrint('🌱 Demo seed check...');
+  await DemoSeedService().seedIfNeeded();
       
       // 6. इनिशियलाइज़ेशन की पुष्टि
       debugPrint('✅ सभी सेवाएं सफलतापूर्वक इनिशियलाइज़ हुईं');
       _printInitializationSummary();
+      // Start orchestrator (real call separated to ensure summary prints even if it fails)
+      AIOrchestratorService().startIfPossible();
       
     } catch (e, stackTrace) {
       debugPrint('❌ ऐप इनिशियलाइज़ेशन में त्रुटि: $e');
@@ -101,9 +113,9 @@ class AppInitialization {
     // Privacy status
     try {
       final privacyService = serviceLocator.get<PrivacyService>();
-      final isDemoMode = privacyService.isDemoMode();
+  final isPrivacyMode = privacyService.isPrivacyMode();
       debugPrint('\n🔐 Privacy Status:');
-      debugPrint('  • Demo Mode: ${isDemoMode ? "Active" : "Inactive"}');
+  debugPrint('  • Privacy Mode: ${isPrivacyMode ? "Active" : "Inactive"}');
       debugPrint('  • Privacy-First Architecture: Enabled');
     } catch (e) {
       debugPrint('\n⚠️ Privacy Service not available: $e');
@@ -129,7 +141,7 @@ class AppInitialization {
         final privacyService = serviceLocator.get<PrivacyService>();
         healthStatus['privacy_service'] = {
           'status': 'healthy',
-          'demo_mode': privacyService.isDemoMode(),
+          'privacy_mode': privacyService.isPrivacyMode(),
         };
       } else {
         healthStatus['privacy_service'] = {'status': 'not_registered'};

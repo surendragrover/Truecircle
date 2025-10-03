@@ -1,11 +1,11 @@
-/// Privacy and Demo Mode Manager for TrueCircle
+/// Privacy Mode Manager for TrueCircle
 /// 
 /// This service manages the app's operating mode and controls access to sensitive data.
-/// It ensures that TrueCircle operates in demo mode by default and only accesses
-/// real device data when explicitly permitted by users.
+/// It ensures that TrueCircle operates in Privacy Mode by default and
+/// only accesses real device data when explicitly permitted by users.
 /// 
 /// Key Features:
-/// - Demo mode enforcement by default
+/// - Privacy Mode enforcement by default
 /// - Privacy-first data access controls
 /// - User consent management
 /// - Secure transition between modes
@@ -15,40 +15,38 @@ class PrivacyModeManager {
   PrivacyModeManager._internal();
 
   // Privacy mode state
-  bool _isDemoMode = true; // Always start in demo mode for privacy
+  bool _isPrivacyMode = true; // Always start in Privacy Mode for maximum safety
   bool _hasUserConsentForContacts = false;
   bool _hasUserConsentForCallLogs = false;
   bool _hasUserConsentForMessages = false;
   bool _hasUserConsentForAI = false;
 
   // Getters for privacy state
-  bool get isDemoMode => _isDemoMode;
-  bool get isPrivacyMode => _isDemoMode;
-  bool get canAccessContacts => !_isDemoMode && _hasUserConsentForContacts;
-  bool get canAccessCallLogs => !_isDemoMode && _hasUserConsentForCallLogs;
-  bool get canAccessMessages => !_isDemoMode && _hasUserConsentForMessages;
+  bool get isPrivacyMode => _isPrivacyMode;
+  bool get canAccessContacts => !_isPrivacyMode && _hasUserConsentForContacts;
+  bool get canAccessCallLogs => !_isPrivacyMode && _hasUserConsentForCallLogs;
+  bool get canAccessMessages => !_isPrivacyMode && _hasUserConsentForMessages;
   bool get canUseAI => _hasUserConsentForAI;
 
-  /// Check if app should operate in demo mode
+  /// Check if app should operate in Privacy Mode
   /// 
-  /// Demo mode is enforced when:
-  /// - User hasn't explicitly opted out of privacy mode
+  /// Privacy Mode is enforced when:
+  /// - User hasn't explicitly opted out of Privacy Mode
   /// - No sensitive permissions have been granted
   /// - This is the first app launch
-  bool shouldOperateInDemoMode() {
-    return _isDemoMode;
+  bool shouldOperateInPrivacyMode() {
+    return _isPrivacyMode;
   }
 
   /// Get current privacy mode status
   Map<String, dynamic> getPrivacyStatus() {
     return {
-      'isDemoMode': _isDemoMode,
-      'isPrivacyMode': _isDemoMode,
+      'isPrivacyMode': _isPrivacyMode,
       'canAccessContacts': canAccessContacts,
       'canAccessCallLogs': canAccessCallLogs,
       'canAccessMessages': canAccessMessages,
       'canUseAI': canUseAI,
-      'mode': _isDemoMode ? 'Privacy Mode' : 'Full Access Mode',
+      'mode': _isPrivacyMode ? 'Privacy Mode' : 'Full Access Mode',
     };
   }
 
@@ -58,7 +56,7 @@ class PrivacyModeManager {
   /// that AI processing happens entirely on-device for privacy.
   Future<bool> requestAIConsent() async {
     // In a real implementation, this would show a user dialog
-    // For now, we'll assume AI consent is granted for demo purposes
+  // For now, we'll assume AI consent is granted for sample purposes
     _hasUserConsentForAI = true;
     return _hasUserConsentForAI;
   }
@@ -69,8 +67,8 @@ class PrivacyModeManager {
   /// that all processing happens locally on the device.
   Future<bool> requestContactsConsent() async {
     // This would show a detailed consent dialog
-    // For demo mode, we don't grant real access
-    if (_isDemoMode) {
+  // In Privacy Mode, no real device access is granted
+  if (_isPrivacyMode) {
       return false;
     }
     
@@ -81,7 +79,7 @@ class PrivacyModeManager {
 
   /// Request user consent for call logs access
   Future<bool> requestCallLogsConsent() async {
-    if (_isDemoMode) {
+    if (_isPrivacyMode) {
       return false;
     }
     
@@ -91,7 +89,7 @@ class PrivacyModeManager {
 
   /// Request user consent for messages access
   Future<bool> requestMessagesConsent() async {
-    if (_isDemoMode) {
+    if (_isPrivacyMode) {
       return false;
     }
     
@@ -99,24 +97,24 @@ class PrivacyModeManager {
     return _hasUserConsentForMessages;
   }
 
-  /// Transition from demo mode to full access mode
+  /// Transition from Privacy Mode to Full Access Mode
   /// 
   /// This is a significant privacy decision that should require
   /// explicit user confirmation and understanding.
   Future<bool> enableFullAccessMode() async {
     // This would show a comprehensive dialog explaining the implications
-    // For now, we keep demo mode active for privacy
+  // For now, we keep Privacy Mode active for privacy
     
     // In a future implementation:
-    // _isDemoMode = false;
+  // _isPrivacyMode = false;
     // return true;
     
-    return false; // Keep demo mode active for privacy
+  return false; // Keep Privacy Mode active for privacy
   }
 
-  /// Reset to demo mode (privacy-first approach)
+  /// Reset to Privacy Mode (privacy-first approach)
   void resetToPrivacyMode() {
-    _isDemoMode = true;
+  _isPrivacyMode = true;
     _hasUserConsentForContacts = false;
     _hasUserConsentForCallLogs = false;
     _hasUserConsentForMessages = false;
@@ -125,18 +123,18 @@ class PrivacyModeManager {
 
   /// Get appropriate data access message for users
   String getDataAccessMessage(String dataType) {
-    if (_isDemoMode) {
+    if (_isPrivacyMode) {
       switch (dataType.toLowerCase()) {
         case 'contacts':
-          return 'TrueCircle is running in Privacy Mode. Contact analysis uses sample data to protect your privacy.';
+          return 'Privacy Mode Active: Contact analysis uses sample data to protect your privacy.';
         case 'calls':
-          return 'TrueCircle is running in Privacy Mode. Call analysis uses sample data to protect your privacy.';
+          return 'Privacy Mode Active: Call analysis uses sample data to protect your privacy.';
         case 'messages':
-          return 'TrueCircle is running in Privacy Mode. Message analysis uses sample data to protect your privacy.';
+          return 'Privacy Mode Active: Message analysis uses sample data to protect your privacy.';
         case 'ai':
           return 'AI processing happens entirely on your device. No data is sent to external servers.';
         default:
-          return 'TrueCircle is running in Privacy Mode with sample data to protect your privacy.';
+          return 'Privacy Mode Active: Using only sample data to protect your privacy.';
       }
     } else {
       return 'TrueCircle has access to your $dataType with your explicit consent. All processing happens on your device.';
@@ -161,7 +159,7 @@ class PrivacyModeManager {
 
   /// Generate privacy-compliant status message
   String getPrivacyStatusMessage() {
-    if (_isDemoMode) {
+    if (_isPrivacyMode) {
       return 'Privacy Mode Active: TrueCircle uses sample data to demonstrate features while protecting your privacy. All AI processing happens on your device.';
     } else {
       List<String> permissions = [];

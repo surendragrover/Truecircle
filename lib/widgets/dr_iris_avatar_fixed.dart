@@ -38,10 +38,18 @@ class DrIrisAvatar extends StatelessWidget {
               ),
             ],
           ),
-          child: Icon(
-            Icons.psychology,
-            color: Colors.white,
-            size: size * 0.6,
+          child: ClipOval(
+            child: Image.asset(
+              'assets/images/avatar.png',
+              width: size,
+              height: size,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => Icon(
+                Icons.psychology,
+                color: Colors.white,
+                size: size * 0.6,
+              ),
+            ),
           ),
         ),
         if (showName) ...[

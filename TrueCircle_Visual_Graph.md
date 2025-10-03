@@ -54,7 +54,7 @@
 │  ├── 📁 SHARED PREFERENCES       │   ├── HuggingFace AI                     │
 │  │   ├── App Settings            │   ├── Payment Gateways                   │
 │  │   └── User Preferences        │   └── Cultural Data                      │
-│  └── 📋 DEMO DATA                └── 🔒 ENCRYPTION: AES-256                 │
+│  └── 📋 SAMPLE DATA              └── 🔒 ENCRYPTION: AES-256                 │
 │      ├── Emotion samples                                                     │
 │      ├── Contact examples        🔐 PRIVACY TIERS:                          │
 │      └── Interaction history     ├── Tier 1: Basic Metadata (Always Safe)  │

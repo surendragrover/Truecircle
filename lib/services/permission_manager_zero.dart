@@ -7,8 +7,12 @@ import 'package:truecircle/models/contact_interaction.dart';
 /// All analysis uses sample data and on-device AI processing.
 /// Designed to pass Google Play Store automated review.
 class PermissionManager {
-  // Sample App - always use demo mode
-  static bool get isDemoMode => true;
+  // Application always runs in privacy/sample mode
+  static bool get isPrivacyMode => true;
+
+  // Legacy flag retained temporarily for backward compatibility. Prefer isPrivacyMode.
+  @Deprecated('Use PermissionManager.isPrivacyMode instead')
+  static bool get isDemoMode => isPrivacyMode;
   static bool _privacyNoticeShown = false;
 
   // Getters for app state (always return demo/safe values)
@@ -133,7 +137,7 @@ class PermissionManager {
     return result;
   }
 
-  // 🎯 DEMO MODE BANNER: Always visible since app is always in demo mode
+  // 🎯 PRIVACY SAMPLE MODE BANNER: Always visible since app is always in privacy/sample mode
   static Widget buildDemoModeBanner(BuildContext context) {
     return Container(
       width: double.infinity,
@@ -166,7 +170,7 @@ class PermissionManager {
               SizedBox(width: 8),
               Expanded(
                 child: Text(
-                  '📚 Educational Demo Mode',
+                  '📚 Educational Sample Mode',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -184,7 +188,7 @@ class PermissionManager {
           ),
           const SizedBox(height: 6),
           Text(
-            '• 📊 Sample contacts के साथ communication patterns\n• 🤖 Offline AI emotion analysis demonstration\n• 🎭 Cultural insights और festival recommendations\n• 📱 Privacy-safe learning experience',
+            '• 📊 Sample contacts communication patterns\n• 🤖 Offline AI emotion analysis (on-device)\n• 🎭 Cultural insights & festival recommendations\n• 📱 Privacy-safe learning experience',
             style: TextStyle(
                 color: Colors.white.withValues(alpha: 0.3), fontSize: 13),
           ),
@@ -313,7 +317,7 @@ class PermissionManager {
       'all_emotions': emotionScores,
       'offline_analysis': true,
       'educational_demo': true,
-      'message': '🎓 Educational demo - पूर्ण offline analysis'
+        'message': '🎓 Educational sample - पूर्ण offline analysis'
     };
   }
 
@@ -372,11 +376,11 @@ class PermissionManager {
     };
   }
 
-  // 📚 EDUCATIONAL DEMO CONTACTS
-  static List<ContactInteraction> getSampleContacts() {
+  // 📚 EDUCATIONAL SAMPLE CONTACTS
+    static List<ContactInteraction> getSampleContacts() {
     return [
       ContactInteraction(
-        contactId: 'demo_1',
+        contactId: 'sample_1',
         timestamp: DateTime.now().subtract(const Duration(days: 1)),
         type: InteractionType.call,
         duration: 300,
@@ -385,11 +389,11 @@ class PermissionManager {
         metadata: {
           'contactName': 'राज शर्मा',
           'contactPhone': '+91-9876543210',
-          'demoContact': true
+          'sampleContact': true
         },
       ),
       ContactInteraction(
-        contactId: 'demo_2',
+        contactId: 'sample_2',
         timestamp: DateTime.now().subtract(const Duration(hours: 3)),
         type: InteractionType.message,
         duration: 0,
@@ -398,11 +402,11 @@ class PermissionManager {
         metadata: {
           'contactName': 'प्रिया गुप्ता',
           'contactPhone': '+91-9876543211',
-          'demoContact': true
+          'sampleContact': true
         },
       ),
       ContactInteraction(
-        contactId: 'demo_3',
+        contactId: 'sample_3',
         timestamp: DateTime.now().subtract(const Duration(days: 2)),
         type: InteractionType.call,
         duration: 180,
@@ -411,11 +415,11 @@ class PermissionManager {
         metadata: {
           'contactName': 'अमित कुमार',
           'contactPhone': '+91-9876543212',
-          'demoContact': true
+          'sampleContact': true
         },
       ),
       ContactInteraction(
-        contactId: 'demo_4',
+        contactId: 'sample_4',
         timestamp: DateTime.now().subtract(const Duration(hours: 5)),
         type: InteractionType.message,
         duration: 0,
@@ -424,11 +428,11 @@ class PermissionManager {
         metadata: {
           'contactName': 'स्नेहा सिंह',
           'contactPhone': '+91-9876543213',
-          'demoContact': true
+          'sampleContact': true
         },
       ),
       ContactInteraction(
-        contactId: 'demo_5',
+        contactId: 'sample_5',
         timestamp: DateTime.now().subtract(const Duration(days: 3)),
         type: InteractionType.call,
         duration: 420,
@@ -437,7 +441,7 @@ class PermissionManager {
         metadata: {
           'contactName': 'विकास अग्रवाल',
           'contactPhone': '+91-9876543214',
-          'demoContact': true
+          'sampleContact': true
         },
       ),
     ];
@@ -445,13 +449,13 @@ class PermissionManager {
 
   // Check if educational feature is available (always true)
   static bool isFeatureAvailable(String feature) {
-    // All features are available in educational demo mode
+  // All features are available in educational sample mode
     return true;
   }
 
   // Get educational feature status message
   static String getFeatureStatusMessage(String feature) {
-    return 'Educational demo mode - Using sample data for learning';
+  return 'Educational sample mode - Using sample data for learning';
   }
 
   // Educational cultural suggestions

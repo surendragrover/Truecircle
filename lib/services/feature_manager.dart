@@ -9,7 +9,7 @@ class FeatureManager {
   static const int freeAiInsightsLimit = 5;
   static const int freeSmartMessagesLimit = 3;
   static const int freeGoalsLimit = 3;
-  static const int freeContactsLimit = 3; // Demo contacts only
+  static const int freeContactsLimit = 3; // Sample contacts only (privacy mode)
 
   // Check if user is premium
   static Future<bool> isPremiumUser() async {

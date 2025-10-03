@@ -9,12 +9,12 @@ import '../core/service_locator.dart';
 
 /// Enhanced Privacy Service for TrueCircle
 /// 
-/// This service manages privacy settings, demo mode enforcement, and secure
+/// This service manages privacy settings, Privacy Mode enforcement, and secure
 /// access to sensitive device data. It integrates with PrivacyModeManager
 /// to ensure privacy-first operation.
 /// 
 /// Key Features:
-/// - Demo mode enforcement by default
+/// - Privacy Mode enforcement by default
 /// - Privacy-first data access controls
 /// - AI consent management
 /// - Secure sensitive data handling
@@ -201,13 +201,10 @@ class PrivacyService {
   }
 
   // --------------------------------------------------------------------------
-  // Demo Mode and AI Privacy Integration
+  // Privacy Mode and AI Privacy Integration
   // --------------------------------------------------------------------------
 
-  /// Check if app should operate in demo mode (privacy-first approach)
-  bool isDemoMode() {
-    return _privacyManager.isDemoMode;
-  }
+  bool isPrivacyMode() => _privacyManager.isPrivacyMode;
 
   /// Check if AI processing is allowed
   bool canUseAI() {
@@ -222,11 +219,12 @@ class PrivacyService {
     return await _privacyManager.requestAIConsent();
   }
 
-  /// Get demo contacts data for privacy mode
-  List<Map<String, dynamic>> getDemoContactsData() {
+  // Removed deprecated: getDemoContactsData (use getSampleContactsData)
+
+  List<Map<String, dynamic>> getSampleContactsData() {
     return [
       {
-        'id': 'demo_1',
+  'id': 'sample_1',
         'name': 'Alex Johnson',
         'phone': '+1 (555) 123-4567',
         'relationship': 'Friend',
@@ -235,7 +233,7 @@ class PrivacyService {
         'privacyNote': 'This is sample data used in Privacy Mode',
       },
       {
-        'id': 'demo_2', 
+  'id': 'sample_2', 
         'name': 'Sarah Williams',
         'phone': '+1 (555) 234-5678',
         'relationship': 'Family',
@@ -244,7 +242,7 @@ class PrivacyService {
         'privacyNote': 'This is sample data used in Privacy Mode',
       },
       {
-        'id': 'demo_3',
+  'id': 'sample_3',
         'name': 'Michael Chen',
         'phone': '+1 (555) 345-6789',
         'relationship': 'Colleague',
@@ -255,11 +253,12 @@ class PrivacyService {
     ];
   }
 
-  /// Get demo call logs for privacy mode
-  List<Map<String, dynamic>> getDemoCallLogsData() {
+  // Removed deprecated: getDemoCallLogsData (use getSampleCallLogsData)
+
+  List<Map<String, dynamic>> getSampleCallLogsData() {
     return [
       {
-        'id': 'call_demo_1',
+  'id': 'call_sample_1',
         'contactName': 'Alex Johnson',
         'phoneNumber': '+1 (555) 123-4567',
         'callType': 'outgoing',
@@ -269,7 +268,7 @@ class PrivacyService {
         'privacyNote': 'This is sample data used in Privacy Mode',
       },
       {
-        'id': 'call_demo_2',
+  'id': 'call_sample_2',
         'contactName': 'Sarah Williams',
         'phoneNumber': '+1 (555) 234-5678',
         'callType': 'incoming',
@@ -281,11 +280,12 @@ class PrivacyService {
     ];
   }
 
-  /// Get demo messages for privacy mode
-  List<Map<String, dynamic>> getDemoMessagesData() {
+  // Removed deprecated: getDemoMessagesData (use getSampleMessagesData)
+
+  List<Map<String, dynamic>> getSampleMessagesData() {
     return [
       {
-        'id': 'msg_demo_1',
+  'id': 'msg_sample_1',
         'contactName': 'Alex Johnson',
         'phoneNumber': '+1 (555) 123-4567',
         'content': 'Hey, are we still on for dinner tonight?',
@@ -295,7 +295,7 @@ class PrivacyService {
         'privacyNote': 'This is sample data used in Privacy Mode',
       },
       {
-        'id': 'msg_demo_2',
+  'id': 'msg_sample_2',
         'contactName': 'Sarah Williams', 
         'phoneNumber': '+1 (555) 234-5678',
         'content': 'Happy birthday! Hope you have a wonderful day!',
@@ -309,8 +309,8 @@ class PrivacyService {
 
   /// Validate that AI operations are permitted in current mode
   bool validateAIAccess(String operation) {
-    // In demo mode, only Dr. Iris responses are allowed
-    if (isDemoMode()) {
+  // In Privacy Mode, only Dr. Iris responses are allowed
+  if (isPrivacyMode()) {
       return operation.toLowerCase() == 'generatedrirισresponse' || 
              operation.toLowerCase() == 'dr_iris' ||
              operation.toLowerCase() == 'ai_chat';
@@ -320,21 +320,21 @@ class PrivacyService {
     return canUseAI();
   }
 
-  /// Get appropriate data source based on privacy mode
+  /// Get appropriate data source based on current privacy mode
   Future<List<Map<String, dynamic>>> getPrivacyCompliantData(String dataType) async {
     switch (dataType.toLowerCase()) {
       case 'contacts':
-        return isDemoMode() ? getDemoContactsData() : getDemoContactsData(); // Always demo for privacy
+        return isPrivacyMode() ? getSampleContactsData() : getSampleContactsData(); // Always sample for privacy
       case 'calls':
-        return isDemoMode() ? getDemoCallLogsData() : getDemoCallLogsData(); // Always demo for privacy
+        return isPrivacyMode() ? getSampleCallLogsData() : getSampleCallLogsData(); // Always sample for privacy
       case 'messages':
-        return isDemoMode() ? getDemoMessagesData() : getDemoMessagesData(); // Always demo for privacy
+        return isPrivacyMode() ? getSampleMessagesData() : getSampleMessagesData(); // Always sample for privacy
       default:
         return [];
     }
   }
 
-  /// Get privacy status including demo mode information
+  /// Get privacy status including Privacy Mode information
   Map<String, dynamic> getEnhancedPrivacySummary() {
     final settings = getSettings();
     final privacyStatus = _privacyManager.getPrivacyStatus();
@@ -342,7 +342,7 @@ class PrivacyService {
     return {
       'privacy_level': settings.privacyLevel,
       'privacy_mode': privacyStatus['mode'],
-      'is_demo_mode': privacyStatus['isDemoMode'],
+  // deprecated key removed; use 'isPrivacyMode'
       'privacy_level_description': settings.getPrivacyLevelDescription(),
       'enabled_features': settings.getEnabledFeatures(),
       'privacy_guarantees': settings.getPrivacyGuarantees(),
@@ -369,7 +369,7 @@ class PrivacyService {
       'privacy_guarantees': settings.getPrivacyGuarantees(),
       'last_updated': settings.lastUpdated,
       'language': settings.language,
-      'demo_mode_active': isDemoMode(),
+  'privacy_mode_active': isPrivacyMode(),
       'ai_processing_available': canUseAI(),
     };
   }
@@ -400,10 +400,10 @@ class PrivacyService {
   /// 
   /// यह method केवल privacy mode disable होने पर real permissions request करता है
   Future<bool> requestLogPermissions() async {
-    // Privacy mode check - demo mode में real permissions नहीं मांगते
-    if (isDemoMode()) {
-      debugPrint('🔐 Privacy Service: Demo mode active - not requesting real permissions');
-      return true; // Demo mode में permissions simulate करते हैं
+    // Privacy Mode check - Privacy Mode में real permissions नहीं मांगते
+  if (isPrivacyMode()) {
+      debugPrint('🔐 Privacy Service: Privacy Mode active - not requesting real permissions');
+      return true; // Privacy Mode में permissions simulate करते हैं
     }
 
     try {
@@ -437,9 +437,9 @@ class PrivacyService {
 
   /// जांचता है कि कॉल/मैसेज लॉग ट्रैकिंग की अनुमति मिली है या नहीं।
   Future<bool> hasLogPermissions() async {
-    // Privacy mode check
-    if (isDemoMode()) {
-      return true; // Demo mode में permissions हमेशा available
+    // Privacy Mode check
+  if (isPrivacyMode()) {
+      return true; // Privacy Mode में permissions हमेशा available
     }
 
     try {
@@ -454,8 +454,8 @@ class PrivacyService {
 
   /// Communication tracking को start करना
   Future<bool> startCommunicationTracking() async {
-    if (isDemoMode()) {
-      debugPrint('🔐 Privacy Service: Demo mode - communication tracking simulated');
+  if (isPrivacyMode()) {
+      debugPrint('🔐 Privacy Service: Privacy Mode - communication tracking simulated');
       return true;
     }
 
@@ -477,8 +477,8 @@ class PrivacyService {
 
   /// Communication tracking को stop करना
   Future<void> stopCommunicationTracking() async {
-    if (isDemoMode()) {
-      debugPrint('🔐 Privacy Service: Demo mode - communication tracking stop simulated');
+  if (isPrivacyMode()) {
+      debugPrint('🔐 Privacy Service: Privacy Mode - communication tracking stop simulated');
       return;
     }
 
@@ -497,10 +497,10 @@ class PrivacyService {
   /// स्थानीय डेटाबेस से आवश्यक लॉग समरी (सारांश) प्राप्त करता है।
   /// केवल [favoriteContact] के लिए डेटा लाया जाएगा, जैसा कि यूज़र ने सेट किया है।
   Future<List<RelationshipLog>> getLogSummaryForAI(String favoriteContactId) async {
-    // Privacy mode check - demo data return करना
-    if (isDemoMode()) {
-      debugPrint('🔐 Privacy Service: Returning demo communication data for $favoriteContactId');
-      return RelationshipLog.generateDemoData(favoriteContactId, 'Demo Contact');
+    // Privacy Mode check - sample data return करना
+  if (isPrivacyMode()) {
+      debugPrint('🔐 Privacy Service: Returning sample communication data for $favoriteContactId');
+  return RelationshipLog.generateSampleData(favoriteContactId, 'Sample Contact');
     }
 
     try {
@@ -519,8 +519,8 @@ class PrivacyService {
       
     } on PlatformException catch (e) {
       debugPrint('❌ Privacy Service: Platform exception fetching logs: $e');
-      // Fallback to demo data on error
-      return RelationshipLog.generateDemoData(favoriteContactId, 'Unknown Contact');
+  // Fallback to sample data on error
+  return RelationshipLog.generateSampleData(favoriteContactId, 'Sample Contact');
     } catch (e) {
       debugPrint('❌ Privacy Service: Unexpected error fetching logs: $e');
       return [];
@@ -536,8 +536,8 @@ class PrivacyService {
       final logs = await getLogSummaryForAI(favoriteContactId);
       
       if (logs.isEmpty) {
-        return isDemoMode() 
-          ? 'Privacy Mode: Relationship insights के लिए अधिक demo communication data की आवश्यकता है।'
+        return isPrivacyMode() 
+          ? 'Privacy Mode: Relationship insights के लिए अधिक sample communication data की आवश्यकता है।'
           : 'कोई communication data उपलब्ध नहीं है। कृपया permissions enable करें।';
       }
 
@@ -593,10 +593,10 @@ ${logStrings.take(10).join('\n')}
   /// Fallback insight generation when AI service is not available
   String _generateFallbackInsight(List<RelationshipLog> logs) {
     if (logs.isEmpty) {
-      return isDemoMode()
+      return isPrivacyMode()
         ? '''Privacy Mode Relationship Insight:
 
-📱 Demo communication data दिखाता है कि आपका relationship healthy patterns follow कर रहा है।
+📱 Sample communication data दिखाता है कि आपका relationship healthy patterns follow कर रहा है।
 
 💡 Key Observations:
 • Regular communication frequency maintained
@@ -608,7 +608,7 @@ ${logStrings.take(10).join('\n')}
 • Regular check-ins schedule करें
 • Express appreciation more frequently
 
-यह insight demo data पर based है। Real analysis के लिए privacy settings adjust करें।'''
+यह insight sample data पर based है। Real analysis के लिए privacy settings adjust करें।'''
         : '''Communication Insight:
 
 📊 Limited data available. Enable communication permissions for detailed analysis.
@@ -644,7 +644,7 @@ ${calls > messages ? '• Voice communication preferred' : '• Text communicati
 • Pay attention to emotional tone patterns
 • Regular meaningful conversations important
 
-${isDemoMode() ? '\n(Privacy Mode: Analysis based on demo data)' : ''}''';
+${isPrivacyMode() ? '\n(Privacy Mode: Analysis based on sample data)' : ''}''';
   }
 
 

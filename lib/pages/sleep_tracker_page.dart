@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../services/comprehensive_demo_data_service.dart';
+import '../services/comprehensive_sample_data_service.dart';
 import '../widgets/truecircle_logo.dart';
+import '../theme/coral_theme.dart';
 
 /// Sleep Tracker Page - Display 30-day sleep tracking data
 class SleepTrackerPage extends StatefulWidget {
@@ -62,12 +63,16 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
             Text('😴 Sleep Tracker'),
           ],
         ),
-        backgroundColor: Colors.indigo[50],
-        foregroundColor: Colors.indigo[800],
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.white,
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(gradient: CoralTheme.appBarGradient),
+        ),
         bottom: TabBar(
           controller: _tabController,
-          labelColor: Colors.indigo[800],
-          unselectedLabelColor: Colors.indigo[400],
+          labelColor: Colors.white,
+          unselectedLabelColor: Colors.white70,
           tabs: const [
             Tab(icon: Icon(Icons.nights_stay), text: 'Sleep Log'),
             Tab(icon: Icon(Icons.analytics), text: 'Analytics'),
@@ -76,16 +81,7 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
         ),
       ),
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.indigo[50]!,
-              Colors.purple[50]!,
-            ],
-          ),
-        ),
+        decoration: CoralTheme.background,
         child: _isLoading
             ? const Center(child: CircularProgressIndicator())
             : TabBarView(

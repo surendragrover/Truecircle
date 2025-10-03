@@ -6,18 +6,14 @@ import '../services/on_device_ai_service.dart';
 import '../services/privacy_service.dart';
 import '../widgets/service_status_widget.dart';
 
-/// Service Locator का उपयोग demonstrate करने के लिए comprehensive demo page
-/// 
-/// यह page दिखाता है कि कैसे किसी भी widget में Service Locator का उपयोग करके
-/// प्लेटफॉर्म की चिंता किए बिना AI services को access कर सकते हैं
-class ServiceLocatorDemoPage extends StatefulWidget {
-  const ServiceLocatorDemoPage({super.key});
-
+/// Service Locator privacy-first implementation (legacy shim removed).
+class ServiceLocatorPage extends StatefulWidget {
+  const ServiceLocatorPage({super.key});
   @override
-  State<ServiceLocatorDemoPage> createState() => _ServiceLocatorDemoPageState();
+  State<ServiceLocatorPage> createState() => _ServiceLocatorPageState();
 }
 
-class _ServiceLocatorDemoPageState extends State<ServiceLocatorDemoPage> {
+class _ServiceLocatorPageState extends State<ServiceLocatorPage> {
   final TextEditingController _messageController = TextEditingController();
   final List<Map<String, dynamic>> _chatMessages = [];
   bool _isLoading = false;
@@ -45,16 +41,16 @@ class _ServiceLocatorDemoPageState extends State<ServiceLocatorDemoPage> {
     try {
       // AI Service को access करना
       _aiService = ServiceLocator.instance.get<OnDeviceAIService>();
-      debugPrint('✅ ServiceLocatorDemo: AI Service loaded successfully');
+  debugPrint('✅ ServiceLocator: AI Service loaded successfully');
       
       // Privacy Service को access करना
       _privacyService = ServiceLocator.instance.get<PrivacyService>();
-      debugPrint('✅ ServiceLocatorDemo: Privacy Service loaded successfully');
+  debugPrint('✅ ServiceLocator: Privacy Service loaded successfully');
       
       _servicesInitialized = true;
       
     } catch (e) {
-      debugPrint('❌ ServiceLocatorDemo: Services not available: $e');
+  debugPrint('❌ ServiceLocator: Services not available: $e');
       _servicesInitialized = false;
     }
     
@@ -63,7 +59,7 @@ class _ServiceLocatorDemoPageState extends State<ServiceLocatorDemoPage> {
 
   void _addWelcomeMessage() {
     _chatMessages.add({
-      'text': 'स्वागत है! यह Service Locator Demo है। मैं दिखा सकता हूं कि कैसे किसी भी प्लेटफॉर्म पर AI service का उपयोग करते हैं।',
+  'text': 'स्वागत है! यह Service Locator Privacy Mode view है – यहाँ दिखता है कि किसी भी प्लेटफ़ॉर्म पर AI service (on‑device) कैसे उपयोग होती है।',
       'isUser': false,
       'timestamp': DateTime.now(),
     });
@@ -91,19 +87,19 @@ class _ServiceLocatorDemoPageState extends State<ServiceLocatorDemoPage> {
       
       if (_servicesInitialized && _aiService != null) {
         // Service Locator के through AI service का उपयोग
-        debugPrint('📤 ServiceLocatorDemo: Sending to AI service: $message');
+  debugPrint('📤 ServiceLocator: Sending to AI service: $message');
         response = await _aiService!.generateDrIrisResponse(message);
-        debugPrint('📥 ServiceLocatorDemo: Received AI response');
+  debugPrint('📥 ServiceLocator: Received AI response');
         
         // Privacy status भी check करना
-        final privacyStatus = _privacyService?.isDemoMode() ?? true;
-        if (privacyStatus) {
-          response += '\n\n(प्राइवेसी मोड: यह response on-device processing के साथ generated है)';
+        final inPrivacy = _privacyService?.isPrivacyMode() ?? true;
+        if (inPrivacy) {
+          response += '\n\n(🔒 Privacy Mode: On-device processing active)';
         }
         
       } else {
         // Fallback response
-        response = 'Service Locator Demo: AI service उपलब्ध नहीं है। यह एक fallback response है।';
+  response = 'Service Locator: AI service उपलब्ध नहीं (fallback response).';
       }
 
       // Bot response add करना
@@ -117,11 +113,11 @@ class _ServiceLocatorDemoPageState extends State<ServiceLocatorDemoPage> {
       });
 
     } catch (e) {
-      debugPrint('❌ ServiceLocatorDemo: Error: $e');
+  debugPrint('❌ ServiceLocator: Error: $e');
       
       setState(() {
         _chatMessages.add({
-          'text': 'Error: AI service से response नहीं मिल सका। यह demo fallback response है।',
+          'text': 'Error: AI service से response नहीं मिल सका (privacy fallback).',
           'isUser': false,
           'timestamp': DateTime.now(),
         });
@@ -134,7 +130,7 @@ class _ServiceLocatorDemoPageState extends State<ServiceLocatorDemoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Service Locator Demo'),
+  title: const Text('Service Locator (Privacy Mode)'),
         backgroundColor: Colors.blue[600],
         foregroundColor: Colors.white,
         actions: [
@@ -207,7 +203,7 @@ class _ServiceLocatorDemoPageState extends State<ServiceLocatorDemoPage> {
                 
                 final status = snapshot.data!;
                 return Text(
-                  'Platform: ${status['platform']}\nAI Service Type: ${status['ai_service_type']}\nDemo Mode: ${status['demo_mode']}',
+                  'Platform: ${status['platform']}\nAI Service Type: ${status['ai_service_type']}\nPrivacy Mode: ${status['privacy_mode']}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     fontStyle: FontStyle.italic,
                   ),
@@ -228,13 +224,13 @@ class _ServiceLocatorDemoPageState extends State<ServiceLocatorDemoPage> {
       return {
         'platform': aiStatus['platform'] ?? 'Unknown',
         'ai_service_type': aiStatus['ai_service_type'] ?? 'Not Available',
-        'demo_mode': _privacyService?.isDemoMode() ?? true,
+  'privacy_mode': _privacyService?.isPrivacyMode() ?? true,
       };
     } catch (e) {
       return {
         'platform': 'Unknown',
         'ai_service_type': 'Error',
-        'demo_mode': true,
+  'privacy_mode': true,
       };
     }
   }

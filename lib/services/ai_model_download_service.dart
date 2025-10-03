@@ -211,7 +211,7 @@ class AIModelDownloadService {
   /// Check if model server is available
   Future<bool> _checkServerAvailability(String url) async {
     try {
-      // For demo purposes, we'll simulate server check
+  // For sample purposes, we'll simulate server check
       // In production, you would actually ping the model server
       await _delay(200);
       return true; // Simulate successful server response

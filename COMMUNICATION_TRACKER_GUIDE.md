@@ -30,9 +30,9 @@ TrueCircle का Communication Tracker module privacy का सम्मान
 
 ```dart
 // Privacy mode enforcement
-if (isDemoMode()) {
+if (isPrivacyMode()) {
   debugPrint('🔐 Privacy Service: Demo mode active - using sample data');
-  return RelationshipLog.generateDemoData(favoriteContactId, 'Demo Contact');
+  return RelationshipLog.generateSampleData(favoriteContactId, 'Sample Contact');
 }
 ```
 
@@ -50,7 +50,7 @@ class PrivacyService {
 
   // Permission management
   Future<bool> requestLogPermissions() async {
-    if (isDemoMode()) return true; // Demo mode doesn't need real permissions
+  if (isPrivacyMode()) return true; // Privacy mode doesn't need real permissions
     
     final bool granted = await _channel.invokeMethod('requestAllLogsPermissions');
     if (granted) {
@@ -61,8 +61,8 @@ class PrivacyService {
 
   // Data retrieval
   Future<List<RelationshipLog>> getLogSummaryForAI(String contactId) async {
-    if (isDemoMode()) {
-      return RelationshipLog.generateDemoData(contactId, 'Demo Contact');
+  if (isPrivacyMode()) {
+  return RelationshipLog.generateSampleData(contactId, 'Sample Contact');
     }
     
     final List<dynamic> logData = await _channel.invokeMethod(
@@ -315,7 +315,7 @@ testWidgets('Communication tracker respects privacy mode', (WidgetTester tester)
   final privacyService = PrivacyService();
   
   // Verify demo mode enforcement
-  expect(privacyService.isDemoMode(), isTrue);
+  expect(privacyService.isPrivacyMode(), isTrue);
   
   // Test data access
   final logs = await privacyService.getLogSummaryForAI('test_contact');
@@ -328,7 +328,7 @@ testWidgets('Communication tracker respects privacy mode', (WidgetTester tester)
 ```dart
 test('Relationship insights generation', () async {
   final privacyService = PrivacyService();
-  final insight = await privacyService.getRelationshipInsight('demo_contact_1');
+  final insight = await privacyService.getRelationshipInsight('sample_contact_1');
   
   expect(insight, isNotEmpty);
   expect(insight, contains('Privacy Mode'));

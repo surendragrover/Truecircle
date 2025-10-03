@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppModeSelector extends StatefulWidget {
-  final Function(bool isDemoMode) onModeSelected;
+  final Function(bool isPrivacyMode) onModeSelected;
 
   const AppModeSelector({super.key, required this.onModeSelected});
 
@@ -58,7 +58,7 @@ class _AppModeSelectorState extends State<AppModeSelector> {
 
                 const SizedBox(height: 32),
 
-                // Demo Mode Option
+                // Privacy Mode Option
                 Card(
                   elevation: 4,
                   shape: RoundedRectangleBorder(
@@ -173,7 +173,7 @@ class _AppModeSelectorState extends State<AppModeSelector> {
                               ),
                             ),
                             child: const Text(
-                              'Start Smart Demo →',
+                              'Start Privacy Mode →',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ),
@@ -242,7 +242,7 @@ class _AppModeSelectorState extends State<AppModeSelector> {
                                 const SizedBox(width: 8),
                                 Expanded(
                                   child: Text(
-                                    'Requires optional permissions for contact access. You can always switch back to demo mode.',
+                                    'Requires optional permissions for contact access. You can always switch back to Privacy Mode.',
                                     style: TextStyle(
                                       fontSize: 12,
                                       color: Colors.blue[700],
@@ -429,7 +429,7 @@ class _AppModeSelectorState extends State<AppModeSelector> {
                       ),
                       const SizedBox(height: 8),
                       Text(
-                        '• All data stays on your device\n• No information sent to servers\n• You can delete anytime\n• Switch back to demo mode always possible',
+                        '• All data stays on your device\n• No information sent to servers\n• You can delete anytime\n• Switch back to Privacy Mode anytime',
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.green[700],

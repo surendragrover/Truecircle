@@ -46,7 +46,7 @@ class _FutureAIDashboardState extends State<FutureAIDashboard>
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
 
-    _generateDemoData();
+  _generateSampleData();
   }
 
   @override
@@ -56,24 +56,24 @@ class _FutureAIDashboardState extends State<FutureAIDashboard>
     super.dispose();
   }
 
-  void _generateDemoData() {
-    // Generate demo video call analysis
+  void _generateSampleData() {
+  // Generate sample video call analysis
     if (widget.contacts.isNotEmpty) {
-      final demoSessions = _generateDemoVideoSessions();
+  final demoSessions = _generateSampleVideoSessions();
       _videoAnalysis = FutureAIService.analyzeVideoCallHealth(
         widget.contacts.first,
         demoSessions,
       );
 
-      // Generate demo location insights
-      final demoMeetings = _generateDemoLocationMeetings();
+  // Generate sample location insights
+  final demoMeetings = _generateSampleLocationMeetings();
       _locationInsights = FutureAIService.analyzeLocationPatterns(
         widget.contacts.first,
         demoMeetings,
       );
 
-      // Generate demo group analysis
-      final demoConversations = _generateDemoGroupConversations();
+  // Generate sample group analysis
+  final demoConversations = _generateSampleGroupConversations();
       _groupAnalysis = FutureAIService.analyzeGroupDynamics(
         widget.contacts.take(4).toList(),
         demoConversations,
@@ -1339,9 +1339,9 @@ class _FutureAIDashboardState extends State<FutureAIDashboard>
     );
   }
 
-  // Demo data generators for testing purposes
+  // Sample data generators for testing purposes
 
-  List<VideoCallSession> _generateDemoVideoSessions() {
+  List<VideoCallSession> _generateSampleVideoSessions() {
     final sessions = <VideoCallSession>[];
     final random = math.Random();
 
@@ -1373,7 +1373,7 @@ class _FutureAIDashboardState extends State<FutureAIDashboard>
     return sessions;
   }
 
-  List<LocationMeeting> _generateDemoLocationMeetings() {
+  List<LocationMeeting> _generateSampleLocationMeetings() {
     final meetings = <LocationMeeting>[];
     final random = math.Random();
     final locations = [
@@ -1398,7 +1398,7 @@ class _FutureAIDashboardState extends State<FutureAIDashboard>
     return meetings;
   }
 
-  List<GroupConversation> _generateDemoGroupConversations() {
+  List<GroupConversation> _generateSampleGroupConversations() {
     final conversations = <GroupConversation>[];
     final random = math.Random();
     final memberIds = widget.contacts.take(4).map((c) => c.id).toList();
@@ -1411,7 +1411,7 @@ class _FutureAIDashboardState extends State<FutureAIDashboard>
       for (int j = 0; j < 5 + random.nextInt(10); j++) {
         messages.add(GroupMessage(
           senderId: memberIds[random.nextInt(memberIds.length)],
-          content: 'Demo message ${j + 1}',
+          content: 'Sample message ${j + 1}',
           timestamp: startTime.add(Duration(minutes: j * 2)),
         ));
       }

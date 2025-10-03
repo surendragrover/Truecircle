@@ -127,7 +127,7 @@ class PrivacyStatusExample extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildStatusRow('Demo Mode', status['is_demo_mode'] ?? false),
+                    _buildStatusRow('Privacy Mode', status['is_privacy_mode'] ?? true),
                     _buildStatusRow('AI Available', status['ai_available'] ?? false),
                     _buildStatusRow('Privacy Service', status['privacy_service_active'] ?? false),
                   ],
@@ -159,22 +159,17 @@ class PrivacyStatusExample extends StatelessWidget {
   Future<Map<String, dynamic>> _getPrivacyStatus() async {
     try {
       final serviceLocator = ServiceLocator.instance;
-      
-      // Privacy Service की जाँच
       final privacyService = serviceLocator.get<PrivacyService>();
-      final isDemoMode = privacyService.isDemoMode();
-      
-      // AI Service की जाँच
+      final isPrivacyMode = privacyService.isPrivacyMode();
       final hasAI = serviceLocator.hasAIService;
-      
       return {
-        'is_demo_mode': isDemoMode,
+        'is_privacy_mode': isPrivacyMode,
         'ai_available': hasAI,
         'privacy_service_active': true,
       };
     } catch (e) {
       return {
-        'is_demo_mode': true,
+        'is_privacy_mode': true,
         'ai_available': false,
         'privacy_service_active': false,
         'error': e.toString(),

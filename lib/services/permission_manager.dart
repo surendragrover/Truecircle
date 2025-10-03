@@ -373,37 +373,37 @@ class PermissionManager {
     };
   }
 
-  // 📚 EDUCATIONAL DEMO CONTACTS - 30 days of data
+  // 📚 EDUCATIONAL SAMPLE CONTACTS - 30 days of data
   static List<ContactInteraction> getSampleContacts() {
     List<ContactInteraction> contacts = [];
 
-    // Generate 30 days of demo data
+    // Generate 30 days of sample data
     for (int i = 0; i < 30; i++) {
       contacts.addAll([
         ContactInteraction(
-          contactId: 'demo_${i}_1',
+          contactId: 'sample_${i}_1',
           timestamp: DateTime.now().subtract(Duration(days: i)),
           type: InteractionType.call,
           duration: 120 + (i * 10),
           initiatedByMe: i % 2 == 0,
           sentimentScore: 0.6 + (i * 0.01),
           metadata: {
-            'contactName': _getDemoName(i % 8),
+            'contactName': _getSampleName(i % 8),
             'contactPhone': '+91-987654${3210 + i}',
-            'demoContact': true
+            'sampleContact': true
           },
         ),
         ContactInteraction(
-          contactId: 'demo_${i}_2',
+          contactId: 'sample_${i}_2',
           timestamp: DateTime.now().subtract(Duration(days: i, hours: 2)),
           type: InteractionType.message,
           duration: 0,
           initiatedByMe: i % 3 != 0,
           sentimentScore: 0.5 + (i * 0.015),
           metadata: {
-            'contactName': _getDemoName((i + 1) % 8),
+            'contactName': _getSampleName((i + 1) % 8),
             'contactPhone': '+91-987654${3220 + i}',
-            'demoContact': true
+            'sampleContact': true
           },
         ),
       ]);
@@ -412,7 +412,7 @@ class PermissionManager {
     return contacts;
   }
 
-  static String _getDemoName(int index) {
+  static String _getSampleName(int index) {
     List<String> names = [
       'राज शर्मा',
       'प्रिया गुप्ता',
@@ -428,13 +428,13 @@ class PermissionManager {
 
   // Check if educational feature is available (always true)
   static bool isFeatureAvailable(String feature) {
-    // All features are available in educational demo mode
+    // All features are available in educational sample mode
     return true;
   }
 
   // Get educational feature status message
   static String getFeatureStatusMessage(String feature) {
-    return 'Educational demo mode - Using sample data for learning';
+    return 'Educational sample mode - Using sample data for learning';
   }
 
   // Educational cultural suggestions

@@ -8,13 +8,18 @@ import 'l10n/app_localizations.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Firebase initialization with fallback strategy
   try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    debugPrint('✅ [main] Firebase initialized successfully');
+    try {
+      await Firebase.initializeApp(); // prefer auto (uses google-services.json / plist)
+      debugPrint('✅ [main] Firebase auto initialized');
+    } catch (autoErr) {
+      debugPrint('ℹ️ [main] Auto init failed ($autoErr) – trying explicit options');
+      await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+      debugPrint('✅ [main] Firebase initialized with explicit options');
+    }
   } catch (e) {
-    debugPrint('❌ [main] Firebase initialization failed: $e');
+    debugPrint('❌ [main] Firebase initialization ultimately failed: $e');
   }
 
   try {
@@ -37,11 +42,11 @@ class TrueCircleApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: Colors.blue,
         brightness: Brightness.light,
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
+          seedColor: Colors.blue,
           brightness: Brightness.light,
         ),
       ),
@@ -49,7 +54,7 @@ class TrueCircleApp extends StatelessWidget {
         brightness: Brightness.dark,
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
+          seedColor: Colors.blue,
           brightness: Brightness.dark,
         ),
       ),

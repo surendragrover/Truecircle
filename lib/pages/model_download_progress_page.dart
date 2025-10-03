@@ -3,6 +3,11 @@ import 'dart:async';
 
 import '../widgets/truecircle_logo.dart';
 import '../services/ai_model_download_service.dart';
+import '../theme/coral_theme.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import '../services/auth_service.dart';
+import '../services/cloud_sync_service.dart';
+import '../services/loyalty_points_service.dart';
 
 /// Model Download Progress Page
 /// यह page number verification के बाद show होती है और user को wait कराती है
@@ -26,6 +31,7 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
   String _platformInfo = '';
   bool _isDownloadComplete = false;
   bool _isHindi = true; // Default to Hindi for Indian users
+  static const String _langPrefKey = 'model_download_language_pref';
   
   // AI Model Download Service
   final AIModelDownloadService _downloadService = AIModelDownloadService();
@@ -55,7 +61,7 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
       curve: Curves.easeInOut,
     ));
     
-    _detectPlatformAndStartDownload();
+    _restoreLanguagePref().then((_) => _detectPlatformAndStartDownload());
   }
   
   @override
@@ -78,6 +84,27 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
     
     _startActualDownload();
   }
+
+  Future<void> _restoreLanguagePref() async {
+    try {
+      final box = Hive.isBoxOpen('truecircle_settings')
+          ? Hive.box('truecircle_settings')
+          : await Hive.openBox('truecircle_settings');
+      final stored = box.get(_langPrefKey) as bool?; // true = Hindi, false = English
+      if (stored != null) {
+        setState(() => _isHindi = stored);
+      }
+    } catch (_) {}
+  }
+
+  Future<void> _persistLanguagePref() async {
+    try {
+      final box = Hive.isBoxOpen('truecircle_settings')
+          ? Hive.box('truecircle_settings')
+          : await Hive.openBox('truecircle_settings');
+      await box.put(_langPrefKey, _isHindi);
+    } catch (_) {}
+  }
   
   void _startActualDownload() async {
     // Check if models are already downloaded
@@ -88,6 +115,8 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
         _downloadProgress = 1.0;
         _isDownloadComplete = true;
       });
+        // Ensure Hive flag + sync
+        _persistModelFlagAndSync();
       _navigateToNextPage();
       return;
     }
@@ -117,12 +146,34 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
           _currentStep = _isHindi ? 'Download पूरी हुई! ✅' : 'Download completed! ✅';
           _isDownloadComplete = true;
         });
+        _persistModelFlagAndSync();
         _navigateToNextPage();
       } else {
         _handleDownloadError('Download failed');
       }
     } catch (e) {
       _handleDownloadError(e.toString());
+    }
+  }
+
+  Future<void> _persistModelFlagAndSync() async {
+    try {
+      final auth = AuthService();
+      final phone = auth.currentPhoneNumber;
+      final box = Hive.isBoxOpen('truecircle_settings')
+          ? Hive.box('truecircle_settings')
+          : await Hive.openBox('truecircle_settings');
+      await box.put('${phone ?? 'global'}_models_downloaded', true);
+
+      // Trigger lightweight cloud sync (no sensitive data)
+      final points = LoyaltyPointsService.instance.totalPoints;
+      CloudSyncService.instance.syncUserState(
+        loyaltyPoints: points,
+        featuresCount: 0,
+        modelsReady: true,
+      );
+    } catch (_) {
+      // Silent fail
     }
   }
 
@@ -180,17 +231,7 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.blue.shade800,
-              Colors.blue.shade600,
-              Colors.blue.shade400,
-            ],
-          ),
-        ),
+        decoration: CoralTheme.background,
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(24.0),
@@ -202,9 +243,12 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                   children: [
                     Switch(
                       value: _isHindi,
-                      onChanged: (value) => setState(() => _isHindi = value),
-                      activeThumbColor: Colors.orange,
-                      activeTrackColor: Colors.orange.shade300,
+                      onChanged: (value) {
+                        setState(() => _isHindi = value);
+                        _persistLanguagePref();
+                      },
+                      activeThumbColor: CoralTheme.dark,
+                      activeTrackColor: CoralTheme.base.withValues(alpha: 0.5),
                     ),
                     Text(
                       _isHindi ? 'हिं' : 'EN',
@@ -271,25 +315,21 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                 Container(
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.1),
-                        blurRadius: 10,
-                        spreadRadius: 2,
-                      ),
-                    ],
+                    color: Colors.white.withValues(alpha: 0.92),
+                    borderRadius: BorderRadius.circular(22),
+                    boxShadow: CoralTheme.glowShadow(0.25),
                   ),
                   child: Column(
                     children: [
                       // Current step
                       Text(
-                        _currentStep,
-                        style: TextStyle(
+                        _currentStep.isEmpty
+                            ? (_isHindi ? 'शुरू कर रहे हैं...' : 'Starting...')
+                            : _currentStep,
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
-                          color: Colors.blue.shade800,
+                          color: Colors.black87,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -297,13 +337,16 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                       const SizedBox(height: 20),
                       
                       // Progress bar
-                      LinearProgressIndicator(
-                        value: _downloadProgress,
-                        backgroundColor: Colors.grey.shade300,
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                          _isDownloadComplete ? Colors.green : Colors.blue.shade600,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: LinearProgressIndicator(
+                          value: _downloadProgress,
+                          backgroundColor: Colors.grey.shade200,
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            _isDownloadComplete ? Colors.green : CoralTheme.dark,
+                          ),
+                          minHeight: 8,
                         ),
-                        minHeight: 8,
                       ),
                       
                       const SizedBox(height: 12),
@@ -314,7 +357,7 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: _isDownloadComplete ? Colors.green : Colors.blue.shade600,
+                          color: _isDownloadComplete ? Colors.green.shade700 : CoralTheme.dark,
                         ),
                       ),
                     ],
@@ -326,16 +369,12 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                 // Info message
                 Container(
                   padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.orange.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.orange.withValues(alpha: 0.3)),
-                  ),
+                  decoration: CoralTheme.translucentCard(alpha: 0.18, radius: BorderRadius.circular(18)),
                   child: Column(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.info_outline,
-                        color: Colors.orange.shade700,
+                        color: Colors.white,
                         size: 32,
                       ),
                       const SizedBox(height: 12),
@@ -343,9 +382,9 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                         _isHindi
                             ? 'यह process सिर्फ एक बार होती है। Models download होने के बाद TrueCircle हमेशा offline काम करेगा।'
                             : 'This process happens only once. After models are downloaded, TrueCircle will work offline forever.',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
-                          color: Colors.orange.shade800,
+                          color: Colors.white,
                           height: 1.4,
                         ),
                         textAlign: TextAlign.center,
@@ -383,29 +422,46 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                     ],
                   ),
                 ] else ...[
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(Icons.check_circle, color: Colors.white, size: 24),
-                        const SizedBox(width: 12),
-                        Text(
-                          _isHindi 
-                              ? 'तैयार! TrueCircle शुरू करें' 
-                              : 'Ready! Starting TrueCircle',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                  Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.green.shade600,
+                          borderRadius: BorderRadius.circular(25),
+                          boxShadow: CoralTheme.glowShadow(0.2),
                         ),
-                      ],
-                    ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.check_circle, color: Colors.white, size: 24),
+                            const SizedBox(width: 12),
+                            Text(
+                              _isHindi 
+                                  ? 'तैयार! आगे बढ़ें' 
+                                  : 'Ready! Continue',
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: CoralTheme.dark,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                        ),
+                        onPressed: () => _navigateToNextPage(),
+                        icon: const Icon(Icons.arrow_forward),
+                        label: Text(_isHindi ? 'जारी रखें' : 'Continue'),
+                      ),
+                    ],
                   ),
                 ],
               ],

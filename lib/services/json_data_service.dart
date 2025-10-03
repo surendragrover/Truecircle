@@ -93,7 +93,7 @@ class JsonDataService {
     final festivalsData = await getFestivalsData();
     final festivals = festivalsData['festivals'] as List<dynamic>;
     
-    // For demo purposes, return first 5 festivals
+  // For sample preview, return first 5 festivals
     // In a real app, you'd filter by actual dates
     return festivals.take(5).map((f) => Map<String, dynamic>.from(f)).toList();
   }
@@ -102,7 +102,7 @@ class JsonDataService {
   Future<List<Map<String, dynamic>>> getRecentRelationshipInsights() async {
     final relationshipData = await getRelationshipData();
     
-    // For demo purposes, return last 5 entries
+  // For sample preview, return last 5 entries
     // In a real app, you'd filter by actual dates
     return relationshipData.take(5).toList();
   }

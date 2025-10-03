@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 
+// Shared month names list for festival lookups (1-index aligned).
+const List<String> monthNames = [
+  '',
+  'January','February','March','April','May','June','July','August','September','October','November','December'
+];
+
 /// Festival Data Service using TrueCircle_Festivals_Data.json
-/// Loads complete festival information from demo data
+/// Loads complete festival information from sample data
 class FestivalDataService extends ChangeNotifier {
   static FestivalDataService? _instance;
   static FestivalDataService get instance =>
@@ -211,6 +217,33 @@ class FestivalDataService extends ChangeNotifier {
     await _loadFestivalsFromJson();
     notifyListeners();
   }
+
+  /// Get festivals for current and next month (mock data)
+  Future<List<Map<String, dynamic>>> getFestivalsForCurrentAndNextMonth() async {
+    await Future.delayed(const Duration(seconds: 1)); // Simulate network delay
+
+    final now = DateTime.now();
+    final currentMonth = now.month;
+    final nextMonth = currentMonth == 12 ? 1 : currentMonth + 1;
+
+    return _festivals
+        .where((festival) =>
+            festival.month.toLowerCase().contains(monthNames[currentMonth].toLowerCase()) ||
+            festival.month.toLowerCase().contains(monthNames[nextMonth].toLowerCase()))
+        .map((festival) => {
+              'id': festival.id,
+              'name': festival.name,
+              'month': festival.month,
+              'date': festival.formattedDate,
+              'type': festival.type,
+              'regions': festival.regions,
+              'description': festival.description,
+              'greetingMessages': festival.greetingMessages,
+              'culturalTips': festival.culturalTips,
+              'conversationStarters': festival.conversationStarters,
+            })
+        .toList();
+  }
 }
 
 /// Festival model class
@@ -414,4 +447,31 @@ enum FestivalRegion {
   andhraPradesh,
   bengal,
   kerala,
+}
+
+class FestivalHighlightInfo {
+  final String name;
+  final DateTime date;
+  final int daysAway;
+  FestivalHighlightInfo(this.name, this.date, this.daysAway);
+}
+
+extension FestivalHighlightExtension on FestivalDataService {
+  Future<FestivalHighlightInfo?> getUpcomingHighlight() async {
+    final data = await getFestivalsForCurrentAndNextMonth();
+    final today = DateTime.now();
+    FestivalHighlightInfo? best;
+    for (final f in data) {
+      try {
+        final date = DateTime.tryParse(f['date'] ?? '') ?? DateTime(today.year, today.month, today.day + 400);
+        final diff = date.difference(today).inDays;
+        if (diff >= 0 && diff <= 10) {
+          if (best == null || diff < best.daysAway) {
+            best = FestivalHighlightInfo(f['name'] ?? 'Festival', date, diff);
+          }
+        }
+      } catch (_) {}
+    }
+    return best;
+  }
 }

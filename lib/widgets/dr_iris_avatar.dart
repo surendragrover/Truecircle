@@ -40,12 +40,12 @@ class DrIrisAvatar extends StatelessWidget {
           ),
           child: ClipOval(
             child: Image.asset(
-              'assets/images/avatar.jpg',
+              'assets/images/avatar.png',
               width: size,
               height: size,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) {
-                // Fallback to emoji avatar if image fails to load
+                // Fallback to neutral gradient + medical emoji if image not found
                 return Container(
                   width: size,
                   height: size,

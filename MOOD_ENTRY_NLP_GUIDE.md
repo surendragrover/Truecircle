@@ -167,7 +167,7 @@ Map<String, dynamic> nlpMetadata; // No personal data stored
 ### **Demo Mode Support:**
 ```dart
 // Generate demo data for privacy mode
-static List<MoodEntry> generateDemoData() {
+static List<MoodEntry> generateSampleData() {
   return [
     MoodEntry(
       userText: 'आज बहुत अच्छा लग रहा है',

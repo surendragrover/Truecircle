@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import '../widgets/truecircle_logo.dart';
 import '../services/json_data_service.dart';
 
+// Consistent turquoise (firozi) palette for all feature pages
+const Color _firoziPrimary = Color(0xFF00BFA5); // main background
+const Color _firoziDark = Color(0xFF00695C);     // app bar / strong containers
+const Color _firoziMid = Color(0xFF007D6C);      // mid tone blocks
+
 class FeaturePage extends StatefulWidget {
   final Map<String, dynamic> feature;
   final bool isHindi;
@@ -108,9 +113,9 @@ class _FeaturePageState extends State<FeaturePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF00BFA5), // Brilliant bluish green background
+      backgroundColor: _firoziPrimary, // Uniform firozi background
       appBar: AppBar(
-        backgroundColor: const Color(0xFF00695C), // Darker teal for AppBar
+        backgroundColor: _firoziDark, // Firozi dark
         elevation: 2,
         title: Row(
           children: [
@@ -160,22 +165,44 @@ class _FeaturePageState extends State<FeaturePage> {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: const Color(0xFF004D40), // Dark teal
+                gradient: const LinearGradient(
+                  colors: [_firoziDark, _firoziMid],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: const Color(0xFF00695C)),
+                border: Border.all(color: _firoziPrimary.withValues(alpha: 0.6)),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 8,
+                    offset: Offset(0,4),
+                  )
+                ],
               ),
               child: Column(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.all(22),
                     decoration: BoxDecoration(
-                      color: (feature['color'] as Color).withValues(alpha: 0.3),
                       shape: BoxShape.circle,
+                      gradient: const LinearGradient(
+                        colors: [_firoziPrimary, _firoziDark],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: _firoziPrimary.withValues(alpha: 0.35),
+                          blurRadius: 12,
+                          offset: const Offset(0,6),
+                        )
+                      ],
                     ),
                     child: Icon(
                       feature['icon'],
                       size: 48,
-                      color: feature['color'],
+                      color: Colors.white,
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -190,7 +217,9 @@ class _FeaturePageState extends State<FeaturePage> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    isHindi ? feature['descriptionHi'] : feature['description'],
+                    isHindi 
+                        ? (feature['descriptionHi'] ?? feature['description'] ?? '')
+                        : (feature['description'] ?? feature['descriptionHi'] ?? ''),
                     style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 16,
@@ -201,8 +230,9 @@ class _FeaturePageState extends State<FeaturePage> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: (feature['color'] as Color).withValues(alpha: 0.3),
+                      color: Colors.white.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.white24),
                     ),
                     child: Text(
                       feature['demoCount'] ?? '30 Days',
@@ -239,8 +269,20 @@ class _FeaturePageState extends State<FeaturePage> {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: const Color(0xFF004D40),
+                gradient: const LinearGradient(
+                  colors: [_firoziMid, _firoziDark],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
                 borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: Colors.white10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.25),
+                    blurRadius: 8,
+                    offset: const Offset(0,4),
+                  )
+                ],
               ),
               child: Column(
                 children: [
@@ -274,8 +316,20 @@ class _FeaturePageState extends State<FeaturePage> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFF004D40),
+        gradient: const LinearGradient(
+          colors: [_firoziMid, _firoziDark],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: Colors.white10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.2),
+            blurRadius: 6,
+            offset: const Offset(0,3),
+          )
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -341,8 +395,13 @@ class _FeaturePageState extends State<FeaturePage> {
                     margin: const EdgeInsets.only(bottom: 12),
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF00695C),
+                      gradient: const LinearGradient(
+                        colors: [_firoziDark, _firoziMid],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
                       borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: Colors.white12),
                     ),
                     child: Row(
                       children: [
@@ -350,12 +409,16 @@ class _FeaturePageState extends State<FeaturePage> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                            color: (feature['color'] as Color).withValues(alpha: 0.3),
+                            gradient: const LinearGradient(
+                              colors: [_firoziPrimary, _firoziDark],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Icon(
                             feature['icon'],
-                            color: feature['color'],
+                            color: Colors.white,
                             size: 20,
                           ),
                         ),

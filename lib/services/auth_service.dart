@@ -65,6 +65,7 @@ class AuthService {
             ? Hive.box('truecircle_settings')
             : await Hive.openBox('truecircle_settings');
         await box.put('current_phone_number', phoneNumber);
+        await box.put('current_phone_verified', true); // persist verified state explicitly
       } catch (_) {}
       debugPrint('Mock phone authentication successful for: $phoneNumber');
       return true;
@@ -86,10 +87,11 @@ class AuthService {
           ? Hive.box('truecircle_settings')
           : await Hive.openBox('truecircle_settings');
       final stored = box.get('current_phone_number') as String?;
+      final wasVerified = box.get('current_phone_verified', defaultValue: false) as bool;
       if (stored != null && stored.isNotEmpty) {
         _currentPhoneNumber = stored;
-        _isPhoneVerified = true; // assume previously verified in mock mode
-        debugPrint('AuthService: restored phone $stored from storage');
+        _isPhoneVerified = wasVerified; // only mark verified if explicit flag present
+        debugPrint('AuthService: restored phone $stored (verified=$wasVerified) from storage');
       }
     } catch (e) {
       debugPrint('AuthService: restoreFromStorage failed: $e');
@@ -111,6 +113,7 @@ class AuthService {
       // Clear current phone number from storage
       final box = await Hive.openBox('truecircle_settings');
       await box.delete('current_phone_number');
+      await box.delete('current_phone_verified');
 
       debugPrint('Complete logout successful');
     } catch (e) {

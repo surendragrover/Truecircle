@@ -3,7 +3,7 @@ import '../services/indian_languages_service.dart';
 import '../widgets/indian_language_selector.dart';
 import '../widgets/truecircle_logo.dart';
 
-/// Indian Languages Demo Page
+/// Indian Languages Sample Page (privacy-friendly showcase)
 /// Shows all supported Indian languages with native scripts
 class IndianLanguagesPage extends StatefulWidget {
   const IndianLanguagesPage({super.key});

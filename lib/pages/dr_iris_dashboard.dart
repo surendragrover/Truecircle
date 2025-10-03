@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'dart:math';
 import '../core/service_locator.dart';
 import '../services/on_device_ai_service.dart';
+import '../services/ai_orchestrator_service.dart';
 // Updated to use Service Locator for platform-agnostic AI service access
 
 // Represents a single message in the chat.
@@ -26,15 +28,24 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
   bool _isLoading = false;
 
   String selectedLanguage = 'English';
+  static const String _chatLangPrefKey = 'dr_iris_language_pref';
   
   // 1. Service Locator से AI Service को access करना - प्लेटफॉर्म की चिंता किए बिना
   OnDeviceAIService? _aiService;
   bool _serviceAvailable = false;
+  // Mood context
+  List<Map<String, dynamic>> _recentMoodEntries = [];
+  String _contextSummary = '';
+  // bool _contextLoaded kept for future loading indicator (removed usage to silence lint)
+  bool _showContext = true;
 
   @override
   void initState() {
     super.initState();
-    _initializeAIService();
+  _restoreLanguage().then((_) async {
+  _initializeAIService();
+    await _loadMoodContext();
+  });
     
     // Initial welcome message from Dr. Iris
     _messages.add(ChatMessage(
@@ -45,15 +56,85 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
   }
 
   // 2. AI Service को initialize करना - प्लेटफॉर्म की चिंता किए बिना
-  void _initializeAIService() {
+  void _initializeAIService() async {
+    // Only initialize real AI service if models downloaded flag exists for current phone user
+    bool modelsReady = false;
+    try {
+      final settings = await Hive.openBox('truecircle_settings');
+      final phone = settings.get('current_phone_number') as String?;
+      if (phone != null) {
+        modelsReady = settings.get('${phone}_models_downloaded', defaultValue: false) as bool;
+      }
+    } catch (_) {}
+
+    if (!modelsReady) {
+      debugPrint('ℹ️ Dr. Iris: Models not ready yet, staying in sample response mode');
+      setState(() { _serviceAvailable = false; });
+      return;
+    }
+
     try {
       _aiService = ServiceLocator.instance.get<OnDeviceAIService>();
       _serviceAvailable = true;
-      debugPrint('✅ Dr. Iris: AI Service initialized successfully');
+      debugPrint('✅ Dr. Iris: AI Service initialized (modelsReady=$modelsReady)');
     } catch (e) {
       _serviceAvailable = false;
-      debugPrint('⚠️ Dr. Iris: AI Service not available, using sample responses: $e');
+      debugPrint('⚠️ Dr. Iris: AI Service fetch failed, fallback to sample responses: $e');
     }
+  }
+
+  Future<void> _loadMoodContext() async {
+    try {
+      final box = await Hive.openBox('truecircle_emotional_entries');
+      final raw = box.get('entries', defaultValue: <dynamic>[]) as List;
+      final entries = raw.cast<Map>().cast<Map<String, dynamic>>();
+      _recentMoodEntries = entries.take(25).toList();
+      if (_recentMoodEntries.isEmpty) {
+  setState(() { _contextSummary=''; });
+        return;
+      }
+      final moods = _recentMoodEntries.map((e)=> (e['mood_score'] ?? 0).toDouble()).where((v)=> v>0).toList();
+      final avgMood = moods.isNotEmpty ? moods.reduce((a,b)=>a+b)/moods.length : 0.0;
+      final stressCounts = <String,int>{};
+      for (final e in _recentMoodEntries) {
+        final s = (e['stress'] ?? 'Unknown').toString();
+        stressCounts[s] = (stressCounts[s] ?? 0) + 1;
+      }
+      final topFeelings = _recentMoodEntries
+          .expand((e)=> (e['feelings']??'').toString().split(',').map((s)=>s.trim()).where((s)=>s.isNotEmpty))
+          .fold<Map<String,int>>({}, (m,f){ m[f]=(m[f]??0)+1; return m; }).entries.toList()
+        ..sort((a,b)=> b.value.compareTo(a.value));
+      final feelingsStr = topFeelings.take(5).map((e)=> e.key).join(', ');
+      final stressStr = stressCounts.entries.map((e)=> '${e.key}:${e.value}').join(', ');
+      _contextSummary = selectedLanguage == 'Hindi'
+        ? 'औसत मूड ${avgMood.toStringAsFixed(1)}/10 • तनाव: $stressStr • प्रमुख भावनाएँ: $feelingsStr'
+        : 'Avg mood ${avgMood.toStringAsFixed(1)}/10 • Stress: $stressStr • Top feelings: $feelingsStr';
+  setState(() {});
+    } catch (e) {
+      debugPrint('DrIris context load failed: $e');
+  setState(() { _contextSummary=''; });
+    }
+  }
+
+  Future<void> _restoreLanguage() async {
+    try {
+      final box = Hive.isBoxOpen('truecircle_settings')
+          ? Hive.box('truecircle_settings')
+          : await Hive.openBox('truecircle_settings');
+      final stored = box.get(_chatLangPrefKey, defaultValue: 'English') as String;
+      if (stored != selectedLanguage) {
+        setState(() => selectedLanguage = stored);
+      }
+    } catch (_) {}
+  }
+
+  Future<void> _persistLanguage() async {
+    try {
+      final box = Hive.isBoxOpen('truecircle_settings')
+          ? Hive.box('truecircle_settings')
+          : await Hive.openBox('truecircle_settings');
+      await box.put(_chatLangPrefKey, selectedLanguage);
+    } catch (_) {}
   }
 
   // Sample data for generating responses with 30-day emotional context.
@@ -108,7 +189,26 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
       // Service Locator से AI service का उपयोग करना (प्लेटफॉर्म की चिंता किए बिना)
       if (_serviceAvailable && _aiService != null) {
         debugPrint('📤 Dr. Iris: Sending message to AI service: $text');
-        response = await _aiService!.generateDrIrisResponse(text);
+    // Merge orchestrator feature insights if available
+    String orchestratorContext = '';
+    try {
+      final insights = AIOrchestratorService().featureInsights.value;
+      if (insights.isNotEmpty) {
+      final parts = insights.entries.map((e) => '${e.key}: ${e.value}').join(' | ');
+      orchestratorContext = parts;
+      }
+    } catch (_) {}
+
+    final combinedContext = [_contextSummary, orchestratorContext]
+      .where((s) => s.trim().isNotEmpty)
+      .join(' • ');
+
+    final contextPrompt = combinedContext.isNotEmpty
+      ? (selectedLanguage == 'Hindi'
+        ? 'एकीकृत संदर्भ: $combinedContext\nउपयोगकर्ता संदेश: $text\nदयालु, सहायक और सांस्कृतिक रूप से संवेदनशील जवाब दें।'
+        : 'Unified context: $combinedContext\nUser message: $text\nProvide a compassionate, culturally aware therapeutic reply.')
+      : text;
+        response = await _aiService!.generateDrIrisResponse(contextPrompt);
         debugPrint('📥 Dr. Iris: Received AI response');
       } else {
         // Fallback to sample responses if AI service not available
@@ -191,28 +291,52 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
     
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/background.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
+        // Use global coral gradient background instead of image
+        decoration: const BoxDecoration(gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFFFFA385), Color(0xFFFF7F50), Color(0xFFFF6233)],
+        )),
         child: Column(
           children: [
             // Fixed header with proper mobile sizing
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.blue.shade800,
-                    Colors.blue.shade600.withValues(alpha: 0.8),
-                  ],
+                  colors: [Color(0xFFFFA385), Color(0xFFFF7F50)],
                 ),
               ),
               child: _buildHeader(),
             ),
+            if (_contextSummary.isNotEmpty && _showContext)
+              Container(
+                margin: const EdgeInsets.fromLTRB(12,6,12,4),
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.white.withValues(alpha: 0.25)),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Icon(Icons.insights, color: Colors.white, size: 18),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        _contextSummary,
+                        style: const TextStyle(color: Colors.white, fontSize: 12, height: 1.3),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () => setState(()=> _showContext=false),
+                      child: const Icon(Icons.close, size: 16, color: Colors.white70),
+                    )
+                  ],
+                ),
+              ),
             // Chat area with proper spacing
             Expanded(
               child: Container(
@@ -357,6 +481,7 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
                 ),
                 style: TextStyle(
                   fontSize: isSmallScreen ? 14 : 16,
+                  color: Colors.black, // ensure typing text appears black for visibility
                 ),
               ),
             ),
@@ -377,176 +502,55 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
   }
 
   // Helper widget to build time slot buttons.
-  Widget _buildTimeSlot(String englishText, String hindiText) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: ElevatedButton(
-        onPressed: () {
-          // TODO: Implement scheduling logic.
-        },
-        child: Text(selectedLanguage == 'English' ? englishText : hindiText),
-      ),
-    );
-  }
 
   Widget _buildHeader() {
     final screenSize = MediaQuery.of(context).size;
     final isSmallScreen = screenSize.width < 600;
-    
-    return SafeArea(
-      child: Container(
-        padding: EdgeInsets.all(isSmallScreen ? 8.0 : 12.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.arrow_back, 
-                    color: Colors.white, 
-                    size: isSmallScreen ? 20 : 24,
-                  ),
-                  onPressed: () => Navigator.pop(context),
-                ),
-                SizedBox(width: isSmallScreen ? 8 : 12),
-                CircleAvatar(
-                  radius: isSmallScreen ? 18 : 22,
-                  backgroundImage: const AssetImage('assets/images/avatar.png'),
-                ),
-                SizedBox(width: isSmallScreen ? 12 : 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        selectedLanguage == 'English'
-                            ? 'Dr. Iris Therapy'
-                            : 'डॉ. आइरिस थेरेपी',
-                        style: TextStyle(
-                          fontSize: isSmallScreen ? 16 : 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        selectedLanguage == 'English'
-                            ? 'AI Therapist • Your Personal Assistant'
-                            : 'एआई चिकित्सक • आपकी व्यक्तिगत सहायक',
-                        style: TextStyle(
-                          fontSize: isSmallScreen ? 12 : 14,
-                          color: Colors.white.withValues(alpha: 0.8),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                // Language toggle button
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: IconButton(
-                    icon: Text(
-                      selectedLanguage == 'English' ? 'हि' : 'EN',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: isSmallScreen ? 12 : 14,
-                      ),
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        selectedLanguage = selectedLanguage == 'English' ? 'Hindi' : 'English';
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-            // Sample data indicator
-            if (!widget.isFullMode)
-              Container(
-                margin: const EdgeInsets.only(top: 12),
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: Colors.orange.withValues(alpha: 0.9),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.info_outline, color: Colors.white, size: 16),
-                    const SizedBox(width: 6),
-                    Text(
-                      selectedLanguage == 'English'
-                          ? 'Analyzing your emotional patterns'
-                          : 'आपके भावनात्मक पैटर्न का विश्लेषण',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: isSmallScreen ? 11 : 12,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            // Conditionally show the scheduling UI only in full mode.
-            if (widget.isFullMode)
-              Padding(
-                padding: EdgeInsets.only(top: isSmallScreen ? 12.0 : 16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                     Text(
-                        selectedLanguage == 'English'
-                            ? 'Choose your preferred session time:'
-                            : 'अपना पसंदीदा सेशन समय चुनें:',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500, 
-                          color: Colors.white,
-                          fontSize: isSmallScreen ? 14 : 16,
-                        ),
-                      ),
-                      SizedBox(height: isSmallScreen ? 12 : 16),
-                      _buildTimeSlot('Morning (9:00 AM - 12:00 PM)',
-                          'सुबह (9:00 AM - 12:00 PM)'),
-                      _buildTimeSlot('Afternoon (1:00 PM - 4:00 PM)',
-                          'दोपहर (1:00 PM - 4:00 PM)'),
-                      _buildTimeSlot(
-                          'Evening (5:00 PM - 8:00 PM)', 'शाम (5:00 PM - 8:00 PM)'),
-                      SizedBox(height: isSmallScreen ? 12 : 16),
-                      Container(
-                        padding: EdgeInsets.all(isSmallScreen ? 10 : 12),
-                        decoration: BoxDecoration(
-                          color: Colors.blue.shade50,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.blue.shade200),
-                        ),
-                        child: Row(
-                          children: [
-                            Icon(Icons.info, color: Colors.blue, size: isSmallScreen ? 18 : 20),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Text(
-                                selectedLanguage == 'English'
-                                    ? 'Full personalized sessions available in full mode.'
-                                    : 'पूर्ण व्यक्तिगत सेशन पूर्ण मोड में उपलब्ध हैं।',
-                                style: TextStyle(
-                                  fontSize: isSmallScreen ? 11 : 12,
-                                  color: Colors.blue.shade700,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                  ],
-                ),
-              ),
-          ],
+    return Row(
+      children: [
+        CircleAvatar(
+          radius: isSmallScreen ? 20 : 24,
+          backgroundColor: Colors.white.withValues(alpha: 0.2),
+          child: const Icon(Icons.psychology_alt, color: Colors.white),
         ),
-       ),
+        SizedBox(width: isSmallScreen ? 12 : 16),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                selectedLanguage == 'English' ? 'Dr. Iris Therapy' : 'डॉ. आइरिस थेरेपी',
+                style: TextStyle(
+                  fontSize: isSmallScreen ? 16 : 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              Text(
+                selectedLanguage == 'English'
+                    ? 'AI Therapist • Emotional Support'
+                    : 'एआई चिकित्सक • भावनात्मक सहायता',
+                style: TextStyle(
+                  fontSize: isSmallScreen ? 11 : 13,
+                  color: Colors.white.withValues(alpha: 0.75),
+                ),
+              ),
+            ],
+          ),
+        ),
+        IconButton(
+          icon: Text(
+            selectedLanguage == 'English' ? 'हि' : 'EN',
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          onPressed: () {
+            setState(() {
+              selectedLanguage = selectedLanguage == 'English' ? 'Hindi' : 'English';
+            });
+            _persistLanguage();
+          },
+        ),
+      ],
     );
   }
 }

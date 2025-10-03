@@ -4,14 +4,14 @@ import '../services/language_service.dart';
 import '../widgets/dr_iris_avatar.dart';
 import '../widgets/truecircle_logo.dart';
 
-class DemoFeaturesShowcase extends StatefulWidget {
-  const DemoFeaturesShowcase({super.key});
+class SampleFeaturesShowcase extends StatefulWidget {
+  const SampleFeaturesShowcase({super.key});
 
   @override
-  State<DemoFeaturesShowcase> createState() => _DemoFeaturesShowcaseState();
+  State<SampleFeaturesShowcase> createState() => _SampleFeaturesShowcaseState();
 }
 
-class _DemoFeaturesShowcaseState extends State<DemoFeaturesShowcase> {
+class _SampleFeaturesShowcaseState extends State<SampleFeaturesShowcase> {
   int _currentIndex = 0;
   bool _isLoading = true;
   Map<String, dynamic> _dashboardData = {};
@@ -19,10 +19,10 @@ class _DemoFeaturesShowcaseState extends State<DemoFeaturesShowcase> {
   @override
   void initState() {
     super.initState();
-    _loadDemoData();
+    _loadSampleData();
   }
 
-  Future<void> _loadDemoData() async {
+  Future<void> _loadSampleData() async {
     try {
       final data = SampleDataService.getComprehensiveDashboardData();
       setState(() {
@@ -30,7 +30,7 @@ class _DemoFeaturesShowcaseState extends State<DemoFeaturesShowcase> {
         _isLoading = false;
       });
     } catch (e) {
-      debugPrint('Error loading demo data: $e');
+  debugPrint('Error loading sample data: $e');
       setState(() {
         _isLoading = false;
       });
@@ -45,7 +45,7 @@ class _DemoFeaturesShowcaseState extends State<DemoFeaturesShowcase> {
           children: [
             DrIrisAvatar(size: 32, isHindi: true),
             SizedBox(width: 12),
-            AutoTranslateText('TrueCircle - Demo Features'),
+            AutoTranslateText('TrueCircle - Sample Features'),
           ],
         ),
         backgroundColor: Colors.blue.shade50,
@@ -120,7 +120,7 @@ class _DemoFeaturesShowcaseState extends State<DemoFeaturesShowcase> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    '30-Day Demo Data Overview',
+                    '30-Day Sample Data Overview',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           color: Colors.blue.shade800,
                           fontWeight: FontWeight.bold,
@@ -662,7 +662,7 @@ class _DemoFeaturesShowcaseState extends State<DemoFeaturesShowcase> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Based on your demo data, I notice strong relationship patterns and consistent emotional well-being. Your mood journal shows cultural festivities positively impact your happiness.',
+                    'Based on your sample data, I notice strong relationship patterns and consistent emotional well-being. Your mood journal shows cultural festivities positively impact your happiness.',
                     style: TextStyle(color: Colors.grey.shade700),
                   ),
                   const SizedBox(height: 12),

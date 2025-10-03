@@ -226,15 +226,23 @@ class TrueCircleLogo extends StatelessWidget {
           ),
         ],
       ),
-      child: Center(
-        child: Text(
-          isHindi ? 'ट्र' : 'TC',
-          style: TextStyle(
-            fontSize: size * 0.3,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+      clipBehavior: Clip.antiAlias,
+      child: Image.asset(
+        'assets/images/truecircle_logo.png',
+        fit: BoxFit.cover,
+        errorBuilder: (context, error, stackTrace) {
+          // Fallback to initials if image not available
+            return Center(
+              child: Text(
+                isHindi ? 'ट्र' : 'TC',
+                style: TextStyle(
+                  fontSize: size * 0.3,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            );
+        },
       ),
     );
   }

@@ -248,12 +248,12 @@ class DailyProgressService {
     );
   }
 
-  /// Get demo data for testing
-  Future<List<DailyProgress>> getDemoData() async {
+  /// Get sample data for testing (replaces getDemoData)
+  Future<List<DailyProgress>> getSampleData() async {
     final demoData = <DailyProgress>[];
     final now = DateTime.now();
 
-    // Generate demo data for last 14 days
+  // Generate sample data for last 14 days
     for (int i = 13; i >= 0; i--) {
       final date = now.subtract(Duration(days: i));
       final progress = DailyProgress(
@@ -266,7 +266,7 @@ class DailyProgressService {
         sleepQuality: 70.0 + (i % 6) * 5,
         conversationCount: 2 + (i % 4),
         exerciseMinutes: 20 + (i % 5) * 10,
-        achievementBadges: _getDemoAchievements(i),
+  achievementBadges: _getSampleAchievements(i),
         dailyReflection: i % 3 == 0
             ? 'आज का दिन अच्छा रहा। मेडिटेशन और exercise से मूड बेहतर लगा।'
             : null,
@@ -277,6 +277,8 @@ class DailyProgressService {
 
     return demoData;
   }
+
+  // Removed deprecated: getDemoData (use getSampleData)
 
   /// Clear all progress data (for testing/reset)
   Future<void> clearAllData() async {
@@ -529,7 +531,7 @@ class DailyProgressService {
 
   Future<double> _calculateGoalCompletion(DateTime date) async {
     // Placeholder - integrate with actual goal tracking system
-    return 65.0 + (date.day % 5) * 7; // Demo calculation
+  return 65.0 + (date.day % 5) * 7; // Sample calculation
   }
 
   Future<int> _getDailyLoginPoints(DateTime date) async {
@@ -539,7 +541,7 @@ class DailyProgressService {
 
   Future<int> _getSleepHours(DateTime date) async {
     // Integration point with Sleep Tracker
-    // For now, return demo data
+  // For now, return sample data
     return 7 + (date.day % 3);
   }
 
@@ -553,7 +555,7 @@ class DailyProgressService {
     return 15 + (date.day % 5) * 3;
   }
 
-  List<String> _getDemoAchievements(int dayOffset) {
+  List<String> _getSampleAchievements(int dayOffset) {
     final achievements = <String>[];
 
     if (dayOffset % 7 == 0) achievements.add('🏆 सप्ताहिक लक्ष्य');

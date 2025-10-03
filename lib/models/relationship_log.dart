@@ -211,13 +211,13 @@ class RelationshipLog extends HiveObject {
     return buffer.toString();
   }
 
-  /// Generate enhanced demo data for privacy mode (Offline AI optimized)
-  static List<RelationshipLog> generateDemoData(String contactId, String contactName) {
+  /// Generate sample data for privacy mode (formerly generateDemoData)
+  static List<RelationshipLog> generateSampleData(String contactId, String contactName) {
     final now = DateTime.now();
     
     return [
       RelationshipLog(
-        id: 'demo_1_$contactId',
+  id: 'sample_1_$contactId',
         contactId: contactId,
         contactName: contactName,
         timestamp: now.subtract(const Duration(hours: 2)),
@@ -233,12 +233,13 @@ class RelationshipLog extends HiveObject {
         intimacyScore: 0.8,
         keywords: ['love', 'miss', 'excited'],
         isPrivacyMode: true,
-        metadata: {'demo': true, 'category': 'affectionate'},
+  // 'demo' flag migrated to 'sample' to align with Privacy Mode terminology
+  metadata: {'sample': true, 'category': 'affectionate'},
         communicationFrequency: 4.2, // 4.2 interactions per day
         currentPhase: RelationshipPhase.deepening,
       ),
       RelationshipLog(
-        id: 'demo_2_$contactId',
+  id: 'sample_2_$contactId',
         contactId: contactId,
         contactName: contactName,
         timestamp: now.subtract(const Duration(hours: 6)),
@@ -254,12 +255,13 @@ class RelationshipLog extends HiveObject {
         intimacyScore: 0.6,
         keywords: ['plans', 'meeting', 'dinner'],
         isPrivacyMode: true,
-        metadata: {'demo': true, 'category': 'planning'},
+  // Updated legacy 'demo' -> 'sample'
+  metadata: {'sample': true, 'category': 'planning'},
         communicationFrequency: 4.2,
         currentPhase: RelationshipPhase.stable,
       ),
       RelationshipLog(
-        id: 'demo_3_$contactId',
+  id: 'sample_3_$contactId',
         contactId: contactId,
         contactName: contactName,
         timestamp: now.subtract(const Duration(days: 1)),
@@ -275,12 +277,17 @@ class RelationshipLog extends HiveObject {
         intimacyScore: 0.7,
         keywords: ['worried', 'safe', 'care'],
         isPrivacyMode: true,
-        metadata: {'demo': true, 'category': 'caring'},
+  metadata: {'sample': true, 'category': 'caring'},
         communicationFrequency: 4.2,
         currentPhase: RelationshipPhase.deepening,
       ),
     ];
   }
+
+  /// Deprecated: use generateSampleData
+  @Deprecated('Use generateSampleData instead')
+  static List<RelationshipLog> generateDemoData(String contactId, String contactName) =>
+      generateSampleData(contactId, contactName);
 
   @override
   String toString() {

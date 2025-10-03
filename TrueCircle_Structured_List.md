@@ -55,7 +55,7 @@
    - **Hive Local Database** - Primary privacy-focused storage
    - **Firebase Cloud Firestore** - Optional cloud backup
    - **SharedPreferences** - App settings and preferences
-   - **Demo Data (JSON)** - Sample data for testing
+    - **Sample Data (JSON)** - Local bundled data for testing (folder: `Demo_data/`)
 
 ### 🧠 AI & INTELLIGENCE SERVICES
 
@@ -131,7 +131,7 @@
     - `images/avatar.png` - Default user avatar
     - `icons/` - Application icons for all platforms
 
-17. **Demo & Test Data**
+17. **Sample & Test Data**
     - `Demo_data/TrueCircle_Emotional_Checkin_Demo_Data.json`
     - `Demo_data/Mood_Journal_Demo_Data.json`
     - `Demo_data/Sleep_Tracker.json`

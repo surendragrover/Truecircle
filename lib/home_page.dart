@@ -1,14 +1,20 @@
 
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'pages/dr_iris_dashboard.dart';
 import 'pages/gift_marketplace_page.dart';
 import 'pages/breathing_exercises_page.dart';
 import 'pages/sleep_tracker_page.dart';
 import 'pages/mood_journal_page.dart';
+import 'pages/emotional_check_in_entry_page.dart';
+import 'widgets/permission_explanation_dialog.dart';
+import 'package:truecircle/services/ai_orchestrator_service.dart';
 import 'pages/event_budget_page.dart';
 import 'pages/how_truecircle_works_page.dart';
 import 'pages/feature_page.dart';
-import 'pages/progress_tracker_page.dart';
+import 'theme/coral_theme.dart';
+import 'pages/cbt_center_page.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,6 +27,30 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   String selectedLanguage = 'English';
   bool _isFullFunctionalMode = false; // Default to Sample mode
+  static const String _homeLangPrefKey = 'home_language_pref';
+
+  @override
+  void initState() {
+    super.initState();
+    _restoreLanguage();
+  }
+
+  Future<void> _restoreLanguage() async {
+    try {
+      final box = await Hive.openBox('truecircle_settings');
+      final lang = box.get(_homeLangPrefKey, defaultValue: 'English') as String;
+      if (lang != selectedLanguage) {
+        setState(() => selectedLanguage = lang);
+      }
+    } catch (_) {}
+  }
+
+  Future<void> _persistLanguage() async {
+    try {
+      final box = await Hive.openBox('truecircle_settings');
+      await box.put(_homeLangPrefKey, selectedLanguage);
+    } catch (_) {}
+  }
 
   // Feature data for the dashboard
   final List<Map<String, dynamic>> _features = [
@@ -114,38 +144,29 @@ class _HomePageState extends State<HomePage> {
       'color': Colors.red,
       'action': 'gift_marketplace',
     },
+    {
+      'title': 'CBT Center',
+      'titleHi': 'सीबीटी केंद्र',
+      'subtitle': 'Assess • Reframe • Cope',
+      'subtitleHi': 'जांच • रिफ्रेम • सामना',
+      'icon': Icons.health_and_safety,
+      'color': Colors.teal,
+      'action': 'cbt_center',
+    },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/background.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.blue.withAlpha(180),
-                Colors.purple.withAlpha(180),
-              ],
-            ),
-          ),
-          child: SafeArea(
-            child: Column(
-              children: [
-                _buildHeader(),
-                Expanded(
-                  child: _buildDashboard(),
-                ),
-              ],
-            ),
+        decoration: CoralTheme.background,
+        child: SafeArea(
+          child: Column(
+            children: [
+              _buildHeader(),
+              Expanded(child: _buildDashboard()),
+            ],
           ),
         ),
       ),
@@ -164,7 +185,7 @@ class _HomePageState extends State<HomePage> {
           selectedLanguage == 'English' ? 'How it Works' : 'कैसे काम करता है',
           style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Colors.orange,
+        backgroundColor: CoralTheme.dark,
         elevation: 8,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -182,16 +203,21 @@ class _HomePageState extends State<HomePage> {
             children: [
               Text(
                 selectedLanguage == 'English' ? 'Welcome Back' : 'फिर से स्वागत है',
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold),
+                style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              Text(
-                selectedLanguage == 'English'
-                    ? 'How are you feeling today?'
-                    : 'आज आप कैसा महसूस कर रहे हैं?',
-                style: const TextStyle(color: Colors.white70, fontSize: 16),
+              ValueListenableBuilder<Map<String,String>>(
+                valueListenable: AIOrchestratorService().featureInsights,
+                builder: (context, insights, _) {
+                  final moodLine = insights['mood'];
+                  return Text(
+                    moodLine == null || moodLine.isEmpty
+                        ? (selectedLanguage == 'English'
+                            ? 'How are you feeling today?'
+                            : 'आज आप कैसा महसूस कर रहे हैं?')
+                        : moodLine,
+                    style: const TextStyle(color: Colors.white70, fontSize: 16),
+                  );
+                },
               ),
             ],
           ),
@@ -216,6 +242,19 @@ class _HomePageState extends State<HomePage> {
                 onPressed: _showSettingsDialog,
               ),
               // Language and Mode switch can be added here if needed
+              IconButton(
+                icon: Text(
+                  selectedLanguage == 'English' ? 'हि' : 'EN',
+                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+                onPressed: () {
+                  setState(() {
+                    selectedLanguage = selectedLanguage == 'English' ? 'Hindi' : 'English';
+                  });
+                  _persistLanguage();
+                },
+                tooltip: selectedLanguage == 'English' ? 'Switch to Hindi' : 'अंग्रेजी पर स्विच करें',
+              ),
             ],
           )
         ],
@@ -253,9 +292,9 @@ class _HomePageState extends State<HomePage> {
         !_isFullFunctionalMode;
 
     return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      color: isLocked ? Colors.grey.shade200 : Colors.white,
+      elevation: 6,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      color: isLocked ? Colors.white.withValues(alpha: 0.55) : Colors.white.withValues(alpha: 0.90),
       child: InkWell(
         onTap: () => _handleFeatureAction(feature['action']),
         borderRadius: BorderRadius.circular(16),
@@ -339,10 +378,23 @@ class _HomePageState extends State<HomePage> {
           Switch(
             value: _isFullFunctionalMode,
             onChanged: (value) {
-              setState(() {
-                _isFullFunctionalMode = value;
-              });
-              _showModeChangeSnackBar(value);
+              if (value) {
+                // Show permission explanation before enabling
+                showDialog(
+                  context: context,
+                  builder: (ctx) => PermissionExplanationDialog(
+                    isHindi: selectedLanguage == 'Hindi',
+                    onOpenSettings: () {
+                      // Placeholder: In real implementation navigate to settings/permission page
+                      setState(() { _isFullFunctionalMode = true; });
+                      _showModeChangeSnackBar(true);
+                    },
+                  ),
+                );
+              } else {
+                setState(() { _isFullFunctionalMode = false; });
+                _showModeChangeSnackBar(false);
+              }
             },
             activeThumbColor: Colors.green,
             inactiveThumbColor: Colors.orange,
@@ -417,7 +469,10 @@ class _HomePageState extends State<HomePage> {
 
     switch (action) {
       case 'emotional_checkin':
-        _showComingSoon(action);
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const EmotionalCheckInEntryPage()),
+        );
         break;
       case 'mood_journal':
         Navigator.push(
@@ -438,16 +493,19 @@ class _HomePageState extends State<HomePage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const FeaturePage(
-              feature: {
+            builder: (context) => FeaturePage(
+              feature: const {
                 'title': 'Meditation Guide',
                 'titleHi': 'ध्यान गाइड',
                 'subtitle': 'Daily meditation practices',
                 'subtitleHi': 'दैनिक ध्यान अभ्यास',
+                'description': 'Guided mindfulness, breath focus, mantra and calm body scan sessions to improve emotional balance.',
+                'descriptionHi': 'मार्गदर्शित माइंडफुलनेस, श्वास पर ध्यान, मंत्र और शांत बॉडी स्कैन सत्र भावनात्मक संतुलन के लिए।',
+                'demoCount': '30 Sessions',
                 'icon': Icons.self_improvement,
                 'color': Colors.green,
               },
-              isHindi: false,
+              isHindi: selectedLanguage == 'Hindi',
             ),
           ),
         );
@@ -476,13 +534,23 @@ class _HomePageState extends State<HomePage> {
           MaterialPageRoute(builder: (context) => const GiftMarketplacePage()),
         );
         break;
+      case 'cbt_center':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const CBTCenterPage()),
+        );
+        break;
       case 'progress':
+        // TODO: Fix the ProgressTrackerPage hang issue. For now, showing a coming soon message.
+        _showComingSoon('Progress Tracker');
+        /*
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => const ProgressTrackerPage(),
           ),
         );
+        */
         break;
       default:
         _showComingSoon(action);
@@ -557,6 +625,7 @@ class _HomePageState extends State<HomePage> {
                       selectedLanguage = newValue;
                       Navigator.pop(context);
                     });
+                    _persistLanguage();
                   }
                 },
                 items: <String>['English', 'Hindi']

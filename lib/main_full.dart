@@ -5,6 +5,7 @@ import 'models/emotion_entry.dart';
 import 'models/contact.dart';
 import 'models/contact_interaction.dart';
 import 'models/privacy_settings.dart';
+import 'models/cbt_models.dart';
 import 'l10n/app_localizations.dart';
 
 void main() async {
@@ -36,12 +37,20 @@ void main() async {
     if (!Hive.isAdapterRegistered(6)) {
       Hive.registerAdapter(PrivacySettingsAdapter());
     }
+    if (!Hive.isAdapterRegistered(40)) Hive.registerAdapter(CBTAssessmentResultAdapter());
+    if (!Hive.isAdapterRegistered(41)) Hive.registerAdapter(CBTThoughtRecordAdapter());
+    if (!Hive.isAdapterRegistered(42)) Hive.registerAdapter(CopingCardAdapter());
+    if (!Hive.isAdapterRegistered(43)) Hive.registerAdapter(CBTMicroLessonProgressAdapter());
 
     // Open boxes with comprehensive error recovery
     await _openHiveBoxSafely<EmotionEntry>('emotion_entries');
     await _openHiveBoxSafely<Contact>('contacts');
     await _openHiveBoxSafely<ContactInteraction>('contact_interactions');
     await _openHiveBoxSafely<PrivacySettings>('privacy_settings');
+  await _openHiveBoxSafely<CBTAssessmentResult>('cbt_assessments');
+  await _openHiveBoxSafely<CBTThoughtRecord>('cbt_thought_records');
+  await _openHiveBoxSafely<CopingCard>('cbt_coping_cards');
+  await _openHiveBoxSafely<CBTMicroLessonProgress>('cbt_lessons');
 
     debugPrint('✅ Hive initialized successfully');
   } catch (e) {

@@ -1,12 +1,12 @@
-# Privacy and Demo Mode Implementation Guide
+# Privacy Mode Implementation Guide (formerly Demo Mode)
 
-This document explains the privacy-first architecture and demo mode implementation for TrueCircle, ensuring user data protection while providing AI functionality.
+This document explains the privacy-first architecture and Privacy Mode implementation for TrueCircle. All previous references to "Demo Mode" now map to Privacy Mode; deprecated aliases exist temporarily in code.
 
 ## Overview
 
 TrueCircle implements a comprehensive privacy-first approach with the following key principles:
 
-1. **Demo Mode by Default**: App operates in privacy mode using sample data
+1. **Privacy Mode by Default**: App operates using only offline sample data
 2. **Explicit Consent**: Real data access requires explicit user consent
 3. **On-Device Processing**: All AI processing happens locally on the device
 4. **Minimal Data Access**: Only essential data is accessed when permitted
@@ -15,41 +15,48 @@ TrueCircle implements a comprehensive privacy-first approach with the following 
 ## Architecture Components
 
 ### 1. PrivacyModeManager
-Central manager for privacy state and consent management.
+Central manager for privacy state and consent management (legacy `_isDemoMode` fully replaced by `_isPrivacyMode`).
 
 ```dart
 class PrivacyModeManager {
-  bool _isDemoMode = true; // Always start in demo mode
+  bool _isPrivacyMode = true; // Always start in Privacy Mode
   bool _hasUserConsentForAI = false;
-  
-  bool get isDemoMode => _isDemoMode;
+
+  // Deprecated alias
+  // Removed deprecated isDemoMode alias
+  bool get isPrivacyMode => _isPrivacyMode;
   bool get canUseAI => _hasUserConsentForAI;
 }
 ```
 
 **Key Features:**
-- Demo mode enforcement by default
+- Privacy Mode enforcement by default
 - Granular consent management
 - Privacy status tracking
 - User-friendly messaging
 
 ### 2. Enhanced PrivacyService
-Manages sensitive data access with privacy controls.
+Manages sensitive data access with privacy controls. New preferred API: `isPrivacyMode()`, `getSample*Data()`.
 
 ```dart
 class PrivacyService {
   final PrivacyModeManager _privacyManager = PrivacyModeManager();
-  
-  bool isDemoMode() => _privacyManager.isDemoMode;
-  
-  List<Map<String, dynamic>> getDemoContactsData() {
-    // Returns sample data for privacy mode
+
+  bool isPrivacyMode() => _privacyManager.isPrivacyMode;
+  // Deprecated alias
+  // Use the canonical API
+  bool isPrivacyMode() => _privacyManager.isPrivacyMode;
+
+  List<Map<String, dynamic>> getSampleContactsData() {
+    // Returns sample contact data for Privacy Mode
   }
+  // Deprecated wrapper
+  List<Map<String, dynamic>> getDemoContactsData() => getSampleContactsData();
 }
 ```
 
 **Key Features:**
-- Demo data provision
+- Sample data provision
 - Privacy-compliant data access
 - Consent validation
 - Secure data handling
@@ -78,9 +85,9 @@ class PrivacyAwareAIServiceFactory {
 
 ## Privacy Mode Operation
 
-### Demo Mode Features
+### Privacy Mode Features
 
-#### 1. AI Functionality in Demo Mode
+#### 1. AI Functionality in Privacy Mode
 ```dart
 @override
 Future<String> generateDrIrisResponse(String prompt) async {
@@ -92,13 +99,13 @@ Future<String> generateDrIrisResponse(String prompt) async {
 }
 ```
 
-**Allowed in Demo Mode:**
+**Allowed in Privacy Mode:**
 - Dr. Iris emotional support (privacy-focused)
 - Basic sentiment analysis (keyword-based)
 - General relationship tips
 - Cultural festival messages
 
-**Restricted in Demo Mode:**
+**Restricted in Privacy Mode:**
 - Real contact analysis
 - Actual call log processing
 - Personal message analysis
@@ -106,13 +113,13 @@ Future<String> generateDrIrisResponse(String prompt) async {
 
 #### 2. Sample Data Usage
 ```dart
-List<Map<String, dynamic>> getDemoContactsData() {
+List<Map<String, dynamic>> getSampleContactsData() {
   return [
     {
-      'id': 'demo_1',
+      'id': 'sample_1',
       'name': 'Alex Johnson',
       'relationship': 'Friend',
-      'isDemo': true,
+      'isSample': true,
       'privacyNote': 'This is sample data used in Privacy Mode',
     },
     // More sample contacts...
@@ -131,8 +138,8 @@ List<Map<String, dynamic>> getDemoContactsData() {
 #### AI Access Validation
 ```dart
 bool validateAIAccess(String operation) {
-  // In demo mode, only Dr. Iris responses are allowed
-  if (isDemoMode()) {
+  // In Privacy Mode, only Dr. Iris responses are allowed
+  if (isPrivacyMode()) {
     return operation.toLowerCase() == 'generatedrirισresponse' || 
            operation.toLowerCase() == 'dr_iris' ||
            operation.toLowerCase() == 'ai_chat';
@@ -147,9 +154,9 @@ bool validateAIAccess(String operation) {
 Future<List<Map<String, dynamic>>> getPrivacyCompliantData(String dataType) async {
   switch (dataType.toLowerCase()) {
     case 'contacts':
-      return isDemoMode() ? getDemoContactsData() : getDemoContactsData(); // Always demo for privacy
+  return isPrivacyMode() ? getSampleContactsData() : getSampleContactsData(); // Always sample for privacy
     case 'calls':
-      return isDemoMode() ? getDemoCallLogsData() : getDemoCallLogsData();
+  return isPrivacyMode() ? getSampleCallLogsData() : getSampleCallLogsData();
     default:
       return [];
   }
@@ -179,9 +186,9 @@ class TrueCircleApp extends StatelessWidget {
     final privacyService = PrivacyService();
     await privacyService.init();
     
-    // Ensure demo mode is active by default
+  // Ensure Privacy Mode is active by default
     final privacyManager = PrivacyModeManager();
-    // Demo mode is enforced by default
+  // Privacy Mode is enforced by default
   }
 }
 ```
@@ -230,13 +237,13 @@ class PrivacyStatusWidget extends StatelessWidget {
         if (!snapshot.hasData) return CircularProgressIndicator();
         
         final status = snapshot.data!;
-        final isDemoMode = status['is_demo_mode'] ?? true;
+  final isPrivacyMode = status['privacy_mode_active'] ?? true; // legacy key is_demo_mode
         
         return Card(
           child: ListTile(
             leading: Icon(
-              isDemoMode ? Icons.privacy_tip : Icons.security,
-              color: isDemoMode ? Colors.green : Colors.blue,
+              isPrivacyMode ? Icons.privacy_tip : Icons.security,
+              color: isPrivacyMode ? Colors.green : Colors.blue,
             ),
             title: Text(status['privacy_mode'] ?? 'Privacy Mode'),
             subtitle: Text(status['privacy_status_message'] ?? ''),
@@ -260,7 +267,7 @@ class PrivacyStatusWidget extends StatelessWidget {
 ### 1. Privacy Mode Indicators
 
 **Visual Indicators:**
-- Green privacy icons for demo mode
+- Green privacy icons for Privacy Mode
 - "(Privacy Mode)" text in AI responses
 - Clear sample data labels
 - Privacy status cards in UI
@@ -317,7 +324,7 @@ AlertDialog(
 **Privacy Education:**
 - Clear explanations of data usage
 - Benefits of on-device processing
-- Comparison between demo and full modes
+- Comparison between Privacy Mode and full access mode
 - Privacy guarantees and commitments
 
 ## Security Considerations
@@ -359,9 +366,9 @@ testWidgets('Dr Iris works in privacy mode', (WidgetTester tester) async {
 ```dart
 test('AI operations require proper consent', () async {
   final privacyService = PrivacyService();
-  
-  // Test demo mode restrictions
-  expect(privacyService.isDemoMode(), isTrue);
+
+  // Test privacy mode restrictions
+  expect(privacyService.isPrivacyMode(), isTrue);
   expect(privacyService.validateAIAccess('dr_iris'), isTrue);
   expect(privacyService.validateAIAccess('advanced_analysis'), isFalse);
 });

@@ -63,7 +63,7 @@ TrueCircle is an emotional-AI Flutter app that analyzes relationship health usin
 │  ├── Local Storage (Hive - Primary)                       │
 │  ├── Cloud Storage (Firebase - Optional)                  │
 │  ├── API Integration (HuggingFace)                        │
-│  └── Demo Data (JSON Files)                               │
+│  └── Sample Data (JSON Files in `Demo_data/`)              │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -423,7 +423,7 @@ Data Tier 3: Content Analysis (Explicit Opt-in)
 #### Storage Distribution
 - **Local Primary (Hive)**: 100% of sensitive data
 - **Cloud Backup (Firebase)**: User-selected data only
-- **Demo Data**: Sample JSON files for testing
+- **Sample Data**: Bundled JSON files for offline testing (folder: `Demo_data/`)
 - **Temporary**: In-memory processing only
 
 ---

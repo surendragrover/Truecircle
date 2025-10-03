@@ -3,7 +3,7 @@ import '../services/indian_languages_service.dart';
 import '../services/translation_api_service.dart';
 import '../widgets/indian_language_selector.dart';
 
-/// Complete translation demo page
+/// Complete translation sample page
 /// Shows real translation API integration with Indian languages
 class TranslationSamplePage extends StatefulWidget {
   const TranslationSamplePage({super.key});
@@ -48,7 +48,7 @@ class _TranslationSamplePageState extends State<TranslationSamplePage>
     // Initialize translation service
     _initializeTranslation();
 
-    // Set some demo text
+  // Set some sample text
     _sourceController.text = "Hello, welcome to TrueCircle!";
   }
 

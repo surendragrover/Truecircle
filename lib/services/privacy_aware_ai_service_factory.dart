@@ -6,14 +6,14 @@ import 'privacy_service.dart';
 import 'privacy_mode_manager.dart';
 
 /// Privacy-Aware AI Service Factory for TrueCircle
-/// 
-/// This factory creates AI services with built-in privacy and demo mode controls.
-/// It ensures that AI functionality respects user privacy settings and operates
-/// appropriately in demo mode.
+///
+/// Creates AI services with built-in privacy + sample mode controls.
+/// Ensures AI functionality respects user privacy settings and provides
+/// safe, reduced-scope behavior in sample (privacy) mode.
 /// 
 /// Key Features:
 /// - Privacy-first AI service creation
-/// - Demo mode enforcement
+/// - Sample mode enforcement
 /// - Platform-specific AI integration
 /// - Consent validation before AI operations
 class PrivacyAwareAIServiceFactory {
@@ -38,7 +38,7 @@ class PrivacyAwareAIServiceFactory {
       'isAndroid': Platform.isAndroid,
       'isIOS': Platform.isIOS,
       'aiFramework': Platform.isAndroid ? 'Gemini Nano' : Platform.isIOS ? 'Core ML' : 'Mock',
-      'privacyMode': _privacyManager.isDemoMode ? 'Privacy Mode' : 'Full Access Mode',
+  'privacyMode': _privacyManager.isPrivacyMode ? 'Privacy Mode' : 'Full Access Mode',
       'aiConsent': _privacyManager.canUseAI,
     };
   }
@@ -64,7 +64,7 @@ class PrivacyAwareAndroidAIService implements OnDeviceAIService {
 
   @override
   Future<String> generateDrIrisResponse(String prompt) async {
-    // Dr. Iris is allowed in demo mode as it's privacy-focused emotional support
+  // Dr. Iris allowed in sample mode (on-device emotional support)
     if (!_privacyService.validateAIAccess('dr_iris')) {
       return "Dr. Iris (Privacy Mode): I'm here to support you. All our conversations happen privately on your device.";
     }
@@ -78,8 +78,8 @@ class PrivacyAwareAndroidAIService implements OnDeviceAIService {
 
   @override
   Future<String> analyzeSentimentAndStress(String textEntry) async {
-    // In demo mode, only basic analysis is allowed
-    if (_privacyService.isDemoMode()) {
+  // In sample mode, only basic analysis is allowed
+  if (_privacyService.isPrivacyMode()) {
       return _performBasicSentimentAnalysis(textEntry);
     }
 
@@ -92,8 +92,8 @@ class PrivacyAwareAndroidAIService implements OnDeviceAIService {
 
   @override
   Future<String> generateRelationshipTip(List<String> communicationLogSummary) async {
-    // In demo mode, provide general relationship advice
-    if (_privacyService.isDemoMode()) {
+  // In sample mode, provide general relationship advice
+  if (_privacyService.isPrivacyMode()) {
       return _generatePrivacyFriendlyRelationshipTip();
     }
 
@@ -106,8 +106,8 @@ class PrivacyAwareAndroidAIService implements OnDeviceAIService {
 
   @override
   Future<String> draftFestivalMessage(String contactName, String relationType) async {
-    // Festival messages are allowed in demo mode as they're cultural and positive
-    if (_privacyService.isDemoMode()) {
+  // Festival messages allowed in sample mode (cultural + positive)
+  if (_privacyService.isPrivacyMode()) {
       return _generatePrivacyFriendlyFestivalMessage(contactName, relationType);
     }
 
@@ -201,7 +201,7 @@ class PrivacyAwareIOSAIService implements OnDeviceAIService {
 
   @override
   Future<String> analyzeSentimentAndStress(String textEntry) async {
-    if (_privacyService.isDemoMode()) {
+  if (_privacyService.isPrivacyMode()) {
       return _performBasicSentimentAnalysis(textEntry);
     }
 
@@ -214,7 +214,7 @@ class PrivacyAwareIOSAIService implements OnDeviceAIService {
 
   @override
   Future<String> generateRelationshipTip(List<String> communicationLogSummary) async {
-    if (_privacyService.isDemoMode()) {
+  if (_privacyService.isPrivacyMode()) {
       return _generatePrivacyFriendlyRelationshipTip();
     }
 
@@ -227,7 +227,7 @@ class PrivacyAwareIOSAIService implements OnDeviceAIService {
 
   @override
   Future<String> draftFestivalMessage(String contactName, String relationType) async {
-    if (_privacyService.isDemoMode()) {
+  if (_privacyService.isPrivacyMode()) {
       return _generatePrivacyFriendlyFestivalMessage(contactName, relationType);
     }
 

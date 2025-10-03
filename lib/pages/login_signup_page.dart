@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
-import 'gift_marketplace_page.dart';
+import 'how_truecircle_works_page.dart';
 import '../widgets/truecircle_logo.dart';
 
 class LoginSignupPage extends StatefulWidget {
@@ -40,7 +40,7 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
     try {
       // Here you would implement actual OTP sending
-      // For now, we'll simulate OTP sending with demo OTP
+  // For now, we'll simulate OTP sending with sample OTP
       await Future.delayed(const Duration(seconds: 2));
       setState(() {
         _isOtpSent = true;
@@ -90,8 +90,9 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
           debugPrint('Debug: Phone verified successfully');
           // Safer navigation with context check
           try {
+            // After successful login navigate to How TrueCircle Works page so user can proceed with model download flow.
             Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => const GiftMarketplacePage()),
+              MaterialPageRoute(builder: (context) => const HowTrueCircleWorksPage()),
               (route) => false,
             );
           } catch (navError) {
@@ -128,11 +129,26 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
 
   @override
   Widget build(BuildContext context) {
+  // Coral palette + gradient stops (constants in gradient directly; keep only those referenced)
+  const Color coralDark = Color(0xFFFF6233); // deeper accent for buttons/shadows
+
     return Scaffold(
-      backgroundColor: const Color(0xFF00BFA5), // Brilliant bluish green background
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF00695C), // Darker teal for AppBar
+        backgroundColor: Colors.transparent,
         elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFFFFA385), // light coral
+                Color(0xFFFF7F50), // base coral
+              ],
+            ),
+          ),
+        ),
         actions: [
           // Language Toggle Button
           Container(
@@ -149,21 +165,30 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
               ),
               label: Text(
                 _isHindi ? 'हिंदी' : 'English',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
             ),
           ),
         ],
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFFFFA385), // lighter coral at top
+              Color(0xFFFF7F50), // base coral
+              Color(0xFFFF6233), // deeper coral near bottom
+            ],
+          ),
+        ),
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(24.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -176,14 +201,15 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                       height: 150,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.white.withValues(alpha: 0.9),
+                        color: Colors.white.withValues(alpha: 0.95),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.3),
-                            blurRadius: 15,
-                            offset: const Offset(0, 5),
+                            color: coralDark.withValues(alpha: 0.35),
+                            blurRadius: 18,
+                            offset: const Offset(0, 6),
                           ),
                         ],
+                        border: Border.all(color: coralDark.withValues(alpha: 0.4), width: 2),
                       ),
                       child: ClipOval(
                         child: TrueCircleLogo(
@@ -250,6 +276,8 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                         borderRadius: BorderRadius.all(Radius.circular(12)),
                         borderSide: BorderSide(color: Colors.white, width: 2),
                       ),
+                      filled: true,
+                      fillColor: Colors.white.withValues(alpha: 0.05),
                     ),
                     validator: (value) {
                       if (value!.isEmpty || value == '+91 ') {
@@ -284,7 +312,15 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                     height: 80,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white.withValues(alpha: 0.9),
+                      color: Colors.white.withValues(alpha: 0.95),
+                      border: Border.all(color: coralDark.withValues(alpha: 0.35), width: 1.5),
+                      boxShadow: [
+                        BoxShadow(
+                          color: coralDark.withValues(alpha: 0.25),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
                     ),
                     child: ClipOval(
                       child: TrueCircleLogo(
@@ -328,6 +364,8 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                         borderRadius: BorderRadius.all(Radius.circular(12)),
                         borderSide: BorderSide(color: Colors.white, width: 2),
                       ),
+                      filled: true,
+                      fillColor: Colors.white.withValues(alpha: 0.05),
                     ),
                     onChanged: (value) => _otp = value,
                   ),
@@ -368,17 +406,18 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                     : ElevatedButton(
                         onPressed: _isOtpSent ? _verifyOtp : _sendOtp,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.deepPurple,
+                          backgroundColor: coralDark,
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(14),
                           ),
+                          elevation: 3,
                         ),
                         child: Text(
-                          _isOtpSent 
+                          _isOtpSent
                               ? (_isHindi ? 'OTP सत्यापित करें' : 'Verify OTP')
                               : (_isHindi ? 'OTP भेजें' : 'Send OTP'),
-                          style: const TextStyle(fontSize: 18, color: Colors.white),
+                          style: const TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w600, letterSpacing: 0.5),
                         ),
                       ),
                 const SizedBox(height: 16),
@@ -407,11 +446,12 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
                     ],
                   ),
               ],
-            ),
-          ),
-        ),
-      ),
-    );
+            ), // end Column
+          ), // end Form
+        ), // end SingleChildScrollView
+      ), // end Center
+    ), // end Container (body)
+    ); // end Scaffold
   }
 
   @override

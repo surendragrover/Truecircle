@@ -251,12 +251,12 @@ class MoodEntry extends HiveObject {
     return buffer.toString();
   }
 
-  /// Generate demo data for privacy mode
-  static List<MoodEntry> generateDemoData() {
+  /// Generate sample data for privacy mode (formerly generateDemoData)
+  static List<MoodEntry> generateSampleData() {
     final now = DateTime.now();
     return [
       MoodEntry(
-        id: 'demo_mood_1',
+  id: 'sample_mood_1',
         date: now.subtract(const Duration(hours: 2)),
         userText: 'आज बहुत अच्छा लग रहा है, सब कुछ सही चल रहा है',
         identifiedMood: 'Happy',
@@ -270,10 +270,10 @@ class MoodEntry extends HiveObject {
           EmotionIntensity(emotion: 'Contentment', intensity: 0.7),
         ],
         isPrivacyMode: true,
-        nlpMetadata: {'demo': true, 'language': 'hindi'},
+  nlpMetadata: {'sample': true, 'language': 'hindi'},
       ),
       MoodEntry(
-        id: 'demo_mood_2',
+  id: 'sample_mood_2',
         date: now.subtract(const Duration(hours: 8)),
         userText: 'काम का तनाव बहुत है, चिंता हो रही है',
         identifiedMood: 'Anxious',
@@ -287,15 +287,15 @@ class MoodEntry extends HiveObject {
           EmotionIntensity(emotion: 'Worry', intensity: 0.8),
         ],
         isPrivacyMode: true,
-        nlpMetadata: {'demo': true, 'language': 'hindi'},
+  nlpMetadata: {'sample': true, 'language': 'hindi'},
       ),
       MoodEntry(
-        id: 'demo_mood_3',
+  id: 'sample_mood_3',
         date: now.subtract(const Duration(days: 1)),
         userText: 'Feeling grateful for good relationships in my life',
         identifiedMood: 'Grateful',
         stressLevel: 'Low',
-        relatedContactId: 'demo_contact_1',
+  relatedContactId: 'sample_contact_1',
         category: MoodCategory.positive,
         sentimentScore: 0.7,
         stressScore: 0.3,
@@ -305,10 +305,14 @@ class MoodEntry extends HiveObject {
           EmotionIntensity(emotion: 'Love', intensity: 0.6),
         ],
         isPrivacyMode: true,
-        nlpMetadata: {'demo': true, 'language': 'english'},
+  nlpMetadata: {'sample': true, 'language': 'english'},
       ),
     ];
   }
+
+  /// Deprecated: use generateSampleData
+  @Deprecated('Use generateSampleData instead')
+  static List<MoodEntry> generateDemoData() => generateSampleData();
 
   /// Check if entry needs NLP analysis
   bool needsAnalysis() {

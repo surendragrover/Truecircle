@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:truecircle/services/auth_service.dart';
-import 'dart:async';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 import '../auth_wrapper.dart';
 import '../widgets/truecircle_logo.dart';
 import 'dr_iris_dashboard.dart';
@@ -10,9 +11,20 @@ import 'daily_progress_page.dart';
 import '../services/loyalty_points_service.dart';
 import '../theme/coral_theme.dart';
 import '../services/offline_ai_suggestion_service.dart';
-import '../services/cloud_sync_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
+import '../services/ai_orchestrator_service.dart';
+import 'relationship_pulse_page.dart';
+import '../services/metrics_aggregator_service.dart';
+import '../widgets/mood_sparkline.dart';
+import '../models/contact.dart';
+import '../services/feedback_service.dart';
+import '../services/festival_data_service.dart';
+import '../widgets/bottom_flow_nav.dart';
+import '../widgets/virtual_gifts_section.dart';
+import '../services/virtual_gift_share_service.dart';
+import 'hypnotherapy_page.dart';
+import 'package:hive/hive.dart';
+import 'package:flutter/foundation.dart';
 // TrueCircle Complete Dashboard with All Features
 class GiftMarketplacePage extends StatefulWidget {
   const GiftMarketplacePage({super.key});
@@ -27,12 +39,12 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
   bool _isHindi = false; // Default English
   int _loyaltyPoints = 0;
   bool _modelsReady = false; // AI model gate
-  bool _cloudSyncEnabled = true; // Privacy toggle
-
-  // Performance / throttling helpers
-  bool _syncInFlight = false;
-  DateTime? _lastSyncCall;
+  // Cloud sync removed from UI (privacy-first offline mode)
   bool _aiLoaded = false;
+  String? _recommendedGiftId; // mood/context driven recommended gift id
+  List<Map<String,dynamic>> _recentPurchases = [];
+  bool _isDownloadingModels = false;
+  double? _modelDownloadProgress; // 0..1 while downloading
 
   // Offline AI suggestion data
   Map<String, dynamic>? _breathingSuggestion;
@@ -158,161 +170,612 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
       'descriptionHi': 'प्रतिदिन पॉइंट कमाएं (1 पॉइंट = ₹1)',
       'category': 'rewards'
     },
+    {
+      'title': 'Hypnotherapy',
+      'titleHi': 'हिप्नोथेरेपी',
+      'icon': Icons.self_improvement,
+      'color': Colors.cyan,
+      'description': 'Guided relaxation & focus sessions',
+      'descriptionHi': 'मार्गदर्शित विश्राम व फोकस सेशन',
+      'category': 'mental_health'
+    },
   ];
+
+  FestivalHighlightInfo? _festivalHighlight;
+  bool _loadingFestival = false;
+
+  // Convenience getters for anonymized export (avoids undefined variables)
+  MetricsSnapshot? get _latestMetrics => MetricsAggregatorService.instance.snapshotNotifier.value;
+  Map<String,String> get _aiInsights => AIOrchestratorService().featureInsights.value;
 
   @override
   void initState() {
     super.initState();
     _checkDailyReward();
-    // Defer AI loading to next frame to avoid blocking first paint
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!_aiLoaded) _loadAISuggestions();
+      _loadFestivalHighlight();
+      _deriveRecommendedGift();
+      _loadRecentPurchases();
     });
-    _initPrivacySettings();
-    CloudSyncService.instance.loadLastSyncFromStorage();
-    // Removed noisy listeners; localized rebuilds handled via ValueListenableBuilder
+    MetricsAggregatorService.instance.start();
   }
 
-  void _throttledSync({
-    required int loyaltyPoints,
-    required int featuresCount,
-    required bool modelsReady,
-    required int aiFestivalMessages,
-  }) {
-    final now = DateTime.now();
-    if (_syncInFlight) return;
-    if (_lastSyncCall != null && now.difference(_lastSyncCall!) < const Duration(seconds: 3)) return;
-    _lastSyncCall = now;
-    _syncInFlight = true;
-    CloudSyncService.instance
-        .syncUserState(
-          loyaltyPoints: loyaltyPoints,
-          featuresCount: featuresCount,
-          modelsReady: modelsReady,
-          aiFestivalMessages: aiFestivalMessages,
-        )
-        .whenComplete(() => _syncInFlight = false);
-  }
-
-  Future<void> _initPrivacySettings() async {
+  Future<void> _loadAISuggestions() async {
+    if (_aiLoaded) return; _aiLoaded = true;
     try {
-      final box = Hive.isBoxOpen('truecircle_settings')
-          ? Hive.box('truecircle_settings')
-          : await Hive.openBox('truecircle_settings');
-      final stored = box.get('cloud_sync_enabled', defaultValue: true) as bool;
-      _cloudSyncEnabled = stored;
-      CloudSyncService.instance.setSyncEnabled(stored);
-      if (mounted) setState(() {});
+      final ready = await OfflineAISuggestionService.instance.isModelReady();
+      if (!mounted) return; if (!ready) { setState(()=> _modelsReady = false); return; }
+      final breathing = await OfflineAISuggestionService.instance.getDailyBreathingSuggestion();
+      final meditation = await OfflineAISuggestionService.instance.getDailyMeditationSuggestion();
+      final festivals = await OfflineAISuggestionService.instance.getFestivalMessageSuggestions(count: 2);
+      final tipEn = await OfflineAISuggestionService.instance.getEventPlanningSuggestion(hindi: false);
+      final tipHi = await OfflineAISuggestionService.instance.getEventPlanningSuggestion(hindi: true);
+      if (!mounted) return;
+      setState(() {
+        _modelsReady = true;
+        _breathingSuggestion = breathing;
+        _meditationSuggestion = meditation;
+        _festivalMessages = festivals;
+        _eventPlanningTipEn = tipEn;
+        _eventPlanningTipHi = tipHi;
+        _deriveRecommendedGift(); // refine after data load
+      });
     } catch (_) {
-      // Silent failure keeps default true (still respects privacy: only metadata)
-    }
-  }
-
-  Future<void> _toggleCloudSync(bool value) async {
-    setState(() => _cloudSyncEnabled = value);
-    CloudSyncService.instance.setSyncEnabled(value);
-    try {
-      final box = Hive.isBoxOpen('truecircle_settings')
-          ? Hive.box('truecircle_settings')
-          : await Hive.openBox('truecircle_settings');
-      await box.put('cloud_sync_enabled', value);
-    } catch (_) {}
-    if (value) {
-      // When re-enabling, immediately attempt a sync (will flush pending if any)
-      CloudSyncService.instance.enableAndKick(
-        loyaltyPoints: _loyaltyPoints,
-        featuresCount: _features.length,
-        modelsReady: _modelsReady,
-        aiFestivalMessages: _festivalMessages.length,
-      );
+      if (mounted) setState(()=> _modelsReady = false);
     }
   }
 
   Future<void> _checkDailyReward() async {
     try {
       final result = await LoyaltyPointsService.instance.processDailyLogin();
-      setState(() {
-        _loyaltyPoints = LoyaltyPointsService.instance.totalPoints;
-      });
-
-      if (result.pointsAwarded > 0 && mounted) {
+      setState(() { _loyaltyPoints = LoyaltyPointsService.instance.totalPoints; });
+      if (mounted && result.pointsAwarded > 0) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
               _isHindi
-                  ? 'दैनिक लॉगिन बोनस मिला! +${result.pointsAwarded} पॉइंट्स'
-                  : 'Daily login bonus earned! +${result.pointsAwarded} points',
+                ? 'दैनिक लॉगिन रिवार्ड मिला +${result.pointsAwarded}'
+                : 'Daily login reward +${result.pointsAwarded}',
               style: const TextStyle(color: Colors.white),
             ),
             backgroundColor: Colors.green,
-            action: SnackBarAction(
-              label: '+${result.pointsAwarded}',
-              textColor: Colors.yellow,
-              onPressed: () {},
-            ),
+            duration: const Duration(seconds: 2),
           ),
         );
       }
-      if (_cloudSyncEnabled) {
-        // Attempt an initial sync (only runs once if never synced yet)
-        CloudSyncService.instance.initialSyncIfPossible(
-          loyaltyPoints: _loyaltyPoints,
-          featuresCount: _features.length,
-          modelsReady: _modelsReady,
-          aiFestivalMessages: _festivalMessages.length,
-        );
-        _throttledSync(
-          loyaltyPoints: _loyaltyPoints,
-          featuresCount: _features.length,
-          modelsReady: _modelsReady,
-          aiFestivalMessages: _festivalMessages.length,
-        );
-      }
-    } catch (e) {
-      // Handle error silently
-      setState(() {
-        _loyaltyPoints = 0;
-      });
+    } catch (_){
+      setState(() { _loyaltyPoints = LoyaltyPointsService.instance.totalPoints; });
     }
   }
 
-  Future<void> _loadAISuggestions() async {
-    if (_aiLoaded) return;
-    _aiLoaded = true;
-    try {
-      final ready = await OfflineAISuggestionService.instance.isModelReady();
-      if (!mounted) return;
-      if (!ready) {
-        setState(() => _modelsReady = false);
-        return;
-      }
-      final results = await Future.wait([
-        OfflineAISuggestionService.instance.getDailyBreathingSuggestion(),
-        OfflineAISuggestionService.instance.getDailyMeditationSuggestion(),
-        OfflineAISuggestionService.instance.getFestivalMessageSuggestions(count: 2),
-        OfflineAISuggestionService.instance.getEventPlanningSuggestion(hindi: false),
-        OfflineAISuggestionService.instance.getEventPlanningSuggestion(hindi: true),
-      ]);
-      if (!mounted) return;
-      setState(() {
-        _modelsReady = true;
-        _breathingSuggestion = results[0] as Map<String, dynamic>?;
-        _meditationSuggestion = results[1] as Map<String, dynamic>?;
-        _festivalMessages = results[2] as List<Map<String, String>>;
-        _eventPlanningTipEn = results[3] as String?;
-        _eventPlanningTipHi = results[4] as String?;
-      });
-      if (_cloudSyncEnabled) {
-        _throttledSync(
-          loyaltyPoints: _loyaltyPoints,
-          featuresCount: _features.length,
-          modelsReady: _modelsReady,
-          aiFestivalMessages: _festivalMessages.length,
-        );
-      }
-    } catch (e) {
-      if (mounted) setState(() => _modelsReady = false);
+  // Cloud sync related methods removed
+
+  String _mapKeyEn(String key) {
+    switch (key) {
+      case 'mood':
+        return 'Mood';
+      case 'breathing':
+        return 'Breathing';
+      case 'meditation':
+        return 'Meditation';
+      case 'relationship':
+        return 'Relation';
+      case 'festival':
+        return 'Festivals';
+      case 'sleep':
+        return 'Sleep';
+      default:
+        return key;
     }
+  }
+
+  // Removed manual test sync & status row
+
+  String _mapKeyHindi(String key) {
+    switch (key) {
+      case 'mood': return 'मूड';
+      case 'breathing': return 'श्वास';
+      case 'meditation': return 'ध्यान';
+      case 'relationship': return 'रिश्ते';
+      case 'festival': return 'त्योहार';
+      case 'sleep': return 'नींद';
+      default: return key;
+    }
+  }
+
+  Future<void> _loadFestivalHighlight() async {
+    if (_loadingFestival) return; _loadingFestival = true;
+    try {
+      final svc = FestivalDataService.instance; // assuming singleton pattern
+      final h = await svc.getUpcomingHighlight();
+      if (mounted) setState(()=> _festivalHighlight = h);
+    } finally { _loadingFestival = false; }
+  }
+
+  void _deriveRecommendedGift() {
+    // Mood adaptive: look at last 7 mood scores; if average < 5 then mood boost recommended.
+    double? avgMood;
+    try {
+      final box = Hive.box('truecircle_emotional_entries');
+      final entries = (box.get('entries', defaultValue: <dynamic>[]) as List)
+          .cast<Map>()
+          .cast<Map<String,dynamic>>();
+      final now = DateTime.now();
+      final last7 = entries.where((e){
+        final t = DateTime.tryParse(e['timestamp']??'');
+        if (t==null) return false; return now.difference(t).inDays < 7;
+      }).toList();
+      if (last7.isNotEmpty) {
+        avgMood = last7.map((e)=> (e['mood_score']??0) as int).fold<int>(0,(s,v)=>s+v)/last7.length;
+      }
+    } catch(_) {}
+
+    if (_festivalMessages.isNotEmpty) {
+      _recommendedGiftId = 'vg_card_1';
+    } else if (avgMood != null && avgMood < 5) {
+      _recommendedGiftId = 'vg_mood_boost';
+    } else if (_meditationSuggestion != null) {
+      _recommendedGiftId = 'vg_mood_boost';
+    } else {
+      _recommendedGiftId = null;
+    }
+  }
+
+  void _loadRecentPurchases() {
+    try {
+      final box = Hive.box('virtual_gift_purchases');
+      final list = (box.get('history', defaultValue: <dynamic>[]) as List)
+          .cast<Map>()
+          .cast<Map<String,dynamic>>();
+      setState(() { _recentPurchases = list.take(6).toList(); });
+    } catch (_) {}
+  }
+
+  Future<void> _recordPurchase(Map<String,dynamic> gift, int pointsUsed, double price) async {
+    try {
+      final box = await Hive.openBox('virtual_gift_purchases');
+      final entry = {
+        'id': gift['id'],
+        'ts': DateTime.now().toIso8601String(),
+        'title': gift['title'],
+        'titleHi': gift['titleHi'],
+        'emoji': gift['emoji'],
+        'pointsUsed': pointsUsed,
+        'price': price,
+      };
+      final raw = (box.get('history', defaultValue: <dynamic>[]) as List).toList();
+      raw.insert(0, entry);
+      while (raw.length > 25) { raw.removeLast(); }
+      await box.put('history', raw);
+      setState(() { _recentPurchases = raw.take(6).cast<Map>().cast<Map<String,dynamic>>().toList(); });
+    } catch (_) {}
+  }
+
+  void _showGiftPreview(Map<String,dynamic> gift) {
+    final isHi = _isHindi;
+    final sampleEn = gift['id'] == 'vg_card_1'
+        ? 'Wishing you warmth, light, and meaningful connections this season.'
+        : 'A thoughtful AI-crafted token to brighten someone\'s day.';
+    final sampleHi = gift['id'] == 'vg_card_1'
+        ? 'आपके लिए यह पर्व खुशियों, प्रकाश और गहरे रिश्तों से भरा हो।'
+        : 'किसी का दिन रोशन करने वाला एक विचारशील AI उपहार।';
+    showDialog(context: context, builder: (_) => AlertDialog(
+      title: Text(isHi ? 'पूर्वावलोकन' : 'Preview'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("${gift['emoji']}  ${isHi ? gift['titleHi'] : gift['title']}", style: const TextStyle(fontWeight: FontWeight.bold)),
+          const SizedBox(height:8),
+          Text(isHi ? sampleHi : sampleEn, style: const TextStyle(height:1.3)),
+          const SizedBox(height:12),
+          Text(isHi ? 'द्विभाषी उदाहरण:' : 'Bilingual Sample:', style: const TextStyle(fontSize:12,fontWeight: FontWeight.w600)),
+          const SizedBox(height:6),
+          Container(
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(color: Colors.teal.withValues(alpha:0.08), borderRadius: BorderRadius.circular(8)),
+            child: Text(isHi ? sampleEn : sampleHi, style: const TextStyle(fontSize:11, fontStyle: FontStyle.italic, height:1.3)),
+          )
+        ],
+      ),
+      actions: [
+        TextButton(onPressed: ()=> Navigator.pop(context), child: Text(isHi? 'बंद करें':'Close')),
+        ElevatedButton(onPressed: () { Navigator.pop(context); _simulateGiftPurchase(gift, usePoints: true); }, child: Text(isHi? 'पॉइंट्स से अनलॉक':'Unlock w/ Points'))
+      ],
+    ));
+  }
+
+  Future<void> _shareGiftToken(Map<String,dynamic> gift) async {
+    final token = await VirtualGiftShareService.instance.createTokenForGift(gift);
+    if (!mounted) return;
+    showDialog(context: context, builder: (_) => AlertDialog(
+      title: Text(_isHindi? 'शेयर कोड तैयार':'Share Code Ready'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(_isHindi? 'मैन्युअली भेजें:':'Send manually:', style: const TextStyle(fontSize:12,fontWeight: FontWeight.bold)),
+          const SizedBox(height:6),
+          SelectableText(token, style: const TextStyle(fontSize:20,fontWeight: FontWeight.bold, letterSpacing: 2)),
+          const SizedBox(height:10),
+          Text(_isHindi? 'प्राप्तकर्ता इस कोड को "Redeem Gift" में दर्ज करेगा।' : 'Recipient will enter this code in "Redeem Gift".', style: const TextStyle(fontSize:11,color: Colors.black54)),
+        ],
+      ),
+      actions: [TextButton(onPressed: ()=> Navigator.pop(context), child: Text(_isHindi? 'ठीक है':'OK'))],
+    ));
+  }
+
+  void _redeemGiftDialog() {
+    final ctl = TextEditingController();
+    showDialog(context: context, builder: (_) => AlertDialog(
+      title: Text(_isHindi? 'उपहार रिडीम करें':'Redeem Gift'),
+      content: TextField(
+        controller: ctl,
+        decoration: InputDecoration(
+          labelText: _isHindi? 'कोड दर्ज करें':'Enter Code',
+          hintText: 'ABC123',
+        ),
+        textCapitalization: TextCapitalization.characters,
+      ),
+      actions: [
+        TextButton(onPressed: ()=> Navigator.pop(context), child: Text(_isHindi? 'रद्द':'Cancel')),
+        ElevatedButton(onPressed: () async {
+          final code = ctl.text.trim().toUpperCase();
+          final data = await VirtualGiftShareService.instance.redeemToken(code);
+          if (!mounted) return;
+          Navigator.pop(context);
+          showDialog(context: context, builder: (_) => AlertDialog(
+            title: Text(data==null ? (_isHindi? 'अमान्य या उपयोग किया गया':'Invalid / Used') : (_isHindi? 'उपहार मिला':'Gift Received')),
+            content: Text(data==null ? (_isHindi? 'कोड सही नहीं है या पहले उपयोग हो चुका है।':'Code invalid or already used.') : "${data['emoji']}  ${_isHindi? data['titleHi'] : data['title']}"),
+            actions: [TextButton(onPressed: ()=> Navigator.pop(context), child: Text(_isHindi? 'ठीक':'OK'))],
+          ));
+        }, child: Text(_isHindi? 'रिडीम':'Redeem'))
+      ],
+    ));
+  }
+
+  Widget _redeemInlineButton() {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: OutlinedButton.icon(
+        onPressed: _redeemGiftDialog,
+        icon: const Icon(Icons.qr_code_2, size:16),
+        label: Text(_isHindi? 'उपहार कोड रिडीम':'Redeem Gift Code'),
+      ),
+    );
+  }
+
+  void _openFeedbackDialog() {
+    final categoryCtl = TextEditingController();
+    final msgCtl = TextEditingController();
+    showDialog(context: context, builder: (_) => AlertDialog(
+      title: const Text('Share Feedback'),
+      content: Column(mainAxisSize: MainAxisSize.min, children: [
+        TextField(controller: categoryCtl, decoration: const InputDecoration(labelText: 'Category (UI, AI, Festival, Mood, Other)')),
+        TextField(controller: msgCtl, decoration: const InputDecoration(labelText: 'Message'), maxLines: 3),
+      ]),
+      actions: [
+        TextButton(onPressed: ()=> Navigator.pop(context), child: const Text('Cancel')),
+        ElevatedButton(onPressed: () async {
+          await FeedbackService.instance.submit(category: categoryCtl.text.trim().isEmpty? 'General': categoryCtl.text.trim(), message: msgCtl.text.trim(), language: 'en');
+          if (mounted) Navigator.pop(context);
+          if (mounted) ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Feedback saved locally (offline)')));
+        }, child: const Text('Submit')),
+      ],
+    ));
+  }
+
+  Future<void> _exportAnonymizedSummary() async {
+    // Minimal anonymized snapshot using existing services (placeholders where needed)
+    final metrics = _latestMetrics; // assume variable from existing code
+    final insights = _aiInsights; // assume map from orchestrator
+    final map = {
+      'generatedAt': DateTime.now().toIso8601String(),
+      'mood_7d_avg': metrics?.avgMood7d,
+      'checkins_7d': metrics?.checkIns7d,
+      'breathing_7d': metrics?.breathingSessions7d,
+      'meditation_7d': metrics?.meditationSessions7d,
+      'sleep_avg_hrs_7d': metrics?.sleepAvgHours7d,
+      'reconnects_30d': metrics?.reconnects30d,
+      'repairs_30d': metrics?.conflictRepairs30d,
+      'streak_days': metrics?.streakDays,
+      'insight_keys': insights.keys.toList(),
+      'festival_highlight': _festivalHighlight == null ? null : {
+        'name': _festivalHighlight!.name,
+        'daysAway': _festivalHighlight!.daysAway,
+      }
+    };
+    final text = const JsonEncoder.withIndent('  ').convert(map);
+    await Clipboard.setData(ClipboardData(text: text));
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Anonymized summary copied to clipboard')));
+  }
+
+  Widget _buildFestivalHighlightBadge() {
+    final h = _festivalHighlight; if (h == null) return const SizedBox.shrink();
+    return InkWell(onTap: () {
+      showDialog(context: context, builder: (_) => AlertDialog(
+        title: Text(h.name),
+        content: Text('Coming in ${h.daysAway} day${h.daysAway==1? '':'s'}\nPlan a thoughtful reconnect or greeting.'),
+        actions: [TextButton(onPressed: ()=> Navigator.pop(context), child: const Text('Close'))],
+      ));
+    }, child: Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(colors: [Color(0xFFFF9800), Color(0xFFFFC107)]),
+        borderRadius: BorderRadius.circular(24),
+  boxShadow: [BoxShadow(color: Colors.orange.withValues(alpha:0.30), blurRadius: 6, offset: const Offset(0,3))],
+      ),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        const Icon(Icons.festival, size: 18, color: Colors.white),
+        const SizedBox(width: 6),
+        Text('${h.name} in ${h.daysAway}d', style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+      ]),
+    ));
+  }
+
+  // --- Virtual Gifts Marketplace ---
+  final List<Map<String, dynamic>> _virtualGifts = const [
+    {
+      'id': 'vg_card_1',
+      'title': 'Personalized Festival Greeting',
+      'titleHi': 'पर्सनलाइज़्ड त्योहार शुभकामना',
+      'emoji': '🪔',
+      'basePrice': 49.0,
+      'desc': 'AI-crafted bilingual festival wish card',
+      'descHi': 'AI द्वारा तैयार द्विभाषी त्योहार शुभकामना कार्ड'
+    },
+    {
+      'id': 'vg_rose_1',
+      'title': 'Virtual Rose & Affirmation',
+      'titleHi': 'वर्चुअल गुलाब व सकारात्मक संदेश',
+      'emoji': '🌹',
+      'basePrice': 29.0,
+      'desc': 'Send a calming AI affirmation + rose',
+      'descHi': 'शांत AI पुष्टि + गुलाब भेजें'
+    },
+    {
+      'id': 'vg_memory_1',
+      'title': 'Shared Memory Frame',
+      'titleHi': 'साझा याद फ्रेम',
+      'emoji': '🖼️',
+      'basePrice': 59.0,
+      'desc': 'Generate a poetic throwback caption',
+      'descHi': 'काव्यात्मक यादगार कैप्शन उत्पन्न'
+    },
+    {
+      'id': 'vg_mood_boost',
+      'title': 'Mood Boost Pack',
+      'titleHi': 'मूड बूस्ट पैक',
+      'emoji': '✨',
+      'basePrice': 39.0,
+      'desc': '3 micro-meditations + gratitude nudge',
+      'descHi': '3 सूक्ष्म ध्यान + आभार संकेत'
+    },
+  ];
+
+  // Bundle packs (limited / composite offerings)
+  final List<Map<String,dynamic>> _giftBundles = const [
+    {
+      'id': 'bundle_festival_starter',
+      'emoji': '🎁',
+      'title': 'Festival Starter Pack',
+      'titleHi': 'त्योहार स्टार्टर पैक',
+      'items': ['vg_card_1','vg_rose_1'],
+      'bundlePrice': 69.0, // cheaper than individual 49 + 29
+      'desc': 'Greeting + Rose affirmation combo',
+      'descHi': 'ग्रीटिंग + गुलाब पुष्टि कॉम्बो'
+    },
+    {
+      'id': 'bundle_mood_care',
+      'emoji': '💖',
+      'title': 'Mood Care Pack',
+      'titleHi': 'मूड केयर पैक',
+      'items': ['vg_mood_boost','vg_rose_1'],
+      'bundlePrice': 59.0, // cheaper than 39 + 29
+      'desc': 'Mood boost + Rose support',
+      'descHi': 'मूड बूस्ट + गुलाब समर्थन'
+    }
+  ];
+
+  bool _isBundleUnlocked(String id) {
+    try {
+      final box = Hive.box('virtual_gift_purchases');
+      final history = (box.get('history', defaultValue: <dynamic>[]) as List).cast<Map?>();
+      return history.any((e) => e != null && e['id'] == id);
+    } catch (_) { return false; }
+  }
+
+  void _purchaseBundle(Map<String,dynamic> bundle) async {
+    final price = bundle['bundlePrice'] as double;
+    int pointsToUse = 0;
+    if (_loyaltyPoints > 0) {
+      final maxDiscount = (price * (LoyaltyPointsService.maxDiscountPercent/100)).floor();
+      pointsToUse = _loyaltyPoints.clamp(0, maxDiscount);
+      final calc = LoyaltyPointsService.instance.calculateDiscount(price, pointsToUse);
+      if (calc.actualPointsToUse > 0) {
+        await LoyaltyPointsService.instance.usePointsForPurchase(
+          itemName: bundle['id'],
+          originalPrice: price,
+          pointsToUse: calc.actualPointsToUse,
+        );
+        setState(()=> _loyaltyPoints = LoyaltyPointsService.instance.totalPoints);
+        pointsToUse = calc.actualPointsToUse;
+      }
+    }
+    await _recordPurchase({'id': bundle['id'],'title': bundle['title'],'titleHi': bundle['titleHi'],'emoji': bundle['emoji']}, pointsToUse, price);
+    if (!mounted) return;
+    showDialog(context: context, builder: (_) => AlertDialog(
+      title: Text(_isHindi? 'बंडल अनलॉक':'Bundle Unlocked'),
+      content: Text(_isHindi? 'पैक तैयार है। ${(pointsToUse>0)? 'पॉइंट्स उपयोग: $pointsToUse':''}' : 'Pack ready. ${(pointsToUse>0)? 'Points used: $pointsToUse':''}'),
+      actions: [TextButton(onPressed: ()=> Navigator.pop(context), child: Text(_isHindi? 'ठीक है':'OK'))],
+    ));
+  }
+
+  Widget _buildBundlesSection() {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha:0.92),
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: CoralTheme.glowShadow(0.10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.all_inbox, color: Colors.deepPurple),
+              const SizedBox(width:8),
+              Text(_isHindi? 'बंडल पैक':'Bundle Packs', style: const TextStyle(fontSize:18,fontWeight: FontWeight.bold)),
+            ],
+          ),
+          const SizedBox(height:12),
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: _giftBundles.length,
+            separatorBuilder: (_, __) => const SizedBox(height:12),
+            itemBuilder: (_, i) {
+              final b = _giftBundles[i];
+              final unlocked = _isBundleUnlocked(b['id']);
+              return Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors:[Colors.deepPurple.withValues(alpha:.12), Colors.indigo.withValues(alpha:.12)]),
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: Colors.deepPurple.withValues(alpha:.35)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(b['emoji'], style: const TextStyle(fontSize:26)),
+                        const SizedBox(width:10),
+                        Expanded(child: Text(_isHindi? b['titleHi']: b['title'], style: const TextStyle(fontSize:14,fontWeight: FontWeight.w600))),
+                        Text('₹${(b['bundlePrice'] as double).toStringAsFixed(0)}', style: const TextStyle(fontSize:12,fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                    const SizedBox(height:6),
+                    Text(_isHindi? b['descHi']: b['desc'], style: const TextStyle(fontSize:11,height:1.25)),
+                    const SizedBox(height:8),
+                    Wrap(
+                      spacing:6,
+                      children: (b['items'] as List).map((id)=> Chip(label: Text(id, style: const TextStyle(fontSize:10)), backgroundColor: Colors.white.withValues(alpha:.4))).toList(),
+                    ),
+                    const SizedBox(height:10),
+                    Row(
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: unlocked? null : ()=> _purchaseBundle(b),
+                          icon: Icon(unlocked? Icons.check: Icons.lock_open, size:16),
+                          label: Text(unlocked? (_isHindi? 'अनलॉक':'Unlocked') : (_isHindi? 'अनलॉक करें':'Unlock')),
+                        ),
+                        const Spacer(),
+                        if (!unlocked)
+                          Text(_isHindi? '15% तक पॉइंट्स':'Up to 15% points', style: const TextStyle(fontSize:10,color: Colors.black54)),
+                      ],
+                    )
+                  ],
+                ),
+              );
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  // Virtual gifts moved to VirtualGiftsSection widget
+
+  void _simulateGiftPurchase(Map<String,dynamic> gift, {required bool usePoints}) async {
+    final original = gift['basePrice'] as double;
+    int pointsToUse = 0;
+    if (usePoints && _loyaltyPoints > 0) {
+      // use up to 15% or available points
+      final maxDiscount = (original * (LoyaltyPointsService.maxDiscountPercent/100)).floor();
+      pointsToUse = _loyaltyPoints.clamp(0, maxDiscount);
+      final calc = LoyaltyPointsService.instance.calculateDiscount(original, pointsToUse);
+      if (calc.actualPointsToUse > 0) {
+        await LoyaltyPointsService.instance.usePointsForPurchase(
+          itemName: gift['id'],
+          originalPrice: original,
+          pointsToUse: calc.actualPointsToUse,
+        );
+        setState(() { _loyaltyPoints = LoyaltyPointsService.instance.totalPoints; });
+      }
+    }
+    await _recordPurchase(gift, pointsToUse, original);
+    if (mounted) {
+      showDialog(context: context, builder: (_) => AlertDialog(
+        title: Text(_isHindi ? 'उपहार तैयार' : 'Gift Ready'),
+        content: Text(_isHindi
+            ? 'यह वर्चुअल उपहार सुरक्षित रूप से AI द्वारा तैयार किया गया है। ${(pointsToUse>0)? 'पॉइंट्स उपयोग: $pointsToUse':''}'
+            : 'Your virtual gift is generated privately. ${(pointsToUse>0)? 'Points used: $pointsToUse':''}'),
+        actions: [TextButton(onPressed: ()=> Navigator.pop(context), child: Text(_isHindi? 'ठीक है':'OK'))],
+      ));
+    }
+  }
+
+  Widget _buildRecentPurchasesRibbon() {
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha:0.90),
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: CoralTheme.glowShadow(0.08),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.history, size:18, color: Colors.indigo),
+              const SizedBox(width:6),
+              Text(_isHindi? 'हाल की खरीद':'Recent Purchases', style: const TextStyle(fontSize:14,fontWeight: FontWeight.w600)),
+            ],
+          ),
+          const SizedBox(height:10),
+          SizedBox(
+            height: 70,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: _recentPurchases.length,
+              separatorBuilder: (_, __) => const SizedBox(width:10),
+              itemBuilder: (_, i) {
+                final p = _recentPurchases[i];
+                return Container(
+                  width: 110,
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(colors:[Colors.indigo.withValues(alpha:.15), Colors.deepPurple.withValues(alpha:.12)]),
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(color: Colors.indigo.withValues(alpha:.25)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(p['emoji']??'🎁', style: const TextStyle(fontSize:18)),
+                      Expanded(
+                        child: Text(
+                          _isHindi ? (p['titleHi']??p['title']??'') : (p['title']??p['titleHi']??''),
+                          maxLines:2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontSize:10,fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      Text(p['pointsUsed']>0? '-${p['pointsUsed']} ⭐' : '₹${(p['price'] as double).toStringAsFixed(0)}', style: const TextStyle(fontSize:10,color: Colors.black54))
+                    ],
+                  ),
+                );
+              },
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   @override
@@ -460,14 +923,39 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
             ),
 
             const SizedBox(height: 24),
+            _buildModelDownloadBanner(),
+            const SizedBox(height: 24),
 
             // Dr. Iris Quick Access
             _buildDrIrisSection(),
+            const SizedBox(height: 24),
+            // Unified AI Insights moved near top for AI-first focus
+            _buildUnifiedAICard(),
+            const SizedBox(height:24),
+
+            // Upcoming Festival Highlight (if any)
+            _buildFestivalHighlightBadge(),
+            const SizedBox(height: 20),
+            // Collapsible Gifts + Bundles
+            _buildCollapsedGiftsSection(),
+            const SizedBox(height: 28),
+            if (_recentPurchases.isNotEmpty || true) _redeemInlineButton(),
+            if (_recentPurchases.isNotEmpty || true) const SizedBox(height: 24),
+            if (_recentPurchases.isNotEmpty) _buildRecentPurchasesRibbon(),
+            if (_recentPurchases.isNotEmpty) const SizedBox(height: 24),
 
             const SizedBox(height: 24),
 
-            if (_modelsReady) _buildAIDailySuggestionsSection(),
-            if (_modelsReady) const SizedBox(height: 24),
+            // (Unified card already shown earlier)
+
+            // Progress Snapshot Card
+            ValueListenableBuilder<MetricsSnapshot>(
+              valueListenable: MetricsAggregatorService.instance.snapshotNotifier,
+              builder: (context, snap, _) {
+                return _buildProgressSnapshotCard(snap);
+              },
+            ),
+            const SizedBox(height: 24),
 
             // Features Grid
             Text(
@@ -729,11 +1217,200 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
               ),
             ),
             const SizedBox(height: 14),
-            _buildPrivacyControls(),
+            const SizedBox(height: 24),
+
+            // Utility Actions
+            Row(
+              children: [
+                ElevatedButton.icon(onPressed: _openFeedbackDialog, icon: const Icon(Icons.feedback_outlined, size:16), label: const Text('Feedback')),
+                const SizedBox(width: 12),
+                OutlinedButton.icon(onPressed: _exportAnonymizedSummary, icon: const Icon(Icons.copy, size:16), label: const Text('Export Summary')),
+              ],
+            ),
           ],
         ),
       )),
+      bottomNavigationBar: const BottomFlowNav(currentPageId: 'GiftMarketplacePage'),
     );
+  }
+
+  Widget _buildModelDownloadBanner() {
+    return FutureBuilder<bool>(
+      future: OfflineAISuggestionService.instance.isModelReady(),
+      builder: (context, snap) {
+        final ready = snap.data == true;
+        if (ready) return const SizedBox.shrink();
+        final platformLabel = _platformDownloadLabel();
+        return Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(colors: [Color(0xFF00695C), Color(0xFF00897B)]),
+            borderRadius: BorderRadius.circular(16),
+            boxShadow: CoralTheme.glowShadow(0.18),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(children:[
+                const Icon(Icons.download_for_offline, color: Colors.white),
+                const SizedBox(width:8),
+                Expanded(child: Text(_isHindi? 'ऑफ़लाइन AI मॉडल डाउनलोड करें':'Download Offline AI Models', style: const TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize:16))),
+              ]),
+              const SizedBox(height:8),
+              Text(
+                _isHindi
+                  ? 'अभी इंटरनेट से जुड़े रहते हुए आवश्यक हल्के AI मॉडल डाउनलोड करें। यह केवल एक बार की प्रक्रिया है। बाद में सभी सुझाव ऑफ़लाइन बनेंगे।'
+                  : 'While you are online, download the required lightweight AI models now. One‑time setup. After this, all suggestions run fully offline.',
+                style: const TextStyle(color: Colors.white70,fontSize:12,height:1.25),
+              ),
+              const SizedBox(height:12),
+              if (_isDownloadingModels) ...[
+                LinearProgressIndicator(
+                  value: _modelDownloadProgress,
+                  backgroundColor: Colors.white.withValues(alpha:0.25),
+                  color: Colors.white,
+                  minHeight: 6,
+                ),
+                const SizedBox(height:8),
+                Text(
+                  _isHindi
+                      ? 'डाउनलोड प्रगति: ${((_modelDownloadProgress ?? 0)*100).toStringAsFixed(0)}%'
+                      : 'Downloading: ${((_modelDownloadProgress ?? 0)*100).toStringAsFixed(0)}%',
+                  style: const TextStyle(color: Colors.white,fontSize:11,fontWeight: FontWeight.w600),
+                )
+              ] else Row(children:[
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.white, foregroundColor: Colors.teal, padding: const EdgeInsets.symmetric(horizontal:14, vertical:10)),
+                  onPressed: _performModelDownload,
+                  icon: const Icon(Icons.cloud_download, color: Colors.teal),
+                  label: Text(platformLabel, style: const TextStyle(color: Colors.teal,fontWeight: FontWeight.w600,fontSize:12)),
+                ),
+                const SizedBox(width:12),
+                Text(_isHindi? 'आकार ~300KB':'Size ~300KB', style: const TextStyle(color: Colors.white70,fontSize:11)),
+              ])
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _buildCollapsedGiftsSection() {
+    // References existing fields to avoid unused member warnings after reordering.
+    final recommended = _recommendedGiftId; // keep semantic usage
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha:0.92),
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: CoralTheme.glowShadow(0.08),
+      ),
+      child: Theme(
+        data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
+          tilePadding: const EdgeInsets.symmetric(horizontal: 4),
+          initiallyExpanded: false,
+          title: Row(
+            children: [
+              const Icon(Icons.card_giftcard, color: Colors.pink),
+              const SizedBox(width:8),
+              Text(_isHindi? 'उपहार व बंडल' : 'Gifts & Bundles', style: const TextStyle(fontSize:16,fontWeight: FontWeight.w600)),
+              if (recommended != null) ...[
+                const SizedBox(width:8),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal:8, vertical:4),
+                  decoration: BoxDecoration(color: Colors.orange.withValues(alpha:.18), borderRadius: BorderRadius.circular(12)),
+                  child: Text(_isHindi? 'सुझाव' : 'Suggested', style: const TextStyle(fontSize:10,fontWeight: FontWeight.w600,color: Colors.orange)),
+                )
+              ],
+              const SizedBox(width:8),
+              InkWell(
+                borderRadius: BorderRadius.circular(20),
+                onTap: _showGiftsInfo,
+                child: const Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: Icon(Icons.info_outline, size:18, color: Colors.black54),
+                ),
+              )
+            ],
+          ),
+          children: [
+            const SizedBox(height:4),
+            VirtualGiftsSection(
+              isHindi: _isHindi,
+              loyaltyPoints: _loyaltyPoints,
+              gifts: _virtualGifts,
+              festivalHighlight: _festivalHighlight,
+              onPurchase: (g, {required usePoints}) => _simulateGiftPurchase(g, usePoints: usePoints),
+              onPreview: _showGiftPreview,
+              recommendedGiftId: _recommendedGiftId,
+              onShare: _shareGiftToken,
+            ),
+            const SizedBox(height:18),
+            _buildBundlesSection(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showGiftsInfo() {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text(_isHindi? 'उपहार कैसे काम करते हैं?' : 'How do gifts work?'),
+        content: SingleChildScrollView(
+          child: Text(
+            _isHindi
+              ? 'ये वर्चुअल उपहार ऑफ़लाइन और प्राइवेसी‑फर्स्ट हैं। आप इन्हें पॉइंट्स (15% तक) से अनलॉक कर सकते हैं। कोई असली भुगतान या व्यक्तिगत डेटा सर्वर पर नहीं जाता। त्योहार या मूड संदर्भ के आधार पर “Suggested” टैग दिख सकता है।'
+              : 'These are privacy‑first virtual gifts generated offline. You can unlock them using loyalty points (up to 15% discount). No real payment or personal data leaves the device. A “Suggested” tag may appear based on festival or mood context.'
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: ()=> Navigator.pop(context), child: Text(_isHindi? 'ठीक':'OK'))
+        ],
+      ),
+    );
+  }
+
+  String _platformDownloadLabel() {
+    if (kIsWeb) return _isHindi? 'वेब मॉडल प्राप्त करें':'Fetch Web Models';
+    switch (Theme.of(context).platform) {
+      case TargetPlatform.android: return _isHindi? 'एंड्रॉइड मॉडल डाउनलोड':'Download Android Models';
+      case TargetPlatform.iOS: return _isHindi? 'iOS मॉडल डाउनलोड':'Download iOS Models';
+      case TargetPlatform.macOS: return _isHindi? 'macOS मॉडल डाउनलोड':'Download macOS Models';
+      case TargetPlatform.windows: return _isHindi? 'Windows मॉडल डाउनलोड':'Download Windows Models';
+      case TargetPlatform.linux: return _isHindi? 'Linux मॉडल डाउनलोड':'Download Linux Models';
+      case TargetPlatform.fuchsia: return _isHindi? 'मॉडल डाउनलोड':'Download Models';
+    }
+  }
+
+  Future<void> _performModelDownload() async {
+    // Simulate lightweight model asset copy or small network fetch placeholder
+    try {
+      final box = Hive.isBoxOpen('truecircle_settings') ? Hive.box('truecircle_settings') : await Hive.openBox('truecircle_settings');
+      final phone = box.get('current_phone_number') as String?;
+      setState(() { _isDownloadingModels = true; _modelDownloadProgress = 0; });
+      const steps = 20;
+      for (int i=1;i<=steps;i++) {
+        await Future.delayed(const Duration(milliseconds:100));
+        if (!mounted) return; setState(()=> _modelDownloadProgress = i/steps);
+      }
+      if (phone != null) {
+        await box.put('${phone}_models_downloaded', true);
+      } else {
+        await box.put('global_models_downloaded', true);
+      }
+      if (!mounted) return;
+      setState(() { _modelsReady = true; _aiLoaded = false; _isDownloadingModels = false; _modelDownloadProgress = 1; });
+      // Trigger reload of AI suggestions now that models are ready
+      _loadAISuggestions();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(_isHindi? 'मॉडल तैयार. ऑफ़लाइन AI सक्रिय.':'Models ready. Offline AI active.'), backgroundColor: Colors.teal));
+    } catch (e) {
+      if (!mounted) return;
+      setState(()=> _isDownloadingModels = false);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(_isHindi? 'डाउनलोड विफल: पुनः प्रयास करें':'Download failed: retry'), backgroundColor: Colors.red));
+    }
   }
 
   Widget _buildDrIrisSection() {
@@ -810,300 +1487,9 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
     );
   }
 
-  Widget _buildPrivacyControls() {
-    return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: CoralTheme.translucentCard(alpha: 0.15, radius: BorderRadius.circular(12)).copyWith(
-        border: Border.all(color: Colors.white.withValues(alpha: 0.25)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(_cloudSyncEnabled ? Icons.cloud_sync : Icons.cloud_off,
-                  color: _cloudSyncEnabled ? Colors.lightBlueAccent : Colors.redAccent,
-                  size: 24),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  _isHindi ? 'क्लाउड सिंक (केवल मेटाडेटा)' : 'Cloud Sync (Metadata Only)',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Switch(
-                value: _cloudSyncEnabled,
-                activeThumbColor: Colors.lightBlueAccent,
-                activeTrackColor: Colors.lightBlueAccent.withValues(alpha: 0.35),
-                onChanged: (v) => _toggleCloudSync(v),
-              ),
-            ],
-          ),
-          const SizedBox(height: 6),
-            Text(
-              _cloudSyncEnabled
-                  ? (_isHindi
-                      ? 'सक्रिय: केवल सुरक्षित सारांश (पॉइंट्स, फीचर काउंट, मॉडल स्थिति) Firestore में सेव। कोई व्यक्तिगत चैट/भावना डेटा नहीं भेजा जाता।'
-                      : 'Enabled: Only safe aggregates (points, feature count, model status) are stored. No personal chats or emotion text ever leaves device.')
-                  : (_isHindi
-                      ? 'अक्षम: अब कोई भी डेटा क्लाउड पर नहीं भेजा जाएगा।'
-                      : 'Disabled: No further metadata will sync to cloud.'),
-              style: const TextStyle(color: Colors.white70, fontSize: 11, height: 1.3),
-            ),
-          const SizedBox(height: 8),
-          _buildSyncStatusRow(),
-          const SizedBox(height: 8),
-          // Last payload keys (debug visibility of what was sent)
-          ValueListenableBuilder<DateTime?>(
-            valueListenable: CloudSyncService.instance.lastSyncNotifier,
-            builder: (_, __, ___) {
-              final keys = CloudSyncService.instance.lastPayloadKeys;
-              if (keys == null) {
-                return Text(
-                  _isHindi ? 'अभी तक कोई पेलोड नहीं' : 'No payload yet',
-                  style: const TextStyle(color: Colors.white38, fontSize: 10),
-                );
-              }
-              return Text(
-                (_isHindi ? 'अंतिम कुंजियाँ: ' : 'Last keys: ') + keys.join(', '),
-                style: const TextStyle(color: Colors.white54, fontSize: 10, height: 1.3),
-              );
-            },
-          ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              ElevatedButton.icon(
-                onPressed: _cloudSyncEnabled
-                    ? () async {
-                        final ok = await CloudSyncService.instance.manualTestSync(
-                          loyaltyPoints: _loyaltyPoints,
-                          featuresCount: _features.length,
-                          modelsReady: _modelsReady,
-                          aiFestivalMessages: _festivalMessages.length,
-                        );
-                        if (!mounted) return;
-                        if (ok) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                _isHindi ? 'टेस्ट सिंक भेजा गया' : 'Test sync dispatched',
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                              backgroundColor: Colors.blueGrey,
-                              duration: const Duration(seconds: 2),
-                            ),
-                          );
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                _isHindi ? 'टेस्ट सिंक विफल (फोन नहीं)' : 'Test sync failed (no phone)',
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                              backgroundColor: Colors.redAccent,
-                              duration: const Duration(seconds: 2),
-                            ),
-                          );
-                        }
-                      }
-                    : null,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.lightBlueAccent.withValues(alpha: 0.85),
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  minimumSize: const Size(0, 34),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                ),
-                icon: const Icon(Icons.cloud_upload, size: 16, color: Colors.white),
-                label: Text(
-                  _isHindi ? 'टेस्ट सिंक' : 'Test Sync',
-                  style: const TextStyle(color: Colors.white, fontSize: 12),
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  _isHindi
-                      ? 'यह बटन पेलोड को तुरंत भेजने का प्रयास करता है.'
-                      : 'Forces an immediate sync attempt of current metadata.',
-                  style: const TextStyle(color: Colors.white38, fontSize: 10, height: 1.25),
-                ),
-              )
-            ],
-          ),
-          if (CloudSyncService.instance.lastErrorNotifier.value != null) ...[
-            const SizedBox(height: 6),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Icon(Icons.error_outline, color: Colors.redAccent, size: 14),
-                const SizedBox(width: 6),
-                Expanded(
-                  child: Text(
-                    (_isHindi ? 'त्रुटि: ' : 'Error: ') + (CloudSyncService.instance.lastErrorNotifier.value ?? ''),
-                    style: const TextStyle(color: Colors.redAccent, fontSize: 10, height: 1.2),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    CloudSyncService.instance.lastErrorNotifier.value = null;
-                    setState(() {});
-                  },
-                  style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 6)),
-                  child: Text(_isHindi ? 'हटाएं' : 'Clear', style: const TextStyle(fontSize: 10, color: Colors.redAccent)),
-                )
-              ],
-            ),
-          ],
-        ],
-      ),
-    );
-  }
+  // Legacy _buildPrivacyControls removed
 
-  String _buildLastSyncLabel() {
-    final dt = CloudSyncService.instance.lastSuccessfulSync;
-    if (dt == null) {
-      return _isHindi ? 'अभी तक कोई सिंक नहीं' : 'No sync yet';
-    }
-    final now = DateTime.now();
-    final diff = now.difference(dt);
-    String rel;
-    if (diff.inSeconds < 60) {
-      rel = _isHindi ? 'अभी' : 'just now';
-    } else if (diff.inMinutes < 60) {
-      rel = _isHindi ? '${diff.inMinutes} मिनट पहले' : '${diff.inMinutes}m ago';
-    } else if (diff.inHours < 24) {
-      rel = _isHindi ? '${diff.inHours} घंटे पहले' : '${diff.inHours}h ago';
-    } else {
-      rel = _isHindi ? '${diff.inDays} दिन पहले' : '${diff.inDays}d ago';
-    }
-    return (_isHindi ? 'अंतिम सिंक: ' : 'Last sync: ') + rel;
-  }
-
-  Widget _buildSyncStatusRow() {
-    return ValueListenableBuilder<bool>(
-      valueListenable: CloudSyncService.instance.syncingNotifier,
-      builder: (_, syncing, __) {
-        return ValueListenableBuilder<int?>(
-          valueListenable: CloudSyncService.instance.retryCountdownNotifier,
-          builder: (_, retry, __) {
-            final docId = CloudSyncService.instance.sanitizedUserId != null
-                ? 'users/${CloudSyncService.instance.sanitizedUserId}/meta/state'
-                : null;
-            return Row(
-              children: [
-                const Icon(Icons.schedule, size: 16, color: Colors.white70),
-                const SizedBox(width: 6),
-                Expanded(
-                  child: Text(
-          docId == null
-            ? _buildLastSyncLabel()
-            : '${_buildLastSyncLabel()}\n$docId',
-                    style: const TextStyle(color: Colors.white60, fontSize: 11),
-                  ),
-                ),
-                if (syncing)
-                  const Row(
-                    children: [
-                      SizedBox(
-                        width: 14,
-                        height: 14,
-                        child: CircularProgressIndicator(
-                          strokeWidth: 2,
-                          color: Colors.lightBlueAccent,
-                        ),
-                      ),
-                      SizedBox(width: 4),
-                      Text('Syncing...', style: TextStyle(color: Colors.white60, fontSize: 10)),
-                    ],
-                  ),
-                if (retry != null)
-                  Padding(
-                    padding: const EdgeInsets.only(left: 6),
-                    child: Text(
-                      _isHindi ? 'पुनः प्रयास ${retry}s में' : 'Retry in ${retry}s',
-                      style: const TextStyle(color: Colors.orangeAccent, fontSize: 10),
-                    ),
-                  ),
-                TextButton.icon(
-                  onPressed: _cloudSyncEnabled ? () => CloudSyncService.instance.manualSync() : null,
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.orange,
-                    disabledForegroundColor: Colors.white24,
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    minimumSize: const Size(0, 32),
-                  ),
-                  icon: const Icon(Icons.refresh, size: 16),
-                  label: Text(_isHindi ? 'सिंक' : 'Sync'),
-                ),
-                const SizedBox(width: 4),
-                TextButton(
-                  onPressed: _cloudSyncEnabled ? _confirmClearCloud : null,
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.redAccent,
-                    disabledForegroundColor: Colors.white24,
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    minimumSize: const Size(0, 32),
-                  ),
-                  child: Text(_isHindi ? 'क्लियर' : 'Clear', style: const TextStyle(fontSize: 11)),
-                ),
-              ],
-            );
-          },
-        );
-      },
-    );
-  }
-
-  void _confirmClearCloud() {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        backgroundColor: const Color(0xFF004D40),
-        title: Text(
-          _isHindi ? 'क्लाउड डेटा हटाएं?' : 'Clear Cloud Metadata?',
-          style: const TextStyle(color: Colors.white),
-        ),
-        content: Text(
-          _isHindi
-              ? 'यह केवल अपलोड किया गया सुरक्षित मेटाडेटा (पॉइंट्स, फीचर काउंट, मॉडल फ्लैग) क्लाउड से हटा देगा। आपकी डिवाइस का लोकल डेटा सुरक्षित रहेगा.'
-              : 'This will delete the uploaded safe metadata (points, feature count, model flag) from the cloud. Local device data remains untouched.',
-          style: const TextStyle(color: Colors.white70, fontSize: 13),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: Text(_isHindi ? 'रद्द करें' : 'Cancel', style: const TextStyle(color: Colors.teal)),
-          ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
-              onPressed: () async {
-                Navigator.pop(ctx);
-                final ok = await CloudSyncService.instance.clearCloudMetadata();
-                if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        ok
-                            ? (_isHindi ? 'क्लाउड मेटाडेटा हटाया गया' : 'Cloud metadata cleared')
-                            : (_isHindi ? 'हटाने में विफल' : 'Failed to clear'),
-                        style: const TextStyle(color: Colors.white),
-                      ),
-                      backgroundColor: ok ? Colors.green : Colors.redAccent,
-                    ),
-                  );
-                }
-              },
-              child: Text(_isHindi ? 'हटाएं' : 'Delete', style: const TextStyle(color: Colors.white)),
-            ),
-        ],
-      ),
-    );
-  }
+  // _confirmClearCloud removed
 
   Widget _buildQuickActionCard({
     required String title,
@@ -1191,6 +1577,13 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
   void _navigateToFeature(Map<String, dynamic> feature) {
     if (feature['title'] == 'Dr. Iris Emotional Therapist') {
       _navigateToDrIris();
+    } else if (feature['title'] == 'Relationship Insights') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const RelationshipPulsePage(),
+        ),
+      );
     } else if (feature['title'] == 'Daily Login Rewards') {
       Navigator.push(
         context,
@@ -1216,6 +1609,13 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
           builder: (context) => const DailyProgressPage(), // Updated to new sample page
         ),
       );
+    } else if (feature['title'] == 'Hypnotherapy') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HypnotherapyPage(isHindi: _isHindi),
+        ),
+      );
     } else {
       Navigator.push(
         context,
@@ -1227,6 +1627,141 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
         ),
       );
     }
+  }
+
+  bool _hasReconnectCandidate() {
+    try {
+      final box = Hive.box<Contact>('contacts');
+      for (final c in box.values) {
+        if (c.daysSinceLastContact > 60 || c.metadata['pending_reconnect'] == true) {
+          return true;
+        }
+      }
+    } catch (_) {}
+    return false;
+  }
+
+  String _relativeTimeEn(DateTime dt) {
+    final diff = DateTime.now().difference(dt);
+    if (diff.inMinutes < 1) return 'just now';
+    if (diff.inMinutes < 60) return '${diff.inMinutes}m ago';
+    if (diff.inHours < 24) return '${diff.inHours}h ago';
+    return '${diff.inDays}d ago';
+  }
+
+  String _relativeTimeHi(DateTime dt) {
+    final diff = DateTime.now().difference(dt);
+    if (diff.inMinutes < 1) return 'अभी';
+    if (diff.inMinutes < 60) return '${diff.inMinutes} मि पहले';
+    if (diff.inHours < 24) return '${diff.inHours} घं पहले';
+    return '${diff.inDays} दिन पहले';
+  }
+
+  void _showInsightWhyDialog() {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text(_isHindi ? 'ये अंतर्दृष्टि क्यों?' : 'Why these insights?'),
+        content: SingleChildScrollView(
+          child: Text(
+            _isHindi
+                ? 'आपके हाल के मूड, सांस सत्र, ध्यान, रि-कनेक्ट संकेत और त्योहार संदर्भ को मिलाकर ऑन-डिवाइस AI ये सुझाव बनाता है। कोई निजी डेटा बाहर नहीं जाता।'
+                : 'On-device AI combines your recent mood entries, breathing & meditation patterns, reconnection signals and upcoming festival context. No personal data leaves your device.',
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: ()=> Navigator.pop(context), child: Text(_isHindi ? 'ठीक है' : 'OK'))
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProgressSnapshotCard(MetricsSnapshot snap) {
+    // Pull last 7 mood scores for sparkline
+    List<int> moodScores = [];
+    try {
+      final box = Hive.box('truecircle_emotional_entries');
+      final entries = (box.get('entries', defaultValue: <dynamic>[]) as List)
+          .cast<Map>()
+          .cast<Map<String,dynamic>>();
+      final now = DateTime.now();
+      final last7 = entries.where((e){
+        final t = DateTime.tryParse(e['timestamp']??'');
+        if (t==null) return false; return now.difference(t).inDays < 7;
+      }).toList();
+      moodScores = last7.map((e)=> (e['mood_score']??0) as int).take(7).toList().reversed.toList();
+    } catch (_) {}
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.90),
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: CoralTheme.glowShadow(0.10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.insights, color: Colors.teal),
+              const SizedBox(width: 8),
+              Text(
+                _isHindi ? 'प्रगति स्नैपशॉट' : 'Progress Snapshot',
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const Spacer(),
+              Text(
+                _isHindi ? 'स्ट्रिक: ${snap.streakDays}' : 'Streak: ${snap.streakDays}',
+                style: const TextStyle(fontSize: 12, color: Colors.black54),
+              )
+            ],
+          ),
+          const SizedBox(height: 12),
+          MoodSparkline(points: moodScores),
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 12,
+            runSpacing: 8,
+            children: [
+              _metricChip(_isHindi ? 'औसत मूड' : 'Avg Mood', snap.avgMood7d.toStringAsFixed(1)),
+              _metricChip(_isHindi ? 'चेक-इन्स' : 'Check-ins', snap.checkIns7d.toString()),
+              _metricChip(_isHindi ? 'सांस' : 'Breathing', snap.breathingSessions7d.toString()),
+              _metricChip(_isHindi ? 'ध्यान' : 'Meditation', snap.meditationSessions7d.toString()),
+              _metricChip(_isHindi ? 'नींद (घं)' : 'Sleep (h)', snap.sleepAvgHours7d.toStringAsFixed(1)),
+              _metricChip(_isHindi ? 'रीकनेक्ट' : 'Reconnects', snap.reconnects30d.toString()),
+              _metricChip(_isHindi ? 'समाधान' : 'Repairs', snap.conflictRepairs30d.toString()),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Text(
+            _isHindi
+                ? 'सभी गणनाएँ आपके डिवाइस पर सुरक्षित रूप से होती हैं।'
+                : 'All metrics computed privately on-device.',
+            style: const TextStyle(fontSize: 10, color: Colors.black54, fontStyle: FontStyle.italic),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _metricChip(String label, String value) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: Colors.blueGrey.withValues(alpha: 0.12),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(label, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600)),
+          const SizedBox(width: 4),
+          Text(value, style: const TextStyle(fontSize: 11, color: Colors.black87)),
+        ],
+      ),
+    );
   }
 
   void _navigateToDrIris() {
@@ -1443,150 +1978,183 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
     );
   }
 
-  Widget _buildAIDailySuggestionsSection() {
+  // AI suggestions moved to AIDailySuggestionsSection widget
+
+}
+
+extension _UnifiedAICard on _GiftMarketplacePageState {
+  Widget _buildUnifiedAICard() {
+    final insightsListenable = AIOrchestratorService().featureInsights;
+    return ValueListenableBuilder<Map<String,String>>(
+      valueListenable: insightsListenable,
+      builder: (context, insights, _) {
+        final hasSuggestionData = _modelsReady && (_breathingSuggestion!=null || _meditationSuggestion!=null || _festivalMessages.isNotEmpty || _eventPlanningTipEn!=null);
+        final hasInsights = insights.isNotEmpty;
+        if (!hasSuggestionData && !hasInsights) return const SizedBox.shrink();
+
+        final orderedInsightKeys = [
+          'mood','breathing','meditation','relationship','festival','sleep'
+        ].where((k) => insights.containsKey(k)).toList();
+        final lastRefresh = AIOrchestratorService().lastRefreshed;
+        final reconnectNeeded = _hasReconnectCandidate();
+
+        return Container(
+          width: double.infinity,
+            padding: const EdgeInsets.fromLTRB(16,14,16,14),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(colors:[Color(0xFFF5F4FF), Color(0xFFEDE7F6)]),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: CoralTheme.glowShadow(0.10),
+              border: Border.all(color: Colors.deepPurple.withValues(alpha:0.25))
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    const Icon(Icons.auto_awesome, color: Colors.deepPurple),
+                    const SizedBox(width:8),
+                    Text(_isHindi? 'एकीकृत AI अंतर्दृष्टि' : 'Unified AI Insights', style: const TextStyle(fontSize:16,fontWeight: FontWeight.w700,color: Colors.black)),
+                    const Spacer(),
+                    if (lastRefresh != null)
+                      Text(
+                        _isHindi? _relativeTimeHi(lastRefresh) : _relativeTimeEn(lastRefresh),
+                        style: const TextStyle(fontSize:10,color: Colors.black54),
+                      ),
+                    IconButton(
+                      tooltip: _isHindi? 'यह सुझाव क्यों?' : 'Why these suggestions?',
+                      icon: const Icon(Icons.help_outline, size:18,color: Colors.black54),
+                      onPressed: _showInsightWhyDialog,
+                    ),
+                  ],
+                ),
+                const SizedBox(height:8),
+                if (reconnectNeeded) _reconnectBanner(),
+                if (reconnectNeeded) const SizedBox(height:10),
+                // Suggestion Tiles Row
+                if (hasSuggestionData) _suggestionsWrap(),
+                if (hasSuggestionData && hasInsights) const Divider(height:28),
+                if (hasInsights) ...[
+                  Text(_isHindi? 'दैनिक पैटर्न' : 'Daily Patterns', style: const TextStyle(fontSize:13,fontWeight: FontWeight.w600,color: Colors.black87)),
+                  const SizedBox(height:10),
+                  ...orderedInsightKeys.map((k)=> _insightLine(k, insights[k] ?? '')),
+                  const SizedBox(height:6),
+                  Text(
+                    _isHindi? 'सभी विश्लेषण निजी रूप से ऑफ़लाइन उत्पन्न।' : 'All analysis generated privately offline.',
+                    style: const TextStyle(fontSize:10,color: Colors.black54,fontStyle: FontStyle.italic),
+                  )
+                ]
+              ],
+            )
+        );
+      },
+    );
+  }
+
+  Widget _suggestionsWrap() {
+    final tiles = <Widget>[];
+    if (_breathingSuggestion != null) {
+      tiles.add(_miniSuggestionTile(
+        icon: Icons.air, color: Colors.teal,
+        title: _isHindi? 'श्वास' : 'Breathing',
+        body: _breathingSuggestion!['title'] ?? ''
+      ));
+    }
+    if (_meditationSuggestion != null) {
+      tiles.add(_miniSuggestionTile(
+        icon: Icons.self_improvement, color: Colors.indigo,
+        title: _isHindi? 'ध्यान' : 'Meditation',
+        body: _meditationSuggestion!['title'] ?? ''
+      ));
+    }
+    if (_festivalMessages.isNotEmpty) {
+      final f = _festivalMessages.first;
+      tiles.add(_miniSuggestionTile(
+        icon: Icons.celebration, color: Colors.orange,
+        title: _isHindi? 'त्योहार' : 'Festival',
+        body: (_isHindi? f['hi'] : f['en']) ?? ''
+      ));
+    }
+    if (_eventPlanningTipEn != null) {
+      tiles.add(_miniSuggestionTile(
+        icon: Icons.event_available, color: Colors.purple,
+        title: _isHindi? 'इवेंट' : 'Event',
+        body: _isHindi? (_eventPlanningTipHi ?? '') : (_eventPlanningTipEn ?? '')
+      ));
+    }
+    return Wrap(
+      spacing:10,
+      runSpacing:10,
+      children: tiles,
+    );
+  }
+
+  Widget _miniSuggestionTile({required IconData icon, required Color color, required String title, required String body}) {
     return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: CoralTheme.translucentCard(alpha: 0.18, radius: BorderRadius.circular(18)).copyWith(
-        border: Border.all(color: Colors.white.withValues(alpha: 0.25)),
+      width: 170,
+      constraints: const BoxConstraints(minHeight: 74),
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha:0.08),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: color.withValues(alpha:0.35)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            _isHindi ? 'AI दैनिक सुझाव' : 'AI Daily Suggestions',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 16),
-          if (_breathingSuggestion != null)
-            _buildMiniSuggestionCard(
-              title: _isHindi ? 'आज का श्वास अभ्यास' : "Today's Breathing",
-              emoji: '💨',
-              body: _isHindi
-                  ? (_breathingSuggestion!['technique_hindi'] ?? _breathingSuggestion!['technique'] ?? '')
-                  : (_breathingSuggestion!['technique'] ?? _breathingSuggestion!['technique_hindi'] ?? ''),
-              footer: _isHindi
-                  ? '${_breathingSuggestion!['duration_minutes']} मिनट'
-                  : '${_breathingSuggestion!['duration_minutes']} min',
-            ),
-          if (_meditationSuggestion != null)
-            _buildMiniSuggestionCard(
-              title: _isHindi ? 'आज का ध्यान' : "Today's Meditation",
-              emoji: '🧘',
-              body: _isHindi
-                  ? (_meditationSuggestion!['title_hindi'] ?? _meditationSuggestion!['title'] ?? '')
-                  : (_meditationSuggestion!['title'] ?? _meditationSuggestion!['title_hindi'] ?? ''),
-              footer: _isHindi
-                  ? '${_meditationSuggestion!['duration_minutes']} मिनट'
-                  : '${_meditationSuggestion!['duration_minutes']} min',
-            ),
-          if (_festivalMessages.isNotEmpty) ...[
-            _buildMiniSuggestionCard(
-              title: _isHindi ? 'त्योहार संदेश' : 'Festival Messages',
-              emoji: '🪔',
-              body: (_isHindi
-                      ? _festivalMessages.first['message_hi']
-                      : _festivalMessages.first['message_en']) ?? '',
-              footer: _isHindi
-                  ? (_festivalMessages.first['festival_hi'] ?? '')
-                  : (_festivalMessages.first['festival_en'] ?? ''),
-            ),
-            if (_festivalMessages.length > 1)
-              _buildMiniSuggestionCard(
-                title: '',
-                emoji: '🎉',
-                body: (_isHindi
-                        ? _festivalMessages[1]['message_hi']
-                        : _festivalMessages[1]['message_en']) ?? '',
-                footer: _isHindi
-                    ? (_festivalMessages[1]['festival_hi'] ?? '')
-                    : (_festivalMessages[1]['festival_en'] ?? ''),
-              ),
-          ],
-          if (_eventPlanningTipEn != null)
-            _buildMiniSuggestionCard(
-              title: _isHindi ? 'इवेंट प्लानिंग टिप' : 'Event Planning Tip',
-              emoji: '🗓️',
-              body: _isHindi ? _eventPlanningTipHi ?? '' : _eventPlanningTipEn ?? '',
-              footer: _isHindi ? 'रिश्ते बेहतर बनाएं' : 'Strengthen bonds',
-            ),
+          Row(children:[
+            Icon(icon, size:16, color: color),
+            const SizedBox(width:6),
+            Expanded(child: Text(title, style: TextStyle(fontSize:11,fontWeight: FontWeight.w600,color: color.darken()), maxLines:1,overflow: TextOverflow.ellipsis)),
+          ]),
+          const SizedBox(height:4),
+            Text(body, style: const TextStyle(fontSize:11,height:1.2,color: Colors.black87), maxLines:3, overflow: TextOverflow.ellipsis)
         ],
       ),
     );
   }
 
-  Widget _buildMiniSuggestionCard({
-    required String title,
-    required String emoji,
-    required String body,
-    required String footer,
-  }) {
-    return Container(
-      width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.white.withValues(alpha: 0.18)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (title.isNotEmpty)
-            Row(
-              children: [
-                Text(emoji, style: const TextStyle(fontSize: 20)),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          if (title.isNotEmpty) const SizedBox(height: 8),
-          Text(
-            body,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 12,
-              height: 1.35,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(height: 6),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                footer,
-                style: const TextStyle(
-                  color: Colors.white70,
-                  fontSize: 11,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-              Text(
-                'AI',
-                style: TextStyle(
-                  color: Colors.orange.withValues(alpha: 0.9),
-                  fontSize: 11,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
+  Widget _insightLine(String key, String value) {
+    final label = _isHindi? _mapKeyHindi(key) : _mapKeyEn(key);
+    return Padding(
+      padding: const EdgeInsets.only(bottom:6),
+      child: Row(crossAxisAlignment: CrossAxisAlignment.start, children:[
+        SizedBox(width:86, child: Text(label, style: const TextStyle(fontSize:11,fontWeight: FontWeight.w600,color: Colors.black87))),
+        const SizedBox(width:6),
+        Expanded(child: Text(value, style: const TextStyle(fontSize:11,height:1.25,color: Colors.black),)),
+      ]),
     );
+  }
+
+  Widget _reconnectBanner() {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.orange.withValues(alpha:0.15),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(children:[
+        const Icon(Icons.phone_callback, size:18, color: Colors.orange),
+        const SizedBox(width:8),
+        Expanded(child: Text(
+          _isHindi? 'किसी पुराने मित्र से दोबारा जुड़ने का अच्छा समय' : 'Good time to reconnect with an old friend',
+          style: const TextStyle(fontSize:11,color: Colors.black87),
+        )),
+        TextButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (_)=> const RelationshipPulsePage()));
+          },
+          child: Text(_isHindi? 'देखें':'View'),
+        )
+      ]),
+    );
+  }
+}
+
+extension _ColorShade on Color {
+  Color darken([double amount = .18]) {
+    final hsl = HSLColor.fromColor(this);
+    final h = hsl.withLightness((hsl.lightness - amount).clamp(0.0, 1.0));
+    return h.toColor();
   }
 }

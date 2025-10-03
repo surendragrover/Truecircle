@@ -6,12 +6,12 @@ import 'package:truecircle/services/permission_helper.dart';
 /// A service to handle fetching contacts from the device.
 class ContactService {
   /// Fetches contacts based on the current app mode.
-  /// In Demo Mode, returns an empty list.
+  /// In Privacy Mode (sample mode), returns an empty list.
   /// In Full Mode, requests permissions and fetches from the device.
   static Future<List<Contact>> getContacts(BuildContext context) async {
     final isFull = await AppModeService.isFullMode();
     if (!isFull) {
-      // Return empty list in Demo mode
+  // Return empty list in Privacy/Sample mode
       return [];
     }
 

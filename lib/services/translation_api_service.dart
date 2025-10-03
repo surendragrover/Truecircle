@@ -72,7 +72,7 @@ class TranslationApiService {
         throw Exception('Translation failed: ${response.statusCode}');
       }
     } catch (e) {
-      // Fallback for demo purposes
+  // Fallback for sample purposes
       return _getDemoTranslation(text, targetLanguage);
     }
 
@@ -127,7 +127,7 @@ class TranslationApiService {
             .toList();
       }
     } catch (e) {
-      // Return demo languages
+  // Return sample languages
       return _getDemoLanguages();
     }
 
@@ -148,7 +148,7 @@ class TranslationApiService {
     return results;
   }
 
-  /// Demo translations for testing without API key
+  /// Sample translations for testing without API key
   String _getDemoTranslation(String text, String targetLanguage) {
     final demoTranslations = {
       'hi': {
@@ -247,7 +247,7 @@ class TranslationApiService {
     return translations?[text] ?? text;
   }
 
-  /// Demo language detection
+  /// Sample language detection
   String? _detectDemoLanguage(String text) {
     // Simple character-based detection
     if (text.contains(RegExp(r'[\u0900-\u097F]'))) return 'hi'; // Devanagari
@@ -263,7 +263,7 @@ class TranslationApiService {
     return 'en'; // Default to English
   }
 
-  /// Demo languages list
+  /// Sample languages list
   List<Map<String, String>> _getDemoLanguages() {
     return [
       {'code': 'en', 'name': 'English'},

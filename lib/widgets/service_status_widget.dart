@@ -108,7 +108,7 @@ class ServiceStatusWidget extends StatelessWidget {
       bool privacyMode = true;
       try {
         final privacyService = serviceLocator.get<PrivacyService>();
-        privacyMode = privacyService.isDemoMode();
+  privacyMode = privacyService.isPrivacyMode();
       } catch (e) {
         debugPrint('Privacy service check failed: $e');
       }

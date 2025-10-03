@@ -189,8 +189,8 @@ AIRecommendation(
 
 2. **Demo Mode Enforcement:**
    ```dart
-   if (isDemoMode()) {
-     return RelationshipLog.generateDemoData(contactId, contactName);
+  if (isPrivacyMode()) {
+  return RelationshipLog.generateSampleData(contactId, contactName);
    }
    ```
 

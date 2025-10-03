@@ -42,11 +42,11 @@ class MoodEntryService {
 
       // Perform NLP analysis if requested
       MoodEntry analyzedEntry = entry;
-      if (performImmediateAnalysis && !_privacyService.isDemoMode()) {
+  if (performImmediateAnalysis && !_privacyService.isPrivacyMode()) {
         analyzedEntry = await MoodEntryNLPService.analyzeEntry(entry);
-      } else if (_privacyService.isDemoMode()) {
-        // Use demo analysis for privacy mode
-        analyzedEntry = _generateDemoAnalysis(entry);
+  } else if (_privacyService.isPrivacyMode()) {
+    // Use sample analysis for privacy mode (formerly demo)
+    analyzedEntry = _generateSampleAnalysis(entry);
       }
 
       // Store in Hive
@@ -61,11 +61,11 @@ class MoodEntryService {
     }
   }
 
-  /// Generate demo analysis for privacy mode
-  MoodEntry _generateDemoAnalysis(MoodEntry entry) {
+  /// Generate sample analysis for privacy mode (renamed from demo)
+  MoodEntry _generateSampleAnalysis(MoodEntry entry) {
     final textLower = entry.userText.toLowerCase();
     
-    // Simple demo analysis
+  // Simple sample analysis
     String mood = 'Neutral';
     String stress = 'Medium';
     double sentiment = 0.0;
@@ -92,11 +92,11 @@ class MoodEntryService {
       detectedEmotions: [
         EmotionIntensity(emotion: mood, intensity: 0.7),
       ],
-      nlpMetadata: {'demo': true, 'processed_at': DateTime.now().toIso8601String()},
+  nlpMetadata: {'sample': true, 'processed_at': DateTime.now().toIso8601String()},
     );
   }
 
-  /// Simple keyword extraction for demo mode
+  /// Simple keyword extraction for sample/privacy mode
   List<String> _extractSimpleKeywords(String text) {
     final words = text.split(RegExp(r'\s+'));
     final keywords = <String>[];
@@ -191,10 +191,10 @@ class MoodEntryService {
       // Reanalyze if requested
       MoodEntry finalEntry = updatedEntry;
       if (reanalyzeMood) {
-        if (!_privacyService.isDemoMode()) {
+  if (!_privacyService.isPrivacyMode()) {
           finalEntry = await MoodEntryNLPService.analyzeEntry(updatedEntry);
         } else {
-          finalEntry = _generateDemoAnalysis(updatedEntry);
+          finalEntry = _generateSampleAnalysis(updatedEntry);
         }
       }
 
@@ -233,10 +233,10 @@ class MoodEntryService {
       for (final entry in pendingEntries) {
         try {
           MoodEntry analyzed;
-          if (!_privacyService.isDemoMode()) {
+          if (!_privacyService.isPrivacyMode()) {
             analyzed = await MoodEntryNLPService.analyzeEntry(entry);
           } else {
-            analyzed = _generateDemoAnalysis(entry);
+            analyzed = _generateSampleAnalysis(entry);
           }
           
           await _moodBox.put(entry.id, analyzed);
@@ -269,10 +269,12 @@ class MoodEntryService {
     return MoodStatistics.fromEntries(entries);
   }
 
-  /// Get demo data for privacy mode
-  Future<List<MoodEntry>> getDemoData() async {
-    return MoodEntry.generateDemoData();
+  /// Get sample data for privacy mode (replaces getDemoData)
+  Future<List<MoodEntry>> getSampleData() async {
+    return MoodEntry.generateSampleData();
   }
+
+  // Removed deprecated: getDemoData (use getSampleData)
 
   /// Clear all mood entries (use with caution)
   Future<void> clearAllEntries() async {

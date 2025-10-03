@@ -5,30 +5,30 @@ import 'package:flutter/material.dart';
 class PermissionHelper {
   /// Sample App - no real permission needed, returns false to use sample data
   static Future<bool> requestContactsPermission(BuildContext context) async {
-    await _showDemoDialog(context, 'Contacts Access Demo');
-    return false; // Always false for demo mode
+    await _showSampleDialog(context, 'Contacts Access');
+    return false; // Always false for sample mode
   }
 
   /// Sample App - no real permission needed, returns false to use sample data
   static Future<bool> requestPhonePermission(BuildContext context) async {
-    await _showDemoDialog(context, 'Phone Access Demo');
-    return false; // Always false for demo mode
+    await _showSampleDialog(context, 'Phone Access');
+    return false; // Always false for sample mode
   }
 
   /// Sample App - no real permission needed, returns false to use sample data
   static Future<bool> requestSMSPermission(BuildContext context) async {
-    await _showDemoDialog(context, 'SMS Access Demo');
-    return false; // Always false for demo mode
+    await _showSampleDialog(context, 'SMS Access');
+    return false; // Always false for sample mode
   }
 
   /// Sample App - no real permission needed, returns false to use sample data
   static Future<bool> requestStoragePermission(BuildContext context) async {
-    await _showDemoDialog(context, 'Storage Access Demo');
-    return false; // Always false for demo mode
+    await _showSampleDialog(context, 'Storage Access');
+    return false; // Always false for sample mode
   }
 
-  /// Show demo explanation dialog
-  static Future<void> _showDemoDialog(
+  /// Show sample explanation dialog (privacy-first)
+  static Future<void> _showSampleDialog(
       BuildContext context, String title) async {
     await showDialog(
       context: context,
@@ -45,7 +45,7 @@ class PermissionHelper {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '🎓 Educational Demo Mode',
+              '🎓 Educational Sample Mode',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.blue,
@@ -53,11 +53,11 @@ class PermissionHelper {
               ),
             ),
             SizedBox(height: 12),
-            Text('This is an educational app that uses sample data only.'),
+            Text('This privacy-first app uses sample data only.'),
             SizedBox(height: 8),
             Text('✅ Zero permissions required'),
             Text('✅ Your privacy is 100% protected'),
-            Text('✅ All insights are based on demo data'),
+            Text('✅ All insights are based on sample data'),
             Text('✅ Learn relationship analysis safely'),
           ],
         ),
@@ -71,32 +71,32 @@ class PermissionHelper {
     );
   }
 
-  /// Check if permission is granted (always false for demo)
+  /// Check if permission is granted (always false for sample mode)
   static Future<bool> isPermissionGranted(dynamic permission) async {
     return false; // Sample App doesn't need real permissions
   }
 
-  /// Check contacts permission (always false for demo)
+  /// Check contacts permission (always false for sample)
   static Future<bool> hasContactsPermission() async {
     return false; // Sample App uses sample contacts
   }
 
-  /// Check phone permission (always false for demo)
+  /// Check phone permission (always false for sample)
   static Future<bool> hasPhonePermission() async {
     return false; // Sample App uses sample call data
   }
 
-  /// Check SMS permission (always false for demo)
+  /// Check SMS permission (always false for sample)
   static Future<bool> hasSmsPermission() async {
     return false; // Sample App uses sample message data
   }
 
-  /// Check storage permission (always false for demo)
+  /// Check storage permission (always false for sample)
   static Future<bool> hasStoragePermission() async {
     return false; // Sample App doesn't need file access
   }
 
-  /// Get all permission status (all false for demo)
+  /// Get all permission status (all false for sample)
   static Future<Map<String, bool>> getAllPermissionStatus() async {
     return {
       'contacts': false,
@@ -112,7 +112,7 @@ class PermissionHelper {
     debugPrint('Sample App: No settings needed - zero permissions used');
   }
 
-  /// Show permission denied dialog (modified for demo)
+  /// Show permission info dialog (privacy wording)
   static Future<void> showPermissionDeniedDialog(
     BuildContext context,
     String permissionName,
@@ -124,11 +124,11 @@ class PermissionHelper {
           children: [
             Icon(Icons.info, color: Colors.blue),
             SizedBox(width: 8),
-            Text('Demo Mode'),
+            Text('Sample Mode'),
           ],
         ),
         content: Text(
-          'This is a Sample App that uses sample data for $permissionName. '
+          'This privacy-first app uses sample data for $permissionName. '
           'No real permissions are needed to explore the features safely.',
         ),
         actions: [

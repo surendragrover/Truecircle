@@ -168,12 +168,12 @@ class MentalHealthLog extends HiveObject {
     return buffer.toString();
   }
 
-  /// Generate demo data for privacy mode
-  static List<MentalHealthLog> generateDemoData() {
+  /// Generate sample data for privacy mode (formerly generateDemoData)
+  static List<MentalHealthLog> generateSampleData() {
     final now = DateTime.now();
     return [
       MentalHealthLog(
-        id: 'mh_demo_1',
+  id: 'mh_sample_1',
         timestamp: now.subtract(const Duration(hours: 3)),
         primaryMood: MoodLevel.good,
         emotionTags: [EmotionTag.grateful, EmotionTag.content],
@@ -185,10 +185,10 @@ class MentalHealthLog extends HiveObject {
         relationshipSatisfaction: 8,
         notes: 'Good day with partner, feeling connected',
         isPrivacyMode: true,
-        aiAnalysisMetadata: {'demo': true, 'pattern': 'positive_relationship'},
+  aiAnalysisMetadata: {'sample': true, 'pattern': 'positive_relationship'},
       ),
       MentalHealthLog(
-        id: 'mh_demo_2',
+  id: 'mh_sample_2',
         timestamp: now.subtract(const Duration(days: 1)),
         primaryMood: MoodLevel.anxious,
         emotionTags: [EmotionTag.worried, EmotionTag.overwhelmed],
@@ -201,10 +201,10 @@ class MentalHealthLog extends HiveObject {
         relationshipSatisfaction: 5,
         notes: 'Had argument, feeling disconnected',
         isPrivacyMode: true,
-        aiAnalysisMetadata: {'demo': true, 'pattern': 'relationship_stress'},
+  aiAnalysisMetadata: {'sample': true, 'pattern': 'relationship_stress'},
       ),
       MentalHealthLog(
-        id: 'mh_demo_3',
+  id: 'mh_sample_3',
         timestamp: now.subtract(const Duration(days: 2)),
         primaryMood: MoodLevel.neutral,
         emotionTags: [EmotionTag.calm, EmotionTag.focused],
@@ -216,10 +216,14 @@ class MentalHealthLog extends HiveObject {
         relationshipSatisfaction: 7,
         notes: 'Regular day, stable mood',
         isPrivacyMode: true,
-        aiAnalysisMetadata: {'demo': true, 'pattern': 'baseline'},
+  aiAnalysisMetadata: {'sample': true, 'pattern': 'baseline'},
       ),
     ];
   }
+
+  /// Deprecated: use generateSampleData
+  @Deprecated('Use generateSampleData instead')
+  static List<MentalHealthLog> generateDemoData() => generateSampleData();
 
   @override
   String toString() {
