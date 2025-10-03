@@ -1,13 +1,12 @@
-name: demo-token-guard
-
+## TrueCircle Demo Token Guard Workflow (clean canonical form)
+## If editor still shows duplicate key errors, reload window (Ctrl+Shift+P > Developer: Reload Window).
+name: "demo-token-guard"
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [ main ]
+  workflow_dispatch: {}
 
 jobs:
   token-guard:
@@ -30,3 +29,4 @@ jobs:
 
       - name: Summary
         run: echo "Demo token guard succeeded." >> $GITHUB_STEP_SUMMARY
+
