@@ -866,6 +866,85 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
             ),
           const SizedBox(height: 8),
           _buildSyncStatusRow(),
+          const SizedBox(height: 8),
+          // Last payload keys (debug visibility of what was sent)
+          ValueListenableBuilder<DateTime?>(
+            valueListenable: CloudSyncService.instance.lastSyncNotifier,
+            builder: (_, __, ___) {
+              final keys = CloudSyncService.instance.lastPayloadKeys;
+              if (keys == null) {
+                return Text(
+                  _isHindi ? 'अभी तक कोई पेलोड नहीं' : 'No payload yet',
+                  style: const TextStyle(color: Colors.white38, fontSize: 10),
+                );
+              }
+              return Text(
+                (_isHindi ? 'अंतिम कुंजियाँ: ' : 'Last keys: ') + keys.join(', '),
+                style: const TextStyle(color: Colors.white54, fontSize: 10, height: 1.3),
+              );
+            },
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              ElevatedButton.icon(
+                onPressed: _cloudSyncEnabled
+                    ? () async {
+                        final ok = await CloudSyncService.instance.manualTestSync(
+                          loyaltyPoints: _loyaltyPoints,
+                          featuresCount: _features.length,
+                          modelsReady: _modelsReady,
+                          aiFestivalMessages: _festivalMessages.length,
+                        );
+                        if (!mounted) return;
+                        if (ok) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                _isHindi ? 'टेस्ट सिंक भेजा गया' : 'Test sync dispatched',
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                              backgroundColor: Colors.blueGrey,
+                              duration: const Duration(seconds: 2),
+                            ),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                _isHindi ? 'टेस्ट सिंक विफल (फोन नहीं)' : 'Test sync failed (no phone)',
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                              backgroundColor: Colors.redAccent,
+                              duration: const Duration(seconds: 2),
+                            ),
+                          );
+                        }
+                      }
+                    : null,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.lightBlueAccent.withValues(alpha: 0.85),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  minimumSize: const Size(0, 34),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                ),
+                icon: const Icon(Icons.cloud_upload, size: 16, color: Colors.white),
+                label: Text(
+                  _isHindi ? 'टेस्ट सिंक' : 'Test Sync',
+                  style: const TextStyle(color: Colors.white, fontSize: 12),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  _isHindi
+                      ? 'यह बटन पेलोड को तुरंत भेजने का प्रयास करता है.'
+                      : 'Forces an immediate sync attempt of current metadata.',
+                  style: const TextStyle(color: Colors.white38, fontSize: 10, height: 1.25),
+                ),
+              )
+            ],
+          ),
           if (CloudSyncService.instance.lastErrorNotifier.value != null) ...[
             const SizedBox(height: 6),
             Row(

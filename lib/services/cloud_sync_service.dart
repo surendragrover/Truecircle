@@ -20,6 +20,7 @@ class CloudSyncService {
   bool _enableSync = true; // Toggle: set false to fully disable cloud write
   DateTime? _lastSuccessfulSync;
   Map<String, dynamic>? _pendingPayload; // Latest payload waiting retry
+  List<String>? _lastPayloadKeys; // Keys of last successfully synced payload (for debug UI)
   int _retryAttempt = 0;
   Timer? _retryTimer;
   Timer? _retryCountdownTimer; // counts down seconds until next retry
@@ -129,6 +130,28 @@ class CloudSyncService {
     }
   }
 
+  /// Force a test sync (bypasses throttling logic in UI). Returns true if a write attempt was made.
+  Future<bool> manualTestSync({
+    required int loyaltyPoints,
+    required int featuresCount,
+    bool? modelsReady,
+    int? aiFestivalMessages,
+  }) async {
+    if (!_enableSync) return false;
+    final phone = AuthService().currentPhoneNumber;
+    if (phone == null) {
+      lastErrorNotifier.value = 'no-phone';
+      return false;
+    }
+    await syncUserState(
+      loyaltyPoints: loyaltyPoints,
+      featuresCount: featuresCount,
+      modelsReady: modelsReady,
+      aiFestivalMessages: aiFestivalMessages,
+    );
+    return true;
+  }
+
   /// High-level state sync (loyalty points, feature counts, model flags)
   Future<void> syncUserState({
     required int loyaltyPoints,
@@ -217,6 +240,7 @@ class CloudSyncService {
     _retryTimer?.cancel();
     _retryCountdownTimer?.cancel();
     retryCountdownNotifier.value = null;
+    _lastPayloadKeys = payload.keys.toList()..sort();
     _lastSuccessfulSync = DateTime.now();
     lastSyncNotifier.value = _lastSuccessfulSync;
     try {
@@ -228,6 +252,9 @@ class CloudSyncService {
     } catch (_) {}
     debugPrint('[CloudSync] State synced successfully at ${_lastSuccessfulSync!.toIso8601String()}');
   }
+
+  /// Debug helper: last successfully synced payload keys (sorted)
+  List<String>? get lastPayloadKeys => _lastPayloadKeys;
 
   void _queueRetry(Map<String, dynamic> payload) async {
     _pendingPayload = payload;
