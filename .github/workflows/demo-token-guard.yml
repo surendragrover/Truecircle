@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  guard:
+  token-guard:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -25,7 +25,7 @@ jobs:
       - name: Pub get
         run: flutter pub get
 
-      - name: Run guard
+      - name: Run token guard
         run: dart run tool/demo_token_guard.dart
 
       - name: Summary
