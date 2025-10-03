@@ -1,0 +1,32 @@
+name: demo-token-guard
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  token-guard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Pub get
+        run: flutter pub get
+
+      - name: Run token guard
+        run: dart run tool/demo_token_guard.dart
+
+      - name: Summary
+        run: echo "Demo token guard succeeded." >> $GITHUB_STEP_SUMMARY
