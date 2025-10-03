@@ -517,7 +517,7 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
                               : Container(
                                   padding: const EdgeInsets.all(16),
                                   decoration: BoxDecoration(
-                                    color: feature['color'].withOpacity(0.25),
+                                    color: (feature['color'] as Color).withValues(alpha: 0.25),
                                     shape: BoxShape.circle,
                                   ),
                                   child: Icon(

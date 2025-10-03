@@ -20,7 +20,7 @@ class _FeaturePageState extends State<FeaturePage> {
   late Map<String, dynamic> feature;
   late bool isHindi;
   bool _isLoading = true;
-  List<dynamic> _demoData = [];
+  List<dynamic> _sampleData = [];
   String _errorMessage = '';
 
   @override
@@ -91,7 +91,7 @@ class _FeaturePageState extends State<FeaturePage> {
 
       if (mounted) {
         setState(() {
-          _demoData = data.toList(); // Show all entries
+          _sampleData = data.toList(); // Show all entries
           _isLoading = false;
         });
       }
@@ -169,7 +169,7 @@ class _FeaturePageState extends State<FeaturePage> {
                   Container(
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
-                      color: feature['color'].withOpacity(0.3),
+                      color: (feature['color'] as Color).withValues(alpha: 0.3),
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
@@ -201,7 +201,7 @@ class _FeaturePageState extends State<FeaturePage> {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: feature['color'].withOpacity(0.3),
+                      color: (feature['color'] as Color).withValues(alpha: 0.3),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -291,8 +291,8 @@ class _FeaturePageState extends State<FeaturePage> {
               Expanded(
                 child: Text(
                   isHindi 
-                      ? '${feature['titleHi']} (${_demoData.length} entries)'
-                      : '${feature['title']} (${_demoData.length} entries)',
+                      ? '${feature['titleHi']} (${_sampleData.length} entries)'
+                      : '${feature['title']} (${_sampleData.length} entries)',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -319,7 +319,7 @@ class _FeaturePageState extends State<FeaturePage> {
               _errorMessage,
               style: const TextStyle(color: Colors.red, fontSize: 14),
             )
-          else if (_demoData.isEmpty)
+          else if (_sampleData.isEmpty)
             Text(
               isHindi 
                   ? 'कोई डेटा उपलब्ध नहीं है।'
@@ -333,10 +333,10 @@ class _FeaturePageState extends State<FeaturePage> {
             SizedBox(
               height: 400, // Fixed height for scroll performance
               child: ListView.builder(
-                itemCount: _demoData.length,
+                itemCount: _sampleData.length,
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  final item = _demoData[index];
+                  final item = _sampleData[index];
                   return Container(
                     margin: const EdgeInsets.only(bottom: 12),
                     padding: const EdgeInsets.all(12),
@@ -350,7 +350,7 @@ class _FeaturePageState extends State<FeaturePage> {
                           width: 40,
                           height: 40,
                           decoration: BoxDecoration(
-                            color: feature['color'].withOpacity(0.3),
+                            color: (feature['color'] as Color).withValues(alpha: 0.3),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Icon(

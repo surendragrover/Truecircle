@@ -53,7 +53,7 @@ class ColorSchemePreviewPage extends StatelessWidget {
                   icon: const Icon(Icons.waves, color: Colors.white, size: 18),
                   label: const Text('Therapy Waves', style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: CoralTheme.therapySun.withOpacity(0.85),
+                    backgroundColor: CoralTheme.therapySun.withValues(alpha: 0.85),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
                   ),
                 ),
@@ -70,7 +70,7 @@ class ColorSchemePreviewPage extends StatelessWidget {
                   icon: const Icon(Icons.palette_outlined, color: Colors.white, size: 18),
                   label: const Text('Therapy Minimal', style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: CoralTheme.therapyDeep.withOpacity(0.65),
+                    backgroundColor: CoralTheme.therapyDeep.withValues(alpha: 0.65),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
                   ),
                 ),
@@ -110,7 +110,7 @@ class _SwatchTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(14),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.25),
+            color: Colors.black.withValues(alpha: 0.25),
             blurRadius: 8,
             offset: const Offset(0, 4),
           )
@@ -123,8 +123,8 @@ class _SwatchTile extends StatelessWidget {
             height: 46,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: Colors.white.withOpacity(0.6), width: 2),
-              color: info.color.withOpacity(0.9),
+              border: Border.all(color: Colors.white.withValues(alpha: 0.6), width: 2),
+              color: info.color.withValues(alpha: 0.9),
             ),
           ),
           const SizedBox(width: 14),
@@ -162,7 +162,7 @@ class _GradientPreview extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
+            color: Colors.black.withValues(alpha: 0.3),
             blurRadius: 12,
             offset: const Offset(0, 6),
           )
@@ -185,7 +185,7 @@ class _UsageGuidelines extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.06),
+  color: Colors.white.withValues(alpha: 0.06),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.white24),
       ),

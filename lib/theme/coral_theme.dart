@@ -91,7 +91,7 @@ class _GrainPainter extends CustomPainter {
         final v = (seed % 100) / 100.0; // 0..1
         if (v < 0.35) continue; // sparse
         final alpha = (opacity * (0.25 + v * 0.75));
-        paint.color = Colors.white.withOpacity(alpha * 0.5);
+  paint.color = Colors.white.withValues(alpha: alpha * 0.5);
         canvas.drawRect(Rect.fromLTWH(x, y, 1.2, 1.2), paint);
       }
     }
@@ -121,11 +121,11 @@ class TherapyWaves extends StatelessWidget {
             height: sunDiameter,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: CoralTheme.therapySun.withOpacity(0.22),
+              color: CoralTheme.therapySun.withValues(alpha: 0.22),
               gradient: RadialGradient(
                 colors: [
-                  CoralTheme.therapySun.withOpacity(0.55),
-                  CoralTheme.therapySun.withOpacity(0.08),
+                  CoralTheme.therapySun.withValues(alpha: 0.55),
+                  CoralTheme.therapySun.withValues(alpha: 0.08),
                   Colors.transparent,
                 ],
                 stops: const [0.0, 0.55, 1.0],
@@ -157,15 +157,15 @@ class _WavePainter extends CustomPainter {
     double yStart;
     switch (level) {
       case 0:
-        color = CoralTheme.therapyTerra.withOpacity(0.28);
+  color = CoralTheme.therapyTerra.withValues(alpha: 0.28);
         yStart = h * 0.55;
         break;
       case 1:
-        color = CoralTheme.therapyRust.withOpacity(0.24);
+  color = CoralTheme.therapyRust.withValues(alpha: 0.24);
         yStart = h * 0.62;
         break;
       default:
-        color = CoralTheme.therapyRust.withOpacity(0.38);
+  color = CoralTheme.therapyRust.withValues(alpha: 0.38);
         yStart = h * 0.70;
     }
     path.moveTo(0, yStart);
