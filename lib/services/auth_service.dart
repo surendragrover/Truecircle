@@ -60,6 +60,12 @@ class AuthService {
       await Future.delayed(const Duration(milliseconds: 500));
       _isPhoneVerified = true;
       _currentPhoneNumber = phoneNumber;
+      try {
+        final box = Hive.isBoxOpen('truecircle_settings')
+            ? Hive.box('truecircle_settings')
+            : await Hive.openBox('truecircle_settings');
+        await box.put('current_phone_number', phoneNumber);
+      } catch (_) {}
       debugPrint('Mock phone authentication successful for: $phoneNumber');
       return true;
     } catch (e) {
@@ -67,6 +73,26 @@ class AuthService {
       _isPhoneVerified = false;
       _currentPhoneNumber = null;
       return false;
+    }
+  }
+
+  // Attempt to restore persisted phone number (for app restarts)
+  static bool _restoreAttempted = false;
+  Future<void> restoreFromStorage() async {
+    if (_restoreAttempted) return;
+    _restoreAttempted = true;
+    try {
+      final box = Hive.isBoxOpen('truecircle_settings')
+          ? Hive.box('truecircle_settings')
+          : await Hive.openBox('truecircle_settings');
+      final stored = box.get('current_phone_number') as String?;
+      if (stored != null && stored.isNotEmpty) {
+        _currentPhoneNumber = stored;
+        _isPhoneVerified = true; // assume previously verified in mock mode
+        debugPrint('AuthService: restored phone $stored from storage');
+      }
+    } catch (e) {
+      debugPrint('AuthService: restoreFromStorage failed: $e');
     }
   }
 

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:truecircle/services/auth_service.dart';
+import 'dart:async';
 import '../auth_wrapper.dart';
 import '../widgets/truecircle_logo.dart';
 import 'dr_iris_dashboard.dart';
 import 'feature_page.dart';
 import 'loyalty_points_page.dart';
-import 'daily_progress_demo_page.dart';
+import 'daily_progress_page.dart';
 import '../services/loyalty_points_service.dart';
+import '../theme/coral_theme.dart';
+import '../services/offline_ai_suggestion_service.dart';
+import '../services/cloud_sync_service.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 // TrueCircle Complete Dashboard with All Features
 class GiftMarketplacePage extends StatefulWidget {
@@ -21,6 +26,20 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
   String _selectedLanguage = 'English'; // Default English
   bool _isHindi = false; // Default English
   int _loyaltyPoints = 0;
+  bool _modelsReady = false; // AI model gate
+  bool _cloudSyncEnabled = true; // Privacy toggle
+
+  // Performance / throttling helpers
+  bool _syncInFlight = false;
+  DateTime? _lastSyncCall;
+  bool _aiLoaded = false;
+
+  // Offline AI suggestion data
+  Map<String, dynamic>? _breathingSuggestion;
+  Map<String, dynamic>? _meditationSuggestion;
+  List<Map<String, String>> _festivalMessages = [];
+  String? _eventPlanningTipEn;
+  String? _eventPlanningTipHi;
 
   // Languages List - Only Hindi and English for now
   final List<Map<String, String>> _languages = [
@@ -145,6 +164,78 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
   void initState() {
     super.initState();
     _checkDailyReward();
+    // Defer AI loading to next frame to avoid blocking first paint
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!_aiLoaded) _loadAISuggestions();
+    });
+    _initPrivacySettings();
+    CloudSyncService.instance.loadLastSyncFromStorage();
+    // Ensure we have a mock phone identity so CloudSync can write.
+    if (_authService.currentPhoneNumber == null) {
+      // Use deterministic mock phone so same document reused across sessions.
+      _authService.restoreFromStorage().then((_) async {
+        if (_authService.currentPhoneNumber == null) {
+          await _authService.signInWithPhoneNumber('+19999990000');
+          debugPrint('[GiftMarketplace] Mock phone injected for sync');
+        }
+      });
+    }
+    // Removed noisy listeners; localized rebuilds handled via ValueListenableBuilder
+  }
+
+  void _throttledSync({
+    required int loyaltyPoints,
+    required int featuresCount,
+    required bool modelsReady,
+    required int aiFestivalMessages,
+  }) {
+    final now = DateTime.now();
+    if (_syncInFlight) return;
+    if (_lastSyncCall != null && now.difference(_lastSyncCall!) < const Duration(seconds: 3)) return;
+    _lastSyncCall = now;
+    _syncInFlight = true;
+    CloudSyncService.instance
+        .syncUserState(
+          loyaltyPoints: loyaltyPoints,
+          featuresCount: featuresCount,
+          modelsReady: modelsReady,
+          aiFestivalMessages: aiFestivalMessages,
+        )
+        .whenComplete(() => _syncInFlight = false);
+  }
+
+  Future<void> _initPrivacySettings() async {
+    try {
+      final box = Hive.isBoxOpen('truecircle_settings')
+          ? Hive.box('truecircle_settings')
+          : await Hive.openBox('truecircle_settings');
+      final stored = box.get('cloud_sync_enabled', defaultValue: true) as bool;
+      _cloudSyncEnabled = stored;
+      CloudSyncService.instance.setSyncEnabled(stored);
+      if (mounted) setState(() {});
+    } catch (_) {
+      // Silent failure keeps default true (still respects privacy: only metadata)
+    }
+  }
+
+  Future<void> _toggleCloudSync(bool value) async {
+    setState(() => _cloudSyncEnabled = value);
+    CloudSyncService.instance.setSyncEnabled(value);
+    try {
+      final box = Hive.isBoxOpen('truecircle_settings')
+          ? Hive.box('truecircle_settings')
+          : await Hive.openBox('truecircle_settings');
+      await box.put('cloud_sync_enabled', value);
+    } catch (_) {}
+    if (value) {
+      // When re-enabling, immediately attempt a sync (will flush pending if any)
+      CloudSyncService.instance.enableAndKick(
+        loyaltyPoints: _loyaltyPoints,
+        featuresCount: _features.length,
+        modelsReady: _modelsReady,
+        aiFestivalMessages: _festivalMessages.length,
+      );
+    }
   }
 
   Future<void> _checkDailyReward() async {
@@ -172,6 +263,21 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
           ),
         );
       }
+      if (_cloudSyncEnabled) {
+        // Attempt an initial sync (only runs once if never synced yet)
+        CloudSyncService.instance.initialSyncIfPossible(
+          loyaltyPoints: _loyaltyPoints,
+          featuresCount: _features.length,
+          modelsReady: _modelsReady,
+          aiFestivalMessages: _festivalMessages.length,
+        );
+        _throttledSync(
+          loyaltyPoints: _loyaltyPoints,
+          featuresCount: _features.length,
+          modelsReady: _modelsReady,
+          aiFestivalMessages: _festivalMessages.length,
+        );
+      }
     } catch (e) {
       // Handle error silently
       setState(() {
@@ -180,14 +286,55 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
     }
   }
 
+  Future<void> _loadAISuggestions() async {
+    if (_aiLoaded) return;
+    _aiLoaded = true;
+    try {
+      final ready = await OfflineAISuggestionService.instance.isModelReady();
+      if (!mounted) return;
+      if (!ready) {
+        setState(() => _modelsReady = false);
+        return;
+      }
+      final results = await Future.wait([
+        OfflineAISuggestionService.instance.getDailyBreathingSuggestion(),
+        OfflineAISuggestionService.instance.getDailyMeditationSuggestion(),
+        OfflineAISuggestionService.instance.getFestivalMessageSuggestions(count: 2),
+        OfflineAISuggestionService.instance.getEventPlanningSuggestion(hindi: false),
+        OfflineAISuggestionService.instance.getEventPlanningSuggestion(hindi: true),
+      ]);
+      if (!mounted) return;
+      setState(() {
+        _modelsReady = true;
+        _breathingSuggestion = results[0] as Map<String, dynamic>?;
+        _meditationSuggestion = results[1] as Map<String, dynamic>?;
+        _festivalMessages = results[2] as List<Map<String, String>>;
+        _eventPlanningTipEn = results[3] as String?;
+        _eventPlanningTipHi = results[4] as String?;
+      });
+      if (_cloudSyncEnabled) {
+        _throttledSync(
+          loyaltyPoints: _loyaltyPoints,
+          featuresCount: _features.length,
+          modelsReady: _modelsReady,
+          aiFestivalMessages: _festivalMessages.length,
+        );
+      }
+    } catch (e) {
+      if (mounted) setState(() => _modelsReady = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          const Color(0xFF00BFA5), // Brilliant bluish green background
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF00695C), // Darker teal for AppBar
-        elevation: 2,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(gradient: CoralTheme.appBarGradient),
+        ),
         title: Row(
           children: [
             TrueCircleLogo(
@@ -270,8 +417,10 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+      body: Container(
+        decoration: CoralTheme.background,
+        child: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(16, 100, 16, 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -280,15 +429,9 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
               width: double.infinity,
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.deepPurple.shade700,
-                    Colors.deepPurple.shade500
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-                borderRadius: BorderRadius.circular(16),
+                color: Colors.white.withValues(alpha: 0.85),
+                borderRadius: BorderRadius.circular(18),
+                boxShadow: CoralTheme.glowShadow(0.15),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -296,7 +439,7 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
                   Text(
                     _isHindi ? 'स्वागत है!' : 'Welcome!',
                     style: const TextStyle(
-                      color: Colors.black, // Jet black text
+                      color: Colors.black,
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
                     ),
@@ -333,6 +476,9 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
 
             const SizedBox(height: 24),
 
+            if (_modelsReady) _buildAIDailySuggestionsSection(),
+            if (_modelsReady) const SizedBox(height: 24),
+
             // Features Grid
             Text(
               _isHindi ? 'सभी सुविधाएं' : 'All Features',
@@ -358,10 +504,10 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      color: const Color(
-                          0xFF004D40), // Dark teal for feature cards
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: const Color(0xFF00695C)),
+                      color: Colors.white.withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(18),
+                      border: Border.all(color: Colors.white.withValues(alpha: 0.25)),
+                      boxShadow: CoralTheme.glowShadow(0.12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(12),
@@ -369,10 +515,10 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           feature['hasAvatar'] == true
-                              ? CircleAvatar(
+                              ? const CircleAvatar(
                                   radius: 25,
-                                  backgroundColor: Colors.deepPurple.shade300,
-                                  child: const Icon(
+                                  backgroundColor: CoralTheme.dark,
+                                  child: Icon(
                                     Icons.psychology_alt,
                                     size: 25,
                                     color: Colors.white,
@@ -381,13 +527,13 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
                               : Container(
                                   padding: const EdgeInsets.all(16),
                                   decoration: BoxDecoration(
-                                    color: feature['color'].withOpacity(0.2),
+                                    color: feature['color'].withOpacity(0.25),
                                     shape: BoxShape.circle,
                                   ),
                                   child: Icon(
                                     feature['icon'],
                                     size: 30,
-                                    color: feature['color'],
+                                    color: Colors.white,
                                   ),
                                 ),
                           const SizedBox(height: 12),
@@ -395,8 +541,7 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
                             _isHindi ? feature['titleHi'] : feature['title'],
                             textAlign: TextAlign.center,
                             style: const TextStyle(
-                              color: Colors
-                                  .white, // White text for dark background
+                              color: Colors.white,
                               fontSize: 13,
                               fontWeight: FontWeight.bold,
                             ),
@@ -413,8 +558,7 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
                                       : feature['description'],
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
-                                    color: Colors
-                                        .white70, // Light white text for dark background
+                                    color: Colors.white70,
                                     fontSize: 9,
                                   ),
                                   maxLines: 2,
@@ -481,12 +625,10 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
             ),
             const SizedBox(height: 16),
 
+            // Statistics (use coral translucent card for contrast over gradient)
             Container(
               padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: const Color(0xFF004D40),
-                borderRadius: BorderRadius.circular(16),
-              ),
+              decoration: CoralTheme.translucentCard(alpha: 0.18, radius: BorderRadius.circular(16)),
               child: Column(
                 children: [
                   _buildStatRow(
@@ -513,12 +655,11 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
             const SizedBox(height: 24),
 
             // Permission Guide
+            // Permission Guide (coral styled)
             Container(
               padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: const Color(0xFF004D40),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.orange.withValues(alpha: 0.5)),
+              decoration: CoralTheme.translucentCard(alpha: 0.15, radius: BorderRadius.circular(12)).copyWith(
+                border: Border.all(color: Colors.orange.withValues(alpha: 0.55)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -573,12 +714,11 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
             const SizedBox(height: 24),
 
             // Privacy Note
+            // Privacy Note (coral styled)
             Container(
               padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: const Color(0xFF004D40),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.green.withValues(alpha: 0.5)),
+              decoration: CoralTheme.translucentCard(alpha: 0.15, radius: BorderRadius.circular(12)).copyWith(
+                border: Border.all(color: Colors.green.withValues(alpha: 0.55)),
               ),
               child: Row(
                 children: [
@@ -598,9 +738,11 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
                 ],
               ),
             ),
+            const SizedBox(height: 14),
+            _buildPrivacyControls(),
           ],
         ),
-      ),
+      )),
     );
   }
 
@@ -609,20 +751,13 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
       onTap: () => _navigateToDrIris(),
       child: Container(
         padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.deepPurple.shade600, Colors.purple.shade400],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
+        decoration: CoralTheme.translucentCard(alpha: 0.20, radius: BorderRadius.circular(16)),
         child: Row(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               radius: 30,
-              backgroundColor: Colors.deepPurple.shade300,
-              child: const Icon(
+              backgroundColor: CoralTheme.dark,
+              child: Icon(
                 Icons.psychology_alt,
                 size: 35,
                 color: Colors.white,
@@ -685,6 +820,222 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
     );
   }
 
+  Widget _buildPrivacyControls() {
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: CoralTheme.translucentCard(alpha: 0.15, radius: BorderRadius.circular(12)).copyWith(
+        border: Border.all(color: Colors.white.withValues(alpha: 0.25)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(_cloudSyncEnabled ? Icons.cloud_sync : Icons.cloud_off,
+                  color: _cloudSyncEnabled ? Colors.lightBlueAccent : Colors.redAccent,
+                  size: 24),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  _isHindi ? 'क्लाउड सिंक (केवल मेटाडेटा)' : 'Cloud Sync (Metadata Only)',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Switch(
+                value: _cloudSyncEnabled,
+                activeThumbColor: Colors.lightBlueAccent,
+                activeTrackColor: Colors.lightBlueAccent.withValues(alpha: 0.35),
+                onChanged: (v) => _toggleCloudSync(v),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+            Text(
+              _cloudSyncEnabled
+                  ? (_isHindi
+                      ? 'सक्रिय: केवल सुरक्षित सारांश (पॉइंट्स, फीचर काउंट, मॉडल स्थिति) Firestore में सेव। कोई व्यक्तिगत चैट/भावना डेटा नहीं भेजा जाता।'
+                      : 'Enabled: Only safe aggregates (points, feature count, model status) are stored. No personal chats or emotion text ever leaves device.')
+                  : (_isHindi
+                      ? 'अक्षम: अब कोई भी डेटा क्लाउड पर नहीं भेजा जाएगा।'
+                      : 'Disabled: No further metadata will sync to cloud.'),
+              style: const TextStyle(color: Colors.white70, fontSize: 11, height: 1.3),
+            ),
+          const SizedBox(height: 8),
+          _buildSyncStatusRow(),
+          if (CloudSyncService.instance.lastErrorNotifier.value != null) ...[
+            const SizedBox(height: 6),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(Icons.error_outline, color: Colors.redAccent, size: 14),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+                    (_isHindi ? 'त्रुटि: ' : 'Error: ') + (CloudSyncService.instance.lastErrorNotifier.value ?? ''),
+                    style: const TextStyle(color: Colors.redAccent, fontSize: 10, height: 1.2),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    CloudSyncService.instance.lastErrorNotifier.value = null;
+                    setState(() {});
+                  },
+                  style: TextButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal: 6)),
+                  child: Text(_isHindi ? 'हटाएं' : 'Clear', style: const TextStyle(fontSize: 10, color: Colors.redAccent)),
+                )
+              ],
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  String _buildLastSyncLabel() {
+    final dt = CloudSyncService.instance.lastSuccessfulSync;
+    if (dt == null) {
+      return _isHindi ? 'अभी तक कोई सिंक नहीं' : 'No sync yet';
+    }
+    final now = DateTime.now();
+    final diff = now.difference(dt);
+    String rel;
+    if (diff.inSeconds < 60) {
+      rel = _isHindi ? 'अभी' : 'just now';
+    } else if (diff.inMinutes < 60) {
+      rel = _isHindi ? '${diff.inMinutes} मिनट पहले' : '${diff.inMinutes}m ago';
+    } else if (diff.inHours < 24) {
+      rel = _isHindi ? '${diff.inHours} घंटे पहले' : '${diff.inHours}h ago';
+    } else {
+      rel = _isHindi ? '${diff.inDays} दिन पहले' : '${diff.inDays}d ago';
+    }
+    return (_isHindi ? 'अंतिम सिंक: ' : 'Last sync: ') + rel;
+  }
+
+  Widget _buildSyncStatusRow() {
+    return ValueListenableBuilder<bool>(
+      valueListenable: CloudSyncService.instance.syncingNotifier,
+      builder: (_, syncing, __) {
+        return ValueListenableBuilder<int?>(
+          valueListenable: CloudSyncService.instance.retryCountdownNotifier,
+          builder: (_, retry, __) {
+            final docId = CloudSyncService.instance.sanitizedUserId != null
+                ? 'users/${CloudSyncService.instance.sanitizedUserId}/meta/state'
+                : null;
+            return Row(
+              children: [
+                const Icon(Icons.schedule, size: 16, color: Colors.white70),
+                const SizedBox(width: 6),
+                Expanded(
+                  child: Text(
+          docId == null
+            ? _buildLastSyncLabel()
+            : '${_buildLastSyncLabel()}\n$docId',
+                    style: const TextStyle(color: Colors.white60, fontSize: 11),
+                  ),
+                ),
+                if (syncing)
+                  const Row(
+                    children: [
+                      SizedBox(
+                        width: 14,
+                        height: 14,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: Colors.lightBlueAccent,
+                        ),
+                      ),
+                      SizedBox(width: 4),
+                      Text('Syncing...', style: TextStyle(color: Colors.white60, fontSize: 10)),
+                    ],
+                  ),
+                if (retry != null)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 6),
+                    child: Text(
+                      _isHindi ? 'पुनः प्रयास ${retry}s में' : 'Retry in ${retry}s',
+                      style: const TextStyle(color: Colors.orangeAccent, fontSize: 10),
+                    ),
+                  ),
+                TextButton.icon(
+                  onPressed: _cloudSyncEnabled ? () => CloudSyncService.instance.manualSync() : null,
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.orange,
+                    disabledForegroundColor: Colors.white24,
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    minimumSize: const Size(0, 32),
+                  ),
+                  icon: const Icon(Icons.refresh, size: 16),
+                  label: Text(_isHindi ? 'सिंक' : 'Sync'),
+                ),
+                const SizedBox(width: 4),
+                TextButton(
+                  onPressed: _cloudSyncEnabled ? _confirmClearCloud : null,
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.redAccent,
+                    disabledForegroundColor: Colors.white24,
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    minimumSize: const Size(0, 32),
+                  ),
+                  child: Text(_isHindi ? 'क्लियर' : 'Clear', style: const TextStyle(fontSize: 11)),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
+  void _confirmClearCloud() {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: const Color(0xFF004D40),
+        title: Text(
+          _isHindi ? 'क्लाउड डेटा हटाएं?' : 'Clear Cloud Metadata?',
+          style: const TextStyle(color: Colors.white),
+        ),
+        content: Text(
+          _isHindi
+              ? 'यह केवल अपलोड किया गया सुरक्षित मेटाडेटा (पॉइंट्स, फीचर काउंट, मॉडल फ्लैग) क्लाउड से हटा देगा। आपकी डिवाइस का लोकल डेटा सुरक्षित रहेगा.'
+              : 'This will delete the uploaded safe metadata (points, feature count, model flag) from the cloud. Local device data remains untouched.',
+          style: const TextStyle(color: Colors.white70, fontSize: 13),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: Text(_isHindi ? 'रद्द करें' : 'Cancel', style: const TextStyle(color: Colors.teal)),
+          ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
+              onPressed: () async {
+                Navigator.pop(ctx);
+                final ok = await CloudSyncService.instance.clearCloudMetadata();
+                if (mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        ok
+                            ? (_isHindi ? 'क्लाउड मेटाडेटा हटाया गया' : 'Cloud metadata cleared')
+                            : (_isHindi ? 'हटाने में विफल' : 'Failed to clear'),
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      backgroundColor: ok ? Colors.green : Colors.redAccent,
+                    ),
+                  );
+                }
+              },
+              child: Text(_isHindi ? 'हटाएं' : 'Delete', style: const TextStyle(color: Colors.white)),
+            ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildQuickActionCard({
     required String title,
     required IconData icon,
@@ -695,10 +1046,8 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: const Color(0xFF004D40),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: color.withValues(alpha: 0.5)),
+        decoration: CoralTheme.translucentCard(alpha: 0.16, radius: BorderRadius.circular(12)).copyWith(
+          border: Border.all(color: color.withValues(alpha: 0.55)),
         ),
         child: Column(
           children: [
@@ -780,11 +1129,22 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
           builder: (context) => LoyaltyPointsPage(isHindi: _isHindi),
         ),
       );
-    } else if (feature['title'] == 'Progress Tracker') {
+    } else if (feature['title'] == 'Breathing Exercises' || feature['title'] == 'Meditation Guide') {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const DailyProgressDemoPage(),
+          builder: (context) => FeaturePage(
+            feature: feature,
+            isHindi: _isHindi,
+          ),
+        ),
+      );
+    } else if (feature['title'] == 'Progress Tracker') {
+      // Navigate to the sample-enabled daily progress page (previously demo)
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const DailyProgressPage(), // Updated to new sample page
         ),
       );
     } else {
@@ -1008,6 +1368,153 @@ class _GiftMarketplacePageState extends State<GiftMarketplacePage> {
                 ),
               ],
             ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAIDailySuggestionsSection() {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: CoralTheme.translucentCard(alpha: 0.18, radius: BorderRadius.circular(18)).copyWith(
+        border: Border.all(color: Colors.white.withValues(alpha: 0.25)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            _isHindi ? 'AI दैनिक सुझाव' : 'AI Daily Suggestions',
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 16),
+          if (_breathingSuggestion != null)
+            _buildMiniSuggestionCard(
+              title: _isHindi ? 'आज का श्वास अभ्यास' : "Today's Breathing",
+              emoji: '💨',
+              body: _isHindi
+                  ? (_breathingSuggestion!['technique_hindi'] ?? _breathingSuggestion!['technique'] ?? '')
+                  : (_breathingSuggestion!['technique'] ?? _breathingSuggestion!['technique_hindi'] ?? ''),
+              footer: _isHindi
+                  ? '${_breathingSuggestion!['duration_minutes']} मिनट'
+                  : '${_breathingSuggestion!['duration_minutes']} min',
+            ),
+          if (_meditationSuggestion != null)
+            _buildMiniSuggestionCard(
+              title: _isHindi ? 'आज का ध्यान' : "Today's Meditation",
+              emoji: '🧘',
+              body: _isHindi
+                  ? (_meditationSuggestion!['title_hindi'] ?? _meditationSuggestion!['title'] ?? '')
+                  : (_meditationSuggestion!['title'] ?? _meditationSuggestion!['title_hindi'] ?? ''),
+              footer: _isHindi
+                  ? '${_meditationSuggestion!['duration_minutes']} मिनट'
+                  : '${_meditationSuggestion!['duration_minutes']} min',
+            ),
+          if (_festivalMessages.isNotEmpty) ...[
+            _buildMiniSuggestionCard(
+              title: _isHindi ? 'त्योहार संदेश' : 'Festival Messages',
+              emoji: '🪔',
+              body: (_isHindi
+                      ? _festivalMessages.first['message_hi']
+                      : _festivalMessages.first['message_en']) ?? '',
+              footer: _isHindi
+                  ? (_festivalMessages.first['festival_hi'] ?? '')
+                  : (_festivalMessages.first['festival_en'] ?? ''),
+            ),
+            if (_festivalMessages.length > 1)
+              _buildMiniSuggestionCard(
+                title: '',
+                emoji: '🎉',
+                body: (_isHindi
+                        ? _festivalMessages[1]['message_hi']
+                        : _festivalMessages[1]['message_en']) ?? '',
+                footer: _isHindi
+                    ? (_festivalMessages[1]['festival_hi'] ?? '')
+                    : (_festivalMessages[1]['festival_en'] ?? ''),
+              ),
+          ],
+          if (_eventPlanningTipEn != null)
+            _buildMiniSuggestionCard(
+              title: _isHindi ? 'इवेंट प्लानिंग टिप' : 'Event Planning Tip',
+              emoji: '🗓️',
+              body: _isHindi ? _eventPlanningTipHi ?? '' : _eventPlanningTipEn ?? '',
+              footer: _isHindi ? 'रिश्ते बेहतर बनाएं' : 'Strengthen bonds',
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMiniSuggestionCard({
+    required String title,
+    required String emoji,
+    required String body,
+    required String footer,
+  }) {
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: Colors.white.withValues(alpha: 0.18)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (title.isNotEmpty)
+            Row(
+              children: [
+                Text(emoji, style: const TextStyle(fontSize: 20)),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          if (title.isNotEmpty) const SizedBox(height: 8),
+          Text(
+            body,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+              height: 1.35,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                footer,
+                style: const TextStyle(
+                  color: Colors.white70,
+                  fontSize: 11,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+              Text(
+                'AI',
+                style: TextStyle(
+                  color: Colors.orange.withValues(alpha: 0.9),
+                  fontSize: 11,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
           ),
         ],
       ),
