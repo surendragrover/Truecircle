@@ -20,18 +20,21 @@ class CloudSyncService {
   bool _enableSync = true; // Toggle: set false to fully disable cloud write
   DateTime? _lastSuccessfulSync;
   Map<String, dynamic>? _pendingPayload; // Latest payload waiting retry
-  List<String>? _lastPayloadKeys; // Keys of last successfully synced payload (for debug UI)
+  List<String>?
+      _lastPayloadKeys; // Keys of last successfully synced payload (for debug UI)
   int _retryAttempt = 0;
   Timer? _retryTimer;
   Timer? _retryCountdownTimer; // counts down seconds until next retry
 
   // Sync state notifiers for UI feedback
   final ValueNotifier<bool> syncingNotifier = ValueNotifier<bool>(false);
-  final ValueNotifier<int?> retryCountdownNotifier = ValueNotifier<int?>(null); // seconds remaining until retry
+  final ValueNotifier<int?> retryCountdownNotifier =
+      ValueNotifier<int?>(null); // seconds remaining until retry
   final ValueNotifier<String?> lastErrorNotifier = ValueNotifier<String?>(null);
 
   // Exposed notifier for UI (last sync changes)
-  final ValueNotifier<DateTime?> lastSyncNotifier = ValueNotifier<DateTime?>(null);
+  final ValueNotifier<DateTime?> lastSyncNotifier =
+      ValueNotifier<DateTime?>(null);
 
   Future<void> _ensureInitialized() async {
     if (_initialized) return;
@@ -41,14 +44,17 @@ class CloudSyncService {
       if (Firebase.apps.isEmpty) {
         // Prefer automatic initialization (google-services.json / plist) when not web.
         if (kIsWeb) {
-          await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+          await Firebase.initializeApp(
+              options: DefaultFirebaseOptions.currentPlatform);
         } else {
           try {
             await Firebase.initializeApp(); // let native config load
             debugPrint('[CloudSync] Firebase auto init (no options) succeeded');
           } catch (autoErr) {
-            debugPrint('[CloudSync] Auto init failed ($autoErr) – trying explicit options');
-            await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+            debugPrint(
+                '[CloudSync] Auto init failed ($autoErr) – trying explicit options');
+            await Firebase.initializeApp(
+                options: DefaultFirebaseOptions.currentPlatform);
           }
         }
       }
@@ -164,7 +170,8 @@ class CloudSyncService {
     final auth = AuthService();
     final phone = auth.currentPhoneNumber;
     if (phone == null) {
-      debugPrint('[CloudSync] Skip: no phone (user not signed in / not restored)');
+      debugPrint(
+          '[CloudSync] Skip: no phone (user not signed in / not restored)');
       return; // No user context
     }
 
@@ -178,8 +185,10 @@ class CloudSyncService {
       final box = Hive.isBoxOpen('truecircle_settings')
           ? Hive.box('truecircle_settings')
           : await Hive.openBox('truecircle_settings');
-      final hasSeenHow = box.get('${phone}_seen_how_works', defaultValue: false) as bool;
-      final modelsDownloaded = modelsReady ?? box.get('${phone}_models_downloaded', defaultValue: false) as bool;
+      final hasSeenHow =
+          box.get('${phone}_seen_how_works', defaultValue: false) as bool;
+      final modelsDownloaded = modelsReady ??
+          box.get('${phone}_models_downloaded', defaultValue: false) as bool;
 
       final sanitizedId = phone.replaceAll(RegExp(r'[^0-9A-Za-z]'), '_');
       final docRef = FirebaseFirestore.instance
@@ -199,7 +208,8 @@ class CloudSyncService {
         'privacyLevel': 'sample-mode',
       }..removeWhere((_, v) => v == null);
 
-      debugPrint('[CloudSync] Preparing write for phone=$sanitizedId payloadKeys=${payload.keys.toList()}');
+      debugPrint(
+          '[CloudSync] Preparing write for phone=$sanitizedId payloadKeys=${payload.keys.toList()}');
       await _attemptWriteToDoc(docRef, payload);
     } catch (e) {
       lastErrorNotifier.value = 'sync: $e';
@@ -207,7 +217,9 @@ class CloudSyncService {
     }
   }
 
-  Future<void> _attemptWriteToDoc(DocumentReference<Map<String, dynamic>> docRef, Map<String, dynamic> payload) async {
+  Future<void> _attemptWriteToDoc(
+      DocumentReference<Map<String, dynamic>> docRef,
+      Map<String, dynamic> payload) async {
     try {
       syncingNotifier.value = true;
       await docRef.set(payload, SetOptions(merge: true));
@@ -250,7 +262,8 @@ class CloudSyncService {
       await box.put('last_sync_iso', _lastSuccessfulSync!.toIso8601String());
       await box.delete('pending_sync_state');
     } catch (_) {}
-    debugPrint('[CloudSync] State synced successfully at ${_lastSuccessfulSync!.toIso8601String()}');
+    debugPrint(
+        '[CloudSync] State synced successfully at ${_lastSuccessfulSync!.toIso8601String()}');
   }
 
   /// Debug helper: last successfully synced payload keys (sorted)
@@ -268,7 +281,8 @@ class CloudSyncService {
           : await Hive.openBox('truecircle_settings');
       await box.put('pending_sync_state', payload);
     } catch (_) {}
-    debugPrint('[CloudSync] Scheduling retry in ${delaySeconds}s (attempt $_retryAttempt)');
+    debugPrint(
+        '[CloudSync] Scheduling retry in ${delaySeconds}s (attempt $_retryAttempt)');
     // Countdown notifier
     int remaining = delaySeconds;
     retryCountdownNotifier.value = remaining;

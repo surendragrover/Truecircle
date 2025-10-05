@@ -35,21 +35,21 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
     try {
       final jsonService = JsonDataService.instance;
       final data = await jsonService.getBreathingData();
-      
+
       // Simple analytics calculation
       final analytics = {
         'total_sessions': data.length,
-        'avg_effectiveness': data.isNotEmpty 
-          ? data.map((e) => e['effectiveness'] ?? 0).reduce((a, b) => a + b) / data.length 
-          : 0,
-        'most_used_technique': data.isNotEmpty 
-          ? data.first['technique'] ?? 'Unknown' 
-          : 'No data'
+        'avg_effectiveness': data.isNotEmpty
+            ? data.map((e) => e['effectiveness'] ?? 0).reduce((a, b) => a + b) /
+                data.length
+            : 0,
+        'most_used_technique':
+            data.isNotEmpty ? data.first['technique'] ?? 'Unknown' : 'No data'
       };
-      
+
       debugPrint('✅ Loaded ${data.length} breathing sessions');
       debugPrint('📊 Analytics: $analytics');
-      
+
       setState(() {
         _breathingData = data;
         _analytics = analytics;
@@ -130,7 +130,7 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         }
-        
+
         if (!snapshot.hasData || snapshot.data == null) {
           return Center(
             child: Column(
@@ -201,7 +201,8 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
               // Technique Card
               Card(
                 elevation: 4,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
                 child: Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -215,7 +216,8 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
                               color: Colors.teal[50],
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: Icon(Icons.air, color: Colors.teal[600], size: 24),
+                            child: Icon(Icons.air,
+                                color: Colors.teal[600], size: 24),
                           ),
                           const SizedBox(width: 12),
                           Expanded(
@@ -223,7 +225,9 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  tip['technique_hindi'] ?? tip['technique'] ?? 'Unknown',
+                                  tip['technique_hindi'] ??
+                                      tip['technique'] ??
+                                      'Unknown',
                                   style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
@@ -243,10 +247,11 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
                         ],
                       ),
                       const SizedBox(height: 16),
-                      
+
                       // Duration
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 6),
                         decoration: BoxDecoration(
                           color: Colors.orange[50],
                           borderRadius: BorderRadius.circular(20),
@@ -279,7 +284,10 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
                         const SizedBox(height: 4),
                         Text(
                           tip['physical_sensation'] ?? '',
-                          style: TextStyle(fontSize: 13, color: Colors.grey[600], height: 1.5),
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey[600],
+                              height: 1.5),
                         ),
                         const SizedBox(height: 16),
                       ],
@@ -301,7 +309,10 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
                         const SizedBox(height: 4),
                         Text(
                           tip['mental_clarity'] ?? '',
-                          style: TextStyle(fontSize: 13, color: Colors.grey[600], height: 1.5),
+                          style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey[600],
+                              height: 1.5),
                         ),
                         const SizedBox(height: 16),
                       ],
@@ -364,7 +375,7 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
       itemBuilder: (context, index) {
         final session = _breathingData[index];
         final sessionDate = DateTime.now().subtract(Duration(days: index));
-        
+
         return Card(
           margin: const EdgeInsets.only(bottom: 12),
           elevation: 2,
@@ -422,7 +433,7 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
                   ],
                 ),
                 const SizedBox(height: 12),
-                
+
                 // Duration and Effectiveness
                 Row(
                   children: [
@@ -438,7 +449,7 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
                   ],
                 ),
                 const SizedBox(height: 12),
-                
+
                 // Stress Levels
                 Row(
                   children: [
@@ -459,8 +470,9 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
                     ),
                   ],
                 ),
-                
-                if (session['notes'] != null && session['notes'].toString().isNotEmpty) ...[
+
+                if (session['notes'] != null &&
+                    session['notes'].toString().isNotEmpty) ...[
                   const SizedBox(height: 12),
                   Container(
                     padding: const EdgeInsets.all(8),
@@ -508,7 +520,7 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
             ),
           ),
           const SizedBox(height: 20),
-          
+
           // Summary Cards
           Row(
             children: [
@@ -530,7 +542,7 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
             ],
           ),
           const SizedBox(height: 12),
-          
+
           Row(
             children: [
               Expanded(
@@ -551,7 +563,7 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
             ],
           ),
           const SizedBox(height: 20),
-          
+
           // Stress Levels Chart
           Card(
             child: Padding(
@@ -567,7 +579,6 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
                     ),
                   ),
                   const SizedBox(height: 16),
-                  
                   _buildStressComparison(
                     'Before Exercise',
                     _analytics['avgStressBefore']?.toDouble() ?? 0.0,
@@ -584,7 +595,7 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
             ),
           ),
           const SizedBox(height: 20),
-          
+
           // Insights
           Card(
             child: Padding(
@@ -632,7 +643,11 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
         'nameHi': 'अनुलोम-विलोम',
         'description': 'Alternate nostril breathing for balance and calm',
         'duration': '5-15 minutes',
-        'benefits': ['Reduces stress', 'Improves focus', 'Balances nervous system'],
+        'benefits': [
+          'Reduces stress',
+          'Improves focus',
+          'Balances nervous system'
+        ],
         'icon': '🧘‍♀️',
       },
       {
@@ -648,7 +663,11 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
         'nameHi': 'बॉक्स ब्रीदिंग',
         'description': 'Equal counts for inhale, hold, exhale, hold',
         'duration': '5-10 minutes',
-        'benefits': ['Mental clarity', 'Stress management', 'Focus improvement'],
+        'benefits': [
+          'Mental clarity',
+          'Stress management',
+          'Focus improvement'
+        ],
         'icon': '📦',
       },
       {
@@ -656,7 +675,11 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
         'nameHi': 'गहरी पेट की सांस',
         'description': 'Diaphragmatic breathing for relaxation',
         'duration': '10-20 minutes',
-        'benefits': ['Lower blood pressure', 'Reduced anxiety', 'Better oxygen flow'],
+        'benefits': [
+          'Lower blood pressure',
+          'Reduced anxiety',
+          'Better oxygen flow'
+        ],
         'icon': '🫁',
       },
     ];
@@ -666,7 +689,7 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
       itemCount: techniques.length,
       itemBuilder: (context, index) {
         final technique = techniques[index];
-        
+
         return Card(
           margin: const EdgeInsets.only(bottom: 16),
           child: Padding(
@@ -733,12 +756,13 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
                   ),
                 ),
                 const SizedBox(height: 4),
-                ...((technique['benefits'] as List<String>).map((benefit) => 
-                  Padding(
+                ...((technique['benefits'] as List<String>).map(
+                  (benefit) => Padding(
                     padding: const EdgeInsets.only(left: 8, top: 2),
                     child: Row(
                       children: [
-                        Icon(Icons.check_circle, size: 16, color: Colors.green[600]),
+                        Icon(Icons.check_circle,
+                            size: 16, color: Colors.green[600]),
                         const SizedBox(width: 6),
                         Expanded(
                           child: Text(
@@ -890,8 +914,18 @@ class _BreathingExercisesPageState extends State<BreathingExercisesPage>
 
   String _formatDate(DateTime date) {
     final months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
     ];
     return '${date.day} ${months[date.month - 1]}';
   }

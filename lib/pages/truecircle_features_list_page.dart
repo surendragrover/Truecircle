@@ -6,7 +6,8 @@ class TrueCircleFeaturesListPage extends StatefulWidget {
   const TrueCircleFeaturesListPage({super.key});
 
   @override
-  State<TrueCircleFeaturesListPage> createState() => _TrueCircleFeaturesListPageState();
+  State<TrueCircleFeaturesListPage> createState() =>
+      _TrueCircleFeaturesListPageState();
 }
 
 class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
@@ -36,7 +37,9 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                _isHindi ? 'TrueCircle - सभी फीचर्स' : 'TrueCircle - All Features',
+                _isHindi
+                    ? 'TrueCircle - सभी फीचर्स'
+                    : 'TrueCircle - All Features',
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -56,7 +59,8 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
           ),
           Text(
             _isHindi ? 'हिं' : 'EN',
-            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold),
           ),
           const SizedBox(width: 16),
         ],
@@ -109,7 +113,8 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
       {
         'icon': '🧠',
         'title': _isHindi ? 'Emotional Check-in' : 'Emotional Check-in',
-        'subtitle': _isHindi ? 'दैनिक भावनात्मक जांच' : 'Daily Emotional Assessment',
+        'subtitle':
+            _isHindi ? 'दैनिक भावनात्मक जांच' : 'Daily Emotional Assessment',
         'description': _isHindi
             ? '''आपकी daily emotions को track करने का सबसे आसान तरीका। सिर्फ 30 seconds में complete check-in।
 
@@ -179,7 +184,9 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
       {
         'icon': '💕',
         'title': _isHindi ? 'Relationship Insights' : 'Relationship Insights',
-        'subtitle': _isHindi ? 'रिश्तों का गहरा विश्लेषण' : 'Deep Relationship Analysis',
+        'subtitle': _isHindi
+            ? 'रिश्तों का गहरा विश्लेषण'
+            : 'Deep Relationship Analysis',
         'description': _isHindi
             ? '''आपके सभी relationships का comprehensive AI-powered analysis। समझें कि कौन से रिश्ते healthy हैं।
 
@@ -263,13 +270,15 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
 • Achievement recognition
 • Relationship anniversary reminders
 • Special moment documentation''',
-        'dataSource': 'Relationship_Insights_Feature.json + Relationship_Interactions_Feature.json',
+        'dataSource':
+            'Relationship_Insights_Feature.json + Relationship_Interactions_Feature.json',
         'sampleSize': '8 relationship profiles with interaction history'
       },
       {
         'icon': '💰',
         'title': _isHindi ? 'Event Budget Planner' : 'Event Budget Planner',
-        'subtitle': _isHindi ? 'त्योहारी बजट प्लानिंग' : 'Festival Budget Planning',
+        'subtitle':
+            _isHindi ? 'त्योहारी बजट प्लानिंग' : 'Festival Budget Planning',
         'description': _isHindi
             ? '''Indian festivals के लिए smart budget planning। कभी भी budget से अधिक खर्च न करें।
 
@@ -366,7 +375,8 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
       {
         'icon': '📖',
         'title': _isHindi ? 'Mood Journal' : 'Mood Journal',
-        'subtitle': _isHindi ? 'व्यापक मूड ट्रैकिंग' : 'Comprehensive Mood Tracking',
+        'subtitle':
+            _isHindi ? 'व्यापक मूड ट्रैकिंग' : 'Comprehensive Mood Tracking',
         'description': _isHindi
             ? '''30 दिन का detailed mood tracking with AI insights। अपने emotional patterns को गहराई से समझें।
 
@@ -456,7 +466,8 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
       {
         'icon': '🛌',
         'title': _isHindi ? 'Sleep Tracker' : 'Sleep Tracker',
-        'subtitle': _isHindi ? 'उन्नत नींद विश्लेषण' : 'Advanced Sleep Analysis',
+        'subtitle':
+            _isHindi ? 'उन्नत नींद विश्लेषण' : 'Advanced Sleep Analysis',
         'description': _isHindi
             ? '''Complete sleep health monitoring with AI-powered insights। आपकी sleep quality को बेहतर बनाने के लिए।
 
@@ -546,7 +557,8 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
       {
         'icon': '🫁',
         'title': _isHindi ? 'Breathing Exercises' : 'Breathing Exercises',
-        'subtitle': _isHindi ? 'श्वास चिकित्सा प्रशिक्षण' : 'Breath Therapy Training',
+        'subtitle':
+            _isHindi ? 'श्वास चिकित्सा प्रशिक्षण' : 'Breath Therapy Training',
         'description': _isHindi
             ? '''Scientific breathing techniques for stress relief और emotional regulation। Proven methods से तुरंत राहत पाएं।
 
@@ -643,7 +655,8 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
       {
         'icon': '👩‍⚕️',
         'title': _isHindi ? 'Dr. Iris AI Counselor' : 'Dr. Iris AI Counselor',
-        'subtitle': _isHindi ? '24/7 व्यक्तिगत AI सलाहकार' : '24/7 Personal AI Advisor',
+        'subtitle':
+            _isHindi ? '24/7 व्यक्तिगत AI सलाहकार' : '24/7 Personal AI Advisor',
         'description': _isHindi
             ? '''Advanced AI counselor जो आपकी emotional और relationship problems को professionally handle करता है।
 
@@ -733,7 +746,9 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
       {
         'icon': '🧘',
         'title': _isHindi ? 'Meditation Guide' : 'Meditation Guide',
-        'subtitle': _isHindi ? 'निर्देशित ध्यान प्रशिक्षण' : 'Guided Meditation Training',
+        'subtitle': _isHindi
+            ? 'निर्देशित ध्यान प्रशिक्षण'
+            : 'Guided Meditation Training',
         'description': _isHindi
             ? '''Complete meditation ecosystem with Indian और international meditation techniques।
 
@@ -830,7 +845,9 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
       {
         'icon': '🎭',
         'title': _isHindi ? 'Cultural AI Dashboard' : 'Cultural AI Dashboard',
-        'subtitle': _isHindi ? 'त्योहारी बुद्धिमत्ता केंद्र' : 'Festival Intelligence Center',
+        'subtitle': _isHindi
+            ? 'त्योहारी बुद्धिमत्ता केंद्र'
+            : 'Festival Intelligence Center',
         'description': _isHindi
             ? '''India की सबसे advanced cultural AI जो festivals और traditions को समझकर emotional guidance देता है।
 
@@ -919,8 +936,11 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
       },
       {
         'icon': '🌍',
-        'title': _isHindi ? 'Indian Languages Support' : 'Indian Languages Support',
-        'subtitle': _isHindi ? 'बहुभाषी सांस्कृतिक समर्थन' : 'Multilingual Cultural Support',
+        'title':
+            _isHindi ? 'Indian Languages Support' : 'Indian Languages Support',
+        'subtitle': _isHindi
+            ? 'बहुभाषी सांस्कृतिक समर्थन'
+            : 'Multilingual Cultural Support',
         'description': _isHindi
             ? '''22 Indian languages में emotional support और cultural guidance। Your native language में बात करें।
 
@@ -1009,7 +1029,9 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
       {
         'icon': '📈',
         'title': _isHindi ? 'Progress Tracker' : 'Progress Tracker',
-        'subtitle': _isHindi ? 'व्यापक प्रगति निगरानी' : 'Comprehensive Progress Monitoring',
+        'subtitle': _isHindi
+            ? 'व्यापक प्रगति निगरानी'
+            : 'Comprehensive Progress Monitoring',
         'description': _isHindi
             ? '''आपकी emotional, mental, और social growth को scientifically track करें। Data-driven insights से बेहतर बनें।
 
@@ -1099,7 +1121,8 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
       {
         'icon': '🎁',
         'title': _isHindi ? 'Gift Marketplace' : 'Gift Marketplace',
-        'subtitle': _isHindi ? 'वर्चुअल उपहार बाज़ार' : 'Virtual Gift Marketplace',
+        'subtitle':
+            _isHindi ? 'वर्चुअल उपहार बाज़ार' : 'Virtual Gift Marketplace',
         'description': _isHindi
             ? '''Emotional bonding के लिए virtual gifts और experiences। Privacy mode में भी relationships को strengthen करें।
 
@@ -1195,8 +1218,11 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
     final features = [
       {
         'icon': '🔮',
-        'title': _isHindi ? 'Advanced AI Predictions' : 'Advanced AI Predictions',
-        'subtitle': _isHindi ? 'भविष्य की भावनात्मक भविष्यवाणी' : 'Future Emotional Predictions',
+        'title':
+            _isHindi ? 'Advanced AI Predictions' : 'Advanced AI Predictions',
+        'subtitle': _isHindi
+            ? 'भविष्य की भावनात्मक भविष्यवाणी'
+            : 'Future Emotional Predictions',
         'description': _isHindi
             ? '''AI की power से अपने emotional future को predict करें। Problems को होने से पहले ही solve करें।
 
@@ -1286,7 +1312,8 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
       {
         'icon': '🌐',
         'title': _isHindi ? 'Multi-Platform Sync' : 'Multi-Platform Sync',
-        'subtitle': _isHindi ? 'सभी डिवाइस में सिंक' : 'Sync Across All Devices',
+        'subtitle':
+            _isHindi ? 'सभी डिवाइस में सिंक' : 'Sync Across All Devices',
         'description': _isHindi
             ? '''सभी devices में आपका data safely sync करें। कहीं भी, कभी भी access करें।
 
@@ -1376,7 +1403,8 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
       {
         'icon': '🎓',
         'title': _isHindi ? 'Expert Consultations' : 'Expert Consultations',
-        'subtitle': _isHindi ? 'विशेषज्ञ सलाह सेवा' : 'Professional Expert Advice',
+        'subtitle':
+            _isHindi ? 'विशेषज्ञ सलाह सेवा' : 'Professional Expert Advice',
         'description': _isHindi
             ? '''Real mental health professionals से video/audio consultation। AI के साथ-साथ human expertise भी।
 
@@ -1472,7 +1500,9 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
-        children: features.map((feature) => _buildDetailedFeatureCard(feature)).toList(),
+        children: features
+            .map((feature) => _buildDetailedFeatureCard(feature))
+            .toList(),
       ),
     );
   }
@@ -1568,7 +1598,8 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.data_usage, color: Colors.blue.shade700, size: 20),
+                        Icon(Icons.data_usage,
+                            color: Colors.blue.shade700, size: 20),
                         const SizedBox(width: 8),
                         Text(
                           _isHindi ? 'डेटा स्रोत:' : 'Data Source:',
@@ -1582,14 +1613,16 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
                     const SizedBox(height: 4),
                     Text(
                       feature['dataSource'],
-                      style: const TextStyle(fontSize: 13, color: Colors.black87),
+                      style:
+                          const TextStyle(fontSize: 13, color: Colors.black87),
                     ),
                     if (feature.containsKey('sampleSize'))
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
                         child: Row(
                           children: [
-                            Icon(Icons.analytics, color: Colors.orange.shade700, size: 20),
+                            Icon(Icons.analytics,
+                                color: Colors.orange.shade700, size: 20),
                             const SizedBox(width: 8),
                             Text(
                               _isHindi ? 'नमूना आकार:' : 'Sample Size:',
@@ -1606,7 +1639,8 @@ class _TrueCircleFeaturesListPageState extends State<TrueCircleFeaturesListPage>
                         padding: const EdgeInsets.only(top: 4),
                         child: Text(
                           feature['sampleSize'],
-                          style: const TextStyle(fontSize: 13, color: Colors.black87),
+                          style: const TextStyle(
+                              fontSize: 13, color: Colors.black87),
                         ),
                       ),
                   ],

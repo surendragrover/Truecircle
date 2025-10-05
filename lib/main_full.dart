@@ -37,20 +37,28 @@ void main() async {
     if (!Hive.isAdapterRegistered(6)) {
       Hive.registerAdapter(PrivacySettingsAdapter());
     }
-    if (!Hive.isAdapterRegistered(40)) Hive.registerAdapter(CBTAssessmentResultAdapter());
-    if (!Hive.isAdapterRegistered(41)) Hive.registerAdapter(CBTThoughtRecordAdapter());
-    if (!Hive.isAdapterRegistered(42)) Hive.registerAdapter(CopingCardAdapter());
-    if (!Hive.isAdapterRegistered(43)) Hive.registerAdapter(CBTMicroLessonProgressAdapter());
+    if (!Hive.isAdapterRegistered(40)) {
+      Hive.registerAdapter(CBTAssessmentResultAdapter());
+    }
+    if (!Hive.isAdapterRegistered(41)) {
+      Hive.registerAdapter(CBTThoughtRecordAdapter());
+    }
+    if (!Hive.isAdapterRegistered(42)) {
+      Hive.registerAdapter(CopingCardAdapter());
+    }
+    if (!Hive.isAdapterRegistered(43)) {
+      Hive.registerAdapter(CBTMicroLessonProgressAdapter());
+    }
 
     // Open boxes with comprehensive error recovery
     await _openHiveBoxSafely<EmotionEntry>('emotion_entries');
     await _openHiveBoxSafely<Contact>('contacts');
     await _openHiveBoxSafely<ContactInteraction>('contact_interactions');
     await _openHiveBoxSafely<PrivacySettings>('privacy_settings');
-  await _openHiveBoxSafely<CBTAssessmentResult>('cbt_assessments');
-  await _openHiveBoxSafely<CBTThoughtRecord>('cbt_thought_records');
-  await _openHiveBoxSafely<CopingCard>('cbt_coping_cards');
-  await _openHiveBoxSafely<CBTMicroLessonProgress>('cbt_lessons');
+    await _openHiveBoxSafely<CBTAssessmentResult>('cbt_assessments');
+    await _openHiveBoxSafely<CBTThoughtRecord>('cbt_thought_records');
+    await _openHiveBoxSafely<CopingCard>('cbt_coping_cards');
+    await _openHiveBoxSafely<CBTMicroLessonProgress>('cbt_lessons');
 
     debugPrint('✅ Hive initialized successfully');
   } catch (e) {
@@ -64,7 +72,7 @@ void main() async {
 Future<void> _openHiveBoxSafely<T>(String boxName) async {
   int attempts = 0;
   const maxAttempts = 3;
-  
+
   while (attempts < maxAttempts) {
     try {
       await Hive.openBox<T>(boxName);
@@ -73,13 +81,13 @@ Future<void> _openHiveBoxSafely<T>(String boxName) async {
     } catch (e) {
       attempts++;
       debugPrint('❌ Attempt $attempts failed for $boxName: $e');
-      
+
       if (attempts < maxAttempts) {
         try {
           // Try to delete corrupted box
           await Hive.deleteBoxFromDisk(boxName);
           debugPrint('🗑️ Deleted corrupted box: $boxName');
-          
+
           // Wait a bit before retry
           await Future.delayed(Duration(milliseconds: 500 * attempts));
         } catch (deleteError) {

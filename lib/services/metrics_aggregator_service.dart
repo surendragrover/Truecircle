@@ -24,23 +24,25 @@ class MetricsSnapshot {
     required this.generatedAt,
   });
   static MetricsSnapshot empty() => MetricsSnapshot(
-    avgMood7d: 0,
-    checkIns7d: 0,
-    breathingSessions7d: 0,
-    meditationSessions7d: 0,
-    sleepAvgHours7d: 0,
-    reconnects30d: 0,
-    conflictRepairs30d: 0,
-    streakDays: 0,
-    generatedAt: DateTime.now(),
-  );
+        avgMood7d: 0,
+        checkIns7d: 0,
+        breathingSessions7d: 0,
+        meditationSessions7d: 0,
+        sleepAvgHours7d: 0,
+        reconnects30d: 0,
+        conflictRepairs30d: 0,
+        streakDays: 0,
+        generatedAt: DateTime.now(),
+      );
 }
 
 class MetricsAggregatorService {
   MetricsAggregatorService._internal();
-  static final MetricsAggregatorService instance = MetricsAggregatorService._internal();
+  static final MetricsAggregatorService instance =
+      MetricsAggregatorService._internal();
 
-  final ValueNotifier<MetricsSnapshot> snapshotNotifier = ValueNotifier(MetricsSnapshot.empty());
+  final ValueNotifier<MetricsSnapshot> snapshotNotifier =
+      ValueNotifier(MetricsSnapshot.empty());
   Timer? _timer;
 
   Future<void> start() async {
@@ -52,34 +54,42 @@ class MetricsAggregatorService {
   Future<void> _compute() async {
     try {
       final entriesBox = await Hive.openBox('truecircle_emotional_entries');
-      final entries = (entriesBox.get('entries', defaultValue: <dynamic>[]) as List)
-          .cast<Map>()
-          .cast<Map<String,dynamic>>();
+      final entries =
+          (entriesBox.get('entries', defaultValue: <dynamic>[]) as List)
+              .cast<Map>()
+              .cast<Map<String, dynamic>>();
       final now = DateTime.now();
-      final last7 = entries.where((e){
-        final t = DateTime.tryParse(e['timestamp']??'');
-        if (t==null) return false; return now.difference(t).inDays < 7;
+      final last7 = entries.where((e) {
+        final t = DateTime.tryParse(e['timestamp'] ?? '');
+        if (t == null) return false;
+        return now.difference(t).inDays < 7;
       }).toList();
-      final moodVals = last7.map((e)=> (e['mood_score']??0).toDouble()).toList();
-      final avgMood = moodVals.isEmpty ? 0 : moodVals.reduce((a,b)=>a+b)/moodVals.length;
+      final moodVals =
+          last7.map((e) => (e['mood_score'] ?? 0).toDouble()).toList();
+      final avgMood = moodVals.isEmpty
+          ? 0
+          : moodVals.reduce((a, b) => a + b) / moodVals.length;
 
       // Fake counts from aux box
       final aux = await Hive.openBox('demo_aux_metrics');
       final breathing = aux.get('breathing_session') != null ? 4 : 0;
       final meditation = aux.get('meditation_session') != null ? 3 : 0;
-      final sleepAvg = (aux.get('progress_tracker_snapshot')?['sleep_avg_hours'] ?? 0).toDouble();
+      final sleepAvg =
+          (aux.get('progress_tracker_snapshot')?['sleep_avg_hours'] ?? 0)
+              .toDouble();
 
       // Interactions for reconnect/conflict repair
-      int reconnects = 0; int repairs = 0;
+      int reconnects = 0;
+      int repairs = 0;
       try {
         final interactionBox = await Hive.openBox('contact_interactions');
         final vals = interactionBox.values.toList();
         for (final i in vals) {
-          final meta = i.metadata as Map<String,dynamic>? ?? {};
-          if (meta['reconnect_success']==true) reconnects++;
-          if (meta['conflict_resolution']==true) repairs++;
-                }
-      } catch(_){}
+          final meta = i.metadata as Map<String, dynamic>? ?? {};
+          if (meta['reconnect_success'] == true) reconnects++;
+          if (meta['conflict_resolution'] == true) repairs++;
+        }
+      } catch (_) {}
 
       final streakDays = _calculateStreak(entries);
 
@@ -101,20 +111,24 @@ class MetricsAggregatorService {
     }
   }
 
-  int _calculateStreak(List<Map<String,dynamic>> entries) {
+  int _calculateStreak(List<Map<String, dynamic>> entries) {
     if (entries.isEmpty) return 0;
-    final dates = entries.map((e){
-      final t = DateTime.tryParse(e['timestamp']??'');
-      return t==null? null : DateTime(t.year,t.month,t.day);
-    }).whereType<DateTime>().toSet().toList()
-      ..sort((a,b)=> b.compareTo(a));
+    final dates = entries
+        .map((e) {
+          final t = DateTime.tryParse(e['timestamp'] ?? '');
+          return t == null ? null : DateTime(t.year, t.month, t.day);
+        })
+        .whereType<DateTime>()
+        .toSet()
+        .toList()
+      ..sort((a, b) => b.compareTo(a));
     int streak = 0;
     DateTime cursor = DateTime.now();
     for (final d in dates) {
-      if (d == DateTime(cursor.year,cursor.month,cursor.day)) {
+      if (d == DateTime(cursor.year, cursor.month, cursor.day)) {
         streak++;
         cursor = cursor.subtract(const Duration(days: 1));
-      } else if (d.isBefore(DateTime(cursor.year,cursor.month,cursor.day))) {
+      } else if (d.isBefore(DateTime(cursor.year, cursor.month, cursor.day))) {
         break; // gap
       }
     }

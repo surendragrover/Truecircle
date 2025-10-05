@@ -26,7 +26,8 @@ class CBTService {
 
   List<CBTAssessmentResult> getAssessments(String key) {
     final box = Hive.box<CBTAssessmentResult>(_boxAssessments);
-    return box.values.where((e) => e.assessmentKey == key).toList()..sort((a,b)=> b.timestamp.compareTo(a.timestamp));
+    return box.values.where((e) => e.assessmentKey == key).toList()
+      ..sort((a, b) => b.timestamp.compareTo(a.timestamp));
   }
 
   // ----- Thought Records -----
@@ -34,9 +35,11 @@ class CBTService {
     final box = Hive.box<CBTThoughtRecord>(_boxThoughts);
     await box.put(tr.id, tr);
   }
+
   List<CBTThoughtRecord> listThoughtRecords() {
     final box = Hive.box<CBTThoughtRecord>(_boxThoughts);
-    return box.values.toList()..sort((a,b)=> b.createdAt.compareTo(a.createdAt));
+    return box.values.toList()
+      ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
   }
 
   // ----- Coping Cards -----
@@ -44,9 +47,11 @@ class CBTService {
     final box = Hive.box<CopingCard>(_boxCards);
     await box.put(c.id, c);
   }
+
   List<CopingCard> listCopingCards() {
     final box = Hive.box<CopingCard>(_boxCards);
-    return box.values.toList()..sort((a,b)=> b.createdAt.compareTo(a.createdAt));
+    return box.values.toList()
+      ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
   }
 
   // ----- Lessons -----
@@ -54,11 +59,17 @@ class CBTService {
     final box = Hive.box<CBTMicroLessonProgress>(_boxLessons);
     final existing = box.get(id);
     if (existing == null) {
-      await box.put(id, CBTMicroLessonProgress(lessonId: id, completed: done, updatedAt: DateTime.now()));
+      await box.put(
+          id,
+          CBTMicroLessonProgress(
+              lessonId: id, completed: done, updatedAt: DateTime.now()));
     } else {
-      existing.completed = done; existing.updatedAt = DateTime.now(); await existing.save();
+      existing.completed = done;
+      existing.updatedAt = DateTime.now();
+      await existing.save();
     }
   }
+
   List<CBTMicroLessonProgress> lessonProgress() {
     final box = Hive.box<CBTMicroLessonProgress>(_boxLessons);
     return box.values.toList();
@@ -74,6 +85,7 @@ class CBTScoring {
     if (score <= 19) return 'moderately severe';
     return 'severe';
   }
+
   static String gad7Band(int score) {
     if (score <= 4) return 'minimal';
     if (score <= 9) return 'mild';

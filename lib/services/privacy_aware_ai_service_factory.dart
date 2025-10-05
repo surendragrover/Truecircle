@@ -10,7 +10,7 @@ import 'privacy_mode_manager.dart';
 /// Creates AI services with built-in privacy + sample mode controls.
 /// Ensures AI functionality respects user privacy settings and provides
 /// safe, reduced-scope behavior in sample (privacy) mode.
-/// 
+///
 /// Key Features:
 /// - Privacy-first AI service creation
 /// - Sample mode enforcement
@@ -37,8 +37,13 @@ class PrivacyAwareAIServiceFactory {
       'version': Platform.operatingSystemVersion,
       'isAndroid': Platform.isAndroid,
       'isIOS': Platform.isIOS,
-      'aiFramework': Platform.isAndroid ? 'Gemini Nano' : Platform.isIOS ? 'Core ML' : 'Mock',
-  'privacyMode': _privacyManager.isPrivacyMode ? 'Privacy Mode' : 'Full Access Mode',
+      'aiFramework': Platform.isAndroid
+          ? 'Gemini Nano'
+          : Platform.isIOS
+              ? 'Core ML'
+              : 'Mock',
+      'privacyMode':
+          _privacyManager.isPrivacyMode ? 'Privacy Mode' : 'Full Access Mode',
       'aiConsent': _privacyManager.canUseAI,
     };
   }
@@ -64,7 +69,7 @@ class PrivacyAwareAndroidAIService implements OnDeviceAIService {
 
   @override
   Future<String> generateDrIrisResponse(String prompt) async {
-  // Dr. Iris allowed in sample mode (on-device emotional support)
+    // Dr. Iris allowed in sample mode (on-device emotional support)
     if (!_privacyService.validateAIAccess('dr_iris')) {
       return "Dr. Iris (Privacy Mode): I'm here to support you. All our conversations happen privately on your device.";
     }
@@ -78,8 +83,8 @@ class PrivacyAwareAndroidAIService implements OnDeviceAIService {
 
   @override
   Future<String> analyzeSentimentAndStress(String textEntry) async {
-  // In sample mode, only basic analysis is allowed
-  if (_privacyService.isPrivacyMode()) {
+    // In sample mode, only basic analysis is allowed
+    if (_privacyService.isPrivacyMode()) {
       return _performBasicSentimentAnalysis(textEntry);
     }
 
@@ -91,9 +96,10 @@ class PrivacyAwareAndroidAIService implements OnDeviceAIService {
   }
 
   @override
-  Future<String> generateRelationshipTip(List<String> communicationLogSummary) async {
-  // In sample mode, provide general relationship advice
-  if (_privacyService.isPrivacyMode()) {
+  Future<String> generateRelationshipTip(
+      List<String> communicationLogSummary) async {
+    // In sample mode, provide general relationship advice
+    if (_privacyService.isPrivacyMode()) {
       return _generatePrivacyFriendlyRelationshipTip();
     }
 
@@ -101,17 +107,20 @@ class PrivacyAwareAndroidAIService implements OnDeviceAIService {
       return "Relationship Insights (Privacy Mode): Tips are based on general relationship best practices.";
     }
 
-    return await _androidService.generateRelationshipTip(communicationLogSummary);
+    return await _androidService
+        .generateRelationshipTip(communicationLogSummary);
   }
 
   @override
-  Future<String> draftFestivalMessage(String contactName, String relationType) async {
-  // Festival messages allowed in sample mode (cultural + positive)
-  if (_privacyService.isPrivacyMode()) {
+  Future<String> draftFestivalMessage(
+      String contactName, String relationType) async {
+    // Festival messages allowed in sample mode (cultural + positive)
+    if (_privacyService.isPrivacyMode()) {
       return _generatePrivacyFriendlyFestivalMessage(contactName, relationType);
     }
 
-    return await _androidService.draftFestivalMessage(contactName, relationType);
+    return await _androidService.draftFestivalMessage(
+        contactName, relationType);
   }
 
   @override
@@ -122,25 +131,50 @@ class PrivacyAwareAndroidAIService implements OnDeviceAIService {
   // Privacy-friendly helper methods
   String _performBasicSentimentAnalysis(String textEntry) {
     final lowercaseText = textEntry.toLowerCase();
-    
+
     int positiveScore = 0;
     int negativeScore = 0;
-    
-    final positiveWords = ['happy', 'good', 'great', 'amazing', 'wonderful', 'excited', 'joy', 'love'];
-    final negativeWords = ['sad', 'bad', 'terrible', 'stressed', 'angry', 'frustrated', 'worried', 'anxious'];
-    
+
+    final positiveWords = [
+      'happy',
+      'good',
+      'great',
+      'amazing',
+      'wonderful',
+      'excited',
+      'joy',
+      'love'
+    ];
+    final negativeWords = [
+      'sad',
+      'bad',
+      'terrible',
+      'stressed',
+      'angry',
+      'frustrated',
+      'worried',
+      'anxious'
+    ];
+
     for (String word in positiveWords) {
       if (lowercaseText.contains(word)) positiveScore++;
     }
-    
+
     for (String word in negativeWords) {
       if (lowercaseText.contains(word)) negativeScore++;
     }
-    
-    String sentiment = positiveScore > negativeScore ? 'Positive' : 
-                      negativeScore > positiveScore ? 'Negative' : 'Neutral';
-    String stressLevel = negativeScore > 2 ? 'High' : negativeScore > 0 ? 'Medium' : 'Low';
-    
+
+    String sentiment = positiveScore > negativeScore
+        ? 'Positive'
+        : negativeScore > positiveScore
+            ? 'Negative'
+            : 'Neutral';
+    String stressLevel = negativeScore > 2
+        ? 'High'
+        : negativeScore > 0
+            ? 'Medium'
+            : 'Low';
+
     return "Sentiment: $sentiment, Stress Level: $stressLevel (Privacy Mode Analysis)";
   }
 
@@ -152,12 +186,13 @@ class PrivacyAwareAndroidAIService implements OnDeviceAIService {
       "Small gestures of appreciation can have a big impact on relationship satisfaction.",
       "Remember that healthy relationships require effort from both sides - don't hesitate to reach out first.",
     ];
-    
+
     final randomIndex = DateTime.now().millisecond % tips.length;
     return "${tips[randomIndex]} (Privacy Mode)";
   }
 
-  String _generatePrivacyFriendlyFestivalMessage(String contactName, String relationType) {
+  String _generatePrivacyFriendlyFestivalMessage(
+      String contactName, String relationType) {
     switch (relationType.toLowerCase()) {
       case 'family':
         return "Dear $contactName, Wishing you and our family joy, prosperity, and togetherness on this special festival! 🎉 (Privacy Mode)";
@@ -201,7 +236,7 @@ class PrivacyAwareIOSAIService implements OnDeviceAIService {
 
   @override
   Future<String> analyzeSentimentAndStress(String textEntry) async {
-  if (_privacyService.isPrivacyMode()) {
+    if (_privacyService.isPrivacyMode()) {
       return _performBasicSentimentAnalysis(textEntry);
     }
 
@@ -213,8 +248,9 @@ class PrivacyAwareIOSAIService implements OnDeviceAIService {
   }
 
   @override
-  Future<String> generateRelationshipTip(List<String> communicationLogSummary) async {
-  if (_privacyService.isPrivacyMode()) {
+  Future<String> generateRelationshipTip(
+      List<String> communicationLogSummary) async {
+    if (_privacyService.isPrivacyMode()) {
       return _generatePrivacyFriendlyRelationshipTip();
     }
 
@@ -226,8 +262,9 @@ class PrivacyAwareIOSAIService implements OnDeviceAIService {
   }
 
   @override
-  Future<String> draftFestivalMessage(String contactName, String relationType) async {
-  if (_privacyService.isPrivacyMode()) {
+  Future<String> draftFestivalMessage(
+      String contactName, String relationType) async {
+    if (_privacyService.isPrivacyMode()) {
       return _generatePrivacyFriendlyFestivalMessage(contactName, relationType);
     }
 
@@ -243,25 +280,50 @@ class PrivacyAwareIOSAIService implements OnDeviceAIService {
   String _performBasicSentimentAnalysis(String textEntry) {
     // Implementation similar to Android version
     final lowercaseText = textEntry.toLowerCase();
-    
+
     int positiveScore = 0;
     int negativeScore = 0;
-    
-    final positiveWords = ['happy', 'good', 'great', 'amazing', 'wonderful', 'excited', 'joy', 'love'];
-    final negativeWords = ['sad', 'bad', 'terrible', 'stressed', 'angry', 'frustrated', 'worried', 'anxious'];
-    
+
+    final positiveWords = [
+      'happy',
+      'good',
+      'great',
+      'amazing',
+      'wonderful',
+      'excited',
+      'joy',
+      'love'
+    ];
+    final negativeWords = [
+      'sad',
+      'bad',
+      'terrible',
+      'stressed',
+      'angry',
+      'frustrated',
+      'worried',
+      'anxious'
+    ];
+
     for (String word in positiveWords) {
       if (lowercaseText.contains(word)) positiveScore++;
     }
-    
+
     for (String word in negativeWords) {
       if (lowercaseText.contains(word)) negativeScore++;
     }
-    
-    String sentiment = positiveScore > negativeScore ? 'Positive' : 
-                      negativeScore > positiveScore ? 'Negative' : 'Neutral';
-    String stressLevel = negativeScore > 2 ? 'High' : negativeScore > 0 ? 'Medium' : 'Low';
-    
+
+    String sentiment = positiveScore > negativeScore
+        ? 'Positive'
+        : negativeScore > positiveScore
+            ? 'Negative'
+            : 'Neutral';
+    String stressLevel = negativeScore > 2
+        ? 'High'
+        : negativeScore > 0
+            ? 'Medium'
+            : 'Low';
+
     return "Sentiment: $sentiment, Stress Level: $stressLevel (Privacy Mode Analysis)";
   }
 
@@ -273,12 +335,13 @@ class PrivacyAwareIOSAIService implements OnDeviceAIService {
       "Small gestures of appreciation can have a big impact on relationship satisfaction.",
       "Remember that healthy relationships require effort from both sides - don't hesitate to reach out first.",
     ];
-    
+
     final randomIndex = DateTime.now().millisecond % tips.length;
     return "${tips[randomIndex]} (Privacy Mode)";
   }
 
-  String _generatePrivacyFriendlyFestivalMessage(String contactName, String relationType) {
+  String _generatePrivacyFriendlyFestivalMessage(
+      String contactName, String relationType) {
     switch (relationType.toLowerCase()) {
       case 'family':
         return "Dear $contactName, Wishing you and our family joy, prosperity, and togetherness on this special festival! 🎉 (Privacy Mode)";
@@ -292,7 +355,6 @@ class PrivacyAwareIOSAIService implements OnDeviceAIService {
 
 /// Privacy-aware mock service for unsupported platforms
 class PrivacyAwareMockAIService implements OnDeviceAIService {
-
   @override
   Future<void> initialize() async {
     // Privacy-Aware Mock AI Service initialized
@@ -301,9 +363,9 @@ class PrivacyAwareMockAIService implements OnDeviceAIService {
   @override
   Future<String> generateDrIrisResponse(String prompt) async {
     await Future.delayed(const Duration(milliseconds: 200));
-    
+
     final lowercasePrompt = prompt.toLowerCase();
-    
+
     if (lowercasePrompt.contains('stress')) {
       return "Dr. Iris (Privacy Mode): I understand you're feeling stressed. Take deep breaths and be kind to yourself.";
     } else if (lowercasePrompt.contains('anxious')) {
@@ -320,13 +382,15 @@ class PrivacyAwareMockAIService implements OnDeviceAIService {
   }
 
   @override
-  Future<String> generateRelationshipTip(List<String> communicationLogSummary) async {
+  Future<String> generateRelationshipTip(
+      List<String> communicationLogSummary) async {
     await Future.delayed(const Duration(milliseconds: 250));
     return "Consider having meaningful conversations with people you care about. (Privacy Mode)";
   }
 
   @override
-  Future<String> draftFestivalMessage(String contactName, String relationType) async {
+  Future<String> draftFestivalMessage(
+      String contactName, String relationType) async {
     await Future.delayed(const Duration(milliseconds: 200));
     return "Dear $contactName, Wishing you joy and happiness on this special occasion! (Privacy Mode)";
   }

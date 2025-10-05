@@ -10,11 +10,13 @@ class ComprehensiveSampleDataService {
   static final Map<String, List<Map<String, dynamic>>> _dataCache = {};
 
   // Load data for different features
-  static Future<List<Map<String, dynamic>>> loadFeatureData(String feature) async {
+  static Future<List<Map<String, dynamic>>> loadFeatureData(
+      String feature) async {
     debugPrint('🔍 Loading data for feature: $feature');
 
     if (_dataCache.containsKey(feature)) {
-      debugPrint('📦 Cache hit for $feature: ${_dataCache[feature]!.length} items');
+      debugPrint(
+          '📦 Cache hit for $feature: ${_dataCache[feature]!.length} items');
       return _dataCache[feature]!;
     }
 
@@ -61,11 +63,14 @@ class ComprehensiveSampleDataService {
       } else if (jsonData is Map) {
         // Handle different JSON structures
         if (jsonData.containsKey('sleepTracking')) {
-          processedData = (jsonData['sleepTracking'] as List).cast<Map<String, dynamic>>();
+          processedData =
+              (jsonData['sleepTracking'] as List).cast<Map<String, dynamic>>();
         } else if (jsonData.containsKey('emotional_checkins')) {
-          processedData = (jsonData['emotional_checkins'] as List).cast<Map<String, dynamic>>();
+          processedData = (jsonData['emotional_checkins'] as List)
+              .cast<Map<String, dynamic>>();
         } else if (jsonData.containsKey('festivals')) {
-          processedData = (jsonData['festivals'] as List).cast<Map<String, dynamic>>();
+          processedData =
+              (jsonData['festivals'] as List).cast<Map<String, dynamic>>();
         } else {
           // Convert single object to list
           processedData = [jsonData.cast<String, dynamic>()];
@@ -84,7 +89,8 @@ class ComprehensiveSampleDataService {
   }
 
   // Analytics calculations for any feature
-  static Map<String, dynamic> calculateAnalytics(List<Map<String, dynamic>> data, String feature) {
+  static Map<String, dynamic> calculateAnalytics(
+      List<Map<String, dynamic>> data, String feature) {
     if (data.isEmpty) return {};
 
     switch (feature) {
@@ -103,12 +109,20 @@ class ComprehensiveSampleDataService {
     }
   }
 
-  static Map<String, dynamic> _calculateBreathingAnalytics(List<Map<String, dynamic>> data) {
+  static Map<String, dynamic> _calculateBreathingAnalytics(
+      List<Map<String, dynamic>> data) {
     final totalSessions = data.length;
-    final totalMinutes = data.fold<int>(0, (sum, session) => sum + (session['duration_minutes'] as int? ?? 0));
-    final avgStressBefore = data.fold<double>(0, (sum, session) => sum + (session['stress_before'] as int? ?? 0)) / totalSessions;
-    final avgStressAfter = data.fold<double>(0, (sum, session) => sum + (session['stress_after'] as int? ?? 0)) / totalSessions;
-    final avgEffectiveness = data.fold<double>(0, (sum, session) => sum + (session['effectiveness'] as int? ?? 0)) / totalSessions;
+    final totalMinutes = data.fold<int>(
+        0, (sum, session) => sum + (session['duration_minutes'] as int? ?? 0));
+    final avgStressBefore = data.fold<double>(0,
+            (sum, session) => sum + (session['stress_before'] as int? ?? 0)) /
+        totalSessions;
+    final avgStressAfter = data.fold<double>(
+            0, (sum, session) => sum + (session['stress_after'] as int? ?? 0)) /
+        totalSessions;
+    final avgEffectiveness = data.fold<double>(0,
+            (sum, session) => sum + (session['effectiveness'] as int? ?? 0)) /
+        totalSessions;
 
     return {
       'totalSessions': totalSessions,
@@ -120,11 +134,19 @@ class ComprehensiveSampleDataService {
     };
   }
 
-  static Map<String, dynamic> _calculateMeditationAnalytics(List<Map<String, dynamic>> data) {
+  static Map<String, dynamic> _calculateMeditationAnalytics(
+      List<Map<String, dynamic>> data) {
     final totalSessions = data.length;
-    final totalMinutes = data.fold<int>(0, (sum, session) => sum + (session['duration_minutes'] as int? ?? 0));
-    final avgCalmness = data.fold<double>(0, (sum, session) => sum + (session['calmness_after'] as int? ?? 0)) / totalSessions;
-    final avgFocus = data.fold<double>(0, (sum, session) => sum + (session['focus_improvement'] as int? ?? 0)) / totalSessions;
+    final totalMinutes = data.fold<int>(
+        0, (sum, session) => sum + (session['duration_minutes'] as int? ?? 0));
+    final avgCalmness = data.fold<double>(0,
+            (sum, session) => sum + (session['calmness_after'] as int? ?? 0)) /
+        totalSessions;
+    final avgFocus = data.fold<double>(
+            0,
+            (sum, session) =>
+                sum + (session['focus_improvement'] as int? ?? 0)) /
+        totalSessions;
 
     return {
       'totalSessions': totalSessions,
@@ -134,10 +156,14 @@ class ComprehensiveSampleDataService {
     };
   }
 
-  static Map<String, dynamic> _calculateMoodAnalytics(List<Map<String, dynamic>> data) {
+  static Map<String, dynamic> _calculateMoodAnalytics(
+      List<Map<String, dynamic>> data) {
     final totalEntries = data.length;
-    final avgMoodScore = data.fold<double>(0, (sum, entry) => sum + (entry['mood_score'] as int? ?? 0)) / totalEntries;
-    final positiveEntries = data.where((entry) => (entry['mood_score'] as int? ?? 0) >= 7).length;
+    final avgMoodScore = data.fold<double>(
+            0, (sum, entry) => sum + (entry['mood_score'] as int? ?? 0)) /
+        totalEntries;
+    final positiveEntries =
+        data.where((entry) => (entry['mood_score'] as int? ?? 0) >= 7).length;
 
     return {
       'totalEntries': totalEntries,
@@ -147,9 +173,12 @@ class ComprehensiveSampleDataService {
     };
   }
 
-  static Map<String, dynamic> _calculateEmotionalAnalytics(List<Map<String, dynamic>> data) {
+  static Map<String, dynamic> _calculateEmotionalAnalytics(
+      List<Map<String, dynamic>> data) {
     final totalCheckins = data.length;
-    final avgIntensity = data.fold<double>(0, (sum, entry) => sum + (entry['intensity'] as int? ?? 0)) / totalCheckins;
+    final avgIntensity = data.fold<double>(
+            0, (sum, entry) => sum + (entry['intensity'] as int? ?? 0)) /
+        totalCheckins;
     final mostCommonEmotion = _findMostCommonValue(data, 'emotion');
 
     return {
@@ -159,10 +188,14 @@ class ComprehensiveSampleDataService {
     };
   }
 
-  static Map<String, dynamic> _calculateSleepAnalytics(List<Map<String, dynamic>> data) {
+  static Map<String, dynamic> _calculateSleepAnalytics(
+      List<Map<String, dynamic>> data) {
     final totalNights = data.length;
-    final avgDuration = _parseAverageTime(data.map((entry) => entry['duration'] as String? ?? '0h 0m').toList());
-    final avgQuality = data.fold<double>(0, (sum, entry) => sum + (entry['quality'] as int? ?? 0)) / totalNights;
+    final avgDuration = _parseAverageTime(
+        data.map((entry) => entry['duration'] as String? ?? '0h 0m').toList());
+    final avgQuality = data.fold<double>(
+            0, (sum, entry) => sum + (entry['quality'] as int? ?? 0)) /
+        totalNights;
 
     return {
       'totalNights': totalNights,
@@ -171,7 +204,8 @@ class ComprehensiveSampleDataService {
     };
   }
 
-  static String _findMostCommonValue(List<Map<String, dynamic>> data, String key) {
+  static String _findMostCommonValue(
+      List<Map<String, dynamic>> data, String key) {
     final counts = <String, int>{};
     for (final entry in data) {
       final value = entry[key] as String? ?? '';
@@ -201,7 +235,9 @@ class ComprehensiveSampleDataService {
   }
 
   // Get recent entries for any feature
-  static List<Map<String, dynamic>> getRecentEntries(List<Map<String, dynamic>> data, [int count = 7]) {
+  static List<Map<String, dynamic>> getRecentEntries(
+      List<Map<String, dynamic>> data,
+      [int count = 7]) {
     return data.take(count).toList();
   }
 

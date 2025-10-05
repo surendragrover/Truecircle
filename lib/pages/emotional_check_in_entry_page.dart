@@ -10,7 +10,8 @@ class EmotionalCheckInEntryPage extends StatefulWidget {
   const EmotionalCheckInEntryPage({super.key});
 
   @override
-  State<EmotionalCheckInEntryPage> createState() => _EmotionalCheckInEntryPageState();
+  State<EmotionalCheckInEntryPage> createState() =>
+      _EmotionalCheckInEntryPageState();
 }
 
 class _EmotionalCheckInEntryPageState extends State<EmotionalCheckInEntryPage> {
@@ -35,7 +36,8 @@ class _EmotionalCheckInEntryPageState extends State<EmotionalCheckInEntryPage> {
   Future<void> _restorePrefs() async {
     try {
       final box = await Hive.openBox('truecircle_settings');
-      _language = box.get('home_language_pref', defaultValue: 'English') as String;
+      _language =
+          box.get('home_language_pref', defaultValue: 'English') as String;
       setState(() {});
     } catch (_) {}
   }
@@ -44,41 +46,54 @@ class _EmotionalCheckInEntryPageState extends State<EmotionalCheckInEntryPage> {
     try {
       final settings = await Hive.openBox('truecircle_settings');
       final phone = settings.get('current_phone_number') as String?;
-      final models = phone != null ? settings.get('${phone}_models_downloaded', defaultValue: false) as bool : false;
+      final models = phone != null
+          ? settings.get('${phone}_models_downloaded', defaultValue: false)
+              as bool
+          : false;
       if (models) {
         _aiService = ServiceLocator.instance.get<OnDeviceAIService>();
         _aiReady = true;
       }
       setState(() {});
     } catch (_) {
-      setState(() { _aiReady = false; });
+      setState(() {
+        _aiReady = false;
+      });
     }
   }
 
   Future<void> _runAnalysis() async {
     if (!_formKey.currentState!.validate()) return;
-    setState(() { _isAnalyzing = true; _analysisResult = null; _stressLevel = null; });
-  final text = '${_feelingsController.text}\nNotes: ${_notesController.text}\nMoodScore:${_moodScore.toStringAsFixed(0)}';
+    setState(() {
+      _isAnalyzing = true;
+      _analysisResult = null;
+      _stressLevel = null;
+    });
+    final text =
+        '${_feelingsController.text}\nNotes: ${_notesController.text}\nMoodScore:${_moodScore.toStringAsFixed(0)}';
     try {
       if (_aiReady && _aiService != null) {
         final stress = await _aiService!.analyzeSentimentAndStress(text);
-        final response = await _aiService!.generateDrIrisResponse('Analyze this mood entry and give supportive feedback in ${_language == 'Hindi' ? 'Hindi' : 'English'}: $text');
+        final response = await _aiService!.generateDrIrisResponse(
+            'Analyze this mood entry and give supportive feedback in ${_language == 'Hindi' ? 'Hindi' : 'English'}: $text');
         setState(() {
           _stressLevel = stress;
           _analysisResult = response;
         });
       } else {
         // Fallback deterministic sample analysis
-        _stressLevel = _moodScore >= 7 ? 'Low' : (_moodScore >=4 ? 'Medium' : 'High');
+        _stressLevel =
+            _moodScore >= 7 ? 'Low' : (_moodScore >= 4 ? 'Medium' : 'High');
         _analysisResult = _language == 'Hindi'
-          ? 'आपने जो भावनाएँ दर्ज की हैं उनसे लगता है कि आपकी स्थिति $_stressLevel stress स्तर में है। गहरी सांस लें और खुद को 5 मिनट का ब्रेक दें।'
-          : 'Based on your entry you appear to be in $_stressLevel stress range. Take a deep breathing pause for 5 mins.';
+            ? 'आपने जो भावनाएँ दर्ज की हैं उनसे लगता है कि आपकी स्थिति $_stressLevel stress स्तर में है। गहरी सांस लें और खुद को 5 मिनट का ब्रेक दें।'
+            : 'Based on your entry you appear to be in $_stressLevel stress range. Take a deep breathing pause for 5 mins.';
         setState(() {});
       }
       await _persistEntry();
       // After persistence, refresh orchestrator immediately (if started)
       try {
-        await AIOrchestratorService().startIfPossible(); // ensure started if models just became ready
+        await AIOrchestratorService()
+            .startIfPossible(); // ensure started if models just became ready
         await AIOrchestratorService().refresh();
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -92,9 +107,13 @@ class _EmotionalCheckInEntryPageState extends State<EmotionalCheckInEntryPage> {
         }
       } catch (_) {}
     } catch (e) {
-      setState(() { _analysisResult = 'Analysis failed: $e'; });
+      setState(() {
+        _analysisResult = 'Analysis failed: $e';
+      });
     } finally {
-      setState(() { _isAnalyzing = false; });
+      setState(() {
+        _isAnalyzing = false;
+      });
     }
   }
 
@@ -109,7 +128,8 @@ class _EmotionalCheckInEntryPageState extends State<EmotionalCheckInEntryPage> {
         'stress': _stressLevel,
         'analysis': _analysisResult,
       };
-      final existing = box.get('entries', defaultValue: <Map<String,dynamic>>[]) as List;
+      final existing =
+          box.get('entries', defaultValue: <Map<String, dynamic>>[]) as List;
       existing.insert(0, entry);
       await box.put('entries', existing);
       // (Orchestrator refresh handled in _runAnalysis after persistence)
@@ -142,46 +162,64 @@ class _EmotionalCheckInEntryPageState extends State<EmotionalCheckInEntryPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(isHindi ? 'आज आप कैसा महसूस कर रहे हैं?' : 'How are you feeling today?', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              Text(
+                  isHindi
+                      ? 'आज आप कैसा महसूस कर रहे हैं?'
+                      : 'How are you feeling today?',
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 16),
-              Text(isHindi ? 'मूड स्कोर (1 बहुत खराब, 10 उत्कृष्ट)' : 'Mood Score (1 very low, 10 excellent)'),
+              Text(isHindi
+                  ? 'मूड स्कोर (1 बहुत खराब, 10 उत्कृष्ट)'
+                  : 'Mood Score (1 very low, 10 excellent)'),
               Slider(
                 value: _moodScore,
                 min: 1,
                 max: 10,
                 divisions: 9,
                 label: _moodScore.toStringAsFixed(0),
-                onChanged: (v) => setState(()=> _moodScore = v),
+                onChanged: (v) => setState(() => _moodScore = v),
               ),
               const SizedBox(height: 8),
               TextFormField(
                 controller: _feelingsController,
                 maxLines: 3,
                 decoration: InputDecoration(
-                  labelText: isHindi ? 'मुख्य भावनाएँ (कॉमा से अलग)' : 'Primary feelings (comma separated)',
+                  labelText: isHindi
+                      ? 'मुख्य भावनाएँ (कॉमा से अलग)'
+                      : 'Primary feelings (comma separated)',
                   border: const OutlineInputBorder(),
                 ),
-                validator: (v) => (v==null || v.trim().isEmpty) ? (isHindi ? 'कृपया कम से कम एक भावना लिखें' : 'Enter at least one feeling') : null,
+                validator: (v) => (v == null || v.trim().isEmpty)
+                    ? (isHindi
+                        ? 'कृपया कम से कम एक भावना लिखें'
+                        : 'Enter at least one feeling')
+                    : null,
               ),
               const SizedBox(height: 12),
               TextFormField(
                 controller: _notesController,
                 maxLines: 4,
                 decoration: InputDecoration(
-                  labelText: isHindi ? 'नोट / क्या हो रहा है' : 'Notes / What is happening',
+                  labelText: isHindi
+                      ? 'नोट / क्या हो रहा है'
+                      : 'Notes / What is happening',
                   border: const OutlineInputBorder(),
                 ),
               ),
               const SizedBox(height: 16),
-              if (_isAnalyzing) const Center(child: CircularProgressIndicator()),
-              if (!_isAnalyzing) SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: _runAnalysis,
-                  icon: const Icon(Icons.analytics),
-                  label: Text(isHindi ? 'AI विश्लेषण करें' : 'Run AI Analysis'),
+              if (_isAnalyzing)
+                const Center(child: CircularProgressIndicator()),
+              if (!_isAnalyzing)
+                SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton.icon(
+                    onPressed: _runAnalysis,
+                    icon: const Icon(Icons.analytics),
+                    label:
+                        Text(isHindi ? 'AI विश्लेषण करें' : 'Run AI Analysis'),
+                  ),
                 ),
-              ),
               const SizedBox(height: 24),
               if (_analysisResult != null) _buildAnalysisCard(isHindi),
             ],
@@ -199,13 +237,24 @@ class _EmotionalCheckInEntryPageState extends State<EmotionalCheckInEntryPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(isHindi ? 'AI विश्लेषण' : 'AI Analysis', style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            Text(isHindi ? 'AI विश्लेषण' : 'AI Analysis',
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
             const SizedBox(height: 8),
-            if (_stressLevel != null) Text(isHindi ? 'तनाव स्तर: $_stressLevel' : 'Stress Level: $_stressLevel', style: const TextStyle(fontWeight: FontWeight.w600)),
+            if (_stressLevel != null)
+              Text(
+                  isHindi
+                      ? 'तनाव स्तर: $_stressLevel'
+                      : 'Stress Level: $_stressLevel',
+                  style: const TextStyle(fontWeight: FontWeight.w600)),
             const SizedBox(height: 8),
             Text(_analysisResult ?? ''),
             const SizedBox(height: 12),
-            Text(isHindi ? 'ध्यान दें: आपका डेटा डिवाइस से बाहर नहीं जाता।' : 'Note: Your data never leaves your device.', style: const TextStyle(fontSize: 12, color: Colors.grey)),
+            Text(
+                isHindi
+                    ? 'ध्यान दें: आपका डेटा डिवाइस से बाहर नहीं जाता।'
+                    : 'Note: Your data never leaves your device.',
+                style: const TextStyle(fontSize: 12, color: Colors.grey)),
           ],
         ),
       ),

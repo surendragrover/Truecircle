@@ -16,7 +16,8 @@ class RelationshipInsightsPage extends StatelessWidget {
         flexibleSpace: Container(
           decoration: const BoxDecoration(gradient: CoralTheme.appBarGradient),
         ),
-        title: const Text('Relationship Insights', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
+        title: const Text('Relationship Insights',
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
       ),
       body: Container(
         decoration: CoralTheme.background,
@@ -31,7 +32,8 @@ class RelationshipInsightsPage extends StatelessWidget {
                 const SizedBox(height: 24),
                 Text(
                   'Relationship Insights',
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 12),
                 Text(
@@ -47,10 +49,14 @@ class RelationshipInsightsPage extends StatelessWidget {
                   spacing: 16,
                   runSpacing: 16,
                   children: [
-                    _buildInsightChip(Icons.trending_up, 'Growth', 'Positive Trends'),
-                    _buildInsightChip(Icons.chat_bubble_outline, 'Communication', 'Healthy'),
-                    _buildInsightChip(Icons.favorite_outline, 'Emotional Bond', 'Strong'),
-                    _buildInsightChip(Icons.schedule, 'Consistency', 'Improving'),
+                    _buildInsightChip(
+                        Icons.trending_up, 'Growth', 'Positive Trends'),
+                    _buildInsightChip(
+                        Icons.chat_bubble_outline, 'Communication', 'Healthy'),
+                    _buildInsightChip(
+                        Icons.favorite_outline, 'Emotional Bond', 'Strong'),
+                    _buildInsightChip(
+                        Icons.schedule, 'Consistency', 'Improving'),
                   ],
                 ),
               ],
@@ -74,8 +80,13 @@ class RelationshipInsightsPage extends StatelessWidget {
         children: [
           Icon(icon, color: Colors.white, size: 22),
           const SizedBox(height: 6),
-          Text(label, style: const TextStyle(color: Colors.white70, fontSize: 11)),
-          Text(value, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13)),
+          Text(label,
+              style: const TextStyle(color: Colors.white70, fontSize: 11)),
+          Text(value,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 13)),
         ],
       ),
     );

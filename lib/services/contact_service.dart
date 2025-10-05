@@ -11,13 +11,14 @@ class ContactService {
   static Future<List<Contact>> getContacts(BuildContext context) async {
     final isFull = await AppModeService.isFullMode();
     if (!isFull) {
-  // Return empty list in Privacy/Sample mode
+      // Return empty list in Privacy/Sample mode
       return [];
     }
 
     // In Full Mode, check for permissions first - with context safety
     if (!context.mounted) return [];
-    final hasPermission = await PermissionHelper.requestContactsPermission(context);
+    final hasPermission =
+        await PermissionHelper.requestContactsPermission(context);
     if (!hasPermission) {
       // If permission is still not granted, return empty list
       return [];

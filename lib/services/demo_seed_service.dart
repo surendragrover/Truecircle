@@ -29,7 +29,8 @@ class DemoSeedService {
       // Only proceed if app is in sample/privacy-first mode
       final privacyManager = ServiceLocator.instance.get<PrivacyModeManager>();
       if (!privacyManager.isPrivacyMode) {
-        debugPrint('ℹ️ DemoSeedService: not in strict privacy/sample mode, skipping seeding');
+        debugPrint(
+            'ℹ️ DemoSeedService: not in strict privacy/sample mode, skipping seeding');
         return;
       }
 
@@ -62,7 +63,7 @@ class DemoSeedService {
           phoneNumbers: const ['+91XXXXXXXXXX'],
           emotionalScore: EmotionalScore.friendlyButFading,
           emotionalScoreValue: 42,
-          tags: const ['Friend','College'],
+          tags: const ['Friend', 'College'],
           metadata: const {
             'pending_reconnect': true,
             'reason_gap': 'Busy job relocation',
@@ -93,13 +94,14 @@ class DemoSeedService {
 
   Future<void> _seedInteractions() async {
     try {
-      final box = await Hive.openBox<ContactInteraction>('contact_interactions');
+      final box =
+          await Hive.openBox<ContactInteraction>('contact_interactions');
       if (box.values.isNotEmpty) return; // avoid duplicate scenario stacking
 
       final interactions = [
         // Missed call reminder scenario (old friend)
         ContactInteraction(
-          contactId: 'c_old_friend',
+            contactId: 'c_old_friend',
             timestamp: DateTime.parse('2025-09-10T09:30:00Z'),
             type: InteractionType.call,
             duration: 0,
@@ -241,8 +243,10 @@ class DemoSeedService {
       await box.put('festival_focus', {
         'festival': 'Diwali',
         'date': '2025-10-29',
-        'suggested_greeting_en': 'Wishing you light, warmth and renewed emotional bonds this Diwali!',
-        'suggested_greeting_hi': 'दीपों का ये त्योहार आपके संबंधों में नई रोशनी लाए!',
+        'suggested_greeting_en':
+            'Wishing you light, warmth and renewed emotional bonds this Diwali!',
+        'suggested_greeting_hi':
+            'दीपों का ये त्योहार आपके संबंधों में नई रोशनी लाए!',
         'tips': [
           'Send a warm reconnect message to distant friends',
           'Share a gratitude note with close family'

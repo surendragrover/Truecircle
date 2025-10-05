@@ -102,7 +102,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     final screenWidth = MediaQuery.of(context).size.width;
     final isWeb = screenWidth > 800;
     final isSmallScreen = screenHeight < 600;
-    
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -123,7 +123,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               physics: const ClampingScrollPhysics(),
               child: ConstrainedBox(
                 constraints: BoxConstraints(
-                  minHeight: screenHeight - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom,
+                  minHeight: screenHeight -
+                      MediaQuery.of(context).padding.top -
+                      MediaQuery.of(context).padding.bottom,
                 ),
                 child: IntrinsicHeight(
                   child: Padding(
@@ -160,25 +162,30 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                                 width: isWeb ? 140 : 120,
                                 height: isWeb ? 140 : 120,
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(isWeb ? 70 : 60),
+                                  borderRadius:
+                                      BorderRadius.circular(isWeb ? 70 : 60),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: Colors.black.withValues(alpha: 0.3),
+                                      color:
+                                          Colors.black.withValues(alpha: 0.3),
                                       blurRadius: 20,
                                       offset: const Offset(0, 10),
                                     ),
                                   ],
                                 ),
                                 child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(isWeb ? 70 : 60),
+                                  borderRadius:
+                                      BorderRadius.circular(isWeb ? 70 : 60),
                                   child: Image.asset(
                                     'assets/images/truecircle_logo.png', // Fixed logo path
                                     fit: BoxFit.cover,
                                     errorBuilder: (context, error, stackTrace) {
                                       return Container(
                                         decoration: BoxDecoration(
-                                          color: Colors.blue.withValues(alpha: 0.2),
-                                          borderRadius: BorderRadius.circular(isWeb ? 70 : 60),
+                                          color: Colors.blue
+                                              .withValues(alpha: 0.2),
+                                          borderRadius: BorderRadius.circular(
+                                              isWeb ? 70 : 60),
                                         ),
                                         child: Icon(
                                           Icons.psychology,
@@ -190,9 +197,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                                   ),
                                 ),
                               ),
-
                               SizedBox(height: isSmallScreen ? 24 : 32),
-
                               Text(
                                 'TrueCircle',
                                 style: TextStyle(
@@ -202,11 +207,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                                   letterSpacing: 1.5,
                                 ),
                               ),
-
                               SizedBox(height: isSmallScreen ? 12 : 16),
-
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: isWeb ? 64 : 0),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: isWeb ? 64 : 0),
                                 child: Text(
                                   _selectedLanguage == 'Hindi'
                                       ? 'रिश्तों को समझें, भावनाओं को पहचानें'
@@ -236,9 +240,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                             ] else ...[
                               _buildLanguageSelector(),
                             ],
-
                             SizedBox(height: isSmallScreen ? 24 : 32),
-
                             SizedBox(
                               width: isWeb ? 400 : double.infinity,
                               height: 56,
@@ -248,7 +250,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                                   backgroundColor: Colors.white,
                                   foregroundColor: const Color(0xFF1A1A2E),
                                   elevation: 8,
-                                  shadowColor: Colors.black.withValues(alpha: 0.3),
+                                  shadowColor:
+                                      Colors.black.withValues(alpha: 0.3),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(28),
                                   ),
@@ -265,7 +268,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                                 ),
                               ),
                             ),
-
                             SizedBox(height: isSmallScreen ? 16 : 20),
                           ],
                         ),

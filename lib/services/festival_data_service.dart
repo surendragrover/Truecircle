@@ -6,7 +6,18 @@ import 'package:hive/hive.dart';
 // Shared month names list for festival lookups (1-index aligned).
 const List<String> monthNames = [
   '',
-  'January','February','March','April','May','June','July','August','September','October','November','December'
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
 ];
 
 /// Festival Data Service using TrueCircle_Festivals_Data.json
@@ -219,7 +230,8 @@ class FestivalDataService extends ChangeNotifier {
   }
 
   /// Get festivals for current and next month (mock data)
-  Future<List<Map<String, dynamic>>> getFestivalsForCurrentAndNextMonth() async {
+  Future<List<Map<String, dynamic>>>
+      getFestivalsForCurrentAndNextMonth() async {
     await Future.delayed(const Duration(seconds: 1)); // Simulate network delay
 
     final now = DateTime.now();
@@ -228,8 +240,12 @@ class FestivalDataService extends ChangeNotifier {
 
     return _festivals
         .where((festival) =>
-            festival.month.toLowerCase().contains(monthNames[currentMonth].toLowerCase()) ||
-            festival.month.toLowerCase().contains(monthNames[nextMonth].toLowerCase()))
+            festival.month
+                .toLowerCase()
+                .contains(monthNames[currentMonth].toLowerCase()) ||
+            festival.month
+                .toLowerCase()
+                .contains(monthNames[nextMonth].toLowerCase()))
         .map((festival) => {
               'id': festival.id,
               'name': festival.name,
@@ -463,7 +479,8 @@ extension FestivalHighlightExtension on FestivalDataService {
     FestivalHighlightInfo? best;
     for (final f in data) {
       try {
-        final date = DateTime.tryParse(f['date'] ?? '') ?? DateTime(today.year, today.month, today.day + 400);
+        final date = DateTime.tryParse(f['date'] ?? '') ??
+            DateTime(today.year, today.month, today.day + 400);
         final diff = date.difference(today).inDays;
         if (diff >= 0 && diff <= 10) {
           if (best == null || diff < best.daysAway) {

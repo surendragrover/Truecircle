@@ -8,13 +8,34 @@ class ColorSchemePreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = <_SwatchInfo>[
-      _SwatchInfo(label: 'Coral Light', color: const Color(0xFFFFA385), desc: 'Top gradient / soft background'),
-      _SwatchInfo(label: 'Coral Base', color: const Color(0xFFFF7F50), desc: 'Primary brand coral'),
-      _SwatchInfo(label: 'Coral Deep', color: const Color(0xFFFF6233), desc: 'Accents / buttons / emphasis'),
-      _SwatchInfo(label: 'Coral Dark', color: CoralTheme.dark, desc: 'Dark contrast surfaces'),
-      _SwatchInfo(label: 'Accent Orange', color: Colors.orange, desc: 'Highlights / call-to-action'),
-      _SwatchInfo(label: 'Success Green', color: Colors.green, desc: 'Positive state feedback'),
-      _SwatchInfo(label: 'Info Blue', color: Colors.lightBlueAccent, desc: 'Informational elements'),
+      _SwatchInfo(
+          label: 'Coral Light',
+          color: const Color(0xFFFFA385),
+          desc: 'Top gradient / soft background'),
+      _SwatchInfo(
+          label: 'Coral Base',
+          color: const Color(0xFFFF7F50),
+          desc: 'Primary brand coral'),
+      _SwatchInfo(
+          label: 'Coral Deep',
+          color: const Color(0xFFFF6233),
+          desc: 'Accents / buttons / emphasis'),
+      _SwatchInfo(
+          label: 'Coral Dark',
+          color: CoralTheme.dark,
+          desc: 'Dark contrast surfaces'),
+      _SwatchInfo(
+          label: 'Accent Orange',
+          color: Colors.orange,
+          desc: 'Highlights / call-to-action'),
+      _SwatchInfo(
+          label: 'Success Green',
+          color: Colors.green,
+          desc: 'Positive state feedback'),
+      _SwatchInfo(
+          label: 'Info Blue',
+          color: Colors.lightBlueAccent,
+          desc: 'Informational elements'),
     ];
 
     return Scaffold(
@@ -31,12 +52,16 @@ class ColorSchemePreviewPage extends StatelessWidget {
           children: [
             const Text(
               'TrueCircle Coral Visual System',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
             const SizedBox(height: 8),
             const Text(
               'Core palette blocks with usage guidance. Keep contrast for accessibility (WCAG AA).',
-              style: TextStyle(fontSize: 12, color: Colors.white70, height: 1.3),
+              style:
+                  TextStyle(fontSize: 12, color: Colors.white70, height: 1.3),
             ),
             const SizedBox(height: 16),
             Row(
@@ -51,10 +76,13 @@ class ColorSchemePreviewPage extends StatelessWidget {
                     );
                   },
                   icon: const Icon(Icons.waves, color: Colors.white, size: 18),
-                  label: const Text('Therapy Waves', style: TextStyle(color: Colors.white)),
+                  label: const Text('Therapy Waves',
+                      style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: CoralTheme.therapySun.withValues(alpha: 0.85),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                    backgroundColor:
+                        CoralTheme.therapySun.withValues(alpha: 0.85),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18)),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -67,11 +95,15 @@ class ColorSchemePreviewPage extends StatelessWidget {
                       ),
                     );
                   },
-                  icon: const Icon(Icons.palette_outlined, color: Colors.white, size: 18),
-                  label: const Text('Therapy Minimal', style: TextStyle(color: Colors.white)),
+                  icon: const Icon(Icons.palette_outlined,
+                      color: Colors.white, size: 18),
+                  label: const Text('Therapy Minimal',
+                      style: TextStyle(color: Colors.white)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: CoralTheme.therapyDeep.withValues(alpha: 0.65),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                    backgroundColor:
+                        CoralTheme.therapyDeep.withValues(alpha: 0.65),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18)),
                   ),
                 ),
               ],
@@ -123,7 +155,8 @@ class _SwatchTile extends StatelessWidget {
             height: 46,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: Colors.white.withValues(alpha: 0.6), width: 2),
+              border: Border.all(
+                  color: Colors.white.withValues(alpha: 0.6), width: 2),
               color: info.color.withValues(alpha: 0.9),
             ),
           ),
@@ -132,9 +165,13 @@ class _SwatchTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(info.label, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                Text(info.label,
+                    style: const TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold)),
                 const SizedBox(height: 4),
-                Text(info.desc, style: const TextStyle(color: Colors.white70, fontSize: 11, height: 1.2)),
+                Text(info.desc,
+                    style: const TextStyle(
+                        color: Colors.white70, fontSize: 11, height: 1.2)),
               ],
             ),
           ),
@@ -154,11 +191,11 @@ class _GradientPreview extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFFFA385),
-              Color(0xFFFF7F50),
-              Color(0xFFFF6233),
-            ],
+          colors: [
+            Color(0xFFFFA385),
+            Color(0xFFFF7F50),
+            Color(0xFFFF6233),
+          ],
         ),
         boxShadow: [
           BoxShadow(
@@ -171,7 +208,11 @@ class _GradientPreview extends StatelessWidget {
       child: const Center(
         child: Text(
           'Primary Coral Gradient',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16, letterSpacing: 0.5),
+          style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              letterSpacing: 0.5),
         ),
       ),
     );
@@ -185,21 +226,29 @@ class _UsageGuidelines extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-  color: Colors.white.withValues(alpha: 0.06),
+        color: Colors.white.withValues(alpha: 0.06),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: Colors.white24),
       ),
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Usage Guidelines', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          Text('Usage Guidelines',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
           SizedBox(height: 8),
-          Text('• Light coral for backgrounds / soft cards', style: TextStyle(color: Colors.white70, fontSize: 12)),
-          Text('• Base coral for large areas (scaffolds / major headers)', style: TextStyle(color: Colors.white70, fontSize: 12)),
-          Text('• Deep coral for buttons, CTAs, emphasis chips', style: TextStyle(color: Colors.white70, fontSize: 12)),
-          Text('• Dark theme swatches for contrast surfaces', style: TextStyle(color: Colors.white70, fontSize: 12)),
-          Text('• Accent orange sparingly for call-to-action highlights', style: TextStyle(color: Colors.white70, fontSize: 12)),
-          Text('• Maintain minimum contrast ratio 4.5:1 for body text', style: TextStyle(color: Colors.white70, fontSize: 12)),
+          Text('• Light coral for backgrounds / soft cards',
+              style: TextStyle(color: Colors.white70, fontSize: 12)),
+          Text('• Base coral for large areas (scaffolds / major headers)',
+              style: TextStyle(color: Colors.white70, fontSize: 12)),
+          Text('• Deep coral for buttons, CTAs, emphasis chips',
+              style: TextStyle(color: Colors.white70, fontSize: 12)),
+          Text('• Dark theme swatches for contrast surfaces',
+              style: TextStyle(color: Colors.white70, fontSize: 12)),
+          Text('• Accent orange sparingly for call-to-action highlights',
+              style: TextStyle(color: Colors.white70, fontSize: 12)),
+          Text('• Maintain minimum contrast ratio 4.5:1 for body text',
+              style: TextStyle(color: Colors.white70, fontSize: 12)),
         ],
       ),
     );

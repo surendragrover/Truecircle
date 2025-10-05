@@ -48,7 +48,7 @@ class _TranslationSamplePageState extends State<TranslationSamplePage>
     // Initialize translation service
     _initializeTranslation();
 
-  // Set some sample text
+    // Set some sample text
     _sourceController.text = "Hello, welcome to TrueCircle!";
   }
 

@@ -45,25 +45,25 @@ class _ServiceLocatorPageState extends State<ServiceLocatorPage> {
     try {
       // AI Service को access करना
       _aiService = ServiceLocator.instance.get<OnDeviceAIService>();
-  debugPrint('✅ ServiceLocator: AI Service loaded successfully');
-      
+      debugPrint('✅ ServiceLocator: AI Service loaded successfully');
+
       // Privacy Service को access करना
       _privacyService = ServiceLocator.instance.get<PrivacyService>();
-  debugPrint('✅ ServiceLocator: Privacy Service loaded successfully');
-      
+      debugPrint('✅ ServiceLocator: Privacy Service loaded successfully');
+
       _servicesInitialized = true;
-      
     } catch (e) {
-  debugPrint('❌ ServiceLocator: Services not available: $e');
+      debugPrint('❌ ServiceLocator: Services not available: $e');
       _servicesInitialized = false;
     }
-    
+
     setState(() {}); // UI को update करना
   }
 
   void _addWelcomeMessage() {
     _chatMessages.add({
-  'text': 'स्वागत है! यह Service Locator sample page है। मैं दिखा सकता हूं कि कैसे किसी भी प्लेटफॉर्म पर AI service का उपयोग करते हैं।',
+      'text':
+          'स्वागत है! यह Service Locator sample page है। मैं दिखा सकता हूं कि कैसे किसी भी प्लेटफॉर्म पर AI service का उपयोग करते हैं।',
       'isUser': false,
       'timestamp': DateTime.now(),
     });
@@ -88,22 +88,23 @@ class _ServiceLocatorPageState extends State<ServiceLocatorPage> {
 
     try {
       String response;
-      
+
       if (_servicesInitialized && _aiService != null) {
         // Service Locator के through AI service का उपयोग
-  debugPrint('📤 ServiceLocator: Sending to AI service: $message');
+        debugPrint('📤 ServiceLocator: Sending to AI service: $message');
         response = await _aiService!.generateDrIrisResponse(message);
-  debugPrint('📥 ServiceLocator: Received AI response');
-        
+        debugPrint('📥 ServiceLocator: Received AI response');
+
         // Privacy status भी check करना
-  final privacyStatus = _privacyService?.isPrivacyMode() ?? true;
+        final privacyStatus = _privacyService?.isPrivacyMode() ?? true;
         if (privacyStatus) {
-          response += '\n\n(प्राइवेसी मोड: यह response on-device processing के साथ generated है)';
+          response +=
+              '\n\n(प्राइवेसी मोड: यह response on-device processing के साथ generated है)';
         }
-        
       } else {
         // Fallback response
-  response = 'Service Locator: AI service उपलब्ध नहीं है। यह एक sample fallback response है।';
+        response =
+            'Service Locator: AI service उपलब्ध नहीं है। यह एक sample fallback response है।';
       }
 
       // Bot response add करना
@@ -115,13 +116,13 @@ class _ServiceLocatorPageState extends State<ServiceLocatorPage> {
         });
         _isLoading = false;
       });
-
     } catch (e) {
-  debugPrint('❌ ServiceLocator: Error: $e');
-      
+      debugPrint('❌ ServiceLocator: Error: $e');
+
       setState(() {
         _chatMessages.add({
-          'text': 'Error: AI service से response नहीं मिल सका। यह sample fallback response है।',
+          'text':
+              'Error: AI service से response नहीं मिल सका। यह sample fallback response है।',
           'isUser': false,
           'timestamp': DateTime.now(),
         });
@@ -134,7 +135,7 @@ class _ServiceLocatorPageState extends State<ServiceLocatorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-  title: const Text('Service Locator'),
+        title: const Text('Service Locator'),
         backgroundColor: Colors.blue[600],
         foregroundColor: Colors.white,
         actions: [
@@ -153,15 +154,15 @@ class _ServiceLocatorPageState extends State<ServiceLocatorPage> {
         children: [
           // Service Status Card
           const ServiceStatusWidget(),
-          
+
           // Service Information Card
           _buildServiceInfoCard(),
-          
+
           // Chat Messages
           Expanded(
             child: _buildChatList(),
           ),
-          
+
           // Message Input
           _buildMessageInput(),
         ],
@@ -187,8 +188,8 @@ class _ServiceLocatorPageState extends State<ServiceLocatorPage> {
                 Text(
                   'Service Locator Status',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ],
             ),
@@ -204,13 +205,13 @@ class _ServiceLocatorPageState extends State<ServiceLocatorPage> {
               future: _getDetailedServiceStatus(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) return const SizedBox.shrink();
-                
+
                 final status = snapshot.data!;
                 return Text(
                   'Platform: ${status['platform']}\nAI Service Type: ${status['ai_service_type']}\nPrivacy Mode: ${status['privacy_mode']}',
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    fontStyle: FontStyle.italic,
-                  ),
+                        fontStyle: FontStyle.italic,
+                      ),
                 );
               },
             ),
@@ -224,17 +225,17 @@ class _ServiceLocatorPageState extends State<ServiceLocatorPage> {
     try {
       final serviceLocator = ServiceLocator.instance;
       final aiStatus = serviceLocator.getAIServiceStatus();
-      
+
       return {
         'platform': aiStatus['platform'] ?? 'Unknown',
         'ai_service_type': aiStatus['ai_service_type'] ?? 'Not Available',
-  'privacy_mode': _privacyService?.isPrivacyMode() ?? true,
+        'privacy_mode': _privacyService?.isPrivacyMode() ?? true,
       };
     } catch (e) {
       return {
         'platform': 'Unknown',
         'ai_service_type': 'Error',
-  'privacy_mode': true,
+        'privacy_mode': true,
       };
     }
   }
@@ -248,10 +249,10 @@ class _ServiceLocatorPageState extends State<ServiceLocatorPage> {
         if (_isLoading && index == 0) {
           return _buildLoadingMessage();
         }
-        
+
         final messageIndex = _isLoading ? index - 1 : index;
         final message = _chatMessages.reversed.toList()[messageIndex];
-        
+
         return _buildMessageBubble(message);
       },
     );
@@ -344,9 +345,11 @@ class _ServiceLocatorPageState extends State<ServiceLocatorPage> {
             child: TextField(
               controller: _messageController,
               decoration: const InputDecoration(
-                hintText: 'Service Locator को test करने के लिए message भेजें...',
+                hintText:
+                    'Service Locator को test करने के लिए message भेजें...',
                 border: OutlineInputBorder(),
-                contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                contentPadding:
+                    EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               ),
               onSubmitted: (_) => _sendMessage(),
               enabled: !_isLoading,
@@ -377,7 +380,7 @@ class _ServiceLocatorPageState extends State<ServiceLocatorPage> {
 extension ServiceLocatorExtension on State {
   /// Quick access to Service Locator instance
   ServiceLocator get services => ServiceLocator.instance;
-  
+
   /// Safe service access with error handling
   T? getService<T>() {
     try {
@@ -387,7 +390,7 @@ extension ServiceLocatorExtension on State {
       return null;
     }
   }
-  
+
   /// Check if service is available
   bool hasService<T>() {
     return services.isRegistered<T>();

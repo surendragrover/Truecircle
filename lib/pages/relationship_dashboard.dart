@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/quick_actions_panel.dart';
 import '../models/contact.dart';
 import '../models/contact_interaction.dart';
 import '../services/relationship_analyzer.dart';
@@ -342,12 +343,13 @@ class _RelationshipDashboardState extends State<RelationshipDashboard>
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   children: [
-                    const Icon(Icons.celebration, size: 48, color: Colors.green),
+                    const Icon(Icons.celebration,
+                        size: 48, color: Colors.green),
                     const SizedBox(height: 16),
                     Text(
                       isHindi ? 'बहुत बढ़िया!' : 'Great job!',
-                      style:
-                          const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     Text(
                       isHindi
@@ -369,6 +371,21 @@ class _RelationshipDashboardState extends State<RelationshipDashboard>
           ),
           const SizedBox(height: 16),
           _buildInsightCards(isHindi),
+          const SizedBox(height: 20),
+          QuickActionsPanel(
+            isHindi: isHindi,
+            actions: [
+              QuickActionItem(
+                icon: Icons.psychology,
+                labelEn: 'AI Analytics Dashboard',
+                labelHi: 'AI विश्लेषण डैशबोर्ड',
+                color: Colors.purple,
+                onPressed: () {
+                  // TODO: Implement navigation to AI Analytics Dashboard
+                },
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -442,12 +459,13 @@ class _RelationshipDashboardState extends State<RelationshipDashboard>
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.3),
+                color: color.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(icon, color: color),
@@ -459,12 +477,15 @@ class _RelationshipDashboardState extends State<RelationshipDashboard>
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(fontWeight: FontWeight.w600),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 16,
+                    ),
                   ),
                   const SizedBox(height: 4),
                   Text(
                     description,
-                    style: TextStyle(color: Colors.grey[600]),
+                    style: TextStyle(color: Colors.grey[700]),
                   ),
                 ],
               ),
@@ -476,33 +497,65 @@ class _RelationshipDashboardState extends State<RelationshipDashboard>
   }
 
   Widget _buildAdviceTab(bool isHindi) {
-    final topRecommendations = _relationshipHealthData
-        .where((h) => h.recommendations.isNotEmpty)
-        .take(10)
-        .toList();
-
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            isHindi ? '🎯 आज के सुझाव' : '🎯 Today\'s Recommendations',
-            style: Theme.of(context).textTheme.headlineSmall,
+    if (_relationshipHealthData.isEmpty) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Text(
+            isHindi
+                ? 'विश्लेषण के बाद सलाह यहाँ दिखाई देगी।'
+                : 'Advice will appear here after you analyze relationships.',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.grey.shade600),
           ),
-          const SizedBox(height: 16),
-          ...topRecommendations
-              .map((health) => _buildRecommendationCard(health, isHindi)),
-        ],
-      ),
+        ),
+      );
+    }
+
+    final recommendations = <Widget>[];
+
+    for (final health in _relationshipHealthData) {
+      for (final recommendation in health.recommendations) {
+        recommendations.add(
+          _buildRecommendationCard(
+            health,
+            recommendation,
+            isHindi,
+          ),
+        );
+      }
+    }
+
+    if (recommendations.isEmpty) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Text(
+            isHindi
+                ? 'AI ने फिलहाल कोई सुझाव नहीं दिया है।'
+                : 'The AI has no suggestions right now.',
+            style: TextStyle(color: Colors.grey.shade600),
+          ),
+        ),
+      );
+    }
+
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: recommendations,
     );
   }
 
-  Widget _buildRecommendationCard(RelationshipHealth health, bool isHindi) {
-    final recommendation = health.recommendations.first;
+  Widget _buildRecommendationCard(
+    RelationshipHealth health,
+    RelationshipRecommendation recommendation,
+    bool isHindi,
+  ) {
+    final contact = health.contact;
 
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
+      elevation: 3,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -510,11 +563,14 @@ class _RelationshipDashboardState extends State<RelationshipDashboard>
           children: [
             Row(
               children: [
-                EmotionalScoreAvatar(
-                  name: health.contact.displayName,
-                  emotionalScore: health.contact.emotionalScoreEmoji,
-                  scoreValue: health.overallScore * 100,
-                  size: 40,
+                CircleAvatar(
+                  backgroundColor: Colors.blue.shade100,
+                  child: Text(
+                    contact.displayName.isNotEmpty
+                        ? contact.displayName[0].toUpperCase()
+                        : '?',
+                    style: TextStyle(color: Colors.blue.shade700),
+                  ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
@@ -522,19 +578,23 @@ class _RelationshipDashboardState extends State<RelationshipDashboard>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        health.contact.displayName,
-                        style: const TextStyle(fontWeight: FontWeight.w600),
+                        contact.displayName,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 16,
+                        ),
                       ),
+                      const SizedBox(height: 4),
                       Text(
                         isHindi
                             ? recommendation.titleHi
                             : recommendation.titleEn,
-                        style: TextStyle(color: Colors.grey[600]),
+                        style: TextStyle(color: Colors.grey.shade600),
                       ),
                     ],
                   ),
                 ),
-                _getPriorityIcon(recommendation.priority),
+                _buildPriorityChip(recommendation.priority, isHindi),
               ],
             ),
             const SizedBox(height: 12),
@@ -542,21 +602,28 @@ class _RelationshipDashboardState extends State<RelationshipDashboard>
               isHindi
                   ? recommendation.descriptionHi
                   : recommendation.descriptionEn,
+              style: const TextStyle(height: 1.4),
             ),
+            if (recommendation.suggestedActions.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: (isHindi
+                          ? recommendation.suggestedActionsHi
+                          : recommendation.suggestedActions)
+                      .map(
+                        (action) => Chip(
+                          label: Text(action,
+                              style: const TextStyle(fontSize: 12)),
+                          backgroundColor: Colors.blue.shade50,
+                        ),
+                      )
+                      .toList(),
+                ),
+              ),
             const SizedBox(height: 12),
-            Wrap(
-              spacing: 8,
-              children: (isHindi
-                      ? recommendation.suggestedActionsHi
-                      : recommendation.suggestedActions)
-                  .take(3)
-                  .map((action) => Chip(
-                        label: Text(action, style: const TextStyle(fontSize: 12)),
-                        backgroundColor: Colors.blue[50],
-                      ))
-                  .toList(),
-            ),
-            const SizedBox(height: 8),
             Row(
               children: [
                 Expanded(
@@ -582,17 +649,42 @@ class _RelationshipDashboardState extends State<RelationshipDashboard>
     );
   }
 
-  Widget _getPriorityIcon(RecommendationPriority priority) {
+  Widget _buildPriorityChip(RecommendationPriority priority, bool isHindi) {
+    Color background;
+    String label;
+
     switch (priority) {
-      case RecommendationPriority.high:
-        return const Icon(Icons.priority_high, color: Colors.red);
-      case RecommendationPriority.medium:
-        return const Icon(Icons.warning_amber, color: Colors.orange);
       case RecommendationPriority.urgent:
-        return Icon(Icons.emergency, color: Colors.red[700]);
+        background = Colors.red.shade100;
+        label = isHindi ? 'अत्यावश्यक' : 'Urgent';
+        break;
+      case RecommendationPriority.high:
+        background = Colors.orange.shade100;
+        label = isHindi ? 'उच्च' : 'High';
+        break;
+      case RecommendationPriority.medium:
+        background = Colors.amber.shade100;
+        label = isHindi ? 'मध्यम' : 'Medium';
+        break;
       default:
-        return const Icon(Icons.info, color: Colors.blue);
+        background = Colors.green.shade100;
+        label = isHindi ? 'निम्न' : 'Low';
     }
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: background,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Text(
+        label,
+        style: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    );
   }
 
   void _showSmartMessages(bool isHindi) {
@@ -892,7 +984,8 @@ class ContactDetailsPage extends StatelessWidget {
                   // Analytics disabled - HuggingFace dependency removed
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text('Advanced Analytics temporarily unavailable'),
+                      content:
+                          Text('Advanced Analytics temporarily unavailable'),
                       duration: Duration(seconds: 2),
                     ),
                   );

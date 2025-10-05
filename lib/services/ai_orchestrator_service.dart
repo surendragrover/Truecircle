@@ -9,7 +9,8 @@ import 'festival_data_service.dart';
 /// lightweight, privacy-safe insights for different feature modules so the
 /// experience feels instantly "alive" (no manual trigger delay).
 class AIOrchestratorService {
-  static final AIOrchestratorService _instance = AIOrchestratorService._internal();
+  static final AIOrchestratorService _instance =
+      AIOrchestratorService._internal();
   AIOrchestratorService._internal();
   factory AIOrchestratorService() => _instance;
 
@@ -31,7 +32,8 @@ class AIOrchestratorService {
       final settings = await Hive.openBox('truecircle_settings');
       final phone = settings.get('current_phone_number') as String?;
       final downloaded = phone != null
-          ? settings.get('${phone}_models_downloaded', defaultValue: false) as bool
+          ? settings.get('${phone}_models_downloaded', defaultValue: false)
+              as bool
           : settings.get('models_downloaded', defaultValue: false) as bool;
       if (!downloaded) {
         debugPrint('AIOrchestrator: models not ready yet.');
@@ -114,7 +116,19 @@ class AIOrchestratorService {
         }
         final now = DateTime.now();
         final monthNames = [
-          '', 'January','February','March','April','May','June','July','August','September','October','November','December'
+          '',
+          'January',
+          'February',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'August',
+          'September',
+          'October',
+          'November',
+          'December'
         ];
         final currentMonthName = monthNames[now.month];
         final nextMonthName = monthNames[(now.month % 12) + 1];
@@ -123,34 +137,44 @@ class AIOrchestratorService {
         final combined = [...current, ...next];
         if (combined.isNotEmpty) {
           final names = combined.take(3).map((f) => f.name).join(', ');
-          insights['festival'] = 'Upcoming: $names — send warm culturally aware greetings.';
+          insights['festival'] =
+              'Upcoming: $names — send warm culturally aware greetings.';
         } else {
-          insights['festival'] = 'Explore festivals section for cultural connection ideas.';
+          insights['festival'] =
+              'Explore festivals section for cultural connection ideas.';
         }
       } catch (_) {
-        insights['festival'] = 'Upcoming festivals: open Festivals section for greetings.';
+        insights['festival'] =
+            'Upcoming festivals: open Festivals section for greetings.';
       }
-      insights['sleep'] = 'Track sleep quality tonight—rest shapes emotional resilience.';
+      insights['sleep'] =
+          'Track sleep quality tonight—rest shapes emotional resilience.';
 
       // Gifting frequency insight (offline virtual gifts activity)
       try {
         final giftBox = await Hive.openBox('virtual_gift_purchases');
-        final history = (giftBox.get('history', defaultValue: <dynamic>[]) as List).cast<Map?>();
+        final history =
+            (giftBox.get('history', defaultValue: <dynamic>[]) as List)
+                .cast<Map?>();
         final now = DateTime.now();
         final last30 = history.where((e) {
-          if (e == null) return false; final ts = DateTime.tryParse(e['ts']??'');
-          if (ts == null) return false; return now.difference(ts).inDays <= 30;
+          if (e == null) return false;
+          final ts = DateTime.tryParse(e['ts'] ?? '');
+          if (ts == null) return false;
+          return now.difference(ts).inDays <= 30;
         }).toList();
         final count = last30.length;
         if (count == 0) {
-          insights['relationship'] = '${insights['relationship'] ?? ''} Consider sending a thoughtful virtual gift to nurture bonds.';
+          insights['relationship'] =
+              '${insights['relationship'] ?? ''} Consider sending a thoughtful virtual gift to nurture bonds.';
         } else if (count < 3) {
-          insights['relationship'] = '${insights['relationship'] ?? ''} Light gifting pattern—occasional gestures help maintain warmth.';
+          insights['relationship'] =
+              '${insights['relationship'] ?? ''} Light gifting pattern—occasional gestures help maintain warmth.';
         } else {
-          insights['relationship'] = '${insights['relationship'] ?? ''} Consistent gifting shows care—balance with authentic conversations.';
+          insights['relationship'] =
+              '${insights['relationship'] ?? ''} Consistent gifting shows care—balance with authentic conversations.';
         }
       } catch (_) {}
-
     } catch (e) {
       debugPrint('AIOrchestrator insight build error: $e');
     }
@@ -159,9 +183,15 @@ class AIOrchestratorService {
   }
 
   String _fallbackMood(double avgMood) {
-    if (avgMood == 0) return 'Start your first emotional check‑in to activate deeper insights.';
-    if (avgMood >= 7.5) return 'Emotional state appears strong—sustain with mindful micro-breaks.';
-    if (avgMood >= 5.0) return 'Mood moderate—light reflection or breathing can elevate clarity.';
+    if (avgMood == 0) {
+      return 'Start your first emotional check‑in to activate deeper insights.';
+    }
+    if (avgMood >= 7.5) {
+      return 'Emotional state appears strong—sustain with mindful micro-breaks.';
+    }
+    if (avgMood >= 5.0) {
+      return 'Mood moderate—light reflection or breathing can elevate clarity.';
+    }
     return 'Low mood trend—gentle self‑compassion and paced breathing recommended.';
   }
 }

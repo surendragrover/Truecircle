@@ -30,7 +30,7 @@ class _SampleFeaturesShowcaseState extends State<SampleFeaturesShowcase> {
         _isLoading = false;
       });
     } catch (e) {
-  debugPrint('Error loading sample data: $e');
+      debugPrint('Error loading sample data: $e');
       setState(() {
         _isLoading = false;
       });

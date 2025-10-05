@@ -33,9 +33,11 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
 
   Future<void> _loadSleepData() async {
     try {
-      final data = await ComprehensiveSampleDataService.loadFeatureData('sleep_tracker');
-      final analytics = ComprehensiveSampleDataService.calculateAnalytics(data, 'sleep_tracker');
-      
+      final data =
+          await ComprehensiveSampleDataService.loadFeatureData('sleep_tracker');
+      final analytics = ComprehensiveSampleDataService.calculateAnalytics(
+          data, 'sleep_tracker');
+
       setState(() {
         _sleepData = data;
         _analytics = analytics;
@@ -112,7 +114,7 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
       itemBuilder: (context, index) {
         final sleep = _sleepData[index];
         final sleepDate = DateTime.now().subtract(Duration(days: index));
-        
+
         return Card(
           margin: const EdgeInsets.only(bottom: 12),
           elevation: 2,
@@ -151,7 +153,7 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
                   ],
                 ),
                 const SizedBox(height: 16),
-                
+
                 // Sleep Duration and Quality
                 Row(
                   children: [
@@ -173,7 +175,7 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
                   ],
                 ),
                 const SizedBox(height: 12),
-                
+
                 // Sleep and Wake Times
                 Row(
                   children: [
@@ -193,7 +195,7 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
                   ],
                 ),
                 const SizedBox(height: 12),
-                
+
                 // Sleep Stages
                 if (sleep['deep_sleep_percentage'] != null) ...[
                   const Text(
@@ -232,8 +234,9 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
                     ],
                   ),
                 ],
-                
-                if (sleep['notes'] != null && sleep['notes'].toString().isNotEmpty) ...[
+
+                if (sleep['notes'] != null &&
+                    sleep['notes'].toString().isNotEmpty) ...[
                   const SizedBox(height: 12),
                   Container(
                     padding: const EdgeInsets.all(8),
@@ -281,7 +284,7 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
             ),
           ),
           const SizedBox(height: 20),
-          
+
           // Summary Cards
           Row(
             children: [
@@ -303,7 +306,7 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
             ],
           ),
           const SizedBox(height: 12),
-          
+
           Row(
             children: [
               Expanded(
@@ -324,7 +327,7 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
             ],
           ),
           const SizedBox(height: 20),
-          
+
           // Weekly Sleep Pattern
           Card(
             child: Padding(
@@ -340,7 +343,7 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
                     ),
                   ),
                   const SizedBox(height: 16),
-                  
+
                   // Week days with mock data
                   for (int i = 0; i < 7; i++) ...[
                     _buildWeekdayBar(
@@ -355,7 +358,7 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
             ),
           ),
           const SizedBox(height: 20),
-          
+
           // Sleep Quality Insights
           Card(
             child: Padding(
@@ -447,7 +450,7 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
       itemCount: tips.length,
       itemBuilder: (context, index) {
         final tip = tips[index];
-        
+
         return Card(
           margin: const EdgeInsets.only(bottom: 12),
           child: Padding(
@@ -653,7 +656,7 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
 
   Widget _buildWeekdayBar(String day, double duration, double target) {
     final percentage = duration / target;
-    
+
     return Row(
       children: [
         SizedBox(
@@ -727,8 +730,18 @@ class _SleepTrackerPageState extends State<SleepTrackerPage>
   String _formatDate(DateTime date) {
     final weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     final months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
     ];
     return '${weekdays[date.weekday % 7]}, ${date.day} ${months[date.month - 1]}';
   }

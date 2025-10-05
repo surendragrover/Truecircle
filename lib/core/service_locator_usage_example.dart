@@ -7,7 +7,7 @@ import 'package:truecircle/services/on_device_ai_service.dart';
 import 'package:truecircle/services/privacy_service.dart';
 
 /// Service Locator का उपयोग करने के लिए example widgets
-/// 
+///
 /// यह file दिखाती है कि कैसे विभिन्न widgets में Service Locator का उपयोग करें
 
 /// Example 1: AI Chat Widget जो Service Locator का उपयोग करता है
@@ -127,9 +127,12 @@ class PrivacyStatusExample extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildStatusRow('Privacy Mode', status['is_privacy_mode'] ?? true),
-                    _buildStatusRow('AI Available', status['ai_available'] ?? false),
-                    _buildStatusRow('Privacy Service', status['privacy_service_active'] ?? false),
+                    _buildStatusRow(
+                        'Privacy Mode', status['is_privacy_mode'] ?? true),
+                    _buildStatusRow(
+                        'AI Available', status['ai_available'] ?? false),
+                    _buildStatusRow('Privacy Service',
+                        status['privacy_service_active'] ?? false),
                   ],
                 );
               },
@@ -210,10 +213,13 @@ class ServiceHealthCheckExample extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildHealthCard('Service Locator', healthData['service_locator']),
-                    _buildHealthCard('Privacy Service', healthData['privacy_service']),
+                    _buildHealthCard(
+                        'Service Locator', healthData['service_locator']),
+                    _buildHealthCard(
+                        'Privacy Service', healthData['privacy_service']),
                     _buildHealthCard('AI Service', healthData['ai_service']),
-                    _buildHealthCard('JSON Data Service', healthData['json_data_service']),
+                    _buildHealthCard(
+                        'JSON Data Service', healthData['json_data_service']),
                   ],
                 );
               },
@@ -224,10 +230,11 @@ class ServiceHealthCheckExample extends StatelessWidget {
     );
   }
 
-  Widget _buildHealthCard(String serviceName, Map<String, dynamic>? serviceData) {
+  Widget _buildHealthCard(
+      String serviceName, Map<String, dynamic>? serviceData) {
     final status = serviceData?['status'] ?? 'unknown';
     final isHealthy = status == 'healthy';
-    
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 4),
       padding: const EdgeInsets.all(8),
@@ -314,7 +321,7 @@ extension ServiceLocatorWidget on State {
 /// Mixin for widgets that need service access
 mixin ServiceLocatorMixin<T extends StatefulWidget> on State<T> {
   ServiceLocator get serviceLocator => ServiceLocator.instance;
-  
+
   /// Safe service access with error handling
   S? getService<S>() {
     try {
@@ -324,7 +331,7 @@ mixin ServiceLocatorMixin<T extends StatefulWidget> on State<T> {
       return null;
     }
   }
-  
+
   /// Check if service is available
   bool hasService<S>() {
     return serviceLocator.isRegistered<S>();

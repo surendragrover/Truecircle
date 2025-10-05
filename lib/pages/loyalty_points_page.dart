@@ -26,15 +26,17 @@ class _LoyaltyPointsPageState extends State<LoyaltyPointsPage> {
     try {
       final points = LoyaltyPointsService.instance.totalPoints;
       final history = LoyaltyPointsService.instance.pointsHistory;
-      
+
       setState(() {
         _totalPoints = points;
-        _pointsHistory = history.map((transaction) => {
-          'date': transaction.timestamp.toIso8601String().split('T')[0],
-          'points': transaction.points,
-          'reason': transaction.reasonEn,
-          'reasonHi': transaction.reasonHi
-        }).toList();
+        _pointsHistory = history
+            .map((transaction) => {
+                  'date': transaction.timestamp.toIso8601String().split('T')[0],
+                  'points': transaction.points,
+                  'reason': transaction.reasonEn,
+                  'reasonHi': transaction.reasonHi
+                })
+            .toList();
         _isLoading = false;
       });
     } catch (e) {
@@ -82,7 +84,7 @@ class _LoyaltyPointsPageState extends State<LoyaltyPointsPage> {
                   // Total Points Card
                   _buildTotalPointsCard(),
                   const SizedBox(height: 24),
-                  
+
                   // Points History
                   Text(
                     widget.isHindi ? 'पॉइंट्स का इतिहास' : 'Points History',
@@ -93,11 +95,11 @@ class _LoyaltyPointsPageState extends State<LoyaltyPointsPage> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  
+
                   _buildPointsHistory(),
-                  
+
                   const SizedBox(height: 24),
-                  
+
                   // How to Earn More Points
                   _buildEarnMoreSection(),
                 ],
@@ -151,7 +153,7 @@ class _LoyaltyPointsPageState extends State<LoyaltyPointsPage> {
           ),
           const SizedBox(height: 8),
           Text(
-            widget.isHindi 
+            widget.isHindi
                 ? '1 पॉइंट = ₹1 (भविष्य की सुविधाओं के लिए)'
                 : '1 Point = ₹1 (for future features)',
             style: const TextStyle(
@@ -182,7 +184,7 @@ class _LoyaltyPointsPageState extends State<LoyaltyPointsPage> {
             ),
             const SizedBox(height: 16),
             Text(
-              widget.isHindi 
+              widget.isHindi
                   ? 'अभी तक कोई पॉइंट्स नहीं मिले\nरोज़ाना लॉगिन करके पॉइंट्स कमाएं!'
                   : 'No points earned yet\nLogin daily to earn points!',
               style: const TextStyle(
@@ -197,14 +199,15 @@ class _LoyaltyPointsPageState extends State<LoyaltyPointsPage> {
     }
 
     return Column(
-      children: _pointsHistory.map((entry) => _buildHistoryItem(entry)).toList(),
+      children:
+          _pointsHistory.map((entry) => _buildHistoryItem(entry)).toList(),
     );
   }
 
   Widget _buildHistoryItem(Map<String, dynamic> entry) {
     final date = DateTime.parse(entry['date'] + 'T00:00:00');
     final formattedDate = '${date.day}/${date.month}/${date.year}';
-    
+
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
@@ -281,7 +284,9 @@ class _LoyaltyPointsPageState extends State<LoyaltyPointsPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            widget.isHindi ? 'और पॉइंट्स कैसे कमाएं?' : 'How to Earn More Points?',
+            widget.isHindi
+                ? 'और पॉइंट्स कैसे कमाएं?'
+                : 'How to Earn More Points?',
             style: const TextStyle(
               color: Colors.white,
               fontSize: 20,

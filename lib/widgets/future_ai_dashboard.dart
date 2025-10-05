@@ -46,7 +46,7 @@ class _FutureAIDashboardState extends State<FutureAIDashboard>
       CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
 
-  _generateSampleData();
+    _generateSampleData();
   }
 
   @override
@@ -57,23 +57,23 @@ class _FutureAIDashboardState extends State<FutureAIDashboard>
   }
 
   void _generateSampleData() {
-  // Generate sample video call analysis
+    // Generate sample video call analysis
     if (widget.contacts.isNotEmpty) {
-  final demoSessions = _generateSampleVideoSessions();
+      final demoSessions = _generateSampleVideoSessions();
       _videoAnalysis = FutureAIService.analyzeVideoCallHealth(
         widget.contacts.first,
         demoSessions,
       );
 
-  // Generate sample location insights
-  final demoMeetings = _generateSampleLocationMeetings();
+      // Generate sample location insights
+      final demoMeetings = _generateSampleLocationMeetings();
       _locationInsights = FutureAIService.analyzeLocationPatterns(
         widget.contacts.first,
         demoMeetings,
       );
 
-  // Generate sample group analysis
-  final demoConversations = _generateSampleGroupConversations();
+      // Generate sample group analysis
+      final demoConversations = _generateSampleGroupConversations();
       _groupAnalysis = FutureAIService.analyzeGroupDynamics(
         widget.contacts.take(4).toList(),
         demoConversations,

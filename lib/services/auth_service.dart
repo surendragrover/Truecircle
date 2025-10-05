@@ -1,6 +1,7 @@
 // import 'package:firebase_auth/firebase_auth.dart';  // Temporarily disabled
-import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
+import 'logging_service.dart';
 
 // This service will handle all user authentication logic (login, signup, logout).
 class AuthService {
@@ -18,7 +19,10 @@ class AuthService {
     try {
       return null; // Mock implementation
     } catch (e) {
-      debugPrint('Mock signup error: $e');
+      LoggingService.error(
+        'Mock signup error: $e',
+        messageHi: 'मॉक साइनअप त्रुटि: $e',
+      );
       return null;
     }
   }
@@ -29,7 +33,10 @@ class AuthService {
     try {
       return null; // Mock implementation
     } catch (e) {
-      debugPrint('Mock signin error: $e');
+      LoggingService.error(
+        'Mock signin error: $e',
+        messageHi: 'मॉक साइनइन त्रुटि: $e',
+      );
       return null;
     }
   }
@@ -65,12 +72,19 @@ class AuthService {
             ? Hive.box('truecircle_settings')
             : await Hive.openBox('truecircle_settings');
         await box.put('current_phone_number', phoneNumber);
-        await box.put('current_phone_verified', true); // persist verified state explicitly
+        await box.put('current_phone_verified',
+            true); // persist verified state explicitly
       } catch (_) {}
-      debugPrint('Mock phone authentication successful for: $phoneNumber');
+      LoggingService.success(
+        'Mock phone authentication successful for $phoneNumber',
+        messageHi: '$phoneNumber के लिए मॉक फोन प्रमाणीकरण सफल रहा',
+      );
       return true;
     } catch (e) {
-      debugPrint('Mock phone auth error: $e');
+      LoggingService.error(
+        'Mock phone auth error: $e',
+        messageHi: 'मॉक फोन सत्यापन में त्रुटि: $e',
+      );
       _isPhoneVerified = false;
       _currentPhoneNumber = null;
       return false;
@@ -87,14 +101,23 @@ class AuthService {
           ? Hive.box('truecircle_settings')
           : await Hive.openBox('truecircle_settings');
       final stored = box.get('current_phone_number') as String?;
-      final wasVerified = box.get('current_phone_verified', defaultValue: false) as bool;
+      final wasVerified =
+          box.get('current_phone_verified', defaultValue: false) as bool;
       if (stored != null && stored.isNotEmpty) {
         _currentPhoneNumber = stored;
-        _isPhoneVerified = wasVerified; // only mark verified if explicit flag present
-        debugPrint('AuthService: restored phone $stored (verified=$wasVerified) from storage');
+        _isPhoneVerified =
+            wasVerified; // only mark verified if explicit flag present
+        LoggingService.info(
+          'AuthService restored phone $stored (verified=$wasVerified) from storage',
+          messageHi:
+              'AuthService ने संग्रह से $stored (सत्यापित=$wasVerified) पुनर्स्थापित किया',
+        );
       }
     } catch (e) {
-      debugPrint('AuthService: restoreFromStorage failed: $e');
+      LoggingService.error(
+        'AuthService restoreFromStorage failed: $e',
+        messageHi: 'AuthService संग्रह से पुनर्स्थापन विफल: $e',
+      );
     }
   }
 
@@ -115,9 +138,15 @@ class AuthService {
       await box.delete('current_phone_number');
       await box.delete('current_phone_verified');
 
-      debugPrint('Complete logout successful');
+      LoggingService.success(
+        'Complete logout successful',
+        messageHi: 'पूर्ण लॉगआउट सफल रहा',
+      );
     } catch (e) {
-      debugPrint('Error during logout: $e');
+      LoggingService.error(
+        'Error during logout: $e',
+        messageHi: 'लॉगआउट के दौरान त्रुटि: $e',
+      );
     }
   }
 }

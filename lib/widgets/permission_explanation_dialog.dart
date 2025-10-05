@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 class PermissionExplanationDialog extends StatelessWidget {
   final VoidCallback onOpenSettings;
   final bool isHindi;
-  const PermissionExplanationDialog({super.key, required this.onOpenSettings, this.isHindi = false});
+  const PermissionExplanationDialog(
+      {super.key, required this.onOpenSettings, this.isHindi = false});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,8 @@ class PermissionExplanationDialog extends StatelessWidget {
                 isHindi
                     ? 'आपका कोई भी निजी डेटा सर्वर पर नहीं भेजा जाता। सब कुछ फोन में सुरक्षित है।'
                     : 'No personal raw data leaves your device. Everything stays private locally.',
-                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+                style:
+                    const TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
               ),
             ),
           ],
@@ -68,7 +70,7 @@ class PermissionExplanationDialog extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Icon(Icons.shield, size: 16, color: Colors.teal),
-            const SizedBox(width: 6),
+          const SizedBox(width: 6),
           Expanded(
             child: Text(
               isHindi ? hi : en,

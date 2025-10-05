@@ -13,13 +13,15 @@ class ArticleShareService {
   static const _boxTokens = 'article_share_tokens';
   static const _boxArticles = 'shared_articles';
   static ArticleShareService? _instance;
-  static ArticleShareService get instance => _instance ??= ArticleShareService._();
+  static ArticleShareService get instance =>
+      _instance ??= ArticleShareService._();
   ArticleShareService._();
 
   DateTime? lastInsightsUpdatedAt;
 
   Future<Box> _openTokens() async => Hive.openBox(_boxTokens);
-  Future<Box<SharedArticle>> _openArticles() async => Hive.openBox<SharedArticle>(_boxArticles);
+  Future<Box<SharedArticle>> _openArticles() async =>
+      Hive.openBox<SharedArticle>(_boxArticles);
 
   String _generateToken() {
     const chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
@@ -37,7 +39,9 @@ class ArticleShareService {
   }) async {
     final box = await _openTokens();
     String token;
-    do { token = _generateToken(); } while (box.containsKey(token));
+    do {
+      token = _generateToken();
+    } while (box.containsKey(token));
     await box.put(token, {
       'title': title,
       'author': author,
@@ -54,14 +58,15 @@ class ArticleShareService {
   Future<SharedArticle?> redeem(String token) async {
     final tBox = await _openTokens();
     if (!tBox.containsKey(token)) return null;
-    final map = Map<String,dynamic>.from(tBox.get(token));
+    final map = Map<String, dynamic>.from(tBox.get(token));
     final aBox = await _openArticles();
     final article = SharedArticle(
       id: token,
       title: map['title'] as String,
       author: map['author'] as String,
       body: map['body'] as String,
-      createdAt: DateTime.tryParse(map['createdAt'] as String) ?? DateTime.now(),
+      createdAt:
+          DateTime.tryParse(map['createdAt'] as String) ?? DateTime.now(),
       imported: true,
       sourceEmail: map['sourceEmail'] as String? ?? 'unknown',
       bodyHi: map['bodyHi'] as String?,
@@ -76,7 +81,8 @@ class ArticleShareService {
   /// List locally imported shared articles.
   Future<List<SharedArticle>> listArticles() async {
     final aBox = await _openArticles();
-    return aBox.values.toList()..sort((a,b)=> b.createdAt.compareTo(a.createdAt));
+    return aBox.values.toList()
+      ..sort((a, b) => b.createdAt.compareTo(a.createdAt));
   }
 
   Future<void> toggleFavorite(String id) async {
@@ -91,7 +97,12 @@ class ArticleShareService {
   Future<List<SharedArticle>> searchArticles(String query) async {
     final q = query.toLowerCase();
     final list = await listArticles();
-    return list.where((a)=> a.title.toLowerCase().contains(q) || a.body.toLowerCase().contains(q) || a.author.toLowerCase().contains(q)).toList();
+    return list
+        .where((a) =>
+            a.title.toLowerCase().contains(q) ||
+            a.body.toLowerCase().contains(q) ||
+            a.author.toLowerCase().contains(q))
+        .toList();
   }
 
   Future<SharedArticle?> getArticle(String id) async {
@@ -109,9 +120,9 @@ class ArticleShareService {
     return imported;
   }
 
-  Future<Map<String,int>> stats() async {
+  Future<Map<String, int>> stats() async {
     final list = await listArticles();
-    final fav = list.where((a)=> a.favorite).length;
+    final fav = list.where((a) => a.favorite).length;
     return {
       'total': list.length,
       'favorites': fav,
@@ -121,7 +132,21 @@ class ArticleShareService {
   List<String> _extractTags(String content) {
     final lower = content.toLowerCase();
     final candidates = <String>[
-      'cognition','brain','memory','learning','anxiety','depression','behavior','ethics','methodology','statistics','design','culture','research','validity','reliability'
+      'cognition',
+      'brain',
+      'memory',
+      'learning',
+      'anxiety',
+      'depression',
+      'behavior',
+      'ethics',
+      'methodology',
+      'statistics',
+      'design',
+      'culture',
+      'research',
+      'validity',
+      'reliability'
     ];
     final found = <String>{};
     for (final c in candidates) {
@@ -131,7 +156,7 @@ class ArticleShareService {
   }
 
   /// Export article content joined as plain text for saving externally.
-  String serializeForExport(SharedArticle a, {bool includeHindi=false}) {
+  String serializeForExport(SharedArticle a, {bool includeHindi = false}) {
     final buffer = StringBuffer()
       ..writeln(a.title)
       ..writeln('Author: ${a.author}')
@@ -181,7 +206,7 @@ class ArticleShareService {
     if (!orchestrator.isStarted) return;
     try {
       final stat = await stats();
-      final map = Map<String,String>.from(orchestrator.featureInsights.value);
+      final map = Map<String, String>.from(orchestrator.featureInsights.value);
       map['articles'] = 'Articles: ${stat['total']} (Fav ${stat['favorites']})';
       orchestrator.featureInsights.value = map;
       lastInsightsUpdatedAt = DateTime.now();
@@ -207,23 +232,24 @@ class ArticleShareService {
     for (final raw in PsychStudyArticles.articles) {
       final id = raw['id']!;
       final newVersion = raw['version'] ?? '1';
-  final existing = box.get(id);
+      final existing = box.get(id);
       final versionKey = 'static_version_$id';
       final metaBox = await Hive.openBox('article_meta');
-      final storedVersion = metaBox.get(versionKey, defaultValue: '0') as String;
+      final storedVersion =
+          metaBox.get(versionKey, defaultValue: '0') as String;
       if (existing == null || storedVersion != newVersion) {
         final body = raw['body'] ?? '';
         final bodyHi = raw['body_hi'] ?? raw['bodyHi'];
         final article = SharedArticle(
           id: id,
-            title: raw['title'] ?? 'Untitled',
-            author: raw['author'] ?? 'Unknown',
-            body: body,
-            bodyHi: bodyHi?.isNotEmpty == true ? bodyHi : null,
-            createdAt: DateTime.now(),
-            imported: true,
-            sourceEmail: 'static@truecircle',
-            tags: _extractTags('${raw['title']}\n$body'),
+          title: raw['title'] ?? 'Untitled',
+          author: raw['author'] ?? 'Unknown',
+          body: body,
+          bodyHi: bodyHi?.isNotEmpty == true ? bodyHi : null,
+          createdAt: DateTime.now(),
+          imported: true,
+          sourceEmail: 'static@truecircle',
+          tags: _extractTags('${raw['title']}\n$body'),
         );
         await box.put(id, article);
         await metaBox.put(versionKey, newVersion);

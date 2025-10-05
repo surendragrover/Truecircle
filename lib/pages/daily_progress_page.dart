@@ -3,7 +3,7 @@ import '../models/daily_progress.dart';
 import '../services/daily_progress_service.dart';
 
 /// DailyProgressPage - sample data support (formerly Demo)
-/// 
+///
 /// Features:
 /// - Today's progress overview with all integrated metrics
 /// - Weekly progress charts and analytics
@@ -20,19 +20,18 @@ class DailyProgressPage extends StatefulWidget {
 
 class _DailyProgressPageState extends State<DailyProgressPage>
     with TickerProviderStateMixin {
-  
   final DailyProgressService _progressService = DailyProgressService.instance;
-  
+
   late TabController _tabController;
-  
+
   bool _isLoading = true;
   bool _isServiceInitialized = false;
-  
+
   DailyProgress? _todayProgress;
   List<DailyProgress> _weeklyProgress = [];
   WeeklyProgressSummary? _weeklySummary;
   ProgressAnalytics? _analytics;
-  
+
   final TextEditingController _reflectionController = TextEditingController();
   final TextEditingController _sleepController = TextEditingController();
   final TextEditingController _meditationController = TextEditingController();
@@ -55,7 +54,7 @@ class _DailyProgressPageState extends State<DailyProgressPage>
 
   Future<void> _initializeService() async {
     setState(() => _isLoading = true);
-    
+
     try {
       await _progressService.initialize();
       setState(() => _isServiceInitialized = true);
@@ -73,25 +72,25 @@ class _DailyProgressPageState extends State<DailyProgressPage>
 
   Future<void> _loadProgressData() async {
     if (!_isServiceInitialized) return;
-    
+
     setState(() => _isLoading = true);
-    
+
     try {
       final today = DateTime.now();
-      
+
       // Load today's progress
       _todayProgress = await _progressService.getDailyProgress(today);
-      
+
       // Load weekly progress
       _weeklyProgress = await _progressService.getRecentProgress(days: 7);
-      
+
       // Load weekly summary
       final weekStart = today.subtract(Duration(days: today.weekday - 1));
       _weeklySummary = await _progressService.getWeeklySummary(weekStart);
-      
+
       // Load analytics
       _analytics = await _progressService.getProgressAnalytics(days: 30);
-      
+
       setState(() {});
     } catch (e) {
       if (mounted) {
@@ -110,10 +109,12 @@ class _DailyProgressPageState extends State<DailyProgressPage>
     setState(() => _isLoading = true);
 
     try {
-      final sleepHours = int.tryParse(_sleepController.text) ?? _todayProgress?.sleepHours;
-      final meditationMinutes = int.tryParse(_meditationController.text) ?? _todayProgress?.meditationMinutes;
-      final reflection = _reflectionController.text.trim().isNotEmpty 
-          ? _reflectionController.text.trim() 
+      final sleepHours =
+          int.tryParse(_sleepController.text) ?? _todayProgress?.sleepHours;
+      final meditationMinutes = int.tryParse(_meditationController.text) ??
+          _todayProgress?.meditationMinutes;
+      final reflection = _reflectionController.text.trim().isNotEmpty
+          ? _reflectionController.text.trim()
           : _todayProgress?.dailyReflection;
 
       _todayProgress = await _progressService.updateDailyProgress(
@@ -149,11 +150,11 @@ class _DailyProgressPageState extends State<DailyProgressPage>
     setState(() => _isLoading = true);
 
     try {
-  final demoEntries = await _progressService.getSampleData();
-      
-  // Clear existing data and add sample data
+      final demoEntries = await _progressService.getSampleData();
+
+      // Clear existing data and add sample data
       await _progressService.clearAllData();
-      
+
       for (final entry in demoEntries) {
         await _progressService.updateDailyProgress(
           date: entry.date,
@@ -231,15 +232,15 @@ class _DailyProgressPageState extends State<DailyProgressPage>
           // Today's Overview Card
           _buildTodayOverviewCard(),
           const SizedBox(height: 16),
-          
+
           // Quick Update Section
           _buildQuickUpdateSection(),
           const SizedBox(height: 16),
-          
+
           // Achievements Section
           _buildAchievementsSection(),
           const SizedBox(height: 16),
-          
+
           // Today's Metrics
           _buildTodayMetrics(),
         ],
@@ -250,8 +251,9 @@ class _DailyProgressPageState extends State<DailyProgressPage>
   Widget _buildTodayOverviewCard() {
     final progress = _todayProgress;
     final score = progress?.overallDailyScore ?? 0.0;
-    final category = progress?.wellnessCategory ?? WellnessCategory.needsImprovement;
-    
+    final category =
+        progress?.wellnessCategory ?? WellnessCategory.needsImprovement;
+
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -281,9 +283,11 @@ class _DailyProgressPageState extends State<DailyProgressPage>
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: Color(int.parse('0xFF${category.colorHex.substring(1)}')),
+                    color: Color(
+                        int.parse('0xFF${category.colorHex.substring(1)}')),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
@@ -297,7 +301,7 @@ class _DailyProgressPageState extends State<DailyProgressPage>
               ],
             ),
             const SizedBox(height: 12),
-            
+
             Text(
               category.displayName,
               style: TextStyle(
@@ -307,7 +311,7 @@ class _DailyProgressPageState extends State<DailyProgressPage>
               ),
             ),
             const SizedBox(height: 8),
-            
+
             Text(
               category.motivationalMessage,
               style: TextStyle(
@@ -317,7 +321,7 @@ class _DailyProgressPageState extends State<DailyProgressPage>
               ),
             ),
             const SizedBox(height: 16),
-            
+
             // Progress Indicators
             Row(
               children: [
@@ -385,7 +389,6 @@ class _DailyProgressPageState extends State<DailyProgressPage>
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            
             Row(
               children: [
                 Expanded(
@@ -416,7 +419,6 @@ class _DailyProgressPageState extends State<DailyProgressPage>
               ],
             ),
             const SizedBox(height: 12),
-            
             TextField(
               controller: _reflectionController,
               decoration: const InputDecoration(
@@ -428,7 +430,6 @@ class _DailyProgressPageState extends State<DailyProgressPage>
               maxLines: 2,
             ),
             const SizedBox(height: 12),
-            
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
@@ -449,7 +450,7 @@ class _DailyProgressPageState extends State<DailyProgressPage>
 
   Widget _buildAchievementsSection() {
     final achievements = _todayProgress?.achievementBadges ?? [];
-    
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -461,7 +462,6 @@ class _DailyProgressPageState extends State<DailyProgressPage>
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
-            
             if (achievements.isEmpty)
               const Text(
                 'No achievements yet today. Keep going! 💪',
@@ -471,11 +471,13 @@ class _DailyProgressPageState extends State<DailyProgressPage>
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
-                children: achievements.map((achievement) => Chip(
-                  label: Text(achievement),
-                  backgroundColor: Colors.amber.shade100,
-                  avatar: const Icon(Icons.star, size: 18),
-                )).toList(),
+                children: achievements
+                    .map((achievement) => Chip(
+                          label: Text(achievement),
+                          backgroundColor: Colors.amber.shade100,
+                          avatar: const Icon(Icons.star, size: 18),
+                        ))
+                    .toList(),
               ),
           ],
         ),
@@ -485,7 +487,7 @@ class _DailyProgressPageState extends State<DailyProgressPage>
 
   Widget _buildTodayMetrics() {
     final progress = _todayProgress;
-    
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -497,13 +499,14 @@ class _DailyProgressPageState extends State<DailyProgressPage>
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            
             _buildMetricRow('😴 Sleep', '${progress?.sleepHours ?? 0} hours'),
-            _buildMetricRow('🧘 Meditation', '${progress?.meditationMinutes ?? 0} minutes'),
-            _buildMetricRow('💬 Conversations', '${progress?.conversationCount ?? 0}'),
-            _buildMetricRow('🎯 Goals', '${progress?.goalCompletionRate.toStringAsFixed(1) ?? "0"}%'),
+            _buildMetricRow(
+                '🧘 Meditation', '${progress?.meditationMinutes ?? 0} minutes'),
+            _buildMetricRow(
+                '💬 Conversations', '${progress?.conversationCount ?? 0}'),
+            _buildMetricRow('🎯 Goals',
+                '${progress?.goalCompletionRate.toStringAsFixed(1) ?? "0"}%'),
             _buildMetricRow('⭐ Points', '${progress?.pointsEarned ?? 0}'),
-            
             if (progress?.dailyReflection?.isNotEmpty == true) ...[
               const Divider(),
               const Text(
@@ -549,7 +552,7 @@ class _DailyProgressPageState extends State<DailyProgressPage>
           // Weekly Progress Chart
           _buildWeeklySummaryCard(),
           const SizedBox(height: 16),
-          
+
           // Progress Timeline
           _buildProgressTimeline(),
         ],
@@ -559,7 +562,7 @@ class _DailyProgressPageState extends State<DailyProgressPage>
 
   Widget _buildWeeklySummaryCard() {
     final summary = _weeklySummary;
-    
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -571,7 +574,6 @@ class _DailyProgressPageState extends State<DailyProgressPage>
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            
             if (summary != null) ...[
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -594,11 +596,13 @@ class _DailyProgressPageState extends State<DailyProgressPage>
                 ],
               ),
               const SizedBox(height: 16),
-              
-              _buildMetricRow('Total Sleep', '${summary.totalSleepHours} hours'),
-              _buildMetricRow('Total Meditation', '${summary.totalMeditationMinutes} minutes'),
+              _buildMetricRow(
+                  'Total Sleep', '${summary.totalSleepHours} hours'),
+              _buildMetricRow('Total Meditation',
+                  '${summary.totalMeditationMinutes} minutes'),
               _buildMetricRow('Total Points', '${summary.totalPointsEarned}'),
-              _buildMetricRow('Active Days', '${summary.dailyEntries.length}/7'),
+              _buildMetricRow(
+                  'Active Days', '${summary.dailyEntries.length}/7'),
             ] else
               const Text('No weekly data available yet.'),
           ],
@@ -646,11 +650,10 @@ class _DailyProgressPageState extends State<DailyProgressPage>
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            
             if (_weeklyProgress.isNotEmpty)
-              ...(_weeklyProgress.reversed.take(7).map((progress) => 
-                _buildTimelineItem(progress)
-              ))
+              ...(_weeklyProgress.reversed
+                  .take(7)
+                  .map((progress) => _buildTimelineItem(progress)))
             else
               const Text('No progress data available.'),
           ],
@@ -667,7 +670,8 @@ class _DailyProgressPageState extends State<DailyProgressPage>
         border: Border(
           left: BorderSide(
             width: 4,
-            color: Color(int.parse('0xFF${progress.wellnessCategory.colorHex.substring(1)}')),
+            color: Color(int.parse(
+                '0xFF${progress.wellnessCategory.colorHex.substring(1)}')),
           ),
         ),
         color: Colors.grey.shade50,
@@ -716,7 +720,7 @@ class _DailyProgressPageState extends State<DailyProgressPage>
 
   Widget _buildAnalyticsTab() {
     final analytics = _analytics;
-    
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -749,14 +753,19 @@ class _DailyProgressPageState extends State<DailyProgressPage>
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            
             _buildMetricRow('Active Days', '${analytics.totalDays}'),
-            _buildMetricRow('Consistency Rate', '${analytics.consistencyRate.toStringAsFixed(1)}%'),
-            _buildMetricRow('Avg Overall Score', '${analytics.averageOverallScore.toStringAsFixed(1)}%'),
-            _buildMetricRow('Avg Wellness', '${analytics.averageWellnessScore.toStringAsFixed(1)}%'),
-            _buildMetricRow('Avg Relationships', '${analytics.averageRelationshipScore.toStringAsFixed(1)}%'),
-            _buildMetricRow('Avg Sleep/Day', '${analytics.averageSleepHours.toStringAsFixed(1)}h'),
-            _buildMetricRow('Avg Meditation/Day', '${analytics.averageMeditationMinutes.toStringAsFixed(1)}m'),
+            _buildMetricRow('Consistency Rate',
+                '${analytics.consistencyRate.toStringAsFixed(1)}%'),
+            _buildMetricRow('Avg Overall Score',
+                '${analytics.averageOverallScore.toStringAsFixed(1)}%'),
+            _buildMetricRow('Avg Wellness',
+                '${analytics.averageWellnessScore.toStringAsFixed(1)}%'),
+            _buildMetricRow('Avg Relationships',
+                '${analytics.averageRelationshipScore.toStringAsFixed(1)}%'),
+            _buildMetricRow('Avg Sleep/Day',
+                '${analytics.averageSleepHours.toStringAsFixed(1)}h'),
+            _buildMetricRow('Avg Meditation/Day',
+                '${analytics.averageMeditationMinutes.toStringAsFixed(1)}m'),
             _buildMetricRow('Total Points', '${analytics.totalPointsEarned}'),
           ],
         ),
@@ -776,17 +785,17 @@ class _DailyProgressPageState extends State<DailyProgressPage>
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            
             if (analytics.topAchievements.isNotEmpty)
-              ...analytics.topAchievements.entries.map((entry) => 
-                Padding(
+              ...analytics.topAchievements.entries.map(
+                (entry) => Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Expanded(child: Text(entry.key)),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
                           color: Colors.amber.shade100,
                           borderRadius: BorderRadius.circular(10),
@@ -824,18 +833,17 @@ class _DailyProgressPageState extends State<DailyProgressPage>
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 16),
-                  
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
                       onPressed: _loadSampleData,
                       icon: const Icon(Icons.data_usage),
                       label: const Text('Load Sample Data'),
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade100),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green.shade100),
                     ),
                   ),
                   const SizedBox(height: 12),
-                  
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
@@ -844,7 +852,8 @@ class _DailyProgressPageState extends State<DailyProgressPage>
                           context: context,
                           builder: (context) => AlertDialog(
                             title: const Text('Clear All Data'),
-                            content: const Text('This will permanently delete all progress data. Continue?'),
+                            content: const Text(
+                                'This will permanently delete all progress data. Continue?'),
                             actions: [
                               TextButton(
                                 onPressed: () => Navigator.pop(context, false),
@@ -857,7 +866,7 @@ class _DailyProgressPageState extends State<DailyProgressPage>
                             ],
                           ),
                         );
-                        
+
                         if (confirmed == true) {
                           await _progressService.clearAllData();
                           await _loadProgressData();
@@ -870,16 +879,17 @@ class _DailyProgressPageState extends State<DailyProgressPage>
                       },
                       icon: const Icon(Icons.clear_all),
                       label: const Text('Clear All Data'),
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade100),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red.shade100),
                     ),
                   ),
                 ],
               ),
             ),
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Service Status
           Card(
             child: Padding(
@@ -892,7 +902,6 @@ class _DailyProgressPageState extends State<DailyProgressPage>
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 12),
-                  
                   _buildStatusRow('Service Initialized', _isServiceInitialized),
                   _buildStatusRow('Today\'s Data', _todayProgress != null),
                   _buildStatusRow('Weekly Data', _weeklyProgress.isNotEmpty),

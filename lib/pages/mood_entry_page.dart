@@ -19,12 +19,12 @@ class _MoodEntryPageState extends State<MoodEntryPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final MoodEntryService _moodService = MoodEntryService();
-  
+
   List<MoodEntry> _moodEntries = [];
   MoodStatistics? _statistics;
   bool _isLoading = false;
   bool _isServiceInitialized = false;
-  
+
   final TextEditingController _moodTextController = TextEditingController();
   final TextEditingController _contactController = TextEditingController();
 
@@ -37,7 +37,7 @@ class _MoodEntryPageState extends State<MoodEntryPage>
 
   Future<void> _initializeService() async {
     setState(() => _isLoading = true);
-    
+
     try {
       await _moodService.initialize();
       setState(() => _isServiceInitialized = true);
@@ -55,15 +55,15 @@ class _MoodEntryPageState extends State<MoodEntryPage>
 
   Future<void> _loadMoodEntries() async {
     if (!_isServiceInitialized) return;
-    
+
     setState(() => _isLoading = true);
-    
+
     try {
       final entries = await _moodService.getRecentMoodEntries(days: 30);
       final stats = await _moodService.getMoodStatistics(
         startDate: DateTime.now().subtract(const Duration(days: 30)),
       );
-      
+
       setState(() {
         _moodEntries = entries;
         _statistics = stats;
@@ -88,24 +88,25 @@ class _MoodEntryPageState extends State<MoodEntryPage>
     }
 
     setState(() => _isLoading = true);
-    
+
     try {
       await _moodService.createMoodEntry(
         userText: _moodTextController.text.trim(),
-        relatedContactId: _contactController.text.trim().isNotEmpty 
-            ? _contactController.text.trim() 
+        relatedContactId: _contactController.text.trim().isNotEmpty
+            ? _contactController.text.trim()
             : null,
         performImmediateAnalysis: true,
       );
-      
+
       _moodTextController.clear();
       _contactController.clear();
-      
+
       await _loadMoodEntries();
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('✅ मूड एंट्री successfully created और analyzed!')),
+          const SnackBar(
+              content: Text('✅ मूड एंट्री successfully created और analyzed!')),
         );
       }
     } catch (e) {
@@ -121,11 +122,11 @@ class _MoodEntryPageState extends State<MoodEntryPage>
 
   Future<void> _loadSampleData() async {
     setState(() => _isLoading = true);
-    
+
     try {
-  final demoEntries = await _moodService.getSampleData();
-      
-  // Add sample entries to database
+      final demoEntries = await _moodService.getSampleData();
+
+      // Add sample entries to database
       for (final entry in demoEntries) {
         await _moodService.createMoodEntry(
           userText: entry.userText,
@@ -134,9 +135,9 @@ class _MoodEntryPageState extends State<MoodEntryPage>
           performImmediateAnalysis: false, // Already analyzed in sample data
         );
       }
-      
+
       await _loadMoodEntries();
-      
+
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('✅ Sample data loaded successfully!')),
@@ -157,7 +158,7 @@ class _MoodEntryPageState extends State<MoodEntryPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-  title: const Text('🧠 MoodEntry Sample Data - NLP Analysis'),
+        title: const Text('🧠 MoodEntry Sample Data - NLP Analysis'),
         backgroundColor: Colors.purple.shade100,
         bottom: TabBar(
           controller: _tabController,
@@ -279,7 +280,8 @@ class _MoodEntryPageState extends State<MoodEntryPage>
             children: [
               Text(
                 '📚 Total Entries: ${_moodEntries.length}',
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               IconButton(
                 onPressed: _loadMoodEntries,
@@ -330,7 +332,8 @@ class _MoodEntryPageState extends State<MoodEntryPage>
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: _getMoodColor(entry.identifiedMood),
                     borderRadius: BorderRadius.circular(12),
@@ -465,11 +468,13 @@ class _MoodEntryPageState extends State<MoodEntryPage>
                     children: [
                       const Text(
                         'Mood Distribution',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: 8),
                       ..._statistics!.moodDistribution.entries.map((entry) {
-                        final percentage = (entry.value / _statistics!.totalEntries * 100);
+                        final percentage =
+                            (entry.value / _statistics!.totalEntries * 100);
                         return Padding(
                           padding: const EdgeInsets.symmetric(vertical: 4),
                           child: Row(
@@ -503,7 +508,8 @@ class _MoodEntryPageState extends State<MoodEntryPage>
             const Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: Text('No analytics data available. Add some mood entries first.'),
+                child: Text(
+                    'No analytics data available. Add some mood entries first.'),
               ),
             ),
           ],
@@ -557,11 +563,13 @@ class _MoodEntryPageState extends State<MoodEntryPage>
                   const SizedBox(height: 16),
                   ElevatedButton.icon(
                     onPressed: () async {
-                      final analyzed = await _moodService.analyzePendingEntries();
+                      final analyzed =
+                          await _moodService.analyzePendingEntries();
                       if (mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('✅ Analyzed ${analyzed.length} pending entries'),
+                            content: Text(
+                                '✅ Analyzed ${analyzed.length} pending entries'),
                           ),
                         );
                       }
@@ -569,14 +577,16 @@ class _MoodEntryPageState extends State<MoodEntryPage>
                     },
                     icon: const Icon(Icons.psychology),
                     label: const Text('Analyze Pending Entries'),
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade100),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue.shade100),
                   ),
                   const SizedBox(height: 8),
                   ElevatedButton.icon(
                     onPressed: _loadSampleData,
                     icon: const Icon(Icons.download),
                     label: const Text('Load Sample Data'),
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade100),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green.shade100),
                   ),
                   const SizedBox(height: 8),
                   ElevatedButton.icon(
@@ -585,7 +595,8 @@ class _MoodEntryPageState extends State<MoodEntryPage>
                         context: context,
                         builder: (context) => AlertDialog(
                           title: const Text('Clear All Entries'),
-                          content: const Text('यह सभी mood entries को delete कर देगा। Continue?'),
+                          content: const Text(
+                              'यह सभी mood entries को delete कर देगा। Continue?'),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.pop(context, false),
@@ -598,20 +609,22 @@ class _MoodEntryPageState extends State<MoodEntryPage>
                           ],
                         ),
                       );
-                      
+
                       if (confirmed == true) {
                         await _moodService.clearAllEntries();
                         await _loadMoodEntries();
                         if (mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('All entries cleared')),
+                            const SnackBar(
+                                content: Text('All entries cleared')),
                           );
                         }
                       }
                     },
                     icon: const Icon(Icons.delete_sweep),
                     label: const Text('Clear All Entries'),
-                    style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade100),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red.shade100),
                   ),
                 ],
               ),

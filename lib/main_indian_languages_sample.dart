@@ -484,7 +484,7 @@ class _IndianLanguagesLauncherState extends State<IndianLanguagesLauncher>
     Navigator.of(context).push(
       PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) =>
-                        const TranslationSamplePage(),
+            const TranslationSamplePage(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return FadeTransition(
             opacity: animation,

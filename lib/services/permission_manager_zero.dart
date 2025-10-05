@@ -56,7 +56,8 @@ class PermissionManager {
                         color: Colors.green.withValues(alpha: 0.1),
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                            color: Colors.green.withValues(alpha: 0.3)),
+                          color: Colors.green.withValues(alpha: 0.3),
+                        ),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +93,8 @@ class PermissionManager {
                                 color: Colors.blue.shade700),
                           ),
                           const SizedBox(height: 6),
-                          const Text('• Sample relationship data से सीखने का अवसर'),
+                          const Text(
+                              '• Sample relationship data से सीखने का अवसर'),
                           const Text(
                               '• Offline AI analysis (कोई internet आवश्यक नहीं)'),
                           const Text(
@@ -190,7 +192,9 @@ class PermissionManager {
           Text(
             '• 📊 Sample contacts communication patterns\n• 🤖 Offline AI emotion analysis (on-device)\n• 🎭 Cultural insights & festival recommendations\n• 📱 Privacy-safe learning experience',
             style: TextStyle(
-                color: Colors.white.withValues(alpha: 0.3), fontSize: 13),
+              color: Colors.white.withValues(alpha: 0.3),
+              fontSize: 13,
+            ),
           ),
           const SizedBox(height: 8),
           Container(
@@ -317,7 +321,7 @@ class PermissionManager {
       'all_emotions': emotionScores,
       'offline_analysis': true,
       'educational_demo': true,
-        'message': '🎓 Educational sample - पूर्ण offline analysis'
+      'message': '🎓 Educational sample - पूर्ण offline analysis'
     };
   }
 
@@ -377,7 +381,7 @@ class PermissionManager {
   }
 
   // 📚 EDUCATIONAL SAMPLE CONTACTS
-    static List<ContactInteraction> getSampleContacts() {
+  static List<ContactInteraction> getSampleContacts() {
     return [
       ContactInteraction(
         contactId: 'sample_1',
@@ -449,13 +453,13 @@ class PermissionManager {
 
   // Check if educational feature is available (always true)
   static bool isFeatureAvailable(String feature) {
-  // All features are available in educational sample mode
+    // All features are available in educational sample mode
     return true;
   }
 
   // Get educational feature status message
   static String getFeatureStatusMessage(String feature) {
-  return 'Educational sample mode - Using sample data for learning';
+    return 'Educational sample mode - Using sample data for learning';
   }
 
   // Educational cultural suggestions

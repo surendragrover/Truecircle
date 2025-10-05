@@ -59,7 +59,8 @@ class _InteractiveAIUIState extends State<InteractiveAIUI> {
                 Text('Dr. Iris',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                Text('Your Emotional Therapist', style: TextStyle(fontSize: 14)),
+                Text('Your Emotional Therapist',
+                    style: TextStyle(fontSize: 14)),
               ],
             ),
           ),

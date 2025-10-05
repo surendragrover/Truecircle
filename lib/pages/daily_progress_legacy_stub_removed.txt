@@ -1,0 +1,3 @@
+Legacy daily progress demo page removed.
+This stub placeholder is a non-Dart file so it is ignored by the token guard and analyzer.
+Safe to delete later.

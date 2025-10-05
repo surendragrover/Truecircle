@@ -45,19 +45,23 @@ class ServiceStatusWidget extends StatelessWidget {
                     child: CircularProgressIndicator(strokeWidth: 2),
                   );
                 }
-                
+
                 final status = snapshot.data ?? {};
                 return Column(
                   children: [
                     _buildStatusRow(
                       'Privacy Mode',
                       status['privacy_mode'] ?? true,
-                      status['privacy_mode'] == true ? Colors.green : Colors.orange,
+                      status['privacy_mode'] == true
+                          ? Colors.green
+                          : Colors.orange,
                     ),
                     _buildStatusRow(
                       'AI Service',
                       status['ai_available'] ?? false,
-                      status['ai_available'] == true ? Colors.green : Colors.red,
+                      status['ai_available'] == true
+                          ? Colors.green
+                          : Colors.red,
                     ),
                   ],
                 );
@@ -103,16 +107,16 @@ class ServiceStatusWidget extends StatelessWidget {
   Future<Map<String, dynamic>> _getServiceStatus() async {
     try {
       final serviceLocator = ServiceLocator.instance;
-      
+
       // Privacy Service status
       bool privacyMode = true;
       try {
         final privacyService = serviceLocator.get<PrivacyService>();
-  privacyMode = privacyService.isPrivacyMode();
+        privacyMode = privacyService.isPrivacyMode();
       } catch (e) {
         debugPrint('Privacy service check failed: $e');
       }
-      
+
       // AI Service status
       bool aiAvailable = false;
       try {
@@ -121,7 +125,7 @@ class ServiceStatusWidget extends StatelessWidget {
       } catch (e) {
         debugPrint('AI service check failed: $e');
       }
-      
+
       return {
         'privacy_mode': privacyMode,
         'ai_available': aiAvailable,
@@ -165,10 +169,12 @@ class DrIrisQuickChatBottomSheet extends StatefulWidget {
   const DrIrisQuickChatBottomSheet({super.key});
 
   @override
-  State<DrIrisQuickChatBottomSheet> createState() => _DrIrisQuickChatBottomSheetState();
+  State<DrIrisQuickChatBottomSheet> createState() =>
+      _DrIrisQuickChatBottomSheetState();
 }
 
-class _DrIrisQuickChatBottomSheetState extends State<DrIrisQuickChatBottomSheet> {
+class _DrIrisQuickChatBottomSheetState
+    extends State<DrIrisQuickChatBottomSheet> {
   final TextEditingController _messageController = TextEditingController();
   String _response = '';
   bool _isLoading = false;
@@ -192,18 +198,19 @@ class _DrIrisQuickChatBottomSheetState extends State<DrIrisQuickChatBottomSheet>
       // Service Locator से AI service प्राप्त करना
       final serviceLocator = ServiceLocator.instance;
       final aiService = serviceLocator.get<OnDeviceAIService>();
-      
+
       final response = await aiService.generateDrIrisResponse(message);
-      
+
       setState(() {
         _response = response;
         _isLoading = false;
       });
-      
+
       _messageController.clear();
     } catch (e) {
       setState(() {
-        _response = 'Dr. Iris (Privacy Mode): मैं यहाँ आपकी सहायता के लिए हूँ। सभी बातचीत आपके डिवाइस पर निजी रूप से होती है।';
+        _response =
+            'Dr. Iris (Privacy Mode): मैं यहाँ आपकी सहायता के लिए हूँ। सभी बातचीत आपके डिवाइस पर निजी रूप से होती है।';
         _isLoading = false;
       });
     }
@@ -245,7 +252,7 @@ class _DrIrisQuickChatBottomSheetState extends State<DrIrisQuickChatBottomSheet>
               ],
             ),
             const SizedBox(height: 16),
-            
+
             // Message input
             Row(
               children: [
@@ -255,7 +262,8 @@ class _DrIrisQuickChatBottomSheetState extends State<DrIrisQuickChatBottomSheet>
                     decoration: const InputDecoration(
                       hintText: 'Dr. Iris से कुछ पूछें...',
                       border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     ),
                     onSubmitted: (_) => _sendMessage(),
                   ),
@@ -263,13 +271,13 @@ class _DrIrisQuickChatBottomSheetState extends State<DrIrisQuickChatBottomSheet>
                 const SizedBox(width: 8),
                 IconButton(
                   onPressed: _isLoading ? null : _sendMessage,
-                  icon: _isLoading 
-                    ? const SizedBox(
-                        width: 20, 
-                        height: 20, 
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : const Icon(Icons.send),
+                  icon: _isLoading
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : const Icon(Icons.send),
                   style: IconButton.styleFrom(
                     backgroundColor: Colors.purple,
                     foregroundColor: Colors.white,
@@ -277,7 +285,7 @@ class _DrIrisQuickChatBottomSheetState extends State<DrIrisQuickChatBottomSheet>
                 ),
               ],
             ),
-            
+
             // Response area
             if (_response.isNotEmpty) ...[
               const SizedBox(height: 16),
@@ -295,7 +303,7 @@ class _DrIrisQuickChatBottomSheetState extends State<DrIrisQuickChatBottomSheet>
                 ),
               ),
             ],
-            
+
             const SizedBox(height: 16),
           ],
         ),
@@ -312,7 +320,7 @@ class ServiceLocatorDebugPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     // केवल debug mode में दिखाना
     if (!kDebugMode) return const SizedBox.shrink();
-    
+
     return ExpansionTile(
       title: const Text('Service Locator Debug'),
       leading: Icon(Icons.bug_report, color: Colors.orange[600]),
@@ -326,17 +334,19 @@ class ServiceLocatorDebugPanel extends StatelessWidget {
                 title: Text('Loading services...'),
               );
             }
-            
+
             final services = snapshot.data ?? {};
-            
+
             return Column(
               children: services.entries.map((entry) {
                 return ListTile(
                   dense: true,
-                  leading: Icon(Icons.check_circle, color: Colors.green[600], size: 16),
+                  leading: Icon(Icons.check_circle,
+                      color: Colors.green[600], size: 16),
                   title: Text(
                     entry.key,
-                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
                     entry.value,

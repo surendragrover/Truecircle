@@ -4,8 +4,8 @@ import '../services/json_data_service.dart';
 
 // Consistent turquoise (firozi) palette for all feature pages
 const Color _firoziPrimary = Color(0xFF00BFA5); // main background
-const Color _firoziDark = Color(0xFF00695C);     // app bar / strong containers
-const Color _firoziMid = Color(0xFF007D6C);      // mid tone blocks
+const Color _firoziDark = Color(0xFF00695C); // app bar / strong containers
+const Color _firoziMid = Color(0xFF007D6C); // mid tone blocks
 
 class FeaturePage extends StatefulWidget {
   final Map<String, dynamic> feature;
@@ -50,41 +50,41 @@ class _FeaturePageState extends State<FeaturePage> {
       switch (feature['title']) {
         case 'Emotional Check-in':
           data = await jsonService.getEmotionalCheckInData().timeout(
-            const Duration(seconds: 10),
-            onTimeout: () => [],
-          );
+                const Duration(seconds: 10),
+                onTimeout: () => [],
+              );
           break;
         case 'Mood Journal':
           final moodData = await jsonService.getMoodJournalData().timeout(
-            const Duration(seconds: 10),
-            onTimeout: () => {'entries': []},
-          );
+                const Duration(seconds: 10),
+                onTimeout: () => {'entries': []},
+              );
           data = moodData['entries'] ?? [];
           break;
         case 'Relationship Insights':
           data = await jsonService.getRelationshipData().timeout(
-            const Duration(seconds: 10),
-            onTimeout: () => [],
-          );
+                const Duration(seconds: 10),
+                onTimeout: () => [],
+              );
           break;
         case 'Festival Reminders':
           final festivalData = await jsonService.getFestivalsData().timeout(
-            const Duration(seconds: 10),
-            onTimeout: () => {'festivals': []},
-          );
+                const Duration(seconds: 10),
+                onTimeout: () => {'festivals': []},
+              );
           data = festivalData['festivals'] ?? [];
           break;
         case 'Meditation Guide':
           data = await jsonService.getMeditationData().timeout(
-            const Duration(seconds: 10),
-            onTimeout: () => [],
-          );
+                const Duration(seconds: 10),
+                onTimeout: () => [],
+              );
           break;
         case 'Breathing Exercises':
           data = await jsonService.getBreathingData().timeout(
-            const Duration(seconds: 10),
-            onTimeout: () => [],
-          );
+                const Duration(seconds: 10),
+                onTimeout: () => [],
+              );
           break;
         case 'Progress Tracker':
           // Generate mock progress data
@@ -171,12 +171,14 @@ class _FeaturePageState extends State<FeaturePage> {
                   end: Alignment.bottomRight,
                 ),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: _firoziPrimary.withValues(alpha: 0.6)),
+                border: Border.all(
+                  color: _firoziPrimary.withValues(alpha: 0.6),
+                ),
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.black26,
                     blurRadius: 8,
-                    offset: Offset(0,4),
+                    offset: Offset(0, 4),
                   )
                 ],
               ),
@@ -195,7 +197,7 @@ class _FeaturePageState extends State<FeaturePage> {
                         BoxShadow(
                           color: _firoziPrimary.withValues(alpha: 0.35),
                           blurRadius: 12,
-                          offset: const Offset(0,6),
+                          offset: const Offset(0, 6),
                         )
                       ],
                     ),
@@ -217,9 +219,13 @@ class _FeaturePageState extends State<FeaturePage> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    isHindi 
-                        ? (feature['descriptionHi'] ?? feature['description'] ?? '')
-                        : (feature['description'] ?? feature['descriptionHi'] ?? ''),
+                    isHindi
+                        ? (feature['descriptionHi'] ??
+                            feature['description'] ??
+                            '')
+                        : (feature['description'] ??
+                            feature['descriptionHi'] ??
+                            ''),
                     style: const TextStyle(
                       color: Colors.white70,
                       fontSize: 16,
@@ -228,7 +234,8 @@ class _FeaturePageState extends State<FeaturePage> {
                   ),
                   const SizedBox(height: 12),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(12),
@@ -246,9 +253,9 @@ class _FeaturePageState extends State<FeaturePage> {
                 ],
               ),
             ),
-            
+
             const SizedBox(height: 24),
-            
+
             // Features Overview
             Text(
               isHindi ? 'फीचर्स' : 'Features',
@@ -259,11 +266,11 @@ class _FeaturePageState extends State<FeaturePage> {
               ),
             ),
             const SizedBox(height: 16),
-            
+
             _buildFeatureContent(),
-            
+
             const SizedBox(height: 24),
-            
+
             // Coming Soon Notice
             Container(
               width: double.infinity,
@@ -280,7 +287,7 @@ class _FeaturePageState extends State<FeaturePage> {
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.25),
                     blurRadius: 8,
-                    offset: const Offset(0,4),
+                    offset: const Offset(0, 4),
                   )
                 ],
               ),
@@ -293,7 +300,7 @@ class _FeaturePageState extends State<FeaturePage> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    isHindi 
+                    isHindi
                         ? 'यह फीचर उपलब्ध है!\nअपने डेटा को ट्रैक करना शुरू करें।'
                         : 'This feature is available!\nStart tracking your data.',
                     style: const TextStyle(
@@ -327,7 +334,7 @@ class _FeaturePageState extends State<FeaturePage> {
           BoxShadow(
             color: Colors.black.withValues(alpha: 0.2),
             blurRadius: 6,
-            offset: const Offset(0,3),
+            offset: const Offset(0, 3),
           )
         ],
       ),
@@ -344,7 +351,7 @@ class _FeaturePageState extends State<FeaturePage> {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  isHindi 
+                  isHindi
                       ? '${feature['titleHi']} (${_sampleData.length} entries)'
                       : '${feature['title']} (${_sampleData.length} entries)',
                   style: const TextStyle(
@@ -357,13 +364,13 @@ class _FeaturePageState extends State<FeaturePage> {
             ],
           ),
           const SizedBox(height: 16),
-          
+
           // Show today's tip for meditation and breathing exercises
           if (feature['title'] == 'Meditation Guide')
             _buildTodaysMeditationTip(),
           if (feature['title'] == 'Breathing Exercises')
             _buildTodaysBreathingTip(),
-          
+
           if (_isLoading)
             const Center(
               child: CircularProgressIndicator(color: Colors.white),
@@ -375,9 +382,7 @@ class _FeaturePageState extends State<FeaturePage> {
             )
           else if (_sampleData.isEmpty)
             Text(
-              isHindi 
-                  ? 'कोई डेटा उपलब्ध नहीं है।'
-                  : 'No data available.',
+              isHindi ? 'कोई डेटा उपलब्ध नहीं है।' : 'No data available.',
               style: const TextStyle(
                 color: Colors.white70,
                 fontSize: 14,
@@ -462,11 +467,17 @@ class _FeaturePageState extends State<FeaturePage> {
     if (item is Map<String, dynamic>) {
       // For Progress Tracker
       if (item['value'] != null) {
-        final title = isHindi ? (item['title_hindi'] ?? item['title']) : item['title'];
-        final value = isHindi ? (item['value_hindi'] ?? item['value']) : item['value'];
+        final title =
+            isHindi ? (item['title_hindi'] ?? item['title']) : item['title'];
+        final value =
+            isHindi ? (item['value_hindi'] ?? item['value']) : item['value'];
         return '$title: $value';
       }
-      return item['title'] ?? item['name'] ?? item['festival_name'] ?? item['date'] ?? 'Item';
+      return item['title'] ??
+          item['name'] ??
+          item['festival_name'] ??
+          item['date'] ??
+          'Item';
     }
     return 'Data Entry';
   }
@@ -476,11 +487,17 @@ class _FeaturePageState extends State<FeaturePage> {
     if (item is Map<String, dynamic>) {
       // For Progress Tracker
       if (item['progress'] != null) {
-        final description = isHindi ? (item['description_hindi'] ?? item['description']) : item['description'];
+        final description = isHindi
+            ? (item['description_hindi'] ?? item['description'])
+            : item['description'];
         final progress = ((item['progress'] ?? 0.0) * 100).toInt();
         return '$description • $progress% progress';
       }
-      return item['description'] ?? item['mood'] ?? item['emotion'] ?? item['date'] ?? 'No description';
+      return item['description'] ??
+          item['mood'] ??
+          item['emotion'] ??
+          item['date'] ??
+          'No description';
     }
     return 'Entry details';
   }
@@ -490,7 +507,7 @@ class _FeaturePageState extends State<FeaturePage> {
       future: JsonDataService.instance.getTodaysMeditationTip(),
       builder: (context, snapshot) {
         if (!snapshot.hasData || snapshot.data == null) return const SizedBox();
-        
+
         final tip = snapshot.data!;
         return Container(
           margin: const EdgeInsets.only(bottom: 16),
@@ -519,12 +536,16 @@ class _FeaturePageState extends State<FeaturePage> {
                 ],
               ),
               const SizedBox(height: 12),
-              
+
               // Title and Duration
               Text(
-                isHindi 
-                  ? (tip['title_hindi'] ?? tip['title'] ?? 'Meditation Session')
-                  : (tip['title'] ?? tip['title_hindi'] ?? 'Meditation Session'),
+                isHindi
+                    ? (tip['title_hindi'] ??
+                        tip['title'] ??
+                        'Meditation Session')
+                    : (tip['title'] ??
+                        tip['title_hindi'] ??
+                        'Meditation Session'),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 15,
@@ -532,7 +553,7 @@ class _FeaturePageState extends State<FeaturePage> {
                 ),
               ),
               const SizedBox(height: 8),
-              
+
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
@@ -540,9 +561,9 @@ class _FeaturePageState extends State<FeaturePage> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
-                  isHindi 
-                    ? '${tip['duration_minutes']} मिनट • ${tip['type_hindi'] ?? tip['type']} • ${tip['difficulty']}'
-                    : '${tip['duration_minutes']} minutes • ${tip['type'] ?? tip['type_hindi']} • ${tip['difficulty']}',
+                  isHindi
+                      ? '${tip['duration_minutes']} मिनट • ${tip['type_hindi'] ?? tip['type']} • ${tip['difficulty']}'
+                      : '${tip['duration_minutes']} minutes • ${tip['type'] ?? tip['type_hindi']} • ${tip['difficulty']}',
                   style: TextStyle(
                     color: Colors.green[100],
                     fontSize: 12,
@@ -551,9 +572,10 @@ class _FeaturePageState extends State<FeaturePage> {
                 ),
               ),
               const SizedBox(height: 12),
-              
+
               // Description
-              if (tip['description_hindi'] != null || tip['description'] != null) ...[
+              if (tip['description_hindi'] != null ||
+                  tip['description'] != null) ...[
                 Text(
                   isHindi ? 'विवरण:' : 'Description:',
                   style: TextStyle(
@@ -564,9 +586,9 @@ class _FeaturePageState extends State<FeaturePage> {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  isHindi 
-                    ? (tip['description_hindi'] ?? tip['description'] ?? '')
-                    : (tip['description'] ?? tip['description_hindi'] ?? ''),
+                  isHindi
+                      ? (tip['description_hindi'] ?? tip['description'] ?? '')
+                      : (tip['description'] ?? tip['description_hindi'] ?? ''),
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 13,
@@ -575,7 +597,7 @@ class _FeaturePageState extends State<FeaturePage> {
                 ),
                 const SizedBox(height: 12),
               ],
-              
+
               // Step-by-step instructions
               Text(
                 isHindi ? 'ध्यान के चरण:' : 'Meditation Steps:',
@@ -586,12 +608,12 @@ class _FeaturePageState extends State<FeaturePage> {
                 ),
               ),
               const SizedBox(height: 8),
-              
+
               // Instructions based on meditation type
               ..._getMeditationSteps(tip, isHindi),
-              
+
               const SizedBox(height: 12),
-              
+
               // Mantra information for mantra meditation
               if (tip['mantra'] != null) ...[
                 Container(
@@ -606,7 +628,8 @@ class _FeaturePageState extends State<FeaturePage> {
                     children: [
                       Row(
                         children: [
-                          Icon(Icons.auto_awesome, color: Colors.green[100], size: 16),
+                          Icon(Icons.auto_awesome,
+                              color: Colors.green[100], size: 16),
                           const SizedBox(width: 6),
                           Text(
                             isHindi ? 'मंत्र:' : 'Mantra:',
@@ -662,12 +685,13 @@ class _FeaturePageState extends State<FeaturePage> {
                         const SizedBox(height: 8),
                         Row(
                           children: [
-                            Icon(Icons.repeat, color: Colors.green[100], size: 14),
+                            Icon(Icons.repeat,
+                                color: Colors.green[100], size: 14),
                             const SizedBox(width: 4),
                             Text(
-                              isHindi 
-                                ? 'जप संख्या: ${tip['mantra_repetitions']} बार'
-                                : 'Repetitions: ${tip['mantra_repetitions']} times',
+                              isHindi
+                                  ? 'जप संख्या: ${tip['mantra_repetitions']} बार'
+                                  : 'Repetitions: ${tip['mantra_repetitions']} times',
                               style: TextStyle(
                                 color: Colors.green[100],
                                 fontSize: 11,
@@ -682,18 +706,19 @@ class _FeaturePageState extends State<FeaturePage> {
                 ),
                 const SizedBox(height: 12),
               ],
-              
+
               // Mood Effect
-              if (tip['mood_effect_hindi'] != null || tip['mood_effect'] != null) ...[
+              if (tip['mood_effect_hindi'] != null ||
+                  tip['mood_effect'] != null) ...[
                 Row(
                   children: [
                     Icon(Icons.mood, color: Colors.green[100], size: 16),
                     const SizedBox(width: 6),
                     Expanded(
                       child: Text(
-                        isHindi 
-                          ? 'प्रभाव: ${tip['mood_effect_hindi'] ?? tip['mood_effect'] ?? ''}'
-                          : 'Effect: ${tip['mood_effect'] ?? tip['mood_effect_hindi'] ?? ''}',
+                        isHindi
+                            ? 'प्रभाव: ${tip['mood_effect_hindi'] ?? tip['mood_effect'] ?? ''}'
+                            : 'Effect: ${tip['mood_effect'] ?? tip['mood_effect_hindi'] ?? ''}',
                         style: TextStyle(
                           color: Colors.green[100],
                           fontSize: 12,
@@ -713,149 +738,163 @@ class _FeaturePageState extends State<FeaturePage> {
 
   List<Widget> _getMeditationSteps(Map<String, dynamic> tip, bool isHindi) {
     final type = tip['type']?.toLowerCase() ?? '';
-    
+
     List<String> steps = [];
-    
+
     switch (type) {
       case 'pranayama':
-        steps = isHindi ? [
-          '1. आराम से बैठें, रीढ़ सीधी रखें',
-          '2. आंखें बंद करें और सामान्य सांस लें',
-          '3. नाक से धीरे-धीरे सांस अंदर लें (4 गिनती)',
-          '4. सांस को रोकें (4 गिनती)', 
-          '5. मुंह से धीरे-धीरे सांस छोड़ें (6 गिनती)',
-          '6. इस प्रक्रिया को ${tip['duration_minutes']} मिनट तक दोहराएं'
-        ] : [
-          '1. Sit comfortably with spine straight',
-          '2. Close eyes and breathe normally',
-          '3. Inhale slowly through nose (count 4)',
-          '4. Hold breath (count 4)',
-          '5. Exhale slowly through mouth (count 6)',
-          '6. Repeat for ${tip['duration_minutes']} minutes'
-        ];
+        steps = isHindi
+            ? [
+                '1. आराम से बैठें, रीढ़ सीधी रखें',
+                '2. आंखें बंद करें और सामान्य सांस लें',
+                '3. नाक से धीरे-धीरे सांस अंदर लें (4 गिनती)',
+                '4. सांस को रोकें (4 गिनती)',
+                '5. मुंह से धीरे-धीरे सांस छोड़ें (6 गिनती)',
+                '6. इस प्रक्रिया को ${tip['duration_minutes']} मिनट तक दोहराएं'
+              ]
+            : [
+                '1. Sit comfortably with spine straight',
+                '2. Close eyes and breathe normally',
+                '3. Inhale slowly through nose (count 4)',
+                '4. Hold breath (count 4)',
+                '5. Exhale slowly through mouth (count 6)',
+                '6. Repeat for ${tip['duration_minutes']} minutes'
+              ];
         break;
-        
+
       case 'mindfulness':
-        steps = isHindi ? [
-          '1. शांत जगह में आराम से बैठें',
-          '2. आंखें बंद करें या अधखुली रखें',
-          '3. अपनी सांस पर ध्यान दें',
-          '4. विचारों को आने-जाने दें, उन्हें रोकने की कोशिश न करें',
-          '5. जब मन भटके तो वापस सांस पर ध्यान लाएं',
-          '6. ${tip['duration_minutes']} मिनट तक इसी अवस्था में रहें'
-        ] : [
-          '1. Sit comfortably in quiet place',
-          '2. Close eyes or keep them half-open',
-          '3. Focus on your breathing',
-          '4. Let thoughts come and go without resistance', 
-          '5. When mind wanders, gently return to breath',
-          '6. Continue for ${tip['duration_minutes']} minutes'
-        ];
+        steps = isHindi
+            ? [
+                '1. शांत जगह में आराम से बैठें',
+                '2. आंखें बंद करें या अधखुली रखें',
+                '3. अपनी सांस पर ध्यान दें',
+                '4. विचारों को आने-जाने दें, उन्हें रोकने की कोशिश न करें',
+                '5. जब मन भटके तो वापस सांस पर ध्यान लाएं',
+                '6. ${tip['duration_minutes']} मिनट तक इसी अवस्था में रहें'
+              ]
+            : [
+                '1. Sit comfortably in quiet place',
+                '2. Close eyes or keep them half-open',
+                '3. Focus on your breathing',
+                '4. Let thoughts come and go without resistance',
+                '5. When mind wanders, gently return to breath',
+                '6. Continue for ${tip['duration_minutes']} minutes'
+              ];
         break;
-        
+
       case 'loving-kindness':
-        steps = isHindi ? [
-          '1. आराम से बैठें और आंखें बंद करें',
-          '2. अपने लिए प्रेम की भावना लाएं',
-          '3. "मैं खुश रहूं, स्वस्थ रहूं" कहें',
-          '4. अपने प्रियजनों के लिए यही भावना भेजें',
-          '5. सभी जीवों के लिए प्रेम और करुणा की भावना रखें',
-          '6. ${tip['duration_minutes']} मिनट तक इस अभ्यास को जारी रखें'
-        ] : [
-          '1. Sit comfortably and close eyes',
-          '2. Generate feelings of love for yourself',
-          '3. Say "May I be happy, may I be healthy"',
-          '4. Send same feelings to loved ones',
-          '5. Extend love and compassion to all beings',
-          '6. Continue practice for ${tip['duration_minutes']} minutes'
-        ];
+        steps = isHindi
+            ? [
+                '1. आराम से बैठें और आंखें बंद करें',
+                '2. अपने लिए प्रेम की भावना लाएं',
+                '3. "मैं खुश रहूं, स्वस्थ रहूं" कहें',
+                '4. अपने प्रियजनों के लिए यही भावना भेजें',
+                '5. सभी जीवों के लिए प्रेम और करुणा की भावना रखें',
+                '6. ${tip['duration_minutes']} मिनट तक इस अभ्यास को जारी रखें'
+              ]
+            : [
+                '1. Sit comfortably and close eyes',
+                '2. Generate feelings of love for yourself',
+                '3. Say "May I be happy, may I be healthy"',
+                '4. Send same feelings to loved ones',
+                '5. Extend love and compassion to all beings',
+                '6. Continue practice for ${tip['duration_minutes']} minutes'
+              ];
         break;
-        
+
       case 'body scan':
-        steps = isHindi ? [
-          '1. लेटें या आराम से बैठें',
-          '2. आंखें बंद करें और गहरी सांस लें',
-          '3. पैर की उंगलियों से शुरू करें',
-          '4. शरीर के हर हिस्से पर ध्यान दें',
-          '5. तनाव महसूस करें और उसे छोड़ दें',
-          '6. सिर तक पहुंचने तक यह प्रक्रिया जारी रखें'
-        ] : [
-          '1. Lie down or sit comfortably',
-          '2. Close eyes and take deep breaths',
-          '3. Start from your toes',
-          '4. Focus attention on each body part',
-          '5. Feel tension and let it go',
-          '6. Continue until you reach the top of head'
-        ];
+        steps = isHindi
+            ? [
+                '1. लेटें या आराम से बैठें',
+                '2. आंखें बंद करें और गहरी सांस लें',
+                '3. पैर की उंगलियों से शुरू करें',
+                '4. शरीर के हर हिस्से पर ध्यान दें',
+                '5. तनाव महसूस करें और उसे छोड़ दें',
+                '6. सिर तक पहुंचने तक यह प्रक्रिया जारी रखें'
+              ]
+            : [
+                '1. Lie down or sit comfortably',
+                '2. Close eyes and take deep breaths',
+                '3. Start from your toes',
+                '4. Focus attention on each body part',
+                '5. Feel tension and let it go',
+                '6. Continue until you reach the top of head'
+              ];
         break;
-        
+
       case 'mantra meditation':
         final mantra = tip['mantra'] ?? (isHindi ? 'ॐ' : 'Om');
         final repetitions = tip['mantra_repetitions'] ?? 108;
-        steps = isHindi ? [
-          '1. आराम से बैठें, रीढ़ सीधी रखें',
-          '2. आंखें बंद करें और गहरी सांस लें',
-          '3. अपने मन को शांत करें',
-          '4. मंत्र "$mantra" को मन में या धीरे से बोलें',
-          '5. मंत्र की ध्वनि और कंपन पर ध्यान दें',
-          '6. $repetitions बार मंत्र जप करें',
-          '7. ${tip['duration_minutes']} मिनट तक या मन की शांति तक जारी रखें'
-        ] : [
-          '1. Sit comfortably with spine straight',
-          '2. Close your eyes and take deep breaths',
-          '3. Calm your mind',
-          '4. Repeat the mantra "$mantra" mentally or softly',
-          '5. Focus on the sound and vibration of the mantra',
-          '6. Chant the mantra $repetitions times',
-          '7. Continue for ${tip['duration_minutes']} minutes or until mind is peaceful'
-        ];
+        steps = isHindi
+            ? [
+                '1. आराम से बैठें, रीढ़ सीधी रखें',
+                '2. आंखें बंद करें और गहरी सांस लें',
+                '3. अपने मन को शांत करें',
+                '4. मंत्र "$mantra" को मन में या धीरे से बोलें',
+                '5. मंत्र की ध्वनि और कंपन पर ध्यान दें',
+                '6. $repetitions बार मंत्र जप करें',
+                '7. ${tip['duration_minutes']} मिनट तक या मन की शांति तक जारी रखें'
+              ]
+            : [
+                '1. Sit comfortably with spine straight',
+                '2. Close your eyes and take deep breaths',
+                '3. Calm your mind',
+                '4. Repeat the mantra "$mantra" mentally or softly',
+                '5. Focus on the sound and vibration of the mantra',
+                '6. Chant the mantra $repetitions times',
+                '7. Continue for ${tip['duration_minutes']} minutes or until mind is peaceful'
+              ];
         break;
-        
+
       default:
-        steps = isHindi ? [
-          '1. शांत और आरामदायक जगह खोजें',
-          '2. आराम से बैठें, रीढ़ सीधी रखें',
-          '3. आंखें बंद करें',
-          '4. अपनी सांस पर ध्यान दें',
-          '5. मन को शांत रखने की कोशिश करें',
-          '6. ${tip['duration_minutes']} मिनट तक इसी अवस्था में रहें'
-        ] : [
-          '1. Find quiet and comfortable place',
-          '2. Sit comfortably with spine straight',
-          '3. Close your eyes',
-          '4. Focus on your breathing',
-          '5. Try to keep mind calm',
-          '6. Continue for ${tip['duration_minutes']} minutes'
-        ];
+        steps = isHindi
+            ? [
+                '1. शांत और आरामदायक जगह खोजें',
+                '2. आराम से बैठें, रीढ़ सीधी रखें',
+                '3. आंखें बंद करें',
+                '4. अपनी सांस पर ध्यान दें',
+                '5. मन को शांत रखने की कोशिश करें',
+                '6. ${tip['duration_minutes']} मिनट तक इसी अवस्था में रहें'
+              ]
+            : [
+                '1. Find quiet and comfortable place',
+                '2. Sit comfortably with spine straight',
+                '3. Close your eyes',
+                '4. Focus on your breathing',
+                '5. Try to keep mind calm',
+                '6. Continue for ${tip['duration_minutes']} minutes'
+              ];
     }
-    
-    return steps.map((step) => Padding(
-      padding: const EdgeInsets.only(bottom: 6),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 6,
-            height: 6,
-            margin: const EdgeInsets.only(top: 6, right: 8),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
-            ),
-          ),
-          Expanded(
-            child: Text(
-              step,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                height: 1.4,
+
+    return steps
+        .map((step) => Padding(
+              padding: const EdgeInsets.only(bottom: 6),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 6,
+                    height: 6,
+                    margin: const EdgeInsets.only(top: 6, right: 8),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      step,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        height: 1.4,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
-        ],
-      ),
-    )).toList();
+            ))
+        .toList();
   }
 
   Widget _buildTodaysBreathingTip() {
@@ -863,7 +902,7 @@ class _FeaturePageState extends State<FeaturePage> {
       future: JsonDataService.instance.getTodaysBreathingTip(),
       builder: (context, snapshot) {
         if (!snapshot.hasData || snapshot.data == null) return const SizedBox();
-        
+
         final tip = snapshot.data!;
         return Container(
           margin: const EdgeInsets.only(bottom: 16),
@@ -882,7 +921,9 @@ class _FeaturePageState extends State<FeaturePage> {
                   const Icon(Icons.today, color: Colors.white, size: 20),
                   const SizedBox(width: 8),
                   Text(
-                    isHindi ? 'आज का श्वास अभ्यास' : 'Today\'s Breathing Exercise',
+                    isHindi
+                        ? 'आज का श्वास अभ्यास'
+                        : 'Today\'s Breathing Exercise',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -892,12 +933,16 @@ class _FeaturePageState extends State<FeaturePage> {
                 ],
               ),
               const SizedBox(height: 12),
-              
+
               // Title and Duration
               Text(
-                isHindi 
-                  ? (tip['technique_hindi'] ?? tip['technique'] ?? 'Breathing Technique')
-                  : (tip['technique'] ?? tip['technique_hindi'] ?? 'Breathing Technique'),
+                isHindi
+                    ? (tip['technique_hindi'] ??
+                        tip['technique'] ??
+                        'Breathing Technique')
+                    : (tip['technique'] ??
+                        tip['technique_hindi'] ??
+                        'Breathing Technique'),
                 style: const TextStyle(
                   color: Colors.white,
                   fontSize: 15,
@@ -905,19 +950,20 @@ class _FeaturePageState extends State<FeaturePage> {
                 ),
               ),
               const SizedBox(height: 8),
-              
+
               Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: Colors.white.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      isHindi 
-                        ? '${tip['duration_minutes']} मिनट'
-                        : '${tip['duration_minutes']} minutes',
+                      isHindi
+                          ? '${tip['duration_minutes']} मिनट'
+                          : '${tip['duration_minutes']} minutes',
                       style: TextStyle(
                         color: Colors.teal[100],
                         fontSize: 12,
@@ -946,7 +992,7 @@ class _FeaturePageState extends State<FeaturePage> {
                 ],
               ),
               const SizedBox(height: 12),
-              
+
               // Step-by-step instructions
               Text(
                 isHindi ? 'श्वास तकनीक के चरण:' : 'Breathing Steps:',
@@ -957,15 +1003,17 @@ class _FeaturePageState extends State<FeaturePage> {
                 ),
               ),
               const SizedBox(height: 8),
-              
+
               // Instructions based on breathing technique
               ..._getBreathingSteps(tip, isHindi),
-              
+
               const SizedBox(height: 12),
-              
+
               // Benefits
-              if (tip['physical_sensation_hindi'] != null || tip['mental_clarity_hindi'] != null ||
-                  tip['physical_sensation'] != null || tip['mental_clarity'] != null) ...[
+              if (tip['physical_sensation_hindi'] != null ||
+                  tip['mental_clarity_hindi'] != null ||
+                  tip['physical_sensation'] != null ||
+                  tip['mental_clarity'] != null) ...[
                 Row(
                   children: [
                     Icon(Icons.healing, color: Colors.teal[100], size: 16),
@@ -981,22 +1029,24 @@ class _FeaturePageState extends State<FeaturePage> {
                   ],
                 ),
                 const SizedBox(height: 4),
-                if (tip['physical_sensation_hindi'] != null || tip['physical_sensation'] != null)
+                if (tip['physical_sensation_hindi'] != null ||
+                    tip['physical_sensation'] != null)
                   Text(
-                    isHindi 
-                      ? '• शारीरिक: ${tip['physical_sensation_hindi'] ?? tip['physical_sensation'] ?? ''}'
-                      : '• Physical: ${tip['physical_sensation'] ?? tip['physical_sensation_hindi'] ?? ''}',
+                    isHindi
+                        ? '• शारीरिक: ${tip['physical_sensation_hindi'] ?? tip['physical_sensation'] ?? ''}'
+                        : '• Physical: ${tip['physical_sensation'] ?? tip['physical_sensation_hindi'] ?? ''}',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 11,
                       height: 1.3,
                     ),
                   ),
-                if (tip['mental_clarity_hindi'] != null || tip['mental_clarity'] != null)
+                if (tip['mental_clarity_hindi'] != null ||
+                    tip['mental_clarity'] != null)
                   Text(
-                    isHindi 
-                      ? '• मानसिक: ${tip['mental_clarity_hindi'] ?? tip['mental_clarity'] ?? ''}'
-                      : '• Mental: ${tip['mental_clarity'] ?? tip['mental_clarity_hindi'] ?? ''}',
+                    isHindi
+                        ? '• मानसिक: ${tip['mental_clarity_hindi'] ?? tip['mental_clarity'] ?? ''}'
+                        : '• Mental: ${tip['mental_clarity'] ?? tip['mental_clarity_hindi'] ?? ''}',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 11,
@@ -1013,157 +1063,171 @@ class _FeaturePageState extends State<FeaturePage> {
 
   List<Widget> _getBreathingSteps(Map<String, dynamic> tip, bool isHindi) {
     final technique = tip['technique']?.toLowerCase() ?? '';
-    
+
     List<String> steps = [];
-    
+
     switch (technique) {
       case 'anulom-vilom':
-        steps = isHindi ? [
-          '1. पद्मासन या सुखासन में बैठें',
-          '2. दाएं हाथ से नासिका मुद्रा बनाएं',
-          '3. अंगूठे से दाईं नासिका बंद करें',
-          '4. बाईं नासिका से 4 गिनती तक सांस लें',
-          '5. दोनों नासिका बंद करके 2 गिनती रोकें',
-          '6. दाईं नासिका से 4 गिनती तक सांस छोड़ें',
-          '7. ${tip['duration_minutes']} मिनट तक दोहराएं'
-        ] : [
-          '1. Sit in Padmasana or comfortable position',
-          '2. Make Nasika mudra with right hand',
-          '3. Close right nostril with thumb',
-          '4. Inhale through left nostril (count 4)',
-          '5. Close both nostrils, hold (count 2)',
-          '6. Exhale through right nostril (count 4)',
-          '7. Repeat for ${tip['duration_minutes']} minutes'
-        ];
+        steps = isHindi
+            ? [
+                '1. पद्मासन या सुखासन में बैठें',
+                '2. दाएं हाथ से नासिका मुद्रा बनाएं',
+                '3. अंगूठे से दाईं नासिका बंद करें',
+                '4. बाईं नासिका से 4 गिनती तक सांस लें',
+                '5. दोनों नासिका बंद करके 2 गिनती रोकें',
+                '6. दाईं नासिका से 4 गिनती तक सांस छोड़ें',
+                '7. ${tip['duration_minutes']} मिनट तक दोहराएं'
+              ]
+            : [
+                '1. Sit in Padmasana or comfortable position',
+                '2. Make Nasika mudra with right hand',
+                '3. Close right nostril with thumb',
+                '4. Inhale through left nostril (count 4)',
+                '5. Close both nostrils, hold (count 2)',
+                '6. Exhale through right nostril (count 4)',
+                '7. Repeat for ${tip['duration_minutes']} minutes'
+              ];
         break;
-        
+
       case 'bhramari':
-        steps = isHindi ? [
-          '1. शांत स्थान पर आराम से बैठें',
-          '2. अंगूठों से कान बंद करें',
-          '3. तर्जनी उंगलियों को आंखों के ऊपर रखें',
-          '4. बाकी उंगलियों को चेहरे पर रखें',
-          '5. गहरी सांस लें',
-          '6. सांस छोड़ते समय "हम्म्म" की आवाज करें',
-          '7. ${tip['duration_minutes']} मिनट तक करें'
-        ] : [
-          '1. Sit comfortably in quiet place',
-          '2. Close ears with thumbs',
-          '3. Place index fingers above eyes',
-          '4. Rest other fingers on face',
-          '5. Take deep breath',
-          '6. Make "Hmmm" sound while exhaling',
-          '7. Continue for ${tip['duration_minutes']} minutes'
-        ];
+        steps = isHindi
+            ? [
+                '1. शांत स्थान पर आराम से बैठें',
+                '2. अंगूठों से कान बंद करें',
+                '3. तर्जनी उंगलियों को आंखों के ऊपर रखें',
+                '4. बाकी उंगलियों को चेहरे पर रखें',
+                '5. गहरी सांस लें',
+                '6. सांस छोड़ते समय "हम्म्म" की आवाज करें',
+                '7. ${tip['duration_minutes']} मिनट तक करें'
+              ]
+            : [
+                '1. Sit comfortably in quiet place',
+                '2. Close ears with thumbs',
+                '3. Place index fingers above eyes',
+                '4. Rest other fingers on face',
+                '5. Take deep breath',
+                '6. Make "Hmmm" sound while exhaling',
+                '7. Continue for ${tip['duration_minutes']} minutes'
+              ];
         break;
-        
+
       case 'kapalbhati':
-        steps = isHindi ? [
-          '1. पद्मासन में बैठें, रीढ़ सीधी रखें',
-          '2. दोनों हाथ घुटनों पर रखें',
-          '3. तेज़ी से पेट को अंदर करके सांस छोड़ें',
-          '4. सांस अंदर लेना अपने आप होगा',
-          '5. 10-15 बार तेज़ी से करें',
-          '6. फिर सामान्य सांस लें',
-          '7. यह चक्र ${tip['duration_minutes']} मिनट तक दोहराएं'
-        ] : [
-          '1. Sit in Padmasana, spine straight',
-          '2. Place hands on knees',
-          '3. Forcefully contract belly and exhale',
-          '4. Inhalation will happen automatically',
-          '5. Do 10-15 rapid breaths',
-          '6. Then breathe normally',
-          '7. Repeat cycles for ${tip['duration_minutes']} minutes'
-        ];
+        steps = isHindi
+            ? [
+                '1. पद्मासन में बैठें, रीढ़ सीधी रखें',
+                '2. दोनों हाथ घुटनों पर रखें',
+                '3. तेज़ी से पेट को अंदर करके सांस छोड़ें',
+                '4. सांस अंदर लेना अपने आप होगा',
+                '5. 10-15 बार तेज़ी से करें',
+                '6. फिर सामान्य सांस लें',
+                '7. यह चक्र ${tip['duration_minutes']} मिनट तक दोहराएं'
+              ]
+            : [
+                '1. Sit in Padmasana, spine straight',
+                '2. Place hands on knees',
+                '3. Forcefully contract belly and exhale',
+                '4. Inhalation will happen automatically',
+                '5. Do 10-15 rapid breaths',
+                '6. Then breathe normally',
+                '7. Repeat cycles for ${tip['duration_minutes']} minutes'
+              ];
         break;
-        
+
       case '4-7-8 breathing':
-        steps = isHindi ? [
-          '1. आराम से बैठें या लेटें',
-          '2. जीभ को तालू से लगाएं',
-          '3. मुंह से पूरी सांस छोड़ें',
-          '4. नाक से 4 गिनती तक सांस लें',
-          '5. 7 गिनती तक सांस रोकें',
-          '6. मुंह से 8 गिनती तक सांस छोड़ें',
-          '7. यह चक्र 4 बार दोहराएं'
-        ] : [
-          '1. Sit or lie down comfortably',
-          '2. Touch tongue to roof of mouth',
-          '3. Exhale completely through mouth',
-          '4. Inhale through nose (count 4)',
-          '5. Hold breath (count 7)',
-          '6. Exhale through mouth (count 8)',
-          '7. Repeat cycle 4 times'
-        ];
+        steps = isHindi
+            ? [
+                '1. आराम से बैठें या लेटें',
+                '2. जीभ को तालू से लगाएं',
+                '3. मुंह से पूरी सांस छोड़ें',
+                '4. नाक से 4 गिनती तक सांस लें',
+                '5. 7 गिनती तक सांस रोकें',
+                '6. मुंह से 8 गिनती तक सांस छोड़ें',
+                '7. यह चक्र 4 बार दोहराएं'
+              ]
+            : [
+                '1. Sit or lie down comfortably',
+                '2. Touch tongue to roof of mouth',
+                '3. Exhale completely through mouth',
+                '4. Inhale through nose (count 4)',
+                '5. Hold breath (count 7)',
+                '6. Exhale through mouth (count 8)',
+                '7. Repeat cycle 4 times'
+              ];
         break;
-        
+
       case 'box breathing':
-        steps = isHindi ? [
-          '1. आराम से बैठें, पीठ सीधी रखें',
-          '2. नाक से 4 गिनती तक सांस लें',
-          '3. 4 गिनती तक सांस रोकें',
-          '4. 4 गिनती तक सांस छोड़ें',
-          '5. 4 गिनती तक रुकें',
-          '6. यह बॉक्स पैटर्न बनता है',
-          '7. ${tip['duration_minutes']} मिनट तक जारी रखें'
-        ] : [
-          '1. Sit comfortably, back straight',
-          '2. Inhale through nose (count 4)',
-          '3. Hold breath (count 4)',
-          '4. Exhale (count 4)',
-          '5. Hold empty (count 4)',
-          '6. This creates box pattern',
-          '7. Continue for ${tip['duration_minutes']} minutes'
-        ];
+        steps = isHindi
+            ? [
+                '1. आराम से बैठें, पीठ सीधी रखें',
+                '2. नाक से 4 गिनती तक सांस लें',
+                '3. 4 गिनती तक सांस रोकें',
+                '4. 4 गिनती तक सांस छोड़ें',
+                '5. 4 गिनती तक रुकें',
+                '6. यह बॉक्स पैटर्न बनता है',
+                '7. ${tip['duration_minutes']} मिनट तक जारी रखें'
+              ]
+            : [
+                '1. Sit comfortably, back straight',
+                '2. Inhale through nose (count 4)',
+                '3. Hold breath (count 4)',
+                '4. Exhale (count 4)',
+                '5. Hold empty (count 4)',
+                '6. This creates box pattern',
+                '7. Continue for ${tip['duration_minutes']} minutes'
+              ];
         break;
-        
+
       default:
-        steps = isHindi ? [
-          '1. शांत और आरामदायक जगह खोजें',
-          '2. आराम से बैठें या लेटें',
-          '3. आंखें बंद करें',
-          '4. धीरे-धीरे गहरी सांस लें',
-          '5. सांस की गति पर ध्यान दें',
-          '6. तनाव को सांस के साथ बाहर निकालें',
-          '7. ${tip['duration_minutes']} मिनट तक जारी रखें'
-        ] : [
-          '1. Find quiet and comfortable space',
-          '2. Sit or lie down comfortably',
-          '3. Close your eyes',
-          '4. Take slow, deep breaths',
-          '5. Focus on rhythm of breathing',
-          '6. Release tension with each exhale',
-          '7. Continue for ${tip['duration_minutes']} minutes'
-        ];
+        steps = isHindi
+            ? [
+                '1. शांत और आरामदायक जगह खोजें',
+                '2. आराम से बैठें या लेटें',
+                '3. आंखें बंद करें',
+                '4. धीरे-धीरे गहरी सांस लें',
+                '5. सांस की गति पर ध्यान दें',
+                '6. तनाव को सांस के साथ बाहर निकालें',
+                '7. ${tip['duration_minutes']} मिनट तक जारी रखें'
+              ]
+            : [
+                '1. Find quiet and comfortable space',
+                '2. Sit or lie down comfortably',
+                '3. Close your eyes',
+                '4. Take slow, deep breaths',
+                '5. Focus on rhythm of breathing',
+                '6. Release tension with each exhale',
+                '7. Continue for ${tip['duration_minutes']} minutes'
+              ];
     }
-    
-    return steps.map((step) => Padding(
-      padding: const EdgeInsets.only(bottom: 6),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 6,
-            height: 6,
-            margin: const EdgeInsets.only(top: 6, right: 8),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle,
-            ),
-          ),
-          Expanded(
-            child: Text(
-              step,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 12,
-                height: 1.4,
+
+    return steps
+        .map((step) => Padding(
+              padding: const EdgeInsets.only(bottom: 6),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 6,
+                    height: 6,
+                    margin: const EdgeInsets.only(top: 6, right: 8),
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      step,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        height: 1.4,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
-        ],
-      ),
-    )).toList();
+            ))
+        .toList();
   }
 
   List<Map<String, dynamic>> _getMockProgressData() {
@@ -1258,5 +1322,4 @@ class _FeaturePageState extends State<FeaturePage> {
       }
     ];
   }
-
 }

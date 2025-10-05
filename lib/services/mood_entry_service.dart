@@ -6,7 +6,7 @@ import 'package:hive/hive.dart';
 import 'package:flutter/foundation.dart';
 
 /// MoodEntry service for managing mood tracking and NLP analysis
-/// 
+///
 /// Integrates with offline AI for sentiment and stress analysis
 /// Privacy-first approach with local processing only
 class MoodEntryService {
@@ -42,18 +42,19 @@ class MoodEntryService {
 
       // Perform NLP analysis if requested
       MoodEntry analyzedEntry = entry;
-  if (performImmediateAnalysis && !_privacyService.isPrivacyMode()) {
+      if (performImmediateAnalysis && !_privacyService.isPrivacyMode()) {
         analyzedEntry = await MoodEntryNLPService.analyzeEntry(entry);
-  } else if (_privacyService.isPrivacyMode()) {
-    // Use sample analysis for privacy mode (formerly demo)
-    analyzedEntry = _generateSampleAnalysis(entry);
+      } else if (_privacyService.isPrivacyMode()) {
+        // Use sample analysis for privacy mode (formerly demo)
+        analyzedEntry = _generateSampleAnalysis(entry);
       }
 
       // Store in Hive
       final key = analyzedEntry.id;
       await _moodBox.put(key, analyzedEntry);
 
-      debugPrint('✅ Mood entry created and analyzed: ${analyzedEntry.identifiedMood}');
+      debugPrint(
+          '✅ Mood entry created and analyzed: ${analyzedEntry.identifiedMood}');
       return analyzedEntry;
     } catch (e) {
       debugPrint('❌ Failed to create mood entry: $e');
@@ -64,13 +65,13 @@ class MoodEntryService {
   /// Generate sample analysis for privacy mode (renamed from demo)
   MoodEntry _generateSampleAnalysis(MoodEntry entry) {
     final textLower = entry.userText.toLowerCase();
-    
-  // Simple sample analysis
+
+    // Simple sample analysis
     String mood = 'Neutral';
     String stress = 'Medium';
     double sentiment = 0.0;
     double stressScore = 0.5;
-    
+
     if (textLower.contains(RegExp(r'(अच्छा|खुश|happy|good)'))) {
       mood = 'Happy';
       stress = 'Low';
@@ -92,7 +93,10 @@ class MoodEntryService {
       detectedEmotions: [
         EmotionIntensity(emotion: mood, intensity: 0.7),
       ],
-  nlpMetadata: {'sample': true, 'processed_at': DateTime.now().toIso8601String()},
+      nlpMetadata: {
+        'sample': true,
+        'processed_at': DateTime.now().toIso8601String()
+      },
     );
   }
 
@@ -100,14 +104,14 @@ class MoodEntryService {
   List<String> _extractSimpleKeywords(String text) {
     final words = text.split(RegExp(r'\s+'));
     final keywords = <String>[];
-    
+
     for (final word in words) {
       if (word.length > 3 && !keywords.contains(word.toLowerCase())) {
         keywords.add(word.toLowerCase());
         if (keywords.length >= 5) break;
       }
     }
-    
+
     return keywords;
   }
 
@@ -119,28 +123,30 @@ class MoodEntryService {
   }) async {
     try {
       final allEntries = _moodBox.values.toList();
-      
+
       // Apply filters
       var filteredEntries = allEntries.where((entry) {
         bool matchesDate = true;
         bool matchesContact = true;
-        
+
         if (startDate != null) {
-          matchesDate = matchesDate && entry.date.isAfter(startDate.subtract(const Duration(days: 1)));
+          matchesDate = matchesDate &&
+              entry.date.isAfter(startDate.subtract(const Duration(days: 1)));
         }
         if (endDate != null) {
-          matchesDate = matchesDate && entry.date.isBefore(endDate.add(const Duration(days: 1)));
+          matchesDate = matchesDate &&
+              entry.date.isBefore(endDate.add(const Duration(days: 1)));
         }
         if (relatedContactId != null && relatedContactId.isNotEmpty) {
           matchesContact = entry.relatedContactId == relatedContactId;
         }
-        
+
         return matchesDate && matchesContact;
       }).toList();
-      
+
       // Sort by date (newest first)
       filteredEntries.sort((a, b) => b.date.compareTo(a.date));
-      
+
       return filteredEntries;
     } catch (e) {
       debugPrint('❌ Failed to get mood entries: $e');
@@ -160,7 +166,8 @@ class MoodEntryService {
   }
 
   /// Update existing mood entry
-  Future<MoodEntry?> updateMoodEntry(String entryId, {
+  Future<MoodEntry?> updateMoodEntry(
+    String entryId, {
     String? userText,
     String? relatedContactId,
     bool reanalyzeMood = false,
@@ -174,7 +181,8 @@ class MoodEntryService {
         id: entry.id,
         date: entry.date,
         userText: userText ?? entry.userText,
-        identifiedMood: reanalyzeMood ? 'pending_analysis' : entry.identifiedMood,
+        identifiedMood:
+            reanalyzeMood ? 'pending_analysis' : entry.identifiedMood,
         stressLevel: reanalyzeMood ? 'pending_analysis' : entry.stressLevel,
         relatedContactId: relatedContactId ?? entry.relatedContactId,
         category: entry.category,
@@ -191,7 +199,7 @@ class MoodEntryService {
       // Reanalyze if requested
       MoodEntry finalEntry = updatedEntry;
       if (reanalyzeMood) {
-  if (!_privacyService.isPrivacyMode()) {
+        if (!_privacyService.isPrivacyMode()) {
           finalEntry = await MoodEntryNLPService.analyzeEntry(updatedEntry);
         } else {
           finalEntry = _generateSampleAnalysis(updatedEntry);
@@ -200,7 +208,7 @@ class MoodEntryService {
 
       // Update in Hive
       await _moodBox.put(entryId, finalEntry);
-      
+
       debugPrint('✅ Mood entry updated: $entryId');
       return finalEntry;
     } catch (e) {
@@ -224,12 +232,11 @@ class MoodEntryService {
   /// Analyze pending entries (for batch processing)
   Future<List<MoodEntry>> analyzePendingEntries() async {
     try {
-      final pendingEntries = _moodBox.values
-          .where((entry) => entry.needsAnalysis())
-          .toList();
+      final pendingEntries =
+          _moodBox.values.where((entry) => entry.needsAnalysis()).toList();
 
       final analyzedEntries = <MoodEntry>[];
-      
+
       for (final entry in pendingEntries) {
         try {
           MoodEntry analyzed;
@@ -238,7 +245,7 @@ class MoodEntryService {
           } else {
             analyzed = _generateSampleAnalysis(entry);
           }
-          
+
           await _moodBox.put(entry.id, analyzed);
           analyzedEntries.add(analyzed);
         } catch (e) {
@@ -338,16 +345,22 @@ class MoodStatistics {
     final moodDist = <String, int>{};
     final stressDist = <String, int>{};
     for (final entry in entries) {
-      moodDist[entry.identifiedMood] = (moodDist[entry.identifiedMood] ?? 0) + 1;
+      moodDist[entry.identifiedMood] =
+          (moodDist[entry.identifiedMood] ?? 0) + 1;
       stressDist[entry.stressLevel] = (stressDist[entry.stressLevel] ?? 0) + 1;
     }
 
     // Average sentiment and stress
-    final avgSentiment = entries.fold(0.0, (sum, entry) => sum + entry.sentimentScore) / entries.length;
-    final avgStress = entries.fold(0.0, (sum, entry) => sum + entry.stressScore) / entries.length;
+    final avgSentiment =
+        entries.fold(0.0, (sum, entry) => sum + entry.sentimentScore) /
+            entries.length;
+    final avgStress =
+        entries.fold(0.0, (sum, entry) => sum + entry.stressScore) /
+            entries.length;
 
     // Top keywords
-    final allKeywords = entries.expand((entry) => entry.extractedKeywords).toList();
+    final allKeywords =
+        entries.expand((entry) => entry.extractedKeywords).toList();
     final keywordCounts = <String, int>{};
     for (final keyword in allKeywords) {
       keywordCounts[keyword] = (keywordCounts[keyword] ?? 0) + 1;
@@ -358,10 +371,12 @@ class MoodStatistics {
       ..sort((a, b) => b.value.compareTo(a.value));
 
     // Emotion frequency
-    final allEmotions = entries.expand((entry) => entry.detectedEmotions).toList();
+    final allEmotions =
+        entries.expand((entry) => entry.detectedEmotions).toList();
     final emotionCounts = <String, int>{};
     for (final emotion in allEmotions) {
-      emotionCounts[emotion.emotion] = (emotionCounts[emotion.emotion] ?? 0) + 1;
+      emotionCounts[emotion.emotion] =
+          (emotionCounts[emotion.emotion] ?? 0) + 1;
     }
 
     // Date range
@@ -385,22 +400,23 @@ class MoodStatistics {
   /// Generate summary string for display
   String toSummaryString() {
     final buffer = StringBuffer();
-    
+
     buffer.writeln('📊 मूड विश्लेषण सारांश');
     buffer.writeln('कुल एंट्रीज: $totalEntries');
-    buffer.writeln('औसत भावना: ${(averageSentiment * 100).toStringAsFixed(0)}%');
+    buffer
+        .writeln('औसत भावना: ${(averageSentiment * 100).toStringAsFixed(0)}%');
     buffer.writeln('औसत तनाव: ${(averageStress * 100).toStringAsFixed(0)}%');
-    
+
     if (moodDistribution.isNotEmpty) {
-      final topMood = moodDistribution.entries
-          .reduce((a, b) => a.value > b.value ? a : b);
+      final topMood =
+          moodDistribution.entries.reduce((a, b) => a.value > b.value ? a : b);
       buffer.writeln('मुख्य मूड: ${topMood.key} (${topMood.value} बार)');
     }
-    
+
     if (topKeywords.isNotEmpty) {
       buffer.writeln('मुख्य शब्द: ${topKeywords.take(5).join(", ")}');
     }
-    
+
     return buffer.toString();
   }
 }

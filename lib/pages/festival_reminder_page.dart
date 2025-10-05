@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/quick_actions_panel.dart';
 import '../widgets/dr_iris_avatar.dart';
 
 /// Festival Reminder Page
@@ -152,100 +153,37 @@ class _FestivalReminderPageState extends State<FestivalReminderPage> {
       ),
       builder: (context) => Container(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text(
-              '🤖 Quick AI Actions',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        child: QuickActionsPanel(
+          actions: [
+            QuickActionItem(
+              icon: Icons.message,
+              labelEn: 'Generate Messages',
+              labelHi: 'फेस्टिवल संदेश',
+              color: Colors.blue,
+              onPressed: () => _generateQuickMessages(),
             ),
-            const SizedBox(height: 20),
-
-            // Quick actions grid
-            GridView.count(
-              shrinkWrap: true,
-              crossAxisCount: 2,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              childAspectRatio: 1.2,
-              children: [
-                _buildQuickActionCard(
-                  '📱 Generate Messages',
-                  'Create festival messages',
-                  Icons.message,
-                  Colors.blue,
-                  () => _generateQuickMessages(),
-                ),
-                _buildQuickActionCard(
-                  '🎁 Suggest Gifts',
-                  'AI gift recommendations',
-                  Icons.card_giftcard,
-                  Colors.green,
-                  () => _suggestGifts(),
-                ),
-                _buildQuickActionCard(
-                  '🥜 Dry Fruits Guide',
-                  'Premium dry fruits selection',
-                  Icons.local_grocery_store,
-                  Colors.orange,
-                  () => _showDryFruitsGuide(),
-                ),
-                _buildQuickActionCard(
-                  '📅 Plan Festival',
-                  'Complete festival planning',
-                  Icons.event_note,
-                  Colors.purple,
-                  () => _planFestival(),
-                ),
-              ],
+            QuickActionItem(
+              icon: Icons.card_giftcard,
+              labelEn: 'Suggest Gifts',
+              labelHi: 'गिफ्ट सुझाव',
+              color: Colors.green,
+              onPressed: () => _suggestGifts(),
             ),
-
-            const SizedBox(height: 20),
+            QuickActionItem(
+              icon: Icons.local_grocery_store,
+              labelEn: 'Dry Fruits Guide',
+              labelHi: 'ड्राई फ्रूट्स गाइड',
+              color: Colors.orange,
+              onPressed: () => _showDryFruitsGuide(),
+            ),
+            QuickActionItem(
+              icon: Icons.event_note,
+              labelEn: 'Plan Festival',
+              labelHi: 'फेस्टिवल प्लानिंग',
+              color: Colors.purple,
+              onPressed: () => _planFestival(),
+            ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildQuickActionCard(
-    String title,
-    String subtitle,
-    IconData icon,
-    Color color,
-    VoidCallback onTap,
-  ) {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(icon, size: 32, color: color),
-              const SizedBox(height: 8),
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 4),
-              Text(
-                subtitle,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey[600],
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
         ),
       ),
     );

@@ -338,6 +338,29 @@ class LoyaltyPointsService extends ChangeNotifier {
     notifyListeners();
     debugPrint('🔄 All points reset');
   }
+
+  @visibleForTesting
+  static Future<LoyaltyPointsService> configureForTest({
+    int totalPoints = 0,
+    int loginStreak = 0,
+  }) async {
+    if (Hive.isBoxOpen(_boxName)) {
+      await Hive.box(_boxName).close();
+    }
+    try {
+      await Hive.deleteBoxFromDisk(_boxName);
+    } catch (_) {}
+
+    final box = await Hive.openBox(_boxName);
+    await box.put(_pointsKey, totalPoints);
+    await box.put(_loginStreakKey, loginStreak);
+    await box.put(_pointsHistoryKey, <Map<String, dynamic>>[]);
+
+    _instance = null;
+    final instance = LoyaltyPointsService.instance;
+    await instance._initializeService();
+    return instance;
+  }
 }
 
 /// Daily login result

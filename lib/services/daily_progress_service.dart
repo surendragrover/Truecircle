@@ -74,29 +74,49 @@ class DailyProgressService {
     final conversationCount = await _getConversationCount(targetDate);
     final goalCompletion = await _calculateGoalCompletion(targetDate);
 
-    if (!forceRecalculate && existingProgress != null) {
-      // Update existing entry
-      final updatedProgress = existingProgress.copyWith(
-        pointsEarned: pointsEarned ?? existingProgress.pointsEarned,
-        sleepHours: sleepHours ?? existingProgress.sleepHours,
-        sleepQuality: sleepQuality ?? existingProgress.sleepQuality,
-        meditationMinutes:
-            meditationMinutes ?? existingProgress.meditationMinutes,
-        exerciseMinutes: exerciseMinutes ?? existingProgress.exerciseMinutes,
-        screenTimeHours: screenTimeHours ?? existingProgress.screenTimeHours,
-        dailyReflection: dailyReflection ?? existingProgress.dailyReflection,
-        overallRelationshipScore: relationshipScore,
-        wellnessScore: wellnessScore,
-        conversationCount: conversationCount,
-        goalCompletionRate: goalCompletion,
-        achievementBadges: newAchievements != null
-            ? {...existingProgress.achievementBadges, ...newAchievements}
-                .toList()
-            : existingProgress.achievementBadges,
-      );
-
-      await _progressBox!.put(dateKey, updatedProgress);
-      return updatedProgress;
+    if (!forceRecalculate) {
+      // Update existing entry, handle nulls safely
+      if (existingProgress != null) {
+        final updatedProgress = existingProgress.copyWith(
+          pointsEarned: pointsEarned ?? existingProgress.pointsEarned,
+          sleepHours: sleepHours ?? existingProgress.sleepHours,
+          sleepQuality: sleepQuality ?? existingProgress.sleepQuality,
+          meditationMinutes:
+              meditationMinutes ?? existingProgress.meditationMinutes,
+          exerciseMinutes: exerciseMinutes ?? existingProgress.exerciseMinutes,
+          screenTimeHours: screenTimeHours ?? existingProgress.screenTimeHours,
+          dailyReflection: dailyReflection ?? existingProgress.dailyReflection,
+          overallRelationshipScore: relationshipScore,
+          wellnessScore: wellnessScore,
+          conversationCount: conversationCount,
+          goalCompletionRate: goalCompletion,
+          achievementBadges: newAchievements != null
+              ? {...existingProgress.achievementBadges, ...newAchievements}.toList()
+              : existingProgress.achievementBadges,
+        );
+        await _progressBox!.put(dateKey, updatedProgress);
+        return updatedProgress;
+      } else {
+        // No existing progress, create new
+        final newProgress = DailyProgress(
+          date: targetDate,
+          pointsEarned: pointsEarned ?? await _getDailyLoginPoints(targetDate),
+          overallRelationshipScore: relationshipScore,
+          wellnessScore: wellnessScore,
+          sleepHours: sleepHours ?? await _getSleepHours(targetDate),
+          meditationMinutes:
+              meditationMinutes ?? await _getMeditationMinutes(targetDate),
+          sleepQuality: sleepQuality ?? await _getSleepQuality(targetDate),
+          conversationCount: conversationCount,
+          exerciseMinutes: exerciseMinutes ?? 0,
+          screenTimeHours: screenTimeHours ?? 0.0,
+          achievementBadges: newAchievements ?? [],
+          dailyReflection: dailyReflection,
+          goalCompletionRate: goalCompletion,
+        );
+        await _progressBox!.put(dateKey, newProgress);
+        return newProgress;
+      }
     } else {
       // Create new entry
       final newProgress = DailyProgress(
@@ -253,7 +273,7 @@ class DailyProgressService {
     final demoData = <DailyProgress>[];
     final now = DateTime.now();
 
-  // Generate sample data for last 14 days
+    // Generate sample data for last 14 days
     for (int i = 13; i >= 0; i--) {
       final date = now.subtract(Duration(days: i));
       final progress = DailyProgress(
@@ -266,7 +286,7 @@ class DailyProgressService {
         sleepQuality: 70.0 + (i % 6) * 5,
         conversationCount: 2 + (i % 4),
         exerciseMinutes: 20 + (i % 5) * 10,
-  achievementBadges: _getSampleAchievements(i),
+        achievementBadges: _getSampleAchievements(i),
         dailyReflection: i % 3 == 0
             ? 'आज का दिन अच्छा रहा। मेडिटेशन और exercise से मूड बेहतर लगा।'
             : null,
@@ -531,7 +551,7 @@ class DailyProgressService {
 
   Future<double> _calculateGoalCompletion(DateTime date) async {
     // Placeholder - integrate with actual goal tracking system
-  return 65.0 + (date.day % 5) * 7; // Sample calculation
+    return 65.0 + (date.day % 5) * 7; // Sample calculation
   }
 
   Future<int> _getDailyLoginPoints(DateTime date) async {
@@ -541,7 +561,7 @@ class DailyProgressService {
 
   Future<int> _getSleepHours(DateTime date) async {
     // Integration point with Sleep Tracker
-  // For now, return sample data
+    // For now, return sample data
     return 7 + (date.day % 3);
   }
 

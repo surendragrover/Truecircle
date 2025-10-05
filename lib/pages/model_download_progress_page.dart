@@ -16,7 +16,8 @@ class ModelDownloadProgressPage extends StatefulWidget {
   const ModelDownloadProgressPage({super.key});
 
   @override
-  State<ModelDownloadProgressPage> createState() => _ModelDownloadProgressPageState();
+  State<ModelDownloadProgressPage> createState() =>
+      _ModelDownloadProgressPageState();
 }
 
 class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
@@ -24,7 +25,7 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
   late AnimationController _progressController;
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
-  
+
   Timer? _downloadTimer;
   double _downloadProgress = 0.0;
   String _currentStep = '';
@@ -32,27 +33,27 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
   bool _isDownloadComplete = false;
   bool _isHindi = true; // Default to Hindi for Indian users
   static const String _langPrefKey = 'model_download_language_pref';
-  
+
   // AI Model Download Service
   final AIModelDownloadService _downloadService = AIModelDownloadService();
   StreamSubscription<double>? _progressSubscription;
   StreamSubscription<String>? _statusSubscription;
-  
+
   @override
   void initState() {
     super.initState();
-    
+
     // Initialize animations
     _progressController = AnimationController(
       duration: const Duration(seconds: 3),
       vsync: this,
     );
-    
+
     _pulseController = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
     )..repeat(reverse: true);
-    
+
     _pulseAnimation = Tween<double>(
       begin: 0.8,
       end: 1.2,
@@ -60,10 +61,10 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
       parent: _pulseController,
       curve: Curves.easeInOut,
     ));
-    
+
     _restoreLanguagePref().then((_) => _detectPlatformAndStartDownload());
   }
-  
+
   @override
   void dispose() {
     _progressController.dispose();
@@ -74,14 +75,14 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
     _downloadService.dispose();
     super.dispose();
   }
-  
+
   void _detectPlatformAndStartDownload() {
     // Use actual platform detection from service
     final platformInfo = _downloadService.detectPlatform();
-    _platformInfo = _isHindi 
+    _platformInfo = _isHindi
         ? '${platformInfo.platform} के लिए ${platformInfo.modelName}'
         : '${platformInfo.modelName} for ${platformInfo.platform}';
-    
+
     _startActualDownload();
   }
 
@@ -90,7 +91,8 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
       final box = Hive.isBoxOpen('truecircle_settings')
           ? Hive.box('truecircle_settings')
           : await Hive.openBox('truecircle_settings');
-      final stored = box.get(_langPrefKey) as bool?; // true = Hindi, false = English
+      final stored =
+          box.get(_langPrefKey) as bool?; // true = Hindi, false = English
       if (stored != null) {
         setState(() => _isHindi = stored);
       }
@@ -105,18 +107,20 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
       await box.put(_langPrefKey, _isHindi);
     } catch (_) {}
   }
-  
+
   void _startActualDownload() async {
     // Check if models are already downloaded
     final alreadyDownloaded = await _downloadService.areModelsDownloaded();
     if (alreadyDownloaded) {
       setState(() {
-        _currentStep = _isHindi ? 'Models पहले से downloaded हैं! ✅' : 'Models already downloaded! ✅';
+        _currentStep = _isHindi
+            ? 'Models पहले से downloaded हैं! ✅'
+            : 'Models already downloaded! ✅';
         _downloadProgress = 1.0;
         _isDownloadComplete = true;
       });
-        // Ensure Hive flag + sync
-        _persistModelFlagAndSync();
+      // Ensure Hive flag + sync
+      _persistModelFlagAndSync();
       _navigateToNextPage();
       return;
     }
@@ -143,7 +147,8 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
       final success = await _downloadService.downloadModels();
       if (success) {
         setState(() {
-          _currentStep = _isHindi ? 'Download पूरी हुई! ✅' : 'Download completed! ✅';
+          _currentStep =
+              _isHindi ? 'Download पूरी हुई! ✅' : 'Download completed! ✅';
           _isDownloadComplete = true;
         });
         _persistModelFlagAndSync();
@@ -179,12 +184,11 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
 
   void _handleDownloadError(String error) {
     setState(() {
-      _currentStep = _isHindi 
-          ? 'Download में समस्या: $error' 
-          : 'Download error: $error';
+      _currentStep =
+          _isHindi ? 'Download में समस्या: $error' : 'Download error: $error';
       _downloadProgress = 0.0;
     });
-    
+
     // Show retry option after 3 seconds
     Timer(const Duration(seconds: 3), () {
       _showRetryDialog();
@@ -196,7 +200,7 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
       context: context,
       builder: (context) => AlertDialog(
         title: Text(_isHindi ? 'Download Failed' : 'Download Failed'),
-        content: Text(_isHindi 
+        content: Text(_isHindi
             ? 'Models download में समस्या हुई। दोबारा कोशिश करें?'
             : 'There was an issue downloading models. Retry?'),
         actions: [
@@ -260,9 +264,9 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                     ),
                   ],
                 ),
-                
+
                 const Spacer(),
-                
+
                 // Logo with pulse animation
                 AnimatedBuilder(
                   animation: _pulseAnimation,
@@ -273,13 +277,13 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                     );
                   },
                 ),
-                
+
                 const SizedBox(height: 40),
-                
+
                 // Title
                 Text(
-                  _isHindi 
-                      ? 'AI Models Download हो रहे हैं' 
+                  _isHindi
+                      ? 'AI Models Download हो रहे हैं'
                       : 'Downloading AI Models',
                   style: const TextStyle(
                     fontSize: 28,
@@ -288,12 +292,13 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                   ),
                   textAlign: TextAlign.center,
                 ),
-                
+
                 const SizedBox(height: 16),
-                
+
                 // Platform info
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   decoration: BoxDecoration(
                     color: Colors.white.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(25),
@@ -308,9 +313,9 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                     textAlign: TextAlign.center,
                   ),
                 ),
-                
+
                 const SizedBox(height: 40),
-                
+
                 // Progress indicator
                 Container(
                   padding: const EdgeInsets.all(24),
@@ -333,9 +338,9 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      
+
                       const SizedBox(height: 20),
-                      
+
                       // Progress bar
                       ClipRRect(
                         borderRadius: BorderRadius.circular(6),
@@ -343,33 +348,38 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                           value: _downloadProgress,
                           backgroundColor: Colors.grey.shade200,
                           valueColor: AlwaysStoppedAnimation<Color>(
-                            _isDownloadComplete ? Colors.green : CoralTheme.dark,
+                            _isDownloadComplete
+                                ? Colors.green
+                                : CoralTheme.dark,
                           ),
                           minHeight: 8,
                         ),
                       ),
-                      
+
                       const SizedBox(height: 12),
-                      
+
                       // Progress percentage
                       Text(
                         '${(_downloadProgress * 100).toInt()}%',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
-                          color: _isDownloadComplete ? Colors.green.shade700 : CoralTheme.dark,
+                          color: _isDownloadComplete
+                              ? Colors.green.shade700
+                              : CoralTheme.dark,
                         ),
                       ),
                     ],
                   ),
                 ),
-                
+
                 const SizedBox(height: 40),
-                
+
                 // Info message
                 Container(
                   padding: const EdgeInsets.all(20),
-                  decoration: CoralTheme.translucentCard(alpha: 0.18, radius: BorderRadius.circular(18)),
+                  decoration: CoralTheme.translucentCard(
+                      alpha: 0.18, radius: BorderRadius.circular(18)),
                   child: Column(
                     children: [
                       const Icon(
@@ -392,9 +402,9 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                     ],
                   ),
                 ),
-                
+
                 const Spacer(),
-                
+
                 // Bottom message
                 if (!_isDownloadComplete) ...[
                   Row(
@@ -405,14 +415,13 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                         height: 20,
                         child: CircularProgressIndicator(
                           strokeWidth: 2,
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                          valueColor:
+                              AlwaysStoppedAnimation<Color>(Colors.white),
                         ),
                       ),
                       const SizedBox(width: 16),
                       Text(
-                        _isHindi 
-                            ? 'कृपया प्रतीक्षा करें...' 
-                            : 'Please wait...',
+                        _isHindi ? 'कृपया प्रतीक्षा करें...' : 'Please wait...',
                         style: const TextStyle(
                           fontSize: 16,
                           color: Colors.white,
@@ -425,7 +434,8 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                   Column(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 12),
                         decoration: BoxDecoration(
                           color: Colors.green.shade600,
                           borderRadius: BorderRadius.circular(25),
@@ -434,12 +444,11 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Icon(Icons.check_circle, color: Colors.white, size: 24),
+                            const Icon(Icons.check_circle,
+                                color: Colors.white, size: 24),
                             const SizedBox(width: 12),
                             Text(
-                              _isHindi 
-                                  ? 'तैयार! आगे बढ़ें' 
-                                  : 'Ready! Continue',
+                              _isHindi ? 'तैयार! आगे बढ़ें' : 'Ready! Continue',
                               style: const TextStyle(
                                 fontSize: 16,
                                 color: Colors.white,
@@ -454,8 +463,10 @@ class _ModelDownloadProgressPageState extends State<ModelDownloadProgressPage>
                         style: ElevatedButton.styleFrom(
                           backgroundColor: CoralTheme.dark,
                           foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 28, vertical: 14),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18)),
                         ),
                         onPressed: () => _navigateToNextPage(),
                         icon: const Icon(Icons.arrow_forward),

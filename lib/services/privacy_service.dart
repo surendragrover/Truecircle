@@ -8,11 +8,11 @@ import 'on_device_ai_service.dart';
 import '../core/service_locator.dart';
 
 /// Enhanced Privacy Service for TrueCircle
-/// 
+///
 /// This service manages privacy settings, Privacy Mode enforcement, and secure
 /// access to sensitive device data. It integrates with PrivacyModeManager
 /// to ensure privacy-first operation.
-/// 
+///
 /// Key Features:
 /// - Privacy Mode enforcement by default
 /// - Privacy-first data access controls
@@ -212,7 +212,7 @@ class PrivacyService {
   }
 
   /// Request user consent for AI functionality
-  /// 
+  ///
   /// This shows users that AI processing happens entirely on-device
   /// and no data is sent to external servers.
   Future<bool> requestAIConsent() async {
@@ -224,7 +224,7 @@ class PrivacyService {
   List<Map<String, dynamic>> getSampleContactsData() {
     return [
       {
-  'id': 'sample_1',
+        'id': 'sample_1',
         'name': 'Alex Johnson',
         'phone': '+1 (555) 123-4567',
         'relationship': 'Friend',
@@ -233,7 +233,7 @@ class PrivacyService {
         'privacyNote': 'This is sample data used in Privacy Mode',
       },
       {
-  'id': 'sample_2', 
+        'id': 'sample_2',
         'name': 'Sarah Williams',
         'phone': '+1 (555) 234-5678',
         'relationship': 'Family',
@@ -242,7 +242,7 @@ class PrivacyService {
         'privacyNote': 'This is sample data used in Privacy Mode',
       },
       {
-  'id': 'sample_3',
+        'id': 'sample_3',
         'name': 'Michael Chen',
         'phone': '+1 (555) 345-6789',
         'relationship': 'Colleague',
@@ -258,7 +258,7 @@ class PrivacyService {
   List<Map<String, dynamic>> getSampleCallLogsData() {
     return [
       {
-  'id': 'call_sample_1',
+        'id': 'call_sample_1',
         'contactName': 'Alex Johnson',
         'phoneNumber': '+1 (555) 123-4567',
         'callType': 'outgoing',
@@ -268,7 +268,7 @@ class PrivacyService {
         'privacyNote': 'This is sample data used in Privacy Mode',
       },
       {
-  'id': 'call_sample_2',
+        'id': 'call_sample_2',
         'contactName': 'Sarah Williams',
         'phoneNumber': '+1 (555) 234-5678',
         'callType': 'incoming',
@@ -285,7 +285,7 @@ class PrivacyService {
   List<Map<String, dynamic>> getSampleMessagesData() {
     return [
       {
-  'id': 'msg_sample_1',
+        'id': 'msg_sample_1',
         'contactName': 'Alex Johnson',
         'phoneNumber': '+1 (555) 123-4567',
         'content': 'Hey, are we still on for dinner tonight?',
@@ -295,8 +295,8 @@ class PrivacyService {
         'privacyNote': 'This is sample data used in Privacy Mode',
       },
       {
-  'id': 'msg_sample_2',
-        'contactName': 'Sarah Williams', 
+        'id': 'msg_sample_2',
+        'contactName': 'Sarah Williams',
         'phoneNumber': '+1 (555) 234-5678',
         'content': 'Happy birthday! Hope you have a wonderful day!',
         'type': 'received',
@@ -309,26 +309,33 @@ class PrivacyService {
 
   /// Validate that AI operations are permitted in current mode
   bool validateAIAccess(String operation) {
-  // In Privacy Mode, only Dr. Iris responses are allowed
-  if (isPrivacyMode()) {
-      return operation.toLowerCase() == 'generatedrirισresponse' || 
-             operation.toLowerCase() == 'dr_iris' ||
-             operation.toLowerCase() == 'ai_chat';
+    // In Privacy Mode, only Dr. Iris responses are allowed
+    if (isPrivacyMode()) {
+      return operation.toLowerCase() == 'generatedrirισresponse' ||
+          operation.toLowerCase() == 'dr_iris' ||
+          operation.toLowerCase() == 'ai_chat';
     }
-    
+
     // In full mode, check if user has consented to AI
     return canUseAI();
   }
 
   /// Get appropriate data source based on current privacy mode
-  Future<List<Map<String, dynamic>>> getPrivacyCompliantData(String dataType) async {
+  Future<List<Map<String, dynamic>>> getPrivacyCompliantData(
+      String dataType) async {
     switch (dataType.toLowerCase()) {
       case 'contacts':
-        return isPrivacyMode() ? getSampleContactsData() : getSampleContactsData(); // Always sample for privacy
+        return isPrivacyMode()
+            ? getSampleContactsData()
+            : getSampleContactsData(); // Always sample for privacy
       case 'calls':
-        return isPrivacyMode() ? getSampleCallLogsData() : getSampleCallLogsData(); // Always sample for privacy
+        return isPrivacyMode()
+            ? getSampleCallLogsData()
+            : getSampleCallLogsData(); // Always sample for privacy
       case 'messages':
-        return isPrivacyMode() ? getSampleMessagesData() : getSampleMessagesData(); // Always sample for privacy
+        return isPrivacyMode()
+            ? getSampleMessagesData()
+            : getSampleMessagesData(); // Always sample for privacy
       default:
         return [];
     }
@@ -338,11 +345,11 @@ class PrivacyService {
   Map<String, dynamic> getEnhancedPrivacySummary() {
     final settings = getSettings();
     final privacyStatus = _privacyManager.getPrivacyStatus();
-    
+
     return {
       'privacy_level': settings.privacyLevel,
       'privacy_mode': privacyStatus['mode'],
-  // deprecated key removed; use 'isPrivacyMode'
+      // deprecated key removed; use 'isPrivacyMode'
       'privacy_level_description': settings.getPrivacyLevelDescription(),
       'enabled_features': settings.getEnabledFeatures(),
       'privacy_guarantees': settings.getPrivacyGuarantees(),
@@ -369,7 +376,7 @@ class PrivacyService {
       'privacy_guarantees': settings.getPrivacyGuarantees(),
       'last_updated': settings.lastUpdated,
       'language': settings.language,
-  'privacy_mode_active': isPrivacyMode(),
+      'privacy_mode_active': isPrivacyMode(),
       'ai_processing_available': canUseAI(),
     };
   }
@@ -390,33 +397,37 @@ class PrivacyService {
   // ==========================================================================
 
   /// यह चैनल नेटिव कोड से कॉल और मैसेज लॉग प्राप्त करेगा
-  static const MethodChannel _channel = MethodChannel('truecircle_privacy_channel');
+  static const MethodChannel _channel =
+      MethodChannel('truecircle_privacy_channel');
 
   // --------------------------------------------------------------------------
   // 1. Permission and Tracking Management
   // --------------------------------------------------------------------------
 
   /// [सेटिंग्स] में यूज़र की सहमति के बाद, नेटिव परमिशन प्रॉम्प्ट्स को ट्रिगर करता है।
-  /// 
+  ///
   /// यह method केवल privacy mode disable होने पर real permissions request करता है
   Future<bool> requestLogPermissions() async {
     // Privacy Mode check - Privacy Mode में real permissions नहीं मांगते
-  if (isPrivacyMode()) {
-      debugPrint('🔐 Privacy Service: Privacy Mode active - not requesting real permissions');
+    if (isPrivacyMode()) {
+      debugPrint(
+          '🔐 Privacy Service: Privacy Mode active - not requesting real permissions');
       return true; // Privacy Mode में permissions simulate करते हैं
     }
 
     try {
       debugPrint('📞 Privacy Service: Requesting native log permissions...');
-      
+
       // नेटिव साइड को परमिशन मांगने के लिए कहते हैं
-      final bool granted = await _channel.invokeMethod('requestAllLogsPermissions');
-      
+      final bool granted =
+          await _channel.invokeMethod('requestAllLogsPermissions');
+
       if (granted) {
-        debugPrint('✅ Privacy Service: Permissions granted, starting background tracking');
+        debugPrint(
+            '✅ Privacy Service: Permissions granted, starting background tracking');
         // अनुमति मिलने पर, बैकग्राउंड ट्रैकिंग शुरू करें
         await _channel.invokeMethod('startBackgroundLogTracking');
-        
+
         // Privacy settings में update करना
         final settings = getSettings();
         settings.allowCommunicationTracking = true;
@@ -424,13 +435,15 @@ class PrivacyService {
       } else {
         debugPrint('❌ Privacy Service: Permissions denied');
       }
-      
+
       return granted;
     } on PlatformException catch (e) {
-      debugPrint('❌ Privacy Service: Platform exception during permission request: $e');
+      debugPrint(
+          '❌ Privacy Service: Platform exception during permission request: $e');
       return false;
     } catch (e) {
-      debugPrint('❌ Privacy Service: Unexpected error during permission request: $e');
+      debugPrint(
+          '❌ Privacy Service: Unexpected error during permission request: $e');
       return false;
     }
   }
@@ -438,12 +451,13 @@ class PrivacyService {
   /// जांचता है कि कॉल/मैसेज लॉग ट्रैकिंग की अनुमति मिली है या नहीं।
   Future<bool> hasLogPermissions() async {
     // Privacy Mode check
-  if (isPrivacyMode()) {
+    if (isPrivacyMode()) {
       return true; // Privacy Mode में permissions हमेशा available
     }
 
     try {
-      final bool hasPermissions = await _channel.invokeMethod('hasLogsPermissions');
+      final bool hasPermissions =
+          await _channel.invokeMethod('hasLogsPermissions');
       debugPrint('🔍 Privacy Service: Log permissions status: $hasPermissions');
       return hasPermissions;
     } on PlatformException catch (e) {
@@ -454,15 +468,17 @@ class PrivacyService {
 
   /// Communication tracking को start करना
   Future<bool> startCommunicationTracking() async {
-  if (isPrivacyMode()) {
-      debugPrint('🔐 Privacy Service: Privacy Mode - communication tracking simulated');
+    if (isPrivacyMode()) {
+      debugPrint(
+          '🔐 Privacy Service: Privacy Mode - communication tracking simulated');
       return true;
     }
 
     try {
       final hasPermissions = await hasLogPermissions();
       if (!hasPermissions) {
-        debugPrint('⚠️ Privacy Service: Cannot start tracking - permissions not granted');
+        debugPrint(
+            '⚠️ Privacy Service: Cannot start tracking - permissions not granted');
         return false;
       }
 
@@ -470,15 +486,17 @@ class PrivacyService {
       debugPrint('✅ Privacy Service: Communication tracking started');
       return true;
     } catch (e) {
-      debugPrint('❌ Privacy Service: Error starting communication tracking: $e');
+      debugPrint(
+          '❌ Privacy Service: Error starting communication tracking: $e');
       return false;
     }
   }
 
   /// Communication tracking को stop करना
   Future<void> stopCommunicationTracking() async {
-  if (isPrivacyMode()) {
-      debugPrint('🔐 Privacy Service: Privacy Mode - communication tracking stop simulated');
+    if (isPrivacyMode()) {
+      debugPrint(
+          '🔐 Privacy Service: Privacy Mode - communication tracking stop simulated');
       return;
     }
 
@@ -486,7 +504,8 @@ class PrivacyService {
       await _channel.invokeMethod('stopBackgroundLogTracking');
       debugPrint('⏹️ Privacy Service: Communication tracking stopped');
     } catch (e) {
-      debugPrint('❌ Privacy Service: Error stopping communication tracking: $e');
+      debugPrint(
+          '❌ Privacy Service: Error stopping communication tracking: $e');
     }
   }
 
@@ -496,31 +515,34 @@ class PrivacyService {
 
   /// स्थानीय डेटाबेस से आवश्यक लॉग समरी (सारांश) प्राप्त करता है।
   /// केवल [favoriteContact] के लिए डेटा लाया जाएगा, जैसा कि यूज़र ने सेट किया है।
-  Future<List<RelationshipLog>> getLogSummaryForAI(String favoriteContactId) async {
+  Future<List<RelationshipLog>> getLogSummaryForAI(
+      String favoriteContactId) async {
     // Privacy Mode check - sample data return करना
-  if (isPrivacyMode()) {
-      debugPrint('🔐 Privacy Service: Returning sample communication data for $favoriteContactId');
-  return RelationshipLog.generateSampleData(favoriteContactId, 'Sample Contact');
+    if (isPrivacyMode()) {
+      debugPrint(
+          '🔐 Privacy Service: Returning sample communication data for $favoriteContactId');
+      return RelationshipLog.generateSampleData(
+          favoriteContactId, 'Sample Contact');
     }
 
     try {
-      debugPrint('📊 Privacy Service: Fetching log summary for contact: $favoriteContactId');
-      
-      final List<dynamic> logData = await _channel.invokeMethod(
-        'getLogSummary', 
-        {'contactId': favoriteContactId}
-      );
-      
+      debugPrint(
+          '📊 Privacy Service: Fetching log summary for contact: $favoriteContactId');
+
+      final List<dynamic> logData = await _channel
+          .invokeMethod('getLogSummary', {'contactId': favoriteContactId});
+
       // डेटा को मॉडल में बदलें और AI विश्लेषण के लिए तैयार करें
-      final logs = logData.map((data) => RelationshipLog.fromJson(data)).toList();
-      
+      final logs =
+          logData.map((data) => RelationshipLog.fromJson(data)).toList();
+
       debugPrint('✅ Privacy Service: Retrieved ${logs.length} log entries');
       return logs;
-      
     } on PlatformException catch (e) {
       debugPrint('❌ Privacy Service: Platform exception fetching logs: $e');
-  // Fallback to sample data on error
-  return RelationshipLog.generateSampleData(favoriteContactId, 'Sample Contact');
+      // Fallback to sample data on error
+      return RelationshipLog.generateSampleData(
+          favoriteContactId, 'Sample Contact');
     } catch (e) {
       debugPrint('❌ Privacy Service: Unexpected error fetching logs: $e');
       return [];
@@ -530,15 +552,16 @@ class PrivacyService {
   /// रिलेशनशिप की वर्तमान स्थिति का ऑफ़लाइन AI विश्लेषण चलाता है।
   Future<String> getRelationshipInsight(String favoriteContactId) async {
     try {
-      debugPrint('🧠 Privacy Service: Generating relationship insight for $favoriteContactId');
-      
+      debugPrint(
+          '🧠 Privacy Service: Generating relationship insight for $favoriteContactId');
+
       // Log data प्राप्त करना
       final logs = await getLogSummaryForAI(favoriteContactId);
-      
+
       if (logs.isEmpty) {
-        return isPrivacyMode() 
-          ? 'Privacy Mode: Relationship insights के लिए अधिक sample communication data की आवश्यकता है।'
-          : 'कोई communication data उपलब्ध नहीं है। कृपया permissions enable करें।';
+        return isPrivacyMode()
+            ? 'Privacy Mode: Relationship insights के लिए अधिक sample communication data की आवश्यकता है।'
+            : 'कोई communication data उपलब्ध नहीं है। कृपया permissions enable करें।';
       }
 
       // Service Locator से AI service प्राप्त करना
@@ -552,7 +575,7 @@ class PrivacyService {
 
       // AI सर्विस को समरी (सारांश) भेजें
       final logStrings = logs.map((log) => log.toSummaryString()).toList();
-      
+
       // Communication stats भी generate करना
       final stats = CommunicationStats.fromLogs(
         favoriteContactId,
@@ -580,12 +603,12 @@ ${logStrings.take(10).join('\n')}
 
       debugPrint('📤 Privacy Service: Sending analysis prompt to AI service');
       final insight = await aiService.generateRelationshipTip([analysisPrompt]);
-      
+
       debugPrint('✅ Privacy Service: Generated relationship insight');
       return insight;
-      
     } catch (e) {
-      debugPrint('❌ Privacy Service: Error generating relationship insight: $e');
+      debugPrint(
+          '❌ Privacy Service: Error generating relationship insight: $e');
       return _generateFallbackInsight([]);
     }
   }
@@ -594,7 +617,7 @@ ${logStrings.take(10).join('\n')}
   String _generateFallbackInsight(List<RelationshipLog> logs) {
     if (logs.isEmpty) {
       return isPrivacyMode()
-        ? '''Privacy Mode Relationship Insight:
+          ? '''Privacy Mode Relationship Insight:
 
 📱 Sample communication data दिखाता है कि आपका relationship healthy patterns follow कर रहा है।
 
@@ -609,7 +632,7 @@ ${logStrings.take(10).join('\n')}
 • Express appreciation more frequently
 
 यह insight sample data पर based है। Real analysis के लिए privacy settings adjust करें।'''
-        : '''Communication Insight:
+          : '''Communication Insight:
 
 📊 Limited data available. Enable communication permissions for detailed analysis.
 
@@ -625,8 +648,10 @@ For personalized insights, please enable communication tracking in privacy setti
     // Generate basic insight from available logs
     final totalInteractions = logs.length;
     final calls = logs.where((l) => l.type == InteractionType.call).length;
-    final messages = logs.where((l) => l.type == InteractionType.message).length;
-    final avgIntimacy = logs.fold(0.0, (sum, log) => sum + log.intimacyScore) / logs.length;
+    final messages =
+        logs.where((l) => l.type == InteractionType.message).length;
+    final avgIntimacy =
+        logs.fold(0.0, (sum, log) => sum + log.intimacyScore) / logs.length;
 
     return '''Communication Insight Summary:
 
@@ -646,6 +671,4 @@ ${calls > messages ? '• Voice communication preferred' : '• Text communicati
 
 ${isPrivacyMode() ? '\n(Privacy Mode: Analysis based on sample data)' : ''}''';
   }
-
-
 }

@@ -1,28 +1,35 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hive/hive.dart';
 import 'package:truecircle/services/loyalty_points_service.dart';
 import 'package:truecircle/services/virtual_gift_share_service.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
 
-Future<void> _initHive() async {
-  final dir = await getApplicationDocumentsDirectory();
-  Hive.init(dir.path);
-}
+import 'test_harness.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
+  setUpAll(() async {
+    await TestHiveHarness.ensureInitialized();
+  });
+
+  tearDownAll(() async {
+    await TestHiveHarness.dispose();
+  });
+
   group('LoyaltyPointsService Discount Calculation', () {
     test('Respects 15 percent cap', () async {
-  const price = 100.0; // 15% => 15 points max
+      await LoyaltyPointsService.configureForTest(totalPoints: 500);
+      final service = LoyaltyPointsService.instance;
+      const price = 100.0; // 15% => 15 points max
       // simulate having more points than allowed
-      final calc = LoyaltyPointsService.instance.calculateDiscount(price, 999);
+      final calc = service.calculateDiscount(price, 999);
       expect(calc.actualPointsToUse, 15);
       expect(calc.finalPrice, 85.0);
     });
 
-    test('Zero points scenario', () {
-  const price = 50.0;
+    test('Zero points scenario', () async {
+      await LoyaltyPointsService.configureForTest(totalPoints: 0);
+      const price = 50.0;
       final calc = LoyaltyPointsService.instance.calculateDiscount(price, 0);
       expect(calc.actualPointsToUse, 0);
       expect(calc.finalPrice, price);
@@ -30,7 +37,16 @@ void main() {
   });
 
   group('VirtualGiftShareService token lifecycle', () {
-    setUpAll(() async { await _initHive(); });
+    setUpAll(() async {
+      await TestHiveHarness.ensureInitialized();
+      await TestHiveHarness.resetBox('virtual_gift_tokens');
+    });
+
+    tearDown(() async {
+      if (Hive.isBoxOpen('virtual_gift_tokens')) {
+        await Hive.box('virtual_gift_tokens').clear();
+      }
+    });
 
     test('Create and redeem token exactly once', () async {
       final gift = {
@@ -48,7 +64,8 @@ void main() {
       final data = await service.redeemToken(token);
       expect(data, isNotNull);
       final availableAfter = await service.isTokenAvailable(token);
-      expect(availableAfter, false, reason: 'Token should not be available after redemption');
+      expect(availableAfter, false,
+          reason: 'Token should not be available after redemption');
       final dataSecond = await service.redeemToken(token);
       expect(dataSecond, isNull, reason: 'Second redemption must fail');
     });

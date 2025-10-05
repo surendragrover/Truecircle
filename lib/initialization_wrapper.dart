@@ -65,7 +65,10 @@ class _InitializationWrapperState extends State<InitializationWrapper> {
                           const SizedBox(height: 20),
                           Text(
                             'Error Details: ${snapshot.error}',
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(color: Colors.grey),
                             textAlign: TextAlign.center,
                           ),
                         ],

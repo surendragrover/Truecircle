@@ -19,14 +19,18 @@ void main() async {
     _registerAdapterSafely<EmotionEntry>(0, () => EmotionEntryAdapter());
     _registerAdapterSafely<Contact>(1, () => ContactAdapter());
     _registerAdapterSafely<ContactStatus>(2, () => ContactStatusAdapter());
-    _registerAdapterSafely<ContactInteraction>(3, () => ContactInteractionAdapter());
+    _registerAdapterSafely<ContactInteraction>(
+        3, () => ContactInteractionAdapter());
     _registerAdapterSafely<InteractionType>(4, () => InteractionTypeAdapter());
     _registerAdapterSafely<EmotionalScore>(5, () => EmotionalScoreAdapter());
-  _registerAdapterSafely<PrivacySettings>(6, () => PrivacySettingsAdapter());
-  _registerAdapterSafely<CBTAssessmentResult>(40, () => CBTAssessmentResultAdapter());
-  _registerAdapterSafely<CBTThoughtRecord>(41, () => CBTThoughtRecordAdapter());
-  _registerAdapterSafely<CopingCard>(42, () => CopingCardAdapter());
-  _registerAdapterSafely<CBTMicroLessonProgress>(43, () => CBTMicroLessonProgressAdapter());
+    _registerAdapterSafely<PrivacySettings>(6, () => PrivacySettingsAdapter());
+    _registerAdapterSafely<CBTAssessmentResult>(
+        40, () => CBTAssessmentResultAdapter());
+    _registerAdapterSafely<CBTThoughtRecord>(
+        41, () => CBTThoughtRecordAdapter());
+    _registerAdapterSafely<CopingCard>(42, () => CopingCardAdapter());
+    _registerAdapterSafely<CBTMicroLessonProgress>(
+        43, () => CBTMicroLessonProgressAdapter());
 
     debugPrint('✅ All Hive adapters registered');
   } catch (e) {
@@ -46,7 +50,8 @@ void main() async {
   runApp(const TrueCircleApp());
 }
 
-void _registerAdapterSafely<T>(int typeId, TypeAdapter Function() adapterFactory) {
+void _registerAdapterSafely<T>(
+    int typeId, TypeAdapter Function() adapterFactory) {
   try {
     if (!Hive.isAdapterRegistered(typeId)) {
       Hive.registerAdapter(adapterFactory());

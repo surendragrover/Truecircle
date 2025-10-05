@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 part 'mood_entry.g.dart';
 
 /// Enhanced MoodEntry model for offline AI sentiment analysis
-/// 
+///
 /// Captures user's daily emotions and thoughts for NLP processing
 /// Integrates with analyzeSentimentAndStress for offline analysis
 /// Privacy-first design with local processing only
@@ -91,13 +91,15 @@ class MoodEntry extends HiveObject {
       stressScore: (json['stressScore'] ?? 0.5).toDouble(),
       extractedKeywords: List<String>.from(json['extractedKeywords'] ?? []),
       detectedEmotions: (json['detectedEmotions'] as List<dynamic>?)
-          ?.map((e) => EmotionIntensity.fromJson(e))
-          .toList() ?? [],
+              ?.map((e) => EmotionIntensity.fromJson(e))
+              .toList() ??
+          [],
       isPrivacyMode: json['isPrivacyMode'] ?? true,
       nlpMetadata: Map<String, dynamic>.from(json['nlpMetadata'] ?? {}),
-      createdAt: DateTime.parse(json['createdAt'] ?? DateTime.now().toIso8601String()),
-      lastAnalyzed: json['lastAnalyzed'] != null 
-          ? DateTime.parse(json['lastAnalyzed']) 
+      createdAt:
+          DateTime.parse(json['createdAt'] ?? DateTime.now().toIso8601String()),
+      lastAnalyzed: json['lastAnalyzed'] != null
+          ? DateTime.parse(json['lastAnalyzed'])
           : null,
     );
   }
@@ -173,14 +175,18 @@ class MoodEntry extends HiveObject {
   /// Categorize mood based on identified mood string
   static MoodCategory _categorizeMood(String mood) {
     final moodLower = mood.toLowerCase();
-    
-    if (['happy', 'joy', 'excited', 'grateful', 'content', 'calm'].any(moodLower.contains)) {
+
+    if (['happy', 'joy', 'excited', 'grateful', 'content', 'calm']
+        .any(moodLower.contains)) {
       return MoodCategory.positive;
-    } else if (['angry', 'frustrated', 'annoyed', 'irritated'].any(moodLower.contains)) {
+    } else if (['angry', 'frustrated', 'annoyed', 'irritated']
+        .any(moodLower.contains)) {
       return MoodCategory.angry;
-    } else if (['sad', 'depressed', 'lonely', 'disappointed'].any(moodLower.contains)) {
+    } else if (['sad', 'depressed', 'lonely', 'disappointed']
+        .any(moodLower.contains)) {
       return MoodCategory.sad;
-    } else if (['anxious', 'worried', 'nervous', 'stressed'].any(moodLower.contains)) {
+    } else if (['anxious', 'worried', 'nervous', 'stressed']
+        .any(moodLower.contains)) {
       return MoodCategory.anxious;
     } else if (['confused', 'uncertain', 'mixed'].any(moodLower.contains)) {
       return MoodCategory.confused;
@@ -192,24 +198,24 @@ class MoodEntry extends HiveObject {
   /// Generate summary for AI analysis (privacy-safe)
   String toAISummaryString() {
     final buffer = StringBuffer();
-    
+
     // Basic mood info
     buffer.write('Date: ${date.day}/${date.month}, ');
     buffer.write('Mood: $identifiedMood, ');
     buffer.write('Stress: $stressLevel, ');
     buffer.write('Sentiment: ${sentimentScore.toStringAsFixed(2)}, ');
     buffer.write('Category: ${category.name}');
-    
+
     // Keywords (no personal text)
     if (extractedKeywords.isNotEmpty) {
       buffer.write(', Keywords: ${extractedKeywords.take(5).join(", ")}');
     }
-    
+
     // Related contact (if any)
     if (relatedContactId.isNotEmpty) {
       buffer.write(', Related Contact: $relatedContactId');
     }
-    
+
     // Detected emotions
     if (detectedEmotions.isNotEmpty) {
       final emotionSummary = detectedEmotions
@@ -218,36 +224,38 @@ class MoodEntry extends HiveObject {
           .join(', ');
       buffer.write(', Emotions: $emotionSummary');
     }
-    
+
     return buffer.toString();
   }
 
   /// Generate detailed analysis for comprehensive insights
   String toDetailedAnalysisString() {
     final buffer = StringBuffer();
-    
+
     buffer.writeln('📅 मूड एंट्री विश्लेषण');
     buffer.writeln('तारीख: ${date.day}/${date.month}/${date.year}');
     buffer.writeln('पहचाना गया मूड: $identifiedMood');
     buffer.writeln('तनाव स्तर: $stressLevel');
-    buffer.writeln('भावना स्कोर: ${(sentimentScore * 100).toStringAsFixed(0)}%');
+    buffer
+        .writeln('भावना स्कोर: ${(sentimentScore * 100).toStringAsFixed(0)}%');
     buffer.writeln('तनाव स्कोर: ${(stressScore * 100).toStringAsFixed(0)}%');
-    
+
     if (extractedKeywords.isNotEmpty) {
       buffer.writeln('मुख्य शब्द: ${extractedKeywords.join(", ")}');
     }
-    
+
     if (detectedEmotions.isNotEmpty) {
       buffer.writeln('पहचानी गई भावनाएं:');
       for (final emotion in detectedEmotions.take(5)) {
-        buffer.writeln('  • ${emotion.emotion}: ${(emotion.intensity * 100).toStringAsFixed(0)}%');
+        buffer.writeln(
+            '  • ${emotion.emotion}: ${(emotion.intensity * 100).toStringAsFixed(0)}%');
       }
     }
-    
+
     if (relatedContactId.isNotEmpty) {
       buffer.writeln('संबंधित व्यक्ति: $relatedContactId');
     }
-    
+
     return buffer.toString();
   }
 
@@ -256,7 +264,7 @@ class MoodEntry extends HiveObject {
     final now = DateTime.now();
     return [
       MoodEntry(
-  id: 'sample_mood_1',
+        id: 'sample_mood_1',
         date: now.subtract(const Duration(hours: 2)),
         userText: 'आज बहुत अच्छा लग रहा है, सब कुछ सही चल रहा है',
         identifiedMood: 'Happy',
@@ -270,10 +278,10 @@ class MoodEntry extends HiveObject {
           EmotionIntensity(emotion: 'Contentment', intensity: 0.7),
         ],
         isPrivacyMode: true,
-  nlpMetadata: {'sample': true, 'language': 'hindi'},
+        nlpMetadata: {'sample': true, 'language': 'hindi'},
       ),
       MoodEntry(
-  id: 'sample_mood_2',
+        id: 'sample_mood_2',
         date: now.subtract(const Duration(hours: 8)),
         userText: 'काम का तनाव बहुत है, चिंता हो रही है',
         identifiedMood: 'Anxious',
@@ -287,15 +295,15 @@ class MoodEntry extends HiveObject {
           EmotionIntensity(emotion: 'Worry', intensity: 0.8),
         ],
         isPrivacyMode: true,
-  nlpMetadata: {'sample': true, 'language': 'hindi'},
+        nlpMetadata: {'sample': true, 'language': 'hindi'},
       ),
       MoodEntry(
-  id: 'sample_mood_3',
+        id: 'sample_mood_3',
         date: now.subtract(const Duration(days: 1)),
         userText: 'Feeling grateful for good relationships in my life',
         identifiedMood: 'Grateful',
         stressLevel: 'Low',
-  relatedContactId: 'sample_contact_1',
+        relatedContactId: 'sample_contact_1',
         category: MoodCategory.positive,
         sentimentScore: 0.7,
         stressScore: 0.3,
@@ -305,7 +313,7 @@ class MoodEntry extends HiveObject {
           EmotionIntensity(emotion: 'Love', intensity: 0.6),
         ],
         isPrivacyMode: true,
-  nlpMetadata: {'sample': true, 'language': 'english'},
+        nlpMetadata: {'sample': true, 'language': 'english'},
       ),
     ];
   }
@@ -316,10 +324,10 @@ class MoodEntry extends HiveObject {
 
   /// Check if entry needs NLP analysis
   bool needsAnalysis() {
-    return identifiedMood == 'pending_analysis' || 
-           stressLevel == 'pending_analysis' ||
-           lastAnalyzed == null ||
-           DateTime.now().difference(lastAnalyzed!).inDays > 7;
+    return identifiedMood == 'pending_analysis' ||
+        stressLevel == 'pending_analysis' ||
+        lastAnalyzed == null ||
+        DateTime.now().difference(lastAnalyzed!).inDays > 7;
   }
 
   @override
@@ -333,25 +341,25 @@ class MoodEntry extends HiveObject {
 enum MoodCategory {
   @HiveField(0)
   positive,
-  
+
   @HiveField(1)
   negative,
-  
+
   @HiveField(2)
   neutral,
-  
+
   @HiveField(3)
   angry,
-  
+
   @HiveField(4)
   sad,
-  
+
   @HiveField(5)
   anxious,
-  
+
   @HiveField(6)
   confused,
-  
+
   @HiveField(7)
   pending, // For entries awaiting analysis
 }
@@ -378,7 +386,7 @@ class EmotionIntensity extends HiveObject {
     return EmotionIntensity(
       emotion: json['emotion'] ?? '',
       intensity: (json['intensity'] ?? 0.0).toDouble(),
-      detectedAt: json['detectedAt'] != null 
+      detectedAt: json['detectedAt'] != null
           ? DateTime.parse(json['detectedAt'])
           : DateTime.now(),
     );
@@ -405,7 +413,7 @@ class MoodEntryNLPService {
     try {
       // This would integrate with your analyzeSentimentAndStress function
       final analysisResult = await _performOfflineNLPAnalysis(entry.userText);
-      
+
       return entry.updateWithNLPAnalysis(
         identifiedMood: analysisResult['mood'] ?? 'neutral',
         stressLevel: analysisResult['stressLevel'] ?? 'medium',
@@ -413,8 +421,9 @@ class MoodEntryNLPService {
         stressScore: analysisResult['stressScore'] ?? 0.5,
         extractedKeywords: List<String>.from(analysisResult['keywords'] ?? []),
         detectedEmotions: (analysisResult['emotions'] as List<dynamic>?)
-            ?.map((e) => EmotionIntensity.fromJson(e))
-            .toList() ?? [],
+                ?.map((e) => EmotionIntensity.fromJson(e))
+                .toList() ??
+            [],
         nlpMetadata: analysisResult['metadata'] ?? {},
       );
     } catch (e) {
@@ -433,34 +442,39 @@ class MoodEntryNLPService {
 
   /// Mock implementation of offline NLP analysis
   /// Replace this with your actual analyzeSentimentAndStress implementation
-  static Future<Map<String, dynamic>> _performOfflineNLPAnalysis(String text) async {
+  static Future<Map<String, dynamic>> _performOfflineNLPAnalysis(
+      String text) async {
     // Simulate NLP processing time
     await Future.delayed(const Duration(milliseconds: 500));
-    
+
     // Mock analysis results - replace with actual NLP implementation
     final textLower = text.toLowerCase();
-    
+
     // Simple sentiment analysis
     double sentimentScore = 0.0;
-    if (textLower.contains(RegExp(r'(अच्छा|खुश|happy|good|great|excellent|grateful)'))) {
+    if (textLower
+        .contains(RegExp(r'(अच्छा|खुश|happy|good|great|excellent|grateful)'))) {
       sentimentScore = 0.7;
-    } else if (textLower.contains(RegExp(r'(बुरा|गुस्सा|sad|angry|bad|terrible|awful)'))) {
+    } else if (textLower
+        .contains(RegExp(r'(बुरा|गुस्सा|sad|angry|bad|terrible|awful)'))) {
       sentimentScore = -0.7;
-    } else if (textLower.contains(RegExp(r'(तनाव|चिंता|stress|anxiety|worried|nervous)'))) {
+    } else if (textLower
+        .contains(RegExp(r'(तनाव|चिंता|stress|anxiety|worried|nervous)'))) {
       sentimentScore = -0.4;
     }
-    
+
     // Simple stress analysis
     double stressScore = 0.5;
     String stressLevel = 'Medium';
     if (textLower.contains(RegExp(r'(तनाव|चिंता|stress|anxiety|pressure)'))) {
       stressScore = 0.8;
       stressLevel = 'High';
-    } else if (textLower.contains(RegExp(r'(शांत|आराम|calm|relaxed|peaceful)'))) {
+    } else if (textLower
+        .contains(RegExp(r'(शांत|आराम|calm|relaxed|peaceful)'))) {
       stressScore = 0.2;
       stressLevel = 'Low';
     }
-    
+
     // Simple mood identification
     String mood = 'Neutral';
     if (sentimentScore > 0.5) {
@@ -470,7 +484,7 @@ class MoodEntryNLPService {
     } else if (stressScore > 0.7) {
       mood = 'Anxious';
     }
-    
+
     // Simple keyword extraction
     final keywords = <String>[];
     final words = text.split(' ');
@@ -480,7 +494,7 @@ class MoodEntryNLPService {
         if (keywords.length >= 5) break;
       }
     }
-    
+
     // Mock emotion detection
     final emotions = <Map<String, dynamic>>[];
     if (sentimentScore > 0.5) {
@@ -491,7 +505,7 @@ class MoodEntryNLPService {
     if (stressScore > 0.7) {
       emotions.add({'emotion': 'Anxiety', 'intensity': stressScore});
     }
-    
+
     return {
       'mood': mood,
       'stressLevel': stressLevel,

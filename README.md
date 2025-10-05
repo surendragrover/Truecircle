@@ -61,3 +61,12 @@ To propose an early upgrade, open an issue titled `Upgrade Proposal: <package>` 
 
 This section prevents accidental blanket `flutter pub upgrade --major-versions` commits that could destabilize builds without review.
 
+## 🧰 Automated Maintenance Helpers
+
+To streamline recurring API migrations and terminology audits, the repository includes a few purpose-built Dart scripts:
+
+- `dart run tool/demo_token_guard.dart` — Verifies that legacy "demo" phrasing isn’t reintroduced in copy. Add `// allow_demo_token` to intentionally keep a flagged occurrence.
+- `dart run tools/fix_with_opacity.dart --dry-run` — Scans the codebase for deprecated `withOpacity(...)` usages and reports pending fixes. Omit `--dry-run` (optionally add `--verbose`) to rewrite them in-place to `withValues(alpha: ...)`.
+
+Tip: run the fixer right before committing UI work that touches color styles so the analyzer stays green by default.
+

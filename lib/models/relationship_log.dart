@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 part 'relationship_log.g.dart';
 
 /// Enhanced communication log for relationship analysis with offline AI support
-/// 
+///
 /// Stores communication patterns while maintaining privacy-first approach
 /// Optimized for offline AI analysis and mental health correlation
 /// Only metadata and statistical patterns stored, no personal content
@@ -99,10 +99,13 @@ class RelationshipLog extends HiveObject {
     final timestamp = DateTime.fromMillisecondsSinceEpoch(
       json['timestamp'] ?? DateTime.now().millisecondsSinceEpoch,
     );
-    final lastInteractionMs = json['lastInteraction'] ?? timestamp.millisecondsSinceEpoch;
-    final lastInteraction = DateTime.fromMillisecondsSinceEpoch(lastInteractionMs);
-    final interactionGap = Duration(milliseconds: json['interactionGapMs'] ?? 0);
-    
+    final lastInteractionMs =
+        json['lastInteraction'] ?? timestamp.millisecondsSinceEpoch;
+    final lastInteraction =
+        DateTime.fromMillisecondsSinceEpoch(lastInteractionMs);
+    final interactionGap =
+        Duration(milliseconds: json['interactionGapMs'] ?? 0);
+
     return RelationshipLog(
       id: json['id'] ?? '',
       contactId: json['contactId'] ?? '',
@@ -128,7 +131,8 @@ class RelationshipLog extends HiveObject {
       keywords: List<String>.from(json['keywords'] ?? []),
       isPrivacyMode: json['isPrivacyMode'] ?? true,
       metadata: Map<String, dynamic>.from(json['metadata'] ?? {}),
-      communicationFrequency: (json['communicationFrequency'] ?? 0.0).toDouble(),
+      communicationFrequency:
+          (json['communicationFrequency'] ?? 0.0).toDouble(),
       currentPhase: RelationshipPhase.values.firstWhere(
         (e) => e.toString().split('.').last == json['currentPhase'],
         orElse: () => RelationshipPhase.unknown,
@@ -166,58 +170,64 @@ class RelationshipLog extends HiveObject {
   String toSummaryString() {
     // AI के लिए optimized summary जैसा कि आपने माँगा था
     return "Contact: $contactName. Last talk: ${interactionGap.inDays} days ago. "
-           "Avg call: ${callDurationAverage.toStringAsFixed(1)}s. "
-           "Calls/month: $totalCallsInLastMonth, Messages/month: $totalMessagesInLastMonth. "
-           "Frequency: ${communicationFrequency.toStringAsFixed(1)}/day. "
-           "Phase: ${currentPhase.name}. Intimacy: ${(intimacyScore * 100).toStringAsFixed(0)}%.";
+        "Avg call: ${callDurationAverage.toStringAsFixed(1)}s. "
+        "Calls/month: $totalCallsInLastMonth, Messages/month: $totalMessagesInLastMonth. "
+        "Frequency: ${communicationFrequency.toStringAsFixed(1)}/day. "
+        "Phase: ${currentPhase.name}. Intimacy: ${(intimacyScore * 100).toStringAsFixed(0)}%.";
   }
 
   /// Generate detailed privacy-safe summary for comprehensive AI analysis
   String toDetailedSummaryString() {
     final buffer = StringBuffer();
-    
+
     // Contact और समय की जानकारी
     buffer.write('Contact: $contactName (ID: $contactId)\n');
     buffer.write('Last interaction: ${interactionGap.inDays} days ago\n');
-    buffer.write('Communication pattern: ${communicationFrequency.toStringAsFixed(1)} interactions/day\n');
-    
+    buffer.write(
+        'Communication pattern: ${communicationFrequency.toStringAsFixed(1)} interactions/day\n');
+
     // रिश्ते का चरण और निकटता
     buffer.write('Relationship phase: ${currentPhase.name}\n');
-    buffer.write('Intimacy score: ${(intimacyScore * 100).toStringAsFixed(0)}%\n');
-    
+    buffer.write(
+        'Intimacy score: ${(intimacyScore * 100).toStringAsFixed(0)}%\n');
+
     // संपर्क के आंकड़े
-    buffer.write('Monthly stats: $totalCallsInLastMonth calls, $totalMessagesInLastMonth messages\n');
-    buffer.write('Average call duration: ${callDurationAverage.toStringAsFixed(1)} seconds\n');
-    
+    buffer.write(
+        'Monthly stats: $totalCallsInLastMonth calls, $totalMessagesInLastMonth messages\n');
+    buffer.write(
+        'Average call duration: ${callDurationAverage.toStringAsFixed(1)} seconds\n');
+
     // भावनात्मक संदर्भ
     if (tone != EmotionalTone.neutral) {
       buffer.write('Recent emotional tone: ${tone.name}\n');
     }
-    
+
     // Keywords (privacy-safe)
     if (keywords.isNotEmpty) {
       buffer.write('Communication themes: ${keywords.join(', ')}\n');
     }
-    
+
     // Recent interaction details
     buffer.write('Latest ${type.name} ${isIncoming ? 'received' : 'sent'}');
     if (type == InteractionType.call && duration > 0) {
       buffer.write(' (${duration}s duration)');
     }
-    if ((type == InteractionType.message || type == InteractionType.chatApp) && messageLength > 0) {
+    if ((type == InteractionType.message || type == InteractionType.chatApp) &&
+        messageLength > 0) {
       buffer.write(' ($messageLength characters)');
     }
-    
+
     return buffer.toString();
   }
 
   /// Generate sample data for privacy mode (formerly generateDemoData)
-  static List<RelationshipLog> generateSampleData(String contactId, String contactName) {
+  static List<RelationshipLog> generateSampleData(
+      String contactId, String contactName) {
     final now = DateTime.now();
-    
+
     return [
       RelationshipLog(
-  id: 'sample_1_$contactId',
+        id: 'sample_1_$contactId',
         contactId: contactId,
         contactName: contactName,
         timestamp: now.subtract(const Duration(hours: 2)),
@@ -233,13 +243,13 @@ class RelationshipLog extends HiveObject {
         intimacyScore: 0.8,
         keywords: ['love', 'miss', 'excited'],
         isPrivacyMode: true,
-  // 'demo' flag migrated to 'sample' to align with Privacy Mode terminology
-  metadata: {'sample': true, 'category': 'affectionate'},
+        // 'demo' flag migrated to 'sample' to align with Privacy Mode terminology
+        metadata: {'sample': true, 'category': 'affectionate'},
         communicationFrequency: 4.2, // 4.2 interactions per day
         currentPhase: RelationshipPhase.deepening,
       ),
       RelationshipLog(
-  id: 'sample_2_$contactId',
+        id: 'sample_2_$contactId',
         contactId: contactId,
         contactName: contactName,
         timestamp: now.subtract(const Duration(hours: 6)),
@@ -255,13 +265,13 @@ class RelationshipLog extends HiveObject {
         intimacyScore: 0.6,
         keywords: ['plans', 'meeting', 'dinner'],
         isPrivacyMode: true,
-  // Updated legacy 'demo' -> 'sample'
-  metadata: {'sample': true, 'category': 'planning'},
+        // Updated legacy 'demo' -> 'sample'
+        metadata: {'sample': true, 'category': 'planning'},
         communicationFrequency: 4.2,
         currentPhase: RelationshipPhase.stable,
       ),
       RelationshipLog(
-  id: 'sample_3_$contactId',
+        id: 'sample_3_$contactId',
         contactId: contactId,
         contactName: contactName,
         timestamp: now.subtract(const Duration(days: 1)),
@@ -277,7 +287,7 @@ class RelationshipLog extends HiveObject {
         intimacyScore: 0.7,
         keywords: ['worried', 'safe', 'care'],
         isPrivacyMode: true,
-  metadata: {'sample': true, 'category': 'caring'},
+        metadata: {'sample': true, 'category': 'caring'},
         communicationFrequency: 4.2,
         currentPhase: RelationshipPhase.deepening,
       ),
@@ -286,7 +296,8 @@ class RelationshipLog extends HiveObject {
 
   /// Deprecated: use generateSampleData
   @Deprecated('Use generateSampleData instead')
-  static List<RelationshipLog> generateDemoData(String contactId, String contactName) =>
+  static List<RelationshipLog> generateDemoData(
+          String contactId, String contactName) =>
       generateSampleData(contactId, contactName);
 
   @override
@@ -300,19 +311,19 @@ class RelationshipLog extends HiveObject {
 enum InteractionType {
   @HiveField(0)
   call,
-  
+
   @HiveField(1)
   message,
-  
+
   @HiveField(2)
   chatApp, // WhatsApp, Telegram etc.
-  
+
   @HiveField(3)
   videoCall,
-  
+
   @HiveField(4)
   voiceMessage,
-  
+
   @HiveField(5)
   unknown,
 }
@@ -322,16 +333,16 @@ enum InteractionType {
 enum CommunicationType {
   @HiveField(0)
   call,
-  
+
   @HiveField(1)
   message,
-  
+
   @HiveField(2)
   videoCall,
-  
+
   @HiveField(3)
   voiceMessage,
-  
+
   @HiveField(4)
   unknown,
 }
@@ -341,22 +352,22 @@ enum CommunicationType {
 enum RelationshipPhase {
   @HiveField(0)
   initial, // नया रिश्ता, अधिक संपर्क
-  
+
   @HiveField(1)
   building, // रिश्ता बनता जा रहा है
-  
+
   @HiveField(2)
   stable, // स्थिर रिश्ता
-  
+
   @HiveField(3)
   deepening, // गहरा होता रिश्ता
-  
+
   @HiveField(4)
   distant, // दूरी बढ़ रही है
-  
+
   @HiveField(5)
   reconnecting, // दोबारा जुड़ाव
-  
+
   @HiveField(6)
   unknown,
 }
@@ -366,28 +377,28 @@ enum RelationshipPhase {
 enum EmotionalTone {
   @HiveField(0)
   positive,
-  
+
   @HiveField(1)
   negative,
-  
+
   @HiveField(2)
   neutral,
-  
+
   @HiveField(3)
   concern,
-  
+
   @HiveField(4)
   excitement,
-  
+
   @HiveField(5)
   sadness,
-  
+
   @HiveField(6)
   anger,
-  
+
   @HiveField(7)
   love,
-  
+
   @HiveField(8)
   unknown,
 }
@@ -450,29 +461,35 @@ class CommunicationStats extends HiveObject {
     DateTime periodEnd,
   ) {
     final calls = logs.where((log) => log.type == InteractionType.call).length;
-    final messages = logs.where((log) => log.type == InteractionType.message || log.type == InteractionType.chatApp).length;
+    final messages = logs
+        .where((log) =>
+            log.type == InteractionType.message ||
+            log.type == InteractionType.chatApp)
+        .length;
     final totalDuration = logs
-        .where((log) => log.type == InteractionType.call || log.type == InteractionType.videoCall)
+        .where((log) =>
+            log.type == InteractionType.call ||
+            log.type == InteractionType.videoCall)
         .fold(0, (sum, log) => sum + log.duration);
-    
-    final averageIntimacy = logs.isEmpty 
-        ? 0.5 
+
+    final averageIntimacy = logs.isEmpty
+        ? 0.5
         : logs.fold(0.0, (sum, log) => sum + log.intimacyScore) / logs.length;
-    
+
     final toneDistribution = <EmotionalTone, int>{};
     for (final log in logs) {
       toneDistribution[log.tone] = (toneDistribution[log.tone] ?? 0) + 1;
     }
-    
+
     final days = periodEnd.difference(periodStart).inDays;
     final frequency = days > 0 ? logs.length / days : 0.0;
-    
+
     final allKeywords = logs.expand((log) => log.keywords).toList();
     final keywordCounts = <String, int>{};
     for (final keyword in allKeywords) {
       keywordCounts[keyword] = (keywordCounts[keyword] ?? 0) + 1;
     }
-    
+
     return CommunicationStats(
       contactId: contactId,
       periodStart: periodStart,
@@ -491,26 +508,29 @@ class CommunicationStats extends HiveObject {
   /// Generate privacy-safe summary for AI analysis
   String toAnalysisString() {
     final buffer = StringBuffer();
-    
+
     buffer.writeln('Communication Summary:');
     buffer.writeln('- Calls: $totalCalls (${totalCallDuration}s total)');
     buffer.writeln('- Messages: $totalMessages');
-    buffer.writeln('- Frequency: ${communicationFrequency.toStringAsFixed(1)} per day');
-    buffer.writeln('- Intimacy Level: ${(averageIntimacyScore * 100).toStringAsFixed(0)}%');
-    
+    buffer.writeln(
+        '- Frequency: ${communicationFrequency.toStringAsFixed(1)} per day');
+    buffer.writeln(
+        '- Intimacy Level: ${(averageIntimacyScore * 100).toStringAsFixed(0)}%');
+
     if (emotionalToneDistribution.isNotEmpty) {
       buffer.writeln('- Emotional Tones:');
       emotionalToneDistribution.forEach((tone, count) {
         buffer.writeln('  ${tone.name}: $count');
       });
     }
-    
+
     if (topKeywords.isNotEmpty) {
       final sortedKeywords = topKeywords.entries.toList()
         ..sort((a, b) => b.value.compareTo(a.value));
-      buffer.writeln('- Top Keywords: ${sortedKeywords.take(5).map((e) => e.key).join(', ')}');
+      buffer.writeln(
+          '- Top Keywords: ${sortedKeywords.take(5).map((e) => e.key).join(', ')}');
     }
-    
+
     return buffer.toString();
   }
 }

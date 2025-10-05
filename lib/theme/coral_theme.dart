@@ -5,14 +5,14 @@ class CoralTheme {
   CoralTheme._();
   // Core palette
   static const Color light = Color(0xFFFFA385);
-  static const Color base  = Color(0xFFFF7F50);
-  static const Color dark  = Color(0xFFFF6233);
+  static const Color base = Color(0xFFFF7F50);
+  static const Color dark = Color(0xFFFF6233);
   // Therapy / warm earth tones (requested)
   static const Color therapyPeach = Color(0xFFD98E73); // Muted Peach top
-  static const Color therapyDeep  = Color(0xFF3E1E1C); // Deep Brown bottom
-  static const Color therapySun   = Color(0xFFE5543C); // Sunset accent circle
+  static const Color therapyDeep = Color(0xFF3E1E1C); // Deep Brown bottom
+  static const Color therapySun = Color(0xFFE5543C); // Sunset accent circle
   static const Color therapyTerra = Color(0xFFA8573C); // Terracotta wave
-  static const Color therapyRust  = Color(0xFF6E2E1F); // Rust red deeper wave
+  static const Color therapyRust = Color(0xFF6E2E1F); // Rust red deeper wave
 
   /// Vertical background gradient (full depth)
   static const LinearGradient verticalGradient = LinearGradient(
@@ -29,7 +29,8 @@ class CoralTheme {
   );
 
   /// Reusable BoxDecoration for screens.
-  static const BoxDecoration background = BoxDecoration(gradient: verticalGradient);
+  static const BoxDecoration background =
+      BoxDecoration(gradient: verticalGradient);
 
   /// New therapeutic soft gradient background (peach -> deep brown)
   static const LinearGradient therapyGradient = LinearGradient(
@@ -38,19 +39,24 @@ class CoralTheme {
     colors: [therapyPeach, therapyDeep],
   );
 
-  static const BoxDecoration therapyBackground = BoxDecoration(gradient: therapyGradient);
+  static const BoxDecoration therapyBackground =
+      BoxDecoration(gradient: therapyGradient);
 
   /// Standard elevated coral button style.
-  static ButtonStyle primaryButtonStyle({EdgeInsetsGeometry? padding}) => ElevatedButton.styleFrom(
+  static ButtonStyle primaryButtonStyle({EdgeInsetsGeometry? padding}) =>
+      ElevatedButton.styleFrom(
         backgroundColor: dark,
         foregroundColor: Colors.white,
-        padding: padding ?? const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+        padding:
+            padding ?? const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         elevation: 3,
       );
 
   /// Light translucent card surface over gradient.
-  static BoxDecoration translucentCard({double alpha = 0.15, BorderRadius? radius}) => BoxDecoration(
+  static BoxDecoration translucentCard(
+          {double alpha = 0.15, BorderRadius? radius}) =>
+      BoxDecoration(
         color: Colors.white.withValues(alpha: alpha),
         borderRadius: radius ?? BorderRadius.circular(16),
         border: Border.all(color: Colors.white.withValues(alpha: alpha + 0.1)),
@@ -91,11 +97,12 @@ class _GrainPainter extends CustomPainter {
         final v = (seed % 100) / 100.0; // 0..1
         if (v < 0.35) continue; // sparse
         final alpha = (opacity * (0.25 + v * 0.75));
-  paint.color = Colors.white.withValues(alpha: alpha * 0.5);
+        paint.color = Colors.white.withValues(alpha: alpha * 0.5);
         canvas.drawRect(Rect.fromLTWH(x, y, 1.2, 1.2), paint);
       }
     }
   }
+
   @override
   bool shouldRepaint(covariant _GrainPainter old) => old.opacity != opacity;
 }
@@ -104,7 +111,8 @@ class _GrainPainter extends CustomPainter {
 class TherapyWaves extends StatelessWidget {
   final double sunDiameter;
   final bool showGrain;
-  const TherapyWaves({super.key, this.sunDiameter = 260, this.showGrain = true});
+  const TherapyWaves(
+      {super.key, this.sunDiameter = 260, this.showGrain = true});
 
   @override
   Widget build(BuildContext context) {
@@ -144,7 +152,8 @@ class TherapyWaves extends StatelessWidget {
 }
 
 class _WavePainter extends CustomPainter {
-  final int level; // 0: far (terra), 1: mid (rust with low opacity), 2: near (deep blend)
+  final int
+      level; // 0: far (terra), 1: mid (rust with low opacity), 2: near (deep blend)
   _WavePainter({required this.level});
   @override
   void paint(Canvas canvas, Size size) {
@@ -157,15 +166,15 @@ class _WavePainter extends CustomPainter {
     double yStart;
     switch (level) {
       case 0:
-  color = CoralTheme.therapyTerra.withValues(alpha: 0.28);
+        color = CoralTheme.therapyTerra.withValues(alpha: 0.28);
         yStart = h * 0.55;
         break;
       case 1:
-  color = CoralTheme.therapyRust.withValues(alpha: 0.24);
+        color = CoralTheme.therapyRust.withValues(alpha: 0.24);
         yStart = h * 0.62;
         break;
       default:
-  color = CoralTheme.therapyRust.withValues(alpha: 0.38);
+        color = CoralTheme.therapyRust.withValues(alpha: 0.38);
         yStart = h * 0.70;
     }
     path.moveTo(0, yStart);
@@ -179,6 +188,7 @@ class _WavePainter extends CustomPainter {
     paint.color = color;
     canvas.drawPath(path, paint);
   }
+
   @override
   bool shouldRepaint(covariant _WavePainter old) => old.level != level;
 }
@@ -187,7 +197,8 @@ class _WavePainter extends CustomPainter {
 class TherapyBackground extends StatelessWidget {
   final Widget child;
   final bool showGrain;
-  const TherapyBackground({super.key, required this.child, this.showGrain = true});
+  const TherapyBackground(
+      {super.key, required this.child, this.showGrain = true});
 
   @override
   Widget build(BuildContext context) {

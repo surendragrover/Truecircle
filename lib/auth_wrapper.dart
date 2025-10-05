@@ -33,8 +33,11 @@ class _AuthWrapperState extends State<AuthWrapper> {
 
   Future<void> _checkOnboardingStatus() async {
     final prefs = await SharedPreferences.getInstance();
-    // Check for 'is_first_time'. Default to true if not set.
-    _isFirstTime = prefs.getBool('is_first_time') ?? true;
+    final isFirstTime = prefs.getBool('is_first_time') ?? true;
+    if (!mounted) return;
+    setState(() {
+      _isFirstTime = isFirstTime;
+    });
   }
 
   Future<void> _initializeBoxes() async {
@@ -87,7 +90,8 @@ class _AuthWrapperState extends State<AuthWrapper> {
       }
 
       // Mandatory: phone must be verified; no anonymous path allowed now
-      if (!_authService.isPhoneVerified || _authService.currentPhoneNumber == null) {
+      if (!_authService.isPhoneVerified ||
+          _authService.currentPhoneNumber == null) {
         return const LoginSignupPage();
       }
 

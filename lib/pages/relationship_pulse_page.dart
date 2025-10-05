@@ -25,7 +25,8 @@ class _RelationshipPulsePageState extends State<RelationshipPulsePage> {
   Future<void> _load() async {
     try {
       final contactBox = await Hive.openBox<Contact>('contacts');
-      final interactionBox = await Hive.openBox<ContactInteraction>('contact_interactions');
+      final interactionBox =
+          await Hive.openBox<ContactInteraction>('contact_interactions');
       _contacts = contactBox.values.toList();
 
       // Group interactions
@@ -77,9 +78,15 @@ class _RelationshipPulsePageState extends State<RelationshipPulsePage> {
       );
 
   Widget _buildContent() {
-    final warm = _contacts.where((c) => c.emotionalScore == EmotionalScore.veryWarm).toList();
-    final fading = _contacts.where((c) => c.emotionalScore == EmotionalScore.friendlyButFading).toList();
-    final cold = _contacts.where((c) => c.emotionalScore == EmotionalScore.cold).toList();
+    final warm = _contacts
+        .where((c) => c.emotionalScore == EmotionalScore.veryWarm)
+        .toList();
+    final fading = _contacts
+        .where((c) => c.emotionalScore == EmotionalScore.friendlyButFading)
+        .toList();
+    final cold = _contacts
+        .where((c) => c.emotionalScore == EmotionalScore.cold)
+        .toList();
 
     return ListView(
       padding: const EdgeInsets.all(16),
@@ -100,9 +107,15 @@ class _RelationshipPulsePageState extends State<RelationshipPulsePage> {
       children: [
         Row(
           children: [
-            Container(width: 10, height: 10, decoration: BoxDecoration(color: color, shape: BoxShape.circle)),
+            Container(
+                width: 10,
+                height: 10,
+                decoration:
+                    BoxDecoration(color: color, shape: BoxShape.circle)),
             const SizedBox(width: 8),
-            Text(title, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            Text(title,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
           ],
         ),
         const SizedBox(height: 8),
@@ -114,14 +127,18 @@ class _RelationshipPulsePageState extends State<RelationshipPulsePage> {
 
   Widget _buildTile(Contact c) {
     final interactions = _interactionsByContact[c.id] ?? [];
-    interactions.sort((a,b)=> b.timestamp.compareTo(a.timestamp));
+    interactions.sort((a, b) => b.timestamp.compareTo(a.timestamp));
     final last = interactions.isNotEmpty ? interactions.first : null;
 
-    final conflict = interactions.where((i)=> i.metadata['conflict'] == true).toList();
-    final repairs = interactions.where((i)=> i.metadata['conflict_resolution'] == true).toList();
+    final conflict =
+        interactions.where((i) => i.metadata['conflict'] == true).toList();
+    final repairs = interactions
+        .where((i) => i.metadata['conflict_resolution'] == true)
+        .toList();
 
     final daysGap = c.daysSinceLastContact;
-    final reconnectNeeded = daysGap > 60 || c.metadata['pending_reconnect'] == true;
+    final reconnectNeeded =
+        daysGap > 60 || c.metadata['pending_reconnect'] == true;
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 6),
@@ -130,11 +147,14 @@ class _RelationshipPulsePageState extends State<RelationshipPulsePage> {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Score: ${c.emotionalScoreValue.toStringAsFixed(0)}  •  Last: ${last != null ? _friendlyTime(last.timestamp) : '—'}'),
+            Text(
+                'Score: ${c.emotionalScoreValue.toStringAsFixed(0)}  •  Last: ${last != null ? _friendlyTime(last.timestamp) : '—'}'),
             if (reconnectNeeded)
-              const Text('Reconnect suggested', style: TextStyle(color: Colors.orange, fontSize: 12)),
+              const Text('Reconnect suggested',
+                  style: TextStyle(color: Colors.orange, fontSize: 12)),
             if (conflict.isNotEmpty && repairs.isNotEmpty)
-              const Text('Conflict → Repair detected', style: TextStyle(color: Colors.green, fontSize: 12)),
+              const Text('Conflict → Repair detected',
+                  style: TextStyle(color: Colors.green, fontSize: 12)),
           ],
         ),
         trailing: reconnectNeeded
@@ -142,7 +162,9 @@ class _RelationshipPulsePageState extends State<RelationshipPulsePage> {
                 onPressed: () {
                   // Only a UI nudge for now
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Plan a reconnect with ${c.displayName}')),
+                    SnackBar(
+                        content:
+                            Text('Plan a reconnect with ${c.displayName}')),
                   );
                 },
                 child: const Text('RECONNECT'),
@@ -163,7 +185,9 @@ class _RelationshipPulsePageState extends State<RelationshipPulsePage> {
     final last = AIOrchestratorService().lastRefreshed;
     return Center(
       child: Text(
-        last == null ? 'Insights not refreshed yet' : 'Updated ${last.toLocal()}'.split('.').first,
+        last == null
+            ? 'Insights not refreshed yet'
+            : 'Updated ${last.toLocal()}'.split('.').first,
         style: const TextStyle(fontSize: 11, color: Colors.grey),
       ),
     );

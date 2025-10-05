@@ -9,15 +9,15 @@ class MoodSparkline extends StatelessWidget {
     if (points.isEmpty) {
       return const SizedBox(height: 32, child: Center(child: Text('—')));
     }
-    final maxVal = (points.reduce((a,b)=> a>b?a:b)).toDouble();
-    final minVal = (points.reduce((a,b)=> a<b?a:b)).toDouble();
+    final maxVal = (points.reduce((a, b) => a > b ? a : b)).toDouble();
+    final minVal = (points.reduce((a, b) => a < b ? a : b)).toDouble();
     final range = (maxVal - minVal).clamp(1, 20);
     return SizedBox(
       height: 40,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: points.map((p) {
-          final h = ((p - minVal)/range)*32 + 6;
+          final h = ((p - minVal) / range) * 32 + 6;
           return Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 2),

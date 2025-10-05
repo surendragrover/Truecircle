@@ -8,10 +8,11 @@ class VirtualGiftsSection extends StatefulWidget {
   final int loyaltyPoints;
   final List<Map<String, dynamic>> gifts;
   final FestivalHighlightInfo? festivalHighlight;
-  final void Function(Map<String,dynamic> gift, {required bool usePoints}) onPurchase;
-  final void Function(Map<String,dynamic> gift)? onPreview;
+  final void Function(Map<String, dynamic> gift, {required bool usePoints})
+      onPurchase;
+  final void Function(Map<String, dynamic> gift)? onPreview;
   final String? recommendedGiftId;
-  final void Function(Map<String,dynamic> gift)? onShare;
+  final void Function(Map<String, dynamic> gift)? onShare;
 
   const VirtualGiftsSection({
     super.key,
@@ -31,16 +32,20 @@ class VirtualGiftsSection extends StatefulWidget {
   State<VirtualGiftsSection> createState() => _VirtualGiftsSectionState();
 }
 
-class _VirtualGiftsSectionState extends State<VirtualGiftsSection> with SingleTickerProviderStateMixin {
+class _VirtualGiftsSectionState extends State<VirtualGiftsSection>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late List<Animation<double>> _fadeIns;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 800));
     _prepareAnimations();
-    WidgetsBinding.instance.addPostFrameCallback((_) { if (mounted) _controller.forward(); });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _controller.forward();
+    });
   }
 
   void _prepareAnimations() {
@@ -48,7 +53,9 @@ class _VirtualGiftsSectionState extends State<VirtualGiftsSection> with SingleTi
     _fadeIns = List.generate(count, (i) {
       final start = (i * 0.08).clamp(0.0, 0.9);
       final end = (start + 0.30).clamp(0.0, 1.0);
-      return CurvedAnimation(parent: _controller, curve: Interval(start, end, curve: Curves.easeOut));
+      return CurvedAnimation(
+          parent: _controller,
+          curve: Interval(start, end, curve: Curves.easeOut));
     });
   }
 
@@ -77,10 +84,14 @@ class _VirtualGiftsSectionState extends State<VirtualGiftsSection> with SingleTi
     final onPreview = widget.onPreview;
     final onShare = widget.onShare;
 
-    final ordered = List<Map<String,dynamic>>.from(widget.gifts);
+    final ordered = List<Map<String, dynamic>>.from(widget.gifts);
     if (festivalHighlight != null) {
-      final idx = ordered.indexWhere((g)=> g['id'] == VirtualGiftsSection._festivalGreetingGiftId);
-      if (idx != -1) { final g = ordered.removeAt(idx); ordered.insert(0, g); }
+      final idx = ordered.indexWhere(
+          (g) => g['id'] == VirtualGiftsSection._festivalGreetingGiftId);
+      if (idx != -1) {
+        final g = ordered.removeAt(idx);
+        ordered.insert(0, g);
+      }
     }
 
     return Container(
@@ -97,31 +108,37 @@ class _VirtualGiftsSectionState extends State<VirtualGiftsSection> with SingleTi
             children: [
               const Icon(Icons.card_giftcard, color: Colors.pinkAccent),
               const SizedBox(width: 8),
-              Text(isHindi ? 'वर्चुअल उपहार (AI)' : 'Virtual Gifts (AI)', style: const TextStyle(fontSize:18,fontWeight: FontWeight.bold)),
+              Text(isHindi ? 'वर्चुअल उपहार (AI)' : 'Virtual Gifts (AI)',
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold)),
               const Spacer(),
               Tooltip(
-                message: isHindi? 'पॉइंट्स से आंशिक भुगतान (1 पॉइंट = ₹1)' : 'Use points for partial payment (1 point = ₹1)',
-                child: Row(children:[
-                  const Icon(Icons.stars, size:16, color: Colors.amber),
-                  const SizedBox(width:4),
-                  Text('$loyaltyPoints', style: const TextStyle(fontSize:12, fontWeight: FontWeight.w600)),
+                message: isHindi
+                    ? 'पॉइंट्स से आंशिक भुगतान (1 पॉइंट = ₹1)'
+                    : 'Use points for partial payment (1 point = ₹1)',
+                child: Row(children: [
+                  const Icon(Icons.stars, size: 16, color: Colors.amber),
+                  const SizedBox(width: 4),
+                  Text('$loyaltyPoints',
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w600)),
                 ]),
               )
             ],
           ),
-          const SizedBox(height:10),
-            Text(
-              isHindi
-                  ? 'ये सभी उपहार पूर्णतः वर्चुअल, निजी और डिवाइस पर AI द्वारा उत्पन्न होते हैं। कोई बाहरी सर्वर share नहीं।'
-                  : 'All gifts are fully virtual, private and generated on-device. No external sharing.',
-              style: const TextStyle(fontSize:11,color: Colors.black54),
-            ),
-          const SizedBox(height:16),
+          const SizedBox(height: 10),
+          Text(
+            isHindi
+                ? 'ये सभी उपहार पूर्णतः वर्चुअल, निजी और डिवाइस पर AI द्वारा उत्पन्न होते हैं। कोई बाहरी सर्वर share नहीं।'
+                : 'All gifts are fully virtual, private and generated on-device. No external sharing.',
+            style: const TextStyle(fontSize: 11, color: Colors.black54),
+          ),
+          const SizedBox(height: 16),
           ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: ordered.length,
-            separatorBuilder: (_, __) => const SizedBox(height:12),
+            separatorBuilder: (_, __) => const SizedBox(height: 12),
             itemBuilder: (_, i) {
               final g = ordered[i];
               final title = isHindi ? g['titleHi'] : g['title'];
@@ -129,73 +146,109 @@ class _VirtualGiftsSectionState extends State<VirtualGiftsSection> with SingleTi
               final price = (g['basePrice'] as double);
               const maxRedeemable = LoyaltyPointsService.dailyLoginPoints * 15;
               final canUse = loyaltyPoints > 0;
-              final isFestivalGreeting = g['id'] == VirtualGiftsSection._festivalGreetingGiftId;
-              final showFestivalBadge = isFestivalGreeting && festivalHighlight != null && festivalHighlight.daysAway <= 15;
-              final anim = i < _fadeIns.length ? _fadeIns[i] : kAlwaysCompleteAnimation;
+              final isFestivalGreeting =
+                  g['id'] == VirtualGiftsSection._festivalGreetingGiftId;
+              final showFestivalBadge = isFestivalGreeting &&
+                  festivalHighlight != null &&
+                  festivalHighlight.daysAway <= 15;
+              final anim =
+                  i < _fadeIns.length ? _fadeIns[i] : kAlwaysCompleteAnimation;
               return Stack(
                 clipBehavior: Clip.none,
                 children: [
                   FadeTransition(
                     opacity: anim,
                     child: ScaleTransition(
-                      scale: Tween<double>(begin:0.96,end:1).animate(CurvedAnimation(parent: anim, curve: Curves.easeOutBack)),
+                      scale: Tween<double>(begin: 0.96, end: 1).animate(
+                          CurvedAnimation(
+                              parent: anim, curve: Curves.easeOutBack)),
                       child: Container(
                         padding: const EdgeInsets.all(14),
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(colors:[
-                            Colors.pinkAccent.withValues(alpha:.15),
-                            Colors.purpleAccent.withValues(alpha:.12)
+                          gradient: LinearGradient(colors: [
+                            Colors.pinkAccent.withValues(alpha: .15),
+                            Colors.purpleAccent.withValues(alpha: .12)
                           ]),
                           borderRadius: BorderRadius.circular(14),
-                          border: Border.all(color: Colors.pinkAccent.withValues(alpha:0.35)),
+                          border: Border.all(
+                              color: Colors.pinkAccent.withValues(alpha: 0.35)),
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(children:[
-                              Text(g['emoji'], style: const TextStyle(fontSize:26)),
-                              const SizedBox(width:10),
-                              Expanded(child: Text(title, style: const TextStyle(fontSize:14,fontWeight: FontWeight.w600))),
-                              Text('₹${price.toStringAsFixed(0)}', style: const TextStyle(fontSize:12,fontWeight: FontWeight.bold)),
+                            Row(children: [
+                              Text(g['emoji'],
+                                  style: const TextStyle(fontSize: 26)),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                  child: Text(title,
+                                      style: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600))),
+                              Text('₹${price.toStringAsFixed(0)}',
+                                  style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold)),
                             ]),
-                            const SizedBox(height:6),
-                            Text(desc, style: const TextStyle(fontSize:11,height:1.3)),
-                            const SizedBox(height:8),
-                            Row(children:[
+                            const SizedBox(height: 6),
+                            Text(desc,
+                                style:
+                                    const TextStyle(fontSize: 11, height: 1.3)),
+                            const SizedBox(height: 8),
+                            Row(children: [
                               if (onPreview != null && isFestivalGreeting)
                                 Padding(
-                                  padding: const EdgeInsets.only(right:8.0),
+                                  padding: const EdgeInsets.only(right: 8.0),
                                   child: OutlinedButton(
-                                    style: OutlinedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal:12, vertical:8)),
+                                    style: OutlinedButton.styleFrom(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 12, vertical: 8)),
                                     onPressed: () => onPreview(g),
-                                    child: Text(isHindi? 'पूर्वावलोकन':'Preview', style: const TextStyle(fontSize:11)),
+                                    child: Text(
+                                        isHindi ? 'पूर्वावलोकन' : 'Preview',
+                                        style: const TextStyle(fontSize: 11)),
                                   ),
                                 ),
                               if (onShare != null)
                                 Padding(
-                                  padding: const EdgeInsets.only(right:8.0),
+                                  padding: const EdgeInsets.only(right: 8.0),
                                   child: OutlinedButton(
-                                    style: OutlinedButton.styleFrom(padding: const EdgeInsets.symmetric(horizontal:10, vertical:8)),
+                                    style: OutlinedButton.styleFrom(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 8)),
                                     onPressed: () => onShare(g),
-                                    child: Text(isHindi? 'शेयर कोड':'Share Code', style: const TextStyle(fontSize:10)),
+                                    child: Text(
+                                        isHindi ? 'शेयर कोड' : 'Share Code',
+                                        style: const TextStyle(fontSize: 10)),
                                   ),
                                 ),
                               if (canUse)
                                 OutlinedButton.icon(
-                                  onPressed: () => onPurchase(g, usePoints: true),
-                                  icon: const Icon(Icons.stars,size:16),
-                                  label: Text(isHindi? 'पॉइंट्स + खरीद':'Use Points'),
+                                  onPressed: () =>
+                                      onPurchase(g, usePoints: true),
+                                  icon: const Icon(Icons.stars, size: 16),
+                                  label: Text(isHindi
+                                      ? 'पॉइंट्स + खरीद'
+                                      : 'Use Points'),
                                 ),
-                              const SizedBox(width:8),
+                              const SizedBox(width: 8),
                               ElevatedButton.icon(
-                                onPressed: () => onPurchase(g, usePoints: false),
-                                icon: const Icon(Icons.lock_open,size:16),
-                                label: Text(isHindi? 'अनलॉक':'Unlock'),
+                                onPressed: () =>
+                                    onPurchase(g, usePoints: false),
+                                icon: const Icon(Icons.lock_open, size: 16),
+                                label: Text(isHindi ? 'अनलॉक' : 'Unlock'),
                               ),
                               const Spacer(),
                               Tooltip(
-                                message: isHindi? 'अधिकतम आंशिक रिडीम संकेतक':'Indicative max partial redeem',
-                                child: Text(isHindi? '≤ $maxRedeemable पॉइंट' : '≤ $maxRedeemable pts', style: const TextStyle(fontSize:10,color: Colors.black45)),
+                                message: isHindi
+                                    ? 'अधिकतम आंशिक रिडीम संकेतक'
+                                    : 'Indicative max partial redeem',
+                                child: Text(
+                                    isHindi
+                                        ? '≤ $maxRedeemable पॉइंट'
+                                        : '≤ $maxRedeemable pts',
+                                    style: const TextStyle(
+                                        fontSize: 10, color: Colors.black45)),
                               )
                             ])
                           ],
@@ -208,13 +261,26 @@ class _VirtualGiftsSectionState extends State<VirtualGiftsSection> with SingleTi
                       top: -6,
                       right: -4,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal:8, vertical:4),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
                           color: Colors.deepOrange,
                           borderRadius: BorderRadius.circular(12),
-                          boxShadow:[BoxShadow(color: Colors.deepOrange.withValues(alpha:0.4), blurRadius:6, offset: const Offset(0,3))],
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.deepOrange.withValues(alpha: 0.4),
+                                blurRadius: 6,
+                                offset: const Offset(0, 3))
+                          ],
                         ),
-                        child: Text(isHindi? 'त्योहार ${festivalHighlight.daysAway} दिन' : 'Festival ${festivalHighlight.daysAway}d', style: const TextStyle(color: Colors.white,fontSize:10,fontWeight: FontWeight.bold)),
+                        child: Text(
+                            isHindi
+                                ? 'त्योहार ${festivalHighlight.daysAway} दिन'
+                                : 'Festival ${festivalHighlight.daysAway}d',
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold)),
                       ),
                     ),
                   if (recommendedGiftId != null && recommendedGiftId == g['id'])
@@ -222,13 +288,23 @@ class _VirtualGiftsSectionState extends State<VirtualGiftsSection> with SingleTi
                       top: -6,
                       left: -4,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal:8, vertical:4),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
                         decoration: BoxDecoration(
                           color: Colors.indigo,
                           borderRadius: BorderRadius.circular(12),
-                          boxShadow:[BoxShadow(color: Colors.indigo.withValues(alpha:0.4), blurRadius:6, offset: const Offset(0,3))],
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.indigo.withValues(alpha: 0.4),
+                                blurRadius: 6,
+                                offset: const Offset(0, 3))
+                          ],
                         ),
-                        child: Text(isHindi? 'अनुशंसित':'Recommended', style: const TextStyle(color: Colors.white,fontSize:10,fontWeight: FontWeight.bold)),
+                        child: Text(isHindi ? 'अनुशंसित' : 'Recommended',
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold)),
                       ),
                     )
                 ],

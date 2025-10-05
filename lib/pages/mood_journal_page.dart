@@ -33,9 +33,11 @@ class _MoodJournalPageState extends State<MoodJournalPage>
 
   Future<void> _loadMoodData() async {
     try {
-      final data = await ComprehensiveSampleDataService.loadFeatureData('mood_journal');
-      final analytics = ComprehensiveSampleDataService.calculateAnalytics(data, 'mood_journal');
-      
+      final data =
+          await ComprehensiveSampleDataService.loadFeatureData('mood_journal');
+      final analytics = ComprehensiveSampleDataService.calculateAnalytics(
+          data, 'mood_journal');
+
       setState(() {
         _moodData = data;
         _analytics = analytics;
@@ -112,7 +114,7 @@ class _MoodJournalPageState extends State<MoodJournalPage>
       itemBuilder: (context, index) {
         final mood = _moodData[index];
         final moodDate = DateTime.now().subtract(Duration(days: index));
-        
+
         return Card(
           margin: const EdgeInsets.only(bottom: 12),
           elevation: 2,
@@ -151,7 +153,7 @@ class _MoodJournalPageState extends State<MoodJournalPage>
                   ],
                 ),
                 const SizedBox(height: 16),
-                
+
                 // Mood Score and Emotion
                 Row(
                   children: [
@@ -172,7 +174,7 @@ class _MoodJournalPageState extends State<MoodJournalPage>
                   ],
                 ),
                 const SizedBox(height: 12),
-                
+
                 // Activities and Triggers
                 if (mood['activities'] != null) ...[
                   const Text(
@@ -187,14 +189,16 @@ class _MoodJournalPageState extends State<MoodJournalPage>
                     spacing: 6,
                     runSpacing: 4,
                     children: (mood['activities'] as List<dynamic>)
-                        .map((activity) => _buildActivityChip(activity.toString()))
+                        .map((activity) =>
+                            _buildActivityChip(activity.toString()))
                         .toList(),
                   ),
                   const SizedBox(height: 12),
                 ],
-                
+
                 // Notes
-                if (mood['note'] != null && mood['note'].toString().isNotEmpty) ...[
+                if (mood['note'] != null &&
+                    mood['note'].toString().isNotEmpty) ...[
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(12),
@@ -208,7 +212,8 @@ class _MoodJournalPageState extends State<MoodJournalPage>
                       children: [
                         Row(
                           children: [
-                            Icon(Icons.note, size: 16, color: Colors.amber[700]),
+                            Icon(Icons.note,
+                                size: 16, color: Colors.amber[700]),
                             const SizedBox(width: 4),
                             Text(
                               'Journal Entry:',
@@ -229,7 +234,7 @@ class _MoodJournalPageState extends State<MoodJournalPage>
                     ),
                   ),
                 ],
-                
+
                 // Weather and Sleep (if available)
                 if (mood['weather'] != null || mood['sleep_hours'] != null) ...[
                   const SizedBox(height: 12),
@@ -246,7 +251,8 @@ class _MoodJournalPageState extends State<MoodJournalPage>
                           ),
                         ),
                       ],
-                      if (mood['weather'] != null && mood['sleep_hours'] != null)
+                      if (mood['weather'] != null &&
+                          mood['sleep_hours'] != null)
                         const SizedBox(width: 16),
                       if (mood['sleep_hours'] != null) ...[
                         Icon(Icons.bedtime, size: 16, color: Colors.grey[600]),
@@ -293,7 +299,7 @@ class _MoodJournalPageState extends State<MoodJournalPage>
             ),
           ),
           const SizedBox(height: 20),
-          
+
           // Summary Cards
           Row(
             children: [
@@ -315,7 +321,7 @@ class _MoodJournalPageState extends State<MoodJournalPage>
             ],
           ),
           const SizedBox(height: 12),
-          
+
           Row(
             children: [
               Expanded(
@@ -336,7 +342,7 @@ class _MoodJournalPageState extends State<MoodJournalPage>
             ],
           ),
           const SizedBox(height: 20),
-          
+
           // Mood Trend Chart
           Card(
             child: Padding(
@@ -352,16 +358,17 @@ class _MoodJournalPageState extends State<MoodJournalPage>
                     ),
                   ),
                   const SizedBox(height: 16),
-                  
+
                   // Simple trend visualization
                   SizedBox(
                     height: 120,
                     child: Row(
                       children: List.generate(7, (index) {
-                        final moodScore = index < _moodData.length 
-                            ? (_moodData[index]['mood_score']?.toDouble() ?? 5.0)
+                        final moodScore = index < _moodData.length
+                            ? (_moodData[index]['mood_score']?.toDouble() ??
+                                5.0)
                             : 5.0;
-                        
+
                         return Expanded(
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 2),
@@ -398,7 +405,7 @@ class _MoodJournalPageState extends State<MoodJournalPage>
             ),
           ),
           const SizedBox(height: 20),
-          
+
           // Mood Distribution
           Card(
             child: Padding(
@@ -414,7 +421,6 @@ class _MoodJournalPageState extends State<MoodJournalPage>
                     ),
                   ),
                   const SizedBox(height: 16),
-                  
                   _buildMoodDistribution('Excellent (9-10)', Colors.green, 15),
                   const SizedBox(height: 8),
                   _buildMoodDistribution('Good (7-8)', Colors.lightGreen, 35),
@@ -447,7 +453,7 @@ class _MoodJournalPageState extends State<MoodJournalPage>
             ),
           ),
           const SizedBox(height: 20),
-          
+
           // Personal Insights
           Card(
             child: Padding(
@@ -484,7 +490,7 @@ class _MoodJournalPageState extends State<MoodJournalPage>
             ),
           ),
           const SizedBox(height: 16),
-          
+
           // Mood Improvement Tips
           Card(
             child: Padding(
@@ -534,7 +540,7 @@ class _MoodJournalPageState extends State<MoodJournalPage>
             ),
           ),
           const SizedBox(height: 16),
-          
+
           // When to Seek Help
           Card(
             color: Colors.red[50],
@@ -559,9 +565,11 @@ class _MoodJournalPageState extends State<MoodJournalPage>
                   ),
                   const SizedBox(height: 12),
                   _buildHelpItem('Persistent low mood for more than 2 weeks'),
-                  _buildHelpItem('Loss of interest in activities you usually enjoy'),
+                  _buildHelpItem(
+                      'Loss of interest in activities you usually enjoy'),
                   _buildHelpItem('Significant changes in sleep or appetite'),
-                  _buildHelpItem('Difficulty concentrating or making decisions'),
+                  _buildHelpItem(
+                      'Difficulty concentrating or making decisions'),
                   _buildHelpItem('Thoughts of self-harm or suicide'),
                   const SizedBox(height: 12),
                   Container(
@@ -842,8 +850,18 @@ class _MoodJournalPageState extends State<MoodJournalPage>
   String _formatDate(DateTime date) {
     final weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     final months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
     ];
     return '${weekdays[date.weekday % 7]}, ${date.day} ${months[date.month - 1]}';
   }

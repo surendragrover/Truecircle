@@ -5,33 +5,38 @@ import 'package:flutter/material.dart';
 class PermissionHelper {
   /// Sample App - no real permission needed, returns false to use sample data
   static Future<bool> requestContactsPermission(BuildContext context) async {
-    await _showSampleDialog(context, 'Contacts Access');
+    final safeContext = context;
+    await _showSampleDialog(safeContext, 'Contacts Access');
     return false; // Always false for sample mode
   }
 
   /// Sample App - no real permission needed, returns false to use sample data
   static Future<bool> requestPhonePermission(BuildContext context) async {
-    await _showSampleDialog(context, 'Phone Access');
+    final safeContext = context;
+    await _showSampleDialog(safeContext, 'Phone Access');
     return false; // Always false for sample mode
   }
 
   /// Sample App - no real permission needed, returns false to use sample data
   static Future<bool> requestSMSPermission(BuildContext context) async {
-    await _showSampleDialog(context, 'SMS Access');
+    final safeContext = context;
+    await _showSampleDialog(safeContext, 'SMS Access');
     return false; // Always false for sample mode
   }
 
   /// Sample App - no real permission needed, returns false to use sample data
   static Future<bool> requestStoragePermission(BuildContext context) async {
-    await _showSampleDialog(context, 'Storage Access');
+    final safeContext = context;
+    await _showSampleDialog(safeContext, 'Storage Access');
     return false; // Always false for sample mode
   }
 
   /// Show sample explanation dialog (privacy-first)
   static Future<void> _showSampleDialog(
       BuildContext context, String title) async {
+    final safeContext = context;
     await showDialog(
-      context: context,
+      context: safeContext,
       builder: (context) => AlertDialog(
         title: Row(
           children: [
@@ -117,8 +122,9 @@ class PermissionHelper {
     BuildContext context,
     String permissionName,
   ) async {
+    final safeContext = context;
     await showDialog(
-      context: context,
+      context: safeContext,
       builder: (context) => AlertDialog(
         title: const Row(
           children: [

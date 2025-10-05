@@ -11,7 +11,7 @@ class CBTAssessmentResult extends HiveObject {
   @HiveField(1)
   String assessmentKey; // phq9, gad7, adhd_screener, ed_screener
   @HiveField(2)
-  Map<String,int> answers; // questionId -> score
+  Map<String, int> answers; // questionId -> score
   @HiveField(3)
   int totalScore;
   @HiveField(4)
@@ -103,7 +103,10 @@ class CBTMicroLessonProgress extends HiveObject {
   @HiveField(2)
   DateTime updatedAt;
 
-  CBTMicroLessonProgress({required this.lessonId, required this.completed, required this.updatedAt});
+  CBTMicroLessonProgress(
+      {required this.lessonId,
+      required this.completed,
+      required this.updatedAt});
 }
 
 @HiveType(typeId: 44)

@@ -4,19 +4,24 @@ import 'package:permission_handler/permission_handler.dart';
 /// 🔐 Permission Helper - Real Permission Implementation
 class PermissionHelper {
   static Future<bool> requestContactsPermission(BuildContext context) async {
-    return await _requestPermission(Permission.contacts, 'Contacts', context);
+    final safeContext = context;
+    return await _requestPermission(
+        Permission.contacts, 'Contacts', safeContext);
   }
 
   static Future<bool> requestPhonePermission(BuildContext context) async {
-    return await _requestPermission(Permission.phone, 'Phone', context);
+    final safeContext = context;
+    return await _requestPermission(Permission.phone, 'Phone', safeContext);
   }
 
   static Future<bool> requestSMSPermission(BuildContext context) async {
-    return await _requestPermission(Permission.sms, 'SMS', context);
+    final safeContext = context;
+    return await _requestPermission(Permission.sms, 'SMS', safeContext);
   }
 
   static Future<bool> _requestPermission(
       Permission permission, String name, BuildContext context) async {
+    final safeContext = context;
     final status = await permission.status;
     if (status.isGranted) {
       return true;
@@ -26,8 +31,8 @@ class PermissionHelper {
       return true;
     }
     if (result.isPermanentlyDenied) {
-      if (context.mounted) {
-        await showPermissionDeniedDialog(context, name);
+      if (safeContext.mounted) {
+        await showPermissionDeniedDialog(safeContext, name);
       }
     }
     return false;
@@ -62,8 +67,9 @@ class PermissionHelper {
 
   static Future<void> showPermissionDeniedDialog(
       BuildContext context, String permissionName) async {
+    final safeContext = context;
     await showDialog(
-      context: context,
+      context: safeContext,
       builder: (context) => AlertDialog(
         title: Text('$permissionName Permission Denied'),
         content: Text(

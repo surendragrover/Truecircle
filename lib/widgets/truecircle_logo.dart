@@ -82,7 +82,8 @@ class TrueCircleLogo extends StatelessWidget {
                   ),
                   _buildEmotionalHeart(
                     offset: Offset(-size * 0.25, 0), // Left
-                    color: const Color(0xFFEAB308), // Yellow - Friendly but fading
+                    color:
+                        const Color(0xFFEAB308), // Yellow - Friendly but fading
                     emoji: '💛',
                   ),
 
@@ -93,7 +94,8 @@ class TrueCircleLogo extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: const Color(0xFF1E293B),
-                      border: Border.all(color: Colors.white, width: size * 0.008),
+                      border:
+                          Border.all(color: Colors.white, width: size * 0.008),
                     ),
                   ),
 
@@ -232,16 +234,16 @@ class TrueCircleLogo extends StatelessWidget {
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
           // Fallback to initials if image not available
-            return Center(
-              child: Text(
-                isHindi ? 'ट्र' : 'TC',
-                style: TextStyle(
-                  fontSize: size * 0.3,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+          return Center(
+            child: Text(
+              isHindi ? 'ट्र' : 'TC',
+              style: TextStyle(
+                fontSize: size * 0.3,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
-            );
+            ),
+          );
         },
       ),
     );

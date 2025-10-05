@@ -1,6 +1,7 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+
+import 'logging_service.dart';
 
 /// Service to load and parse JSON data from Demo_data folder
 class JsonDataService {
@@ -18,12 +19,20 @@ class JsonDataService {
     if (_festivalsData != null) return _festivalsData!;
 
     try {
-      final String jsonString = await rootBundle.loadString('Demo_data/TrueCircle_Festivals_Data.json');
+      final String jsonString = await rootBundle
+          .loadString('Demo_data/TrueCircle_Festivals_Data.json');
       _festivalsData = json.decode(jsonString);
-      debugPrint('Successfully loaded festivals data: ${_festivalsData!['festivals'].length} festivals');
+      LoggingService.success(
+        'Festivals data loaded (${_festivalsData!['festivals'].length} items)',
+        messageHi:
+            'त्योहार डेटा लोड हुआ (${_festivalsData!['festivals'].length} प्रविष्टियाँ)',
+      );
       return _festivalsData!;
     } catch (e) {
-      debugPrint('Error loading festivals data: $e');
+      LoggingService.error(
+        'Error loading festivals data: $e',
+        messageHi: 'त्योहार डेटा लोड करने में त्रुटि: $e',
+      );
       return {
         'festivals': [],
         'metadata': {
@@ -41,27 +50,45 @@ class JsonDataService {
     if (_relationshipData != null) return _relationshipData!;
 
     try {
-      final String jsonString = await rootBundle.loadString('Demo_data/Relationship Interactions Feature.JSON');
-      _relationshipData = List<Map<String, dynamic>>.from(json.decode(jsonString));
-      debugPrint('Successfully loaded relationship data: ${_relationshipData!.length} entries');
+      final String jsonString = await rootBundle
+          .loadString('Demo_data/Relationship Interactions Feature.JSON');
+      _relationshipData =
+          List<Map<String, dynamic>>.from(json.decode(jsonString));
+      LoggingService.success(
+        'Relationship data loaded (${_relationshipData!.length} entries)',
+        messageHi:
+            'रिश्तों का डेटा लोड हुआ (${_relationshipData!.length} प्रविष्टियाँ)',
+      );
       return _relationshipData!;
     } catch (e) {
-      debugPrint('Error loading relationship data: $e');
+      LoggingService.error(
+        'Error loading relationship data: $e',
+        messageHi: 'रिश्ता डेटा लोड करने में त्रुटि: $e',
+      );
       return [];
     }
   }
 
-  /// Load emotional check-in data from JSON file  
+  /// Load emotional check-in data from JSON file
   Future<List<Map<String, dynamic>>> getEmotionalCheckInData() async {
     if (_emotionalCheckInData != null) return _emotionalCheckInData!;
 
     try {
-      final String jsonString = await rootBundle.loadString('Demo_data/TrueCircle_Emotional_Checkin_Demo_Data.json');
-      _emotionalCheckInData = List<Map<String, dynamic>>.from(json.decode(jsonString));
-      debugPrint('Successfully loaded emotional check-in data: ${_emotionalCheckInData!.length} entries');
+      final String jsonString = await rootBundle
+          .loadString('Demo_data/TrueCircle_Emotional_Checkin_Demo_Data.json');
+      _emotionalCheckInData =
+          List<Map<String, dynamic>>.from(json.decode(jsonString));
+      LoggingService.success(
+        'Emotional check-in data loaded (${_emotionalCheckInData!.length} entries)',
+        messageHi:
+            'इमोशनल चेक-इन डेटा लोड हुआ (${_emotionalCheckInData!.length} प्रविष्टियाँ)',
+      );
       return _emotionalCheckInData!;
     } catch (e) {
-      debugPrint('Error loading emotional check-in data: $e');
+      LoggingService.error(
+        'Error loading emotional check-in data: $e',
+        messageHi: 'इमोशनल चेक-इन डेटा लोड करने में त्रुटि: $e',
+      );
       return [];
     }
   }
@@ -71,20 +98,24 @@ class JsonDataService {
     if (_moodJournalData != null) return _moodJournalData!;
 
     try {
-      final String jsonString = await rootBundle.loadString('Demo_data/Mood_Journal_Demo_Data.json');
+      final String jsonString =
+          await rootBundle.loadString('Demo_data/Mood_Journal_Demo_Data.json');
       final List<dynamic> rawData = json.decode(jsonString);
       _moodJournalData = {
         'entries': rawData,
         'summary': 'Loaded ${rawData.length} mood journal entries'
       };
-      debugPrint('Successfully loaded mood journal data: ${rawData.length} entries');
+      LoggingService.success(
+        'Mood journal data loaded (${rawData.length} entries)',
+        messageHi: 'मूड जर्नल डेटा लोड हुआ (${rawData.length} प्रविष्टियाँ)',
+      );
       return _moodJournalData!;
     } catch (e) {
-      debugPrint('Error loading mood journal data: $e');
-      return {
-        'entries': [],
-        'summary': 'No data available'
-      };
+      LoggingService.error(
+        'Error loading mood journal data: $e',
+        messageHi: 'मूड जर्नल डेटा लोड करने में त्रुटि: $e',
+      );
+      return {'entries': [], 'summary': 'No data available'};
     }
   }
 
@@ -92,8 +123,8 @@ class JsonDataService {
   Future<List<Map<String, dynamic>>> getUpcomingFestivals() async {
     final festivalsData = await getFestivalsData();
     final festivals = festivalsData['festivals'] as List<dynamic>;
-    
-  // For sample preview, return first 5 festivals
+
+    // For sample preview, return first 5 festivals
     // In a real app, you'd filter by actual dates
     return festivals.take(5).map((f) => Map<String, dynamic>.from(f)).toList();
   }
@@ -101,8 +132,8 @@ class JsonDataService {
   /// Get recent relationship interactions (last 7 days)
   Future<List<Map<String, dynamic>>> getRecentRelationshipInsights() async {
     final relationshipData = await getRelationshipData();
-    
-  // For sample preview, return last 5 entries
+
+    // For sample preview, return last 5 entries
     // In a real app, you'd filter by actual dates
     return relationshipData.take(5).toList();
   }
@@ -111,14 +142,17 @@ class JsonDataService {
   Future<Map<String, String>?> getFestivalGreeting(String festivalId) async {
     final festivalsData = await getFestivalsData();
     final festivals = festivalsData['festivals'] as List<dynamic>;
-    
+
     try {
       final festival = festivals.firstWhere(
         (f) => f['id'] == festivalId,
       );
       return Map<String, String>.from(festival['greetingMessages']);
     } catch (e) {
-      debugPrint('Festival not found: $festivalId');
+      LoggingService.warn(
+        'Festival not found: $festivalId',
+        messageHi: 'त्योहार नहीं मिला: $festivalId',
+      );
       return null;
     }
   }
@@ -132,12 +166,21 @@ class JsonDataService {
     if (_meditationData != null) return _meditationData!;
 
     try {
-      final String jsonString = await rootBundle.loadString('Demo_data/Meditation_Guide_Demo_Data.json');
-      _meditationData = List<Map<String, dynamic>>.from(json.decode(jsonString));
-      debugPrint('Successfully loaded meditation data: ${_meditationData!.length} entries');
+      final String jsonString = await rootBundle
+          .loadString('Demo_data/Meditation_Guide_Demo_Data.json');
+      _meditationData =
+          List<Map<String, dynamic>>.from(json.decode(jsonString));
+      LoggingService.success(
+        'Meditation data loaded (${_meditationData!.length} entries)',
+        messageHi:
+            'मेडिटेशन डेटा लोड हुआ (${_meditationData!.length} प्रविष्टियाँ)',
+      );
       return _meditationData!;
     } catch (e) {
-      debugPrint('Error loading meditation data: $e');
+      LoggingService.error(
+        'Error loading meditation data: $e',
+        messageHi: 'मेडिटेशन डेटा लोड करने में त्रुटि: $e',
+      );
       return [];
     }
   }
@@ -147,12 +190,20 @@ class JsonDataService {
     if (_breathingData != null) return _breathingData!;
 
     try {
-      final String jsonString = await rootBundle.loadString('Demo_data/Breathing_+Exercises_Demo_Data.json');
+      final String jsonString = await rootBundle
+          .loadString('Demo_data/Breathing_+Exercises_Demo_Data.json');
       _breathingData = List<Map<String, dynamic>>.from(json.decode(jsonString));
-      debugPrint('Successfully loaded breathing exercises data: ${_breathingData!.length} entries');
+      LoggingService.success(
+        'Breathing exercise data loaded (${_breathingData!.length} entries)',
+        messageHi:
+            'श्वास अभ्यास डेटा लोड हुआ (${_breathingData!.length} प्रविष्टियाँ)',
+      );
       return _breathingData!;
     } catch (e) {
-      debugPrint('Error loading breathing exercises data: $e');
+      LoggingService.error(
+        'Error loading breathing exercises data: $e',
+        messageHi: 'श्वास अभ्यास डेटा लोड करने में त्रुटि: $e',
+      );
       return [];
     }
   }
@@ -162,12 +213,16 @@ class JsonDataService {
     try {
       final meditations = await getMeditationData();
       if (meditations.isEmpty) return null;
-      
-      final dayOfYear = DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
+
+      final dayOfYear =
+          DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
       final tipIndex = dayOfYear % meditations.length;
       return meditations[tipIndex];
     } catch (e) {
-      debugPrint('Error getting today\'s meditation tip: $e');
+      LoggingService.error(
+        'Error getting today\'s meditation tip: $e',
+        messageHi: 'आज का मेडिटेशन टिप प्राप्त करने में त्रुटि: $e',
+      );
       return null;
     }
   }
@@ -177,12 +232,16 @@ class JsonDataService {
     try {
       final exercises = await getBreathingData();
       if (exercises.isEmpty) return null;
-      
-      final dayOfYear = DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
+
+      final dayOfYear =
+          DateTime.now().difference(DateTime(DateTime.now().year, 1, 1)).inDays;
       final tipIndex = dayOfYear % exercises.length;
       return exercises[tipIndex];
     } catch (e) {
-      debugPrint('Error getting today\'s breathing tip: $e');
+      LoggingService.error(
+        'Error getting today\'s breathing tip: $e',
+        messageHi: 'आज का श्वास टिप प्राप्त करने में त्रुटि: $e',
+      );
       return null;
     }
   }
@@ -195,6 +254,9 @@ class JsonDataService {
     _moodJournalData = null;
     _meditationData = null;
     _breathingData = null;
-    debugPrint('JSON data cache cleared');
+    LoggingService.info(
+      'JSON data cache cleared',
+      messageHi: 'JSON डेटा कैश साफ किया गया',
+    );
   }
 }

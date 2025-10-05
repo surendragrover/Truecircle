@@ -10,7 +10,8 @@ import 'json_data_service.dart';
 /// download flag is stored in Hive.
 class OfflineAISuggestionService {
   OfflineAISuggestionService._();
-  static final OfflineAISuggestionService instance = OfflineAISuggestionService._();
+  static final OfflineAISuggestionService instance =
+      OfflineAISuggestionService._();
 
   /// Hive settings box name
   static const String _settingsBox = 'truecircle_settings';
@@ -24,7 +25,8 @@ class OfflineAISuggestionService {
       // Try phone specific first
       final phone = box.get('current_phone_number') as String?;
       if (phone != null) {
-        return box.get('${phone}_models_downloaded', defaultValue: false) as bool;
+        return box.get('${phone}_models_downloaded', defaultValue: false)
+            as bool;
       }
       return box.get('global_models_downloaded', defaultValue: false) as bool;
     } catch (e) {
@@ -47,12 +49,14 @@ class OfflineAISuggestionService {
 
   /// Festival message suggestions (bilingual) built from upcoming festival data.
   /// count: number of suggestions to return.
-  Future<List<Map<String, String>>> getFestivalMessageSuggestions({int count = 2}) async {
+  Future<List<Map<String, String>>> getFestivalMessageSuggestions(
+      {int count = 2}) async {
     if (!await isModelReady()) return [];
     try {
       final upcoming = await JsonDataService.instance.getUpcomingFestivals();
       if (upcoming.isEmpty) return [];
-      final rngSeed = DateTime.now().difference(DateTime(DateTime.now().year)).inDays;
+      final rngSeed =
+          DateTime.now().difference(DateTime(DateTime.now().year)).inDays;
       final rnd = Random(rngSeed);
       // Shuffle copy and take count
       final shuffled = [...upcoming]..shuffle(rnd);
@@ -60,17 +64,20 @@ class OfflineAISuggestionService {
         final nameEn = f['festival_name']?.toString() ?? 'Festival';
         final nameHi = f['festival_name_hindi']?.toString() ?? nameEn;
         final greeting = f['greetingMessages'];
-        String enMsg = 'May the joy of $nameEn strengthen your bonds today. Reach out with warmth & gratitude.';
-        String hiMsg = '$nameHi की शुभकामनाएं! आज अपने प्रियजनों को प्यार और आभार के साथ संदेश भेजें।';
+        String enMsg =
+            'May the joy of $nameEn strengthen your bonds today. Reach out with warmth & gratitude.';
+        String hiMsg =
+            '$nameHi की शुभकामनाएं! आज अपने प्रियजनों को प्यार और आभार के साथ संदेश भेजें।';
         if (greeting is Map) {
           enMsg = greeting['english']?.toString() ?? enMsg;
           hiMsg = greeting['hindi']?.toString() ?? hiMsg;
         }
         // Add AI flavored enhancement
-        final enhancer = _festivalEnhancers[rnd.nextInt(_festivalEnhancers.length)];
+        final enhancer =
+            _festivalEnhancers[rnd.nextInt(_festivalEnhancers.length)];
         return {
           'festival_en': nameEn,
-            'festival_hi': nameHi,
+          'festival_hi': nameHi,
           'message_en': '$enMsg $enhancer',
           'message_hi': '$hiMsg $enhancer',
         };

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../widgets/truecircle_logo.dart';
+import '../widgets/global_navigation_bar.dart';
 import 'color_scheme_preview_page.dart';
 import 'truecircle_faq_page.dart';
 import 'truecircle_features_list_page.dart';
@@ -8,6 +9,7 @@ import '../home_page.dart';
 import '../theme/coral_theme.dart';
 import '../services/cloud_sync_service.dart';
 import '../services/loyalty_points_service.dart';
+import 'login_signup_page.dart';
 
 /// How TrueCircle Works - Comprehensive Guide Page
 class HowTrueCircleWorksPage extends StatefulWidget {
@@ -140,14 +142,25 @@ class _HowTrueCircleWorksPageState extends State<HowTrueCircleWorksPage>
       ),
       body: Container(
         decoration: CoralTheme.background,
-        child: TabBarView(
-          controller: _tabController,
+        child: Column(
           children: [
-            _buildOverviewTab(),
-            _buildFeaturesTab(),
-            _buildPrivacyTab(),
-            _buildAITechnologyTab(),
-            _buildGettingStartedTab(),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: [
+                  _buildOverviewTab(),
+                  _buildFeaturesTab(),
+                  _buildPrivacyTab(),
+                  _buildAITechnologyTab(),
+                  _buildGettingStartedTab(),
+                ],
+              ),
+            ),
+            // Global navigation bar
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: GlobalNavigationBar(isHindi: _isHindi),
+            ),
           ],
         ),
       ),
@@ -195,12 +208,15 @@ class _HowTrueCircleWorksPageState extends State<HowTrueCircleWorksPage>
               icon: const Icon(Icons.palette, color: Colors.white),
               label: Text(
                 _isHindi ? 'कलर स्कीम देखें' : 'View Color Scheme',
-                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    color: Colors.white, fontWeight: FontWeight.bold),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24)),
               ),
             ),
           ),
@@ -653,130 +669,138 @@ TrueCircle is completely free and always will be. Your privacy is our responsibi
                 ? '🚀 TrueCircle के साथ शुरुआत'
                 : '🚀 Getting Started with TrueCircle',
             content: _isHindi
-                ? '''TrueCircle use करना बहुत आसान है। Installation के बाद app अपने आप सभी जरूरी AI models download करके offline mode में setup हो जाती है।
+                ? '''TrueCircle का पहला अनुभव बेहद सरल है। ऐप install करने के बाद सभी जरूरी AI मॉडल अपने आप डाउनलोड होकर ऑफलाइन मोड में काम करने लगते हैं।
 
-📱 Complete Setup Process:
-1. App Download करें (Play Store/App Store से)
-2. Number Verification करें (OTP के साथ)
-3. ⏳ AI Models Download होने का wait करें (1-2 मिनट)
-   • Android: Google Gemini Nano SDK
-   • iPhone: CoreML Models  
-   • Windows/Web: TensorFlow Lite Models
-4. Language choose करें (Hindi/English)
-5. Privacy Mode select करें (recommended)
-6. Basic preferences set करें
-7. पहला Emotional Check-in करें
+📱 सेटअप स्टेप्स:
+1. TrueCircle ऐप Play Store या App Store से इंस्टॉल करें
+2. सैंपल मोड प्रोफ़ाइल से लॉग इन करके बेसिक विवरण पूरा करें
+3. 1-2 मिनट मॉडल डाउनलोड पूरा होने दें (ऑफ़लाइन सपोर्ट के लिए)
+4. Demo data के साथ Cultural AI और Relationship Insights एक्सप्लोर करें
+5. Relationship Dashboard से स्मार्ट संदेश और एनालिटिक्स देखें'''
+                : '''Your first TrueCircle session is quick and simple. After installation the app downloads the required AI models so everything works offline.
 
-🔄 One-Time Download:
-Models एक बार download होने के बाद app हमेशा के लिए offline काम करती है। Internet connection की जरूरत नहीं।
-
-⏱️ Total Setup Time:
-• Model Download: 1-2 मिनट (one-time only)
-• Initial Setup: 30 seconds
-• First Check-in: 30 seconds'''
-                : '''Using TrueCircle is very easy. After installation, the app automatically downloads all necessary AI models and sets up in offline mode.
-
-📱 Complete Setup Process:
-1. Download the app (from Play Store/App Store)
-2. Number Verification (with OTP)
-3. ⏳ Wait for AI Models Download (1-2 minutes)
-   • Android: Google Gemini Nano SDK
-   • iPhone: CoreML Models  
-   • Windows/Web: TensorFlow Lite Models
-4. Choose language (Hindi/English)
-5. Select Privacy Mode (recommended)
-6. Set basic preferences
-7. Do your first Emotional Check-in
-
-🔄 One-Time Download:
-Once models are downloaded, the app works offline forever. No internet connection needed.
-
-⏱️ Total Setup Time:
-• Model Download: 1-2 minutes (one-time only)
-• Initial Setup: 30 seconds
-• First Check-in: 30 seconds''',
+📱 Setup steps:
+1. Install TrueCircle from the Play Store or App Store
+2. Log in with the sample profile and finish the quick onboarding
+3. Allow 1-2 minutes for AI models to finish downloading
+4. Explore Cultural AI and relationship insights using demo data
+5. Visit the Relationship Dashboard for smart messages and analytics''',
           ),
           const SizedBox(height: 16),
           _buildSectionCard(
-            title: _isHindi ? '💡 Best Practices' : '💡 Best Practices',
+            title: _isHindi ? '💡 सर्वोत्तम उपयोग टिप्स' : '💡 Best Practices',
             content: _isHindi
-                ? '''TrueCircle से maximum benefit पाने के लिए ये tips follow करें:
+                ? '''TrueCircle का पूरा लाभ लेने के लिए ये आदतें अपनाएँ:
 
-📅 Daily Usage:
-• हर दिन Emotional Check-in करें (सिर्फ 30 seconds)
-• Weekly relationship review करें
-• Festival times पर Cultural AI से tips लें
-• Sleep और mood patterns को track करें
+• रोज़ाना Emotional Check-in पूरा करें (30 सेकंड में)
+• हर सप्ताह Relationship Dashboard की समीक्षा करें
+• त्योहारों के समय Cultural AI से सलाह लें
+• सैंपल मोड में सुरक्षित रहते हुए हर फीचर को आज़माएँ
+• Feedback सेक्शन से हमें सुझाव भेजें'''
+                : '''Follow these simple habits to get the most from TrueCircle:
 
-🎯 Pro Tips:
-• Morning में emotional check-in करें (दिन की शुरुआत में clarity मिलती है)
-• Dr. Iris से weekly chat करें
-• Breathing exercises regularly करें
-• Festival celebrations को plan करने के लिए Cultural AI use करें
-
-📊 Progress Tracking:
-• Weekly analytics देखें
-• Monthly relationship insights review करें
-• Seasonal emotional patterns को समझें
-• Goal setting करें और progress monitor करें'''
-                : '''Follow these tips to get maximum benefit from TrueCircle:
-
-📅 Daily Usage:
-• Do Emotional Check-in daily (just 30 seconds)
-• Do weekly relationship review
-• Get tips from Cultural AI during festivals
-• Track sleep and mood patterns
-
-🎯 Pro Tips:
-• Do emotional check-in in the morning (gives clarity at start of day)
-• Chat with Dr. Iris weekly
-• Do breathing exercises regularly
-• Use Cultural AI to plan festival celebrations
-
-📊 Progress Tracking:
-• Check weekly analytics
-• Review monthly relationship insights
-• Understand seasonal emotional patterns
-• Set goals and monitor progress''',
+• Complete the daily Emotional Check-in (takes ~30 seconds)
+• Review the Relationship Dashboard every week
+• Use Cultural AI guidance around key festivals
+• Explore every feature in sample mode—privacy stays intact
+• Share suggestions through the feedback section''',
           ),
           const SizedBox(height: 16),
           _buildSectionCard(
-            title: _isHindi ? '🆘 Support & Help' : '🆘 Support & Help',
+            title:
+                _isHindi ? '🛟 सहायता और सहायता केंद्र' : '🛟 Help & Support',
             content: _isHindi
-                ? '''अगर आपको कोई help चाहिए या questions हैं, तो हम यहाँ हैं आपकी मदद के लिए:
+                ? '''किसी भी सवाल या सहायता के लिए:
 
-📞 Support Channels:
-• In-App Help - app के अंदर ही complete guide है
-• Dr. Iris Chat - AI counselor से पूछें
-• FAQ Section - common questions के answers
-• Video Tutorials - step-by-step guidance
-• Community Forum - other users से connect करें
+• इन-ऐप Help Center में चरण-दर-चरण गाइड उपलब्ध है
+• Dr. Iris AI Counselor से तुरंत सलाह लें
+• FAQ पेज पर सबसे आम सवालों के जवाब पढ़ें
+• वीडियो ट्यूटोरियल जल्दी सीखने में मदद करते हैं
+• TrueCircle समुदाय में अनुभव साझा करें'''
+                : '''Need a hand?
 
-🕐 Response Time:
-• In-App Help: Instant
-• Dr. Iris: Real-time 24/7
-• Technical Issues: 24 hours में resolve
-• Feature Requests: Next update में consider
-
-🌟 Community:
-TrueCircle community join करें और other users के experiences share करें। Privacy maintain करते हुए valuable insights पा सकते हैं।'''
-                : '''If you need any help or have questions, we're here to help you:
-
-📞 Support Channels:
-• In-App Help - Complete guide inside the app
-• Dr. Iris Chat - Ask the AI counselor
-• FAQ Section - Answers to common questions
-• Video Tutorials - Step-by-step guidance
-• Community Forum - Connect with other users
-
-🕐 Response Time:
-• In-App Help: Instant
-• Dr. Iris: Real-time 24/7
-• Technical Issues: Resolved within 24 hours
-• Feature Requests: Considered in next update
-
-🌟 Community:
-Join the TrueCircle community and share experiences with other users. Get valuable insights while maintaining privacy.''',
+• The in-app Help Center has step-by-step guides
+• Chat with Dr. Iris AI counselor for instant advice
+• Browse the FAQ page for quick answers
+• Watch video tutorials to master features fast
+• Join the TrueCircle community to share experiences''',
+          ),
+          const SizedBox(height: 16),
+          Card(
+            elevation: 8,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.white,
+                    Colors.blue.shade50,
+                  ],
+                ),
+              ),
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _isHindi ? 'अभी शुरू करें' : 'Start exploring now',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue.shade800,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    _isHindi
+                        ? 'सैंपल प्रोफ़ाइल के साथ लॉग इन करें और तुरंत TrueCircle अनुभव का आनंद लें।'
+                        : 'Log in with the sample profile and enjoy the TrueCircle experience instantly.',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      height: 1.5,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: ElevatedButton.icon(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginSignupPage(),
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.login, color: Colors.white),
+                      label: Text(
+                        _isHindi ? 'Sign Up / Login' : 'Sign Up / Login',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 32,
+                          vertical: 16,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        elevation: 8,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
           const SizedBox(height: 24),
           Center(
@@ -792,7 +816,7 @@ Join the TrueCircle community and share experiences with other users. Get valuab
               icon: const Icon(Icons.quiz_outlined, color: Colors.white),
               label: Text(
                 _isHindi
-                    ? 'अक्सर पूछे जाने वाले प्रश्न देखें'
+                    ? 'अक्सर पूछे जाने वाले प्रश्न'
                     : 'View Frequently Asked Questions',
                 style: const TextStyle(
                   fontSize: 16,
@@ -802,8 +826,10 @@ Join the TrueCircle community and share experiences with other users. Get valuab
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue.shade700,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 12,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),
@@ -816,42 +842,41 @@ Join the TrueCircle community and share experiences with other users. Get valuab
             child: ElevatedButton.icon(
               onPressed: () async {
                 try {
-                  // Ensure the settings box is open (when user arrived here directly after login bypassing AuthWrapper)
                   final box = Hive.isBoxOpen('truecircle_settings')
                       ? Hive.box('truecircle_settings')
                       : await Hive.openBox('truecircle_settings');
 
-                  final phoneNumber = box.get('current_phone_number') as String?;
+                  final phoneNumber =
+                      box.get('current_phone_number') as String?;
 
-                  // Mark that user has seen this page (phone specific key if available)
                   if (phoneNumber != null) {
                     await box.put('${phoneNumber}_seen_how_works', true);
                   } else {
-                    await box.put('has_seen_how_truecircle_works', true); // Fallback key
+                    await box.put('has_seen_how_truecircle_works', true);
                   }
 
-                  // OPTIONAL: If model download already completed earlier in flow, mark flag so AuthWrapper won't loop back.
-                  // If you still want to show ModelDownloadProgressPage after this, remove the line below.
                   box.put('${phoneNumber ?? 'global'}_models_downloaded', true);
 
-                  // Cloud sync: push onboarding + model state (loyalty points aggregate only)
                   final points = LoyaltyPointsService.instance.totalPoints;
                   CloudSyncService.instance.syncUserState(
                     loyaltyPoints: points,
-                    featuresCount: 0, // Not available in this context; will update later from dashboard
+                    featuresCount: 0,
                     modelsReady: true,
                   );
 
                   if (!mounted) return;
-                  // Proceed to main HomePage
+
                   Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (context) => const HomePage()),
+                    MaterialPageRoute(
+                      builder: (context) => const HomePage(),
+                    ),
                   );
                 } catch (e) {
-                  // Fallback: still try to navigate even if Hive write failed
                   if (mounted) {
                     Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => const HomePage()),
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
                     );
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
@@ -879,8 +904,10 @@ Join the TrueCircle community and share experiences with other users. Get valuab
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 32,
+                  vertical: 16,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(25),
                 ),

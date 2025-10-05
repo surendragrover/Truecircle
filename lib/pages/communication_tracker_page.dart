@@ -7,30 +7,30 @@ import '../models/relationship_log.dart';
 import '../widgets/service_status_widget.dart';
 
 /// Communication Tracker (Privacy Mode Sample Page)
-/// 
+///
 /// Demonstrates privacy-first communication tracking and relationship insights
 /// using on-device AI analysis while maintaining user privacy
 class CommunicationTrackerPage extends StatefulWidget {
   const CommunicationTrackerPage({super.key});
 
   @override
-  State<CommunicationTrackerPage> createState() => _CommunicationTrackerPageState();
+  State<CommunicationTrackerPage> createState() =>
+      _CommunicationTrackerPageState();
 }
 
-class _CommunicationTrackerPageState extends State<CommunicationTrackerPage> 
+class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
     with SingleTickerProviderStateMixin {
-  
   late TabController _tabController;
   PrivacyService? _privacyService;
   bool _isLoading = false;
   List<RelationshipLog> _communicationLogs = [];
   String _relationshipInsight = '';
   String _selectedContact = 'sample_contact_1';
-  
+
   final Map<String, String> _sampleContacts = {
-  'sample_contact_1': 'Alex Johnson',
-  'sample_contact_2': 'Sarah Williams', 
-  'sample_contact_3': 'Mike Chen',
+    'sample_contact_1': 'Alex Johnson',
+    'sample_contact_2': 'Sarah Williams',
+    'sample_contact_3': 'Mike Chen',
   };
 
   @override
@@ -50,49 +50,56 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
   void _initializeServices() {
     try {
       _privacyService = ServiceLocator.instance.get<PrivacyService>();
-  debugPrint('✅ CommunicationTracker: Privacy Service loaded');
+      debugPrint('✅ CommunicationTracker: Privacy Service loaded');
     } catch (e) {
-  debugPrint('❌ CommunicationTracker: Privacy Service not available: $e');
+      debugPrint('❌ CommunicationTracker: Privacy Service not available: $e');
     }
   }
 
   Future<void> _loadCommunicationData() async {
     if (_privacyService == null) return;
 
-    setState(() { _isLoading = true; });
+    setState(() {
+      _isLoading = true;
+    });
 
     try {
       // Load communication logs for selected contact
       final logs = await _privacyService!.getLogSummaryForAI(_selectedContact);
-      
+
       setState(() {
         _communicationLogs = logs;
         _isLoading = false;
       });
-      
-  debugPrint('✅ CommunicationTracker: Loaded ${logs.length} logs');
+
+      debugPrint('✅ CommunicationTracker: Loaded ${logs.length} logs');
     } catch (e) {
-  debugPrint('❌ CommunicationTracker: Error loading data: $e');
-      setState(() { _isLoading = false; });
+      debugPrint('❌ CommunicationTracker: Error loading data: $e');
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
   Future<void> _generateRelationshipInsight() async {
     if (_privacyService == null) return;
 
-    setState(() { _isLoading = true; });
+    setState(() {
+      _isLoading = true;
+    });
 
     try {
-      final insight = await _privacyService!.getRelationshipInsight(_selectedContact);
-      
+      final insight =
+          await _privacyService!.getRelationshipInsight(_selectedContact);
+
       setState(() {
         _relationshipInsight = insight;
         _isLoading = false;
       });
-      
-  debugPrint('✅ CommunicationTracker: Generated relationship insight');
+
+      debugPrint('✅ CommunicationTracker: Generated relationship insight');
     } catch (e) {
-  debugPrint('❌ CommunicationTracker: Error generating insight: $e');
+      debugPrint('❌ CommunicationTracker: Error generating insight: $e');
       setState(() {
         _relationshipInsight = 'Error generating insight: $e';
         _isLoading = false;
@@ -139,9 +146,9 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
         children: [
           // Service status
           const ServiceStatusWidget(),
-          
+
           const SizedBox(height: 16),
-          
+
           // Contact selector
           Card(
             child: Padding(
@@ -152,8 +159,8 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
                   Text(
                     'Select Contact for Analysis',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   const SizedBox(height: 12),
                   DropdownButtonFormField<String>(
@@ -182,14 +189,14 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
               ),
             ),
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Communication stats overview
           _buildCommunicationStatsCard(),
-          
+
           const SizedBox(height: 16),
-          
+
           // Quick actions
           _buildQuickActionsCard(),
         ],
@@ -207,7 +214,9 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
               const Icon(Icons.hourglass_empty, size: 48, color: Colors.grey),
               const SizedBox(height: 8),
               Text(
-                _isLoading ? 'Loading communication data...' : 'No communication data available',
+                _isLoading
+                    ? 'Loading communication data...'
+                    : 'No communication data available',
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ],
@@ -236,13 +245,12 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
                 Text(
                   'Communication Statistics',
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+                        fontWeight: FontWeight.bold,
+                      ),
                 ),
               ],
             ),
             const SizedBox(height: 16),
-            
             Row(
               children: [
                 Expanded(
@@ -255,7 +263,7 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
                 ),
                 Expanded(
                   child: _buildStatItem(
-                    'Total Messages', 
+                    'Total Messages',
                     '${stats.totalMessages}',
                     Icons.message,
                     Colors.blue,
@@ -263,9 +271,7 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
                 ),
               ],
             ),
-            
             const SizedBox(height: 12),
-            
             Row(
               children: [
                 Expanded(
@@ -292,7 +298,8 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
     );
   }
 
-  Widget _buildStatItem(String label, String value, IconData icon, Color color) {
+  Widget _buildStatItem(
+      String label, String value, IconData icon, Color color) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -335,11 +342,10 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
             Text(
               'Quick Actions',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 12),
-            
             Row(
               children: [
                 Expanded(
@@ -398,13 +404,11 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
   }
 
   Widget _buildLogCard(RelationshipLog log) {
-    final typeIcon = log.type == InteractionType.call 
-        ? Icons.call 
-        : Icons.message;
-    final typeColor = log.type == InteractionType.call 
-        ? Colors.green 
-        : Colors.blue;
-    
+    final typeIcon =
+        log.type == InteractionType.call ? Icons.call : Icons.message;
+    final typeColor =
+        log.type == InteractionType.call ? Colors.green : Colors.blue;
+
     return Card(
       margin: const EdgeInsets.only(bottom: 8.0),
       child: ListTile(
@@ -463,9 +467,9 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
       EmotionalTone.excitement: Colors.purple,
       EmotionalTone.love: Colors.pink,
     };
-    
+
     final color = toneColors[tone] ?? Colors.grey;
-    
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
@@ -502,14 +506,14 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
                       const SizedBox(width: 8),
                       Text(
                         'AI Relationship Insights',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 16),
-                  
                   if (_isLoading)
                     const Center(
                       child: Column(
@@ -523,7 +527,8 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
                   else if (_relationshipInsight.isEmpty)
                     Column(
                       children: [
-                        const Icon(Icons.lightbulb_outline, size: 48, color: Colors.grey),
+                        const Icon(Icons.lightbulb_outline,
+                            size: 48, color: Colors.grey),
                         const SizedBox(height: 8),
                         const Text('No insights generated yet'),
                         const SizedBox(height: 16),
@@ -556,9 +561,7 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
               ),
             ),
           ),
-          
           const SizedBox(height: 16),
-          
           _buildPrivacyNoticeCard(),
         ],
       ),
@@ -572,9 +575,7 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const ServiceStatusWidget(),
-          
           const SizedBox(height: 16),
-          
           Card(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -587,35 +588,32 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
                       const SizedBox(width: 8),
                       Text(
                         'Privacy Protection',
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                     ],
                   ),
                   const SizedBox(height: 16),
-                  
                   _buildPrivacyFeature(
                     'On-Device Processing',
                     'All AI analysis happens locally on your device',
                     Icons.phonelink,
                     Colors.green,
                   ),
-                  
                   _buildPrivacyFeature(
                     'No Data Transmission',
                     'Communication data never leaves your device',
                     Icons.wifi_off,
                     Colors.blue,
                   ),
-                  
                   _buildPrivacyFeature(
                     'Sample Data Mode',
                     'Currently using sample data for demonstration',
                     Icons.preview,
                     Colors.orange,
                   ),
-                  
                   _buildPrivacyFeature(
                     'Encrypted Storage',
                     'All data stored with device-level encryption',
@@ -626,16 +624,15 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
               ),
             ),
           ),
-          
           const SizedBox(height: 16),
-          
           _buildPermissionsCard(),
         ],
       ),
     );
   }
 
-  Widget _buildPrivacyFeature(String title, String description, IconData icon, Color color) {
+  Widget _buildPrivacyFeature(
+      String title, String description, IconData icon, Color color) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12.0),
       child: Row(
@@ -682,8 +679,8 @@ class _CommunicationTrackerPageState extends State<CommunicationTrackerPage>
             Text(
               'Permission Status',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
             const SizedBox(height: 12),
             _buildPermissionRow('Communication Tracking', true, 'Sample Mode'),

@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 part 'mental_health_log.g.dart';
 
 /// Mental health tracking log for emotional well-being analysis
-/// 
+///
 /// Privacy-first design - only mood patterns and metadata stored
 /// Used for on-device AI analysis and relationship correlation
 @HiveType(typeId: 11)
@@ -81,11 +81,12 @@ class MentalHealthLog extends HiveObject {
         orElse: () => MoodLevel.neutral,
       ),
       emotionTags: (json['emotionTags'] as List<dynamic>?)
-          ?.map((e) => EmotionTag.values.firstWhere(
-                (tag) => tag.toString().split('.').last == e,
-                orElse: () => EmotionTag.unknown,
-              ))
-          .toList() ?? [],
+              ?.map((e) => EmotionTag.values.firstWhere(
+                    (tag) => tag.toString().split('.').last == e,
+                    orElse: () => EmotionTag.unknown,
+                  ))
+              .toList() ??
+          [],
       energyLevel: json['energyLevel'] ?? 5,
       stressLevel: json['stressLevel'] ?? 5,
       socialAnxiety: json['socialAnxiety'] ?? 5,
@@ -94,21 +95,24 @@ class MentalHealthLog extends HiveObject {
         orElse: () => SleepQuality.average,
       ),
       triggers: (json['triggers'] as List<dynamic>?)
-          ?.map((e) => TriggerEvent.values.firstWhere(
-                (trigger) => trigger.toString().split('.').last == e,
-                orElse: () => TriggerEvent.unknown,
-              ))
-          .toList() ?? [],
+              ?.map((e) => TriggerEvent.values.firstWhere(
+                    (trigger) => trigger.toString().split('.').last == e,
+                    orElse: () => TriggerEvent.unknown,
+                  ))
+              .toList() ??
+          [],
       copingStrategies: (json['copingStrategies'] as List<dynamic>?)
-          ?.map((e) => CopingStrategy.values.firstWhere(
-                (strategy) => strategy.toString().split('.').last == e,
-                orElse: () => CopingStrategy.unknown,
-              ))
-          .toList() ?? [],
+              ?.map((e) => CopingStrategy.values.firstWhere(
+                    (strategy) => strategy.toString().split('.').last == e,
+                    orElse: () => CopingStrategy.unknown,
+                  ))
+              .toList() ??
+          [],
       relationshipSatisfaction: json['relationshipSatisfaction'] ?? 5,
       notes: json['notes'] ?? '',
       isPrivacyMode: json['isPrivacyMode'] ?? true,
-      aiAnalysisMetadata: Map<String, dynamic>.from(json['aiAnalysisMetadata'] ?? {}),
+      aiAnalysisMetadata:
+          Map<String, dynamic>.from(json['aiAnalysisMetadata'] ?? {}),
     );
   }
 
@@ -118,13 +122,15 @@ class MentalHealthLog extends HiveObject {
       'id': id,
       'timestamp': timestamp.millisecondsSinceEpoch,
       'primaryMood': primaryMood.toString().split('.').last,
-      'emotionTags': emotionTags.map((e) => e.toString().split('.').last).toList(),
+      'emotionTags':
+          emotionTags.map((e) => e.toString().split('.').last).toList(),
       'energyLevel': energyLevel,
       'stressLevel': stressLevel,
       'socialAnxiety': socialAnxiety,
       'sleepQuality': sleepQuality.toString().split('.').last,
       'triggers': triggers.map((e) => e.toString().split('.').last).toList(),
-      'copingStrategies': copingStrategies.map((e) => e.toString().split('.').last).toList(),
+      'copingStrategies':
+          copingStrategies.map((e) => e.toString().split('.').last).toList(),
       'relationshipSatisfaction': relationshipSatisfaction,
       'notes': notes,
       'isPrivacyMode': isPrivacyMode,
@@ -135,36 +141,38 @@ class MentalHealthLog extends HiveObject {
   /// Generate privacy-safe summary for AI analysis
   String toAISummaryString() {
     final buffer = StringBuffer();
-    
+
     // Primary mood and timestamp
-    buffer.write('${primaryMood.name} mood on ${timestamp.day}/${timestamp.month}');
-    
+    buffer.write(
+        '${primaryMood.name} mood on ${timestamp.day}/${timestamp.month}');
+
     // Energy and stress levels
     buffer.write(' (Energy: $energyLevel/10, Stress: $stressLevel/10)');
-    
+
     // Social anxiety if significant
     if (socialAnxiety >= 7) {
       buffer.write(' [High social anxiety: $socialAnxiety/10]');
     }
-    
+
     // Sleep quality
     if (sleepQuality != SleepQuality.average) {
       buffer.write(' [Sleep: ${sleepQuality.name}]');
     }
-    
+
     // Triggers if any
     if (triggers.isNotEmpty) {
       buffer.write(' Triggers: ${triggers.map((t) => t.name).join(', ')}');
     }
-    
+
     // Coping strategies used
     if (copingStrategies.isNotEmpty) {
-      buffer.write(' Coping: ${copingStrategies.map((c) => c.name).join(', ')}');
+      buffer
+          .write(' Coping: ${copingStrategies.map((c) => c.name).join(', ')}');
     }
-    
+
     // Relationship satisfaction
     buffer.write(' RelSat: $relationshipSatisfaction/10');
-    
+
     return buffer.toString();
   }
 
@@ -173,7 +181,7 @@ class MentalHealthLog extends HiveObject {
     final now = DateTime.now();
     return [
       MentalHealthLog(
-  id: 'mh_sample_1',
+        id: 'mh_sample_1',
         timestamp: now.subtract(const Duration(hours: 3)),
         primaryMood: MoodLevel.good,
         emotionTags: [EmotionTag.grateful, EmotionTag.content],
@@ -185,10 +193,13 @@ class MentalHealthLog extends HiveObject {
         relationshipSatisfaction: 8,
         notes: 'Good day with partner, feeling connected',
         isPrivacyMode: true,
-  aiAnalysisMetadata: {'sample': true, 'pattern': 'positive_relationship'},
+        aiAnalysisMetadata: {
+          'sample': true,
+          'pattern': 'positive_relationship'
+        },
       ),
       MentalHealthLog(
-  id: 'mh_sample_2',
+        id: 'mh_sample_2',
         timestamp: now.subtract(const Duration(days: 1)),
         primaryMood: MoodLevel.anxious,
         emotionTags: [EmotionTag.worried, EmotionTag.overwhelmed],
@@ -196,15 +207,18 @@ class MentalHealthLog extends HiveObject {
         stressLevel: 8,
         socialAnxiety: 7,
         sleepQuality: SleepQuality.poor,
-        triggers: [TriggerEvent.workPressure, TriggerEvent.relationshipConflict],
+        triggers: [
+          TriggerEvent.workPressure,
+          TriggerEvent.relationshipConflict
+        ],
         copingStrategies: [CopingStrategy.breathingExercises],
         relationshipSatisfaction: 5,
         notes: 'Had argument, feeling disconnected',
         isPrivacyMode: true,
-  aiAnalysisMetadata: {'sample': true, 'pattern': 'relationship_stress'},
+        aiAnalysisMetadata: {'sample': true, 'pattern': 'relationship_stress'},
       ),
       MentalHealthLog(
-  id: 'mh_sample_3',
+        id: 'mh_sample_3',
         timestamp: now.subtract(const Duration(days: 2)),
         primaryMood: MoodLevel.neutral,
         emotionTags: [EmotionTag.calm, EmotionTag.focused],
@@ -216,7 +230,7 @@ class MentalHealthLog extends HiveObject {
         relationshipSatisfaction: 7,
         notes: 'Regular day, stable mood',
         isPrivacyMode: true,
-  aiAnalysisMetadata: {'sample': true, 'pattern': 'baseline'},
+        aiAnalysisMetadata: {'sample': true, 'pattern': 'baseline'},
       ),
     ];
   }
@@ -236,28 +250,28 @@ class MentalHealthLog extends HiveObject {
 enum MoodLevel {
   @HiveField(0)
   excellent,
-  
+
   @HiveField(1)
   good,
-  
+
   @HiveField(2)
   neutral,
-  
+
   @HiveField(3)
   low,
-  
+
   @HiveField(4)
   depressed,
-  
+
   @HiveField(5)
   anxious,
-  
+
   @HiveField(6)
   angry,
-  
+
   @HiveField(7)
   excited,
-  
+
   @HiveField(8)
   unknown,
 }
@@ -267,52 +281,52 @@ enum MoodLevel {
 enum EmotionTag {
   @HiveField(0)
   happy,
-  
+
   @HiveField(1)
   sad,
-  
+
   @HiveField(2)
   angry,
-  
+
   @HiveField(3)
   anxious,
-  
+
   @HiveField(4)
   excited,
-  
+
   @HiveField(5)
   grateful,
-  
+
   @HiveField(6)
   lonely,
-  
+
   @HiveField(7)
   content,
-  
+
   @HiveField(8)
   frustrated,
-  
+
   @HiveField(9)
   overwhelmed,
-  
+
   @HiveField(10)
   calm,
-  
+
   @HiveField(11)
   worried,
-  
+
   @HiveField(12)
   hopeful,
-  
+
   @HiveField(13)
   disappointed,
-  
+
   @HiveField(14)
   confused,
-  
+
   @HiveField(15)
   focused,
-  
+
   @HiveField(16)
   unknown,
 }
@@ -322,19 +336,19 @@ enum EmotionTag {
 enum SleepQuality {
   @HiveField(0)
   excellent,
-  
+
   @HiveField(1)
   good,
-  
+
   @HiveField(2)
   average,
-  
+
   @HiveField(3)
   poor,
-  
+
   @HiveField(4)
   terrible,
-  
+
   @HiveField(5)
   unknown,
 }
@@ -344,40 +358,40 @@ enum SleepQuality {
 enum TriggerEvent {
   @HiveField(0)
   workPressure,
-  
+
   @HiveField(1)
   relationshipConflict,
-  
+
   @HiveField(2)
   financialStress,
-  
+
   @HiveField(3)
   healthConcerns,
-  
+
   @HiveField(4)
   familyIssues,
-  
+
   @HiveField(5)
   socialPressure,
-  
+
   @HiveField(6)
   lackOfCommunication,
-  
+
   @HiveField(7)
   misunderstanding,
-  
+
   @HiveField(8)
   loneliness,
-  
+
   @HiveField(9)
   rejection,
-  
+
   @HiveField(10)
   criticism,
-  
+
   @HiveField(11)
   changeInRoutine,
-  
+
   @HiveField(12)
   unknown,
 }
@@ -387,46 +401,46 @@ enum TriggerEvent {
 enum CopingStrategy {
   @HiveField(0)
   meditation,
-  
+
   @HiveField(1)
   exercise,
-  
+
   @HiveField(2)
   breathingExercises,
-  
+
   @HiveField(3)
   journaling,
-  
+
   @HiveField(4)
   talkingToFriends,
-  
+
   @HiveField(5)
   professionalHelp,
-  
+
   @HiveField(6)
   music,
-  
+
   @HiveField(7)
   reading,
-  
+
   @HiveField(8)
   natureWalk,
-  
+
   @HiveField(9)
   creativeActivity,
-  
+
   @HiveField(10)
   deepConversation,
-  
+
   @HiveField(11)
   qualityTime,
-  
+
   @HiveField(12)
   physicalAffection,
-  
+
   @HiveField(13)
   problemSolving,
-  
+
   @HiveField(14)
   unknown,
 }
@@ -474,7 +488,8 @@ class MentalHealthAnalytics extends HiveObject {
   bool isPrivacyMode;
 
   @HiveField(13)
-  Map<String, dynamic> correlationData; // Relationship between communication and mood
+  Map<String, dynamic>
+      correlationData; // Relationship between communication and mood
 
   MentalHealthAnalytics({
     required this.userId,
@@ -509,11 +524,18 @@ class MentalHealthAnalytics extends HiveObject {
     }
 
     // Calculate averages
-    final avgMood = logs.fold(0.0, (sum, log) => sum + _moodToScore(log.primaryMood)) / logs.length;
-    final avgEnergy = logs.fold(0.0, (sum, log) => sum + log.energyLevel) / logs.length;
-    final avgStress = logs.fold(0.0, (sum, log) => sum + log.stressLevel) / logs.length;
-    final avgAnxiety = logs.fold(0.0, (sum, log) => sum + log.socialAnxiety) / logs.length;
-    final avgRelSat = logs.fold(0.0, (sum, log) => sum + log.relationshipSatisfaction) / logs.length;
+    final avgMood =
+        logs.fold(0.0, (sum, log) => sum + _moodToScore(log.primaryMood)) /
+            logs.length;
+    final avgEnergy =
+        logs.fold(0.0, (sum, log) => sum + log.energyLevel) / logs.length;
+    final avgStress =
+        logs.fold(0.0, (sum, log) => sum + log.stressLevel) / logs.length;
+    final avgAnxiety =
+        logs.fold(0.0, (sum, log) => sum + log.socialAnxiety) / logs.length;
+    final avgRelSat =
+        logs.fold(0.0, (sum, log) => sum + log.relationshipSatisfaction) /
+            logs.length;
 
     // Mood distribution
     final moodDist = <MoodLevel, int>{};
@@ -580,34 +602,41 @@ class MentalHealthAnalytics extends HiveObject {
   /// Generate comprehensive analysis summary for AI
   String toAnalysisString() {
     final buffer = StringBuffer();
-    
+
     buffer.writeln('Mental Health Analytics Summary:');
-    buffer.writeln('Period: ${periodStart.day}/${periodStart.month} - ${periodEnd.day}/${periodEnd.month}');
+    buffer.writeln(
+        'Period: ${periodStart.day}/${periodStart.month} - ${periodEnd.day}/${periodEnd.month}');
     buffer.writeln('Average Mood: ${averageMoodScore.toStringAsFixed(1)}/10');
-    buffer.writeln('Average Energy: ${averageEnergyLevel.toStringAsFixed(1)}/10');
-    buffer.writeln('Average Stress: ${averageStressLevel.toStringAsFixed(1)}/10');
-    buffer.writeln('Social Anxiety: ${averageSocialAnxiety.toStringAsFixed(1)}/10');
-    buffer.writeln('Relationship Satisfaction: ${averageRelationshipSatisfaction.toStringAsFixed(1)}/10');
-    
+    buffer
+        .writeln('Average Energy: ${averageEnergyLevel.toStringAsFixed(1)}/10');
+    buffer
+        .writeln('Average Stress: ${averageStressLevel.toStringAsFixed(1)}/10');
+    buffer.writeln(
+        'Social Anxiety: ${averageSocialAnxiety.toStringAsFixed(1)}/10');
+    buffer.writeln(
+        'Relationship Satisfaction: ${averageRelationshipSatisfaction.toStringAsFixed(1)}/10');
+
     if (moodDistribution.isNotEmpty) {
       buffer.writeln('Mood Distribution:');
       moodDistribution.forEach((mood, count) {
         buffer.writeln('  ${mood.name}: $count times');
       });
     }
-    
+
     if (commonTriggers.isNotEmpty) {
       final sortedTriggers = commonTriggers.entries.toList()
         ..sort((a, b) => b.value.compareTo(a.value));
-      buffer.writeln('Common Triggers: ${sortedTriggers.take(3).map((e) => '${e.key.name}(${e.value})').join(', ')}');
+      buffer.writeln(
+          'Common Triggers: ${sortedTriggers.take(3).map((e) => '${e.key.name}(${e.value})').join(', ')}');
     }
-    
+
     if (effectiveCopingStrategies.isNotEmpty) {
       final sortedCoping = effectiveCopingStrategies.entries.toList()
         ..sort((a, b) => b.value.compareTo(a.value));
-      buffer.writeln('Effective Coping: ${sortedCoping.take(3).map((e) => '${e.key.name}(${e.value})').join(', ')}');
+      buffer.writeln(
+          'Effective Coping: ${sortedCoping.take(3).map((e) => '${e.key.name}(${e.value})').join(', ')}');
     }
-    
+
     return buffer.toString();
   }
 }

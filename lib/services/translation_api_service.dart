@@ -72,7 +72,7 @@ class TranslationApiService {
         throw Exception('Translation failed: ${response.statusCode}');
       }
     } catch (e) {
-  // Fallback for sample purposes
+      // Fallback for sample purposes
       return _getDemoTranslation(text, targetLanguage);
     }
 
@@ -127,7 +127,7 @@ class TranslationApiService {
             .toList();
       }
     } catch (e) {
-  // Return sample languages
+      // Return sample languages
       return _getDemoLanguages();
     }
 

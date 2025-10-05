@@ -5,23 +5,28 @@ import '../models/cbt_models.dart';
 /// Offline hypnotherapy session manager (privacy-first, on-device only)
 class HypnotherapyService extends ChangeNotifier {
   static HypnotherapyService? _instance;
-  static HypnotherapyService get instance => _instance ??= HypnotherapyService._();
+  static HypnotherapyService get instance =>
+      _instance ??= HypnotherapyService._();
   HypnotherapyService._();
 
   static const _boxName = 'hypnotherapy_sessions';
   Box? _box;
 
   Future<void> init() async {
-    if (_box != null) return; _box = await Hive.openBox(_boxName);
+    if (_box != null) return;
+    _box = await Hive.openBox(_boxName);
   }
 
   List<HypnotherapySessionLog> getSessions() {
     if (_box == null) return [];
     return _box!.values.whereType<HypnotherapySessionLog>().toList()
-      ..sort((a,b)=> b.startedAt.compareTo(a.startedAt));
+      ..sort((a, b) => b.startedAt.compareTo(a.startedAt));
   }
 
-  Future<HypnotherapySessionLog> startSession({required String scriptKey, required int relaxationBefore, required String focusIntent}) async {
+  Future<HypnotherapySessionLog> startSession(
+      {required String scriptKey,
+      required int relaxationBefore,
+      required String focusIntent}) async {
     await init();
     final id = DateTime.now().toIso8601String();
     final log = HypnotherapySessionLog(
@@ -39,7 +44,8 @@ class HypnotherapyService extends ChangeNotifier {
     return log;
   }
 
-  Future<void> completeSession(String id, {required int relaxationAfter, String? notes}) async {
+  Future<void> completeSession(String id,
+      {required int relaxationAfter, String? notes}) async {
     await init();
     final log = _box!.get(id);
     if (log is HypnotherapySessionLog) {
@@ -51,9 +57,9 @@ class HypnotherapyService extends ChangeNotifier {
     }
   }
 
-  Map<String,String> getScriptMetadata(String key, {bool hindi = false}) {
+  Map<String, String> getScriptMetadata(String key, {bool hindi = false}) {
     // Lightweight predefined scripts (placeholder, kept fully on-device)
-    final data = <String,Map<String,String>>{
+    final data = <String, Map<String, String>>{
       'calm_breath': {
         'title_en': 'Calming Breath Focus',
         'title_hi': 'शांत श्वास फोकस',
@@ -75,8 +81,8 @@ class HypnotherapyService extends ChangeNotifier {
     };
     final script = data[key] ?? data.values.first;
     return {
-      'title': hindi? script['title_hi']!: script['title_en']!,
-      'desc': hindi? script['desc_hi']!: script['desc_en']!,
+      'title': hindi ? script['title_hi']! : script['title_en']!,
+      'desc': hindi ? script['desc_hi']! : script['desc_en']!,
     };
   }
 }

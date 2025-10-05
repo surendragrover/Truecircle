@@ -29,7 +29,7 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
 
   String selectedLanguage = 'English';
   static const String _chatLangPrefKey = 'dr_iris_language_pref';
-  
+
   // 1. Service Locator से AI Service को access करना - प्लेटफॉर्म की चिंता किए बिना
   OnDeviceAIService? _aiService;
   bool _serviceAvailable = false;
@@ -42,11 +42,11 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
   @override
   void initState() {
     super.initState();
-  _restoreLanguage().then((_) async {
-  _initializeAIService();
-    await _loadMoodContext();
-  });
-    
+    _restoreLanguage().then((_) async {
+      _initializeAIService();
+      await _loadMoodContext();
+    });
+
     // Initial welcome message from Dr. Iris
     _messages.add(ChatMessage(
       selectedLanguage == 'English'
@@ -63,23 +63,29 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
       final settings = await Hive.openBox('truecircle_settings');
       final phone = settings.get('current_phone_number') as String?;
       if (phone != null) {
-        modelsReady = settings.get('${phone}_models_downloaded', defaultValue: false) as bool;
+        modelsReady = settings.get('${phone}_models_downloaded',
+            defaultValue: false) as bool;
       }
     } catch (_) {}
 
     if (!modelsReady) {
-      debugPrint('ℹ️ Dr. Iris: Models not ready yet, staying in sample response mode');
-      setState(() { _serviceAvailable = false; });
+      debugPrint(
+          'ℹ️ Dr. Iris: Models not ready yet, staying in sample response mode');
+      setState(() {
+        _serviceAvailable = false;
+      });
       return;
     }
 
     try {
       _aiService = ServiceLocator.instance.get<OnDeviceAIService>();
       _serviceAvailable = true;
-      debugPrint('✅ Dr. Iris: AI Service initialized (modelsReady=$modelsReady)');
+      debugPrint(
+          '✅ Dr. Iris: AI Service initialized (modelsReady=$modelsReady)');
     } catch (e) {
       _serviceAvailable = false;
-      debugPrint('⚠️ Dr. Iris: AI Service fetch failed, fallback to sample responses: $e');
+      debugPrint(
+          '⚠️ Dr. Iris: AI Service fetch failed, fallback to sample responses: $e');
     }
   }
 
@@ -90,29 +96,47 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
       final entries = raw.cast<Map>().cast<Map<String, dynamic>>();
       _recentMoodEntries = entries.take(25).toList();
       if (_recentMoodEntries.isEmpty) {
-  setState(() { _contextSummary=''; });
+        setState(() {
+          _contextSummary = '';
+        });
         return;
       }
-      final moods = _recentMoodEntries.map((e)=> (e['mood_score'] ?? 0).toDouble()).where((v)=> v>0).toList();
-      final avgMood = moods.isNotEmpty ? moods.reduce((a,b)=>a+b)/moods.length : 0.0;
-      final stressCounts = <String,int>{};
+      final moods = _recentMoodEntries
+          .map((e) => (e['mood_score'] ?? 0).toDouble())
+          .where((v) => v > 0)
+          .toList();
+      final avgMood =
+          moods.isNotEmpty ? moods.reduce((a, b) => a + b) / moods.length : 0.0;
+      final stressCounts = <String, int>{};
       for (final e in _recentMoodEntries) {
         final s = (e['stress'] ?? 'Unknown').toString();
         stressCounts[s] = (stressCounts[s] ?? 0) + 1;
       }
       final topFeelings = _recentMoodEntries
-          .expand((e)=> (e['feelings']??'').toString().split(',').map((s)=>s.trim()).where((s)=>s.isNotEmpty))
-          .fold<Map<String,int>>({}, (m,f){ m[f]=(m[f]??0)+1; return m; }).entries.toList()
-        ..sort((a,b)=> b.value.compareTo(a.value));
-      final feelingsStr = topFeelings.take(5).map((e)=> e.key).join(', ');
-      final stressStr = stressCounts.entries.map((e)=> '${e.key}:${e.value}').join(', ');
+          .expand((e) => (e['feelings'] ?? '')
+              .toString()
+              .split(',')
+              .map((s) => s.trim())
+              .where((s) => s.isNotEmpty))
+          .fold<Map<String, int>>({}, (m, f) {
+            m[f] = (m[f] ?? 0) + 1;
+            return m;
+          })
+          .entries
+          .toList()
+        ..sort((a, b) => b.value.compareTo(a.value));
+      final feelingsStr = topFeelings.take(5).map((e) => e.key).join(', ');
+      final stressStr =
+          stressCounts.entries.map((e) => '${e.key}:${e.value}').join(', ');
       _contextSummary = selectedLanguage == 'Hindi'
-        ? 'औसत मूड ${avgMood.toStringAsFixed(1)}/10 • तनाव: $stressStr • प्रमुख भावनाएँ: $feelingsStr'
-        : 'Avg mood ${avgMood.toStringAsFixed(1)}/10 • Stress: $stressStr • Top feelings: $feelingsStr';
-  setState(() {});
+          ? 'औसत मूड ${avgMood.toStringAsFixed(1)}/10 • तनाव: $stressStr • प्रमुख भावनाएँ: $feelingsStr'
+          : 'Avg mood ${avgMood.toStringAsFixed(1)}/10 • Stress: $stressStr • Top feelings: $feelingsStr';
+      setState(() {});
     } catch (e) {
       debugPrint('DrIris context load failed: $e');
-  setState(() { _contextSummary=''; });
+      setState(() {
+        _contextSummary = '';
+      });
     }
   }
 
@@ -121,7 +145,8 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
       final box = Hive.isBoxOpen('truecircle_settings')
           ? Hive.box('truecircle_settings')
           : await Hive.openBox('truecircle_settings');
-      final stored = box.get(_chatLangPrefKey, defaultValue: 'English') as String;
+      final stored =
+          box.get(_chatLangPrefKey, defaultValue: 'English') as String;
       if (stored != selectedLanguage) {
         setState(() => selectedLanguage = stored);
       }
@@ -171,8 +196,6 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
     ]
   };
 
-
-
   // 3. Message भेजना - Service Locator के through AI service का उपयोग
   void _handleSubmitted(String text) async {
     if (text.trim().isEmpty) return;
@@ -185,39 +208,40 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
 
     try {
       String response;
-      
+
       // Service Locator से AI service का उपयोग करना (प्लेटफॉर्म की चिंता किए बिना)
       if (_serviceAvailable && _aiService != null) {
         debugPrint('📤 Dr. Iris: Sending message to AI service: $text');
-    // Merge orchestrator feature insights if available
-    String orchestratorContext = '';
-    try {
-      final insights = AIOrchestratorService().featureInsights.value;
-      if (insights.isNotEmpty) {
-      final parts = insights.entries.map((e) => '${e.key}: ${e.value}').join(' | ');
-      orchestratorContext = parts;
-      }
-    } catch (_) {}
+        // Merge orchestrator feature insights if available
+        String orchestratorContext = '';
+        try {
+          final insights = AIOrchestratorService().featureInsights.value;
+          if (insights.isNotEmpty) {
+            final parts =
+                insights.entries.map((e) => '${e.key}: ${e.value}').join(' | ');
+            orchestratorContext = parts;
+          }
+        } catch (_) {}
 
-    final combinedContext = [_contextSummary, orchestratorContext]
-      .where((s) => s.trim().isNotEmpty)
-      .join(' • ');
+        final combinedContext = [_contextSummary, orchestratorContext]
+            .where((s) => s.trim().isNotEmpty)
+            .join(' • ');
 
-    final contextPrompt = combinedContext.isNotEmpty
-      ? (selectedLanguage == 'Hindi'
-        ? 'एकीकृत संदर्भ: $combinedContext\nउपयोगकर्ता संदेश: $text\nदयालु, सहायक और सांस्कृतिक रूप से संवेदनशील जवाब दें।'
-        : 'Unified context: $combinedContext\nUser message: $text\nProvide a compassionate, culturally aware therapeutic reply.')
-      : text;
+        final contextPrompt = combinedContext.isNotEmpty
+            ? (selectedLanguage == 'Hindi'
+                ? 'एकीकृत संदर्भ: $combinedContext\nउपयोगकर्ता संदेश: $text\nदयालु, सहायक और सांस्कृतिक रूप से संवेदनशील जवाब दें।'
+                : 'Unified context: $combinedContext\nUser message: $text\nProvide a compassionate, culturally aware therapeutic reply.')
+            : text;
         response = await _aiService!.generateDrIrisResponse(contextPrompt);
         debugPrint('📥 Dr. Iris: Received AI response');
       } else {
         // Fallback to sample responses if AI service not available
-        debugPrint('📝 Dr. Iris: Using sample response (AI service not available)');
+        debugPrint(
+            '📝 Dr. Iris: Using sample response (AI service not available)');
         response = _generateSampleResponse(text);
       }
-      
+
       _addBotMessage(response);
-      
     } catch (e) {
       debugPrint('❌ Dr. Iris: Error getting AI response: $e');
       // Fallback to sample response on error
@@ -240,22 +264,30 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
   String _generateSampleResponse(String userInput) {
     String responseKey = 'default';
     final input = userInput.toLowerCase();
-    
+
     if (input.contains('relationship') || input.contains('रिश्ता')) {
       responseKey = 'relationship';
     } else if (input.contains('stress') || input.contains('तनाव')) {
       responseKey = 'stress';
-    } else if (input.contains('feel') || input.contains('sad') || input.contains('दुख') || input.contains('महसूस')) {
+    } else if (input.contains('feel') ||
+        input.contains('sad') ||
+        input.contains('दुख') ||
+        input.contains('महसूस')) {
       responseKey = 'feeling';
-    } else if (input.contains('mood') || input.contains('मूड') || input.contains('मिजाज')) {
+    } else if (input.contains('mood') ||
+        input.contains('मूड') ||
+        input.contains('मिजाज')) {
       responseKey = 'mood';
-    } else if (input.contains('data') || input.contains('डेटा') || input.contains('30') || input.contains('day')) {
+    } else if (input.contains('data') ||
+        input.contains('डेटा') ||
+        input.contains('30') ||
+        input.contains('day')) {
       responseKey = 'data';
     }
 
     final responses = _sampleResponses[responseKey]!;
     var response = responses[Random().nextInt(responses.length)];
-    
+
     // Add bilingual support if selected language is Hindi
     if (selectedLanguage == 'Hindi') {
       response = _translateToHindi(response);
@@ -263,11 +295,12 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
 
     return response;
   }
-  
+
   String _translateToHindi(String englishText) {
     // Simple Hindi translations for key responses
     final translations = {
-      'Based on your 30-day emotional data': 'आपके 30-दिन के भावनात्मक डेटा के आधार पर',
+      'Based on your 30-day emotional data':
+          'आपके 30-दिन के भावनात्मक डेटा के आधार पर',
       'Your sample data shows': 'आपका नमूना डेटा दिखाता है',
       'I notice fluctuations': 'मैं उतार-चढ़ाव देख रही हूं',
       'Let\'s explore': 'आइए जानें',
@@ -275,12 +308,12 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
       'How can I help': 'मैं कैसे मदद कर सकती हूं',
       'I\'m here to support': 'मैं आपकी सहायता के लिए यहां हूं'
     };
-    
+
     String hindiResponse = englishText;
     translations.forEach((english, hindi) {
       hindiResponse = hindiResponse.replaceAll(english, hindi);
     });
-    
+
     return hindiResponse;
   }
 
@@ -288,11 +321,12 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     final isSmallScreen = screenSize.width < 600;
-    
+
     return Scaffold(
       body: Container(
         // Use global coral gradient background instead of image
-        decoration: const BoxDecoration(gradient: LinearGradient(
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [Color(0xFFFFA385), Color(0xFFFF7F50), Color(0xFFFF6233)],
@@ -312,12 +346,13 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
             ),
             if (_contextSummary.isNotEmpty && _showContext)
               Container(
-                margin: const EdgeInsets.fromLTRB(12,6,12,4),
+                margin: const EdgeInsets.fromLTRB(12, 6, 12, 4),
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: Colors.white.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: Colors.white.withValues(alpha: 0.25)),
+                  border:
+                      Border.all(color: Colors.white.withValues(alpha: 0.25)),
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -327,12 +362,14 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
                     Expanded(
                       child: Text(
                         _contextSummary,
-                        style: const TextStyle(color: Colors.white, fontSize: 12, height: 1.3),
+                        style: const TextStyle(
+                            color: Colors.white, fontSize: 12, height: 1.3),
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => setState(()=> _showContext=false),
-                      child: const Icon(Icons.close, size: 16, color: Colors.white70),
+                      onTap: () => setState(() => _showContext = false),
+                      child: const Icon(Icons.close,
+                          size: 16, color: Colors.white70),
                     )
                   ],
                 ),
@@ -409,7 +446,8 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
               ),
               decoration: BoxDecoration(
                 color: message.isUser ? Colors.blue[400] : Colors.white,
-                borderRadius: BorderRadius.circular(isSmallScreen ? 16.0 : 12.0),
+                borderRadius:
+                    BorderRadius.circular(isSmallScreen ? 16.0 : 12.0),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withValues(alpha: 0.1),
@@ -481,7 +519,8 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
                 ),
                 style: TextStyle(
                   fontSize: isSmallScreen ? 14 : 16,
-                  color: Colors.black, // ensure typing text appears black for visibility
+                  color: Colors
+                      .black, // ensure typing text appears black for visibility
                 ),
               ),
             ),
@@ -492,7 +531,9 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
                   Icons.send,
                   size: isSmallScreen ? 20 : 24,
                 ),
-                onPressed: _isLoading ? null : () => _handleSubmitted(_textController.text),
+                onPressed: _isLoading
+                    ? null
+                    : () => _handleSubmitted(_textController.text),
               ),
             ),
           ],
@@ -519,7 +560,9 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                selectedLanguage == 'English' ? 'Dr. Iris Therapy' : 'डॉ. आइरिस थेरेपी',
+                selectedLanguage == 'English'
+                    ? 'Dr. Iris Therapy'
+                    : 'डॉ. आइरिस थेरेपी',
                 style: TextStyle(
                   fontSize: isSmallScreen ? 16 : 18,
                   fontWeight: FontWeight.bold,
@@ -541,11 +584,13 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
         IconButton(
           icon: Text(
             selectedLanguage == 'English' ? 'हि' : 'EN',
-            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold),
           ),
           onPressed: () {
             setState(() {
-              selectedLanguage = selectedLanguage == 'English' ? 'Hindi' : 'English';
+              selectedLanguage =
+                  selectedLanguage == 'English' ? 'Hindi' : 'English';
             });
             _persistLanguage();
           },

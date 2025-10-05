@@ -11,11 +11,14 @@ void main() async {
   // Firebase initialization with fallback strategy
   try {
     try {
-      await Firebase.initializeApp(); // prefer auto (uses google-services.json / plist)
+      await Firebase
+          .initializeApp(); // prefer auto (uses google-services.json / plist)
       debugPrint('✅ [main] Firebase auto initialized');
     } catch (autoErr) {
-      debugPrint('ℹ️ [main] Auto init failed ($autoErr) – trying explicit options');
-      await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+      debugPrint(
+          'ℹ️ [main] Auto init failed ($autoErr) – trying explicit options');
+      await Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform);
       debugPrint('✅ [main] Firebase initialized with explicit options');
     }
   } catch (e) {

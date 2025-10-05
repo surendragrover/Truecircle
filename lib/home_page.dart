@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'pages/dr_iris_dashboard.dart';
@@ -14,7 +13,8 @@ import 'pages/how_truecircle_works_page.dart';
 import 'pages/feature_page.dart';
 import 'theme/coral_theme.dart';
 import 'pages/cbt_center_page.dart';
-
+import 'pages/progress_tracker_page.dart';
+import 'pages/sample_data_diagnostics_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -183,7 +183,8 @@ class _HomePageState extends State<HomePage> {
         icon: const Icon(Icons.help_outline, color: Colors.white),
         label: Text(
           selectedLanguage == 'English' ? 'How it Works' : 'कैसे काम करता है',
-          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style:
+              const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         backgroundColor: CoralTheme.dark,
         elevation: 8,
@@ -202,10 +203,15 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                selectedLanguage == 'English' ? 'Welcome Back' : 'फिर से स्वागत है',
-                style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                selectedLanguage == 'English'
+                    ? 'Welcome Back'
+                    : 'फिर से स्वागत है',
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
               ),
-              ValueListenableBuilder<Map<String,String>>(
+              ValueListenableBuilder<Map<String, String>>(
                 valueListenable: AIOrchestratorService().featureInsights,
                 builder: (context, insights, _) {
                   final moodLine = insights['mood'];
@@ -233,27 +239,45 @@ class _HomePageState extends State<HomePage> {
                     ),
                   );
                 },
-                tooltip: selectedLanguage == 'English' 
-                    ? 'How TrueCircle Works' 
+                tooltip: selectedLanguage == 'English'
+                    ? 'How TrueCircle Works'
                     : 'TrueCircle कैसे काम करता है',
               ),
               IconButton(
                 icon: const Icon(Icons.settings, color: Colors.white),
                 onPressed: _showSettingsDialog,
               ),
+              IconButton(
+                icon: const Icon(Icons.dataset_outlined, color: Colors.white),
+                tooltip: selectedLanguage == 'English'
+                    ? 'Sample Data Diagnostics'
+                    : 'नमूना डेटा रिपोर्ट',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SampleDataDiagnosticsPage(),
+                    ),
+                  );
+                },
+              ),
               // Language and Mode switch can be added here if needed
               IconButton(
                 icon: Text(
                   selectedLanguage == 'English' ? 'हि' : 'EN',
-                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 onPressed: () {
                   setState(() {
-                    selectedLanguage = selectedLanguage == 'English' ? 'Hindi' : 'English';
+                    selectedLanguage =
+                        selectedLanguage == 'English' ? 'Hindi' : 'English';
                   });
                   _persistLanguage();
                 },
-                tooltip: selectedLanguage == 'English' ? 'Switch to Hindi' : 'अंग्रेजी पर स्विच करें',
+                tooltip: selectedLanguage == 'English'
+                    ? 'Switch to Hindi'
+                    : 'अंग्रेजी पर स्विच करें',
               ),
             ],
           )
@@ -287,14 +311,16 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildFeatureCard(Map<String, dynamic> feature) {
-    bool isLocked = ['relationship_insights', 'progress']
-            .contains(feature['action']) &&
-        !_isFullFunctionalMode;
+    bool isLocked =
+        ['relationship_insights', 'progress'].contains(feature['action']) &&
+            !_isFullFunctionalMode;
 
     return Card(
       elevation: 6,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-      color: isLocked ? Colors.white.withValues(alpha: 0.55) : Colors.white.withValues(alpha: 0.90),
+      color: isLocked
+          ? Colors.white.withValues(alpha: 0.55)
+          : Colors.white.withValues(alpha: 0.90),
       child: InkWell(
         onTap: () => _handleFeatureAction(feature['action']),
         borderRadius: BorderRadius.circular(16),
@@ -386,13 +412,17 @@ class _HomePageState extends State<HomePage> {
                     isHindi: selectedLanguage == 'Hindi',
                     onOpenSettings: () {
                       // Placeholder: In real implementation navigate to settings/permission page
-                      setState(() { _isFullFunctionalMode = true; });
+                      setState(() {
+                        _isFullFunctionalMode = true;
+                      });
                       _showModeChangeSnackBar(true);
                     },
                   ),
                 );
               } else {
-                setState(() { _isFullFunctionalMode = false; });
+                setState(() {
+                  _isFullFunctionalMode = false;
+                });
                 _showModeChangeSnackBar(false);
               }
             },
@@ -471,7 +501,8 @@ class _HomePageState extends State<HomePage> {
       case 'emotional_checkin':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const EmotionalCheckInEntryPage()),
+          MaterialPageRoute(
+              builder: (context) => const EmotionalCheckInEntryPage()),
         );
         break;
       case 'mood_journal':
@@ -499,8 +530,10 @@ class _HomePageState extends State<HomePage> {
                 'titleHi': 'ध्यान गाइड',
                 'subtitle': 'Daily meditation practices',
                 'subtitleHi': 'दैनिक ध्यान अभ्यास',
-                'description': 'Guided mindfulness, breath focus, mantra and calm body scan sessions to improve emotional balance.',
-                'descriptionHi': 'मार्गदर्शित माइंडफुलनेस, श्वास पर ध्यान, मंत्र और शांत बॉडी स्कैन सत्र भावनात्मक संतुलन के लिए।',
+                'description':
+                    'Guided mindfulness, breath focus, mantra and calm body scan sessions to improve emotional balance.',
+                'descriptionHi':
+                    'मार्गदर्शित माइंडफुलनेस, श्वास पर ध्यान, मंत्र और शांत बॉडी स्कैन सत्र भावनात्मक संतुलन के लिए।',
                 'demoCount': '30 Sessions',
                 'icon': Icons.self_improvement,
                 'color': Colors.green,
@@ -513,7 +546,8 @@ class _HomePageState extends State<HomePage> {
       case 'breathing_exercises':
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const BreathingExercisesPage()),
+          MaterialPageRoute(
+              builder: (context) => const BreathingExercisesPage()),
         );
         break;
       case 'sleep_tracker':
@@ -541,16 +575,17 @@ class _HomePageState extends State<HomePage> {
         );
         break;
       case 'progress':
-        // TODO: Fix the ProgressTrackerPage hang issue. For now, showing a coming soon message.
-        _showComingSoon('Progress Tracker');
-        /*
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const ProgressTrackerPage(),
-          ),
-        );
-        */
+        // ProgressTrackerPage navigation implemented
+        try {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ProgressTrackerPage(),
+            ),
+          );
+        } catch (e) {
+          _showComingSoon('Progress Tracker (Error: $e)');
+        }
         break;
       default:
         _showComingSoon(action);
@@ -615,8 +650,7 @@ class _HomePageState extends State<HomePage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              title: Text(
-                  selectedLanguage == 'English' ? 'Language' : 'भाषा'),
+              title: Text(selectedLanguage == 'English' ? 'Language' : 'भाषा'),
               trailing: DropdownButton<String>(
                 value: selectedLanguage,
                 onChanged: (String? newValue) {

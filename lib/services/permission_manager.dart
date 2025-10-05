@@ -7,7 +7,7 @@ import 'package:truecircle/models/contact_interaction.dart';
 /// All analysis uses sample data and on-device AI processing.
 /// Designed to pass Google Play Store automated review.
 class PermissionManager {
-  // Sample app - always use sample mode  
+  // Sample app - always use sample mode
   static bool get isSampleMode => true;
   static bool _privacyNoticeShown = false;
 

@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 
+import 'logging_service.dart';
+
 /// Robust AI Model Download Service
 /// यह service actual model download और platform detection करती है
 class AIModelDownloadService {
@@ -11,6 +13,29 @@ class AIModelDownloadService {
       AIModelDownloadService._internal();
   factory AIModelDownloadService() => _instance;
   AIModelDownloadService._internal();
+
+  /// When running widget/integration tests we want to avoid long async waits
+  /// and external network calls. These toggles allow tests to instruct the
+  /// service to skip real downloads and immediately mark models as ready.
+  @visibleForTesting
+  static bool instantCompletionForTests = false;
+
+  @visibleForTesting
+  static void configureForTests({
+    bool instantCompletion = true,
+    http.Client? mockHttpClient,
+  }) {
+    instantCompletionForTests = instantCompletion;
+    if (mockHttpClient != null) {
+      _instance._overrideHttpClientForTests(mockHttpClient);
+    }
+  }
+
+  @visibleForTesting
+  static void resetTestConfiguration() {
+    instantCompletionForTests = false;
+    _instance._resetHttpClientOverride();
+  }
 
   // Model download status
   bool _isDownloading = false;
@@ -21,8 +46,27 @@ class AIModelDownloadService {
   final StreamController<String> _statusController =
       StreamController<String>.broadcast();
 
+  http.Client? _testHttpClientOverride;
+  http.Client? _sharedHttpClient;
+
   Stream<double> get progressStream => _progressController.stream;
   Stream<String> get statusStream => _statusController.stream;
+
+  http.Client _resolvedHttpClient() {
+    if (_testHttpClientOverride != null) {
+      return _testHttpClientOverride!;
+    }
+    _sharedHttpClient ??= http.Client();
+    return _sharedHttpClient!;
+  }
+
+  void _overrideHttpClientForTests(http.Client client) {
+    _testHttpClientOverride = client;
+  }
+
+  void _resetHttpClientOverride() {
+    _testHttpClientOverride = null;
+  }
 
   /// Platform Detection and Model Information
   PlatformModelInfo detectPlatform() {
@@ -100,7 +144,10 @@ class AIModelDownloadService {
         return box.get('models_downloaded', defaultValue: false) as bool;
       }
     } catch (e) {
-      debugPrint('Error checking model status: $e');
+      LoggingService.error(
+        'Error checking model status: $e',
+        messageHi: 'मॉडल स्थिति जांचने में त्रुटि: $e',
+      );
       return false;
     }
   }
@@ -108,12 +155,18 @@ class AIModelDownloadService {
   /// Start AI Model Download Process
   Future<bool> downloadModels() async {
     if (_isDownloading) {
-      debugPrint('Models already being downloaded');
+      LoggingService.warn(
+        'Models already being downloaded',
+        messageHi: 'मॉडल डाउनलोड पहले से चालू है',
+      );
       return false;
     }
 
     if (await areModelsDownloaded()) {
-      debugPrint('Models already downloaded');
+      LoggingService.info(
+        'Models already downloaded',
+        messageHi: 'मॉडल पहले से डाउनलोड हो चुके हैं',
+      );
       return true;
     }
 
@@ -124,7 +177,23 @@ class AIModelDownloadService {
     try {
       final platformInfo = detectPlatform();
 
-      debugPrint('🚀 Starting download for ${platformInfo.platform}');
+      if (instantCompletionForTests) {
+        _statusController.add('Test mode: activating offline AI bundle');
+        _progressController.add(1.0);
+        await _markModelsAsDownloaded(platformInfo);
+        _isDownloading = false;
+        LoggingService.success(
+          'AI models marked ready instantly for tests',
+          messageHi: 'टेस्ट मोड में AI मॉडल तुरंत तैयार चिह्नित किए गए',
+        );
+        return true;
+      }
+
+      LoggingService.info(
+        'Starting model download for ${platformInfo.platform}',
+        messageHi:
+            '${platformInfo.platform} प्लेटफ़ॉर्म के लिए मॉडल डाउनलोड शुरू हो रहा है',
+      );
       _statusController.add('Detected platform: ${platformInfo.platform}');
       await _delay(500);
       _progressController.add(0.1);
@@ -132,26 +201,37 @@ class AIModelDownloadService {
       // Step 1: Check network connectivity
       _statusController.add('Checking network connection...');
       final hasConnection = await _checkNetworkConnection();
+      bool offlineMode = false;
       if (!hasConnection) {
-        throw Exception('No internet connection available');
-      }
-      await _delay(300);
-      _progressController.add(0.2);
+        offlineMode = true;
+        LoggingService.warn(
+          'Model download: no internet – switching to offline sample assets',
+          messageHi:
+              'मॉडल डाउनलोड: इंटरनेट उपलब्ध नहीं, ऑफलाइन सैंपल मॉडल सक्रिय कर रहे हैं',
+        );
+        _statusController
+            .add('Offline mode detected, using bundled sample AI.');
+      } else {
+        await _delay(300);
+        _progressController.add(0.2);
 
-      // Step 2: Verify server availability
-      _statusController.add('Verifying server availability...');
-      final serverAvailable =
-          await _checkServerAvailability(platformInfo.downloadUrl);
-      if (!serverAvailable) {
-        throw Exception('Model server temporarily unavailable');
+        // Step 2: Verify server availability
+        _statusController.add('Verifying server availability...');
+        final serverAvailable =
+            await _checkServerAvailability(platformInfo.downloadUrl);
+        if (!serverAvailable) {
+          throw Exception('Model server temporarily unavailable');
+        }
+        await _delay(400);
+        _progressController.add(0.3);
       }
-      await _delay(400);
-      _progressController.add(0.3);
 
       // Step 3: Download model files
-      _statusController.add('Downloading ${platformInfo.modelName}...');
+      _statusController.add(offlineMode
+          ? 'Activating offline cultural AI models...'
+          : 'Downloading ${platformInfo.modelName}...');
       final downloadSuccess = await _downloadModelFiles(platformInfo);
-      if (!downloadSuccess) {
+      if (!downloadSuccess && !offlineMode) {
         throw Exception('Failed to download model files');
       }
       _progressController.add(0.7);
@@ -183,10 +263,17 @@ class AIModelDownloadService {
       _statusController.add('Download completed successfully! ✅');
       _isDownloading = false;
 
-      debugPrint('✅ AI Models download completed for ${platformInfo.platform}');
+      LoggingService.success(
+        'AI models ready for ${platformInfo.platform}',
+        messageHi:
+            '${platformInfo.platform} प्लेटफ़ॉर्म के लिए AI मॉडल तैयार हैं',
+      );
       return true;
     } catch (e) {
-      debugPrint('❌ Model download failed: $e');
+      LoggingService.error(
+        'Model download failed: $e',
+        messageHi: 'मॉडल डाउनलोड विफल: $e',
+      );
       _statusController.add('Download failed: $e');
       _progressController.add(0.0);
       _isDownloading = false;
@@ -197,13 +284,18 @@ class AIModelDownloadService {
   /// Check network connectivity
   Future<bool> _checkNetworkConnection() async {
     try {
-      final result = await http.get(
-        Uri.parse('https://www.google.com'),
-        headers: {'Accept': 'text/html'},
-      ).timeout(const Duration(seconds: 5));
+      final result = await _resolvedHttpClient()
+          .get(
+            Uri.parse('https://www.google.com'),
+            headers: {'Accept': 'text/html'},
+          )
+          .timeout(const Duration(seconds: 5));
       return result.statusCode == 200;
     } catch (e) {
-      debugPrint('Network check failed: $e');
+      LoggingService.warn(
+        'Network check failed: $e',
+        messageHi: 'नेटवर्क जांच विफल: $e',
+      );
       return false;
     }
   }
@@ -211,12 +303,15 @@ class AIModelDownloadService {
   /// Check if model server is available
   Future<bool> _checkServerAvailability(String url) async {
     try {
-  // For sample purposes, we'll simulate server check
+      // For sample purposes, we'll simulate server check
       // In production, you would actually ping the model server
       await _delay(200);
       return true; // Simulate successful server response
     } catch (e) {
-      debugPrint('Server availability check failed: $e');
+      LoggingService.warn(
+        'Server availability check failed: $e',
+        messageHi: 'सर्वर उपलब्धता जांच विफल: $e',
+      );
       return false;
     }
   }
@@ -239,10 +334,16 @@ class AIModelDownloadService {
         }
       }
 
-      debugPrint('Model files downloaded successfully');
+      LoggingService.info(
+        'Model files downloaded successfully (simulated)',
+        messageHi: 'मॉडल फ़ाइलें सफलतापूर्वक डाउनलोड हुईं (सिमुलेशन)',
+      );
       return true;
     } catch (e) {
-      debugPrint('Model download failed: $e');
+      LoggingService.error(
+        'Model download failed: $e',
+        messageHi: 'मॉडल डाउनलोड विफल: $e',
+      );
       return false;
     }
   }
@@ -259,10 +360,16 @@ class AIModelDownloadService {
       _statusController.add('Configuring AI components...');
       await _delay(300);
 
-      debugPrint('Models installed successfully');
+      LoggingService.success(
+        'Models installed successfully',
+        messageHi: 'मॉडल सफलतापूर्वक इंस्टॉल हुए',
+      );
       return true;
     } catch (e) {
-      debugPrint('Model installation failed: $e');
+      LoggingService.error(
+        'Model installation failed: $e',
+        messageHi: 'मॉडल इंस्टॉलेशन विफल: $e',
+      );
       return false;
     }
   }
@@ -279,10 +386,16 @@ class AIModelDownloadService {
       _statusController.add('Testing AI responses...');
       await _delay(100);
 
-      debugPrint('AI engine initialized successfully');
+      LoggingService.success(
+        'AI engine initialized successfully',
+        messageHi: 'AI इंजन सफलतापूर्वक प्रारंभ हुआ',
+      );
       return true;
     } catch (e) {
-      debugPrint('AI engine initialization failed: $e');
+      LoggingService.error(
+        'AI engine initialization failed: $e',
+        messageHi: 'AI इंजन प्रारंभ विफल: $e',
+      );
       return false;
     }
   }
@@ -315,9 +428,15 @@ class AIModelDownloadService {
           'version': '1.0.0',
         });
       }
-      debugPrint('Model download status saved to Hive');
+      LoggingService.info(
+        'Model download status saved to Hive',
+        messageHi: 'मॉडल डाउनलोड स्थिति Hive में सहेजी गई',
+      );
     } catch (e) {
-      debugPrint('Error saving model status: $e');
+      LoggingService.error(
+        'Error saving model status: $e',
+        messageHi: 'मॉडल स्थिति सहेजने में त्रुटि: $e',
+      );
     }
   }
 
@@ -334,7 +453,10 @@ class AIModelDownloadService {
         version: box.get('version', defaultValue: '1.0.0') as String,
       );
     } catch (e) {
-      debugPrint('Error getting download status: $e');
+      LoggingService.error(
+        'Error getting download status: $e',
+        messageHi: 'डाउनलोड स्थिति प्राप्त करने में त्रुटि: $e',
+      );
       return ModelDownloadStatus(
         isDownloaded: false,
         platform: 'Unknown',
@@ -350,6 +472,8 @@ class AIModelDownloadService {
   void dispose() {
     _progressController.close();
     _statusController.close();
+    _sharedHttpClient?.close();
+    _sharedHttpClient = null;
   }
 
   /// Utility method for delays

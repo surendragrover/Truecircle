@@ -6,7 +6,8 @@ import 'package:hive/hive.dart';
 class VirtualGiftShareService {
   static const _boxName = 'virtual_gift_tokens';
   static VirtualGiftShareService? _instance;
-  static VirtualGiftShareService get instance => _instance ??= VirtualGiftShareService._();
+  static VirtualGiftShareService get instance =>
+      _instance ??= VirtualGiftShareService._();
   VirtualGiftShareService._();
 
   Future<Box> _open() async => await Hive.openBox(_boxName);
@@ -21,7 +22,9 @@ class VirtualGiftShareService {
     final box = await _open();
     String token;
     // ensure uniqueness
-    do { token = _generateToken(); } while (box.containsKey(token));
+    do {
+      token = _generateToken();
+    } while (box.containsKey(token));
     await box.put(token, {
       'giftId': gift['id'],
       'title': gift['title'],
@@ -35,10 +38,10 @@ class VirtualGiftShareService {
   }
 
   /// Returns gift map if successful; null otherwise.
-  Future<Map<String,dynamic>?> redeemToken(String token) async {
+  Future<Map<String, dynamic>?> redeemToken(String token) async {
     final box = await _open();
     if (!box.containsKey(token)) return null;
-    final data = Map<String,dynamic>.from(box.get(token));
+    final data = Map<String, dynamic>.from(box.get(token));
     if (data['redeemed'] == true) return null; // already used
     data['redeemed'] = true;
     data['redeemedAt'] = DateTime.now().toIso8601String();

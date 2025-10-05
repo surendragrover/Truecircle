@@ -1,9 +1,9 @@
 /// Privacy Mode Manager for TrueCircle
-/// 
+///
 /// This service manages the app's operating mode and controls access to sensitive data.
 /// It ensures that TrueCircle operates in Privacy Mode by default and
 /// only accesses real device data when explicitly permitted by users.
-/// 
+///
 /// Key Features:
 /// - Privacy Mode enforcement by default
 /// - Privacy-first data access controls
@@ -29,7 +29,7 @@ class PrivacyModeManager {
   bool get canUseAI => _hasUserConsentForAI;
 
   /// Check if app should operate in Privacy Mode
-  /// 
+  ///
   /// Privacy Mode is enforced when:
   /// - User hasn't explicitly opted out of Privacy Mode
   /// - No sensitive permissions have been granted
@@ -51,27 +51,27 @@ class PrivacyModeManager {
   }
 
   /// Request user consent for AI functionality
-  /// 
+  ///
   /// This method should present a clear dialog to users explaining
   /// that AI processing happens entirely on-device for privacy.
   Future<bool> requestAIConsent() async {
     // In a real implementation, this would show a user dialog
-  // For now, we'll assume AI consent is granted for sample purposes
+    // For now, we'll assume AI consent is granted for sample purposes
     _hasUserConsentForAI = true;
     return _hasUserConsentForAI;
   }
 
   /// Request user consent for contacts access
-  /// 
+  ///
   /// This method should explain how contact data is used and
   /// that all processing happens locally on the device.
   Future<bool> requestContactsConsent() async {
     // This would show a detailed consent dialog
-  // In Privacy Mode, no real device access is granted
-  if (_isPrivacyMode) {
+    // In Privacy Mode, no real device access is granted
+    if (_isPrivacyMode) {
       return false;
     }
-    
+
     // In full mode, this would request actual permission
     _hasUserConsentForContacts = true;
     return _hasUserConsentForContacts;
@@ -82,7 +82,7 @@ class PrivacyModeManager {
     if (_isPrivacyMode) {
       return false;
     }
-    
+
     _hasUserConsentForCallLogs = true;
     return _hasUserConsentForCallLogs;
   }
@@ -92,29 +92,29 @@ class PrivacyModeManager {
     if (_isPrivacyMode) {
       return false;
     }
-    
+
     _hasUserConsentForMessages = true;
     return _hasUserConsentForMessages;
   }
 
   /// Transition from Privacy Mode to Full Access Mode
-  /// 
+  ///
   /// This is a significant privacy decision that should require
   /// explicit user confirmation and understanding.
   Future<bool> enableFullAccessMode() async {
     // This would show a comprehensive dialog explaining the implications
-  // For now, we keep Privacy Mode active for privacy
-    
+    // For now, we keep Privacy Mode active for privacy
+
     // In a future implementation:
-  // _isPrivacyMode = false;
+    // _isPrivacyMode = false;
     // return true;
-    
-  return false; // Keep Privacy Mode active for privacy
+
+    return false; // Keep Privacy Mode active for privacy
   }
 
   /// Reset to Privacy Mode (privacy-first approach)
   void resetToPrivacyMode() {
-  _isPrivacyMode = true;
+    _isPrivacyMode = true;
     _hasUserConsentForContacts = false;
     _hasUserConsentForCallLogs = false;
     _hasUserConsentForMessages = false;
@@ -166,7 +166,7 @@ class PrivacyModeManager {
       if (canAccessContacts) permissions.add('Contacts');
       if (canAccessCallLogs) permissions.add('Call Logs');
       if (canAccessMessages) permissions.add('Messages');
-      
+
       if (permissions.isEmpty) {
         return 'Privacy Mode: No sensitive data access granted.';
       } else {
