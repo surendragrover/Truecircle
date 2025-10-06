@@ -1,0 +1,48 @@
+serviceAccountKey.json
+
+# Flutter/Dart
+.dart_tool/
+.packages
+.pub/
+build/
+
+# Platform builds
+android/.gradle/
+android/app/build/
+ios/Pods/
+ios/.generated/
+macos/Pods/
+linux/build/
+windows/build/
+
+# Generated/derived
+flutter_*.png
+# Keep Hive and other required generated sources
+# (Hive adapters live in lib/models/*.g.dart and must be committed)
+# *.generated.dart and *.g.dart are no longer globally ignored
+# Lockfiles: keep pubspec.lock for reproducible builds
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Env/Secrets
+api.env
+
+# Firebase SDK and extracted archives
+build/windows/x64/extracted/
+firebase_cpp_sdk_windows_*.zip
+
+# Unit test assets
+build/unit_test_assets/
+
+# App assets cache
+build/flutter_assets/
+
+# Logs
+**/*.log
+
+# Misc
+**/*.pdb
+**/*.ilk

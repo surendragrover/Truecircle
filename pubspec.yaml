@@ -1,0 +1,110 @@
+name: truecircle
+description: Dr. Iris – Your emotional therapist, bringing clarity, emotional insight, and a bridge to meaningful relationships.
+publish_to: 'none'
+version: 1.0.0-beta+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # TrueCircle Core Dependencies following coding instructions
+  cupertino_icons: ^1.0.8
+  
+  # Firebase Integration (Temporarily disabled for compatibility)
+  firebase_core: ^4.1.1
+  firebase_auth: ^6.1.0
+  cloud_firestore: ^6.0.2
+  firebase_analytics: ^12.0.2
+  
+  # Privacy-First Data Storage (Hive for EmotionEntry, Contact, ContactInteraction)
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  
+  # HuggingFace Integration for emotion analysis
+  http: ^1.2.2
+  dio: ^5.7.0
+  
+  # Google Services Integration
+  google_sign_in: ^7.2.0  # Temporarily disabled
+  google_generative_ai: ^0.4.7
+  google_mlkit_translation: ^0.13.0
+  google_mlkit_language_id: ^0.13.0
+  
+  # Contact Management (AGP 8 compatible - replaces contacts_service)
+  permission_handler: ^12.0.1
+  flutter_contacts: ^1.1.9
+  
+  # Bilingual UI Support (Hindi/English per coding instructions)
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
+  
+  # Additional TrueCircle Features
+  shared_preferences: ^2.3.2
+  path_provider: ^2.1.5
+  url_launcher: ^6.3.1
+  fl_chart: ^1.1.1
+  qr_flutter: ^4.1.0
+  mobile_scanner: ^7.1.2
+  uuid: ^4.5.0
+
+  # Animated Greeting Cards & Payments
+  lottie: ^3.1.3
+  # razorpay_flutter: ^1.3.7  # Temporarily disabled due to fluttertoast compatibility
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  
+  # Code generation and linting
+  flutter_lints: ^6.0.0
+  
+  # Hive Code Generation (must match hive version exactly)
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.13
+  flutter_launcher_icons: ^0.14.4
+
+# TrueCircle Flutter Configuration following coding instructions
+flutter:
+  uses-material-design: true
+  generate: true  # Enable localization generation
+  
+  # Privacy-First Asset Configuration
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/cultural/
+    - assets/festivals/
+    - assets/translation/
+    - Demo_data/
+    - assets/animations/ # Added for Lottie animations
+    - logo.png
+    - api.env
+
+# TrueCircle App Icon Configuration with cultural branding
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/truecircle_logo.png"
+  min_sdk_android: 21
+  
+  # Material 3 seed color (blue) for relationships per instructions
+  adaptive_icon_background: "#2196F3"
+  adaptive_icon_foreground: "assets/icons/truecircle_adaptive.png"
+  
+  # Multi-platform TrueCircle branding
+  windows:
+    generate: true
+    image_path: "assets/images/truecircle_logo.png"
+    icon_size: 48
+  
+  web:
+    generate: true
+    image_path: "assets/images/truecircle_logo.png"
+    background_color: "#2196F3"
+    theme_color: "#2196F3"

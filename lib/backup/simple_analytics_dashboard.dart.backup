@@ -1,0 +1,953 @@
+import 'package:flutter/material.dart';
+import '../models/contact.dart';
+import '../models/contact_interaction.dart';
+import '../services/predictive_relationship_ai.dart';
+import '../services/huggingface_service.dart';
+
+/// 📊 Simplified Analytics Dashboard - Core AI-powered relationship insights
+class SimpleAnalyticsDashboard extends StatefulWidget {
+  final Contact contact;
+  final List<ContactInteraction> interactions;
+
+  const SimpleAnalyticsDashboard({
+    super.key,
+    required this.contact,
+    required this.interactions,
+  });
+
+  @override
+  State<SimpleAnalyticsDashboard> createState() =>
+      _SimpleAnalyticsDashboardState();
+}
+
+class _SimpleAnalyticsDashboardState extends State<SimpleAnalyticsDashboard>
+    with TickerProviderStateMixin {
+  late TabController _tabController;
+  PredictiveRelationshipAI? _predictiveAI;
+
+  RelationshipHealthPrediction? _healthPrediction;
+  RelationshipWarning? _warning;
+  OptimalContactTime? _optimalTime;
+  List<ConversationStarter>? _starters;
+  RelationshipForecast? _forecast;
+
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 5, vsync: this);
+    _initializeServices();
+  }
+
+  Future<void> _initializeServices() async {
+    try {
+      final huggingFaceService = await HuggingFaceService.create();
+      _predictiveAI = PredictiveRelationshipAI(huggingFaceService);
+      await _loadAnalytics();
+    } catch (e) {
+      debugPrint('Service initialization error: $e');
+      setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _loadAnalytics() async {
+    if (_predictiveAI == null) return;
+
+    setState(() => _isLoading = true);
+
+    try {
+      // Load AI analytics
+      _healthPrediction = await _predictiveAI!
+          .predictRelationshipHealth(widget.contact, widget.interactions);
+      _optimalTime = await _predictiveAI!
+          .predictBestContactTime(widget.contact, widget.interactions);
+      _starters = await _predictiveAI!
+          .generatePersonalizedStarters(widget.contact, widget.interactions);
+
+      _warning = _predictiveAI!
+          .detectRelationshipDrift(widget.contact, widget.interactions);
+      _forecast = _predictiveAI!
+          .forecastRelationshipTrajectory(widget.contact, widget.interactions);
+    } catch (e) {
+      debugPrint('Analytics loading error: $e');
+    } finally {
+      setState(() => _isLoading = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('${widget.contact.displayName} - AI विश्लेषण'),
+        backgroundColor: Colors.indigo.shade600,
+        foregroundColor: Colors.white,
+        bottom: TabBar(
+          controller: _tabController,
+          isScrollable: true,
+          indicatorColor: Colors.white,
+          tabs: const [
+            Tab(icon: Icon(Icons.favorite), text: 'स्वास्थ्य'),
+            Tab(icon: Icon(Icons.warning), text: 'चेतावनी'),
+            Tab(icon: Icon(Icons.access_time), text: 'समय'),
+            Tab(icon: Icon(Icons.chat), text: 'संदेश'),
+            Tab(icon: Icon(Icons.trending_up), text: 'भविष्य'),
+          ],
+        ),
+      ),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : TabBarView(
+              controller: _tabController,
+              children: [
+                _buildHealthAnalysisTab(),
+                _buildWarningTab(),
+                _buildOptimalTimeTab(),
+                _buildConversationStartersTab(),
+                _buildForecastTab(),
+              ],
+            ),
+    );
+  }
+
+  /// 💖 Relationship Health Analysis Tab
+  Widget _buildHealthAnalysisTab() {
+    if (_healthPrediction == null) {
+      return const Center(child: Text('स्वास्थ्य डेटा लोड नहीं हो सका'));
+    }
+
+    final health = _healthPrediction!;
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Overall Health Score
+          _buildHealthScoreCard(health),
+          const SizedBox(height: 20),
+
+          // Risk Factors
+          _buildRiskFactorsCard(health),
+          const SizedBox(height: 20),
+
+          // Strengths
+          _buildStrengthsCard(health),
+          const SizedBox(height: 20),
+
+          // Recommendations
+          _buildRecommendationsCard(health),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildHealthScoreCard(RelationshipHealthPrediction health) {
+    final score = health.overallHealthScore;
+    final scorePercentage = (score * 100).round();
+
+    Color scoreColor;
+    String scoreText;
+    IconData scoreIcon;
+
+    if (score >= 0.8) {
+      scoreColor = Colors.green;
+      scoreText = 'बहुत अच्छा';
+      scoreIcon = Icons.favorite;
+    } else if (score >= 0.6) {
+      scoreColor = Colors.orange;
+      scoreText = 'अच्छा';
+      scoreIcon = Icons.favorite_border;
+    } else if (score >= 0.4) {
+      scoreColor = Colors.amber;
+      scoreText = 'सामान्य';
+      scoreIcon = Icons.sentiment_neutral;
+    } else {
+      scoreColor = Colors.red;
+      scoreText = 'ध्यान दें';
+      scoreIcon = Icons.warning;
+    }
+
+    return Card(
+      elevation: 8,
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          gradient: LinearGradient(
+            colors: [
+              scoreColor.withValues(alpha: 0.3),
+              scoreColor.withValues(alpha: 0.3)
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: Row(
+          children: [
+            // Score Circle
+            SizedBox(
+              width: 80,
+              height: 80,
+              child: Stack(
+                children: [
+                  CircularProgressIndicator(
+                    value: score,
+                    strokeWidth: 8,
+                    backgroundColor: Colors.grey.shade300,
+                    valueColor: AlwaysStoppedAnimation<Color>(scoreColor),
+                  ),
+                  Center(
+                    child: Text(
+                      '$scorePercentage%',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: scoreColor,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 20),
+
+            // Score Info
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(scoreIcon, color: scoreColor, size: 24),
+                      const SizedBox(width: 8),
+                      Text(
+                        'रिश्ते का स्वास्थ्य: $scoreText',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: scoreColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'विश्वास स्तर: ${(health.confidenceLevel * 100).round()}%',
+                    style: TextStyle(color: Colors.grey.shade600),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'कार्य की आवश्यकता: ${_formatDuration(health.timeToAction)}',
+                    style: TextStyle(color: Colors.grey.shade600),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRiskFactorsCard(RelationshipHealthPrediction health) {
+    if (health.riskFactors.isEmpty) {
+      return const Card(
+        elevation: 4,
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Icon(Icons.check_circle, color: Colors.green, size: 24),
+              SizedBox(width: 12),
+              Text(
+                'कोई जोखिम कारक नहीं मिला 😊',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Card(
+      elevation: 4,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.warning_amber, color: Colors.orange, size: 24),
+                SizedBox(width: 8),
+                Text(
+                  '⚠️ जोखिम कारक',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            ...health.riskFactors.map((risk) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.circle, color: Colors.red, size: 8),
+                      const SizedBox(width: 8),
+                      Expanded(child: Text(risk)),
+                    ],
+                  ),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStrengthsCard(RelationshipHealthPrediction health) {
+    if (health.strengths.isEmpty) return Container();
+
+    return Card(
+      elevation: 4,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.star, color: Colors.amber, size: 24),
+                SizedBox(width: 8),
+                Text(
+                  '✨ मजबूत बिंदु',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            ...health.strengths.map((strength) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 4),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.circle, color: Colors.green, size: 8),
+                      const SizedBox(width: 8),
+                      Expanded(child: Text(strength)),
+                    ],
+                  ),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRecommendationsCard(RelationshipHealthPrediction health) {
+    return Card(
+      elevation: 4,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.lightbulb, color: Colors.blue, size: 24),
+                SizedBox(width: 8),
+                Text(
+                  '💡 सुझाव',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            ...health.recommendations.map((recommendation) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  child: Container(
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: Colors.blue.shade50,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border(
+                        left: BorderSide(
+                          width: 4,
+                          color: Colors.blue.shade300,
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      recommendation,
+                      style: const TextStyle(fontSize: 14),
+                    ),
+                  ),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// 🚨 Warning Tab
+  Widget _buildWarningTab() {
+    if (_warning == null) {
+      return const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.check_circle_outline, size: 64, color: Colors.green),
+            SizedBox(height: 16),
+            Text(
+              '✅ कोई चेतावनी नहीं',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'रिश्ता अच्छी स्थिति में है',
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
+          ],
+        ),
+      );
+    }
+
+    final warning = _warning!;
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          // Warning Header
+          Card(
+            color: _getWarningSeverityColor(warning.severity)
+                .withValues(alpha: 0.3),
+            elevation: 8,
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  Icon(
+                    _getWarningIcon(warning.type),
+                    size: 48,
+                    color: _getWarningSeverityColor(warning.severity),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    warning.message,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: _getWarningSeverityColor(warning.severity),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'गंभीरता: ${_getSeverityText(warning.severity)}',
+                    style: TextStyle(color: Colors.grey.shade600),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+
+          // Suggested Actions
+          _buildSuggestedActionsCard(warning),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSuggestedActionsCard(RelationshipWarning warning) {
+    return Card(
+      elevation: 4,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Row(
+              children: [
+                Icon(Icons.build, color: Colors.blue, size: 24),
+                SizedBox(width: 8),
+                Text(
+                  '🔧 सुझाए गए कार्य',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            ...warning.suggestedActions.map((action) => Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.arrow_forward_ios,
+                          size: 16, color: Colors.blue),
+                      const SizedBox(width: 8),
+                      Expanded(
+                          child: Text(action,
+                              style: const TextStyle(fontSize: 14))),
+                    ],
+                  ),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// ⏰ Optimal Contact Time Tab
+  Widget _buildOptimalTimeTab() {
+    if (_optimalTime == null) {
+      return const Center(child: Text('समय डेटा लोड नहीं हो सका'));
+    }
+
+    final time = _optimalTime!;
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          // Best Hours Card
+          Card(
+            elevation: 4,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Row(
+                    children: [
+                      Icon(Icons.access_time, color: Colors.indigo, size: 24),
+                      SizedBox(width: 8),
+                      Text(
+                        '⏰ सबसे अच्छा समय',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  Wrap(
+                    spacing: 8,
+                    children: time.bestHours
+                        .map((hour) => Chip(
+                              label: Text('$hour:00'),
+                              backgroundColor: Colors.indigo.shade100,
+                            ))
+                        .toList(),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    time.reasoning,
+                    style: TextStyle(color: Colors.grey.shade600),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // Next Suggested Contact
+          Card(
+            elevation: 4,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Row(
+                    children: [
+                      Icon(Icons.schedule, color: Colors.orange, size: 24),
+                      SizedBox(width: 8),
+                      Text(
+                        '📅 अगला संपर्क',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    _formatDateTime(time.nextSuggestedContact),
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// 💬 Conversation Starters Tab
+  Widget _buildConversationStartersTab() {
+    if (_starters == null || _starters!.isEmpty) {
+      return const Center(child: Text('संदेश सुझाव लोड नहीं हो सके'));
+    }
+
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: _starters!.length,
+      itemBuilder: (context, index) {
+        final starter = _starters![index];
+        return Card(
+          elevation: 4,
+          margin: const EdgeInsets.only(bottom: 12),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    _getCategoryIcon(starter.category),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        starter.text,
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: _getConfidenceColor(starter.confidence)
+                            .withValues(alpha: 0.3),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        '${(starter.confidence * 100).round()}%',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: _getConfidenceColor(starter.confidence),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  starter.reasoning,
+                  style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton.icon(
+                      onPressed: () => _copyToClipboard(starter.text),
+                      icon: const Icon(Icons.copy, size: 16),
+                      label: const Text('कॉपी करें'),
+                    ),
+                    TextButton.icon(
+                      onPressed: () => _sendMessage(starter.text),
+                      icon: const Icon(Icons.send, size: 16),
+                      label: const Text('भेजें'),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  /// 🔮 Forecast Tab
+  Widget _buildForecastTab() {
+    if (_forecast == null) {
+      return const Center(child: Text('भविष्यवाणी डेटा लोड नहीं हो सका'));
+    }
+
+    final forecast = _forecast!;
+
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          // Current vs Projected Health
+          Card(
+            elevation: 4,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    '🔮 स्वास्थ्य पूर्वानुमान',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _buildForecastIndicator(
+                          'वर्तमान',
+                          forecast.currentHealth,
+                          Colors.blue,
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: _buildForecastIndicator(
+                          '${forecast.forecastPeriod} दिन बाद',
+                          forecast.projectedHealth,
+                          _getTrendColor(forecast.trend),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // Trend Indicator
+          Card(
+            elevation: 4,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Icon(
+                    _getTrendIcon(forecast.trend),
+                    color: _getTrendColor(forecast.trend),
+                    size: 24,
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    'रुझान: ${_getTrendText(forecast.trend)}',
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w500),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 16),
+
+          // Potential Issues
+          if (forecast.potentialIssues.isNotEmpty) ...[
+            Card(
+              elevation: 4,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Row(
+                      children: [
+                        Icon(Icons.warning, color: Colors.orange, size: 24),
+                        SizedBox(width: 8),
+                        Text(
+                          '⚠️ संभावित समस्याएं',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    ...forecast.potentialIssues.map((issue) => Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 4),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.circle,
+                                  color: Colors.orange, size: 8),
+                              const SizedBox(width: 8),
+                              Expanded(child: Text(issue)),
+                            ],
+                          ),
+                        )),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Widget _buildForecastIndicator(String label, double value, Color color) {
+    return Column(
+      children: [
+        Text(
+          label,
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+        ),
+        const SizedBox(height: 8),
+        SizedBox(
+          width: 60,
+          height: 60,
+          child: Stack(
+            children: [
+              CircularProgressIndicator(
+                value: value,
+                strokeWidth: 6,
+                backgroundColor: Colors.grey.shade300,
+                valueColor: AlwaysStoppedAnimation<Color>(color),
+              ),
+              Center(
+                child: Text(
+                  '${(value * 100).round()}%',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: color,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  // Helper Methods
+  String _formatDuration(Duration duration) {
+    if (duration.inDays > 0) {
+      return '${duration.inDays} दिन';
+    } else if (duration.inHours > 0) {
+      return '${duration.inHours} घंटे';
+    } else {
+      return '${duration.inMinutes} मिनट';
+    }
+  }
+
+  String _formatDateTime(DateTime dateTime) {
+    final now = DateTime.now();
+    final difference = dateTime.difference(now);
+
+    if (difference.inDays == 0) {
+      return 'आज ${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')} बजे';
+    } else if (difference.inDays == 1) {
+      return 'कल ${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')} बजे';
+    } else {
+      return '${difference.inDays} दिन बाद ${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')} बजे';
+    }
+  }
+
+  Color _getWarningSeverityColor(WarningSeverity severity) {
+    switch (severity) {
+      case WarningSeverity.low:
+        return Colors.yellow;
+      case WarningSeverity.medium:
+        return Colors.orange;
+      case WarningSeverity.high:
+        return Colors.red;
+      case WarningSeverity.critical:
+        return Colors.red.shade900;
+    }
+  }
+
+  IconData _getWarningIcon(WarningType type) {
+    switch (type) {
+      case WarningType.sentimentDecline:
+        return Icons.sentiment_dissatisfied;
+      case WarningType.communicationDrop:
+        return Icons.trending_down;
+      case WarningType.responseDelay:
+        return Icons.access_time;
+      case WarningType.initiationImbalance:
+        return Icons.balance;
+      case WarningType.general:
+        return Icons.warning;
+    }
+  }
+
+  String _getSeverityText(WarningSeverity severity) {
+    switch (severity) {
+      case WarningSeverity.low:
+        return 'कम';
+      case WarningSeverity.medium:
+        return 'मध्यम';
+      case WarningSeverity.high:
+        return 'उच्च';
+      case WarningSeverity.critical:
+        return 'गंभीर';
+    }
+  }
+
+  Widget _getCategoryIcon(ConversationCategory category) {
+    switch (category) {
+      case ConversationCategory.aiGenerated:
+        return const Icon(Icons.psychology, color: Colors.purple, size: 20);
+      case ConversationCategory.reconnection:
+        return const Icon(Icons.refresh, color: Colors.blue, size: 20);
+      case ConversationCategory.emotional:
+        return const Icon(Icons.favorite, color: Colors.red, size: 20);
+      case ConversationCategory.contextual:
+        return const Icon(Icons.timeline, color: Colors.green, size: 20);
+      case ConversationCategory.cultural:
+        return const Icon(Icons.language, color: Colors.orange, size: 20);
+    }
+  }
+
+  Color _getConfidenceColor(double confidence) {
+    if (confidence > 0.8) return Colors.green;
+    if (confidence > 0.6) return Colors.orange;
+    return Colors.red;
+  }
+
+  Color _getTrendColor(RelationshipTrend trend) {
+    switch (trend) {
+      case RelationshipTrend.improving:
+        return Colors.green;
+      case RelationshipTrend.stable:
+        return Colors.blue;
+      case RelationshipTrend.declining:
+        return Colors.red;
+    }
+  }
+
+  IconData _getTrendIcon(RelationshipTrend trend) {
+    switch (trend) {
+      case RelationshipTrend.improving:
+        return Icons.trending_up;
+      case RelationshipTrend.stable:
+        return Icons.trending_flat;
+      case RelationshipTrend.declining:
+        return Icons.trending_down;
+    }
+  }
+
+  String _getTrendText(RelationshipTrend trend) {
+    switch (trend) {
+      case RelationshipTrend.improving:
+        return 'सुधार';
+      case RelationshipTrend.stable:
+        return 'स्थिर';
+      case RelationshipTrend.declining:
+        return 'गिरावट';
+    }
+  }
+
+  void _copyToClipboard(String text) {
+    // Implement clipboard functionality
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('संदेश कॉपी किया गया')),
+    );
+  }
+
+  void _sendMessage(String text) {
+    // Implement send message functionality
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('संदेश भेजने की सुविधा जल्द आएगी')),
+    );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+}

@@ -1,0 +1,439 @@
+import 'package:flutter/material.dart';
+
+class DrIrisAvatar extends StatelessWidget {
+  final double size;
+  final bool showName;
+  final bool isHindi;
+  final AvatarStyle style;
+  final bool showStatus;
+
+  const DrIrisAvatar({
+    super.key,
+    this.size = 60,
+    this.showName = true,
+    this.isHindi = false,
+    this.style = AvatarStyle.professional,
+    this.showStatus = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    switch (style) {
+      case AvatarStyle.professional:
+        return _buildProfessionalAvatar();
+      case AvatarStyle.friendly:
+        return _buildFriendlyAvatar();
+      case AvatarStyle.minimal:
+        return _buildMinimalAvatar();
+      case AvatarStyle.icon:
+        return _buildIconAvatar();
+    }
+  }
+
+  Widget _buildProfessionalAvatar() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Dr. Iris Avatar with actual image
+        Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: const Color(0xFF8B5CF6),
+              width: 2,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.purple.withOpacity(0.3),
+                blurRadius: 8,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: ClipOval(
+            child: Image.asset(
+              'assets/images/avatar.png',
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                // Fallback if avatar image not found
+                return Container(
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Color(0xFF8B5CF6), // Purple
+                        Color(0xFF3B82F6), // Blue
+                      ],
+                    ),
+                  ),
+                  child: const Icon(
+                    Icons.person,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                );
+              },
+            ),
+          ),
+              color: Colors.white,
+              width: size * 0.05,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.purple.withValues(alpha: 0.3),
+                blurRadius: size * 0.2,
+                offset: Offset(0, size * 0.05),
+              ),
+            ],
+          ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              // AI Brain symbol
+              Icon(
+                Icons.psychology,
+                size: size * 0.5,
+                color: Colors.white,
+              ),
+              
+              // Status indicator if enabled
+              if (showStatus)
+                Positioned(
+                  right: size * 0.05,
+                  top: size * 0.05,
+                  child: Container(
+                    width: size * 0.2,
+                    height: size * 0.2,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.green,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white,
+                          blurRadius: 2,
+                          spreadRadius: 1,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+
+        if (showName) ...[
+          SizedBox(width: size * 0.2),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                isHindi ? 'डॉ. आइरिस' : 'Dr. Iris',
+                style: TextStyle(
+                  fontSize: size * 0.25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black87,
+                ),
+              ),
+              SizedBox(height: size * 0.05),
+              Text(
+                isHindi ? 'AI थेरेपिस्ट' : 'AI Therapist',
+                style: TextStyle(
+                  fontSize: size * 0.18,
+                  color: Colors.grey[600],
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+              if (showStatus)
+                Row(
+                  children: [
+                    Container(
+                      width: size * 0.12,
+                      height: size * 0.12,
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.green,
+                      ),
+                    ),
+                    SizedBox(width: size * 0.08),
+                    Text(
+                      isHindi ? '24/7 उपलब्ध' : '24/7 Available',
+                      style: TextStyle(
+                        fontSize: size * 0.15,
+                        color: Colors.green[700],
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+            ],
+          ),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildFriendlyAvatar() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        // Friendly circular avatar
+        Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFFF59E0B), // Orange
+                Color(0xFFEF4444), // Red
+              ],
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.orange.withValues(alpha: 0.4),
+                blurRadius: size * 0.15,
+                offset: Offset(0, size * 0.08),
+              ),
+            ],
+          ),
+          child: Center(
+            child: Text(
+              '🤖',
+              style: TextStyle(fontSize: size * 0.5),
+            ),
+          ),
+        ),
+
+        if (showName) ...[
+          SizedBox(height: size * 0.15),
+          Text(
+            isHindi ? 'डॉ. आइरिस' : 'Dr. Iris',
+            style: TextStyle(
+              fontSize: size * 0.22,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+          SizedBox(height: size * 0.05),
+          Text(
+            isHindi ? 'आपकी AI मित्र' : 'Your AI Friend',
+            style: TextStyle(
+              fontSize: size * 0.16,
+              color: Colors.grey[600],
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ],
+    );
+  }
+
+  Widget _buildMinimalAvatar() {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.purple[100],
+        border: Border.all(
+          color: Colors.purple[300]!,
+          width: size * 0.03,
+        ),
+      ),
+      child: Center(
+        child: Icon(
+          Icons.psychology,
+          size: size * 0.6,
+          color: Colors.purple[700],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildIconAvatar() {
+    return Container(
+      width: size,
+      height: size,
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.purple,
+      ),
+      child: Center(
+        child: Text(
+          isHindi ? 'डॉ' : 'Dr',
+          style: TextStyle(
+            fontSize: size * 0.3,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// Animated version for attention-grabbing situations
+class AnimatedDrIrisAvatar extends StatefulWidget {
+  final double size;
+  final bool showName;
+  final bool isHindi;
+
+  const AnimatedDrIrisAvatar({
+    super.key,
+    this.size = 60,
+    this.showName = true,
+    this.isHindi = false,
+  });
+
+  @override
+  State<AnimatedDrIrisAvatar> createState() => _AnimatedDrIrisAvatarState();
+}
+
+class _AnimatedDrIrisAvatarState extends State<AnimatedDrIrisAvatar>
+    with TickerProviderStateMixin {
+  late AnimationController _pulseController;
+  late Animation<double> _pulseAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _pulseController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+
+    _pulseAnimation = Tween<double>(
+      begin: 0.95,
+      end: 1.05,
+    ).animate(CurvedAnimation(
+      parent: _pulseController,
+      curve: Curves.easeInOut,
+    ));
+
+    _pulseController.repeat(reverse: true);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _pulseAnimation,
+      builder: (context, child) {
+        return Transform.scale(
+          scale: _pulseAnimation.value,
+          child: DrIrisAvatar(
+            size: widget.size,
+            showName: widget.showName,
+            isHindi: widget.isHindi,
+            style: AvatarStyle.professional,
+            showStatus: true,
+          ),
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
+}
+
+enum AvatarStyle {
+  professional, // Professional therapist look
+  friendly, // Friendly and approachable
+  minimal, // Simple icon style
+  icon, // Just icon, no details
+}
+
+// Dr. Iris Chat Bubble with Avatar
+class DrIrisChatBubble extends StatelessWidget {
+  final String message;
+  final bool isHindi;
+  final double avatarSize;
+
+  const DrIrisChatBubble({
+    super.key,
+    required this.message,
+    this.isHindi = false,
+    this.avatarSize = 40,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          DrIrisAvatar(
+            size: avatarSize,
+            showName: false,
+            style: AvatarStyle.minimal,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.purple[50],
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  bottomRight: Radius.circular(20),
+                  bottomLeft: Radius.circular(20),
+                ),
+                border: Border.all(
+                  color: Colors.purple[200]!,
+                  width: 1,
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        isHindi ? 'डॉ. आइरिस' : 'Dr. Iris',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.purple[700],
+                          fontSize: 14,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        isHindi ? 'AI थेरेपिस्ट' : 'AI Therapist',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.grey[600],
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    message,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black87,
+                      height: 1.4,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

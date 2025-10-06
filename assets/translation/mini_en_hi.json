@@ -1,0 +1,45 @@
+{{
+
+  "hello": "नमस्ते",  "cognitive": "संज्ञानात्मक",
+
+  "welcome": "स्वागत है",  "behavior": "व्यवहार",
+
+  "thank you": "धन्यवाद",  "behaviour": "व्यवहार",
+
+  "relationship": "रिश्ता",  "emotion": "भावना",
+
+  "emotion": "भावना",  "emotions": "भावनाएँ",
+
+  "therapy": "थेरेपी",  "thought": "विचार",
+
+  "calm": "शांत",  "thoughts": "विचार",
+
+  "breathe": "सांस लें",  "distortion": "विकृति",
+
+  "sleep": "नींद",  "anxiety": "चिंता",
+
+  "confidence": "आत्मविश्वास"  "depression": "अवसाद",
+
+}  "stress": "तनाव",
+
+  "mindfulness": "सचेतन",
+  "gratitude": "कृतज्ञता",
+  "coping": "निपटने",
+  "card": "कार्ड",
+  "cards": "कार्ड",
+  "reframe": "पुनःपरिभाषित",
+  "journal": "जर्नल",
+  "mood": "मूड",
+  "sleep": "नींद",
+  "practice": "अभ्यास",
+  "balance": "संतुलन",
+  "breathing": "श्वास",
+  "breath": "श्वास",
+  "relax": "आराम",
+  "relaxation": "आराम",
+  "technique": "तकनीक",
+  "techniques": "तकनीकें",
+  "exercise": "व्यायाम",
+  "exercises": "व्यायाम",
+  "wellbeing": "कल्याण"
+}

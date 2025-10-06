@@ -1,0 +1,347 @@
+import 'package:flutter/foundation.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:io';
+
+/// Real Firebase Authentication Service for TrueCircle Production
+/// Project ID: truecircle-43256654
+class FirebaseAuthService {
+  static final _instance = FirebaseAuthService._internal();
+  factory FirebaseAuthService() => _instance;
+  FirebaseAuthService._internal();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String? _verificationId;
+  int? _resendToken;
+
+  // Getter for verification ID (used internally for phone verification)
+  String? get verificationId => _verificationId;
+
+  // Current user getters
+  User? get currentUser => _auth.currentUser;
+  bool get isAuthenticated => _auth.currentUser != null;
+  bool get isPhoneVerified => _auth.currentUser?.phoneNumber != null;
+  Stream<User?> get authStateChanges => _auth.authStateChanges();
+
+  Future<void> initialize() async {
+    try {
+      // Configure Firebase Auth settings for India
+      await _auth.setSettings(
+        appVerificationDisabledForTesting: false,
+        forceRecaptchaFlow: Platform.isAndroid, // Enable reCAPTCHA for Android
+      );
+      debugPrint(
+          '✅ Firebase Auth initialized for project: truecircle-43256654');
+    } catch (e) {
+      debugPrint('❌ Firebase Auth initialization failed: $e');
+    }
+  }
+
+  /// Real phone number verification with Firebase
+  Future<bool> verifyPhoneNumber({
+    required String phoneNumber,
+    required Function(String) onCodeSent,
+    required Function(String) onError,
+    Function(PhoneAuthCredential)? onAutoVerify,
+  }) async {
+    try {
+      // Format phone number for India (+91)
+      String formattedPhone = phoneNumber;
+      if (!phoneNumber.startsWith('+91')) {
+        formattedPhone = '+91$phoneNumber';
+      }
+
+      await _auth.verifyPhoneNumber(
+        phoneNumber: formattedPhone,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          debugPrint('✅ Phone verification completed automatically');
+          if (onAutoVerify != null) {
+            onAutoVerify(credential);
+          } else {
+            // Auto sign in
+            await _signInWithCredential(credential);
+          }
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          debugPrint('❌ Phone verification failed: ${e.message}');
+          String errorMessage = 'Verification failed';
+
+          switch (e.code) {
+            case 'invalid-phone-number':
+              errorMessage = 'Invalid phone number format';
+              break;
+            case 'too-many-requests':
+              errorMessage = 'Too many attempts. Please try again later';
+              break;
+            case 'quota-exceeded':
+              errorMessage = 'SMS quota exceeded. Please try again tomorrow';
+              break;
+            default:
+              errorMessage = e.message ?? 'Verification failed';
+          }
+          onError(errorMessage);
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          debugPrint('✅ OTP sent successfully to $formattedPhone');
+          _verificationId = verificationId;
+          _resendToken = resendToken;
+          onCodeSent(verificationId);
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          debugPrint('⏰ OTP auto-retrieval timeout for: $verificationId');
+          _verificationId = verificationId;
+        },
+        forceResendingToken: _resendToken,
+        timeout: const Duration(seconds: 60),
+      );
+
+      return true;
+    } catch (e) {
+      debugPrint('❌ Phone verification error: $e');
+      onError('Failed to send OTP: $e');
+      return false;
+    }
+  }
+
+  /// Verify OTP and sign in user
+  Future<User?> verifyOTP({
+    required String verificationId,
+    required String otp,
+  }) async {
+    try {
+      if (verificationId.isEmpty || otp.isEmpty) {
+        throw FirebaseAuthException(
+          code: 'invalid-verification-code',
+          message: 'Invalid verification code',
+        );
+      }
+
+      final credential = PhoneAuthProvider.credential(
+        verificationId: verificationId,
+        smsCode: otp,
+      );
+
+      final userCredential = await _auth.signInWithCredential(credential);
+      final user = userCredential.user;
+
+      if (user != null) {
+        debugPrint('✅ OTP verified successfully for user: ${user.uid}');
+        debugPrint('📱 Phone: ${user.phoneNumber}');
+        return user;
+      }
+
+      return null;
+    } on FirebaseAuthException catch (e) {
+      debugPrint('❌ OTP verification failed: ${e.message}');
+
+      String errorMessage = 'Invalid OTP';
+      switch (e.code) {
+        case 'invalid-verification-code':
+          errorMessage = 'Invalid OTP code';
+          break;
+        case 'session-expired':
+          errorMessage = 'OTP expired. Please request new code';
+          break;
+        case 'too-many-requests':
+          errorMessage = 'Too many failed attempts';
+          break;
+        default:
+          errorMessage = e.message ?? 'OTP verification failed';
+      }
+
+      throw Exception(errorMessage);
+    } catch (e) {
+      debugPrint('❌ Unexpected OTP verification error: $e');
+      throw Exception('OTP verification failed: $e');
+    }
+  }
+
+  /// Sign in with phone credential
+  Future<User?> _signInWithCredential(PhoneAuthCredential credential) async {
+    try {
+      final userCredential = await _auth.signInWithCredential(credential);
+      return userCredential.user;
+    } catch (e) {
+      debugPrint('❌ Sign in with credential failed: $e');
+      return null;
+    }
+  }
+
+  /// Resend OTP
+  Future<bool> resendOTP({
+    required String phoneNumber,
+    required Function(String) onCodeSent,
+    required Function(String) onError,
+  }) async {
+    return await verifyPhoneNumber(
+      phoneNumber: phoneNumber,
+      onCodeSent: onCodeSent,
+      onError: onError,
+    );
+  }
+
+  /// Sign in anonymously for guest users
+  Future<User?> signInAnonymously() async {
+    try {
+      final userCredential = await _auth.signInAnonymously();
+      debugPrint('✅ Anonymous sign in successful');
+      return userCredential.user;
+    } catch (e) {
+      debugPrint('❌ Anonymous sign in failed: $e');
+      return null;
+    }
+  }
+
+  /// Sign out user
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+      _verificationId = null;
+      _resendToken = null;
+      debugPrint('✅ User signed out successfully');
+    } catch (e) {
+      debugPrint('❌ Sign out failed: $e');
+    }
+  }
+
+  /// Update user profile
+  Future<bool> updateProfile({
+    String? displayName,
+    String? photoURL,
+  }) async {
+    try {
+      final user = _auth.currentUser;
+      if (user == null) return false;
+
+      await user.updateDisplayName(displayName);
+      if (photoURL != null) {
+        await user.updatePhotoURL(photoURL);
+      }
+
+      await user.reload();
+      debugPrint('✅ User profile updated');
+      return true;
+    } catch (e) {
+      debugPrint('❌ Profile update failed: $e');
+      return false;
+    }
+  }
+
+  /// Delete user account
+  Future<bool> deleteAccount() async {
+    try {
+      final user = _auth.currentUser;
+      if (user == null) return false;
+
+      await user.delete();
+      debugPrint('✅ User account deleted');
+      return true;
+    } catch (e) {
+      debugPrint('❌ Account deletion failed: $e');
+      return false;
+    }
+  }
+
+  /// Link anonymous account with phone number
+  Future<User?> linkAnonymousWithPhone({
+    required String phoneNumber,
+    required Function(String) onCodeSent,
+    required Function(String) onError,
+  }) async {
+    final user = _auth.currentUser;
+    if (user == null || !user.isAnonymous) {
+      onError('No anonymous user to link');
+      return null;
+    }
+
+    try {
+      // Start phone verification for linking
+      String formattedPhone = phoneNumber;
+      if (!phoneNumber.startsWith('+91')) {
+        formattedPhone = '+91$phoneNumber';
+      }
+
+      await _auth.verifyPhoneNumber(
+        phoneNumber: formattedPhone,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          try {
+            await user.linkWithCredential(credential);
+            debugPrint('✅ Anonymous account linked with phone');
+          } catch (e) {
+            debugPrint('❌ Account linking failed: $e');
+            onError('Account linking failed');
+          }
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          debugPrint('❌ Phone verification for linking failed: ${e.message}');
+          onError(e.message ?? 'Verification failed');
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          _verificationId = verificationId;
+          _resendToken = resendToken;
+          onCodeSent(verificationId);
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          _verificationId = verificationId;
+        },
+      );
+
+      return null; // Will be handled in verificationCompleted
+    } catch (e) {
+      debugPrint('❌ Link anonymous with phone error: $e');
+      onError('Account linking failed');
+      return null;
+    }
+  }
+
+  /// Link OTP for anonymous account
+  Future<User?> linkAnonymousWithOTP({
+    required String verificationId,
+    required String otp,
+  }) async {
+    try {
+      final user = _auth.currentUser;
+      if (user == null || !user.isAnonymous) {
+        throw Exception('No anonymous user to link');
+      }
+
+      final credential = PhoneAuthProvider.credential(
+        verificationId: verificationId,
+        smsCode: otp,
+      );
+
+      final linkedUser = await user.linkWithCredential(credential);
+      debugPrint('✅ Anonymous account successfully linked with phone');
+      return linkedUser.user;
+    } catch (e) {
+      debugPrint('❌ Anonymous account linking with OTP failed: $e');
+      throw Exception('Account linking failed: $e');
+    }
+  }
+
+  /// Check if Firebase Auth is properly configured
+  Map<String, dynamic> getAuthStatus() {
+    return {
+      'initialized': true,
+      'currentUser': _auth.currentUser?.uid,
+      'isAuthenticated': isAuthenticated,
+      'isPhoneVerified': isPhoneVerified,
+      'phoneNumber': _auth.currentUser?.phoneNumber,
+      'isAnonymous': _auth.currentUser?.isAnonymous ?? false,
+    };
+  }
+
+  /// Get user data for compatibility with other services
+  Map<String, dynamic>? getCurrentUserData() {
+    final user = _auth.currentUser;
+    if (user == null) return null;
+
+    return {
+      'uid': user.uid,
+      'phoneNumber': user.phoneNumber,
+      'displayName': user.displayName ?? 'TrueCircle User',
+      'isAnonymous': user.isAnonymous,
+      'createdAt': user.metadata.creationTime?.toIso8601String(),
+      'lastSignIn': user.metadata.lastSignInTime?.toIso8601String(),
+    };
+  }
+}

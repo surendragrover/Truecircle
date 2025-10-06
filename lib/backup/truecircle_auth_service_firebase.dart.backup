@@ -1,0 +1,283 @@
+import 'package:flutter/foundation.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:hive/hive.dart';
+
+/// TrueCircle Firebase Authentication Service
+/// Real OTP sending, Phone verification, Google Sign-in
+/// Project: truecircle-43256654
+class TrueCircleAuthService {
+  static final TrueCircleAuthService _instance =
+      TrueCircleAuthService._internal();
+  factory TrueCircleAuthService() => _instance;
+  TrueCircleAuthService._internal();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  Box? _userBox;
+
+  // Current user getters
+  User? get currentUser => _auth.currentUser;
+  String? get currentUserId => _auth.currentUser?.uid;
+  bool get isAuthenticated => _auth.currentUser != null;
+  bool get isPhoneVerified => _auth.currentUser?.phoneNumber != null;
+
+  // For backward compatibility
+  Stream<User?> get authStateChanges => _auth.authStateChanges();
+
+  /// Initialize service
+  Future<void> initialize() async {
+    try {
+      _userBox = await Hive.openBox('user_auth');
+      debugPrint('✅ TrueCircle Firebase AuthService initialized');
+    } catch (e) {
+      debugPrint('❌ Failed to initialize AuthService: $e');
+    }
+  }
+
+  /// Real Phone OTP Verification - Firebase
+  Future<bool> verifyPhoneNumber({
+    required String phoneNumber,
+    required Function(String) onCodeSent,
+    required Function(String) onError,
+    Function(User)? onAutoVerify,
+  }) async {
+    try {
+      debugPrint('🔥 TrueCircle: Real phone verification for $phoneNumber');
+
+      // Format phone number for India
+      final formattedPhone = formatPhoneNumber(phoneNumber);
+
+      if (!isValidIndianPhoneNumber(formattedPhone)) {
+        onError(
+            'Invalid phone number format. Please use Indian format (+91XXXXXXXXXX)');
+        return false;
+      }
+
+      await _auth.verifyPhoneNumber(
+        phoneNumber: formattedPhone,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          debugPrint('📱 Phone verification completed automatically');
+          try {
+            final userCredential = await _auth.signInWithCredential(credential);
+            if (userCredential.user != null) {
+              await _createUserProfile(userCredential.user!);
+              onAutoVerify?.call(userCredential.user!);
+            }
+          } catch (e) {
+            onError('Auto-verification failed: $e');
+          }
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          debugPrint('❌ Phone verification failed: ${e.message}');
+          String errorMessage;
+          switch (e.code) {
+            case 'invalid-phone-number':
+              errorMessage = 'Invalid phone number format';
+              break;
+            case 'too-many-requests':
+              errorMessage = 'Too many requests. Please try again later';
+              break;
+            case 'network-request-failed':
+              errorMessage = 'Network error. Please check your connection';
+              break;
+            default:
+              errorMessage = 'Phone verification failed: ${e.message}';
+          }
+          onError(errorMessage);
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          debugPrint('📱 Real OTP sent to $formattedPhone');
+          onCodeSent(verificationId);
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          debugPrint('⏰ Code auto-retrieval timeout');
+        },
+        timeout: const Duration(seconds: 60),
+      );
+
+      return true;
+    } catch (e) {
+      debugPrint('❌ Phone verification error: $e');
+      onError('Failed to send OTP: ${e.toString()}');
+      return false;
+    }
+  }
+
+  /// Verify Real OTP
+  Future<User?> verifyOTP({
+    required String verificationId,
+    required String otp,
+    String? phoneNumber,
+  }) async {
+    try {
+      debugPrint('🔥 TrueCircle: Verifying real OTP $otp');
+
+      final credential = PhoneAuthProvider.credential(
+        verificationId: verificationId,
+        smsCode: otp,
+      );
+
+      final userCredential = await _auth.signInWithCredential(credential);
+
+      if (userCredential.user != null) {
+        await _createUserProfile(userCredential.user!);
+        debugPrint('✅ Real OTP verification successful');
+        return userCredential.user;
+      }
+
+      return null;
+    } catch (e) {
+      debugPrint('❌ OTP verification failed: $e');
+      throw FirebaseAuthException(
+        code: 'otp-verification-failed',
+        message: 'Invalid OTP. Please try again.',
+      );
+    }
+  }
+
+  /// Google Sign-in
+  Future<User?> signInWithGoogle() async {
+    try {
+      debugPrint('🔥 TrueCircle: Google Sign-in');
+
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) return null;
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final userCredential = await _auth.signInWithCredential(credential);
+
+      if (userCredential.user != null) {
+        await _createUserProfile(userCredential.user!);
+        return userCredential.user;
+      }
+
+      return null;
+    } catch (e) {
+      debugPrint('❌ Google sign-in failed: $e');
+      throw FirebaseAuthException(
+        code: 'google-signin-failed',
+        message: 'Google sign-in failed: ${e.toString()}',
+      );
+    }
+  }
+
+  /// Anonymous sign-in
+  Future<User?> signInAnonymously() async {
+    try {
+      debugPrint('🔥 TrueCircle: Anonymous sign-in');
+
+      final userCredential = await _auth.signInAnonymously();
+      if (userCredential.user != null) {
+        await _createUserProfile(userCredential.user!, isAnonymous: true);
+        return userCredential.user;
+      }
+
+      return null;
+    } catch (e) {
+      debugPrint('❌ Anonymous sign-in failed: $e');
+      throw FirebaseAuthException(
+        code: 'anonymous-signin-failed',
+        message: 'Anonymous sign-in failed: ${e.toString()}',
+      );
+    }
+  }
+
+  /// Guest sign-in (local only)
+  Future<Map<String, dynamic>?> signInAsGuest() async {
+    try {
+      debugPrint('🔥 TrueCircle: Guest access');
+
+      final userId = 'guest_${DateTime.now().millisecondsSinceEpoch}';
+      final userData = {
+        'uid': userId,
+        'displayName': 'Guest User',
+        'isGuest': true,
+        'createdAt': DateTime.now().toIso8601String(),
+      };
+
+      await _userBox?.put('guest_user', userData);
+
+      return userData;
+    } catch (e) {
+      debugPrint('❌ Guest sign-in failed: $e');
+      return null;
+    }
+  }
+
+  /// Sign out
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+      await _googleSignIn.signOut();
+      await _userBox?.delete('guest_user');
+      debugPrint('✅ User signed out successfully');
+    } catch (e) {
+      debugPrint('❌ Sign out failed: $e');
+    }
+  }
+
+  /// Create user profile in Firestore
+  Future<void> _createUserProfile(User user, {bool isAnonymous = false}) async {
+    try {
+      final userDoc = _firestore.collection('users').doc(user.uid);
+
+      final userData = {
+        'uid': user.uid,
+        'phoneNumber': user.phoneNumber,
+        'email': user.email,
+        'displayName': user.displayName ?? 'TrueCircle User',
+        'photoURL': user.photoURL,
+        'isAnonymous': isAnonymous,
+        'createdAt': FieldValue.serverTimestamp(),
+        'lastLoginAt': FieldValue.serverTimestamp(),
+        'appVersion': '1.0.0-beta+1',
+        'preferences': {
+          'language': 'English',
+          'notifications': true,
+          'culturalIntelligence': true,
+        },
+        'privacy': {
+          'onDeviceProcessing': true,
+          'dataSharing': false,
+        },
+      };
+
+      await userDoc.set(userData, SetOptions(merge: true));
+      debugPrint('✅ User profile created for ${user.uid}');
+    } catch (e) {
+      debugPrint('❌ Failed to create user profile: $e');
+    }
+  }
+
+  /// Format phone number for India (+91)
+  static String formatPhoneNumber(String phoneNumber) {
+    String cleaned = phoneNumber.replaceAll(RegExp(r'\D'), '');
+
+    if (cleaned.length == 10) {
+      return '+91$cleaned';
+    } else if (cleaned.length == 12 && cleaned.startsWith('91')) {
+      return '+$cleaned';
+    } else if (cleaned.length == 13 && cleaned.startsWith('+91')) {
+      return cleaned;
+    }
+
+    return phoneNumber;
+  }
+
+  /// Validate Indian phone number
+  static bool isValidIndianPhoneNumber(String phoneNumber) {
+    final formatted = formatPhoneNumber(phoneNumber);
+    return RegExp(r'^\+91[6-9]\d{9}$').hasMatch(formatted);
+  }
+}

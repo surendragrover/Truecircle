@@ -1,0 +1,17 @@
+# Run the corrected build script
+cd C:\Users\CC\flutter_app\truecircle
+.\truecircle_corrected_build.ps1
+
+
+# Clean everything first
+flutter clean
+flutter pub get
+
+# Generate Hive adapters as per coding instructions
+flutter packages pub run build_runner build --delete-conflicting-outputs
+
+# Verify setup
+flutter doctor -v
+
+# Build for your target platform
+flutter run -d windows  # or chrome for web testing
