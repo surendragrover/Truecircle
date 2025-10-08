@@ -8,7 +8,9 @@ import 'pages/sleep_tracker_page.dart';
 import 'pages/mood_journal_page.dart';
 import 'pages/emotional_check_in_entry_page.dart';
 import 'widgets/permission_explanation_dialog.dart';
+import 'widgets/bilingual_error_dialog.dart';
 import 'package:truecircle/services/ai_orchestrator_service.dart';
+import 'package:truecircle/services/google_translate_service.dart';
 import 'pages/event_budget_page.dart';
 import 'pages/how_truecircle_works_page.dart';
 import 'pages/feature_page.dart';
@@ -223,6 +225,15 @@ class _HomePageState extends State<HomePage> {
           ),
           Row(
             children: [
+              IconButton(
+                icon: const Icon(Icons.help_outline, color: Colors.white),
+                onPressed: () {
+                  _showHelpMenu(context);
+                },
+                tooltip: selectedLanguage == 'English' 
+                    ? 'Help & Troubleshooting' 
+                    : 'मदद और समस्या निवारण',
+              ),
               IconButton(
                 icon: const Icon(Icons.info_outline, color: Colors.white),
                 onPressed: () {
@@ -603,6 +614,103 @@ class _HomePageState extends State<HomePage> {
           '''$feature (coming soon)''',
         ),
       ),
+    );
+  }
+
+  void _showHelpMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return Container(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Icon(Icons.help_outline, color: CoralTheme.dark, size: 28),
+                  const SizedBox(width: 12),
+                  Text(
+                    selectedLanguage == 'English' ? 'Need Help?' : 'मदद चाहिए?',
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              ListTile(
+                leading: Icon(Icons.info_outline, color: Colors.blue.shade700),
+                title: Text(selectedLanguage == 'English' ? 'How TrueCircle Works' : 'TrueCircle कैसे काम करता है'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HowTrueCircleWorksPage(),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.build_outlined, color: Colors.orange.shade700),
+                title: Text(selectedLanguage == 'English' ? 'Troubleshooting Guide' : 'समस्या निवारण गाइड'),
+                subtitle: Text(
+                  selectedLanguage == 'English' 
+                    ? 'Solutions for common problems'
+                    : 'सामान्य समस्याओं के समाधान',
+                  style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  BilingualErrorDialog.showHelpDialog(context);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.translate, color: Colors.green.shade700),
+                title: Text(selectedLanguage == 'English' ? 'Translation Status' : 'अनुवाद स्थिति'),
+                subtitle: Text(
+                  GoogleTranslateService.isAvailable
+                    ? (selectedLanguage == 'English' ? 'Connected ✓' : 'जुड़ा हुआ ✓')
+                    : (selectedLanguage == 'English' ? 'Using fallback mode' : 'फ़ॉलबैक मोड में'),
+                  style: TextStyle(
+                    fontSize: 12, 
+                    color: GoogleTranslateService.isAvailable 
+                      ? Colors.green.shade700 
+                      : Colors.orange.shade700,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  if (!GoogleTranslateService.isAvailable) {
+                    BilingualErrorDialog.showTranslationError(context);
+                  }
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.psychology, color: Colors.purple.shade700),
+                title: Text(selectedLanguage == 'English' ? 'Dr. Iris AI Status' : 'डॉ. आइरिस AI स्थिति'),
+                subtitle: Text(
+                  selectedLanguage == 'English' 
+                    ? 'Check AI service availability'
+                    : 'AI सेवा उपलब्धता जांचें',
+                  style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  BilingualErrorDialog.showAIServiceError(context);
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 
