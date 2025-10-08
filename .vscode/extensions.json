@@ -1,0 +1,33 @@
+{
+    "recommendations": [
+        // Essential Flutter/Dart extensions
+        "dart-code.dart-code",
+        "dart-code.flutter",
+        
+        // Code quality and formatting
+        "usernamehw.errorlens",
+        "streetsidesoftware.code-spell-checker",
+        
+        // Git integration
+        "eamodio.gitlens",
+        
+        // Additional helpful extensions
+        "gruntfuggly.todo-tree",
+        "wayou.vscode-todo-highlight",
+        "ms-vscode.live-server",
+        
+        // Firebase support
+        "toba.vsfire",
+        
+        // JSON and YAML support
+        "redhat.vscode-yaml",
+        
+        // Markdown support for documentation
+        "yzhang.markdown-all-in-one"
+    ],
+    "unwantedRecommendations": [
+        // Extensions that might conflict or slow down VS Code
+        "hookyqr.beautify",
+        "esbenp.prettier-vscode"
+    ]
+}
