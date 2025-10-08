@@ -1,4 +1,96 @@
 {
+    // Dart/Flutter settings
     "dart.showTodos": false,
-    "git.ignoreLimitWarning": true
+    "dart.lineLength": 100,
+    "dart.analysisExcludedFolders": [
+        ".dart_tool",
+        "build",
+        ".idea",
+        "android/build",
+        "ios/build",
+        "linux/build",
+        "macos/build",
+        "windows/build",
+        "web/build",
+        ".gradle"
+    ],
+    "dart.debugExternalPackageLibraries": false,
+    "dart.debugSdkLibraries": false,
+    
+    // Git settings
+    "git.ignoreLimitWarning": true,
+    
+    // File watcher exclusions to prevent VS Code from watching build artifacts
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/*/**": true,
+        "**/.hg/store/**": true,
+        "**/.dart_tool/**": true,
+        "**/build/**": true,
+        "**/.gradle/**": true,
+        "**/android/build/**": true,
+        "**/ios/build/**": true,
+        "**/linux/build/**": true,
+        "**/macos/build/**": true,
+        "**/windows/build/**": true,
+        "**/web/build/**": true,
+        "**/ios/Pods/**": true,
+        "**/ios/.symlinks/**": true,
+        "**/android/.gradle/**": true
+    },
+    
+    // Search exclusions to speed up searches
+    "search.exclude": {
+        "**/.dart_tool": true,
+        "**/build": true,
+        "**/.gradle": true,
+        "**/android/build": true,
+        "**/ios/build": true,
+        "**/linux/build": true,
+        "**/macos/build": true,
+        "**/windows/build": true,
+        "**/ios/Pods": true,
+        "**/*.g.dart": true,
+        "**/*.freezed.dart": true,
+        "**/.flutter-plugins": true,
+        "**/.flutter-plugins-dependencies": true,
+        "**/pubspec.lock": true
+    },
+    
+    // Files to exclude from file explorer
+    "files.exclude": {
+        "**/.dart_tool": true,
+        "**/build": true,
+        "**/.gradle": true
+    },
+    
+    // Editor settings for better performance
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
+    "editor.suggestSelection": "first",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit"
+    },
+    
+    // Disable unwanted features that may slow down VS Code
+    "telemetry.telemetryLevel": "off",
+    "update.mode": "none",
+    
+    // Flutter specific optimizations
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [100],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": "off"
+    }
 }
