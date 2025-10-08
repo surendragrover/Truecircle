@@ -25,8 +25,11 @@ class LanguageService extends ChangeNotifier {
   Future<void> _initializeTranslation() async {
     await GoogleTranslateService.initialize();
     _isTranslationReady = GoogleTranslateService.isAvailable;
-    debugPrint(
-        'Language Service initialized. Translation ready: $_isTranslationReady');
+    if (_isTranslationReady) {
+      debugPrint('✅ Language Service initialized. Translation ready: $_isTranslationReady');
+    } else {
+      debugPrint('⚠️ Language Service initialized but translation API not available. Using fallback translations only.');
+    }
   }
 
   /// Switch language and notify listeners
@@ -41,10 +44,6 @@ class LanguageService extends ChangeNotifier {
   /// Auto-translate text based on current language
   /// Returns cached translation if available, otherwise translates on demand
   Future<String> autoTranslate(String originalText, {String? context}) async {
-    if (!_isTranslationReady) {
-      return originalText; // Return original if translation not ready
-    }
-
     // Create cache key
     final cacheKey = '${originalText}_${_currentLanguage}_$context';
 
@@ -59,22 +58,41 @@ class LanguageService extends ChangeNotifier {
       // Detect source language and translate accordingly
       final detectedLang = _detectLanguage(originalText);
 
+      // Only attempt translation if language differs
       if (_currentLanguage == 'Hindi' && detectedLang == 'en') {
         // Translate English to Hindi
-        translatedText = await GoogleTranslateService.translateWithContext(
-          text: originalText,
-          sourceLanguage: 'en',
-          targetLanguage: 'hi',
-          context: context,
-        );
+        if (_isTranslationReady) {
+          translatedText = await GoogleTranslateService.translateWithContext(
+            text: originalText,
+            sourceLanguage: 'en',
+            targetLanguage: 'hi',
+            context: context,
+          );
+        } else {
+          // Use fallback translation
+          translatedText = await GoogleTranslateService.translateText(
+            text: originalText,
+            sourceLanguage: 'en',
+            targetLanguage: 'hi',
+          );
+        }
       } else if (_currentLanguage == 'English' && detectedLang == 'hi') {
         // Translate Hindi to English
-        translatedText = await GoogleTranslateService.translateWithContext(
-          text: originalText,
-          sourceLanguage: 'hi',
-          targetLanguage: 'en',
-          context: context,
-        );
+        if (_isTranslationReady) {
+          translatedText = await GoogleTranslateService.translateWithContext(
+            text: originalText,
+            sourceLanguage: 'hi',
+            targetLanguage: 'en',
+            context: context,
+          );
+        } else {
+          // Use fallback translation
+          translatedText = await GoogleTranslateService.translateText(
+            text: originalText,
+            sourceLanguage: 'hi',
+            targetLanguage: 'en',
+          );
+        }
       } else {
         // Same language or no translation needed
         translatedText = originalText;
@@ -86,7 +104,7 @@ class LanguageService extends ChangeNotifier {
 
       return result;
     } catch (e) {
-      debugPrint('Auto-translation error: $e');
+      debugPrint('⚠️ Auto-translation error for "$originalText": $e - Using original text');
       return originalText; // Return original on error
     }
   }

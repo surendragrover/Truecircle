@@ -22,16 +22,26 @@ class GoogleTranslateService {
 
       for (String line in envLines) {
         if (line.startsWith('GOOGLE_TRANSLATE_API_KEY=')) {
-          _apiKey = line.split('=')[1].trim();
+          final keyValue = line.split('=')[1].trim();
+          // Check if API key is valid (not placeholder)
+          if (keyValue.isNotEmpty && 
+              !keyValue.contains('your_') && 
+              !keyValue.contains('here')) {
+            _apiKey = keyValue;
+          }
           break;
         }
       }
 
       _isInitialized = true;
-      debugPrint('Google Translate Service initialized');
+      if (_apiKey != null) {
+        debugPrint('✅ Google Translate Service initialized with valid API key');
+      } else {
+        debugPrint('⚠️ Google Translate Service initialized but API key not configured - using fallback translations');
+      }
     } catch (e) {
-      debugPrint('Error initializing Google Translate Service: $e');
-      _isInitialized = false;
+      debugPrint('⚠️ Error loading api.env file: $e - Translation will use fallback mode');
+      _isInitialized = true; // Still mark as initialized to use fallback
     }
   }
 
@@ -177,6 +187,15 @@ class GoogleTranslateService {
       'family': {'hi': 'परिवार', 'en': 'family'},
       'friend': {'hi': 'मित्र', 'en': 'friend'},
       'love': {'hi': 'प्रेम', 'en': 'love'},
+      'help': {'hi': 'मदद', 'en': 'help'},
+      'error': {'hi': 'त्रुटि', 'en': 'error'},
+      'loading': {'hi': 'लोड हो रहा है', 'en': 'loading'},
+      'please wait': {'hi': 'कृपया प्रतीक्षा करें', 'en': 'please wait'},
+      'try again': {'hi': 'पुनः प्रयास करें', 'en': 'try again'},
+      'offline mode': {'hi': 'ऑफलाइन मोड', 'en': 'offline mode'},
+      'settings': {'hi': 'सेटिंग्स', 'en': 'settings'},
+      'home': {'hi': 'होम', 'en': 'home'},
+      'profile': {'hi': 'प्रोफाइल', 'en': 'profile'},
 
       // Hindi common words
       'खुश': {'en': 'happy', 'hi': 'खुश'},
@@ -184,6 +203,10 @@ class GoogleTranslateService {
       'मित्र': {'en': 'friend', 'hi': 'मित्र'},
       'प्रेम': {'en': 'love', 'hi': 'प्रेम'},
       'धन्यवाद': {'en': 'thank you', 'hi': 'धन्यवाद'},
+      'मदद': {'en': 'help', 'hi': 'मदद'},
+      'त्रुटि': {'en': 'error', 'hi': 'त्रुटि'},
+      'समस्या': {'en': 'problem', 'hi': 'समस्या'},
+      'दिक्कत': {'en': 'difficulty', 'hi': 'दिक्कत'},
     };
 
     final lowerText = text.toLowerCase().trim();
@@ -193,7 +216,7 @@ class GoogleTranslateService {
       return translation[targetLanguage];
     }
 
-    debugPrint('No fallback translation found for: $text');
+    debugPrint('ℹ️ Using original text (no fallback translation): $text');
     return text; // Return original text if no translation found
   }
 
