@@ -1,0 +1,1616 @@
+indows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Install the latest PowerShell for new features and improvements! https://aka.ms/PSWindows
+
+PS C:\WINDOWS\system32> cd C:\Users\suren\flutter_app\truecircle\tc
+PS C:\Users\suren\flutter_app\truecircle\tc> flutter clean *>&1 | Tee-Object -FilePath logs.txt
+Deleting build...
+flutter : Failed to remove build. A program may still be using a file in the directory or the directory itself. To
+find and stop such a program, see: https://superuser.com/questions/1333118/cant-delete-empty-folder-because-it-is-used
+At line:1 char:1
++ flutter clean *>&1 | Tee-Object -FilePath logs.txt
++ ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Failed to remov...ause-it-is-used:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Deleting build...                                                    2ms
+Deleting .dart_tool...                                               2ms
+Deleting ephemeral...                                                0ms
+Deleting Generated.xcconfig...                                       0ms
+Deleting flutter_export_environment.sh...                            0ms
+Deleting ephemeral...                                                0ms
+Deleting ephemeral...                                                0ms
+Deleting ephemeral...                                                0ms
+Deleting .flutter-plugins-dependencies...                            0ms
+PS C:\Users\suren\flutter_app\truecircle\tc>
+PS C:\Users\suren\flutter_app\truecircle\tc> flutter pub get *>&1 | Tee-Object -FilePath logs.txt -Append
+Resolving dependencies...
+Downloading packages...
+  _fe_analyzer_shared 67.0.0 (91.0.0 available)
+  analyzer 6.4.1 (8.4.0 available)
+  build 2.4.1 (4.0.2 available)
+  build_config 1.1.2 (1.2.0 available)
+  build_resolvers 2.4.2 (3.0.4 available)
+  build_runner 2.4.13 (2.10.0 available)
+  build_runner_core 7.3.2 (9.3.2 available)
+  characters 1.4.0 (1.4.1 available)
+  dart_style 2.3.6 (3.1.2 available)
+  flutter_lints 5.0.0 (6.0.0 available)
+  json_serializable 6.8.0 (6.11.1 available)
+  lints 5.1.1 (6.0.0 available)
+  material_color_utilities 0.11.1 (0.13.0 available)
+  meta 1.16.0 (1.17.0 available)
+  shelf_web_socket 2.0.1 (3.0.0 available)
+  source_gen 1.5.0 (4.0.2 available)
+  source_helper 1.3.5 (1.3.8 available)
+  test_api 0.7.6 (0.7.7 available)
+Got dependencies!
+18 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+PS C:\Users\suren\flutter_app\truecircle\tc> flutter analyze --no-pub *>&1 | Tee-Object -FilePath logs.txt -Append
+Analyzing TC...
+No issues found! (ran in 2.8s)
+PS C:\Users\suren\flutter_app\truecircle\tc> flutter build apk -v *>&1 | Tee-Object -FilePath logs.txt -Append
+[ +107 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[   +1 ms] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[  +83 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[   +4 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[  +49 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[   +3 ms] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[  +70 ms] executing: [C:\Users\suren\flutter_app\truecircle\TC/] C:\Users\suren\src\flutter\bin\cache\dart-sdk\bin\dart pub --suppress-analytics --directory . get --example
+Resolving dependencies...
+Downloading packages...
+  _fe_analyzer_shared 67.0.0 (91.0.0 available)
+  analyzer 6.4.1 (8.4.0 available)
+  build 2.4.1 (4.0.2 available)
+  build_config 1.1.2 (1.2.0 available)
+  build_resolvers 2.4.2 (3.0.4 available)
+  build_runner 2.4.13 (2.10.0 available)
+  build_runner_core 7.3.2 (9.3.2 available)
+  characters 1.4.0 (1.4.1 available)
+  dart_style 2.3.6 (3.1.2 available)
+  flutter_lints 5.0.0 (6.0.0 available)
+  json_serializable 6.8.0 (6.11.1 available)
+  lints 5.1.1 (6.0.0 available)
+  material_color_utilities 0.11.1 (0.13.0 available)
+  meta 1.16.0 (1.17.0 available)
+  shelf_web_socket 2.0.1 (3.0.0 available)
+  source_gen 1.5.0 (4.0.2 available)
+  source_helper 1.3.5 (1.3.8 available)
+  test_api 0.7.6 (0.7.7 available)
+Got dependencies!
+18 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+[ +947 ms] Found plugin path_provider at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider-2.1.5\
+[   +4 ms] Found plugin path_provider_windows at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_windows-2.3.0\
+[   +8 ms] Found plugin path_provider_linux at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_linux-2.2.1\
+[   +4 ms] Found plugin path_provider_foundation at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_foundation-2.4.3\
+[   +4 ms] Found plugin path_provider_android at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.20\
+[ +109 ms] Found plugin path_provider at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider-2.1.5\
+[   +1 ms] Found plugin path_provider_windows at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_windows-2.3.0\
+[   +6 ms] Found plugin path_provider_linux at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_linux-2.2.1\
+[   +3 ms] Found plugin path_provider_foundation at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_foundation-2.4.3\
+[   +2 ms] Found plugin path_provider_android at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.20\
+[  +16 ms] Skipping generating web_plugin_registrant.dart because it is up-to-date.
+[  +78 ms] Found plugin path_provider at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider-2.1.5\
+[   +1 ms] Found plugin path_provider_windows at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_windows-2.3.0\
+[   +5 ms] Found plugin path_provider_linux at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_linux-2.2.1\
+[   +2 ms] Found plugin path_provider_foundation at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_foundation-2.4.3\
+[   +1 ms] Found plugin path_provider_android at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.20\
+[   +5 ms] Generating C:\Users\suren\flutter_app\truecircle\TC\android\app\src\main\java\io\flutter\plugins\GeneratedPluginRegistrant.java
+[   +5 ms] Skipping generating GeneratedPluginRegistrant.java because it is up-to-date.
+[   +2 ms] Skipping generating generated_plugin_registrant.h because it is up-to-date.
+[   +1 ms] Skipping generating generated_plugin_registrant.cc because it is up-to-date.
+[   +1 ms] Skipping generating generated_plugins.cmake because it is up-to-date.
+[   +1 ms] Skipping generating generated_plugin_registrant.h because it is up-to-date.
+[   +1 ms] Skipping generating generated_plugin_registrant.cc because it is up-to-date.
+[   +1 ms] Skipping generating generated_plugins.cmake because it is up-to-date.
+[   +3 ms] Skipping generating GeneratedPluginRegistrant.h because it is up-to-date.
+[   +1 ms] Skipping generating GeneratedPluginRegistrant.m because it is up-to-date.
+[   +1 ms] Skipping generating GeneratedPluginRegistrant.swift because it is up-to-date.
+[  +96 ms] executing: C:\Program Files\Android\Android Studio\jbr\bin\java -version
+[ +132 ms] Exit code 0 from: C:\Program Files\Android\Android Studio\jbr\bin\java -version
+[        ] openjdk version "21.0.8" 2025-07-15
+           OpenJDK Runtime Environment (build 21.0.8+-14018985-b1038.68)
+           OpenJDK 64-Bit Server VM (build 21.0.8+-14018985-b1038.68, mixed mode)
+[   +3 ms] executing: C:\Program Files\Android\Android Studio\jbr\bin\java -version
+[ +116 ms] Exit code 0 from: C:\Program Files\Android\Android Studio\jbr\bin\java -version
+[        ] openjdk version "21.0.8" 2025-07-15
+           OpenJDK Runtime Environment (build 21.0.8+-14018985-b1038.68)
+           OpenJDK 64-Bit Server VM (build 21.0.8+-14018985-b1038.68, mixed mode)
+[   +8 ms] Top-level Gradle build file not found, skipping migration of task "clean".
+[   +2 ms] executing: C:\Program Files\Android\Android Studio\jbr\bin\java --version
+[ +113 ms] Exit code 0 from: C:\Program Files\Android\Android Studio\jbr\bin\java --version
+[        ] openjdk 21.0.8 2025-07-15
+           OpenJDK Runtime Environment (build 21.0.8+-14018985-b1038.68)
+           OpenJDK 64-Bit Server VM (build 21.0.8+-14018985-b1038.68, mixed mode)
+[   +1 ms] Version of Java is different than impacted version, no migration attempted.
+[  +13 ms] CMake project not found, skipping support Android 15 16k page size migration.
+[   +4 ms] Using gradle from C:\Users\suren\flutter_app\truecircle\TC\android\gradlew.bat.
+[  +50 ms] LocalFile: 'C:\Users\suren\flutter_app\truecircle\TC\android\build.gradle.kts' doesn't provide an AGP version. Checking settings.
+[  +10 ms] LocalFile: 'C:\Users\suren\flutter_app\truecircle\TC\android\settings.gradle.kts' provides AGP version: 8.9.1
+[  +18 ms] Running Gradle task 'assembleRelease'...
+[   +2 ms] executing: [C:\Users\suren\flutter_app\truecircle\TC\android/] C:\Users\suren\flutter_app\truecircle\TC\android\gradlew.bat --full-stacktrace --info -Pverbose=true -Ptarget-platform=android-arm,android-arm64,android-x64 -Ptarget=lib\main.dart -Pbase-application-name=android.app.Application -Pdart-defines=RkxVVFRFUl9WRVJTSU9OPTMuMzUuNg==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049OWY0NTVkMjQ4Ng==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049ZDI5MTM2MzJhNA==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My45LjI= -Pdart-obfuscation=false -Ptrack-widget-creation=true -Ptree-shake-icons=true assembleRelease
+[ +744 ms] Initialized native services in: C:\Users\suren\.gradle\native
+[        ] Initialized jansi services in: C:\Users\suren\.gradle\native
+[ +412 ms] The client will now receive all logging from the daemon (pid: 15580). The daemon log file: C:\Users\suren\.gradle\daemon\8.12\daemon-15580.out.log
+[        ] Starting 2nd build in daemon [uptime: 17 mins 19.704 secs, performance: 99%, GC rate: 0.00/s, heap usage: 0% of 8 GiB, non-heap usage: 9% of 4 GiB]
+[        ] Using 8 worker leases.
+[        ] Now considering [C:\Users\suren\flutter_app\truecircle\TC\android, C:\Users\suren\src\flutter\packages\flutter_tools\gradle] as hierarchies to watch
+[        ] Watching the file system is configured to be enabled if available
+[        ] File system watching is active
+[        ] Starting Build
+[   +1 ms] Now considering [C:\Users\suren\src\flutter\packages\flutter_tools\gradle, C:\Users\suren\flutter_app\truecircle\TC\android] as hierarchies to watch
+[ +301 ms] > Configure project :gradle
+[        ] Evaluating project ':gradle' using build file 'C:\Users\suren\src\flutter\packages\flutter_tools\gradle\build.gradle.kts'.
+[        ] Resolved plugin [id: 'org.gradle.java-gradle-plugin']
+[        ] Resolved plugin [id: 'org.gradle.groovy']
+[        ] Resolved plugin [id: 'org.gradle.kotlin.kotlin-dsl', version: '5.1.2']
+[        ] Resolved plugin [id: 'org.jetbrains.kotlin.jvm', version: '1.9.20']
+[        ] Using Kotlin Gradle Plugin gradle85 variant
+[        ] kotlin scripting plugin: created the scripting discovery configuration: kotlinScriptDef
+[        ] kotlin scripting plugin: created the scripting discovery configuration: testKotlinScriptDef
+[        ] file or directory 'C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\java', not found
+[        ] Resolved plugin [id: 'dev.flutter.flutter-plugin-loader', version: '1.0.0']
+[        ] Resolved plugin [id: 'com.android.application', version: '8.9.1', apply: false]
+[        ] Resolved plugin [id: 'org.jetbrains.kotlin.android', version: '2.1.0', apply: false]
+[        ] Resolve mutations for :gradle:checkKotlinGradlePluginConfigurationErrors (Thread[#291,Execution worker,5,main]) started.
+[        ] :gradle:checkKotlinGradlePluginConfigurationErrors (Thread[#294,Execution worker Thread 4,5,main]) started.
+[   +1 ms] > Task :gradle:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[   +1 ms] Skipping task ':gradle:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+[        ] Resolve mutations for :gradle:compileKotlin (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :gradle:compileKotlin (Thread[#294,Execution worker Thread 4,5,main]) started.
+[ +193 ms] > Task :gradle:compileKotlin UP-TO-DATE
+[        ] Caching disabled for task ':gradle:compileKotlin' because:
+[   +1 ms]   Build cache is disabled
+[        ] Skipping task ':gradle:compileKotlin' as it is up-to-date.
+[        ] Resolve mutations for :gradle:compileJava (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :gradle:compileJava (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :gradle:compileJava NO-SOURCE
+[        ] Skipping task ':gradle:compileJava' as it has no source files and no previous output files.
+[        ] Resolve mutations for :gradle:compileGroovy (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :gradle:compileGroovy (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :gradle:compileGroovy NO-SOURCE
+[        ] Skipping task ':gradle:compileGroovy' as it has no source files and no previous output files.
+[        ] Resolve mutations for :gradle:pluginDescriptors (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :gradle:pluginDescriptors (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :gradle:pluginDescriptors UP-TO-DATE
+[        ] Caching disabled for task ':gradle:pluginDescriptors' because:
+[        ]   Build cache is disabled
+[        ]   Not worth caching
+[   +1 ms] Skipping task ':gradle:pluginDescriptors' as it is up-to-date.
+[        ] Resolve mutations for :gradle:processResources (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :gradle:processResources (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :gradle:processResources UP-TO-DATE
+[        ] Caching disabled for task ':gradle:processResources' because:
+[        ]   Build cache is disabled
+[        ]   Not worth caching
+[        ] Skipping task ':gradle:processResources' as it is up-to-date.
+[   +1 ms] Resolve mutations for :gradle:classes (Thread[#294,Execution worker Thread 4,5,main]) started.
+[   +1 ms] :gradle:classes (Thread[#294,Execution worker Thread 4,5,main]) started.
+[   +2 ms] > Task :gradle:classes UP-TO-DATE
+[        ] Skipping task ':gradle:classes' as it has no actions.
+[        ] Resolve mutations for :gradle:jar (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :gradle:jar (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :gradle:jar UP-TO-DATE
+[   +1 ms] Caching disabled for task ':gradle:jar' because:
+[   +1 ms]   Build cache is disabled
+[        ]   Not worth caching
+[        ] Skipping task ':gradle:jar' as it is up-to-date.
+[ +274 ms] Settings evaluated using settings file 'C:\Users\suren\flutter_app\truecircle\TC\android\settings.gradle.kts'.
+[        ] Projects loaded. Root project using build file 'C:\Users\suren\flutter_app\truecircle\TC\android\build.gradle.kts'.
+[        ] Included projects: [root project 'android', project ':app', project ':path_provider_android']
+[ +286 ms] > Configure project :app
+[        ] Evaluating project ':app' using build file 'C:\Users\suren\flutter_app\truecircle\TC\android\app\build.gradle.kts'.
+[        ] Resolved plugin [id: 'com.android.application']
+[        ] Resolved plugin [id: 'kotlin-android']
+[        ] Resolved plugin [id: 'dev.flutter.flutter-gradle-plugin']
+[        ] Using default execution profile
+[        ] Using Kotlin Gradle Plugin gradle85 variant
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[   +1 ms] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[   +2 ms] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[   +1 ms] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[   +1 ms] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[   +1 ms] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[   +1 ms] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[        ] C/C++: android.ndkVersion from module build.gradle is [27.0.12077973]
+[        ] C/C++: android.ndkPath from module build.gradle is not set
+[        ] C/C++: ndk.dir in local.properties is not set
+[        ] C/C++: Not considering ANDROID_NDK_HOME because support was removed after deprecation period.
+[        ] C/C++: sdkFolder is C:\Users\suren\AppData\Local\Android\sdk
+[   +1 ms] > Configure project :
+[        ] Evaluating root project 'android' using build file 'C:\Users\suren\flutter_app\truecircle\TC\android\build.gradle.kts'.
+[ +240 ms] > Configure project :path_provider_android
+[        ] Evaluating project ':path_provider_android' using build file 'C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.20\android\build.gradle'.
+[        ] Using default execution profile
+[        ] All projects evaluated.
+[        ] Task name matched 'assembleRelease'
+[        ] Selected primary task 'assembleRelease' from project :
+[ +201 ms] Tasks to be executed: [task ':app:ReleaseMinSdkCheck', task ':app:compileFlutterBuildRelease', task ':app:packJniLibsflutterBuildRelease', task ':app:preBuild', task ':app:preReleaseBuild', task ':app:configureCMakeRelease[arm64-v8a]', task ':app:buildCMakeRelease[arm64-v8a]', task ':app:configureCMakeRelease[armeabi-v7a]', task ':app:buildCMakeRelease[armeabi-v7a]', task ':app:configureCMakeRelease[x86_64]', task ':app:buildCMakeRelease[x86_64]', task ':app:mergeReleaseJniLibFolders', task ':path_provider_android:preBuild', task ':path_provider_android:preReleaseBuild', task ':path_provider_android:mergeReleaseJniLibFolders', task ':path_provider_android:mergeReleaseNativeLibs', task ':path_provider_android:copyReleaseJniLibsProjectOnly', task ':app:mergeReleaseNativeLibs', task ':app:stripReleaseDebugSymbols', task ':app:extractReleaseNativeSymbolTables', task ':app:mergeReleaseNativeDebugMetadata', task ':path_provider_android:generateReleaseResValues', task ':path_provider_android:generateReleaseResources', task ':path_provider_android:packageReleaseResources', task ':path_provider_android:parseReleaseLocalResources', task ':path_provider_android:generateReleaseRFile', task ':path_provider_android:javaPreCompileRelease', task ':path_provider_android:compileReleaseJavaWithJavac', task ':path_provider_android:mergeReleaseGeneratedProguardFiles', task ':path_provider_android:exportReleaseConsumerProguardFiles', task ':app:buildKotlinToolingMetadata', task ':app:checkReleaseDuplicateClasses', task ':app:checkKotlinGradlePluginConfigurationErrors', task ':path_provider_android:writeReleaseAarMetadata', task ':app:checkReleaseAarMetadata', task ':app:cleanMergeReleaseAssets', task ':app:mergeReleaseShaders', task ':app:compileReleaseShaders', task ':app:generateReleaseAssets', task ':path_provider_android:mergeReleaseShaders', task ':path_provider_android:compileReleaseShaders', task ':path_provider_android:generateReleaseAssets', task ':path_provider_android:mergeReleaseAssets', task ':app:mergeReleaseAssets', task ':app:copyFlutterAssetsRelease', task ':app:generateReleaseResValues', task ':app:mapReleaseSourceSetPaths', task ':app:generateReleaseResources', task ':app:mergeReleaseResources', task ':app:packageReleaseResources', task ':app:parseReleaseLocalResources', task ':app:createReleaseCompatibleScreenManifests', task ':app:extractDeepLinksRelease', task ':path_provider_android:extractDeepLinksRelease', task ':path_provider_android:processReleaseManifest', task ':app:processReleaseMainManifest', task ':app:processReleaseManifest', task ':app:processReleaseManifestForPackage', task ':app:processReleaseResources', task ':path_provider_android:bundleLibCompileToJarRelease', task ':app:compileReleaseKotlin', task ':app:javaPreCompileRelease', task ':app:compileReleaseJavaWithJavac', task ':path_provider_android:prepareReleaseArtProfile', task ':app:mergeReleaseArtProfile', task ':path_provider_android:bundleLibRuntimeToJarRelease', task ':app:expandReleaseArtProfileWildcards', task ':app:extractProguardFiles', task ':app:mergeReleaseGeneratedProguardFiles', task ':app:processReleaseJavaRes', task ':path_provider_android:processReleaseJavaRes', task ':app:mergeReleaseJavaResource', task ':app:mergeReleaseStartupProfile', task ':app:minifyReleaseWithR8', task ':app:compileReleaseArtProfile', task ':app:compressReleaseAssets', task ':app:extractReleaseVersionControlInfo', task ':path_provider_android:createFullJarRelease', task ':path_provider_android:extractProguardFiles', task ':path_provider_android:generateReleaseLintModel', task ':path_provider_android:prepareLintJarForPublish', task ':app:generateReleaseLintVitalReportModel', task ':path_provider_android:stripReleaseDebugSymbols', task ':path_provider_android:copyReleaseJniLibsProjectAndLocalJars', task ':path_provider_android:extractDeepLinksForAarRelease', task ':path_provider_android:extractReleaseAnnotations', task ':path_provider_android:mergeReleaseConsumerProguardFiles', task ':path_provider_android:mergeReleaseJavaResource', task ':path_provider_android:syncReleaseLibJars', task ':path_provider_android:bundleReleaseLocalLintAar', task ':path_provider_android:lintVitalAnalyzeRelease', task ':path_provider_android:writeReleaseLintModelMetadata', task ':app:lintVitalAnalyzeRelease', task ':path_provider_android:generateReleaseLintVitalModel', task ':app:lintVitalReportRelease', task ':app:lintVitalRelease', task ':app:convertShrunkResourcesToBinaryRelease', task ':app:optimizeReleaseResources', task ':app:collectReleaseDependencies', task ':app:sdkReleaseDependencyData', task ':app:validateSigningRelease', task ':app:writeReleaseAppMetadata', task ':app:writeReleaseSigningConfigVersions', task ':app:packageRelease', task ':app:createReleaseApkListingFileRedirect', task ':app:assembleRelease', task ':path_provider_android:bundleReleaseAar', task ':path_provider_android:mapReleaseSourceSetPaths', task ':path_provider_android:mergeReleaseResources', task ':path_provider_android:verifyReleaseResources', task ':path_provider_android:assembleRelease']
+[   +1 ms] Tasks that were excluded: []
+[        ] work action Parameters of FilterShrinkerRulesTransform (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] work action Parameters of ExtractAarTransform (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] Resolve mutations for :app:ReleaseMinSdkCheck (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :app:ReleaseMinSdkCheck (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] > Task :app:ReleaseMinSdkCheck
+[        ] Caching disabled for task ':app:ReleaseMinSdkCheck' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:ReleaseMinSdkCheck' is not up-to-date because:
+[        ]   Task has not declared any outputs despite executing actions.
+[        ] Resolve mutations for :app:compileFlutterBuildRelease (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :app:compileFlutterBuildRelease (Thread[#297,Execution worker Thread 7,5,main]) started.
+[+1991 ms] > Task :app:compileFlutterBuildRelease
+[        ] Caching disabled for task ':app:compileFlutterBuildRelease' because:
+[        ]   Build cache is disabled
+[        ]   Caching has not been enabled for the task
+[        ] Task ':app:compileFlutterBuildRelease' is not up-to-date because:
+[        ]   Output property 'outputFiles$1' has been added for task ':app:compileFlutterBuildRelease'
+[        ]   Output property 'outputFiles$10' has been added for task ':app:compileFlutterBuildRelease'
+[        ]   Output property 'outputFiles$11' has been added for task ':app:compileFlutterBuildRelease'
+[        ]   and more...
+[        ] Starting process 'command 'C:\Users\suren\src\flutter\bin\flutter.bat''. Working directory: C:\Users\suren\flutter_app\truecircle\TC Command: C:\Users\suren\src\flutter\bin\flutter.bat --verbose assemble --no-version-check --depfile C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\flutter\release/flutter_build.d --output C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\flutter\release -dTargetFile=lib\main.dart -dTargetPlatform=android -dBuildMode=release -dTrackWidgetCreation=true -dTreeShakeIcons=true --DartDefines=RkxVVFRFUl9WRVJTSU9OPTMuMzUuNg==,RkxVVFRFUl9DSEFOTkVMPXN0YWJsZQ==,RkxVVFRFUl9HSVRfVVJMPWh0dHBzOi8vZ2l0aHViLmNvbS9mbHV0dGVyL2ZsdXR0ZXIuZ2l0,RkxVVFRFUl9GUkFNRVdPUktfUkVWSVNJT049OWY0NTVkMjQ4Ng==,RkxVVFRFUl9FTkdJTkVfUkVWSVNJT049ZDI5MTM2MzJhNA==,RkxVVFRFUl9EQVJUX1ZFUlNJT049My45LjI= -dFlavor= -dAndroidArchs=android-arm android-arm64 android-x64 -dMinSdkVersion=24 android_aot_bundle_release_android-arm android_aot_bundle_release_android-arm64 android_aot_bundle_release_android-x64
+[        ] Successfully started process 'command 'C:\Users\suren\src\flutter\bin\flutter.bat''
+[        ] [ +114 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ] [   +1 ms] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] [   +1 ms] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[        ] [  +13 ms] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ] [   +3 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] [  +82 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] [   +4 ms] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterEngineStamp' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LegacyCanvasKitRemover' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[        ] [        ] Artifact Instance of 'PubDependencies' is not required, skipping update.
+[        ] [  +57 ms] Initializing file store
+[        ] [  +52 ms] Skipping target: gen_localizations
+[        ] [   +3 ms] gen_dart_plugin_registrant: Starting due to {InvalidatedReasonKind.inputChanged: The following inputs have updated contents: C:\Users\suren\flutter_app\truecircle\TC\.dart_tool\package_config.json}
+[        ] [   +3 ms] dart_build: Starting due to {}
+[        ] [  +75 ms] No packages with native assets. Skipping native assets compilation.
+[        ] [  +17 ms] dart_build: Complete
+[        ] [   +7 ms] install_code_assets: Starting due to {}
+[        ] [   +2 ms] Writing native assets json to file:///C:/Users/suren/flutter_app/truecircle/TC/.dart_tool/flutter_build/dc0c12edf757d7ec3b5aa0fd12652398/native_assets.json.
+[        ] [   +4 ms] Writing C:\Users\suren\flutter_app\truecircle\TC\.dart_tool\flutter_build\dc0c12edf757d7ec3b5aa0fd12652398\native_assets.json done.
+[        ] [   +2 ms] install_code_assets: Complete
+[        ] [ +145 ms] Found plugin path_provider at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider-2.1.5\
+[        ] [   +6 ms] Found plugin path_provider_windows at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_windows-2.3.0\
+[        ] [   +8 ms] Found plugin path_provider_linux at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_linux-2.2.1\
+[        ] [   +3 ms] Found plugin path_provider_foundation at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_foundation-2.4.3\
+[        ] [   +2 ms] Found plugin path_provider_android at C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.20\
+[        ] [  +40 ms] gen_dart_plugin_registrant: Complete
+[        ] [   +2 ms] kernel_snapshot_program: Starting due to {}
+[        ] [  +13 ms] C:\Users\suren\src\flutter\bin\cache\dart-sdk\bin\dartaotruntime.exe C:\Users\suren\src\flutter\bin\cache\dart-sdk\bin\snapshots\frontend_server_aot.dart.snapshot --sdk-root C:\Users\suren\src\flutter\bin\cache\artifacts\engine\common\flutter_patched_sdk_product/ --target=flutter --no-print-incremental-dependencies -DFLUTTER_VERSION=3.35.6 -DFLUTTER_CHANNEL=stable -DFLUTTER_GIT_URL=https://github.com/flutter/flutter.git -DFLUTTER_FRAMEWORK_REVISION=9f455d2486 -DFLUTTER_ENGINE_REVISION=d2913632a4 -DFLUTTER_DART_VERSION=3.9.2 -DFLUTTER_APP_FLAVOR= -Ddart.vm.profile=false -Ddart.vm.product=true --delete-tostring-package-uri=dart:ui --delete-tostring-package-uri=package:flutter --aot --tfa --target-os android --packages C:\Users\suren\flutter_app\truecircle\TC\.dart_tool\package_config.json --output-dill C:\Users\suren\flutter_app\truecircle\TC\.dart_tool\flutter_build\dc0c12edf757d7ec3b5aa0fd12652398\app.dill --depfile C:\Users\suren\flutter_app\truecircle\TC\.dart_tool\flutter_build\dc0c12edf757d7ec3b5aa0fd12652398\kernel_snapshot_program.d --source file:///C:/Users/suren/flutter_app/truecircle/TC/.dart_tool/flutter_build/dart_plugin_registrant.dart --source package:flutter/src/dart_plugin_registrant.dart -Dflutter.dart_plugin_registrant=file:///C:/Users/suren/flutter_app/truecircle/TC/.dart_tool/flutter_build/dart_plugin_registrant.dart --verbosity=error package:truecircle/main.dart
+[+11278 ms] [+11590 ms] kernel_snapshot_program: Complete
+[ +698 ms] [ +658 ms] android_aot_release_android-arm: Starting due to {}
+[        ] [   +4 ms] targetingApplePlatform = false
+[        ] [        ] extractAppleDebugSymbols = true
+[        ] [        ] Will strip AOT snapshot during build.
+[        ] [   +1 ms] executing: C:\Users\suren\src\flutter\bin\cache\artifacts\engine\android-arm-release\windows-x64\gen_snapshot --deterministic --snapshot_kind=app-aot-elf --elf=C:\Users\suren\flutter_app\truecircle\TC\.dart_tool\flutter_build\dc0c12edf757d7ec3b5aa0fd12652398\armeabi-v7a\app.so --strip --no-sim-use-hardfp --no-use-integer-division C:\Users\suren\flutter_app\truecircle\TC\.dart_tool\flutter_build\dc0c12edf757d7ec3b5aa0fd12652398\app.dill
+[        ] [        ] aot_android_asset_bundle: Starting due to {}
+[        ] [   +6 ms] android_aot_release_android-arm64: Starting due to {}
+[        ] [        ] targetingApplePlatform = false
+[        ] [        ] extractAppleDebugSymbols = true
+[        ] [        ] Will strip AOT snapshot during build.
+[        ] [        ] executing: C:\Users\suren\src\flutter\bin\cache\artifacts\engine\android-arm64-release\windows-x64\gen_snapshot --deterministic --snapshot_kind=app-aot-elf --elf=C:\Users\suren\flutter_app\truecircle\TC\.dart_tool\flutter_build\dc0c12edf757d7ec3b5aa0fd12652398\arm64-v8a\app.so --strip C:\Users\suren\flutter_app\truecircle\TC\.dart_tool\flutter_build\dc0c12edf757d7ec3b5aa0fd12652398\app.dill
+[        ] [        ] android_aot_release_android-x64: Starting due to {}
+[        ] [        ] targetingApplePlatform = false
+[        ] [        ] extractAppleDebugSymbols = true
+[        ] [        ] Will strip AOT snapshot during build.
+[        ] [        ] executing: C:\Users\suren\src\flutter\bin\cache\artifacts\engine\android-x64-release\windows-x64\gen_snapshot --deterministic --snapshot_kind=app-aot-elf --elf=C:\Users\suren\flutter_app\truecircle\TC\.dart_tool\flutter_build\dc0c12edf757d7ec3b5aa0fd12652398\x86_64\app.so --strip C:\Users\suren\flutter_app\truecircle\TC\.dart_tool\flutter_build\dc0c12edf757d7ec3b5aa0fd12652398\app.dill
+[ +201 ms] [ +194 ms] shaderc command: [C:\Users\suren\src\flutter\bin\cache\artifacts\engine\windows-x64\impellerc.exe, --sksl, --runtime-stage-gles, --runtime-stage-gles3, --runtime-stage-vulkan, --iplr, --sl=C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\flutter\release\flutter_assets\shaders/ink_sparkle.frag, --spirv=C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\flutter\release\flutter_assets\shaders/ink_sparkle.frag.spirv, --input=C:\Users\suren\src\flutter\packages\flutter\lib\src\material\shaders\ink_sparkle.frag, --input-type=frag, --include=C:\Users\suren\src\flutter\packages\flutter\lib\src\material\shaders, --include=C:\Users\suren\src\flutter\bin\cache\artifacts\engine\windows-x64\shader_lib]
+[ +601 ms] [ +611 ms] Running command: C:\Users\suren\src\flutter\bin\cache\dart-sdk\bin\dart.exe C:\Users\suren\src\flutter\bin\cache\artifacts\engine\windows-x64\const_finder.dart.snapshot --kernel-file C:\Users\suren\flutter_app\truecircle\TC\.dart_tool\flutter_build\dc0c12edf757d7ec3b5aa0fd12652398\app.dill --class-library-uri package:flutter/src/widgets/icon_data.dart --class-name IconData --annotation-class-name _StaticIconProvider --annotation-class-library-uri package:flutter/src/widgets/icon_data.dart
+[+1204 ms] [+1237 ms] Expected to find fontFamily for constant IconData with codepoint: 128842, but found fontFamily: null. This usually means you are relying on the system font. Alternatively, font families in an IconData class can be provided in the assets section of your pubspec.yaml, or you are missing "uses-material-design: true".
+[        ] [   +3 ms] Running font-subset: C:\Users\suren\src\flutter\bin\cache\artifacts\engine\windows-x64\font-subset.exe C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\flutter\release\flutter_assets\fonts/MaterialIcons-Regular.otf C:\Users\suren\src\flutter\bin\cache\artifacts\material_fonts\MaterialIcons-Regular.otf, using codepoints 57490 62832 57706 58332 57502 57501 57686 61890 61080 61663 62162 57695 984815 985265 61682 61509 61013 61465 58236 61240 984598 62447 61466 62173 984564 62395 58289 58504
+[ +190 ms] [ +150 ms] Font asset "MaterialIcons-Regular.otf" was tree-shaken, reducing it from 1645184 to 5604 bytes (99.7% reduction). Tree-shaking can be disabled by providing the --no-tree-shake-icons flag when building your app.
+[        ] [  +40 ms] aot_android_asset_bundle: Complete
+[+9005 ms] [+8938 ms] android_aot_release_android-arm: Complete
+[ +191 ms] [ +237 ms] android_aot_bundle_release_android-arm: Starting due to {}
+[        ] [  +13 ms] android_aot_bundle_release_android-arm: Complete
+[ +109 ms] [  +55 ms] android_aot_release_android-arm64: Complete
+[ +189 ms] [ +243 ms] android_aot_bundle_release_android-arm64: Starting due to {}
+[        ] [   +6 ms] android_aot_bundle_release_android-arm64: Complete
+[ +110 ms] [  +50 ms] android_aot_release_android-x64: Complete
+[  +94 ms] [ +180 ms] android_aot_bundle_release_android-x64: Starting due to {}
+[        ] [   +6 ms] android_aot_bundle_release_android-x64: Complete
+[  +95 ms] [  +49 ms] _composite: Starting due to {}
+[        ] [        ] _composite: Complete
+[        ] [   +1 ms] Persisting file store
+[        ] [  +10 ms] Done persisting file store
+[        ] [  +19 ms] build succeeded.
+[        ] [   +8 ms] "flutter assemble" took 24,882ms.
+[ +110 ms] [  +80 ms] Running 1 shutdown hook
+[        ] [   +5 ms] Shutdown hooks complete
+[ +297 ms] [ +246 ms] exiting with code 0
+[        ] Resolve mutations for :app:packJniLibsflutterBuildRelease (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :app:packJniLibsflutterBuildRelease (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] > Task :app:packJniLibsflutterBuildRelease UP-TO-DATE
+[        ] Caching disabled for task ':app:packJniLibsflutterBuildRelease' because:
+[        ]   Build cache is disabled
+[        ]   Not worth caching
+[        ] Skipping task ':app:packJniLibsflutterBuildRelease' as it is up-to-date.
+[        ] Resolve mutations for :app:preBuild (Thread[#297,Execution worker Thread 7,5,main]) started.
+[   +1 ms] :app:preBuild (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] > Task :app:preBuild UP-TO-DATE
+[        ] Skipping task ':app:preBuild' as it has no actions.
+[        ] Resolve mutations for :app:preReleaseBuild (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :app:preReleaseBuild (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :app:preReleaseBuild UP-TO-DATE
+[        ] Skipping task ':app:preReleaseBuild' as it has no actions.
+[        ] Resolve mutations for :app:configureCMakeRelease[arm64-v8a] (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :app:configureCMakeRelease[arm64-v8a] (Thread[#294,Execution worker Thread 4,5,main]) started.
+[+1384 ms] > Task :app:configureCMakeRelease[arm64-v8a]
+[        ] Caching disabled for task ':app:configureCMakeRelease[arm64-v8a]' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:configureCMakeRelease[arm64-v8a]' is not up-to-date because:
+[        ]   Task.upToDateWhen is false.
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|arm64-v8a : Start JSON generation. Platform version: 24 min SDK version: arm64-v8a
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|arm64-v8a : rebuilding JSON C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\arm64-v8a\android_gradle_build.json due to:
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|arm64-v8a : - no fingerprint file, will remove stale configuration folder
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|arm64-v8a : removing stale contents from 'C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\arm64-v8a'
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|arm64-v8a : created folder 'C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\arm64-v8a'
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|arm64-v8a : executing cmake @echo off
+[   +1 ms] "C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\cmake.exe" ^
+[        ]   "-HC:\\Users\\suren\\src\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\scripts" ^
+[   +1 ms]   "-DCMAKE_SYSTEM_NAME=Android" ^
+[        ]   "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" ^
+[        ]   "-DCMAKE_SYSTEM_VERSION=24" ^
+[        ]   "-DANDROID_PLATFORM=android-24" ^
+[        ]   "-DANDROID_ABI=arm64-v8a" ^
+[        ]   "-DCMAKE_ANDROID_ARCH_ABI=arm64-v8a" ^
+[        ]   "-DANDROID_NDK=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973" ^
+[        ]   "-DCMAKE_ANDROID_NDK=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973" ^
+[        ]   "-DCMAKE_TOOLCHAIN_FILE=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973\\build\\cmake\\android.toolchain.cmake" ^
+[        ]   "-DCMAKE_MAKE_PROGRAM=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+[        ]   "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\app\\intermediates\\cxx\\release\\6n53555g\\obj\\arm64-v8a" ^
+[   +1 ms]   "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\app\\intermediates\\cxx\\release\\6n53555g\\obj\\arm64-v8a" ^
+[        ]   "-BC:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\.cxx\\release\\6n53555g\\arm64-v8a" ^
+[        ]   -GNinja ^
+[        ]   -Wno-dev ^
+[        ]   --no-warn-unused-cli ^
+[        ]   "-DCMAKE_BUILD_TYPE=release"
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|arm64-v8a : @echo off
+[        ] "C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\cmake.exe" ^
+[        ]   "-HC:\\Users\\suren\\src\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\scripts" ^
+[        ]   "-DCMAKE_SYSTEM_NAME=Android" ^
+[        ]   "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" ^
+[        ]   "-DCMAKE_SYSTEM_VERSION=24" ^
+[        ]   "-DANDROID_PLATFORM=android-24" ^
+[        ]   "-DANDROID_ABI=arm64-v8a" ^
+[        ]   "-DCMAKE_ANDROID_ARCH_ABI=arm64-v8a" ^
+[        ]   "-DANDROID_NDK=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973" ^
+[        ]   "-DCMAKE_ANDROID_NDK=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973" ^
+[        ]   "-DCMAKE_TOOLCHAIN_FILE=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973\\build\\cmake\\android.toolchain.cmake" ^
+[        ]   "-DCMAKE_MAKE_PROGRAM=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+[        ]   "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\app\\intermediates\\cxx\\release\\6n53555g\\obj\\arm64-v8a" ^
+[        ]   "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\app\\intermediates\\cxx\\release\\6n53555g\\obj\\arm64-v8a" ^
+[        ]   "-BC:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\.cxx\\release\\6n53555g\\arm64-v8a" ^
+[        ]   -GNinja ^
+[        ]   -Wno-dev ^
+[        ]   --no-warn-unused-cli ^
+[        ]   "-DCMAKE_BUILD_TYPE=release"
+[        ] Starting process 'command 'C:\Users\suren\AppData\Local\Android\sdk\cmake\3.22.1\bin\cmake.exe''. Working directory: C:\Users\suren\flutter_app\truecircle\TC\android Command: C:\Users\suren\AppData\Local\Android\sdk\cmake\3.22.1\bin\cmake.exe -HC:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts -DCMAKE_SYSTEM_NAME=Android -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_SYSTEM_VERSION=24 -DANDROID_PLATFORM=android-24 -DANDROID_ABI=arm64-v8a -DCMAKE_ANDROID_ARCH_ABI=arm64-v8a -DANDROID_NDK=C:\Users\suren\AppData\Local\Android\sdk\ndk\27.0.12077973 -DCMAKE_ANDROID_NDK=C:\Users\suren\AppData\Local\Android\sdk\ndk\27.0.12077973 -DCMAKE_TOOLCHAIN_FILE=C:\Users\suren\AppData\Local\Android\sdk\ndk\27.0.12077973\build\cmake\android.toolchain.cmake -DCMAKE_MAKE_PROGRAM=C:\Users\suren\AppData\Local\Android\sdk\cmake\3.22.1\bin\ninja.exe -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\cxx\release\6n53555g\obj\arm64-v8a -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\cxx\release\6n53555g\obj\arm64-v8a -BC:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\arm64-v8a -GNinja -Wno-dev --no-warn-unused-cli -DCMAKE_BUILD_TYPE=release
+[        ] Successfully started process 'command 'C:\Users\suren\AppData\Local\Android\sdk\cmake\3.22.1\bin\cmake.exe''
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|arm64-v8a : Received process result: 0
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|arm64-v8a : C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\arm64-v8a\compile_commands.json.bin existed but not C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\arm64-v8a\compile_commands.json
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|arm64-v8a : done executing cmake
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|arm64-v8a : JSON generation completed without problems
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|arm64-v8a : Writing build model to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\cxx\release\6n53555g\logs\arm64-v8a\build_model.json
+[        ] Resolve mutations for :app:buildCMakeRelease[arm64-v8a] (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :app:buildCMakeRelease[arm64-v8a] (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :app:buildCMakeRelease[arm64-v8a]
+[        ] Caching disabled for task ':app:buildCMakeRelease[arm64-v8a]' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:buildCMakeRelease[arm64-v8a]' is not up-to-date because:
+[        ]   Task.upToDateWhen is false.
+[        ] C/C++: starting build
+[        ] C/C++: reading expected JSONs
+[        ] C/C++: done reading expected JSONs
+[        ] C/C++: executing build commands for targets that produce .so files or executables
+[        ] C/C++: evaluate miniconfig
+[        ] C/C++: no libraries
+[        ] Resolve mutations for :app:configureCMakeRelease[armeabi-v7a] (Thread[#294,Execution worker Thread 4,5,main]) started.
+[   +1 ms] :app:configureCMakeRelease[armeabi-v7a] (Thread[#294,Execution worker Thread 4,5,main]) started.
+[+1377 ms] > Task :app:configureCMakeRelease[armeabi-v7a]
+[        ] Caching disabled for task ':app:configureCMakeRelease[armeabi-v7a]' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:configureCMakeRelease[armeabi-v7a]' is not up-to-date because:
+[        ]   Task.upToDateWhen is false.
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|armeabi-v7a : Start JSON generation. Platform version: 24 min SDK version: armeabi-v7a
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|armeabi-v7a : rebuilding JSON C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\armeabi-v7a\android_gradle_build.json due to:
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|armeabi-v7a : - no fingerprint file, will remove stale configuration folder
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|armeabi-v7a : removing stale contents from 'C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\armeabi-v7a'
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|armeabi-v7a : created folder 'C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\armeabi-v7a'
+[   +1 ms] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|armeabi-v7a : executing cmake @echo off
+[        ] "C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\cmake.exe" ^
+[        ]   "-HC:\\Users\\suren\\src\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\scripts" ^
+[        ]   "-DCMAKE_SYSTEM_NAME=Android" ^
+[        ]   "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" ^
+[        ]   "-DCMAKE_SYSTEM_VERSION=24" ^
+[        ]   "-DANDROID_PLATFORM=android-24" ^
+[        ]   "-DANDROID_ABI=armeabi-v7a" ^
+[        ]   "-DCMAKE_ANDROID_ARCH_ABI=armeabi-v7a" ^
+[        ]   "-DANDROID_NDK=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973" ^
+[        ]   "-DCMAKE_ANDROID_NDK=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973" ^
+[        ]   "-DCMAKE_TOOLCHAIN_FILE=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973\\build\\cmake\\android.toolchain.cmake" ^
+[        ]   "-DCMAKE_MAKE_PROGRAM=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+[        ]   "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\app\\intermediates\\cxx\\release\\6n53555g\\obj\\armeabi-v7a" ^
+[   +1 ms]   "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\app\\intermediates\\cxx\\release\\6n53555g\\obj\\armeabi-v7a" ^
+[        ]   "-BC:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\.cxx\\release\\6n53555g\\armeabi-v7a" ^
+[        ]   -GNinja ^
+[        ]   -Wno-dev ^
+[        ]   --no-warn-unused-cli ^
+[        ]   "-DCMAKE_BUILD_TYPE=release"
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|armeabi-v7a : @echo off
+[        ] "C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\cmake.exe" ^
+[        ]   "-HC:\\Users\\suren\\src\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\scripts" ^
+[        ]   "-DCMAKE_SYSTEM_NAME=Android" ^
+[        ]   "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" ^
+[        ]   "-DCMAKE_SYSTEM_VERSION=24" ^
+[        ]   "-DANDROID_PLATFORM=android-24" ^
+[        ]   "-DANDROID_ABI=armeabi-v7a" ^
+[        ]   "-DCMAKE_ANDROID_ARCH_ABI=armeabi-v7a" ^
+[        ]   "-DANDROID_NDK=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973" ^
+[        ]   "-DCMAKE_ANDROID_NDK=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973" ^
+[        ]   "-DCMAKE_TOOLCHAIN_FILE=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973\\build\\cmake\\android.toolchain.cmake" ^
+[        ]   "-DCMAKE_MAKE_PROGRAM=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+[        ]   "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\app\\intermediates\\cxx\\release\\6n53555g\\obj\\armeabi-v7a" ^
+[        ]   "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\app\\intermediates\\cxx\\release\\6n53555g\\obj\\armeabi-v7a" ^
+[        ]   "-BC:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\.cxx\\release\\6n53555g\\armeabi-v7a" ^
+[        ]   -GNinja ^
+[        ]   -Wno-dev ^
+[        ]   --no-warn-unused-cli ^
+[        ]   "-DCMAKE_BUILD_TYPE=release"
+[   +1 ms] Starting process 'command 'C:\Users\suren\AppData\Local\Android\sdk\cmake\3.22.1\bin\cmake.exe''. Working directory: C:\Users\suren\flutter_app\truecircle\TC\android Command: C:\Users\suren\AppData\Local\Android\sdk\cmake\3.22.1\bin\cmake.exe -HC:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts -DCMAKE_SYSTEM_NAME=Android -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_SYSTEM_VERSION=24 -DANDROID_PLATFORM=android-24 -DANDROID_ABI=armeabi-v7a -DCMAKE_ANDROID_ARCH_ABI=armeabi-v7a -DANDROID_NDK=C:\Users\suren\AppData\Local\Android\sdk\ndk\27.0.12077973 -DCMAKE_ANDROID_NDK=C:\Users\suren\AppData\Local\Android\sdk\ndk\27.0.12077973 -DCMAKE_TOOLCHAIN_FILE=C:\Users\suren\AppData\Local\Android\sdk\ndk\27.0.12077973\build\cmake\android.toolchain.cmake -DCMAKE_MAKE_PROGRAM=C:\Users\suren\AppData\Local\Android\sdk\cmake\3.22.1\bin\ninja.exe -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\cxx\release\6n53555g\obj\armeabi-v7a -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\cxx\release\6n53555g\obj\armeabi-v7a -BC:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\armeabi-v7a -GNinja -Wno-dev --no-warn-unused-cli -DCMAKE_BUILD_TYPE=release
+[   +1 ms] Successfully started process 'command 'C:\Users\suren\AppData\Local\Android\sdk\cmake\3.22.1\bin\cmake.exe''
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|armeabi-v7a : Received process result: 0
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|armeabi-v7a : C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\armeabi-v7a\compile_commands.json.bin existed but not C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\armeabi-v7a\compile_commands.json
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|armeabi-v7a : done executing cmake
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|armeabi-v7a : JSON generation completed without problems
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|armeabi-v7a : Writing build model to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\cxx\release\6n53555g\logs\armeabi-v7a\build_model.json
+[        ] Resolve mutations for :app:buildCMakeRelease[armeabi-v7a] (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :app:buildCMakeRelease[armeabi-v7a] (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :app:buildCMakeRelease[armeabi-v7a]
+[        ] Caching disabled for task ':app:buildCMakeRelease[armeabi-v7a]' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:buildCMakeRelease[armeabi-v7a]' is not up-to-date because:
+[        ]   Task.upToDateWhen is false.
+[        ] C/C++: starting build
+[        ] C/C++: reading expected JSONs
+[        ] C/C++: done reading expected JSONs
+[        ] C/C++: executing build commands for targets that produce .so files or executables
+[        ] C/C++: evaluate miniconfig
+[        ] C/C++: no libraries
+[        ] Resolve mutations for :app:configureCMakeRelease[x86_64] (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :app:configureCMakeRelease[x86_64] (Thread[#294,Execution worker Thread 4,5,main]) started.
+[+1362 ms] > Task :app:configureCMakeRelease[x86_64]
+[        ] Caching disabled for task ':app:configureCMakeRelease[x86_64]' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:configureCMakeRelease[x86_64]' is not up-to-date because:
+[        ]   Task.upToDateWhen is false.
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|x86_64 : Start JSON generation. Platform version: 24 min SDK version: x86_64
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|x86_64 : rebuilding JSON C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\x86_64\android_gradle_build.json due to:
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|x86_64 : - no fingerprint file, will remove stale configuration folder
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|x86_64 : removing stale contents from 'C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\x86_64'
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|x86_64 : created folder 'C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\x86_64'
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|x86_64 : executing cmake @echo off
+[        ] "C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\cmake.exe" ^
+[        ]   "-HC:\\Users\\suren\\src\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\scripts" ^
+[        ]   "-DCMAKE_SYSTEM_NAME=Android" ^
+[        ]   "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" ^
+[        ]   "-DCMAKE_SYSTEM_VERSION=24" ^
+[   +1 ms]   "-DANDROID_PLATFORM=android-24" ^
+[        ]   "-DANDROID_ABI=x86_64" ^
+[        ]   "-DCMAKE_ANDROID_ARCH_ABI=x86_64" ^
+[        ]   "-DANDROID_NDK=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973" ^
+[        ]   "-DCMAKE_ANDROID_NDK=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973" ^
+[        ]   "-DCMAKE_TOOLCHAIN_FILE=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973\\build\\cmake\\android.toolchain.cmake" ^
+[        ]   "-DCMAKE_MAKE_PROGRAM=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+[        ]   "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\app\\intermediates\\cxx\\release\\6n53555g\\obj\\x86_64" ^
+[   +1 ms]   "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\app\\intermediates\\cxx\\release\\6n53555g\\obj\\x86_64" ^
+[        ]   "-BC:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\.cxx\\release\\6n53555g\\x86_64" ^
+[        ]   -GNinja ^
+[        ]   -Wno-dev ^
+[   +1 ms]   --no-warn-unused-cli ^
+[        ]   "-DCMAKE_BUILD_TYPE=release"
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|x86_64 : @echo off
+[        ] "C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\cmake.exe" ^
+[        ]   "-HC:\\Users\\suren\\src\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\scripts" ^
+[        ]   "-DCMAKE_SYSTEM_NAME=Android" ^
+[        ]   "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" ^
+[        ]   "-DCMAKE_SYSTEM_VERSION=24" ^
+[        ]   "-DANDROID_PLATFORM=android-24" ^
+[        ]   "-DANDROID_ABI=x86_64" ^
+[        ]   "-DCMAKE_ANDROID_ARCH_ABI=x86_64" ^
+[        ]   "-DANDROID_NDK=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973" ^
+[        ]   "-DCMAKE_ANDROID_NDK=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973" ^
+[        ]   "-DCMAKE_TOOLCHAIN_FILE=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\ndk\\27.0.12077973\\build\\cmake\\android.toolchain.cmake" ^
+[        ]   "-DCMAKE_MAKE_PROGRAM=C:\\Users\\suren\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe" ^
+[        ]   "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\app\\intermediates\\cxx\\release\\6n53555g\\obj\\x86_64" ^
+[   +2 ms]   "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\app\\intermediates\\cxx\\release\\6n53555g\\obj\\x86_64" ^
+[   +2 ms]   "-BC:\\Users\\suren\\flutter_app\\truecircle\\TC\\build\\.cxx\\release\\6n53555g\\x86_64" ^
+[        ]   -GNinja ^
+[        ]   -Wno-dev ^
+[        ]   --no-warn-unused-cli ^
+[        ]   "-DCMAKE_BUILD_TYPE=release"
+[   +2 ms] Starting process 'command 'C:\Users\suren\AppData\Local\Android\sdk\cmake\3.22.1\bin\cmake.exe''. Working directory: C:\Users\suren\flutter_app\truecircle\TC\android Command: C:\Users\suren\AppData\Local\Android\sdk\cmake\3.22.1\bin\cmake.exe -HC:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts -DCMAKE_SYSTEM_NAME=Android -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_SYSTEM_VERSION=24 -DANDROID_PLATFORM=android-24 -DANDROID_ABI=x86_64 -DCMAKE_ANDROID_ARCH_ABI=x86_64 -DANDROID_NDK=C:\Users\suren\AppData\Local\Android\sdk\ndk\27.0.12077973 -DCMAKE_ANDROID_NDK=C:\Users\suren\AppData\Local\Android\sdk\ndk\27.0.12077973 -DCMAKE_TOOLCHAIN_FILE=C:\Users\suren\AppData\Local\Android\sdk\ndk\27.0.12077973\build\cmake\android.toolchain.cmake -DCMAKE_MAKE_PROGRAM=C:\Users\suren\AppData\Local\Android\sdk\cmake\3.22.1\bin\ninja.exe -DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\cxx\release\6n53555g\obj\x86_64 -DCMAKE_RUNTIME_OUTPUT_DIRECTORY=C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\cxx\release\6n53555g\obj\x86_64 -BC:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\x86_64 -GNinja -Wno-dev --no-warn-unused-cli -DCMAKE_BUILD_TYPE=release
+[        ] Successfully started process 'command 'C:\Users\suren\AppData\Local\Android\sdk\cmake\3.22.1\bin\cmake.exe''
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|x86_64 : Received process result: 0
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|x86_64 : C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\x86_64\compile_commands.json.bin existed but not C:\Users\suren\flutter_app\truecircle\TC\build\.cxx\release\6n53555g\x86_64\compile_commands.json
+[   +1 ms] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|x86_64 : done executing cmake
+[        ] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|x86_64 : JSON generation completed without problems
+[   +1 ms] C/C++: C:\Users\suren\src\flutter\packages\flutter_tools\gradle\src\main\scripts\CMakeLists.txt release|x86_64 : Writing build model to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\cxx\release\6n53555g\logs\x86_64\build_model.json
+[        ] Resolve mutations for :app:buildCMakeRelease[x86_64] (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :app:buildCMakeRelease[x86_64] (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :app:buildCMakeRelease[x86_64]
+[        ] Caching disabled for task ':app:buildCMakeRelease[x86_64]' because:
+[        ]   Build cache is disabled
+[   +3 ms]   Caching has been disabled for the task
+[        ] Task ':app:buildCMakeRelease[x86_64]' is not up-to-date because:
+[        ]   Task.upToDateWhen is false.
+[   +1 ms] C/C++: starting build
+[        ] C/C++: reading expected JSONs
+[        ] C/C++: done reading expected JSONs
+[        ] C/C++: executing build commands for targets that produce .so files or executables
+[        ] C/C++: evaluate miniconfig
+[        ] C/C++: no libraries
+[        ] Resolve mutations for :app:mergeReleaseJniLibFolders (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :app:mergeReleaseJniLibFolders (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :app:mergeReleaseJniLibFolders UP-TO-DATE
+[        ] Caching disabled for task ':app:mergeReleaseJniLibFolders' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':app:mergeReleaseJniLibFolders' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:preBuild (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :path_provider_android:preBuild (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :path_provider_android:preBuild UP-TO-DATE
+[        ] Skipping task ':path_provider_android:preBuild' as it has no actions.
+[        ] Resolve mutations for :path_provider_android:preReleaseBuild (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :path_provider_android:preReleaseBuild (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :path_provider_android:preReleaseBuild UP-TO-DATE
+[   +1 ms] Skipping task ':path_provider_android:preReleaseBuild' as it has no actions.
+[        ] Resolve mutations for :path_provider_android:mergeReleaseJniLibFolders (Thread[#294,Execution worker Thread 4,5,main]) started.
+[   +1 ms] :path_provider_android:mergeReleaseJniLibFolders (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :path_provider_android:mergeReleaseJniLibFolders UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:mergeReleaseJniLibFolders' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':path_provider_android:mergeReleaseJniLibFolders' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:mergeReleaseNativeLibs (Thread[#294,Execution worker Thread 4,5,main]) started.
+[   +1 ms] :path_provider_android:mergeReleaseNativeLibs (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :path_provider_android:mergeReleaseNativeLibs NO-SOURCE
+[        ] Skipping task ':path_provider_android:mergeReleaseNativeLibs' as it has no source files and no previous output files.
+[   +1 ms] Resolve mutations for :path_provider_android:copyReleaseJniLibsProjectOnly (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :path_provider_android:copyReleaseJniLibsProjectOnly (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :path_provider_android:copyReleaseJniLibsProjectOnly UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:copyReleaseJniLibsProjectOnly' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':path_provider_android:copyReleaseJniLibsProjectOnly' as it is up-to-date.
+[        ] work action resolve jni (project :path_provider_android) (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] Resolve mutations for :app:mergeReleaseNativeLibs (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :app:mergeReleaseNativeLibs (Thread[#294,Execution worker Thread 4,5,main]) started.
+[  +25 ms] > Task :app:mergeReleaseNativeLibs UP-TO-DATE
+[        ] Caching disabled for task ':app:mergeReleaseNativeLibs' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:mergeReleaseNativeLibs' as it is up-to-date.
+[        ] Resolve mutations for :app:stripReleaseDebugSymbols (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :app:stripReleaseDebugSymbols (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] > Task :app:stripReleaseDebugSymbols UP-TO-DATE
+[        ] Caching disabled for task ':app:stripReleaseDebugSymbols' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:stripReleaseDebugSymbols' as it is up-to-date.
+[        ] Resolve mutations for :app:extractReleaseNativeSymbolTables (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :app:extractReleaseNativeSymbolTables (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] > Task :app:extractReleaseNativeSymbolTables UP-TO-DATE
+[        ] Caching disabled for task ':app:extractReleaseNativeSymbolTables' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':app:extractReleaseNativeSymbolTables' as it is up-to-date.
+[        ] Resolve mutations for :app:mergeReleaseNativeDebugMetadata (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :app:mergeReleaseNativeDebugMetadata (Thread[#293,Execution worker Thread 3,5,main]) started.
+[ +101 ms] > Task :app:mergeReleaseNativeDebugMetadata UP-TO-DATE
+[        ] Caching disabled for task ':app:mergeReleaseNativeDebugMetadata' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:mergeReleaseNativeDebugMetadata' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:generateReleaseResValues (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :path_provider_android:generateReleaseResValues (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] > Task :path_provider_android:generateReleaseResValues UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:generateReleaseResValues' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:generateReleaseResValues' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:generateReleaseResources (Thread[#290,included builds,5,main]) started.
+[        ] :path_provider_android:generateReleaseResources (Thread[#290,included builds,5,main]) started.
+[        ] > Task :path_provider_android:generateReleaseResources UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:generateReleaseResources' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:generateReleaseResources' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:packageReleaseResources (Thread[#290,included builds,5,main]) started.
+[        ] :path_provider_android:packageReleaseResources (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] > Task :path_provider_android:packageReleaseResources UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:packageReleaseResources' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:packageReleaseResources' as it is up-to-date.
+[        ] work action resolve packageReleaseResources (project :path_provider_android) (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] Resolve mutations for :path_provider_android:parseReleaseLocalResources (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :path_provider_android:parseReleaseLocalResources (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] > Task :path_provider_android:parseReleaseLocalResources UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:parseReleaseLocalResources' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:parseReleaseLocalResources' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:generateReleaseRFile (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :path_provider_android:generateReleaseRFile (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] > Task :path_provider_android:generateReleaseRFile UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:generateReleaseRFile' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:generateReleaseRFile' as it is up-to-date.
+[        ] work action resolve package-aware-r.txt (project :path_provider_android) (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] Resolve mutations for :path_provider_android:javaPreCompileRelease (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :path_provider_android:javaPreCompileRelease (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] > Task :path_provider_android:javaPreCompileRelease UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:javaPreCompileRelease' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:javaPreCompileRelease' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:compileReleaseJavaWithJavac (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :path_provider_android:compileReleaseJavaWithJavac (Thread[#293,Execution worker Thread 3,5,main]) started.
+[  +80 ms] > Task :path_provider_android:compileReleaseJavaWithJavac UP-TO-DATE
+[        ] Custom actions are attached to task ':path_provider_android:compileReleaseJavaWithJavac'.
+[        ] Caching disabled for task ':path_provider_android:compileReleaseJavaWithJavac' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:compileReleaseJavaWithJavac' as it is up-to-date.
+[        ] No compile result for :path_provider_android:compileReleaseJavaWithJavac
+[        ] No compile result for :path_provider_android:compileReleaseJavaWithJavac
+[        ] No compile result for :path_provider_android:compileReleaseJavaWithJavac
+[        ] Resolve mutations for :path_provider_android:mergeReleaseGeneratedProguardFiles (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :path_provider_android:mergeReleaseGeneratedProguardFiles (Thread[#293,Execution worker Thread 3,5,main]) started.
+[   +1 ms] > Task :path_provider_android:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:mergeReleaseGeneratedProguardFiles' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':path_provider_android:mergeReleaseGeneratedProguardFiles' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:exportReleaseConsumerProguardFiles (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :path_provider_android:exportReleaseConsumerProguardFiles (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] > Task :path_provider_android:exportReleaseConsumerProguardFiles UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:exportReleaseConsumerProguardFiles' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':path_provider_android:exportReleaseConsumerProguardFiles' as it is up-to-date.
+[        ] work action resolve exportReleaseConsumerProguardFiles (project :path_provider_android) (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] FilterShrinkerRulesTransform (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] Resolve mutations for :app:buildKotlinToolingMetadata (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :app:buildKotlinToolingMetadata (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :app:buildKotlinToolingMetadata UP-TO-DATE
+[        ] Caching disabled for task ':app:buildKotlinToolingMetadata' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[   +2 ms] Skipping task ':app:buildKotlinToolingMetadata' as it is up-to-date.
+[        ] Resolve mutations for :app:checkReleaseDuplicateClasses (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :app:checkReleaseDuplicateClasses (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :app:checkReleaseDuplicateClasses UP-TO-DATE
+[        ] Caching disabled for task ':app:checkReleaseDuplicateClasses' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:checkReleaseDuplicateClasses' as it is up-to-date.
+[        ] Resolve mutations for :app:checkKotlinGradlePluginConfigurationErrors (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :app:checkKotlinGradlePluginConfigurationErrors (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+[        ] Skipping task ':app:checkKotlinGradlePluginConfigurationErrors' as task onlyIf 'errorDiagnostics are present' is false.
+[        ] Resolve mutations for :path_provider_android:writeReleaseAarMetadata (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :path_provider_android:writeReleaseAarMetadata (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :path_provider_android:writeReleaseAarMetadata UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:writeReleaseAarMetadata' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':path_provider_android:writeReleaseAarMetadata' as it is up-to-date.
+[        ] work action resolve aar-metadata.properties (project :path_provider_android) (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] Resolve mutations for :app:checkReleaseAarMetadata (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :app:checkReleaseAarMetadata (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] Resolve mutations for :app:cleanMergeReleaseAssets (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:cleanMergeReleaseAssets (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] > Task :app:cleanMergeReleaseAssets UP-TO-DATE
+[        ] Caching disabled for task ':app:cleanMergeReleaseAssets' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:cleanMergeReleaseAssets' is not up-to-date because:
+[        ]   Task has not declared any outputs despite executing actions.
+[        ] Resolve mutations for :app:mergeReleaseShaders (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:mergeReleaseShaders (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] > Task :app:mergeReleaseShaders UP-TO-DATE
+[        ] Caching disabled for task ':app:mergeReleaseShaders' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':app:mergeReleaseShaders' as it is up-to-date.
+[        ] Resolve mutations for :app:compileReleaseShaders (Thread[#292,Execution worker Thread 2,5,main]) started.
+[        ] :app:compileReleaseShaders (Thread[#292,Execution worker Thread 2,5,main]) started.
+[        ] > Task :app:checkReleaseAarMetadata
+[        ] Caching disabled for task ':app:checkReleaseAarMetadata' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:checkReleaseAarMetadata' is not up-to-date because:
+[        ]   Output property 'dummyOutputDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\aar_metadata_check\release\checkReleaseAarMetadata has been removed.
+[        ] > Task :app:compileReleaseShaders NO-SOURCE
+[        ] Skipping task ':app:compileReleaseShaders' as it has no source files and no previous output files.
+[        ] Resolve mutations for :app:generateReleaseAssets (Thread[#292,Execution worker Thread 2,5,main]) started.
+[   +1 ms] :app:generateReleaseAssets (Thread[#292,Execution worker Thread 2,5,main]) started.
+[   +2 ms] > Task :app:generateReleaseAssets UP-TO-DATE
+[   +3 ms] Skipping task ':app:generateReleaseAssets' as it has no actions.
+[   +2 ms] Resolve mutations for :path_provider_android:mergeReleaseShaders (Thread[#292,Execution worker Thread 2,5,main]) started.
+[        ] :path_provider_android:mergeReleaseShaders (Thread[#292,Execution worker Thread 2,5,main]) started.
+[  +50 ms] > Task :path_provider_android:mergeReleaseShaders UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:mergeReleaseShaders' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':path_provider_android:mergeReleaseShaders' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:compileReleaseShaders (Thread[#292,Execution worker Thread 2,5,main]) started.
+[        ] :path_provider_android:compileReleaseShaders (Thread[#292,Execution worker Thread 2,5,main]) started.
+[        ] > Task :path_provider_android:compileReleaseShaders NO-SOURCE
+[        ] Skipping task ':path_provider_android:compileReleaseShaders' as it has no source files and no previous output files.
+[        ] Resolve mutations for :path_provider_android:generateReleaseAssets (Thread[#292,Execution worker Thread 2,5,main]) started.
+[        ] :path_provider_android:generateReleaseAssets (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :path_provider_android:generateReleaseAssets UP-TO-DATE
+[        ] Skipping task ':path_provider_android:generateReleaseAssets' as it has no actions.
+[        ] Resolve mutations for :path_provider_android:mergeReleaseAssets (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :path_provider_android:mergeReleaseAssets (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :path_provider_android:mergeReleaseAssets UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:mergeReleaseAssets' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':path_provider_android:mergeReleaseAssets' as it is up-to-date.
+[        ] work action resolve mergeReleaseAssets (project :path_provider_android) (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] Resolve mutations for :app:mergeReleaseAssets (Thread[#292,Execution worker Thread 2,5,main]) started.
+[        ] :app:mergeReleaseAssets (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] > Task :app:mergeReleaseAssets
+[        ] Caching disabled for task ':app:mergeReleaseAssets' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Task ':app:mergeReleaseAssets' is not up-to-date because:
+[        ]   Output property 'outputDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\assets\release\mergeReleaseAssets has been removed.
+[        ] The input changes require a full rebuild for incremental task ':app:mergeReleaseAssets'.
+[        ] Resolve mutations for :app:copyFlutterAssetsRelease (Thread[#294,Execution worker Thread 4,5,main]) started.
+[        ] :app:copyFlutterAssetsRelease (Thread[#294,Execution worker Thread 4,5,main]) started.
+[  +81 ms] > Task :app:copyFlutterAssetsRelease
+[        ] Caching disabled for task ':app:copyFlutterAssetsRelease' because:
+[        ]   Build cache is disabled
+[        ]   Not worth caching
+[        ] Task ':app:copyFlutterAssetsRelease' is not up-to-date because:
+[        ]   Output property 'destinationDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\assets\release\mergeReleaseAssets\flutter_assets has been removed.
+[        ]   Output property 'destinationDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\assets\release\mergeReleaseAssets\flutter_assets\AssetManifest.bin has been removed.
+[        ]   Output property 'destinationDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\assets\release\mergeReleaseAssets\flutter_assets\AssetManifest.json has been removed.
+[        ]   and more...
+[        ] Resolve mutations for :app:generateReleaseResValues (Thread[#292,Execution worker Thread 2,5,main]) started.
+[        ] :app:generateReleaseResValues (Thread[#292,Execution worker Thread 2,5,main]) started.
+[ +107 ms] > Task :app:generateReleaseResValues
+[        ] Caching disabled for task ':app:generateReleaseResValues' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:generateReleaseResValues' is not up-to-date because:
+[        ]   Output property 'outputDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\generated\res\resValues\release has been removed.
+[        ] Resolve mutations for :app:mapReleaseSourceSetPaths (Thread[#292,Execution worker Thread 2,5,main]) started.
+[        ] :app:mapReleaseSourceSetPaths (Thread[#292,Execution worker Thread 2,5,main]) started.
+[        ] > Task :app:mapReleaseSourceSetPaths UP-TO-DATE
+[        ] Caching disabled for task ':app:mapReleaseSourceSetPaths' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:mapReleaseSourceSetPaths' as it is up-to-date.
+[        ] Resolve mutations for :app:generateReleaseResources (Thread[#292,Execution worker Thread 2,5,main]) started.
+[        ] :app:generateReleaseResources (Thread[#292,Execution worker Thread 2,5,main]) started.
+[        ] > Task :app:generateReleaseResources UP-TO-DATE
+[        ] Caching disabled for task ':app:generateReleaseResources' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':app:generateReleaseResources' as it is up-to-date.
+[        ] Resolve mutations for :app:mergeReleaseResources (Thread[#292,Execution worker Thread 2,5,main]) started.
+[        ] :app:mergeReleaseResources (Thread[#292,Execution worker Thread 2,5,main]) started.
+[+1797 ms] Resolve mutations for :app:packageReleaseResources (Thread[#290,included builds,5,main]) started.
+[        ] :app:packageReleaseResources (Thread[#290,included builds,5,main]) started.
+[ +191 ms] > Task :app:mergeReleaseResources
+[        ] Caching disabled for task ':app:mergeReleaseResources' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:mergeReleaseResources' is not up-to-date because:
+[        ]   Output property 'dataBindingLayoutInfoOutFolder' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\data_binding_layout_info_type_merge\release\mergeReleaseResources\out has been removed.
+[        ]   Output property 'generatedPngsOutputDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\generated\res\pngs\release has been removed.
+[        ] The input changes require a full rebuild for incremental task ':app:mergeReleaseResources'.
+[        ] [MergeResources] Inputs are non-incremental full task action.
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values\values.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values_values.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-de\values-de.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-de_values-de.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-hi\values-hi.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-hi_values-hi.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-en-rIN\values-en-rIN.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-en-rIN_values-en-rIN.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-hy\values-hy.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-hy_values-hy.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-fr-rCA\values-fr-rCA.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-fr-rCA_values-fr-rCA.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-af\values-af.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-af_values-af.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-is\values-is.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-is_values-is.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-it\values-it.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-it_values-it.arsc.flat
+[   +1 ms] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-lo\values-lo.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-lo_values-lo.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-eu\values-eu.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-eu_values-eu.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-uk\values-uk.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-uk_values-uk.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ne\values-ne.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-ne_values-ne.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ar\values-ar.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-ar_values-ar.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-pt\values-pt.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-pt_values-pt.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-in\values-in.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-in_values-in.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-zh-rCN\values-zh-rCN.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-zh-rCN_values-zh-rCN.arsc.flat
+[   +1 ms] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ja\values-ja.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-ja_values-ja.arsc.flat
+[   +1 ms] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-my\values-my.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-my_values-my.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-be\values-be.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-be_values-be.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-lt\values-lt.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-lt_values-lt.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-bs\values-bs.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-bs_values-bs.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ur\values-ur.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-ur_values-ur.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-en-rCA\values-en-rCA.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-en-rCA_values-en-rCA.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ca\values-ca.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-ca_values-ca.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-hr\values-hr.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-hr_values-hr.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-as\values-as.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-as_values-as.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-mr\values-mr.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-mr_values-mr.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-sr\values-sr.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-sr_values-sr.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-am\values-am.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-am_values-am.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-az\values-az.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-az_values-az.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ml\values-ml.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-ml_values-ml.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-mk\values-mk.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-mk_values-mk.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-vi\values-vi.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-vi_values-vi.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-fi\values-fi.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-fi_values-fi.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-el\values-el.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-el_values-el.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ko\values-ko.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-ko_values-ko.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ms\values-ms.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-ms_values-ms.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-en-rGB\values-en-rGB.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-en-rGB_values-en-rGB.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-pt-rPT\values-pt-rPT.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-pt-rPT_values-pt-rPT.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-gl\values-gl.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-gl_values-gl.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ru\values-ru.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-ru_values-ru.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-iw\values-iw.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-iw_values-iw.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-th\values-th.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-th_values-th.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-kk\values-kk.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-kk_values-kk.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-hu\values-hu.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-hu_values-hu.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-b+sr+Latn\values-b+sr+Latn.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-b+sr+Latn_values-b+sr+Latn.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ta\values-ta.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-ta_values-ta.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ka\values-ka.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-ka_values-ka.arsc.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\layout-v21\notification_action.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\layout-v21_notification_action.xml.flat
+[   +1 ms] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-uz\values-uz.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-uz_values-uz.arsc.flat
+[   +1 ms] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-v21\values-v21.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-v21_values-v21.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-km\values-km.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-km_values-km.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-tl\values-tl.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-tl_values-tl.arsc.flat
+[  +12 ms] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-nb\values-nb.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-nb_values-nb.arsc.flat
+[   +3 ms] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ky\values-ky.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-ky_values-ky.arsc.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\7d4d4ce414a44a3730885ae01f2fb152\transformed\fragment-1.7.1\res\animator\fragment_open_exit.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\animator_fragment_open_exit.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-zu\values-zu.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-zu_values-zu.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-pl\values-pl.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-pl_values-pl.arsc.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\7d4d4ce414a44a3730885ae01f2fb152\transformed\fragment-1.7.1\res\animator\fragment_fade_exit.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\animator_fragment_fade_exit.xml.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\drawable-anydpi-v21\ic_call_answer_low.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\drawable-anydpi-v21_ic_call_answer_low.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-en-rXC\values-en-rXC.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-en-rXC_values-en-rXC.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-pa\values-pa.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-pa_values-pa.arsc.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\drawable-anydpi-v21\ic_call_answer.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\drawable-anydpi-v21_ic_call_answer.xml.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\drawable-anydpi-v21\ic_call_answer_video.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\drawable-anydpi-v21_ic_call_answer_video.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-zh-rHK\values-zh-rHK.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-zh-rHK_values-zh-rHK.arsc.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\layout\custom_dialog.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\layout_custom_dialog.xml.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\layout\notification_template_part_time.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\layout_notification_template_part_time.xml.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\7d4d4ce414a44a3730885ae01f2fb152\transformed\fragment-1.7.1\res\animator\fragment_close_enter.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\animator_fragment_close_enter.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-si\values-si.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-si_values-si.arsc.flat
+[        ] Compiling xml file C:\Users\suren\flutter_app\truecircle\TC\android\app\src\main\res\drawable-v21\launch_background.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\drawable-v21_launch_background.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-kn\values-kn.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-kn_values-kn.arsc.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\layout-v21\notification_action_tombstone.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\layout-v21_notification_action_tombstone.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-gu\values-gu.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-gu_values-gu.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-et\values-et.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-et_values-et.arsc.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\drawable\notification_tile_bg.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\drawable_notification_tile_bg.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-da\values-da.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-da_values-da.arsc.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\layout-v21\notification_template_icon_group.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\layout-v21_notification_template_icon_group.xml.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\layout\ime_secondary_split_test_activity.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\layout_ime_secondary_split_test_activity.xml.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\drawable-anydpi-v21\ic_call_decline_low.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\drawable-anydpi-v21_ic_call_decline_low.xml.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\drawable-v21\notification_action_background.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\drawable-v21_notification_action_background.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-night-v8\values-night-v8.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-night-v8_values-night-v8.arsc.flat
+[   +1 ms] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-fa\values-fa.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-fa_values-fa.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-lv\values-lv.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-lv_values-lv.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-nl\values-nl.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-nl_values-nl.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-bg\values-bg.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-bg_values-bg.arsc.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\layout\notification_template_part_chronometer.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\layout_notification_template_part_chronometer.xml.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\drawable-anydpi-v21\ic_call_answer_video_low.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\drawable-anydpi-v21_ic_call_answer_video_low.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-mn\values-mn.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-mn_values-mn.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-bn\values-bn.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-bn_values-bn.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-sk\values-sk.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-sk_values-sk.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-or\values-or.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-or_values-or.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-zh-rTW\values-zh-rTW.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-zh-rTW_values-zh-rTW.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-sq\values-sq.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-sq_values-sq.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-pt-rBR\values-pt-rBR.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-pt-rBR_values-pt-rBR.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-es\values-es.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-es_values-es.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-sw\values-sw.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-sw_values-sw.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-tr\values-tr.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-tr_values-tr.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-es-rUS\values-es-rUS.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-es-rUS_values-es-rUS.arsc.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\7d4d4ce414a44a3730885ae01f2fb152\transformed\fragment-1.7.1\res\animator\fragment_close_exit.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\animator_fragment_close_exit.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-te\values-te.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-te_values-te.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-ro\values-ro.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-ro_values-ro.arsc.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\7d4d4ce414a44a3730885ae01f2fb152\transformed\fragment-1.7.1\res\animator\fragment_open_enter.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\animator_fragment_open_enter.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-fr\values-fr.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-fr_values-fr.arsc.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\layout-v21\notification_template_custom_big.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\layout-v21_notification_template_custom_big.xml.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\drawable-anydpi-v21\ic_call_decline.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\drawable-anydpi-v21_ic_call_decline.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-sl\values-sl.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-sl_values-sl.arsc.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\7d4d4ce414a44a3730885ae01f2fb152\transformed\fragment-1.7.1\res\anim-v21\fragment_fast_out_extra_slow_in.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\anim-v21_fragment_fast_out_extra_slow_in.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-sv\values-sv.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-sv_values-sv.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-cs\values-cs.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-cs_values-cs.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release\mergeReleaseResources\merged.dir\values-en-rAU\values-en-rAU.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\values-en-rAU_values-en-rAU.arsc.flat
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #0: starting
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\drawable\notification_bg_low.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\drawable_notification_bg_low.xml.flat
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #1: starting
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\drawable\notification_bg.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\drawable_notification_bg.xml.flat
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\layout\ime_base_split_test_activity.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\layout_ime_base_split_test_activity.xml.flat
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #2: starting
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\b1eb6682c3f06d5937f76fce498ba76c\transformed\core-1.13.1\res\drawable\notification_icon_background.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\drawable_notification_icon_background.xml.flat
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #3: starting
+[        ] Compiling xml file C:\Users\suren\.gradle\caches\8.12\transforms\7d4d4ce414a44a3730885ae01f2fb152\transformed\fragment-1.7.1\res\animator\fragment_fade_enter.xml to C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\merged_res\release\mergeReleaseResources\animator_fragment_fade_enter.xml.flat
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #4: starting
+[   +5 ms] AAPT2 aapt2-8.9.1-12782657-windows Daemon #5: starting
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #6: starting
+[ +114 ms] > Task :app:packageReleaseResources
+[   +1 ms] Caching disabled for task ':app:packageReleaseResources' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:packageReleaseResources' is not up-to-date because:
+[        ]   Output property 'dataBindingLayoutInfoOutFolder' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\data_binding_layout_info_type_package\release\packageReleaseResources\out has been removed.
+[        ] The input changes require a full rebuild for incremental task ':app:packageReleaseResources'.
+[        ] [MergeResources] Inputs are non-incremental full task action.
+[        ] Resolve mutations for :app:parseReleaseLocalResources (Thread[#290,included builds,5,main]) started.
+[        ] :app:parseReleaseLocalResources (Thread[#293,Execution worker Thread 3,5,main]) started.
+[  +90 ms] > Task :app:parseReleaseLocalResources UP-TO-DATE
+[   +1 ms] Caching disabled for task ':app:parseReleaseLocalResources' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':app:parseReleaseLocalResources' as it is up-to-date.
+[        ] Resolve mutations for :app:createReleaseCompatibleScreenManifests (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :app:createReleaseCompatibleScreenManifests (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] > Task :app:createReleaseCompatibleScreenManifests
+[        ] Caching disabled for task ':app:createReleaseCompatibleScreenManifests' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:createReleaseCompatibleScreenManifests' is not up-to-date because:
+[        ]   Output property 'outputFolder' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\compatible_screen_manifest\release\createReleaseCompatibleScreenManifests has been removed.
+[        ]   Output property 'outputFolder' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\compatible_screen_manifest\release\createReleaseCompatibleScreenManifests\output-metadata.json has been removed.
+[        ] Resolve mutations for :app:extractDeepLinksRelease (Thread[#290,included builds,5,main]) started.
+[        ] :app:extractDeepLinksRelease (Thread[#290,included builds,5,main]) started.
+[        ] > Task :app:extractDeepLinksRelease UP-TO-DATE
+[        ] Caching disabled for task ':app:extractDeepLinksRelease' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':app:extractDeepLinksRelease' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:extractDeepLinksRelease (Thread[#290,included builds,5,main]) started.
+[        ] :path_provider_android:extractDeepLinksRelease (Thread[#290,included builds,5,main]) started.
+[        ] > Task :path_provider_android:extractDeepLinksRelease UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:extractDeepLinksRelease' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:extractDeepLinksRelease' as it is up-to-date.
+[        ] work action resolve navigation.json (project :path_provider_android) (Thread[#290,included builds,5,main]) started.
+[        ] Resolve mutations for :path_provider_android:processReleaseManifest (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :path_provider_android:processReleaseManifest (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] > Task :path_provider_android:processReleaseManifest UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:processReleaseManifest' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:processReleaseManifest' as it is up-to-date.
+[        ] work action resolve AndroidManifest.xml (project :path_provider_android) (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] Resolve mutations for :app:processReleaseMainManifest (Thread[#293,Execution worker Thread 3,5,main]) started.
+[   +1 ms] :app:processReleaseMainManifest (Thread[#293,Execution worker Thread 3,5,main]) started.
+[  +88 ms] > Task :app:processReleaseMainManifest UP-TO-DATE
+[        ] Caching disabled for task ':app:processReleaseMainManifest' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':app:processReleaseMainManifest' as it is up-to-date.
+[        ] Resolve mutations for :app:processReleaseManifest (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :app:processReleaseManifest (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] > Task :app:processReleaseManifest UP-TO-DATE
+[        ] Caching disabled for task ':app:processReleaseManifest' because:
+[   +1 ms]   Build cache is disabled
+[        ] Skipping task ':app:processReleaseManifest' as it is up-to-date.
+[        ] Resolve mutations for :app:processReleaseManifestForPackage (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :app:processReleaseManifestForPackage (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] > Task :app:processReleaseManifestForPackage UP-TO-DATE
+[        ] Custom actions are attached to task ':app:processReleaseManifestForPackage'.
+[        ] Caching disabled for task ':app:processReleaseManifestForPackage' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':app:processReleaseManifestForPackage' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:bundleLibCompileToJarRelease (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] :path_provider_android:bundleLibCompileToJarRelease (Thread[#293,Execution worker Thread 3,5,main]) started.
+[        ] > Task :path_provider_android:bundleLibCompileToJarRelease UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:bundleLibCompileToJarRelease' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':path_provider_android:bundleLibCompileToJarRelease' as it is up-to-date.
+[        ] work action resolve classes.jar (project :path_provider_android) (Thread[#293,Execution worker Thread 3,5,main]) started.
+[   +1 ms] Resolve mutations for :app:javaPreCompileRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:javaPreCompileRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] Resolve mutations for :path_provider_android:prepareReleaseArtProfile (Thread[#290,included builds,5,main]) started.
+[        ] :path_provider_android:prepareReleaseArtProfile (Thread[#290,included builds,5,main]) started.
+[        ] > Task :app:javaPreCompileRelease
+[        ] Caching disabled for task ':app:javaPreCompileRelease' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:javaPreCompileRelease' is not up-to-date because:
+[   +1 ms]   Output property 'annotationProcessorListFile' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\annotation_processor_list\release\javaPreCompileRelease\annotationProcessors.json has been removed.
+[        ] > Task :path_provider_android:prepareReleaseArtProfile UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:prepareReleaseArtProfile' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':path_provider_android:prepareReleaseArtProfile' as it is up-to-date.
+[        ] work action resolve baseline-prof.txt (project :path_provider_android) (Thread[#290,included builds,5,main]) started.
+[        ] Resolve mutations for :app:mergeReleaseArtProfile (Thread[#290,included builds,5,main]) started.
+[        ] :app:mergeReleaseArtProfile (Thread[#290,included builds,5,main]) started.
+[        ] > Task :app:mergeReleaseArtProfile UP-TO-DATE
+[        ] Caching disabled for task ':app:mergeReleaseArtProfile' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':app:mergeReleaseArtProfile' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:bundleLibRuntimeToJarRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[   +1 ms] :path_provider_android:bundleLibRuntimeToJarRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[   +1 ms] > Task :path_provider_android:bundleLibRuntimeToJarRelease UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:bundleLibRuntimeToJarRelease' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':path_provider_android:bundleLibRuntimeToJarRelease' as it is up-to-date.
+[        ] work action resolve classes.jar (project :path_provider_android) (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] Resolve mutations for :app:extractProguardFiles (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:extractProguardFiles (Thread[#296,Execution worker Thread 6,5,main]) started.
+[  +61 ms] > Task :app:extractProguardFiles
+[        ] Caching disabled for task ':app:extractProguardFiles' because:
+[        ]   Build cache is disabled
+[        ]   Fast task
+[        ] Task ':app:extractProguardFiles' is not up-to-date because:
+[        ]   Output property 'proguardFilesDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\default_proguard_files\global has been removed.
+[        ]   Output property 'proguardFilesDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.9.1 has been removed.
+[        ]   Output property 'proguardFilesDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\default_proguard_files\global\proguard-android.txt-8.9.1 has been removed.
+[        ]   and more...
+[        ] Resolve mutations for :path_provider_android:processReleaseJavaRes (Thread[#296,Execution worker Thread 6,5,main]) started.
+[   +1 ms] :path_provider_android:processReleaseJavaRes (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] > Task :path_provider_android:processReleaseJavaRes NO-SOURCE
+[        ] file or directory 'C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.20\android\src\main\resources', not found
+[        ] file or directory 'C:\Users\suren\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.20\android\src\release\resources', not found
+[        ] Skipping task ':path_provider_android:processReleaseJavaRes' as it has no source files and no previous output files.
+[        ] work action resolve out (project :path_provider_android) (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] Resolve mutations for :app:mergeReleaseStartupProfile (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:mergeReleaseStartupProfile (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] > Task :app:mergeReleaseStartupProfile UP-TO-DATE
+[        ] Caching disabled for task ':app:mergeReleaseStartupProfile' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':app:mergeReleaseStartupProfile' as it is up-to-date.
+[        ] Resolve mutations for :app:compressReleaseAssets (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:compressReleaseAssets (Thread[#290,included builds,5,main]) started.
+[        ] Resolve mutations for :app:extractReleaseVersionControlInfo (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:extractReleaseVersionControlInfo (Thread[#296,Execution worker Thread 6,5,main]) started.
+[   +1 ms] > Task :app:extractReleaseVersionControlInfo UP-TO-DATE
+[        ] Caching disabled for task ':app:extractReleaseVersionControlInfo' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:extractReleaseVersionControlInfo' as it is up-to-date.
+[   +1 ms] Resolve mutations for :path_provider_android:createFullJarRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :path_provider_android:createFullJarRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[  +77 ms] > Task :path_provider_android:createFullJarRelease UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:createFullJarRelease' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':path_provider_android:createFullJarRelease' as it is up-to-date.
+[        ] work action resolve full.jar (project :path_provider_android) (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] work action resolve full.jar (project :path_provider_android) (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] Resolve mutations for :path_provider_android:extractProguardFiles (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] :path_provider_android:extractProguardFiles (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] > Task :path_provider_android:extractProguardFiles UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:extractProguardFiles' because:
+[        ]   Build cache is disabled
+[        ]   Fast task
+[        ] Skipping task ':path_provider_android:extractProguardFiles' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:generateReleaseLintModel (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] :path_provider_android:generateReleaseLintModel (Thread[#296,Execution worker Thread 6,5,main]) started.
+[   +1 ms] > Task :app:compressReleaseAssets
+[        ] Caching disabled for task ':app:compressReleaseAssets' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:compressReleaseAssets' is not up-to-date because:
+[        ]   Output property 'outputDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\compressed_assets\release\compressReleaseAssets\out has been removed.
+[        ]   Output property 'outputDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\compressed_assets\release\compressReleaseAssets\out\assets has been removed.
+[        ]   Output property 'outputDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\compressed_assets\release\compressReleaseAssets\out\assets\flutter_assets has been removed.
+[        ]   and more...
+[        ] The input changes require a full rebuild for incremental task ':app:compressReleaseAssets'.
+[        ] > Task :path_provider_android:generateReleaseLintModel UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:generateReleaseLintModel' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':path_provider_android:generateReleaseLintModel' as it is up-to-date.
+[        ] work action resolve generateReleaseLintModel (project :path_provider_android) (Thread[#296,Execution worker Thread 6,5,main]) started.
+[   +1 ms] work action resolve generateReleaseLintModel (project :path_provider_android) (Thread[#296,Execution worker Thread 6,5,main]) started.
+[   +1 ms] Resolve mutations for :app:processReleaseResources (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:processReleaseResources (Thread[#296,Execution worker Thread 6,5,main]) started.
+[ +392 ms] Resolve mutations for :path_provider_android:prepareLintJarForPublish (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] :path_provider_android:prepareLintJarForPublish (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] > Task :path_provider_android:prepareLintJarForPublish UP-TO-DATE
+[   +3 ms] Caching disabled for task ':path_provider_android:prepareLintJarForPublish' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':path_provider_android:prepareLintJarForPublish' as it is up-to-date.
+[        ] work action resolve lint.jar (project :path_provider_android) (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] work action resolve lint.jar (project :path_provider_android) (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] Resolve mutations for :path_provider_android:stripReleaseDebugSymbols (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] :path_provider_android:stripReleaseDebugSymbols (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] > Task :path_provider_android:stripReleaseDebugSymbols NO-SOURCE
+[        ] Skipping task ':path_provider_android:stripReleaseDebugSymbols' as it has no source files and no previous output files.
+[        ] Resolve mutations for :path_provider_android:copyReleaseJniLibsProjectAndLocalJars (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] :path_provider_android:copyReleaseJniLibsProjectAndLocalJars (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] > Task :path_provider_android:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:copyReleaseJniLibsProjectAndLocalJars' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':path_provider_android:copyReleaseJniLibsProjectAndLocalJars' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:extractDeepLinksForAarRelease (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] :path_provider_android:extractDeepLinksForAarRelease (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] > Task :path_provider_android:extractDeepLinksForAarRelease UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:extractDeepLinksForAarRelease' because:
+[   +3 ms]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:extractDeepLinksForAarRelease' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:extractReleaseAnnotations (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] :path_provider_android:extractReleaseAnnotations (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] > Task :path_provider_android:extractReleaseAnnotations UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:extractReleaseAnnotations' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:extractReleaseAnnotations' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:mergeReleaseConsumerProguardFiles (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] :path_provider_android:mergeReleaseConsumerProguardFiles (Thread[#295,Execution worker Thread 5,5,main]) started.
+[        ] > Task :path_provider_android:mergeReleaseConsumerProguardFiles UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:mergeReleaseConsumerProguardFiles' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':path_provider_android:mergeReleaseConsumerProguardFiles' as it is up-to-date.
+[   +1 ms] Resolve mutations for :path_provider_android:mergeReleaseJavaResource (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :path_provider_android:mergeReleaseJavaResource (Thread[#297,Execution worker Thread 7,5,main]) started.
+[   +1 ms] > Task :path_provider_android:mergeReleaseJavaResource UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:mergeReleaseJavaResource' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':path_provider_android:mergeReleaseJavaResource' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:syncReleaseLibJars (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :path_provider_android:syncReleaseLibJars (Thread[#297,Execution worker Thread 7,5,main]) started.
+[  +69 ms] > Task :path_provider_android:syncReleaseLibJars UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:syncReleaseLibJars' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:syncReleaseLibJars' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:bundleReleaseLocalLintAar (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :path_provider_android:bundleReleaseLocalLintAar (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] > Task :path_provider_android:bundleReleaseLocalLintAar UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:bundleReleaseLocalLintAar' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':path_provider_android:bundleReleaseLocalLintAar' as it is up-to-date.
+[        ] work action resolve out.aar (project :path_provider_android) (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] work action resolve out.aar (project :path_provider_android) (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] ExtractAarTransform (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] ExtractAarTransform (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] Resolve mutations for :path_provider_android:lintVitalAnalyzeRelease (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :path_provider_android:lintVitalAnalyzeRelease (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] > Task :path_provider_android:lintVitalAnalyzeRelease UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:lintVitalAnalyzeRelease' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:lintVitalAnalyzeRelease' as it is up-to-date.
+[        ] work action resolve out (project :path_provider_android) (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] work action resolve out (project :path_provider_android) (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] Resolve mutations for :path_provider_android:writeReleaseLintModelMetadata (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :path_provider_android:writeReleaseLintModelMetadata (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] > Task :path_provider_android:writeReleaseLintModelMetadata UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:writeReleaseLintModelMetadata' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':path_provider_android:writeReleaseLintModelMetadata' as it is up-to-date.
+[        ] work action resolve lint-model-metadata.properties (project :path_provider_android) (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] work action resolve lint-model-metadata.properties (project :path_provider_android) (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] Resolve mutations for :path_provider_android:generateReleaseLintVitalModel (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :path_provider_android:generateReleaseLintVitalModel (Thread[#297,Execution worker Thread 7,5,main]) started.
+[  +83 ms] > Task :path_provider_android:generateReleaseLintVitalModel UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:generateReleaseLintVitalModel' because:
+[        ]   Build cache is disabled
+[   +2 ms]   Caching has been disabled for the task
+[        ] Skipping task ':path_provider_android:generateReleaseLintVitalModel' as it is up-to-date.
+[        ] work action resolve generateReleaseLintVitalModel (project :path_provider_android) (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] work action resolve generateReleaseLintVitalModel (project :path_provider_android) (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] Resolve mutations for :app:collectReleaseDependencies (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :app:collectReleaseDependencies (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] > Task :app:collectReleaseDependencies UP-TO-DATE
+[        ] Caching disabled for task ':app:collectReleaseDependencies' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:collectReleaseDependencies' as it is up-to-date.
+[        ] Resolve mutations for :app:sdkReleaseDependencyData (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :app:sdkReleaseDependencyData (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] > Task :app:sdkReleaseDependencyData UP-TO-DATE
+[        ] Caching disabled for task ':app:sdkReleaseDependencyData' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:sdkReleaseDependencyData' as it is up-to-date.
+[        ] Resolve mutations for :app:validateSigningRelease (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :app:validateSigningRelease (Thread[#290,included builds,5,main]) started.
+[        ] > Task :app:validateSigningRelease UP-TO-DATE
+[        ] Caching disabled for task ':app:validateSigningRelease' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:validateSigningRelease' as it is up-to-date.
+[        ] Resolve mutations for :app:writeReleaseAppMetadata (Thread[#290,included builds,5,main]) started.
+[        ] :app:writeReleaseAppMetadata (Thread[#290,included builds,5,main]) started.
+[        ] > Task :app:writeReleaseAppMetadata
+[        ] Caching disabled for task ':app:writeReleaseAppMetadata' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:writeReleaseAppMetadata' is not up-to-date because:
+[        ]   Output property 'outputFile' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\app_metadata\release\writeReleaseAppMetadata\app-metadata.properties has been removed.
+[        ] Resolve mutations for :app:writeReleaseSigningConfigVersions (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] :app:writeReleaseSigningConfigVersions (Thread[#297,Execution worker Thread 7,5,main]) started.
+[        ] > Task :app:writeReleaseSigningConfigVersions UP-TO-DATE
+[        ] Caching disabled for task ':app:writeReleaseSigningConfigVersions' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:writeReleaseSigningConfigVersions' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:bundleReleaseAar (Thread[#290,included builds,5,main]) started.
+[        ] :path_provider_android:bundleReleaseAar (Thread[#290,included builds,5,main]) started.
+[        ] > Task :path_provider_android:bundleReleaseAar UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:bundleReleaseAar' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':path_provider_android:bundleReleaseAar' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:mapReleaseSourceSetPaths (Thread[#290,included builds,5,main]) started.
+[        ] :path_provider_android:mapReleaseSourceSetPaths (Thread[#290,included builds,5,main]) started.
+[   +1 ms] > Task :path_provider_android:mapReleaseSourceSetPaths UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:mapReleaseSourceSetPaths' because:
+[        ]   Build cache is disabled
+[   +1 ms]   Caching has been disabled for the task
+[   +3 ms] Skipping task ':path_provider_android:mapReleaseSourceSetPaths' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:mergeReleaseResources (Thread[#290,included builds,5,main]) started.
+[        ] :path_provider_android:mergeReleaseResources (Thread[#290,included builds,5,main]) started.
+[  +87 ms] > Task :path_provider_android:mergeReleaseResources UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:mergeReleaseResources' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:mergeReleaseResources' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:verifyReleaseResources (Thread[#290,included builds,5,main]) started.
+[        ] :path_provider_android:verifyReleaseResources (Thread[#290,included builds,5,main]) started.
+[        ] > Task :path_provider_android:verifyReleaseResources UP-TO-DATE
+[        ] Caching disabled for task ':path_provider_android:verifyReleaseResources' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':path_provider_android:verifyReleaseResources' as it is up-to-date.
+[        ] Resolve mutations for :path_provider_android:assembleRelease (Thread[#290,included builds,5,main]) started.
+[        ] :path_provider_android:assembleRelease (Thread[#290,included builds,5,main]) started.
+[        ] > Task :path_provider_android:assembleRelease UP-TO-DATE
+[        ] Skipping task ':path_provider_android:assembleRelease' as it has no actions.
+[ +394 ms] > Task :app:processReleaseResources
+[        ] Caching disabled for task ':app:processReleaseResources' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:processReleaseResources' is not up-to-date because:
+[        ]   Output property 'RClassOutputJar' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\compile_and_runtime_not_namespaced_r_class_jar\release\processReleaseResources\R.jar has been removed.
+[        ]   Output property 'proguardOutputFile' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\aapt_proguard_file\release\processReleaseResources\aapt_rules.txt has been removed.
+[        ] The input changes require a full rebuild for incremental task ':app:processReleaseResources'.
+[        ] Aapt output file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\linked_resources_proto_format\release\processReleaseResources\linked-resources-proto-format-release.ap_
+[        ] Resolve mutations for :app:compileReleaseKotlin (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:compileReleaseKotlin (Thread[#296,Execution worker Thread 6,5,main]) started.
+[  +92 ms] > Task :app:compileReleaseKotlin UP-TO-DATE
+[        ] Adding -Xuse-inline-scopes-numbers Kotlin compiler flag for task :app:compileDebugAndroidTestKotlin
+[        ] GradleBuildProject.Builder should not be accessed through AnalyticsConfiguratorService after AnalyticsService is created. Analytics information of this build might be incomplete.
+[        ] Caching disabled for task ':app:compileReleaseKotlin' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':app:compileReleaseKotlin' as it is up-to-date.
+[        ] Resolve mutations for :app:compileReleaseJavaWithJavac (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:compileReleaseJavaWithJavac (Thread[#296,Execution worker Thread 6,5,main]) started.
+[ +393 ms] > Task :app:compileReleaseJavaWithJavac
+[        ] Custom actions are attached to task ':app:compileReleaseJavaWithJavac'.
+[        ] Caching disabled for task ':app:compileReleaseJavaWithJavac' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:compileReleaseJavaWithJavac' is not up-to-date because:
+[        ]   Output property 'options.generatedSourceOutputDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\generated\ap_generated_sources\release\out has been removed.
+[        ] The input changes require a full rebuild for incremental task ':app:compileReleaseJavaWithJavac'.
+[        ] Compilation mode: in-process compilation
+[        ] Full recompilation is required because no incremental change information is available. This is usually caused by clean builds or changing compiler arguments.
+[        ] Compiling with toolchain 'C:\Program Files\Android\Android Studio\jbr'.
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\release\java', not found
+[        ] Compiling with JDK Java compiler API.
+[        ] Class dependency analysis for incremental compilation took 0.002 secs.
+[        ] Created classpath snapshot for incremental compilation in 0.012 secs.
+[        ] Resolve mutations for :app:expandReleaseArtProfileWildcards (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:expandReleaseArtProfileWildcards (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] > Task :app:expandReleaseArtProfileWildcards UP-TO-DATE
+[        ] Caching disabled for task ':app:expandReleaseArtProfileWildcards' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':app:expandReleaseArtProfileWildcards' as it is up-to-date.
+[        ] Resolve mutations for :app:mergeReleaseGeneratedProguardFiles (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:mergeReleaseGeneratedProguardFiles (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] > Task :app:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[        ] Caching disabled for task ':app:mergeReleaseGeneratedProguardFiles' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':app:mergeReleaseGeneratedProguardFiles' as it is up-to-date.
+[        ] Resolve mutations for :app:processReleaseJavaRes (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:processReleaseJavaRes (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] > Task :app:processReleaseJavaRes UP-TO-DATE
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\main\resources', not found
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\release\resources', not found
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\main\resources', not found
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\release\resources', not found
+[        ] Caching disabled for task ':app:processReleaseJavaRes' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:processReleaseJavaRes' as it is up-to-date.
+[        ] Resolve mutations for :app:mergeReleaseJavaResource (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:mergeReleaseJavaResource (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] > Task :app:mergeReleaseJavaResource UP-TO-DATE
+[        ] Caching disabled for task ':app:mergeReleaseJavaResource' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:mergeReleaseJavaResource' as it is up-to-date.
+[        ] Resolve mutations for :app:minifyReleaseWithR8 (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:minifyReleaseWithR8 (Thread[#296,Execution worker Thread 6,5,main]) started.
+[  +97 ms] > Task :app:minifyReleaseWithR8 UP-TO-DATE
+[        ] Caching disabled for task ':app:minifyReleaseWithR8' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':app:minifyReleaseWithR8' as it is up-to-date.
+[        ] Resolve mutations for :app:compileReleaseArtProfile (Thread[#291,Execution worker,5,main]) started.
+[        ] :app:compileReleaseArtProfile (Thread[#291,Execution worker,5,main]) started.
+[        ] Resolve mutations for :app:generateReleaseLintVitalReportModel (Thread[#296,Execution worker Thread 6,5,main]) started.
+[   +1 ms] :app:generateReleaseLintVitalReportModel (Thread[#296,Execution worker Thread 6,5,main]) started.
+[  +92 ms] > Task :app:generateReleaseLintVitalReportModel UP-TO-DATE
+[        ] Caching disabled for task ':app:generateReleaseLintVitalReportModel' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:generateReleaseLintVitalReportModel' as it is up-to-date.
+[        ] Resolve mutations for :app:lintVitalAnalyzeRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:lintVitalAnalyzeRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] > Task :app:compileReleaseArtProfile
+[        ] Caching disabled for task ':app:compileReleaseArtProfile' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:compileReleaseArtProfile' is not up-to-date because:
+[        ]   Output property 'binaryArtProfile' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\binary_art_profile\release\compileReleaseArtProfile\baseline.prof has been removed.
+[        ]   Output property 'binaryArtProfileMetadata' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\binary_art_profile_metadata\release\compileReleaseArtProfile\baseline.profm has been removed.
+[        ]   Output property 'combinedArtProfile' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\combined_art_profile\release\compileReleaseArtProfile\baseline-prof.txt has been removed.
+[        ] > Task :app:lintVitalAnalyzeRelease UP-TO-DATE
+[        ] Caching disabled for task ':app:lintVitalAnalyzeRelease' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':app:lintVitalAnalyzeRelease' as it is up-to-date.
+[        ] Resolve mutations for :app:lintVitalReportRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:lintVitalReportRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] > Task :app:lintVitalReportRelease UP-TO-DATE
+[        ] Caching disabled for task ':app:lintVitalReportRelease' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Skipping task ':app:lintVitalReportRelease' as it is up-to-date.
+[        ] Resolve mutations for :app:lintVitalRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:lintVitalRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] > Task :app:lintVitalRelease
+[        ] Caching disabled for task ':app:lintVitalRelease' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:lintVitalRelease' is not up-to-date because:
+[        ]   Task.upToDateWhen is false.
+[        ] Resolve mutations for :app:convertShrunkResourcesToBinaryRelease (Thread[#291,Execution worker,5,main]) started.
+[        ] :app:convertShrunkResourcesToBinaryRelease (Thread[#291,Execution worker,5,main]) started.
+[        ] > Task :app:convertShrunkResourcesToBinaryRelease UP-TO-DATE
+[        ] Custom actions are attached to task ':app:convertShrunkResourcesToBinaryRelease'.
+[        ] Caching disabled for task ':app:convertShrunkResourcesToBinaryRelease' because:
+[        ]   Build cache is disabled
+[   +1 ms] Skipping task ':app:convertShrunkResourcesToBinaryRelease' as it is up-to-date.
+[        ] Resolve mutations for :app:optimizeReleaseResources (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:optimizeReleaseResources (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] > Task :app:optimizeReleaseResources UP-TO-DATE
+[        ] Custom actions are attached to task ':app:optimizeReleaseResources'.
+[        ] Caching disabled for task ':app:optimizeReleaseResources' because:
+[        ]   Build cache is disabled
+[        ] Skipping task ':app:optimizeReleaseResources' as it is up-to-date.
+[        ] Resolve mutations for :app:packageRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:packageRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[ +681 ms] > Task :app:packageRelease
+[        ] Custom actions are attached to task ':app:packageRelease'.
+[        ] Caching disabled for task ':app:packageRelease' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:packageRelease' is not up-to-date because:
+[        ]   Input property 'dexMetadataDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\dex_metadata_directory\release\compileReleaseArtProfile\0\.dm has changed.
+[        ]   Input property 'dexMetadataDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\dex_metadata_directory\release\compileReleaseArtProfile\1\.dm has changed.
+[        ] The input changes require a full rebuild for incremental task ':app:packageRelease'.
+[        ] Resolve mutations for :app:createReleaseApkListingFileRedirect (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:createReleaseApkListingFileRedirect (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] > Task :app:createReleaseApkListingFileRedirect
+[        ] Caching disabled for task ':app:createReleaseApkListingFileRedirect' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:createReleaseApkListingFileRedirect' is not up-to-date because:
+[        ]   Output property 'redirectFile' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\apk_ide_redirect_file\release\createReleaseApkListingFileRedirect\redirect.txt has been removed.
+[        ] Resolve mutations for :app:assembleRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[        ] :app:assembleRelease (Thread[#296,Execution worker Thread 6,5,main]) started.
+[  +89 ms] > Task :app:assembleRelease
+[        ] Caching disabled for task ':app:assembleRelease' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:assembleRelease' is not up-to-date because:
+[        ]   Task has not declared any outputs despite executing actions.
+[ +202 ms] AAPT2 aapt2-8.9.1-12782657-windows Daemon #0: shutdown
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #1: shutdown
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #2: shutdown
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #3: shutdown
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #4: shutdown
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #5: shutdown
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #6: shutdown
+[        ] [Incubating] Problems report is available at: file:///C:/Users/suren/flutter_app/truecircle/TC/build/reports/problems/problems-report.html
+[        ] Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+[        ] You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+[        ] For more on this, please refer to https://docs.gradle.org/8.12/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+[        ] BUILD SUCCESSFUL in 39s
+[  +80 ms] 102 actionable tasks: 26 executed, 76 up-to-date
+[        ] Watched directory hierarchies: [C:\Users\suren\src\flutter\packages\flutter_tools\gradle, C:\Users\suren\flutter_app\truecircle\TC\android]
+[  +44 ms] Running Gradle task 'assembleRelease'... (completed in 39.5s)
+[  +13 ms] Calculate SHA1: LocalDirectory: 'C:\Users\suren\flutter_app\truecircle\TC\build\app\outputs\flutter-apk'/app-release.apk
+[ +753 ms] ÔêÜ Built build\app\outputs\flutter-apk\app-release.apk (41.1MB)
+[  +12 ms] "flutter apk" took 42,217ms.
+[  +84 ms] Running 1 shutdown hook
+[   +3 ms] Shutdown hooks complete
+[ +257 ms] exiting with code 0
+PS C:\Users\suren\flutter_app\truecircle\tc>

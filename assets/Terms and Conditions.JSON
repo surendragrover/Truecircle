@@ -1,0 +1,44 @@
+{
+  "app_name": "TrueCircle",
+  "category": "Terms and Conditions",
+  "language": "English",
+  "version": "1.0",
+  "sections": [
+    {
+      "title": "Acceptance of Terms",
+      "content": "By using TrueCircle, you agree to these Terms and Conditions. If you do not agree, please discontinue using the app."
+    },
+    {
+      "title": "Purpose of the App",
+      "content": "TrueCircle provides emotional AI assistance, not medical or professional therapy. All guidance offered by the app is for personal reflection and growth purposes only."
+    },
+    {
+      "title": "User Responsibilities",
+      "content": "You agree to use TrueCircle respectfully and responsibly. Do not enter harmful, abusive, or unlawful content in the app."
+    },
+    {
+      "title": "Intellectual Property",
+      "content": "All app design, AI models, logos, and content belong to TrueCircle. You may not copy, redistribute, or modify them without written permission."
+    },
+    {
+      "title": "Data Ownership",
+      "content": "You own your reflections and personal entries. TrueCircle owns the app and its analytical systems."
+    },
+    {
+      "title": "Limitation of Liability",
+      "content": "TrueCircle and its creators are not responsible for emotional or psychological outcomes resulting from self-reflection or misuse of the app."
+    },
+    {
+      "title": "Modifications",
+      "content": "We may update or modify these terms at any time to enhance user safety and compliance. Continued use means you accept the changes."
+    },
+    {
+      "title": "Governing Law",
+      "content": "These terms are governed by the laws of India. Any disputes will be subject to jurisdiction in Jaipur, Rajasthan."
+    },
+    {
+      "title": "Contact",
+      "content": "For queries regarding these Terms, email us at legal@truecircle.online."
+    }
+  ]
+}

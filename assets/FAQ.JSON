@@ -1,0 +1,48 @@
+{
+  "app_name": "TrueCircle",
+  "category": "FAQ",
+  "language": "English",
+  "version": "1.0",
+  "faqs": [
+    {
+      "question": "What is TrueCircle?",
+      "answer": "TrueCircle is an emotional AI companion that helps you understand, manage, and strengthen your relationships through intelligent reflection, guided exercises, and personalized insights."
+    },
+    {
+      "question": "How does TrueCircle work?",
+      "answer": "TrueCircle analyzes your daily reflections, conversations, and emotional patterns to offer meaningful insights. It uses AI-based relationship analysis without judgment to help you grow emotionally and socially."
+    },
+    {
+      "question": "Is my data safe with TrueCircle?",
+      "answer": "Yes. TrueCircle prioritizes your privacy and never shares personal data with third parties. All your entries remain fully encrypted and accessible only to you."
+    },
+    {
+      "question": "What is the ‘Relationship Depth Analysis’ feature?",
+      "answer": "It’s an AI-based evaluation of how deep or balanced your relationships are, based on your own reflections and conversations. It helps you see emotional trends over time."
+    },
+    {
+      "question": "What does ‘Sample Mode’ mean?",
+      "answer": "Sample Mode allows you to explore the app using demo data without saving real entries. It’s useful for learning how the app works before using it personally."
+    },
+    {
+      "question": "How can I reload or refresh sample data?",
+      "answer": "Go to Settings → Data → Reload Sample Data. This action clears the cache and re-fetches demo content from the local JSON data source."
+    },
+    {
+      "question": "Can I use TrueCircle offline?",
+      "answer": "Yes, TrueCircle supports offline functionality. You can record reflections and access previous insights without an internet connection. Data syncs automatically when you reconnect."
+    },
+    {
+      "question": "Who can use TrueCircle?",
+      "answer": "Anyone seeking emotional growth, better relationships, or self-awareness — including individuals, couples, and families — can use TrueCircle safely and effectively."
+    },
+    {
+      "question": "Does TrueCircle provide therapy?",
+      "answer": "No. TrueCircle is not a substitute for professional therapy. It provides AI-guided emotional assistance and insights to complement your personal growth journey."
+    },
+    {
+      "question": "How do I contact support?",
+      "answer": "You can reach us via the in-app Support tab or email us at support@truecircle.ai. We’re available 24/7 to assist you."
+    }
+  ]
+}

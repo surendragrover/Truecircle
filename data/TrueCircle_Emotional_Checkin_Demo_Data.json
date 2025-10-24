@@ -1,0 +1,272 @@
+{
+  "daily_entries": [
+    {
+      "date": "2025-08-25",
+      "time": "Morning",
+      "emotion": "overwhelmed",
+      "intensity": 3,
+      "trigger": "exercise",
+      "notes": "Stressful meeting with manager."
+    },
+    {
+      "date": "2025-08-26",
+      "time": "Afternoon",
+      "emotion": "overwhelmed",
+      "intensity": 9,
+      "trigger": "social events",
+      "notes": "Met friends after a long time."
+    },
+    {
+      "date": "2025-08-27",
+      "time": "Afternoon",
+      "emotion": "sad",
+      "intensity": 4,
+      "trigger": "social events",
+      "notes": "Met friends after a long time."
+    },
+    {
+      "date": "2025-08-28",
+      "time": "Morning",
+      "emotion": "sad",
+      "intensity": 4,
+      "trigger": "family time",
+      "notes": "Watched a favorite movie and relaxed."
+    },
+    {
+      "date": "2025-08-29",
+      "time": "Evening",
+      "emotion": "frustrated",
+      "intensity": 6,
+      "trigger": "sleep quality",
+      "notes": "Spent quality time with kids."
+    },
+    {
+      "date": "2025-08-30",
+      "time": "Morning",
+      "emotion": "excited",
+      "intensity": 4,
+      "trigger": "weekend activity",
+      "notes": "Watched a favorite movie and relaxed."
+    },
+    {
+      "date": "2025-08-31",
+      "time": "Afternoon",
+      "emotion": "grateful",
+      "intensity": 9,
+      "trigger": "sleep quality",
+      "notes": "Watched a favorite movie and relaxed."
+    },
+    {
+      "date": "2025-09-01",
+      "time": "Evening",
+      "emotion": "happy",
+      "intensity": 3,
+      "trigger": "work stress",
+      "notes": "Watched a favorite movie and relaxed."
+    },
+    {
+      "date": "2025-09-02",
+      "time": "Afternoon",
+      "emotion": "excited",
+      "intensity": 3,
+      "trigger": "news",
+      "notes": "Met friends after a long time."
+    },
+    {
+      "date": "2025-09-03",
+      "time": "Afternoon",
+      "emotion": "happy",
+      "intensity": 3,
+      "trigger": "exercise",
+      "notes": "Stressful meeting with manager."
+    },
+    {
+      "date": "2025-09-04",
+      "time": "Morning",
+      "emotion": "frustrated",
+      "intensity": 7,
+      "trigger": "social events",
+      "notes": "Met friends after a long time."
+    },
+    {
+      "date": "2025-09-05",
+      "time": "Morning",
+      "emotion": "calm",
+      "intensity": 3,
+      "trigger": "news",
+      "notes": "Met friends after a long time."
+    },
+    {
+      "date": "2025-09-06",
+      "time": "Morning",
+      "emotion": "calm",
+      "intensity": 5,
+      "trigger": "weekend activity",
+      "notes": "Could not sleep well last night."
+    },
+    {
+      "date": "2025-09-07",
+      "time": "Afternoon",
+      "emotion": "grateful",
+      "intensity": 4,
+      "trigger": "social events",
+      "notes": "Watched a favorite movie and relaxed."
+    },
+    {
+      "date": "2025-09-08",
+      "time": "Morning",
+      "emotion": "anxious",
+      "intensity": 8,
+      "trigger": "commute",
+      "notes": "Stressful meeting with manager."
+    },
+    {
+      "date": "2025-09-09",
+      "time": "Afternoon",
+      "emotion": "happy",
+      "intensity": 4,
+      "trigger": "exercise",
+      "notes": "Felt energetic after morning run."
+    },
+    {
+      "date": "2025-09-10",
+      "time": "Morning",
+      "emotion": "happy",
+      "intensity": 8,
+      "trigger": "exercise",
+      "notes": "Watched a favorite movie and relaxed."
+    },
+    {
+      "date": "2025-09-11",
+      "time": "Afternoon",
+      "emotion": "calm",
+      "intensity": 8,
+      "trigger": "exercise",
+      "notes": "Spent quality time with kids."
+    },
+    {
+      "date": "2025-09-12",
+      "time": "Morning",
+      "emotion": "sad",
+      "intensity": 6,
+      "trigger": "work stress",
+      "notes": "Felt energetic after morning run."
+    },
+    {
+      "date": "2025-09-13",
+      "time": "Afternoon",
+      "emotion": "happy",
+      "intensity": 4,
+      "trigger": "work stress",
+      "notes": "Spent quality time with kids."
+    },
+    {
+      "date": "2025-09-14",
+      "time": "Morning",
+      "emotion": "excited",
+      "intensity": 8,
+      "trigger": "social events",
+      "notes": "Spent quality time with kids."
+    },
+    {
+      "date": "2025-09-15",
+      "time": "Evening",
+      "emotion": "calm",
+      "intensity": 4,
+      "trigger": "family time",
+      "notes": "Spent quality time with kids."
+    },
+    {
+      "date": "2025-09-16",
+      "time": "Morning",
+      "emotion": "sad",
+      "intensity": 8,
+      "trigger": "exercise",
+      "notes": "Spent quality time with kids."
+    },
+    {
+      "date": "2025-09-17",
+      "time": "Morning",
+      "emotion": "overwhelmed",
+      "intensity": 3,
+      "trigger": "family time",
+      "notes": "Could not sleep well last night."
+    },
+    {
+      "date": "2025-09-18",
+      "time": "Evening",
+      "emotion": "happy",
+      "intensity": 6,
+      "trigger": "work stress",
+      "notes": "Spent quality time with kids."
+    },
+    {
+      "date": "2025-09-19",
+      "time": "Morning",
+      "emotion": "frustrated",
+      "intensity": 7,
+      "trigger": "news",
+      "notes": "Spent quality time with kids."
+    },
+    {
+      "date": "2025-09-20",
+      "time": "Evening",
+      "emotion": "sad",
+      "intensity": 4,
+      "trigger": "family time",
+      "notes": "Stressful meeting with manager."
+    },
+    {
+      "date": "2025-09-21",
+      "time": "Morning",
+      "emotion": "excited",
+      "intensity": 7,
+      "trigger": "commute",
+      "notes": "Met friends after a long time."
+    },
+    {
+      "date": "2025-09-22",
+      "time": "Afternoon",
+      "emotion": "happy",
+      "intensity": 8,
+      "trigger": "weekend activity",
+      "notes": "Watched a favorite movie and relaxed."
+    },
+    {
+      "date": "2025-09-23",
+      "time": "Morning",
+      "emotion": "frustrated",
+      "intensity": 9,
+      "trigger": "weekend activity",
+      "notes": "Could not sleep well last night."
+    }
+  ],
+  "emotion_patterns": {
+    "weekly_trends": "Mood improves significantly on Saturdays and Sundays.",
+    "common_emotions": "Most common emotion: Calm. Most common trigger: Family time.",
+    "time_of_day_patterns": "Anxiety peaks in the afternoon; happiness highest in the evening.",
+    "correlation_insights": "Better sleep quality leads to higher morning calmness scores."
+  },
+  "personalized_insights": [
+    "You tend to feel most positive on weekends.",
+    "Your mood improves after exercise sessions.",
+    "Work meetings often trigger anxiety - consider breathing exercises."
+  ],
+  "progress_tracking": {
+    "monthly_emotion_distribution": {
+      "happy": 8,
+      "calm": 6,
+      "anxious": 5,
+      "frustrated": 4,
+      "grateful": 3,
+      "sad": 2,
+      "excited": 1,
+      "overwhelmed": 1
+    },
+    "suggestions": "Increase morning exercise to boost daily happiness levels.",
+    "milestones": [
+      "Logged emotions for 30 consecutive days!",
+      "Achieved consistent calmness scores above 7."
+    ]
+  }
+}

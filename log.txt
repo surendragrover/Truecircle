@@ -1,0 +1,330 @@
+ues-te.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-te_values-te.arsc.flat
+[        ] Compiling xml file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-anydpi-v21\ic_call_answer_video_low.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\drawable-anydpi-v21_ic_call_answer_video_low.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-pt-rPT\values-pt-rPT.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-pt-rPT_values-pt-rPT.arsc.flat
+[        ] Compiling image file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-hdpi-v4\ic_call_decline_low.png
+[        ] Compiling file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-hdpi-v4\ic_call_decline_low.png to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\drawable-hdpi-v4_ic_call_decline_low.png.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-vi\values-vi.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-vi_values-vi.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-sv\values-sv.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-sv_values-sv.arsc.flat
+[        ] Compiling image file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-ldpi-v4\ic_call_decline_low.png
+[   +1 ms] Compiling file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-ldpi-v4\ic_call_decline_low.png to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\drawable-ldpi-v4_ic_call_decline_low.png.flat
+[   +1 ms] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-ur\values-ur.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-ur_values-ur.arsc.flat
+[   +1 ms] Compiling xml file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-v21\notification_action_background.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\drawable-v21_notification_action_background.xml.flat
+[        ] Compiling xml file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable\notification_bg.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\drawable_notification_bg.xml.flat
+[        ] Compiling image file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-xxhdpi-v4\ic_call_answer.png
+[        ] Compiling file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-xxhdpi-v4\ic_call_answer.png to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\drawable-xxhdpi-v4_ic_call_answer.png.flat
+[        ] Compiling image file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-xxxhdpi-v4\ic_call_answer_video.png
+[        ] Compiling xml file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-anydpi-v21\ic_call_decline.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\drawable-anydpi-v21_ic_call_decline.xml.flat
+[        ] Compiling file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-xxxhdpi-v4\ic_call_answer_video.png to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\drawable-xxxhdpi-v4_ic_call_answer_video.png.flat
+[        ] Compiling xml file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\layout\notification_template_part_time.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\layout_notification_template_part_time.xml.flat
+[        ] Compiling image file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-hdpi-v4\notification_oversize_large_icon_bg.png
+[        ] Compiling file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-hdpi-v4\notification_oversize_large_icon_bg.png to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\drawable-hdpi-v4_notification_oversize_large_icon_bg.png.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-ar\values-ar.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-ar_values-ar.arsc.flat
+[        ] Compiling image file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-mdpi-v4\ic_call_answer.png
+[        ] Compiling file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-mdpi-v4\ic_call_answer.png to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\drawable-mdpi-v4_ic_call_answer.png.flat
+[        ] Compiling image file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-xhdpi-v4\ic_call_answer.png
+[        ] Compiling file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-xhdpi-v4\ic_call_answer.png to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\drawable-xhdpi-v4_ic_call_answer.png.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-ca\values-ca.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-ca_values-ca.arsc.flat
+[        ] Compiling image file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-xxhdpi-v4\ic_call_answer_low.png
+[        ] Compiling file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-xxhdpi-v4\ic_call_answer_low.png to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\drawable-xxhdpi-v4_ic_call_answer_low.png.flat
+[        ] Compiling image file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-xxxhdpi-v4\ic_call_answer_video_low.png
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-en-rIN\values-en-rIN.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-en-rIN_values-en-rIN.arsc.flat
+[        ] Compiling file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\drawable-xxxhdpi-v4\ic_call_answer_video_low.png to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\drawable-xxxhdpi-v4_ic_call_answer_video_low.png.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-fr\values-fr.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-fr_values-fr.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-in\values-in.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-in_values-in.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-kn\values-kn.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-kn_values-kn.arsc.flat
+[        ] Compiling xml file C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\layout-v21\notification_action.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\layout-v21_notification_action.xml.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-as\values-as.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-as_values-as.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-cs\values-cs.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-cs_values-cs.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-en-rXC\values-en-rXC.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-en-rXC_values-en-rXC.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-fr-rCA\values-fr-rCA.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-fr-rCA_values-fr-rCA.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-is\values-is.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-is_values-is.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-ko\values-ko.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-ko_values-ko.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-mr\values-mr.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-mr_values-mr.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-pl\values-pl.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-pl_values-pl.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-sl\values-sl.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-sl_values-sl.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-kk\values-kk.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-kk_values-kk.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-tl\values-tl.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-tl_values-tl.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-sw\values-sw.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-sw_values-sw.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-mk\values-mk.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-mk_values-mk.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-uz\values-uz.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-uz_values-uz.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-nl\values-nl.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-nl_values-nl.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-mn\values-mn.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-mn_values-mn.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-ru\values-ru.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-ru_values-ru.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-ta\values-ta.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-ta_values-ta.arsc.flat
+[   +1 ms] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-pa\values-pa.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-pa_values-pa.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-v21\values-v21.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-v21_values-v21.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-zh-rHK\values-zh-rHK.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-zh-rHK_values-zh-rHK.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-sk\values-sk.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-sk_values-sk.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-th\values-th.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-th_values-th.arsc.flat
+[        ] Compiling XML table C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\merged_res\release\mergeReleaseResources\values-zh-rCN\values-zh-rCN.xml to C:\Users\suren\flutter_app\truecircle\TC\build\path_provider_android\intermediates\verified_library_resources\release\verifyReleaseResources\compiled\values-zh-rCN_values-zh-rCN.arsc.flat
+[        ] Resolve mutations for :path_provider_android:assembleRelease (Thread[#80,Execution worker Thread 3,5,main]) started.
+[   +1 ms] :path_provider_android:assembleRelease (Thread[#80,Execution worker Thread 3,5,main]) started.
+[        ] > Task :path_provider_android:assembleRelease
+[        ] Skipping task ':path_provider_android:assembleRelease' as it has no actions.
+[ +406 ms] > Task :app:compileReleaseKotlin
+[        ] Options for KOTLIN DAEMON: IncrementalCompilationOptions(super=CompilationOptions(compilerMode=INCREMENTAL_COMPILER, targetPlatform=JVM, reportCategories=[0, 3], reportSeverity=2, requestedCompilationResults=[0], kotlinScriptExtensions=[]), areFileChangesKnown=false, modifiedFiles=null, deletedFiles=null, classpathChanges=NotAvailableForNonIncrementalRun, workingDir=C:\Users\suren\flutter_app\truecircle\TC\build\app\kotlin\compileReleaseKotlin\cacheable, multiModuleICSettings=MultiModuleICSettings(buildHistoryFile=C:\Users\suren\flutter_app\truecircle\TC\build\app\kotlin\compileReleaseKotlin\local-state\build-history.bin, useModuleDetection=true), usePreciseJavaTracking=true, icFeatures=IncrementalCompilationFeatures(withAbiSnapshot=false, preciseCompilationResultsBackup=true, keepIncrementalCompilationCachesInMemory=true, enableUnsafeIncrementalCompilationForMultiplatform=false), outputFiles=[C:\Users\suren\flutter_app\truecircle\TC\build\app\tmp\kotlin-classes\release, C:\Users\suren\flutter_app\truecircle\TC\build\app\kotlin\compileReleaseKotlin\cacheable, C:\Users\suren\flutter_app\truecircle\TC\build\app\kotlin\compileReleaseKotlin\local-state])
+[+6988 ms] work action resolve out (project :path_provider_android) (Thread[#79,Execution worker Thread 2,5,main]) started.
+[        ] work action resolve out (project :path_provider_android) (Thread[#79,Execution worker Thread 2,5,main]) started.
+[ +697 ms] > Task :app:compileReleaseKotlin
+[        ] Finished executing kotlin compiler using DAEMON strategy
+[        ] Resolve mutations for :app:compileReleaseJavaWithJavac (Thread[#77,included builds,5,main]) started.
+[        ] :app:compileReleaseJavaWithJavac (Thread[#77,included builds,5,main]) started.
+[ +712 ms] > Task :app:compileReleaseJavaWithJavac
+[        ] Custom actions are attached to task ':app:compileReleaseJavaWithJavac'.
+[        ] Caching disabled for task ':app:compileReleaseJavaWithJavac' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:compileReleaseJavaWithJavac' is not up-to-date because:
+[        ]   Output property 'destinationDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\javac\release\compileReleaseJavaWithJavac\classes has been removed.
+[        ]   Output property 'destinationDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\javac\release\compileReleaseJavaWithJavac\classes\io has been removed.
+[        ]   Output property 'destinationDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\javac\release\compileReleaseJavaWithJavac\classes\io\flutter has been removed.
+[        ]   and more...
+[        ] The input changes require a full rebuild for incremental task ':app:compileReleaseJavaWithJavac'.
+[        ] Compilation mode: in-process compilation
+[        ] Full recompilation is required because no incremental change information is available. This is usually caused by clean builds or changing compiler arguments.
+[        ] Compiling with toolchain 'C:\Program Files\Android\Android Studio\jbr'.
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\release\java', not found
+[        ] Compiling with JDK Java compiler API.
+[        ] Class dependency analysis for incremental compilation took 0.004 secs.
+[        ] Created classpath snapshot for incremental compilation in 0.09 secs.
+[        ] Resolve mutations for :app:expandReleaseArtProfileWildcards (Thread[#77,included builds,5,main]) started.
+[        ] :app:expandReleaseArtProfileWildcards (Thread[#77,included builds,5,main]) started.
+[ +185 ms] Resolve mutations for :app:mergeReleaseGeneratedProguardFiles (Thread[#81,Execution worker Thread 4,5,main]) started.
+[        ] :app:mergeReleaseGeneratedProguardFiles (Thread[#81,Execution worker Thread 4,5,main]) started.
+[        ] > Task :app:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+[        ] Caching disabled for task ':app:mergeReleaseGeneratedProguardFiles' because:
+[        ]   Build cache is disabled
+[        ]   Simple merging task
+[        ] Skipping task ':app:mergeReleaseGeneratedProguardFiles' as it is up-to-date.
+[        ] Resolve mutations for :app:processReleaseJavaRes (Thread[#81,Execution worker Thread 4,5,main]) started.
+[        ] :app:processReleaseJavaRes (Thread[#81,Execution worker Thread 4,5,main]) started.
+[        ] > Task :app:processReleaseJavaRes
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\main\resources', not found
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\release\resources', not found
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\main\resources', not found
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\release\resources', not found
+[        ] Caching disabled for task ':app:processReleaseJavaRes' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:processReleaseJavaRes' is not up-to-date because:
+[        ]   Output property 'outDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\java_res\release\processReleaseJavaRes\out has been removed.
+[   +1 ms]   Output property 'outDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\java_res\release\processReleaseJavaRes\out\com has been removed.
+[        ]   Output property 'outDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\java_res\release\processReleaseJavaRes\out\com\example has been removed.
+[        ]   and more...
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\main\resources', not found
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\release\resources', not found
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\main\resources', not found
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\android\app\src\release\resources', not found
+[        ] Resolve mutations for :app:mergeReleaseJavaResource (Thread[#81,Execution worker Thread 4,5,main]) started.
+[        ] :app:mergeReleaseJavaResource (Thread[#81,Execution worker Thread 4,5,main]) started.
+[ +100 ms] Resolve mutations for :app:generateReleaseLintVitalReportModel (Thread[#84,Execution worker Thread 7,5,main]) started.
+[        ] :app:generateReleaseLintVitalReportModel (Thread[#84,Execution worker Thread 7,5,main]) started.
+[ +588 ms] > Task :app:expandReleaseArtProfileWildcards
+[        ] Caching disabled for task ':app:expandReleaseArtProfileWildcards' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:expandReleaseArtProfileWildcards' is not up-to-date because:
+[        ]   Output property 'expandedArtProfile' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\r8_art_profile\release\expandReleaseArtProfileWildcards\baseline-prof.txt has been removed.
+[ +109 ms] > Task :app:generateReleaseLintVitalReportModel
+[        ] Caching disabled for task ':app:generateReleaseLintVitalReportModel' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:generateReleaseLintVitalReportModel' is not up-to-date because:
+[        ]   Output property 'outputDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\lint_vital_report_lint_model\release\generateReleaseLintVitalReportModel has been removed.
+[        ]   Output property 'outputDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\lint_vital_report_lint_model\release\generateReleaseLintVitalReportModel\module.xml has been removed.
+[        ]   Output property 'outputDirectory' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\lint_vital_report_lint_model\release\generateReleaseLintVitalReportModel\release-artifact-dependencies.xml has been removed.
+[        ]   and more...
+[        ] Resolve mutations for :app:lintVitalAnalyzeRelease (Thread[#84,Execution worker Thread 7,5,main]) started.
+[        ] :app:lintVitalAnalyzeRelease (Thread[#84,Execution worker Thread 7,5,main]) started.
+[+1084 ms] > Task :app:mergeReleaseJavaResource
+[        ] Caching disabled for task ':app:mergeReleaseJavaResource' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:mergeReleaseJavaResource' is not up-to-date because:
+[        ]   Output property 'cacheDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release-mergeJavaRes\zip-cache has been removed.
+[        ]   Output property 'cacheDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release-mergeJavaRes\zip-cache\06ND9YGIxW5cPMJsbBQ5ezfxT4Y= has been removed.
+[        ]   Output property 'cacheDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\release-mergeJavaRes\zip-cache\0CnyFhLa3oDR70L20C_2aCYA2Cw= has been removed.
+[        ]   and more...
+[        ] The input changes require a full rebuild for incremental task ':app:mergeReleaseJavaResource'.
+[        ] Resolve mutations for :app:minifyReleaseWithR8 (Thread[#81,Execution worker Thread 4,5,main]) started.
+[        ] :app:minifyReleaseWithR8 (Thread[#81,Execution worker Thread 4,5,main]) started.
+[ +916 ms] > Task :app:lintVitalAnalyzeRelease
+[        ] Caching disabled for task ':app:lintVitalAnalyzeRelease' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:lintVitalAnalyzeRelease' is not up-to-date because:
+[        ]   Value of input property 'printStackTrace' has changed for task ':app:lintVitalAnalyzeRelease'
+[        ] Android Lint: Creating lint class loader 31.9.1_true
+[+9690 ms] Resolve mutations for :app:lintVitalReportRelease (Thread[#84,Execution worker Thread 7,5,main]) started.
+[        ] :app:lintVitalReportRelease (Thread[#84,Execution worker Thread 7,5,main]) started.
+[        ] > Task :app:minifyReleaseWithR8
+[        ] Caching disabled for ExtractProGuardRulesTransform: C:\Users\suren\.gradle\caches\8.12\transforms\2e43f89b752fe03e00c300522f7e054b\transformed\jetified-libs.jar because:
+[        ]   Build cache is disabled
+[        ] Caching disabled for task ':app:minifyReleaseWithR8' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:minifyReleaseWithR8' is not up-to-date because:
+[        ]   Output property 'mappingFile' file C:\Users\suren\flutter_app\truecircle\TC\build\app\outputs\mapping\release\mapping.txt has been removed.
+[        ]   Output property 'outputArtProfile' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\r8_art_profile\release\minifyReleaseWithR8\baseline-prof.txt has been removed.
+[        ]   Output property 'outputDex' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\dex\release\minifyReleaseWithR8 has been removed.
+[        ]   and more...
+[        ] R8 is a new Android code shrinker. If you experience any issues, please file a bug at
+[        ] https://issuetracker.google.com, using 'Shrinker (R8)' as component name.
+[        ] Current version is: 8.9.32.
+[        ] file or directory 'C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\generated_proguard_file\release\mergeReleaseGeneratedProguardFiles\proguard.txt', not found
+[        ] Supplied proguard configuration does not exist: C:\Users\suren\flutter_app\truecircle\TC\android\app\proguard-rules.pro
+[        ] INFO: C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\aapt_proguard_file\release\processReleaseResources\aapt_rules.txt:1:1-50: R8: Proguard configuration rule does not match anything: `-keep class android.app.Application {
+[        ]   <init>();
+[        ] }`
+[        ] INFO: C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.9.1:21:1-22:1: R8: Proguard configuration rule does not match anything: `-keep public class com.google.vending.licensing.ILicensingService {
+[        ]   <init>();
+[        ] }`
+[        ] INFO: C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.9.1:22:1-23:1: R8: Proguard configuration rule does not match anything: `-keep public class com.android.vending.licensing.ILicensingService {
+[        ]   <init>();
+[        ] }`
+[        ] INFO: C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.9.1:23:1-24:1: R8: Proguard configuration rule does not match anything: `-keep public class com.google.android.vending.licensing.ILicensingService {
+[        ]   <init>();
+[        ] }`
+[        ] INFO: C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.9.1:55:1-57:2: R8: Proguard configuration rule does not match anything: `-keepclassmembers class * {
+[        ]   @android.webkit.JavascriptInterface <methods>;
+[        ] }`
+[        ] INFO: C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.9.1:68:1-70:1: R8: Proguard configuration rule does not match anything: `-keep class android.support.annotation.Keep {
+[        ]   <init>();
+[        ] }`
+[        ] INFO: C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.9.1:70:1-52: R8: Proguard configuration rule does not match anything: `-keep @android.support.annotation.Keep class * {
+[        ]   *;
+[        ] }`
+[        ] INFO: C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.9.1:72:1-74:2: R8: Proguard configuration rule does not match anything: `-keepclasseswithmembers class * {
+[        ]   @android.support.annotation.Keep <methods>;
+[        ] }`
+[        ] INFO: C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.9.1:76:1-78:2: R8: Proguard configuration rule does not match anything: `-keepclasseswithmembers class * {
+[        ]   @android.support.annotation.Keep <fields>;
+[        ] }`
+[        ] INFO: C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\default_proguard_files\global\proguard-android-optimize.txt-8.9.1:80:1-82:2: R8: Proguard configuration rule does not match anything: `-keepclasseswithmembers class * {
+[        ]   @android.support.annotation.Keep <init>(...);
+[        ] }`
+[        ] INFO: C:\Users\suren\.gradle\caches\8.12\transforms\7d4d4ce414a44a3730885ae01f2fb152\transformed\fragment-1.7.1\proguard.txt:16:1-19:2: R8: Proguard configuration rule does not match anything: `-if public class ** extends androidx.fragment.app.Fragment
+[        ] -keepclasseswithmembers,allowrepackaging,allowobfuscation public class <1> {
+[        ]   public <init>();
+[        ] }`
+[        ] INFO: C:\Users\suren\.gradle\caches\8.12\transforms\7d4d4ce414a44a3730885ae01f2fb152\transformed\fragment-1.7.1\proguard.txt:24:1-29:2: R8: Proguard configuration rule does not match anything: `-if class androidx.fragment.app.FragmentTransition {
+[        ]   private static androidx.fragment.app.FragmentTransitionImpl resolveSupportImpl();
+[        ] }
+[        ] -keep class androidx.transition.FragmentTransitionSupport {
+[        ]   public <init>();
+[        ] }`
+[        ] INFO: C:\Users\suren\.gradle\caches\8.12\transforms\444bb99b45d5f3093a14f2f3c82161dc\transformed\lifecycle-viewmodel-2.7.0\proguard.txt:5:1-7:2: R8: Proguard configuration rule does not match anything: `-keepclassmembers,allowrepackaging,allowobfuscation class * extends androidx.lifecycle.AndroidViewModel {
+[        ]   <init>(android.app.Application);
+[        ] }`
+[        ] INFO: C:\Users\suren\.gradle\caches\8.12\transforms\47080e52f42fb85d5acc0d8bd39630dc\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\proguard.txt:1:1-3:2: R8: Proguard configuration rule does not match anything: `-keepclassmembers,allowrepackaging,allowobfuscation class * extends androidx.lifecycle.ViewModel {
+[        ]   <init>(androidx.lifecycle.SavedStateHandle);
+[        ] }`
+[        ] INFO: C:\Users\suren\.gradle\caches\8.12\transforms\47080e52f42fb85d5acc0d8bd39630dc\transformed\jetified-lifecycle-viewmodel-savedstate-2.7.0\proguard.txt:5:1-7:2: R8: Proguard configuration rule does not match anything: `-keepclassmembers,allowrepackaging,allowobfuscation class * extends androidx.lifecycle.AndroidViewModel {
+[        ]   <init>(android.app.Application,androidx.lifecycle.SavedStateHandle);
+[        ] }`
+[        ] INFO: C:\Users\suren\.gradle\caches\8.12\transforms\c225580ff9ba548683b0b22a7305e036\transformed\lifecycle-runtime-2.7.0\proguard.txt:10:1-12:2: R8: Proguard configuration rule does not match anything: `-keep class * implements androidx.lifecycle.GeneratedAdapter {
+[        ]   <init>(...);
+[        ] }`
+[        ] INFO: C:\Users\suren\.gradle\caches\8.12\transforms\c225580ff9ba548683b0b22a7305e036\transformed\lifecycle-runtime-2.7.0\proguard.txt:14:1-16:2: R8: Proguard configuration rule does not match anything: `-keepclassmembers class ** {
+[        ]   @androidx.lifecycle.OnLifecycleEvent *;
+[        ] }`
+[        ] INFO: C:\Users\suren\.gradle\caches\8.12\transforms\3c135b1b3d3ac471ec2453741d581c63\transformed\rules\lib\META-INF\proguard\androidx-annotations.pro:4:1-6:2: R8: Proguard configuration rule does not match anything: `-keepclasseswithmembers class * {
+[        ]   @androidx.annotation.Keep <methods>;
+[        ] }`
+[        ] INFO: C:\Users\suren\.gradle\caches\8.12\transforms\3c135b1b3d3ac471ec2453741d581c63\transformed\rules\lib\META-INF\proguard\androidx-annotations.pro:8:1-10:2: R8: Proguard configuration rule does not match anything: `-keepclasseswithmembers class * {
+[        ]   @androidx.annotation.Keep <fields>;
+[        ] }`
+[        ] INFO: C:\Users\suren\.gradle\caches\8.12\transforms\3c135b1b3d3ac471ec2453741d581c63\transformed\rules\lib\META-INF\proguard\androidx-annotations.pro:12:1-14:2: R8: Proguard configuration rule does not match anything: `-keepclasseswithmembers class * {
+[        ]   @androidx.annotation.Keep <init>(...);
+[        ] }`
+[ +476 ms] > Task :app:lintVitalReportRelease
+[        ] Caching disabled for task ':app:lintVitalReportRelease' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:lintVitalReportRelease' is not up-to-date because:
+[        ]   Value of input property 'printStackTrace' has changed for task ':app:lintVitalReportRelease'
+[        ] Android Lint: Reusing lint classloader 31.9.1_true
+[        ] Resolve mutations for :app:lintVitalRelease (Thread[#84,Execution worker Thread 7,5,main]) started.
+[        ] :app:lintVitalRelease (Thread[#84,Execution worker Thread 7,5,main]) started.
+[        ] > Task :app:lintVitalRelease
+[        ] Caching disabled for task ':app:lintVitalRelease' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:lintVitalRelease' is not up-to-date because:
+[        ]   Task.upToDateWhen is false.
+[+25501 ms] Resolve mutations for :app:compileReleaseArtProfile (Thread[#81,Execution worker Thread 4,5,main]) started.
+[        ] :app:compileReleaseArtProfile (Thread[#81,Execution worker Thread 4,5,main]) started.
+[        ] Resolve mutations for :app:convertShrunkResourcesToBinaryRelease (Thread[#84,Execution worker Thread 7,5,main]) started.
+[        ] :app:convertShrunkResourcesToBinaryRelease (Thread[#84,Execution worker Thread 7,5,main]) started.
+[  +94 ms] > Task :app:convertShrunkResourcesToBinaryRelease
+[        ] Custom actions are attached to task ':app:convertShrunkResourcesToBinaryRelease'.
+[        ] Caching disabled for task ':app:convertShrunkResourcesToBinaryRelease' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:convertShrunkResourcesToBinaryRelease' is not up-to-date because:
+[        ]   Output property 'resourcesOutputDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\shrunk_resources_binary_format\release\convertShrunkResourcesToBinaryRelease has been removed.
+[        ]   Output property 'resourcesOutputDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\shrunk_resources_binary_format\release\convertShrunkResourcesToBinaryRelease\output-metadata.json has been removed.
+[        ]   Output property 'resourcesOutputDir' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\shrunk_resources_binary_format\release\convertShrunkResourcesToBinaryRelease\shrunk-resources-binary-format-release.ap_ has been removed.
+[        ] Resolve mutations for :app:optimizeReleaseResources (Thread[#84,Execution worker Thread 7,5,main]) started.
+[        ] :app:optimizeReleaseResources (Thread[#84,Execution worker Thread 7,5,main]) started.
+[  +91 ms] > Task :app:compileReleaseArtProfile
+[        ] Caching disabled for task ':app:compileReleaseArtProfile' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:compileReleaseArtProfile' is not up-to-date because:
+[        ]   Output property 'binaryArtProfile' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\binary_art_profile\release\compileReleaseArtProfile\baseline.prof has been removed.
+[        ]   Output property 'binaryArtProfileMetadata' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\binary_art_profile_metadata\release\compileReleaseArtProfile\baseline.profm has been removed.
+[        ]   Output property 'combinedArtProfile' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\combined_art_profile\release\compileReleaseArtProfile\baseline-prof.txt has been removed.
+[        ]   and more...
+[ +109 ms] > Task :app:optimizeReleaseResources
+[        ] Custom actions are attached to task ':app:optimizeReleaseResources'.
+[        ] Caching disabled for task ':app:optimizeReleaseResources' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:optimizeReleaseResources' is not up-to-date because:
+[        ]   Output property 'optimizedProcessedRes' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\optimized_processed_res\release\optimizeReleaseResources has been removed.
+[        ]   Output property 'optimizedProcessedRes' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\optimized_processed_res\release\optimizeReleaseResources\output-metadata.json has been removed.
+[        ]   Output property 'optimizedProcessedRes' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\optimized_processed_res\release\optimizeReleaseResources\resources-release-optimize.ap_ has been removed.
+[        ] Resolve mutations for :app:packageRelease (Thread[#84,Execution worker Thread 7,5,main]) started.
+[        ] :app:packageRelease (Thread[#84,Execution worker Thread 7,5,main]) started.
+[ +794 ms] > Task :app:packageRelease
+[        ] Custom actions are attached to task ':app:packageRelease'.
+[        ] Caching disabled for task ':app:packageRelease' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:packageRelease' is not up-to-date because:
+[        ]   Output property 'ideModelOutputFile' file C:\Users\suren\flutter_app\truecircle\TC\build\app\outputs\apk\release\output-metadata.json has been removed.
+[        ]   Output property 'incrementalFolder' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\packageRelease\tmp has been removed.
+[        ]   Output property 'incrementalFolder' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\incremental\packageRelease\tmp\release has been removed.
+[        ]   and more...
+[        ] The input changes require a full rebuild for incremental task ':app:packageRelease'.
+[        ] Resolve mutations for :app:createReleaseApkListingFileRedirect (Thread[#84,Execution worker Thread 7,5,main]) started.
+[        ] :app:createReleaseApkListingFileRedirect (Thread[#84,Execution worker Thread 7,5,main]) started.
+[        ] > Task :app:createReleaseApkListingFileRedirect
+[        ] Caching disabled for task ':app:createReleaseApkListingFileRedirect' because:
+[        ]   Build cache is disabled
+[        ]   Caching has been disabled for the task
+[        ] Task ':app:createReleaseApkListingFileRedirect' is not up-to-date because:
+[        ]   Output property 'redirectFile' file C:\Users\suren\flutter_app\truecircle\TC\build\app\intermediates\apk_ide_redirect_file\release\createReleaseApkListingFileRedirect\redirect.txt has been removed.
+[        ] Resolve mutations for :app:assembleRelease (Thread[#84,Execution worker Thread 7,5,main]) started.
+[        ] :app:assembleRelease (Thread[#84,Execution worker Thread 7,5,main]) started.
+[ +197 ms] > Task :app:assembleRelease
+[        ] Caching disabled for task ':app:assembleRelease' because:
+[        ]   Build cache is disabled
+[        ] Task ':app:assembleRelease' is not up-to-date because:
+[        ]   Task has not declared any outputs despite executing actions.
+[ +298 ms] AAPT2 aapt2-8.9.1-12782657-windows Daemon #0: shutdown
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #1: shutdown
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #2: shutdown
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #3: shutdown
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #4: shutdown
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #5: shutdown
+[        ] AAPT2 aapt2-8.9.1-12782657-windows Daemon #6: shutdown
+[        ] Android Lint: Disposing Uast application environment in lint classloaders [31.9.1_false, 31.9.1_true]
+[        ] [Incubating] Problems report is available at: file:///C:/Users/suren/flutter_app/truecircle/TC/build/reports/problems/problems-report.html
+[  +91 ms] Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+[   +1 ms] You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+[        ] For more on this, please refer to https://docs.gradle.org/8.12/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+[        ] BUILD SUCCESSFUL in 2m 2s
+[        ] 102 actionable tasks: 89 executed, 13 up-to-date
+[        ] Watched directory hierarchies: [C:\Users\suren\src\flutter\packages\flutter_tools\gradle, C:\Users\suren\flutter_app\truecircle\TC\android]
+[ +248 ms] Running Gradle task 'assembleRelease'... (completed in 122.9s)
+[  +30 ms] Calculate SHA1: LocalDirectory: 'C:\Users\suren\flutter_app\truecircle\TC\build\app\outputs\flutter-apk'/app-release.apk
+[+1150 ms] ÔêÜ Built build\app\outputs\flutter-apk\app-release.apk (41.1MB)
+[  +19 ms] "flutter apk" took 1,26,407ms.
+[ +117 ms] Running 1 shutdown hook
+[   +3 ms] Shutdown hooks complete
+[ +257 ms] exiting with code 0

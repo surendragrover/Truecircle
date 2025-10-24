@@ -1,0 +1,210 @@
+[
+  {
+    "session_id": 1,
+    "type": "Pranayama",
+    "title": "Morning Surya Namaskara Meditation",
+    "duration_minutes": 10,
+    "language": "English guided",
+    "difficulty": "Beginner",
+    "description": "Connect with sunrise energy, energize your body and mind",
+    "mood_effect": "Energized and positive",
+    "progress": {
+      "total_time_minutes": 10,
+      "streak_days": 1,
+      "favorite_type": "Pranayama",
+      "mood_improvement": "High"
+    }
+  },
+  {
+    "session_id": 2,
+    "type": "Mindfulness",
+    "title": "Office Stress Relief",
+    "duration_minutes": 10,
+    "language": "English guided",
+    "difficulty": "Beginner",
+    "description": "10 minute breathing technique to reduce office stress",
+    "mood_effect": "Calm and focused",
+    "progress": {
+      "total_time_minutes": 10,
+      "streak_days": 1,
+      "favorite_type": "Mindfulness",
+      "mood_improvement": "Moderate"
+    }
+  },
+  {
+    "session_id": 6,
+    "type": "Pranayama",
+    "title": "Evening Wind-down Breathing",
+    "duration_minutes": 10,
+    "language": "English guided",
+    "difficulty": "Beginner",
+    "description": "Slow breathing to release day-time tension",
+    "mood_effect": "Relaxed and calm",
+    "progress": {
+      "total_time_minutes": 10,
+      "streak_days": 1,
+      "favorite_type": "Pranayama",
+      "mood_improvement": "Moderate"
+    }
+  },
+  {
+    "session_id": 7,
+    "type": "Mindfulness",
+    "title": "Morning Focus Session",
+    "duration_minutes": 15,
+    "language": "English guided",
+    "difficulty": "Intermediate",
+    "description": "Mindful breathing and awareness to start the day with clarity",
+    "mood_effect": "Focused and energized",
+    "progress": {
+      "total_time_minutes": 15,
+      "streak_days": 1,
+      "favorite_type": "Mindfulness",
+      "mood_improvement": "High"
+    }
+  },
+  {
+    "session_id": 9,
+    "type": "Body scan",
+    "title": "Night Relaxation Scan",
+    "duration_minutes": 25,
+    "language": "English guided",
+    "difficulty": "Advanced",
+    "description": "Deep scan of body tension points for better sleep",
+    "mood_effect": "Very relaxed and peaceful",
+    "progress": {
+      "total_time_minutes": 25,
+      "streak_days": 1,
+      "favorite_type": "Body scan",
+      "mood_improvement": "Very High"
+    }
+  },
+  {
+    "session_id": 11,
+    "type": "Pranayama",
+    "title": "Midday Energy Boost",
+    "duration_minutes": 10,
+    "language": "English guided",
+    "difficulty": "Beginner",
+    "description": "Quick pranayama to recharge your energy during lunch break",
+    "mood_effect": "Recharged and focused",
+    "progress": {
+      "total_time_minutes": 10,
+      "streak_days": 1,
+      "favorite_type": "Pranayama",
+      "mood_improvement": "High"
+    }
+  },
+  {
+    "session_id": 14,
+    "type": "Body scan",
+    "title": "Post-work Relaxation",
+    "duration_minutes": 20,
+    "language": "English guided",
+    "difficulty": "Intermediate",
+    "description": "Scan and release muscle tension after long work hours",
+    "mood_effect": "Relaxed and tension-free",
+    "progress": {
+      "total_time_minutes": 20,
+      "streak_days": 1,
+      "favorite_type": "Body scan",
+      "mood_improvement": "High"
+    }
+  },
+  {
+    "session_id": 16,
+    "type": "Pranayama",
+    "title": "Morning Deep Breathing",
+    "duration_minutes": 10,
+    "language": "English guided",
+    "difficulty": "Beginner",
+    "description": "Enhance lung capacity and focus through deep breathing",
+    "mood_effect": "Focused and fresh",
+    "progress": {
+      "total_time_minutes": 10,
+      "streak_days": 1,
+      "favorite_type": "Pranayama",
+      "mood_improvement": "Moderate"
+    }
+  },
+  {
+    "session_id": 19,
+    "type": "Body scan",
+    "title": "Evening Body Relaxation",
+    "duration_minutes": 20,
+    "language": "English guided",
+    "difficulty": "Intermediate",
+    "description": "Release tension and relax muscles before sleep",
+    "mood_effect": "Relaxed and peaceful",
+    "progress": {
+      "total_time_minutes": 20,
+      "streak_days": 1,
+      "favorite_type": "Body scan",
+      "mood_improvement": "High"
+    }
+  },
+  {
+    "session_id": 21,
+    "type": "Pranayama",
+    "title": "Midday Energy Reset",
+    "duration_minutes": 10,
+    "language": "English guided",
+    "difficulty": "Beginner",
+    "description": "Quick pranayama for refreshing afternoon energy",
+    "mood_effect": "Refreshed and focused",
+    "progress": {
+      "total_time_minutes": 10,
+      "streak_days": 1,
+      "favorite_type": "Pranayama",
+      "mood_improvement": "Moderate"
+    }
+  },
+  {
+    "session_id": 24,
+    "type": "Body scan",
+    "title": "Pre-sleep Relaxation",
+    "duration_minutes": 20,
+    "language": "English guided",
+    "difficulty": "Intermediate",
+    "description": "Scan body tension and prepare for deep sleep",
+    "mood_effect": "Very relaxed and peaceful",
+    "progress": {
+      "total_time_minutes": 20,
+      "streak_days": 1,
+      "favorite_type": "Body scan",
+      "mood_improvement": "Very High"
+    }
+  },
+  {
+    "session_id": 26,
+    "type": "Pranayama",
+    "title": "Morning Lung Boost",
+    "duration_minutes": 10,
+    "language": "English guided",
+    "difficulty": "Beginner",
+    "description": "Enhance breathing capacity and energy",
+    "mood_effect": "Energized and alert",
+    "progress": {
+      "total_time_minutes": 10,
+      "streak_days": 1,
+      "favorite_type": "Pranayama",
+      "mood_improvement": "High"
+    }
+  },
+  {
+    "session_id": 29,
+    "type": "Body scan",
+    "title": "Post-work Relaxation Scan",
+    "duration_minutes": 20,
+    "language": "English guided",
+    "difficulty": "Intermediate",
+    "description": "Release workday tension from muscles and mind",
+    "mood_effect": "Relaxed and peaceful",
+    "progress": {
+      "total_time_minutes": 20,
+      "streak_days": 1,
+      "favorite_type": "Body scan",
+      "mood_improvement": "High"
+    }
+  }
+]

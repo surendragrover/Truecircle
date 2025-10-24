@@ -1,0 +1,49 @@
+name: truecircle
+description: "TrueCircle — clean, neutral-only, English-only scaffold"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.5
+  json_annotation: ^4.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  build_runner: ^2.4.13
+  hive_generator: ^2.0.1
+  json_serializable: ^6.8.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    # Minimal assets needed for Dr. Iris offline suggestions
+    - assets/ai/dr_iris_suggestions.json
+    - assets/Dr_Iris.txt
+    - assets/models/prompts.JSON
+    # CBT content shown inside CBT Hub
+    - assets/CBT_Techniques_En.json
+    - assets/CBT_Thoughts_En.json
+    - assets/Psychology_Articles_En.json
+    # On-device low-end model (TFLite)
+    - assets/models/TrueCircle.tflite
+    # Demo/sample data used across the app (include entire folder)
+    - data/
+
+# App icon configuration (ready to generate)
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icons/truecircle_logo.png"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "assets/icons/truecircle_adaptive.png"

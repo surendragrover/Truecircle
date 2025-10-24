@@ -1,0 +1,362 @@
+[
+  {
+    "date": "2025-08-26",
+    "mood_rating": 7,
+  "title": "Monsoon Morning Vibes",
+  "detailed_entry": "The fresh smell after the morning rain felt calming and a little nostalgic, but my mood stayed bright.",
+    "tags": [
+      "monsoon",
+      "nostalgia",
+      "calm"
+    ],
+    "weather_influence": "rainy"
+  },
+  {
+    "date": "2025-08-27",
+    "mood_rating": 5,
+  "title": "Promotion Prep Nerves",
+  "detailed_entry": "Spent the day preparing for a promotion interview and felt anxious with waves of self-doubt.",
+    "tags": [
+      "work_stress",
+      "nervous",
+      "focus"
+    ],
+    "weather_influence": "cloudy"
+  },
+  {
+    "date": "2025-08-28",
+    "mood_rating": 8,
+  "title": "Mom's Birthday Celebration",
+  "detailed_entry": "We surprised mom for her birthday and I felt full of gratitude and happiness.",
+    "tags": [
+      "family_time",
+      "celebration",
+      "grateful"
+    ],
+    "weather_influence": "sunny"
+  },
+  {
+    "date": "2025-08-29",
+    "mood_rating": 4,
+  "title": "Traffic Jam Frustration",
+  "detailed_entry": "Sat in a two-hour traffic jam and felt irritated, but deep breathing helped me settle down.",
+    "tags": [
+      "stress",
+      "patience",
+      "frustration"
+    ],
+    "weather_influence": "hot & humid"
+  },
+  {
+    "date": "2025-08-30",
+    "mood_rating": 9,
+  "title": "Diwali Preparations Begin",
+  "detailed_entry": "Started shopping and decorating for Diwali; felt a little overwhelmed yet mostly excited.",
+    "tags": [
+      "festival",
+      "excitement",
+      "busy"
+    ],
+    "weather_influence": "sunny"
+  },
+  {
+    "date": "2025-08-31",
+    "mood_rating": 6,
+  "title": "Exam Stress",
+  "detailed_entry": "The exam is tomorrow and studying made me anxious, but a short meditation gave me some relief.",
+    "tags": [
+      "exam_stress",
+      "anxiety",
+      "study"
+    ],
+    "weather_influence": "rainy"
+  },
+  {
+    "date": "2025-09-01",
+    "mood_rating": 7,
+  "title": "Evening Walk Refresh",
+  "detailed_entry": "An evening walk in the park with fresh air and birdsong lifted my mood.",
+    "tags": [
+      "exercise",
+      "calm",
+      "refreshing"
+    ],
+    "weather_influence": "cloudy"
+  },
+  {
+    "date": "2025-09-02",
+    "mood_rating": 8,
+  "title": "Catch-up with College Friends",
+  "detailed_entry": "Chatted with old college friends online and felt genuinely happy.",
+    "tags": [
+      "social",
+      "friendship",
+      "happy"
+    ],
+    "weather_influence": "sunny"
+  },
+  {
+    "date": "2025-09-03",
+    "mood_rating": 5,
+  "title": "Workload Pressure",
+  "detailed_entry": "Deadlines piled up and stressed me out, though a short tea break eased the tension.",
+    "tags": [
+      "work_stress",
+      "anxious",
+      "break"
+    ],
+    "weather_influence": "rainy"
+  },
+  {
+    "date": "2025-09-04",
+    "mood_rating": 9,
+  "title": "First Monsoon Shower",
+  "detailed_entry": "The first heavy monsoon rain left me refreshed and nostalgic, bringing back childhood memories.",
+    "tags": [
+      "monsoon",
+      "nostalgic",
+      "happy"
+    ],
+    "weather_influence": "heavy_rain"
+  },
+  {
+    "date": "2025-09-05",
+    "mood_rating": 6,
+  "title": "Family Argument",
+  "detailed_entry": "We had a small disagreement at home, which irritated me until we talked it through and apologized.",
+    "tags": [
+      "family",
+      "conflict",
+      "reflection"
+    ],
+    "weather_influence": "cloudy"
+  },
+  {
+    "date": "2025-09-06",
+    "mood_rating": 8,
+  "title": "Weekend Movie Time",
+  "detailed_entry": "Watched a movie with the family and felt relaxed and happy.",
+    "tags": [
+      "family_time",
+      "entertainment",
+      "joy"
+    ],
+    "weather_influence": "sunny"
+  },
+  {
+    "date": "2025-09-07",
+    "mood_rating": 7,
+  "title": "Morning Yoga Session",
+  "detailed_entry": "Started the day with yoga and meditation, which helped me feel calm and focused.",
+    "tags": [
+      "exercise",
+      "mindfulness",
+      "calm"
+    ],
+    "weather_influence": "sunny"
+  },
+  {
+    "date": "2025-09-08",
+    "mood_rating": 5,
+  "title": "Rainy Day Mood",
+  "detailed_entry": "The nonstop rain made me feel a bit lazy and bored.",
+    "tags": [
+      "monsoon",
+      "lazy",
+      "bored"
+    ],
+    "weather_influence": "rainy"
+  },
+  {
+    "date": "2025-09-09",
+    "mood_rating": 8,
+  "title": "Friend's Wedding Function",
+  "detailed_entry": "Attended a friend's wedding celebration and felt energetic and happy.",
+    "tags": [
+      "social",
+      "celebration",
+      "happy"
+    ],
+    "weather_influence": "sunny"
+  },
+  {
+    "date": "2025-09-10",
+    "mood_rating": 6,
+  "title": "Work Meeting Anxiety",
+  "detailed_entry": "Felt nervous before an important meeting, but the presentation went fine.",
+    "tags": [
+      "work",
+      "nervous",
+      "achievement"
+    ],
+    "weather_influence": "cloudy"
+  },
+  {
+    "date": "2025-09-11",
+    "mood_rating": 7,
+  "title": "Shopping with Mom",
+  "detailed_entry": "Shopping with mom at the local market felt like great bonding time and left me happy.",
+    "tags": [
+      "family_time",
+      "fun",
+      "bonding"
+    ],
+    "weather_influence": "sunny"
+  },
+  {
+    "date": "2025-09-12",
+    "mood_rating": 9,
+  "title": "Festive Diya Decoration",
+  "detailed_entry": "Decorated diyas and made rangoli for Diwali, which felt creative and joyful.",
+    "tags": [
+      "festival",
+      "creativity",
+      "joyful"
+    ],
+    "weather_influence": "sunny"
+  },
+  {
+    "date": "2025-09-13",
+    "mood_rating": 5,
+  "title": "Exam Prep Stress",
+  "detailed_entry": "Studying for tomorrow's exam brought pressure and some anxiety.",
+    "tags": [
+      "exam_stress",
+      "anxious",
+      "study"
+    ],
+    "weather_influence": "rainy"
+  },
+  {
+    "date": "2025-09-14",
+    "mood_rating": 7,
+  "title": "Evening Tea Chat",
+  "detailed_entry": "Evening tea and conversation with family made me feel relaxed.",
+    "tags": [
+      "family_time",
+      "calm",
+      "happy"
+    ],
+    "weather_influence": "cloudy"
+  },
+  {
+    "date": "2025-09-15",
+    "mood_rating": 6,
+  "title": "Monsoon Traffic Jam",
+  "detailed_entry": "Got frustrated in rainy traffic but practicing patience helped calm me down.",
+    "tags": [
+      "monsoon",
+      "stress",
+      "patience"
+    ],
+    "weather_influence": "heavy_rain"
+  },
+  {
+    "date": "2025-09-16",
+    "mood_rating": 8,
+  "title": "Friend's Birthday Celebration",
+  "detailed_entry": "Celebrated a friend's birthday over a video call and felt cheerful.",
+    "tags": [
+      "social",
+      "celebration",
+      "happy"
+    ],
+    "weather_influence": "sunny"
+  },
+  {
+    "date": "2025-09-17",
+    "mood_rating": 7,
+  "title": "Work Achievement",
+  "detailed_entry": "Finished a project and felt proud and motivated.",
+    "tags": [
+      "work",
+      "achievement",
+      "motivation"
+    ],
+    "weather_influence": "sunny"
+  },
+  {
+    "date": "2025-09-18",
+    "mood_rating": 5,
+  "title": "Family Argument Over Dinner",
+  "detailed_entry": "Dinner included a small argument that irritated me until we resolved it.",
+    "tags": [
+      "family",
+      "conflict",
+      "resolution"
+    ],
+    "weather_influence": "cloudy"
+  },
+  {
+    "date": "2025-09-19",
+    "mood_rating": 8,
+  "title": "Monsoon Evening Walk",
+  "detailed_entry": "An evening walk in the monsoon air felt fresh and calming.",
+    "tags": [
+      "monsoon",
+      "calm",
+      "relaxing"
+    ],
+    "weather_influence": "rainy"
+  },
+  {
+    "date": "2025-09-20",
+    "mood_rating": 7,
+  "title": "Festival Shopping Fun",
+  "detailed_entry": "Did some Diwali shopping that left me excited and happy.",
+    "tags": [
+      "festival",
+      "shopping",
+      "happy"
+    ],
+    "weather_influence": "sunny"
+  },
+  {
+    "date": "2025-09-21",
+    "mood_rating": 6,
+  "title": "Workload Stress",
+  "detailed_entry": "Deadlines made me feel anxious and stretched thin.",
+    "tags": [
+      "work_stress",
+      "anxious",
+      "busy"
+    ],
+    "weather_influence": "cloudy"
+  },
+  {
+    "date": "2025-09-22",
+    "mood_rating": 8,
+  "title": "Family Movie Night",
+  "detailed_entry": "Movie night with the family was full of laughter and joy.",
+    "tags": [
+      "family_time",
+      "entertainment",
+      "joy"
+    ],
+    "weather_influence": "sunny"
+  },
+  {
+    "date": "2025-09-23",
+    "mood_rating": 7,
+  "title": "Evening Tea Chat with Neighbor",
+  "detailed_entry": "Tea with a neighbor turned into a warm social catch-up that lifted my mood.",
+    "tags": [
+      "social",
+      "calm",
+      "happy"
+    ],
+    "weather_influence": "cloudy"
+  },
+  {
+    "date": "2025-09-24",
+    "mood_rating": 9,
+  "title": "Diwali Celebration Peak",
+  "detailed_entry": "Our biggest Diwali celebration of the season brought close family bonding and happiness.",
+    "tags": [
+      "festival",
+      "celebration",
+      "joy"
+    ],
+    "weather_influence": "sunny"
+  }
+]

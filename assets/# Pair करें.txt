@@ -1,0 +1,9 @@
+# Pair करें
+& "$env:USERPROFILE\AppData\Local\Android\Sdk\platform-tools\adb.exe" pair 192.168.0.42:37115
+# >>> prompt आने पर 6-digit pairing code दर्ज करें
+
+# कनेक्ट करें (दूसरा पोर्ट उपयोग होता है)
+& "$env:USERPROFILE\AppData\Local\Android\Sdk\platform-tools\adb.exe" connect 192.168.0.42:42171
+
+# इंस्टॉल चलाएँ
+& "$env:USERPROFILE\AppData\Local\Android\Sdk\platform-tools\adb.exe" install -t -r .\build\app\outputs\flutter-apk\app-debug.apk

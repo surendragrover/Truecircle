@@ -1,0 +1,392 @@
+[
+  {
+    "date": "2025-09-01",
+    "relationship_type": "Family",
+    "title": "Sunday Family Lunch",
+    "interaction_detail": "Cooked rajma-chawal with mom, shared old memories and laughed together.",
+    "mood_effect": "Happy and connected",
+    "relationship_score": 9,
+    "tags": [
+      "family",
+      "food",
+      "bonding"
+    ]
+  },
+  {
+    "date": "2025-09-02",
+    "relationship_type": "Colleague",
+    "title": "Work Brainstorm",
+    "interaction_detail": "Collaborated on a new project idea, got positive feedback from team lead.",
+    "mood_effect": "Motivated",
+    "relationship_score": 8,
+    "tags": [
+      "work",
+      "team",
+      "productivity"
+    ]
+  },
+  {
+    "date": "2025-09-03",
+    "relationship_type": "Friend",
+    "title": "Evening Tea",
+    "interaction_detail": "Met best friend after weeks, talked about career plans.",
+    "mood_effect": "Relaxed",
+    "relationship_score": 10,
+    "tags": [
+      "chai",
+      "friends",
+      "catchup"
+    ]
+  },
+  {
+    "date": "2025-09-04",
+    "relationship_type": "Partner",
+    "title": "Date Night",
+    "interaction_detail": "Went for pani puri and kulfi at a street stall, walked under the stars.",
+    "mood_effect": "Romantic and joyful",
+    "relationship_score": 10,
+    "tags": [
+      "love",
+      "date",
+      "fun"
+    ]
+  },
+  {
+    "date": "2025-09-05",
+    "relationship_type": "Sibling",
+    "title": "Helping with Homework",
+    "interaction_detail": "Helped younger sister with her maths problems.",
+    "mood_effect": "Supportive",
+    "relationship_score": 9,
+    "tags": [
+      "siblings",
+      "study",
+      "care"
+    ]
+  },
+  {
+    "date": "2025-09-06",
+    "relationship_type": "Neighbor",
+    "title": "Society Ganesh Puja",
+    "interaction_detail": "Participated in aarti with neighbors, distributed prasad.",
+    "mood_effect": "Spiritually content",
+    "relationship_score": 8,
+    "tags": [
+      "festival",
+      "community",
+      "faith"
+    ]
+  },
+  {
+    "date": "2025-09-07",
+    "relationship_type": "Friend",
+    "title": "Football Match",
+    "interaction_detail": "Played friendly match with school friends, relived childhood memories.",
+    "mood_effect": "Energetic and happy",
+    "relationship_score": 9,
+    "tags": [
+      "sports",
+      "friends",
+      "fun"
+    ]
+  },
+  {
+    "date": "2025-09-08",
+    "relationship_type": "Family",
+    "title": "Small Disagreement",
+    "interaction_detail": "Argued with father about weekend plans, felt distant.",
+    "mood_effect": "Stressed and Distant",
+    "relationship_score": 5,
+    "tags": [
+      "conflict",
+      "argument",
+      "family"
+    ]
+  },
+  {
+    "date": "2025-09-09",
+    "relationship_type": "Family",
+    "title": "Resolved Disagreement",
+    "interaction_detail": "Apologized to father and we had a calm conversation, hugged it out.",
+    "mood_effect": "Relieved and Reconnected",
+    "relationship_score": 8,
+    "tags": [
+      "resolution",
+      "family",
+      "communication"
+    ]
+  },
+  {
+    "date": "2025-09-10",
+    "relationship_type": "Colleague",
+    "title": "Team Lunch",
+    "interaction_detail": "Went for thali lunch with office team, laughed about work stories.",
+    "mood_effect": "Cheerful",
+    "relationship_score": 8,
+    "tags": [
+      "office",
+      "lunch",
+      "team"
+    ]
+  },
+  {
+    "date": "2025-09-11",
+    "relationship_type": "Client",
+    "title": "Project Call",
+    "interaction_detail": "Discussed deliverables and timelines, client sounded satisfied.",
+    "mood_effect": "Professional Confidence",
+    "relationship_score": 8,
+    "tags": [
+      "client",
+      "work",
+      "meeting"
+    ]
+  },
+  {
+    "date": "2025-09-12",
+    "relationship_type": "Mother",
+    "title": "Health Check Call",
+    "interaction_detail": "Called mom to ask about her sugar levels, she felt cared for.",
+    "mood_effect": "Caring",
+    "relationship_score": 10,
+    "tags": [
+      "care",
+      "health",
+      "family"
+    ]
+  },
+  {
+    "date": "2025-09-13",
+    "relationship_type": "Friend",
+    "title": "Communication Gap Alert",
+    "interaction_detail": "App reminded me I haven't spoken to my old friend Priya in 25 days.",
+    "mood_effect": "Thoughtful",
+    "relationship_score": 6,
+    "tags": [
+      "reminder",
+      "friendship",
+      "communication-gap"
+    ]
+  },
+  {
+    "date": "2025-09-14",
+    "relationship_type": "Friend",
+    "title": "Reconnected with Priya",
+    "interaction_detail": "Called Priya. We talked for over 30 minutes and promised to catch up soon.",
+    "mood_effect": "Happy and Reconnected",
+    "relationship_score": 9,
+    "tags": [
+      "reconnecting",
+      "friendship",
+      "long-call"
+    ]
+  },
+  {
+    "date": "2025-09-15",
+    "relationship_type": "Father",
+    "title": "Evening Walk",
+    "interaction_detail": "Went for a 20-min walk with dad, discussed news and politics.",
+    "mood_effect": "Bonded",
+    "relationship_score": 9,
+    "tags": [
+      "family",
+      "walk",
+      "talk"
+    ]
+  },
+  {
+    "date": "2025-09-16",
+    "relationship_type": "Partner",
+    "title": "Minor Tiff",
+    "interaction_detail": "A small argument over dinner plans. Went to bed feeling a bit upset.",
+    "mood_effect": "Upset",
+    "relationship_score": 5,
+    "tags": [
+      "conflict",
+      "argument",
+      "partner"
+    ]
+  },
+  {
+    "date": "2025-09-17",
+    "relationship_type": "Partner",
+    "title": "Morning Apology",
+    "interaction_detail": "Apologized for last night. Had morning tea together and sorted it out.",
+    "mood_effect": "Relieved and loving",
+    "relationship_score": 9,
+    "tags": [
+      "resolution",
+      "communication",
+      "love"
+    ]
+  },
+  {
+    "date": "2025-09-18",
+    "relationship_type": "Colleague",
+    "title": "Stressful Deadline",
+    "interaction_detail": "Worked late with a colleague to meet a tight deadline. Felt stressed but supported.",
+    "mood_effect": "Stressed but Accomplished",
+    "relationship_score": 7,
+    "tags": [
+      "work",
+      "deadline",
+      "teamwork"
+    ]
+  },
+  {
+    "date": "2025-09-19",
+    "relationship_type": "Self",
+    "title": "Solo Movie Night",
+    "interaction_detail": "Watched an old favorite movie alone to de-stress from the week.",
+    "mood_effect": "Relaxed and Peaceful",
+    "relationship_score": 9,
+    "tags": [
+      "self-care",
+      "movie",
+      "relax"
+    ]
+  },
+  {
+    "date": "2025-09-20",
+    "relationship_type": "Friend",
+    "title": "Weekend Getaway Plan",
+    "interaction_detail": "Video called with friends to plan a weekend trip to a nearby hill station.",
+    "mood_effect": "Excited",
+    "relationship_score": 10,
+    "tags": [
+      "travel",
+      "friends",
+      "planning"
+    ]
+  },
+  {
+    "date": "2025-09-21",
+    "relationship_type": "Sibling",
+    "title": "Video Game Session",
+    "interaction_detail": "Played a cooperative video game with my brother for two hours.",
+    "mood_effect": "Playful and Competitive",
+    "relationship_score": 8,
+    "tags": [
+      "gaming",
+      "siblings",
+      "fun"
+    ]
+  },
+  {
+    "date": "2025-09-22",
+    "relationship_type": "Neighbor",
+    "title": "Borrowed Sugar",
+    "interaction_detail": "Neighbor came over to borrow some sugar. Had a quick friendly chat.",
+    "mood_effect": "Friendly",
+    "relationship_score": 7,
+    "tags": [
+      "neighbor",
+      "help",
+      "community"
+    ]
+  },
+  {
+    "date": "2025-09-23",
+    "relationship_type": "Mentor",
+    "title": "Career Advice Call",
+    "interaction_detail": "Had a call with my mentor to discuss future career growth.",
+    "mood_effect": "Inspired and Clear-headed",
+    "relationship_score": 9,
+    "tags": [
+      "career",
+      "mentor",
+      "advice"
+    ]
+  },
+  {
+    "date": "2025-09-24",
+    "relationship_type": "Partner",
+    "title": "Quiet Dinner",
+    "interaction_detail": "Had a quiet, simple dinner at home. No phones, just talked.",
+    "mood_effect": "Peaceful and Intimate",
+    "relationship_score": 10,
+    "tags": [
+      "quality-time",
+      "love",
+      "partner"
+    ]
+  },
+  {
+    "date": "2025-09-25",
+    "relationship_type": "Colleague",
+    "title": "Misunderstanding at work",
+    "interaction_detail": "A small misunderstanding with a colleague about task responsibilities.",
+    "mood_effect": "Anxious",
+    "relationship_score": 4,
+    "tags": [
+      "work",
+      "conflict",
+      "communication"
+    ]
+  },
+  {
+    "date": "2025-09-26",
+    "relationship_type": "Family",
+    "title": "Video Call with Parents",
+    "interaction_detail": "Long video call with parents who are in another city. Felt their love and support.",
+    "mood_effect": "Loved and Happy",
+    "relationship_score": 10,
+    "tags": [
+      "family",
+      "video-call",
+      "love"
+    ]
+  },
+  {
+    "date": "2025-09-27",
+    "relationship_type": "Friend",
+    "title": "Birthday Celebration",
+    "interaction_detail": "Attended a friend's birthday party. Danced and had a lot of fun.",
+    "mood_effect": "Joyful and Social",
+    "relationship_score": 9,
+    "tags": [
+      "party",
+      "friends",
+      "celebration"
+    ]
+  },
+  {
+    "date": "2025-09-28",
+    "relationship_type": "Self",
+    "title": "Journaling",
+    "interaction_detail": "Spent 15 minutes writing in my mood journal, reflecting on the week.",
+    "mood_effect": "Calm and Reflective",
+    "relationship_score": 8,
+    "tags": [
+      "self-care",
+      "journaling",
+      "reflection"
+    ]
+  },
+  {
+    "date": "2025-09-29",
+    "relationship_type": "Partner",
+    "title": "Grocery Shopping",
+    "interaction_detail": "Did the weekly grocery shopping together, making it a fun chore.",
+    "mood_effect": "Collaborative and Content",
+    "relationship_score": 8,
+    "tags": [
+      "chores",
+      "partner",
+      "daily-life"
+    ]
+  },
+  {
+    "date": "2025-09-30",
+    "relationship_type": "Community",
+    "title": "Navratri Garba Night",
+    "interaction_detail": "Danced garba with neighbors, enjoyed festive music and dandiya.",
+    "mood_effect": "Festive and joyful",
+    "relationship_score": 10,
+    "tags": [
+      "festival",
+      "dance",
+      "joy"
+    ]
+  }
+]

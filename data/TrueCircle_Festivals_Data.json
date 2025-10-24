@@ -1,0 +1,587 @@
+{
+  "festivals": [
+    {
+      "id": "lohri",
+      "name": "Lohri",
+      "type": "minor",
+      "regions": [
+        "Punjab",
+        "Haryana",
+        "North India"
+      ],
+      "month": "January",
+      "description": "Harvest festival with bonfire, folk songs and dance, marks end of winter.",
+      "greetingMessages": {
+        "formal": "Happy Lohri!",
+        "casual": "Happy Lohri! 🔥🎶",
+        "family": "Happy Lohri! May this festival be full of joy and sweetness 🌾"
+      },
+      "culturalTips": [
+        "🔥 Share a picture with family/friends around the bonfire",
+        "🌾 Eat and discuss peanuts, gajak, and jaggery",
+        "🎵 Talk about folk songs and dance"
+      ],
+      "conversationStarters": [
+        "How did you celebrate Lohri?",
+        "Do you like gajak and peanuts?",
+        "Did you listen to any Lohri songs?"
+      ]
+    },
+    {
+      "id": "makar_sankranti",
+      "name": "Makar Sankranti",
+      "type": "major",
+      "regions": [
+        "Pan-India"
+      ],
+      "month": "January",
+      "description": "Harvest festival marking Sun's transition into Capricorn. Celebrated with kite flying and sweets made of sesame and jaggery.",
+      "greetingMessages": {
+        "formal": "Happy Makar Sankranti!",
+        "casual": "Happy Makar Sankranti! 🪁🍬",
+        "family": "Happy Makar Sankranti! A day filled with sesame-jaggery and happiness 🌞"
+      },
+      "culturalTips": [
+        "🪁 Share photos of kite flying",
+        "🍬 Discuss sweets made of sesame and jaggery",
+        "🌾 Mention the new crops and harvest"
+      ],
+      "conversationStarters": [
+        "Did you fly kites this time?",
+        "How were the sesame-jaggery sweets?",
+        "With whom did you celebrate Makar Sankranti?"
+      ]
+    },
+    {
+      "id": "pongal",
+      "name": "Pongal",
+      "type": "major",
+      "regions": [
+        "Tamil Nadu"
+      ],
+      "month": "January",
+      "description": "Tamil harvest festival, offering newly harvested rice to Sun God.",
+      "greetingMessages": {
+        "formal": "Happy Pongal!",
+        "casual": "Happy Pongal! 🌾☀️",
+        "family": "Happy Pongal! May this festival be filled with joy and prosperity 🎉"
+      },
+      "culturalTips": [
+        "🌾 Share a picture of freshly harvested rice or the Pongal dish",
+        "🏡 Show off home decorations and rangoli",
+        "🍬 Talk about sweets and traditional food"
+      ],
+      "conversationStarters": [
+        "How was the Pongal dish made?",
+        "What kind of decorations did you have at home?",
+        "Which traditional dishes were prepared?"
+      ]
+    },
+    {
+      "id": "republic_day",
+      "name": "Republic Day",
+      "type": "major",
+      "regions": [
+        "All India"
+      ],
+      "month": "January",
+      "description": "Celebrates the adoption of the Indian Constitution in 1950.",
+      "greetingMessages": {
+        "formal": "Happy Republic Day!",
+        "casual": "Happy Republic Day! 🇮🇳",
+        "family": "Happy Republic Day! A day filled with patriotism and pride"
+      },
+      "culturalTips": [
+        "🇮🇳 Share photos of the flag hoisting ceremony",
+        "🎖️ Talk about the parade and cultural events"
+      ],
+      "conversationStarters": [
+        "Did you watch the flag hoisting ceremony?",
+        "How was the Republic Day parade?",
+        "Did you listen to any patriotic songs?"
+      ]
+    },
+    {
+      "id": "vasant_panchami",
+      "name": "Vasant Panchami",
+      "type": "minor",
+      "regions": [
+        "North India",
+        "West India",
+        "East India"
+      ],
+      "month": "February",
+      "description": "Festival dedicated to Goddess Saraswati, the goddess of knowledge, music, and art. Marks the arrival of spring.",
+      "greetingMessages": {
+        "formal": "Happy Vasant Panchami!",
+        "casual": "Happy Vasant Panchami! 🌼",
+        "family": "Happy Vasant Panchami! May Goddess Saraswati bless you with knowledge and wisdom 🙏"
+      },
+      "culturalTips": [
+        "💛 Wear yellow clothes and share pictures",
+        "📚 Worship books and musical instruments",
+        "Tell us about Saraswati Puja and its rituals"
+      ],
+      "conversationStarters": [
+        "How did you celebrate Vasant Panchami?",
+        "Did you perform Saraswati Puja?",
+        "What special food was cooked?"
+      ]
+    },
+    {
+      "id": "maha_shivratri",
+      "name": "Maha Shivratri",
+      "type": "major",
+      "regions": [
+        "Pan-India"
+      ],
+      "month": "March",
+      "description": "Hindu festival celebrated in honor of Lord Shiva. Devotees observe fast and offer prayers.",
+      "greetingMessages": {
+        "formal": "Happy Maha Shivratri!",
+        "casual": "Happy Maha Shivratri! 🙏🔱",
+        "family": "Happy Maha Shivratri! May Lord Shiva bless you and your family."
+      },
+      "culturalTips": [
+        "🙏 Share pictures of temple visits or home puja",
+        "Talk about fasting and prayers",
+        "🕉️ Discuss Shiva bhajans and stories"
+      ],
+      "conversationStarters": [
+        "Did you observe a fast for Maha Shivratri?",
+        "Did you visit a Shiva temple?",
+        "What are your plans for the night vigil?"
+      ]
+    },
+    {
+      "id": "holi",
+      "name": "Holi",
+      "type": "major",
+      "regions": [
+        "Pan-India"
+      ],
+      "month": "March",
+      "description": "Festival of colors, celebrating the victory of good over evil and the arrival of spring.",
+      "greetingMessages": {
+        "formal": "Happy Holi!",
+        "casual": "Happy Holi! 🎨",
+        "family": "Happy Holi! Wishing you a colorful and joyous day!"
+      },
+      "culturalTips": [
+        "🎨 Share colorful pictures of your celebration",
+        "🍬 Talk about gujiya and other Holi sweets",
+        "💧 Discuss water conservation during Holi"
+      ],
+      "conversationStarters": [
+        "How was your Holi celebration?",
+        "What colors did you play with?",
+        "Did you have any special Holi food?"
+      ]
+    },
+    {
+      "id": "gudi_padwa",
+      "name": "Gudi Padwa",
+      "type": "major",
+      "regions": [
+        "Maharashtra",
+        "Goa"
+      ],
+      "month": "March",
+      "description": "Maharashtrian New Year, celebrated with a special 'Gudi' flag and festive food.",
+      "greetingMessages": {
+        "formal": "Happy Gudi Padwa!",
+        "casual": "Happy Gudi Padwa! 🕉️",
+        "family": "Happy Gudi Padwa! Wishing you a prosperous New Year!"
+      },
+      "culturalTips": [
+        "🕉️ Share a picture of the Gudi at your home",
+        "🍬 Discuss traditional dishes like Puran Poli",
+        "🎉 Talk about the significance of the festival"
+      ],
+      "conversationStarters": [
+        "How did you celebrate Gudi Padwa?",
+        "Did you make a Gudi at home?",
+        "What special food did you eat?"
+      ]
+    },
+    {
+      "id": "ram_navami",
+      "name": "Ram Navami",
+      "type": "major",
+      "regions": [
+        "Pan-India"
+      ],
+      "month": "April",
+      "description": "Celebrates the birth of Lord Rama. Devotees observe fasts and visit temples.",
+      "greetingMessages": {
+        "formal": "Happy Ram Navami!",
+        "casual": "Happy Ram Navami! 🙏",
+        "family": "Happy Ram Navami! May Lord Rama bless you with happiness and prosperity."
+      },
+      "culturalTips": [
+        "🙏 Share pictures of temple visits or home puja",
+        "📖 Discuss stories from the Ramayana",
+        "🕉️ Listen to or share bhajans dedicated to Lord Rama"
+      ],
+      "conversationStarters": [
+        "How did you celebrate Ram Navami?",
+        "Did you read or listen to the Ramayana?",
+        "Did you visit a temple?"
+      ]
+    },
+    {
+      "id": "good_friday",
+      "name": "Good Friday",
+      "type": "major",
+      "regions": [
+        "All India"
+      ],
+      "month": "April",
+      "description": "Christian holiday commemorating the crucifixion of Jesus Christ.",
+      "greetingMessages": {
+        "formal": "Observing Good Friday.",
+        "casual": "Remembering Jesus on Good Friday.",
+        "family": "May the blessings of Good Friday be with you."
+      },
+      "culturalTips": [
+        "⛪ Talk about the significance of the day",
+        "🙏 Share prayers or reflections",
+        "✝️ Discuss the message of love and sacrifice"
+      ],
+      "conversationStarters": [
+        "How are you observing Good Friday?",
+        "Did you attend any church service?",
+        "What does Good Friday mean to you?"
+      ]
+    },
+    {
+      "id": "easter",
+      "name": "Easter",
+      "type": "major",
+      "regions": [
+        "All India"
+      ],
+      "month": "April",
+      "description": "Christian festival celebrating the resurrection of Jesus Christ.",
+      "greetingMessages": {
+        "formal": "Happy Easter!",
+        "casual": "Happy Easter! 🥚🐰",
+        "family": "Happy Easter! Wishing you a day filled with hope and joy."
+      },
+      "culturalTips": [
+        "🥚 Share pictures of Easter eggs and decorations",
+        "🐰 Talk about Easter traditions and celebrations",
+        "⛪ Discuss the message of hope and new beginnings"
+      ],
+      "conversationStarters": [
+        "How did you celebrate Easter?",
+        "Did you decorate Easter eggs?",
+        "What special food did you have?"
+      ]
+    },
+    {
+      "id": "baisakhi",
+      "name": "Baisakhi",
+      "type": "major",
+      "regions": [
+        "Punjab"
+      ],
+      "month": "April",
+      "description": "Sikh New Year and harvest festival. Celebrated with music, dance, and fairs.",
+      "greetingMessages": {
+        "formal": "Happy Baisakhi!",
+        "casual": "Happy Baisakhi! 🌾",
+        "family": "Happy Baisakhi! Wishing you a joyful and prosperous year."
+      },
+      "culturalTips": [
+        "🌾 Share pictures of the harvest or celebrations",
+        "🎵 Talk about Bhangra and Gidda dance forms",
+        "🎉 Discuss the significance of the festival in Sikhism"
+      ],
+      "conversationStarters": [
+        "How did you celebrate Baisakhi?",
+        "Did you watch any Bhangra or Gidda performances?",
+        "What special food did you eat?"
+      ]
+    },
+    {
+      "id": "eid_ul_fitr",
+      "name": "Eid-ul-Fitr",
+      "type": "major",
+      "regions": [
+        "Pan-India"
+      ],
+      "month": "May",
+      "description": "Muslim festival marking the end of Ramadan, the holy month of fasting.",
+      "greetingMessages": {
+        "formal": "Eid Mubarak!",
+        "casual": "Eid Mubarak! 🌙",
+        "family": "Eid Mubarak! Wishing you and your family a blessed Eid."
+      },
+      "culturalTips": [
+        "🌙 Share pictures of your Eid celebrations",
+        "🍲 Talk about special dishes like Biryani and Sheer Khurma",
+        "🕌 Discuss the importance of charity and community"
+      ],
+      "conversationStarters": [
+        "How was your Eid celebration?",
+        "What special dishes did you prepare?",
+        "How did you spend the day with your family?"
+      ]
+    },
+    {
+      "id": "buddha_purnima",
+      "name": "Buddha Purnima",
+      "type": "major",
+      "regions": [
+        "Pan-India"
+      ],
+      "month": "May",
+      "description": "Celebrates the birth, enlightenment, and death of Gautama Buddha.",
+      "greetingMessages": {
+        "formal": "Happy Buddha Purnima!",
+        "casual": "Happy Buddha Purnima! 🙏",
+        "family": "Happy Buddha Purnima! May you find peace and enlightenment."
+      },
+      "culturalTips": [
+        "🙏 Share teachings of Buddha or pictures of monasteries",
+        "🧘 Talk about meditation and mindfulness",
+        "🕊️ Discuss the message of peace and non-violence"
+      ],
+      "conversationStarters": [
+        "How did you observe Buddha Purnima?",
+        "Did you visit a monastery or temple?",
+        "What is your favorite teaching of Buddha?"
+      ]
+    },
+    {
+      "id": "raksha_bandhan",
+      "name": "Raksha Bandhan",
+      "type": "major",
+      "regions": [
+        "Pan-India"
+      ],
+      "month": "August",
+      "description": "Celebrates the bond between brothers and sisters. Sisters tie a sacred thread (rakhi) on their brothers' wrists.",
+      "greetingMessages": {
+        "formal": "Happy Raksha Bandhan!",
+        "casual": "Happy Rakhi! 👫",
+        "family": "Happy Raksha Bandhan! Celebrating the special bond of love."
+      },
+      "culturalTips": [
+        "� Share pictures with your siblings",
+        "🎁 Talk about the gifts exchanged",
+        "💖 Discuss the significance of the brother-sister relationship"
+      ],
+      "conversationStarters": [
+        "How did you celebrate Raksha Bandhan?",
+        "What gift did you get/give?",
+        "How do you cherish your bond with your sibling?"
+      ]
+    },
+    {
+      "id": "janmashtami",
+      "name": "Janmashtami",
+      "type": "major",
+      "regions": [
+        "Pan-India"
+      ],
+      "month": "August",
+      "description": "Celebrates the birth of Lord Krishna. Devotees observe fasts and celebrate at midnight.",
+      "greetingMessages": {
+        "formal": "Happy Janmashtami!",
+        "casual": "Happy Janmashtami! 🙏",
+        "family": "Happy Janmashtami! May Lord Krishna bless you with love and happiness."
+      },
+      "culturalTips": [
+        "🙏 Share pictures of temple visits or home puja",
+        "👶 Talk about the 'Dahi Handi' tradition",
+        "📖 Discuss stories of Lord Krishna's life"
+      ],
+      "conversationStarters": [
+        "How did you celebrate Janmashtami?",
+        "Did you observe a fast?",
+        "What is your favorite story about Lord Krishna?"
+      ]
+    },
+    {
+      "id": "ganesh_chaturthi",
+      "name": "Ganesh Chaturthi",
+      "type": "major",
+      "regions": [
+        "Maharashtra",
+        "Goa",
+        "Karnataka",
+        "Andhra Pradesh"
+      ],
+      "month": "September",
+      "description": "10-day Hindu festival celebrating the birth of Lord Ganesha.",
+      "greetingMessages": {
+        "formal": "Happy Ganesh Chaturthi!",
+        "casual": "Happy Ganesh Chaturthi! 🙏🐘",
+        "family": "Happy Ganesh Chaturthi! May Lord Ganesha remove all obstacles from your life."
+      },
+      "culturalTips": [
+        "🐘 Share pictures of Ganesha idols and decorations",
+        "🍬 Talk about modak and other festive sweets",
+        "🎶 Discuss the festive atmosphere and music"
+      ],
+      "conversationStarters": [
+        "How are you celebrating Ganesh Chaturthi?",
+        "Did you bring a Ganesha idol home?",
+        "What's your favorite part of the festival?"
+      ]
+    },
+    {
+      "id": "onam",
+      "name": "Onam",
+      "type": "major",
+      "regions": [
+        "Kerala"
+      ],
+      "month": "September",
+      "description": "Harvest festival of Kerala, celebrating the homecoming of King Mahabali.",
+      "greetingMessages": {
+        "formal": "Happy Onam!",
+        "casual": "Happy Onam! 🌸",
+        "family": "Happy Onam! Wishing you a prosperous and joyful Onam."
+      },
+      "culturalTips": [
+        "🌸 Share pictures of the 'Pookalam' (floral carpet)",
+        "🍲 Talk about the 'Onam Sadya' (grand feast)",
+        "💃 Discuss traditional art forms like Kathakali and Pulikali"
+      ],
+      "conversationStarters": [
+        "How was your Onam celebration?",
+        "What dishes were part of your Onam Sadya?",
+        "Did you see any traditional performances?"
+      ]
+    },
+    {
+      "id": "navratri",
+      "name": "Navratri",
+      "type": "major",
+      "regions": [
+        "Pan-India"
+      ],
+      "month": "October",
+      "description": "Nine-night festival dedicated to the worship of Goddess Durga.",
+      "greetingMessages": {
+        "formal": "Happy Navratri!",
+        "casual": "Happy Navratri! ��💃",
+        "family": "Happy Navratri! May the Goddess bless you with health and happiness."
+      },
+      "culturalTips": [
+        "💃 Share pictures of Garba/Dandiya nights",
+        "🙏 Talk about the significance of the nine forms of Durga",
+        "Talk about fasting and festive food"
+      ],
+      "conversationStarters": [
+        "How are you celebrating Navratri?",
+        "Are you playing Garba or Dandiya?",
+        "What special food are you eating?"
+      ]
+    },
+    {
+      "id": "dussehra",
+      "name": "Dussehra",
+      "type": "major",
+      "regions": [
+        "Pan-India"
+      ],
+      "month": "October",
+      "description": "Celebrates the victory of Lord Rama over Ravana, symbolizing the triumph of good over evil.",
+      "greetingMessages": {
+        "formal": "Happy Dussehra!",
+        "casual": "Happy Dussehra! 🏹",
+        "family": "Happy Dussehra! May this day bring you victory and success."
+      },
+      "culturalTips": [
+        "🏹 Share pictures of Ravana effigy burning",
+        "🎭 Talk about Ramlila performances",
+        "� Discuss the festive spirit and fairs"
+      ],
+      "conversationStarters": [
+        "How did you celebrate Dussehra?",
+        "Did you watch the Ravana effigy burning?",
+        "What's your favorite part of the Ramlila?"
+      ]
+    },
+    {
+      "id": "diwali",
+      "name": "Diwali",
+      "type": "major",
+      "regions": [
+        "Pan-India"
+      ],
+      "month": "November",
+      "description": "Festival of lights, celebrating the victory of light over darkness and good over evil.",
+      "greetingMessages": {
+        "formal": "Happy Diwali!",
+        "casual": "Happy Diwali! 🪔✨",
+        "family": "Happy Diwali! Wishing you a bright and prosperous Diwali."
+      },
+      "culturalTips": [
+        "🪔 Share pictures of diyas and decorations",
+        "� Talk about Diwali sweets and snacks",
+        "� Discuss responsible and safe celebration with firecrackers"
+      ],
+      "conversationStarters": [
+        "How was your Diwali celebration?",
+        "What are your plans for the festival?",
+        "What's your favorite Diwali sweet?"
+      ]
+    },
+    {
+      "id": "guru_nanak_jayanti",
+      "name": "Guru Nanak Jayanti",
+      "type": "major",
+      "regions": [
+        "Punjab",
+        "North India"
+      ],
+      "month": "November",
+      "description": "Celebrates the birth of the first Sikh Guru, Guru Nanak.",
+      "greetingMessages": {
+        "formal": "Happy Guru Nanak Jayanti!",
+        "casual": "Happy Gurpurab! �",
+        "family": "Happy Guru Nanak Jayanti! May Guru Nanak Dev Ji bless you."
+      },
+      "culturalTips": [
+        "🙏 Share teachings of Guru Nanak or pictures from Gurdwaras",
+        "�️ Talk about 'Nagar Kirtan' processions",
+        "� Discuss 'Langar' (community kitchen) and its significance"
+      ],
+      "conversationStarters": [
+        "How did you celebrate Guru Nanak Jayanti?",
+        "Did you visit a Gurdwara?",
+        "What is your favorite teaching of Guru Nanak?"
+      ]
+    },
+    {
+      "id": "christmas",
+      "name": "Christmas",
+      "type": "major",
+      "regions": [
+        "All India"
+      ],
+      "month": "December",
+      "description": "Christian festival celebrating the birth of Jesus Christ.",
+      "greetingMessages": {
+        "formal": "Merry Christmas!",
+        "casual": "Merry Christmas! 🎄🎅",
+        "family": "Merry Christmas! Wishing you a season of joy and love."
+      },
+      "culturalTips": [
+        "🎄 Share pictures of your Christmas tree and decorations",
+        "� Talk about Santa Claus and gift-giving traditions",
+        "⛪ Discuss the message of peace and goodwill"
+      ],
+      "conversationStarters": [
+        "How did you celebrate Christmas?",
+        "What gifts did you get?",
+        "What's your favorite Christmas tradition?"
+      ]
+    }
+  ]
+}

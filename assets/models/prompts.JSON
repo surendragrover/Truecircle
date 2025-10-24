@@ -1,0 +1,436 @@
+[
+  {
+    "prompt_id": "01_anxiety_recent",
+    "title": "Recent Anxiety",
+    "context": "User experiences sudden or persistent anxiety.",
+    "prompt_text": "Can you describe a recent moment when you felt anxious? What triggered it?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe the situation and feelings",
+    "notes": "Empathetic and reflective; link past anxiety patterns if relevant."
+  },
+  {
+    "prompt_id": "02_overwhelm_tasks",
+    "title": "Feeling Overwhelmed with Tasks",
+    "context": "User feels burdened by responsibilities.",
+    "prompt_text": "Which tasks recently made you feel overwhelmed, and how did you handle them?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe tasks and emotional response",
+    "notes": "Supportive tone; encourage practical reflection."
+  },
+  {
+    "prompt_id": "03_loneliness_recent",
+    "title": "Recent Loneliness",
+    "context": "User feels disconnected or lonely.",
+    "prompt_text": "Has there been a recent moment where you felt particularly lonely? What was happening?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe situation and emotions",
+    "notes": "Empathetic and reflective; consider past references."
+  },
+  {
+    "prompt_id": "04_guilt_action",
+    "title": "Guilt about Actions",
+    "context": "User feels guilty about something they did or didn’t do.",
+    "prompt_text": "Can you share a recent situation that made you feel guilty?",
+    "response_type": "context-aware",
+    "expected_user_input": "Briefly describe the incident and emotions",
+    "notes": "Encourage self-reflection without judgment."
+  },
+  {
+    "prompt_id": "05_frustration_expression",
+    "title": "Frustration Expression",
+    "context": "User struggles to express frustration.",
+    "prompt_text": "Was there a recent situation where you felt frustrated but didn’t express it?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe the scenario and feelings",
+    "notes": "Encourage healthy expression; integrate previous experiences."
+  },
+  {
+    "prompt_id": "06_self_doubt_recent",
+    "title": "Recent Self-Doubt",
+    "context": "User doubts their abilities or decisions.",
+    "prompt_text": "Can you share a recent moment when you doubted yourself? What happened?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe incident and emotional impact",
+    "notes": "Supportive and reflective; connect to past self-doubt patterns."
+  },
+  {
+    "prompt_id": "07_resentment_recent",
+    "title": "Recent Resentment",
+    "context": "User feels resentment or unresolved anger.",
+    "prompt_text": "Is there a recent event where resentment arose? How did it affect you?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe situation and emotions",
+    "notes": "Encourage reflection and processing of emotions."
+  },
+  {
+    "prompt_id": "08_emotional_distance",
+    "title": "Emotional Distance",
+    "context": "User feels distant from someone close.",
+    "prompt_text": "Was there a recent situation that made you feel emotionally distant from someone?",
+    "response_type": "context-aware",
+    "expected_user_input": "Briefly describe the situation",
+    "notes": "Supportive and reflective; link to past interactions if relevant."
+  },
+  {
+    "prompt_id": "09_family_tension",
+    "title": "Family Tension",
+    "context": "User experiences tension or misunderstandings within family.",
+    "prompt_text": "Has there been a recent moment of tension with your family? How did it affect you?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe the situation and feelings",
+    "notes": "Empathetic and reflective; integrate previous family interactions if relevant."
+  },
+  {
+    "prompt_id": "10_friendship_conflict",
+    "title": "Friendship Conflict",
+    "context": "User feels conflict or distance with friends.",
+    "prompt_text": "Can you describe a recent situation where you had conflict or distance with a friend?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe situation and emotions",
+    "notes": "Supportive tone; encourage reflection and understanding."
+  },
+  {
+    "prompt_id": "11_romantic_tension",
+    "title": "Romantic Relationship Tension",
+    "context": "User experiences stress or tension in romantic relationships.",
+    "prompt_text": "Was there a recent moment in your romantic relationship that caused tension? How did you feel?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe situation and emotional response",
+    "notes": "Empathetic; encourage healthy reflection without judgment."
+  },
+  {
+    "prompt_id": "12_peer_pressure",
+    "title": "Peer Pressure",
+    "context": "User feels influenced or pressured by peers.",
+    "prompt_text": "Can you share a recent situation where you felt pressured by peers? What did you do?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe scenario and emotional reaction",
+    "notes": "Reflective and supportive; connect to past experiences if relevant."
+  },
+  {
+    "prompt_id": "13_communication_barriers",
+    "title": "Communication Barriers",
+    "context": "User struggles to communicate effectively in relationships.",
+    "prompt_text": "Was there a recent situation where communication broke down? How did you feel?",
+    "response_type": "context-aware",
+    "expected_user_input": "Briefly describe situation and emotions",
+    "notes": "Supportive guidance; encourage constructive reflection."
+  },
+  {
+    "prompt_id": "14_trust_issues",
+    "title": "Trust Issues",
+    "context": "User struggles with trust in personal or professional relationships.",
+    "prompt_text": "Has there been a recent event that challenged your trust in someone?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe the event and feelings",
+    "notes": "Empathetic reflection; avoid judgment; connect to prior context."
+  },
+  {
+    "prompt_id": "15_conflict_resolution",
+    "title": "Conflict Resolution",
+    "context": "User seeks ways to resolve interpersonal conflicts.",
+    "prompt_text": "Can you share a recent conflict you resolved or tried to resolve? How did it go?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe the situation and outcome",
+    "notes": "Encourage reflection on actions and feelings; maintain empathy."
+  },
+  {
+    "prompt_id": "16_social_anxiety",
+    "title": "Social Anxiety",
+    "context": "User feels anxious in social settings.",
+    "prompt_text": "Was there a recent social situation that made you anxious? How did you respond?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe the situation and emotional state",
+    "notes": "Supportive and reflective; connect to prior anxiety patterns."
+  },
+  {
+    "prompt_id": "17_peer_conflict",
+    "title": "Conflict with Colleagues or Peers",
+    "context": "User faces disagreements or tension with colleagues or peers.",
+    "prompt_text": "Can you describe a recent disagreement with a colleague or peer?",
+    "response_type": "context-aware",
+    "expected_user_input": "Briefly describe scenario and emotions",
+    "notes": "Empathetic; encourage constructive reflection."
+  },
+  {
+    "prompt_id": "18_support_network",
+    "title": "Support Network",
+    "context": "User wants to reflect on relationships that provide support.",
+    "prompt_text": "Can you describe a recent moment when someone in your support network helped you?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe incident and feelings",
+    "notes": "Encourage gratitude and reflection; maintain positive and supportive tone."
+  }
+  // Remaining prompts 19–48 follow the same structure and are ready for integration.
+]
+[
+  {
+    "prompt_id": "19_self_reflection",
+    "title": "Self-Reflection",
+    "context": "User wants to reflect on their thoughts and behaviors.",
+    "prompt_text": "Can you share a recent moment where you reflected on your own actions or thoughts?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe reflection and insights",
+    "notes": "Encourage introspection and gentle self-awareness."
+  },
+  {
+    "prompt_id": "20_building_confidence",
+    "title": "Building Confidence",
+    "context": "User wants to strengthen self-confidence.",
+    "prompt_text": "Was there a recent situation where you felt more confident than before? What helped?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe situation and supporting factors",
+    "notes": "Supportive tone; reinforce self-efficacy."
+  },
+  {
+    "prompt_id": "21_goal_setting",
+    "title": "Goal Setting",
+    "context": "User wants to set or review personal goals.",
+    "prompt_text": "Can you share a recent goal you set and your progress on it?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe goal and progress",
+    "notes": "Encourage realistic and reflective goal assessment."
+  },
+  {
+    "prompt_id": "22_sources_motivation",
+    "title": "Sources of Motivation",
+    "context": "User wants to explore what motivates them.",
+    "prompt_text": "What recent experience gave you motivation or energy? How did it affect you?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe experience and emotional impact",
+    "notes": "Supportive; link motivation to actions or thoughts."
+  },
+  {
+    "prompt_id": "23_overcoming_challenges",
+    "title": "Overcoming Challenges",
+    "context": "User wants to discuss challenges faced recently.",
+    "prompt_text": "Can you describe a recent challenge you overcame and what helped you?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe challenge and coping strategies",
+    "notes": "Encourage reflection and resilience-building."
+  },
+  {
+    "prompt_id": "24_skill_development",
+    "title": "Skill Development",
+    "context": "User wants to improve personal or professional skills.",
+    "prompt_text": "Was there a recent skill you practiced or improved? How did it feel?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe skill and experience",
+    "notes": "Encourage growth and confidence."
+  },
+  {
+    "prompt_id": "25_self_awareness",
+    "title": "Self-Awareness",
+    "context": "User wants to enhance self-awareness.",
+    "prompt_text": "Can you share a recent realization about yourself or your behavior?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe realization and impact",
+    "notes": "Encourage thoughtful introspection."
+  },
+  {
+    "prompt_id": "26_future_planning",
+    "title": "Future Planning",
+    "context": "User wants to think about the near or distant future.",
+    "prompt_text": "Have you recently thought about your future plans? What did you focus on?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe plans and feelings",
+    "notes": "Supportive; encourage constructive planning."
+  },
+  {
+    "prompt_id": "27_decision_making",
+    "title": "Decision Making",
+    "context": "User wants to reflect on recent decisions.",
+    "prompt_text": "Can you share a recent decision you made and how you approached it?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe decision and thought process",
+    "notes": "Encourage clarity and reflection on choices."
+  },
+  {
+    "prompt_id": "28_personal_achievement",
+    "title": "Personal Achievement",
+    "context": "User wants to acknowledge accomplishments.",
+    "prompt_text": "What recent personal achievement are you proud of? How did it make you feel?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe achievement and emotional impact",
+    "notes": "Supportive; reinforce self-appreciation."
+  },
+  {
+    "prompt_id": "29_financial_stress",
+    "title": "Financial Stress",
+    "context": "User experiences pressure related to finances.",
+    "prompt_text": "Has there been a recent financial situation that caused stress? How did you manage it?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe situation and coping",
+    "notes": "Supportive; encourage reflection and resourcefulness."
+  },
+  {
+    "prompt_id": "30_health_concerns",
+    "title": "Health Concerns",
+    "context": "User experiences health-related stress.",
+    "prompt_text": "Can you describe a recent health concern or symptom and how it affected you?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe health issue and feelings",
+    "notes": "Empathetic; maintain supportive tone."
+  },
+  {
+    "prompt_id": "31_time_management",
+    "title": "Time Management Challenges",
+    "context": "User struggles to manage time effectively.",
+    "prompt_text": "Was there a recent situation where time management was challenging? How did you cope?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe challenge and solution",
+    "notes": "Supportive; encourage reflection and organization."
+  },
+  {
+    "prompt_id": "32_stress_decisions",
+    "title": "Stress from Decisions",
+    "context": "User feels stressed while making decisions.",
+    "prompt_text": "Can you share a recent decision that caused stress? How did you handle it?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe decision and emotional response",
+    "notes": "Supportive; encourage problem-solving and reflection."
+  },
+  {
+    "prompt_id": "33_workload_pressure",
+    "title": "Workload Pressure",
+    "context": "User feels overwhelmed by work responsibilities.",
+    "prompt_text": "Describe a recent moment where workload was heavy. How did you cope?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe workload and strategies",
+    "notes": "Empathetic; suggest healthy coping if needed."
+  },
+  {
+    "prompt_id": "34_unexpected_events",
+    "title": "Unexpected Events",
+    "context": "User experiences stress from unexpected situations.",
+    "prompt_text": "Can you share a recent unexpected event and how it affected you?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe event and coping response",
+    "notes": "Supportive; encourage adaptability reflection."
+  },
+  {
+    "prompt_id": "35_technology_challenges",
+    "title": "Technology Challenges",
+    "context": "User experiences stress or difficulty with technology.",
+    "prompt_text": "Describe a recent situation where technology caused difficulty or stress. How did you manage?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe challenge and coping",
+    "notes": "Supportive; reflect on problem-solving and adaptation."
+  },
+  {
+    "prompt_id": "36_commuting_stress",
+    "title": "Transport or Commuting Stress",
+    "context": "User experiences stress while commuting.",
+    "prompt_text": "Was there a recent commuting situation that was stressful? How did you handle it?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe commute and emotional impact",
+    "notes": "Supportive; suggest healthy coping if needed."
+  },
+  {
+    "prompt_id": "37_home_responsibilities",
+    "title": "Home Responsibilities",
+    "context": "User feels pressure from home duties.",
+    "prompt_text": "Can you share a recent moment where home responsibilities felt overwhelming?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe situation and coping",
+    "notes": "Empathetic; encourage balanced approach."
+  },
+  {
+    "prompt_id": "38_daily_routine_conflicts",
+    "title": "Daily Routine Conflicts",
+    "context": "User struggles with conflicts in daily schedule.",
+    "prompt_text": "Describe a recent conflict in your daily routine. How did you manage it?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe situation and resolution",
+    "notes": "Supportive; suggest reflection on priorities."
+  },
+  {
+    "prompt_id": "39_mindfulness_practice",
+    "title": "Mindfulness Practice",
+    "context": "User wants to practice mindfulness to manage stress or emotions.",
+    "prompt_text": "Have you tried any mindfulness or grounding practices recently? How did they make you feel?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe practice and emotional impact",
+    "notes": "Encourage gentle awareness and self-reflection; maintain supportive tone."
+  },
+  {
+    "prompt_id": "40_relaxation_methods",
+    "title": "Relaxation Methods",
+    "context": "User seeks ways to relax and cope with stress.",
+    "prompt_text": "Can you share a recent activity that helped you relax or feel calm?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe activity and feelings",
+    "notes": "Supportive; emphasize self-care and gentle reflection."
+  },
+  {
+    "prompt_id": "41_self_compassion",
+    "title": "Self-Compassion",
+    "context": "User wants to cultivate kindness toward themselves.",
+    "prompt_text": "Have you had a moment recently where you were hard on yourself? How could you show self-compassion?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe situation and thoughts",
+    "notes": "Empathetic and reflective; guide toward self-kindness without judgment."
+  },
+  {
+    "prompt_id": "42_emotional_expression",
+    "title": "Emotional Expression",
+    "context": "User struggles to express emotions safely.",
+    "prompt_text": "Can you share a recent emotion you found difficult to express? How did you manage it?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe emotion and coping strategy",
+    "notes": "Encourage healthy expression; maintain sensitivity and support."
+  },
+  {
+    "prompt_id": "43_self_soothing",
+    "title": "Self-Soothing Techniques",
+    "context": "User wants ways to calm themselves in difficult moments.",
+    "prompt_text": "What recent technique or activity helped you calm down when stressed or upset?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe technique and effect",
+    "notes": "Supportive; promote adaptive coping and gentle self-care."
+  },
+  {
+    "prompt_id": "44_social_support",
+    "title": "Seeking Social Support",
+    "context": "User wants to explore support from friends or family.",
+    "prompt_text": "Have you reached out to someone for support recently? How did it help you feel?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe interaction and emotional impact",
+    "notes": "Empathetic; encourage safe sharing and emotional connection."
+  },
+  {
+    "prompt_id": "45_coping_strategies",
+    "title": "Coping Strategies",
+    "context": "User wants to find healthy ways to cope with stress or challenges.",
+    "prompt_text": "Can you share a recent coping strategy that worked for you?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe strategy and outcome",
+    "notes": "Supportive and reflective; maintain gentle tone."
+  },
+  {
+    "prompt_id": "46_journaling_reflection",
+    "title": "Journaling and Reflection",
+    "context": "User wants to explore thoughts and emotions through writing.",
+    "prompt_text": "Have you recently written or reflected in a journal? How did it help you process feelings?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe journaling experience and insights",
+    "notes": "Encourage introspection and emotional processing; maintain empathy."
+  },
+  {
+    "prompt_id": "47_healthy_habits",
+    "title": "Healthy Habits",
+    "context": "User wants to maintain routines that support well-being.",
+    "prompt_text": "Can you share a recent habit or routine that helped you feel balanced or calm?",
+    "response_type": "context-aware",
+    "
+ },
+  {
+    "prompt_id": "48_gratitude_practice",
+    "title": "Gratitude Practice",
+    "context": "User wants to cultivate gratitude to improve emotional well-being.",
+    "prompt_text": "Can you describe a recent moment that made you feel grateful? How did it impact your mood?",
+    "response_type": "context-aware",
+    "expected_user_input": "Describe the moment and feelings of gratitude",
+    "notes": "Supportive; reinforce positive reflection and emotional awareness."
+  }
+]
