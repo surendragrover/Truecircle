@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/json_data_service.dart';
+import '../core/truecircle_app_bar.dart';
 
 class RelationshipInsightsPage extends StatelessWidget {
   const RelationshipInsightsPage({super.key});
@@ -7,7 +8,7 @@ class RelationshipInsightsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Relationship Insights')),
+      appBar: const TrueCircleAppBar(title: 'Relationship Insights'),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: JsonDataService.instance.getRelationshipInsights(),
         builder: (context, snapshot) {

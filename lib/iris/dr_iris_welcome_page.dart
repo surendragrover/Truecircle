@@ -50,7 +50,9 @@ class _DrIrisWelcomePageState extends State<DrIrisWelcomePage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: widget.isFirstTime ? null : const TrueCircleAppBar(title: 'Dr. Iris'),
+      appBar: widget.isFirstTime
+          ? null
+          : const TrueCircleAppBar(title: 'Dr. Iris'),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/json_data_service.dart';
+import '../core/truecircle_app_bar.dart';
 
 class FestivalsPage extends StatelessWidget {
   const FestivalsPage({super.key});
@@ -7,7 +8,7 @@ class FestivalsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Festivals')),
+      appBar: const TrueCircleAppBar(title: 'Festivals'),
       body: FutureBuilder<List<Map<String, String>>>(
         future: JsonDataService.instance.getFestivalsList(),
         builder: (context, snapshot) {

@@ -4,6 +4,7 @@ import 'services/otp_service.dart';
 import '../core/permission_manager.dart';
 import '../core/app_config.dart';
 import '../iris/dr_iris_welcome_page.dart';
+import '../core/truecircle_app_bar.dart';
 
 class OtpPage extends StatefulWidget {
   const OtpPage({super.key});
@@ -65,7 +66,7 @@ class _OtpPageState extends State<OtpPage> {
   Widget build(BuildContext context) {
     final hint = Theme.of(context).hintColor;
     return Scaffold(
-      appBar: AppBar(title: const Text('Enter code')),
+      appBar: const TrueCircleAppBar(title: 'Enter code'),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

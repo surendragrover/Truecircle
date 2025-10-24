@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/json_data_service.dart';
+import '../core/truecircle_app_bar.dart';
 
 class BreathingExercisesPage extends StatelessWidget {
   const BreathingExercisesPage({super.key});
@@ -7,7 +8,7 @@ class BreathingExercisesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Breathing Exercises')),
+      appBar: const TrueCircleAppBar(title: 'Breathing Exercises'),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: JsonDataService.instance.getBreathingSessions(),
         builder: (context, snapshot) {
@@ -46,7 +47,7 @@ class MoodJournalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Mood Journal')),
+      appBar: const TrueCircleAppBar(title: 'Mood Journal'),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: JsonDataService.instance.getMoodJournalEntries(),
         builder: (context, snapshot) {
@@ -83,8 +84,8 @@ class EmotionalCheckinPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Emotional Check-in'),
+      appBar: TrueCircleAppBar(
+        title: 'Emotional Check-in',
         actions: [
           TextButton(
             onPressed: () {

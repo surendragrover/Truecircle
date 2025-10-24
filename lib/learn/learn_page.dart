@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/truecircle_app_bar.dart';
 
 class LearnPage extends StatelessWidget {
   const LearnPage({super.key});
@@ -11,7 +12,7 @@ class LearnPage extends StatelessWidget {
       'Reframe: What’s a kinder, more helpful alternative?',
     ];
     return Scaffold(
-      appBar: AppBar(title: const Text('Learn')),
+      appBar: const TrueCircleAppBar(title: 'Learn'),
       body: ListView.separated(
         padding: const EdgeInsets.all(16),
         itemBuilder: (_, i) => Card(

@@ -4,6 +4,7 @@ import 'services/otp_service.dart';
 import '../core/permission_manager.dart';
 import '../core/app_config.dart';
 import '../home/home_page.dart';
+import '../core/truecircle_app_bar.dart';
 
 class PhoneVerificationPage extends StatefulWidget {
   final bool returnResult; // if true, Navigator.pop(true) on success
@@ -40,7 +41,10 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
       final box = await Hive.openBox('app_prefs');
       final cc =
           (_selectedCountry ??
-                  (mounted ? Localizations.localeOf(context).countryCode : null) ?? 'US')
+                  (mounted
+                      ? Localizations.localeOf(context).countryCode
+                      : null) ??
+                  'US')
               .toUpperCase();
       final dial = _dialCodeFor(cc).replaceAll(RegExp(r'[^0-9+]'), '').trim();
       String num = _phoneCtrl.text.trim().replaceAll(RegExp(r'[^0-9+]'), '');
@@ -93,13 +97,12 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
     final dial = _dialCodeFor(cc);
     final flag = _flagEmoji(cc);
     return Scaffold(
-      appBar: AppBar(
+      appBar: TrueCircleAppBar(
+        title: 'Phone verification',
         leading: Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Image.asset('assets/images/truecircle_logo.png', height: 24),
         ),
-        titleSpacing: 0,
-        title: const Text('Phone verification'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

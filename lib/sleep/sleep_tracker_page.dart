@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/truecircle_app_bar.dart';
 import '../services/json_data_service.dart';
 
 class SleepTrackerPage extends StatelessWidget {
@@ -7,7 +8,7 @@ class SleepTrackerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Sleep Tracker')),
+      appBar: const TrueCircleAppBar(title: 'Sleep Tracker'),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: JsonDataService.instance.getSleepTrackerEntries(),
         builder: (context, snapshot) {

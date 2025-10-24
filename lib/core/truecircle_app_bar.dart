@@ -7,7 +7,12 @@ class TrueCircleAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final List<Widget>? actions;
 
-  const TrueCircleAppBar({Key? key, required this.title, this.leading, this.actions}) : super(key: key);
+  const TrueCircleAppBar({
+    Key? key,
+    required this.title,
+    this.leading,
+    this.actions,
+  }) : super(key: key);
 
   static const String _privacyMessage =
       'TrueCircle pe uski nijta ka pura khyal rakhate hue ise phone verify hote hi lock kar diya gaya hai aur ab ye internet se connect nahin hogi. TrueCircle aap dwara jo bhi jankari bhari ati hai uski jankari sirf aap tak hi seemit rahati hai. isliye aap ismen har entry bina kisi sankoch ke kar sakte hain. sahi parinam pane ke liye entry karte samay nishpksh rahen aur sachchai bharen. apki ye jaankaroi sirf apki hai aur apki hi rahegi.';
@@ -53,7 +58,8 @@ class _MarqueeText extends StatefulWidget {
   final double velocity; // pixels per second
   final Duration pauseDuration;
 
-  const _MarqueeText({Key? key,
+  const _MarqueeText({
+    Key? key,
     required this.text,
     required this.textStyle,
     this.velocity = 50.0,
@@ -82,53 +88,63 @@ class _MarqueeTextState extends State<_MarqueeText>
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      final containerWidth = constraints.maxWidth;
-      final textPainter = TextPainter(
-        text: TextSpan(text: widget.text, style: widget.textStyle),
-        textDirection: TextDirection.ltr,
-      )..layout();
-      final textWidth = textPainter.width;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final containerWidth = constraints.maxWidth;
+        final textPainter = TextPainter(
+          text: TextSpan(text: widget.text, style: widget.textStyle),
+          textDirection: TextDirection.ltr,
+        )..layout();
+        final textWidth = textPainter.width;
 
-      // If text fits, render normally
-      if (textWidth <= containerWidth) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 2),
-          child: Text(widget.text, style: widget.textStyle, maxLines: 1, overflow: TextOverflow.ellipsis),
+        // If text fits, render normally
+        if (textWidth <= containerWidth) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2),
+            child: Text(
+              widget.text,
+              style: widget.textStyle,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+          );
+        }
+
+        // distance to travel before repeating
+        const gap = 48.0;
+        final distance = textWidth + gap;
+        final durationMs = (distance / widget.velocity * 1000).toInt().clamp(
+          3000,
+          60000,
         );
-      }
+        final duration = Duration(milliseconds: durationMs);
 
-      // distance to travel before repeating
-      const gap = 48.0;
-      final distance = textWidth + gap;
-      final durationMs = (distance / widget.velocity * 1000).toInt().clamp(3000, 60000);
-      final duration = Duration(milliseconds: durationMs);
+        if (_controller.duration != duration) {
+          _controller.duration = duration;
+          _controller.repeat();
+        }
 
-      if (_controller.duration != duration) {
-        _controller.duration = duration;
-        _controller.repeat();
-      }
-
-      return ClipRect(
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, child) {
-            final offset = -(_controller.value * distance);
-            return Transform.translate(
-              offset: Offset(offset, 0),
-              child: Row(
-                children: [
-                  const SizedBox(width: 12),
-                  Text(widget.text, style: widget.textStyle),
-                  SizedBox(width: gap),
-                  Text(widget.text, style: widget.textStyle),
-                  const SizedBox(width: 12),
-                ],
-              ),
-            );
-          },
-        ),
-      );
-    });
+        return ClipRect(
+          child: AnimatedBuilder(
+            animation: _controller,
+            builder: (context, child) {
+              final offset = -(_controller.value * distance);
+              return Transform.translate(
+                offset: Offset(offset, 0),
+                child: Row(
+                  children: [
+                    const SizedBox(width: 12),
+                    Text(widget.text, style: widget.textStyle),
+                    SizedBox(width: gap),
+                    Text(widget.text, style: widget.textStyle),
+                    const SizedBox(width: 12),
+                  ],
+                ),
+              );
+            },
+          ),
+        );
+      },
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/truecircle_app_bar.dart';
 import '../services/json_data_service.dart';
 
 class MeditationGuidePage extends StatelessWidget {
@@ -7,7 +8,7 @@ class MeditationGuidePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Meditation Guide')),
+      appBar: const TrueCircleAppBar(title: 'Meditation Guide'),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: JsonDataService.instance.getMeditationGuides(),
         builder: (context, snapshot) {

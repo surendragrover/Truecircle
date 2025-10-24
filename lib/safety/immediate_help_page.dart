@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/truecircle_app_bar.dart';
 import 'safety_plan_page.dart';
 
 class ImmediateHelpPage extends StatelessWidget {
@@ -7,7 +8,7 @@ class ImmediateHelpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Immediate Help')),
+      appBar: const TrueCircleAppBar(title: 'Immediate Help'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

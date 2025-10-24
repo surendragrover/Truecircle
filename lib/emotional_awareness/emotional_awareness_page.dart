@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/truecircle_app_bar.dart';
 import '../services/json_data_service.dart';
 import '../services/emotional_awareness_service.dart';
 import '../models/emotional_awareness_selection.dart';
@@ -32,7 +33,7 @@ class _EmotionalAwarenessPageState extends State<EmotionalAwarenessPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Emotional Awareness')),
+      appBar: const TrueCircleAppBar(title: 'Emotional Awareness'),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: _future,
         builder: (context, snap) {

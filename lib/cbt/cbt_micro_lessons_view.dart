@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/truecircle_app_bar.dart';
 import '../models/cbt_micro_lesson.dart';
 
 class CBTMicroLessonsView extends StatelessWidget {
@@ -8,7 +9,7 @@ class CBTMicroLessonsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('CBT Lesson')),
+      appBar: const TrueCircleAppBar(title: 'CBT Lesson'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [Text(lesson.text)],

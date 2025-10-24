@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/cbt_micro_lesson.dart';
 import '../services/json_data_service.dart';
 import 'cbt_micro_lessons_view.dart';
+import '../core/truecircle_app_bar.dart';
 
 class CBTMicroLessonsPage extends StatelessWidget {
   const CBTMicroLessonsPage({super.key});
@@ -9,7 +10,7 @@ class CBTMicroLessonsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('CBT Micro Lessons')),
+      appBar: const TrueCircleAppBar(title: 'CBT Micro Lessons'),
       body: FutureBuilder<List<CBTMicroLesson>>(
         future: JsonDataService.instance.getCbtMicroLessons(),
         builder: (context, snapshot) {

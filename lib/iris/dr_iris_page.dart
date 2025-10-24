@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/truecircle_app_bar.dart';
 import '../services/dr_iris_suggestions_service.dart';
 import '../services/on_device_ai_service.dart';
 import '../services/prompt_generator.dart';
@@ -31,7 +32,7 @@ class _DrIrisPageState extends State<DrIrisPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Dr. Iris (Offline)')),
+      appBar: const TrueCircleAppBar(title: 'Dr. Iris (Offline)'),
       body: FutureBuilder<List<String>>(
         future: _future,
         builder: (context, snap) {

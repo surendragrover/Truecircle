@@ -30,7 +30,8 @@ class TrueCircleApp extends StatelessWidget {
 class _StartupGate extends StatelessWidget {
   const _StartupGate();
 
-  Future<(bool needsOnboarding, bool needsPhone, bool needsFirstTimeWelcome)> _gate() async {
+  Future<(bool needsOnboarding, bool needsPhone, bool needsFirstTimeWelcome)>
+  _gate() async {
     final box = await Hive.openBox('app_prefs');
     final done = box.get('onboarding_done', defaultValue: false) as bool;
     final phone = box.get('phone_verified', defaultValue: false) as bool;
@@ -50,7 +51,7 @@ class _StartupGate extends StatelessWidget {
         final showOnboarding = data.$1;
         final showPhone = data.$2;
         final showWelcome = data.$3;
-        
+
         if (showOnboarding) {
           return const OnboardingPage();
         }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/truecircle_app_bar.dart';
 
 class PHQ9Page extends StatefulWidget {
   const PHQ9Page({super.key});
@@ -42,7 +43,7 @@ class _PHQ9PageState extends State<PHQ9Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('PHQ‑9 (Offline)')),
+      appBar: const TrueCircleAppBar(title: 'PHQ‑9 (Offline)'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [

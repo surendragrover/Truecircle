@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/truecircle_app_bar.dart';
 
 class MarketplacePage extends StatelessWidget {
   const MarketplacePage({super.key});
@@ -6,7 +7,7 @@ class MarketplacePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Marketplace')),
+      appBar: const TrueCircleAppBar(title: 'Marketplace'),
       body: const Center(
         child: Padding(
           padding: EdgeInsets.all(24.0),

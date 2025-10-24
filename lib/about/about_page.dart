@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/truecircle_app_bar.dart';
 
 class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
@@ -6,7 +7,7 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('About TrueCircle')),
+      appBar: const TrueCircleAppBar(title: 'About TrueCircle'),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: const [
