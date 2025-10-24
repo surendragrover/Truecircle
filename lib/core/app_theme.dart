@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
 /// TrueCircle global theme
+/// Brand colors: Purple logo with blue shades, Kesari AppBar, Coral background, Black87 text
 /// Single source of truth for colors, typography, and component styles.
 /// Apply this in MaterialApp.theme so all current and future pages inherit it.
 class AppTheme {
-  // Brand seed color (Coral) — aligned with current UI accents
-  static const Color brandSeed = Color(0xFFFF7043);
+  // TrueCircle Brand Colors
+  static const Color truecirclePurple = Color(0xFF6A5ACD);    // Purple (logo primary)
+  static const Color truecircleBlue = Color(0xFF4169E1);      // Blue shade (logo accent)
+  static const Color kesariOrange = Color(0xFFFF8C00);        // Kesari/Saffron (AppBar)
+  static const Color coralBackground = Color(0xFFFF7F7F);     // Coral (background)
+  static const Color textBlack87 = Color(0xDD000000);         // Black87 (text)
 
-  static ThemeData light([Color seed = brandSeed]) {
+  static ThemeData light([Color seed = truecirclePurple]) {
     final scheme = ColorScheme.fromSeed(
       seedColor: seed,
       brightness: Brightness.light,
@@ -16,70 +21,72 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
-      scaffoldBackgroundColor: scheme.surface,
-      // Typography
+      scaffoldBackgroundColor: coralBackground, // Coral background
+      // Typography - Black87 text
       textTheme: Typography.blackMountainView.apply(
-        bodyColor: scheme.onSurface,
-        displayColor: scheme.onSurface,
+        bodyColor: textBlack87,
+        displayColor: textBlack87,
       ),
-      // AppBar
+      // AppBar - Kesari/Saffron color
       appBarTheme: AppBarTheme(
-        backgroundColor: scheme.surface,
-        surfaceTintColor: scheme.surfaceTint,
-        foregroundColor: scheme.onSurface,
-        elevation: 0,
+        backgroundColor: kesariOrange, // Kesari AppBar
+        surfaceTintColor: Colors.transparent,
+        foregroundColor: Colors.white, // White text on kesari background
+        elevation: 2,
         centerTitle: false,
-        titleTextStyle: TextStyle(
-          color: scheme.onSurface,
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
           fontSize: 20,
           fontWeight: FontWeight.w700,
         ),
-        iconTheme: IconThemeData(color: scheme.onSurface),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
-      // Cards
+      // Cards - White cards on coral background
       cardTheme: CardThemeData(
-        color: scheme.surface,
-        surfaceTintColor: scheme.surfaceTint,
-        elevation: 1,
+        color: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        elevation: 2,
+        shadowColor: Colors.black26,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 0),
       ),
-      // Buttons
+      // Buttons - Purple primary buttons
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: scheme.primary,
-          foregroundColor: scheme.onPrimary,
+          backgroundColor: truecirclePurple,
+          foregroundColor: Colors.white,
           textStyle: const TextStyle(fontWeight: FontWeight.w600),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+          elevation: 2,
         ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: scheme.primary,
+          foregroundColor: truecirclePurple,
           textStyle: const TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
-      iconTheme: IconThemeData(color: scheme.onSurface),
-      // Inputs
+      iconTheme: IconThemeData(color: textBlack87),
+      // Inputs - White background with purple focus
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: scheme.surface,
-        hintStyle: TextStyle(color: scheme.onSurface.withValues(alpha: 0.6)),
-        labelStyle: TextStyle(color: scheme.onSurface),
+        fillColor: Colors.white,
+        hintStyle: TextStyle(color: textBlack87.withValues(alpha: 0.6)),
+        labelStyle: TextStyle(color: textBlack87),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: scheme.outlineVariant),
+          borderSide: BorderSide(color: Colors.grey.shade300),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: scheme.outlineVariant),
+          borderSide: BorderSide(color: Colors.grey.shade300),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide(color: scheme.primary, width: 1.4),
+          borderSide: BorderSide(color: truecirclePurple, width: 1.4),
         ),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 12,
@@ -98,12 +105,12 @@ class AppTheme {
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
-      // Tabs
+      // Tabs - Purple active, blue accent for inactive
       tabBarTheme: TabBarThemeData(
-        labelColor: scheme.primary,
-        unselectedLabelColor: scheme.onSurface.withValues(alpha: 0.7),
-        indicatorColor: scheme.primary,
-        dividerColor: scheme.outlineVariant,
+        labelColor: truecirclePurple,
+        unselectedLabelColor: truecircleBlue.withValues(alpha: 0.7),
+        indicatorColor: truecirclePurple,
+        dividerColor: Colors.grey.shade300,
         labelStyle: const TextStyle(fontWeight: FontWeight.w600),
       ),
       // Dividers
@@ -112,11 +119,11 @@ class AppTheme {
         thickness: 1,
         space: 24,
       ),
-      // ListTiles
+      // ListTiles - Purple icons, black87 text, white background
       listTileTheme: ListTileThemeData(
-        iconColor: scheme.primary,
-        textColor: scheme.onSurface,
-        tileColor: scheme.surface,
+        iconColor: truecirclePurple,
+        textColor: textBlack87,
+        tileColor: Colors.white,
       ),
       // SnackBars
       snackBarTheme: SnackBarThemeData(
@@ -124,10 +131,18 @@ class AppTheme {
         contentTextStyle: TextStyle(color: scheme.onInverseSurface),
         behavior: SnackBarBehavior.floating,
       ),
-      // FAB
+      // FAB - Purple background
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: scheme.primary,
-        foregroundColor: scheme.onPrimary,
+        backgroundColor: truecirclePurple,
+        foregroundColor: Colors.white,
+      ),
+      // Bottom Navigation - Kesari background
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: kesariOrange,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white70,
+        type: BottomNavigationBarType.fixed,
+        elevation: 8,
       ),
     );
   }

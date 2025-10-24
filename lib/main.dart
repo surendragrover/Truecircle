@@ -91,9 +91,8 @@ class _BrandSplashState extends State<_BrandSplash>
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
     return Container(
-      color: scheme.surface,
+      color: const Color(0xFFFF7F7F), // Coral background
       alignment: Alignment.center,
       padding: const EdgeInsets.all(24),
       child: Column(
@@ -106,20 +105,24 @@ class _BrandSplashState extends State<_BrandSplash>
           const SizedBox(height: 12),
           FadeTransition(
             opacity: _fade,
-            child: Text(
+            child: const Text(
               'TrueCircle',
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+              style: TextStyle(
+                fontSize: 24, 
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF6A5ACD), // Purple text for logo
+              ),
             ),
           ),
           const SizedBox(height: 16),
           FadeTransition(
             opacity: _fade,
-            child: SizedBox(
+            child: const SizedBox(
               width: 24,
               height: 24,
               child: CircularProgressIndicator(
                 strokeWidth: 2.2,
-                color: scheme.primary,
+                color: Color(0xFF6A5ACD), // Purple loading indicator
               ),
             ),
           ),
