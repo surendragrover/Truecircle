@@ -4,6 +4,7 @@ import 'core/app_theme.dart';
 import 'onboarding/onboarding_page.dart';
 import 'package:hive/hive.dart';
 import 'auth/phone_verification_page.dart';
+import 'iris/dr_iris_welcome_page.dart';
 import 'root_shell.dart';
 
 Future<void> main() async {
@@ -29,29 +30,35 @@ class TrueCircleApp extends StatelessWidget {
 class _StartupGate extends StatelessWidget {
   const _StartupGate();
 
-  Future<(bool needsOnboarding, bool needsPhone)> _gate() async {
+  Future<(bool needsOnboarding, bool needsPhone, bool needsFirstTimeWelcome)> _gate() async {
     final box = await Hive.openBox('app_prefs');
     final done = box.get('onboarding_done', defaultValue: false) as bool;
     final phone = box.get('phone_verified', defaultValue: false) as bool;
-    return (!done, !phone);
+    final welcomed = box.get('dr_iris_welcomed', defaultValue: false) as bool;
+    return (!done, !phone, !welcomed);
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<(bool, bool)>(
+    return FutureBuilder<(bool, bool, bool)>(
       future: _gate(),
       builder: (context, snap) {
         if (snap.connectionState != ConnectionState.done) {
           return const Scaffold(body: _BrandSplash());
         }
-        final data = snap.data ?? (true, false);
+        final data = snap.data ?? (true, false, true);
         final showOnboarding = data.$1;
         final showPhone = data.$2;
+        final showWelcome = data.$3;
+        
         if (showOnboarding) {
           return const OnboardingPage();
         }
         if (showPhone) {
           return const PhoneVerificationPage();
+        }
+        if (showWelcome) {
+          return const DrIrisWelcomePage(isFirstTime: true);
         }
         return const RootShell();
       },
@@ -108,7 +115,7 @@ class _BrandSplashState extends State<_BrandSplash>
             child: const Text(
               'TrueCircle',
               style: TextStyle(
-                fontSize: 24, 
+                fontSize: 24,
                 fontWeight: FontWeight.w700,
                 color: Color(0xFF6A5ACD), // Purple text for logo
               ),

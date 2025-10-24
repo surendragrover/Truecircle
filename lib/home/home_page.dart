@@ -299,7 +299,7 @@ extension on _HomePageState {
     if (!mounted) return;
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (_) => const DrIrisWelcomePage(autoStartCheckin: true),
+        builder: (_) => const DrIrisWelcomePage(isFirstTime: true),
       ),
     );
   }

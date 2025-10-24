@@ -6,11 +6,17 @@ import 'package:flutter/material.dart';
 /// Apply this in MaterialApp.theme so all current and future pages inherit it.
 class AppTheme {
   // TrueCircle Brand Colors
-  static const Color truecirclePurple = Color(0xFF6A5ACD);    // Purple (logo primary)
-  static const Color truecircleBlue = Color(0xFF4169E1);      // Blue shade (logo accent)
-  static const Color kesariOrange = Color(0xFFFF8C00);        // Kesari/Saffron (AppBar)
-  static const Color coralBackground = Color(0xFFFF7F7F);     // Coral (background)
-  static const Color textBlack87 = Color(0xDD000000);         // Black87 (text)
+  static const Color truecirclePurple = Color(
+    0xFF6A5ACD,
+  ); // Purple (logo primary)
+  static const Color truecircleBlue = Color(
+    0xFF4169E1,
+  ); // Blue shade (logo accent)
+  static const Color kesariOrange = Color(
+    0xFFFF8C00,
+  ); // Kesari/Saffron (AppBar)
+  static const Color coralBackground = Color(0xFFFF7F7F); // Coral (background)
+  static const Color textBlack87 = Color(0xDD000000); // Black87 (text)
 
   static ThemeData light([Color seed = truecirclePurple]) {
     final scheme = ColorScheme.fromSeed(

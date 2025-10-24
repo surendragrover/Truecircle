@@ -44,7 +44,11 @@ class _RootShellState extends State<RootShell> {
               shadowColor: Colors.transparent,
               labelTextStyle: WidgetStateProperty.resolveWith((states) {
                 if (states.contains(WidgetState.selected)) {
-                  return const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600);
+                  return const TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                  );
                 }
                 return const TextStyle(color: Colors.white70, fontSize: 12);
               }),
@@ -55,24 +59,27 @@ class _RootShellState extends State<RootShell> {
             onDestinationSelected: (i) => setState(() => _index = i),
             destinations: const [
               NavigationDestination(
-                icon: Icon(Icons.home_outlined, color: Colors.white70), 
+                icon: Icon(Icons.home_outlined, color: Colors.white70),
                 selectedIcon: Icon(Icons.home, color: Colors.white),
-                label: 'Home'
+                label: 'Home',
               ),
               NavigationDestination(
-                icon: Icon(Icons.hub_outlined, color: Colors.white70), 
+                icon: Icon(Icons.hub_outlined, color: Colors.white70),
                 selectedIcon: Icon(Icons.hub, color: Colors.white),
-                label: 'CBT'
+                label: 'CBT',
               ),
               NavigationDestination(
-                icon: Icon(Icons.psychology_alt_outlined, color: Colors.white70),
+                icon: Icon(
+                  Icons.psychology_alt_outlined,
+                  color: Colors.white70,
+                ),
                 selectedIcon: Icon(Icons.psychology_alt, color: Colors.white),
                 label: 'Dr. Iris',
               ),
               NavigationDestination(
                 icon: Icon(Icons.more_horiz, color: Colors.white70),
                 selectedIcon: Icon(Icons.more_horiz, color: Colors.white),
-                label: 'More'
+                label: 'More',
               ),
             ],
           ),

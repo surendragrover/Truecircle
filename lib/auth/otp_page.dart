@@ -53,7 +53,7 @@ class _OtpPageState extends State<OtpPage> {
       if (!mounted) return;
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => const DrIrisWelcomePage(autoStartCheckin: true),
+          builder: (_) => const DrIrisWelcomePage(isFirstTime: true),
         ),
       );
     } finally {

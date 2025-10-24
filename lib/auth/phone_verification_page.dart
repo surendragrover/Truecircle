@@ -40,7 +40,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
       final box = await Hive.openBox('app_prefs');
       final cc =
           (_selectedCountry ??
-                  (Localizations.localeOf(context).countryCode ?? 'US'))
+                  (mounted ? Localizations.localeOf(context).countryCode : null) ?? 'US')
               .toUpperCase();
       final dial = _dialCodeFor(cc).replaceAll(RegExp(r'[^0-9+]'), '').trim();
       String num = _phoneCtrl.text.trim().replaceAll(RegExp(r'[^0-9+]'), '');
