@@ -14,6 +14,7 @@ import '../legal/privacy_policy_page.dart';
 import '../legal/terms_conditions_page.dart';
 import 'model_roles_page.dart';
 import 'brand_preview_page.dart';
+import '../core/truecircle_app_bar.dart';
 
 class MorePage extends StatelessWidget {
   const MorePage({super.key});
@@ -21,13 +22,12 @@ class MorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: TrueCircleAppBar(
+        title: 'More',
         leading: Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Image.asset('assets/images/truecircle_logo.png', height: 24),
         ),
-        titleSpacing: 0,
-        title: const Text('More'),
       ),
       body: ListView(
         children: [

@@ -11,6 +11,7 @@ import '../cbt/breathing_exercises_page.dart';
 import '../festivals/festivals_page.dart';
 import '../iris/dr_iris_welcome_page.dart';
 import '../auth/phone_verification_page.dart';
+import '../core/truecircle_app_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -43,13 +44,12 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: TrueCircleAppBar(
+        title: 'TrueCircle',
         leading: Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Image.asset('assets/images/truecircle_logo.png', height: 24),
         ),
-        titleSpacing: 0,
-        title: const Text('TrueCircle'),
         actions: [
           IconButton(
             tooltip: 'Immediate Help',

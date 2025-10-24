@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/truecircle_app_bar.dart';
 import 'cbt_micro_lessons_page.dart';
 import 'phq9_page.dart';
 import 'cbt_techniques_page.dart';
@@ -11,7 +12,7 @@ class CBTHubPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('CBT Hub')),
+      appBar: const TrueCircleAppBar(title: 'CBT Hub'),
       body: ListView(
         children: [
           _HubTile(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../core/truecircle_app_bar.dart';
 import 'package:hive/hive.dart';
 import '../emotional_awareness/emotional_awareness_page.dart';
 import '../root_shell.dart';
@@ -30,9 +31,9 @@ class _DrIrisWelcomePageState extends State<DrIrisWelcomePage> {
       final box = await Hive.openBox('app_prefs');
       await box.put('dr_iris_welcomed', true);
     }
-    
+
     if (!mounted) return;
-    
+
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (_) => const EmotionalAwarenessPage()))
         .then((_) {
@@ -49,7 +50,7 @@ class _DrIrisWelcomePageState extends State<DrIrisWelcomePage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: widget.isFirstTime ? null : AppBar(title: const Text('Dr. Iris')),
+      appBar: widget.isFirstTime ? null : const TrueCircleAppBar(title: 'Dr. Iris'),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -173,7 +174,6 @@ class _DrIrisWelcomePageState extends State<DrIrisWelcomePage> {
                 ),
               ),
               const Spacer(),
-
             ],
           ),
         ),
