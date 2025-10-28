@@ -17,11 +17,26 @@ import 'services/app_data_preloader.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Firebase with proper options
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  try {
+    // Initialize Firebase with proper options
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
 
-  // Pass all uncaught "fatal" errors from the framework to Crashlytics
-  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+    // Pass all uncaught "fatal" errors from the framework to Crashlytics
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+  } catch (e) {
+    // Firebase initialization failed - continue without Firebase
+    if (kDebugMode) {
+      debugPrint('Firebase initialization failed: $e');
+    }
+    // Set basic error handler
+    FlutterError.onError = (FlutterErrorDetails details) {
+      if (kDebugMode) {
+        debugPrint('Flutter Error: ${details.exception}');
+      }
+    };
+  }
 
   // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
   PlatformDispatcher.instance.onError = (error, stack) {
@@ -40,8 +55,15 @@ Future<void> main() async {
     );
   };
 
-  // Initialize Hive database
-  await HiveInitializer.init();
+  // Initialize Hive database with error handling
+  try {
+    await HiveInitializer.init();
+  } catch (e) {
+    if (kDebugMode) {
+      debugPrint('Hive initialization failed: $e');
+    }
+    // Continue without Hive - app should still work with limited functionality
+  }
 
   runApp(const TrueCircleApp());
 }
@@ -55,7 +77,7 @@ class TrueCircleApp extends StatelessWidget {
       title: 'TrueCircle - Emotional Wellness Companion',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(),
-      home: const _PreloadingWrapper(),
+      home: const _SafeWrapper(),
       routes: {'/iris/chat': (context) => const DrIrisChatPage()},
 
       // Enhanced Material App Configuration
@@ -66,6 +88,64 @@ class TrueCircleApp extends StatelessWidget {
           ).copyWith(textScaler: const TextScaler.linear(1.0)),
           child: child!,
         );
+      },
+    );
+  }
+}
+
+class _SafeWrapper extends StatelessWidget {
+  const _SafeWrapper();
+
+  @override
+  Widget build(BuildContext context) {
+    return Builder(
+      builder: (context) {
+        try {
+          return const _PreloadingWrapper();
+        } catch (e) {
+          // Emergency fallback UI
+          return Scaffold(
+            backgroundColor: const Color(0xFF6366F1),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.refresh, color: Colors.white, size: 64),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'TrueCircle',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    'Loading...',
+                    style: TextStyle(color: Colors.white70, fontSize: 16),
+                  ),
+                  const SizedBox(height: 32),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Try to restart the app
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (_) => const _PreloadingWrapper(),
+                        ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      foregroundColor: const Color(0xFF6366F1),
+                    ),
+                    child: const Text('Retry'),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
       },
     );
   }
