@@ -55,3 +55,30 @@ jobs:
         echo "- Release APK: Built"
         echo ""
         echo "Ready for deployment!"
+        
+    # Future Firebase Deployment Steps (Commented for Security)
+    # Uncomment and configure secrets when ready for production deployment:
+    #
+    # - name: Deploy to Firebase App Distribution
+    #   uses: wzieba/Firebase-Distribution-Github-Action@v1
+    #   with:
+    #     appId: "1:239213685086:android:f25587f9c1c2b5df1107cf"
+    #     serviceCredentialsFileContent: ${{ secrets.GOOGLE_SERVICES_JSON }}
+    #     groups: testers
+    #     file: build/app/outputs/flutter-apk/app-release.apk
+    #     releaseNotes: |
+    #       TrueCircle App Update
+    #       - Hindi Coin Reward System
+    #       - Firebase Analytics Integration
+    #       - Daily Login Rewards
+    #       - Marketplace Discounts
+    #
+    # - name: Deploy to Firebase Hosting
+    #   uses: FirebaseExtended/action-hosting-deploy@v0
+    #   with:
+    #     repoToken: ${{ secrets.GITHUB_TOKEN }}
+    #     firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+    #     projectId: truecircle-dbcdb
+    #     channelId: live
+    #   env:
+    #     FIREBASE_CLI_EXPERIMENTS: webframeworks

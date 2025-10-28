@@ -14,10 +14,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-        // Suppress obsolete Java version warnings from Firebase plugins
-        tasks.withType<JavaCompile> {
-            options.compilerArgs.addAll(listOf("-Xlint:-options", "-Xlint:-deprecation"))
-        }
     }
 
     kotlinOptions {
@@ -75,4 +71,9 @@ dependencies {
     // Optional support library (commented to keep minimal);
     // uncomment if you later parse metadata or use support tasks
     // implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
+}
+
+// Suppress Java compilation warnings for Firebase plugins
+tasks.withType<JavaCompile> {
+    options.compilerArgs.addAll(listOf("-Xlint:-options", "-Xlint:-deprecation", "-Xlint:-unchecked"))
 }
