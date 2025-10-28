@@ -1,15 +1,36 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'core/hive_initializer.dart';
 import 'core/app_theme.dart';
+import 'core/preloading_splash_screen.dart';
 import 'onboarding/onboarding_page.dart';
 import 'package:hive/hive.dart';
 import 'auth/phone_verification_page.dart';
 import 'iris/dr_iris_welcome_page.dart';
+import 'iris/dr_iris_chat_page.dart';
 import 'root_shell.dart';
+import 'services/app_data_preloader.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase
+  await Firebase.initializeApp();
+
+  // Pass all uncaught "fatal" errors from the framework to Crashlytics
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+
+  // Initialize Hive database
   await HiveInitializer.init();
+
   runApp(const TrueCircleApp());
 }
 
@@ -19,11 +40,66 @@ class TrueCircleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'TrueCircle',
+      title: 'TrueCircle - Emotional Wellness Companion',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(),
-      home: const _StartupGate(),
+      home: const _PreloadingWrapper(),
+      routes: {'/iris/chat': (context) => const DrIrisChatPage()},
+
+      // Enhanced Material App Configuration
+      builder: (context, child) {
+        return MediaQuery(
+          data: MediaQuery.of(
+            context,
+          ).copyWith(textScaler: const TextScaler.linear(1.0)),
+          child: child!,
+        );
+      },
     );
+  }
+}
+
+class _PreloadingWrapper extends StatefulWidget {
+  const _PreloadingWrapper();
+
+  @override
+  State<_PreloadingWrapper> createState() => _PreloadingWrapperState();
+}
+
+class _PreloadingWrapperState extends State<_PreloadingWrapper> {
+  bool _isPreloading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _preloadData();
+  }
+
+  Future<void> _preloadData() async {
+    try {
+      // Preload all JSON data for instant feature access
+      await AppDataPreloader.instance.preloadAllData();
+
+      // Keep splash minimal to reduce perceived startup delay
+      await Future.delayed(const Duration(milliseconds: 300));
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('Error during preloading: $e');
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isPreloading = false;
+        });
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _isPreloading
+        ? const PreloadingSplashScreen()
+        : const _StartupGate();
   }
 }
 
@@ -100,7 +176,17 @@ class _BrandSplashState extends State<_BrandSplash>
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFFFF7F7F), // Coral background
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFF6366F1), // Primary TrueCircle
+            Color(0xFF14B8A6), // Joyful Teal
+            Color(0xFF8B5CF6), // Hope Purple
+          ],
+        ),
+      ),
       alignment: Alignment.center,
       padding: const EdgeInsets.all(24),
       child: Column(
@@ -108,7 +194,7 @@ class _BrandSplashState extends State<_BrandSplash>
         children: [
           ScaleTransition(
             scale: _scale,
-            child: Image.asset('assets/images/truecircle_logo.png', height: 88),
+            child: Image.asset('assets/images/TrueCircle-Logo.png', height: 88),
           ),
           const SizedBox(height: 12),
           FadeTransition(
@@ -118,7 +204,7 @@ class _BrandSplashState extends State<_BrandSplash>
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF6A5ACD), // Purple text for logo
+                color: Colors.white, // White text on gradient
               ),
             ),
           ),
@@ -130,7 +216,7 @@ class _BrandSplashState extends State<_BrandSplash>
               height: 24,
               child: CircularProgressIndicator(
                 strokeWidth: 2.2,
-                color: Color(0xFF6A5ACD), // Purple loading indicator
+                color: Colors.white, // White loading indicator
               ),
             ),
           ),

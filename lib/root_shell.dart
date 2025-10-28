@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 import 'home/home_page.dart';
 import 'cbt/cbt_hub_page.dart';
 import 'iris/dr_iris_welcome_page.dart';
 import 'more/more_page.dart';
+import 'widgets/coin_display_widget.dart';
 
 class RootShell extends StatefulWidget {
   const RootShell({super.key});
@@ -23,67 +25,151 @@ class _RootShellState extends State<RootShell> {
       const MorePage(),
     ];
     return Scaffold(
-      body: IndexedStack(index: _index, children: pages),
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          color: Color(0xFFFF8C00), // Kesari color
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 8,
-              offset: Offset(0, -2),
-            ),
-          ],
-        ),
-        child: Theme(
-          data: Theme.of(context).copyWith(
-            navigationBarTheme: NavigationBarThemeData(
-              backgroundColor: Colors.transparent,
-              indicatorColor: Colors.white24,
-              surfaceTintColor: Colors.transparent,
-              shadowColor: Colors.transparent,
-              labelTextStyle: WidgetStateProperty.resolveWith((states) {
-                if (states.contains(WidgetState.selected)) {
-                  return const TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                  );
-                }
-                return const TextStyle(color: Colors.white70, fontSize: 12);
-              }),
-            ),
-          ),
-          child: NavigationBar(
-            selectedIndex: _index,
-            onDestinationSelected: (i) => setState(() => _index = i),
-            destinations: const [
-              NavigationDestination(
-                icon: Icon(Icons.home_outlined, color: Colors.white70),
-                selectedIcon: Icon(Icons.home, color: Colors.white),
-                label: 'Home',
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.hub_outlined, color: Colors.white70),
-                selectedIcon: Icon(Icons.hub, color: Colors.white),
-                label: 'CBT',
-              ),
-              NavigationDestination(
-                icon: Icon(
-                  Icons.psychology_alt_outlined,
-                  color: Colors.white70,
+      body: Stack(
+        children: [
+          IndexedStack(index: _index, children: pages),
+          // Daily login reward checker
+          const DailyLoginChecker(userId: 'default_user'),
+        ],
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.85),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: Theme.of(context).primaryColor.withValues(alpha: 0.15),
                 ),
-                selectedIcon: Icon(Icons.psychology_alt, color: Colors.white),
-                label: 'Dr. Iris',
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withValues(alpha: 0.06),
+                    blurRadius: 16,
+                    offset: const Offset(0, 6),
+                  ),
+                ],
               ),
-              NavigationDestination(
-                icon: Icon(Icons.more_horiz, color: Colors.white70),
-                selectedIcon: Icon(Icons.more_horiz, color: Colors.white),
-                label: 'More',
+              child: NavigationBar(
+                height: 64,
+                labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
+                selectedIndex: _index,
+                onDestinationSelected: (i) => setState(() => _index = i),
+                backgroundColor: Colors.transparent,
+                indicatorColor: Colors.white,
+                destinations: [
+                  NavigationDestination(
+                    icon: Icon(
+                      Icons.home_outlined,
+                      color: Colors.grey.shade600,
+                    ),
+                    selectedIcon: _GradientIcon(Icons.home),
+                    label: 'Home',
+                  ),
+                  NavigationDestination(
+                    icon: Icon(
+                      Icons.psychology_outlined,
+                      color: Colors.grey.shade600,
+                    ),
+                    selectedIcon: _GradientIcon(Icons.psychology),
+                    label: 'CBT',
+                  ),
+                  NavigationDestination(
+                    icon: Container(
+                      width: 24,
+                      height: 24,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.grey.shade600,
+                          width: 1,
+                        ),
+                      ),
+                      child: ClipOval(
+                        child: Image.asset(
+                          'assets/images/avatar.png',
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Icon(
+                              Icons.smart_toy_outlined,
+                              color: Colors.grey.shade600,
+                              size: 16,
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    selectedIcon: Container(
+                      width: 24,
+                      height: 24,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: const LinearGradient(
+                          colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                        ),
+                        border: Border.all(color: Colors.white, width: 2),
+                      ),
+                      child: ClipOval(
+                        child: Image.asset(
+                          'assets/images/avatar.png',
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Icon(
+                              Icons.smart_toy,
+                              color: Colors.white,
+                              size: 16,
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    label: 'Dr. Iris',
+                  ),
+                  NavigationDestination(
+                    icon: Icon(Icons.menu, color: Colors.grey.shade600),
+                    selectedIcon: _GradientIcon(Icons.menu),
+                    label: 'More',
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _GradientIcon extends StatelessWidget {
+  final IconData icon;
+  const _GradientIcon(this.icon);
+
+  @override
+  Widget build(BuildContext context) {
+    const colors = <Color>[
+      Color(0xFFEF4444),
+      Color(0xFFF59E0B),
+      Color(0xFF10B981),
+      Color(0xFF3B82F6),
+      Color(0xFF8B5CF6),
+      Color(0xFFEC4899),
+    ];
+    return ShaderMask(
+      shaderCallback: (Rect bounds) {
+        return const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: colors,
+        ).createShader(bounds);
+      },
+      blendMode: BlendMode.srcIn,
+      child: SizedBox(
+        width: 24,
+        height: 24,
+        child: Icon(icon, color: Colors.white, size: 24),
       ),
     );
   }

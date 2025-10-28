@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import '../models/cbt_micro_lesson.dart';
+import 'app_data_preloader.dart';
 
 class JsonDataService {
   JsonDataService._();
@@ -14,18 +16,42 @@ class JsonDataService {
     if (_cachedLessons != null) return _cachedLessons!;
 
     try {
-      // Note: Ensure this asset is added to pubspec.yaml under assets.
-      // Example:
-      // assets:
-      //   - data/CBT_Micro_Lessons_en.json
+      // Use preloaded data if available
+      if (AppDataPreloader.instance.isPreloaded) {
+        final preloadedData = AppDataPreloader.instance.getCBTMicroLessons();
+        final list = preloadedData
+            .map((e) => CBTMicroLesson.fromJson(e as Map<String, dynamic>))
+            .toList();
+        _cachedLessons = list;
+        return list;
+      }
+
+      // Fallback to direct loading
       final raw = await rootBundle.loadString('data/CBT_Micro_Lessons_en.json');
       final decoded = json.decode(raw);
-      final list = (decoded as List)
-          .map((e) => CBTMicroLesson.fromJson(e as Map<String, dynamic>))
-          .toList();
-      _cachedLessons = list;
-      return list;
-    } catch (_) {
+
+      // Safe type checking for CBT lessons
+      if (decoded is List) {
+        final list = decoded
+            .map((e) => CBTMicroLesson.fromJson(e as Map<String, dynamic>))
+            .toList();
+        _cachedLessons = list;
+        return list;
+      } else if (decoded is Map<String, dynamic>) {
+        final lessons = decoded['lessons'] ?? decoded['data'] ?? [];
+        if (lessons is List) {
+          final list = lessons
+              .map((e) => CBTMicroLesson.fromJson(e as Map<String, dynamic>))
+              .toList();
+          _cachedLessons = list;
+          return list;
+        }
+      }
+
+      _cachedLessons = const [];
+      return _cachedLessons!;
+    } catch (e) {
+      debugPrint('Error loading CBT lessons: $e');
       // Fail-safe: return empty list if asset missing or invalid.
       _cachedLessons = const [];
       return _cachedLessons!;
@@ -34,12 +60,32 @@ class JsonDataService {
 
   Future<List<Map<String, dynamic>>> getBreathingSessions() async {
     try {
+      // Use preloaded data if available
+      if (AppDataPreloader.instance.isPreloaded) {
+        return AppDataPreloader.instance
+            .getBreathingExercises()
+            .cast<Map<String, dynamic>>();
+      }
+
+      // Fallback to direct loading
       final raw = await rootBundle.loadString(
         'data/Breathing_+Exercises_Demo_Data.json',
       );
       final decoded = json.decode(raw);
-      return (decoded as List).cast<Map<String, dynamic>>();
-    } catch (_) {
+
+      // Safe type checking
+      if (decoded is List) {
+        return decoded.cast<Map<String, dynamic>>();
+      } else if (decoded is Map<String, dynamic>) {
+        final exercises = decoded['exercises'] ?? decoded['data'] ?? [];
+        if (exercises is List) {
+          return exercises.cast<Map<String, dynamic>>();
+        }
+      }
+
+      return const [];
+    } catch (e) {
+      debugPrint('Error loading breathing exercises: $e');
       return const [];
     }
   }
@@ -50,8 +96,21 @@ class JsonDataService {
         'data/Mood_Journal_Demo_Data.json',
       );
       final decoded = json.decode(raw);
-      return (decoded as List).cast<Map<String, dynamic>>();
-    } catch (_) {
+
+      // Safe type checking and casting
+      if (decoded is List) {
+        return decoded.cast<Map<String, dynamic>>();
+      } else if (decoded is Map<String, dynamic>) {
+        // If it's wrapped in an object, try to extract array
+        final entries = decoded['entries'] ?? decoded['data'] ?? [];
+        if (entries is List) {
+          return entries.cast<Map<String, dynamic>>();
+        }
+      }
+
+      return const [];
+    } catch (e) {
+      debugPrint('Error loading mood journal entries: $e');
       return const [];
     }
   }
@@ -137,20 +196,62 @@ class JsonDataService {
 
   Future<List<String>> getCbtTechniques() async {
     try {
+      // Use preloaded data if available
+      if (AppDataPreloader.instance.isPreloaded) {
+        return AppDataPreloader.instance
+            .getCBTTechniques()
+            .map((e) => e.toString())
+            .toList();
+      }
+
+      // Fallback to direct loading
       final raw = await rootBundle.loadString('assets/CBT_Techniques_En.json');
-      final decoded = json.decode(raw) as List;
-      return decoded.map((e) => e.toString()).toList(growable: false);
-    } catch (_) {
+      final decoded = json.decode(raw);
+
+      // Safe type checking for CBT techniques
+      if (decoded is List) {
+        return decoded.map((e) => e.toString()).toList(growable: false);
+      } else if (decoded is Map<String, dynamic>) {
+        final techniques = decoded['techniques'] ?? decoded['data'] ?? [];
+        if (techniques is List) {
+          return techniques.map((e) => e.toString()).toList(growable: false);
+        }
+      }
+
+      return const [];
+    } catch (e) {
+      debugPrint('Error loading CBT techniques: $e');
       return const [];
     }
   }
 
   Future<List<String>> getCbtThoughts() async {
     try {
+      // Use preloaded data if available
+      if (AppDataPreloader.instance.isPreloaded) {
+        return AppDataPreloader.instance
+            .getCBTThoughts()
+            .map((e) => e.toString())
+            .toList();
+      }
+
+      // Fallback to direct loading
       final raw = await rootBundle.loadString('assets/CBT_Thoughts_En.json');
-      final decoded = json.decode(raw) as List;
-      return decoded.map((e) => e.toString()).toList(growable: false);
-    } catch (_) {
+      final decoded = json.decode(raw);
+
+      // Safe type checking for CBT thoughts
+      if (decoded is List) {
+        return decoded.map((e) => e.toString()).toList(growable: false);
+      } else if (decoded is Map<String, dynamic>) {
+        final thoughts = decoded['thoughts'] ?? decoded['data'] ?? [];
+        if (thoughts is List) {
+          return thoughts.map((e) => e.toString()).toList(growable: false);
+        }
+      }
+
+      return const [];
+    } catch (e) {
+      debugPrint('Error loading CBT thoughts: $e');
       return const [];
     }
   }
@@ -158,13 +259,39 @@ class JsonDataService {
   Future<List<String>> getCopingCards() async {
     if (_cachedCopingCards != null) return _cachedCopingCards!;
     try {
+      // Use preloaded data if available
+      if (AppDataPreloader.instance.isPreloaded) {
+        _cachedCopingCards = AppDataPreloader.instance
+            .getCopingCards()
+            .map((e) => e.toString())
+            .toList();
+        return _cachedCopingCards!;
+      }
+
+      // Fallback to direct loading
       final raw = await rootBundle.loadString('assets/Coping_cards_En.json');
-      final decoded = json.decode(raw) as List;
-      _cachedCopingCards = decoded
-          .map((e) => e.toString())
-          .toList(growable: false);
+      final decoded = json.decode(raw);
+
+      // Safe type checking for coping cards
+      if (decoded is List) {
+        _cachedCopingCards = decoded
+            .map((e) => e.toString())
+            .toList(growable: false);
+        return _cachedCopingCards!;
+      } else if (decoded is Map<String, dynamic>) {
+        final cards = decoded['cards'] ?? decoded['data'] ?? [];
+        if (cards is List) {
+          _cachedCopingCards = cards
+              .map((e) => e.toString())
+              .toList(growable: false);
+          return _cachedCopingCards!;
+        }
+      }
+
+      _cachedCopingCards = const [];
       return _cachedCopingCards!;
-    } catch (_) {
+    } catch (e) {
+      debugPrint('Error loading coping cards: $e');
       _cachedCopingCards = const [];
       return _cachedCopingCards!;
     }
@@ -265,7 +392,7 @@ class JsonDataService {
     }
     try {
       final raw = await rootBundle.loadString(
-        'TC/assets/Emotional_Awareness.JSON',
+        'assets/Emotional_Awareness.JSON',
       );
       final decoded = json.decode(raw) as Map<String, dynamic>;
       final cats =

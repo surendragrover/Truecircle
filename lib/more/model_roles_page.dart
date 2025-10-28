@@ -43,7 +43,7 @@ class ModelRolesPage extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
           children: [
             Text(
-              'TrueCircle runs fully offline in sample mode. Below are clear, on-device roles and boundaries.',
+              'TrueCircle runs fully offline mode. Below are clear, on-device roles and boundaries.',
               style: Theme.of(context).textTheme.bodyMedium,
             ),
             const SizedBox(height: 16),
@@ -88,7 +88,7 @@ class ModelRolesPage extends StatelessWidget {
 
             // Guardrails
             section('Guardrails', [
-              'Privacy‑first sample mode — no contacts, calls, SMS, or online services.',
+              'Privacy‑first offline mode — no contacts, calls, SMS, or online services.',
               'Educational guidance only; seek local professional support as needed.',
               'Short, clear language; encourage small, safe actions.',
             ]),

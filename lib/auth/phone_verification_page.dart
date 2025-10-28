@@ -3,8 +3,8 @@ import 'package:hive/hive.dart';
 import 'services/otp_service.dart';
 import '../core/permission_manager.dart';
 import '../core/app_config.dart';
-import '../home/home_page.dart';
 import '../core/truecircle_app_bar.dart';
+import '../iris/dr_iris_welcome_page.dart';
 
 class PhoneVerificationPage extends StatefulWidget {
   final bool returnResult; // if true, Navigator.pop(true) on success
@@ -31,7 +31,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
       final otp = OtpService.create();
       final ok = await otp.verifyCode(code);
       if (!ok) {
-        final msg = PermissionManager.isSampleMode || AppConfig.useOfflineOtp
+        final msg = PermissionManager.isOfflineMode || AppConfig.useOfflineOtp
             ? 'Enter 000000 to continue.'
             : 'Invalid code. OTP via Firebase is disabled in this build.';
         setState(() => _error = msg);
@@ -58,8 +58,11 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
       if (widget.returnResult) {
         Navigator.of(context).pop(true);
       } else {
+        // Navigate to Dr. Iris welcome page after phone verification
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (_) => const HomePage()),
+          MaterialPageRoute(
+            builder: (_) => const DrIrisWelcomePage(isFirstTime: true),
+          ),
           (route) => false,
         );
       }
@@ -101,7 +104,7 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
         title: 'Phone verification',
         leading: Padding(
           padding: const EdgeInsets.only(left: 8.0),
-          child: Image.asset('assets/images/truecircle_logo.png', height: 24),
+          child: Image.asset('assets/images/TrueCircle-Logo.png', height: 24),
         ),
       ),
       body: SafeArea(

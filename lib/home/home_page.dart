@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import '../services/json_data_service.dart';
-import '../core/permission_manager.dart';
-import '../safety/immediate_help_page.dart';
-import '../safety/safety_plan_page.dart';
-import '../cbt/cbt_hub_page.dart';
-import '../marketplace/marketplace_page.dart';
-import '../rewards/rewards_page.dart';
-import '../cbt/breathing_exercises_page.dart';
-import '../festivals/festivals_page.dart';
-import '../iris/dr_iris_welcome_page.dart';
-import '../auth/phone_verification_page.dart';
 import '../core/truecircle_app_bar.dart';
+import '../core/data_visualizations.dart';
+import '../core/loading_animations.dart';
+import '../models/user_profile.dart';
+import '../services/integration_service.dart';
+import 'widgets/welcome_header_widget.dart';
+import 'widgets/quick_actions_widget.dart';
+import 'widgets/feature_cards_widget.dart';
+import 'widgets/daily_stats_widget.dart';
+import 'widgets/mood_tracker_widget.dart';
+import 'widgets/inspirational_quote_widget.dart';
+import 'widgets/cbt_hub_widget.dart';
+import 'widgets/sleep_tracker_widget.dart';
+import 'widgets/festival_reminder_widget.dart';
+import 'widgets/breathing_exercises_widget.dart';
+import 'widgets/psychology_articles_widget.dart';
+import 'widgets/mood_journal_widget.dart';
+import 'widgets/meditation_guide_widget.dart';
+import 'widgets/dr_iris_assistant_widget.dart';
 
+/// Main Home Page - Ultimate Professional Dashboard with Analytics
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -21,333 +28,198 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Map<String, String>? _festival;
+  final TrueCircleIntegrationService _integrationService =
+      TrueCircleIntegrationService.instance;
+  DashboardData? _dashboardData;
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
-    // Defer any I/O until after first frame to keep opening snappy
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _prewarm();
-      _loadFestival();
-    });
+    _loadDashboardData();
   }
 
-  Future<void> _loadFestival() async {
-    final brief = await JsonDataService.instance.getNextFestivalBrief(
-      DateTime.now(),
-    );
-    if (!mounted) return;
-    setState(() => _festival = brief);
+  Future<void> _loadDashboardData() async {
+    setState(() => _isLoading = true);
+
+    try {
+      final data = await _integrationService.getUltimateDashboardData(
+        userId: 'demo_user', // Will be replaced with actual user ID
+      );
+      setState(() {
+        _dashboardData = data;
+        _isLoading = false;
+      });
+    } catch (e) {
+      setState(() => _isLoading = false);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TrueCircleAppBar(
-        title: 'TrueCircle',
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Image.asset('assets/images/truecircle_logo.png', height: 24),
-        ),
-        actions: [
-          IconButton(
-            tooltip: 'Immediate Help',
-            icon: const Icon(Icons.emergency_share_outlined),
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const ImmediateHelpPage()),
-              );
-            },
+      appBar: const TrueCircleAppBar(title: 'TrueCircle'),
+      body: SafeArea(
+        child: _isLoading ? _buildLoadingState() : _buildDashboard(),
+      ),
+    );
+  }
+
+  Widget _buildLoadingState() {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TrueCircleLoadings.breathingLoader(),
+          const SizedBox(height: 24),
+          const Text(
+            'Loading your wellness dashboard...',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           ),
         ],
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              PermissionManager.buildSampleModeBanner(),
-              const SizedBox(height: 8),
-              // Brand header with logo
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('assets/images/truecircle_logo.png', height: 40),
-                  const SizedBox(width: 10),
-                  const Text(
-                    'TrueCircle',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                  ),
-                ],
-              ),
-              if (_festival != null) ...[
-                const SizedBox(height: 12),
-                _FestivalBanner(brief: _festival!),
-              ],
-              const SizedBox(height: 16),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Quick actions',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Wrap(
-                alignment: WrapAlignment.center,
-                spacing: 8,
-                runSpacing: 8,
-                children: [
-                  ElevatedButton.icon(
-                    onPressed: _startGuidedJourney,
-                    icon: const Icon(Icons.route_outlined),
-                    label: const Text('Start Journey'),
-                  ),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => const DrIrisWelcomePage(),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.psychology_alt_outlined),
-                    label: const Text('Dr. Iris'),
-                  ),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => const ImmediateHelpPage(),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.health_and_safety_outlined),
-                    label: const Text('Immediate Help'),
-                  ),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => const SafetyPlanPage(),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.fact_check_outlined),
-                    label: const Text('Safety Plan'),
-                  ),
-                  ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => const EmotionalCheckinPage(),
-                        ),
-                      );
-                    },
-                    icon: const Icon(Icons.emoji_emotions_outlined),
-                    label: const Text('Emotional Check‑in'),
-                  ),
-                ],
-              ),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Text(
-                    'Explore more from the More tab',
-                    style: TextStyle(color: Theme.of(context).hintColor),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'CBT Hub',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      Wrap(
-                        spacing: 8,
-                        runSpacing: 8,
-                        children: [
-                          ElevatedButton.icon(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (_) => const CBTHubPage(),
-                                ),
-                              );
-                            },
-                            icon: const Icon(Icons.hub_outlined),
-                            label: const Text('Open CBT Hub'),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'Coming soon: Assessments (PHQ-9, GAD-7), Journaling',
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-              // Marketplace section (after CBT Hub)
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Marketplace',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => const MarketplacePage(),
-                            ),
-                          );
-                        },
-                        icon: const Icon(Icons.storefront_outlined),
-                        label: const Text('Open Marketplace'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 12),
-              // Rewards section (after Marketplace)
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Rewards',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (_) => const RewardsPage(),
-                            ),
-                          );
-                        },
-                        icon: const Icon(Icons.emoji_events_outlined),
-                        label: const Text('View Rewards'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
-}
 
-extension on _HomePageState {
-  Future<void> _prewarm() async {
-    // Pre-open lightweight Hive box to reduce first-use latency
-    try {
-      await Hive.openBox('app_prefs');
-    } catch (_) {
-      // ignore
-    }
-  }
-
-  Future<void> _startGuidedJourney() async {
-    // 1) Ensure phone verification (offline sample). If not verified, ask and wait.
-    final box = await Hive.openBox('app_prefs');
-    final verified = box.get('phone_verified', defaultValue: false) as bool;
-    if (!verified) {
-      if (!mounted) return;
-      final ok = await Navigator.of(context).push<bool>(
-        MaterialPageRoute(
-          builder: (_) => const PhoneVerificationPage(returnResult: true),
+  Widget _buildDashboard() {
+    return RefreshIndicator(
+      onRefresh: _loadDashboardData,
+      child: SingleChildScrollView(
+        // Keep generous top/side padding, no bottom padding to avoid gap
+        padding: EdgeInsets.fromLTRB(
+          20,
+          20,
+          20,
+          MediaQuery.of(context).viewInsets.bottom,
         ),
-      );
-      if (ok != true) return; // user backed out
-    }
-
-    // 2) Go to Dr. Iris Welcome with auto check-in, then it will return to Home
-    if (!mounted) return;
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => const DrIrisWelcomePage(isFirstTime: true),
-      ),
-    );
-  }
-}
-
-class _FestivalBanner extends StatelessWidget {
-  final Map<String, String> brief;
-  const _FestivalBanner({required this.brief});
-
-  @override
-  Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    final name = brief['name'] ?? 'Festival';
-    final month = brief['month'] ?? '';
-    final type = brief['type'] ?? '';
-    return Card(
-      color: scheme.primaryContainer.withValues(alpha: 0.35),
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(Icons.celebration_outlined, color: scheme.primary),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Upcoming: $name',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: scheme.onPrimaryContainer,
-                    ),
-                  ),
-                  Text('$month • $type'),
-                ],
+            // Welcome Header with animations
+            const WelcomeHeaderWidget(),
+            const SizedBox(height: 12),
+            // (Removed session-language chip to avoid any language mentions in default UI)
+
+            // Wellness Score Card - Ultimate professional design
+            if (_dashboardData != null)
+              TrueCircleVisualizations.wellnessScoreCard(
+                score: _dashboardData!.wellnessScore,
+                trend: _dashboardData!.wellnessTrend,
+                primaryColor: Theme.of(context).colorScheme.primary,
               ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const FestivalsPage()),
-                );
-              },
-              child: const Text('View'),
-            ),
+            const SizedBox(height: 24),
+
+            // Quick Actions
+            const QuickActionsWidget(),
+            const SizedBox(height: 24),
+
+            // Daily Stats
+            const DailyStatsWidget(),
+            const SizedBox(height: 24),
+
+            // Mood Tracker
+            const MoodTrackerWidget(),
+            const SizedBox(height: 24),
+
+            // Mood Frequency Chart - Professional analytics with responsive height
+            if (_dashboardData != null)
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final screenHeight = MediaQuery.of(context).size.height;
+                  final chartHeight = (screenHeight * 0.15).clamp(120.0, 140.0);
+
+                  return Card(
+                    elevation: 2,
+                    margin: const EdgeInsets.symmetric(vertical: 8),
+                    child: Container(
+                      height: chartHeight,
+                      padding: const EdgeInsets.all(8),
+                      child: TrueCircleVisualizations.moodFrequencyChart(
+                        emotionFrequency: _dashboardData!.emotionFrequency,
+                        height: chartHeight - 16, // Account for padding
+                      ),
+                    ),
+                  );
+                },
+              ),
+            const SizedBox(height: 16),
+
+            // Dr. Iris AI Assistant - Top Priority
+            const DrIrisAssistantWidget(),
+            const SizedBox(height: 16),
+
+            // CBT Hub - All CBT features in one place (WITHOUT sleep tracker)
+            const CBTHubWidget(),
+            const SizedBox(height: 16),
+
+            // Mood Journal
+            const MoodJournalWidget(),
+            const SizedBox(height: 16),
+
+            // Meditation Guide
+            const MeditationGuideWidget(),
+            const SizedBox(height: 16),
+
+            // Breathing Exercises
+            const BreathingExercisesWidget(),
+            const SizedBox(height: 16),
+
+            // Sleep Tracker (Separate from CBT)
+            const SleepTrackerWidget(),
+            const SizedBox(height: 8),
+
+            // Psychology Articles
+            const PsychologyArticlesWidget(),
+            const SizedBox(height: 24),
+
+            // Weekly Trend Graph
+            if (_dashboardData != null)
+              TrueCircleVisualizations.weeklyTrendGraph(
+                weeklyTrends: _dashboardData!.weeklyTrends,
+                height: 150,
+              ),
+            const SizedBox(height: 24),
+
+            // Festival Reminders
+            const FestivalReminderWidget(),
+            const SizedBox(height: 24),
+
+            // Inspirational Quote
+            const InspirationalQuoteWidget(),
+            const SizedBox(height: 24),
+
+            // Feature Usage Stats - Professional insights
+            if (_dashboardData != null)
+              TrueCircleVisualizations.featureUsageStats(
+                featureUsage: _dashboardData!.featureUsage,
+              ),
+            const SizedBox(height: 24),
+
+            // AI Insights List
+            if (_dashboardData != null && _dashboardData!.insights.isNotEmpty)
+              TrueCircleVisualizations.insightsList(
+                insights: _dashboardData!.insights,
+                onInsightTap: _handleInsightTap,
+              ),
+            const SizedBox(height: 24),
+
+            // Feature Cards
+            const FeatureCardsWidget(),
+
+            // Bottom padding to prevent overflow
+            SizedBox(height: MediaQuery.of(context).padding.bottom + 20),
           ],
         ),
+      ),
+    );
+  }
+
+  void _handleInsightTap(WellnessInsight insight) {
+    // Will implement insight detail page navigation
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Opening insight: ${insight.title}'),
+        behavior: SnackBarBehavior.floating,
       ),
     );
   }

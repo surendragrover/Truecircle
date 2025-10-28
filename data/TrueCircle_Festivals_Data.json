@@ -582,6 +582,512 @@
         "What gifts did you get?",
         "What's your favorite Christmas tradition?"
       ]
+    },
+    {
+      "id": "lunar_new_year",
+      "name": "Lunar New Year",
+      "type": "major",
+      "regions": ["China", "Hong Kong", "Taiwan", "Singapore", "Malaysia", "Vietnam", "Korea"],
+      "month": "February",
+      "description": "New Year on the lunar calendar with family reunions, red envelopes, and lion/dragon dances.",
+      "greetingMessages": {
+        "formal": "Happy Lunar New Year!",
+        "casual": "Happy Lunar New Year! 🧧",
+        "family": "Wishing you prosperity and good health this Lunar New Year."
+      },
+      "culturalTips": [
+        "🧧 Red envelopes and family dinners are common.",
+        "🎆 Fireworks and lion/dragon dances mark celebrations.",
+        "🍊 Oranges/tangerines symbolize luck."
+      ],
+      "conversationStarters": [
+        "How did your family celebrate Lunar New Year?",
+        "Did you exchange red envelopes?",
+        "What traditional dishes did you have?"
+      ]
+    },
+    {
+      "id": "mid_autumn_festival",
+      "name": "Mid‑Autumn Festival",
+      "type": "major",
+      "regions": ["China", "Taiwan", "Vietnam", "Singapore", "Malaysia"],
+      "month": "September",
+      "description": "Harvest moon festival featuring mooncakes and lanterns.",
+      "greetingMessages": {
+        "formal": "Happy Mid‑Autumn Festival!",
+        "casual": "Happy Mid‑Autumn! 🟡",
+        "family": "Wishing you a bright moon and family togetherness."
+      },
+      "culturalTips": [
+        "🥮 Mooncakes are shared with family and friends.",
+        "🏮 Lantern walks are common in many cities.",
+        "🌕 It’s about reunion and gratitude."
+      ],
+      "conversationStarters": [
+        "Do you have a favorite mooncake flavor?",
+        "Did you attend any lantern events?",
+        "How does your family mark the day?"
+      ]
+    },
+    {
+      "id": "dragon_boat_festival",
+      "name": "Dragon Boat Festival",
+      "type": "cultural",
+      "regions": ["China", "Hong Kong", "Taiwan", "Singapore", "Malaysia"],
+      "month": "June",
+      "description": "Commemorated with dragon boat races and sticky rice dumplings (zongzi).",
+      "greetingMessages": {
+        "formal": "Happy Dragon Boat Festival!",
+        "casual": "Dragon Boat Fest! 🚣",
+        "family": "Wishing you a joyful Dragon Boat Festival."
+      },
+      "culturalTips": [
+        "🚣 Dragon boat races are the highlight.",
+        "🍙 Zongzi (sticky rice dumplings) are traditional.",
+        "🧧 Community gatherings are common."
+      ],
+      "conversationStarters": [
+        "Did you watch any races?",
+        "What zongzi fillings do you like?",
+        "Any local events near you?"
+      ]
+    },
+    {
+      "id": "songkran",
+      "name": "Songkran (Thai New Year)",
+      "type": "major",
+      "regions": ["Thailand"],
+      "month": "April",
+      "description": "Thai New Year known for water‑splashing, temple visits, and family blessings.",
+      "greetingMessages": {
+        "formal": "Happy Songkran!",
+        "casual": "Songkran sa was dee! 💦",
+        "family": "Wishing you a refreshing and blessed Songkran."
+      },
+      "culturalTips": [
+        "💦 Water splashing symbolizes cleansing and renewal.",
+        "🙏 Paying respect to elders and visiting temples is common.",
+        "🍜 Street food and parades are part of the joy."
+      ],
+      "conversationStarters": [
+        "Did you join any water‑splash events?",
+        "Did you visit a temple with family?",
+        "What’s your favorite Songkran memory?"
+      ]
+    },
+    {
+      "id": "nowruz",
+      "name": "Nowruz (Persian New Year)",
+      "type": "major",
+      "regions": ["Iran", "Afghanistan", "Tajikistan", "Kurdish regions"],
+      "month": "March",
+      "description": "Spring equinox new year with the Haft‑Seen table and family gatherings.",
+      "greetingMessages": {
+        "formal": "Happy Nowruz!",
+        "casual": "Nowruz Mobarak! 🌿",
+        "family": "Wishing you a fresh start and prosperity this Nowruz."
+      },
+      "culturalTips": [
+        "🪴 Haft‑Seen table items symbolize renewal and luck.",
+        "👨‍👩‍👧‍👦 Family meals and visits are central.",
+        "🎉 Community festivities vary by region."
+      ],
+      "conversationStarters": [
+        "Did you set up a Haft‑Seen this year?",
+        "What dishes are traditional in your family?",
+        "How do you usually celebrate Nowruz?"
+      ]
+    },
+    {
+      "id": "eid_al_adha",
+      "name": "Eid al‑Adha",
+      "type": "major",
+      "regions": ["Worldwide"],
+      "month": "June",
+      "description": "Festival of sacrifice marking the culmination of Hajj.",
+      "greetingMessages": {
+        "formal": "Eid Mubarak!",
+        "casual": "Eid Mubarak! 🌙",
+        "family": "Wishing you a blessed Eid al‑Adha with peace and togetherness."
+      },
+      "culturalTips": [
+        "🕌 Morning prayers and community gatherings.",
+        "🥘 Sharing meals and charity are emphasized.",
+        "👨‍👩‍👧‍👦 Family visits and greetings."
+      ],
+      "conversationStarters": [
+        "How did you observe Eid al‑Adha?",
+        "Any special dishes at home?",
+        "Did you meet family or community friends?"
+      ]
+    },
+    {
+      "id": "rosh_hashanah",
+      "name": "Rosh Hashanah",
+      "type": "major",
+      "regions": ["Worldwide"],
+      "month": "September",
+      "description": "Jewish New Year, beginning the High Holy Days with reflection and prayer.",
+      "greetingMessages": {
+        "formal": "Shanah Tovah!",
+        "casual": "Shanah Tovah! 🍎🍯",
+        "family": "Wishing you a sweet and peaceful New Year."
+      },
+      "culturalTips": [
+        "🍎 Apples with honey symbolize a sweet year.",
+        "🕍 Services and blowing the shofar are central.",
+        "👨‍👩‍👧‍👦 Family meals and blessings."
+      ],
+      "conversationStarters": [
+        "How did you observe Rosh Hashanah?",
+        "Any family traditions you love?",
+        "What reflections are you carrying into the new year?"
+      ]
+    },
+    {
+      "id": "yom_kippur",
+      "name": "Yom Kippur",
+      "type": "major",
+      "regions": ["Worldwide"],
+      "month": "September",
+      "description": "Day of Atonement in Judaism, observed with fasting and prayer.",
+      "greetingMessages": {
+        "formal": "Have a meaningful Yom Kippur.",
+        "casual": "Wishing you an easy fast.",
+        "family": "May you be sealed in the Book of Life."
+      },
+      "culturalTips": [
+        "🙏 Reflection, synagogue services, and fasting.",
+        "🤝 Reconciliation and forgiveness are themes.",
+        "🍞 Break‑fast with family after sundown."
+      ],
+      "conversationStarters": [
+        "How are you observing the day?",
+        "Any traditions your family follows?",
+        "What helps you reflect during the High Holy Days?"
+      ]
+    },
+    {
+      "id": "passover",
+      "name": "Passover (Pesach)",
+      "type": "major",
+      "regions": ["Worldwide"],
+      "month": "April",
+      "description": "Jewish festival commemorating the Exodus; marked by Seders and symbolic foods.",
+      "greetingMessages": {
+        "formal": "Chag Sameach!",
+        "casual": "Happy Passover!",
+        "family": "Wishing you a joyful and meaningful Passover."
+      },
+      "culturalTips": [
+        "🍷 Seder nights include readings and symbolic foods.",
+        "🍞 Unleavened bread (matzah) is central.",
+        "👨‍👩‍👧‍👦 Family gatherings are common."
+      ],
+      "conversationStarters": [
+        "How was your Seder?",
+        "Any favorite family traditions?",
+        "What resonates most with you in the story of Exodus?"
+      ]
+    },
+    {
+      "id": "hanukkah",
+      "name": "Hanukkah",
+      "type": "major",
+      "regions": ["Worldwide"],
+      "month": "December",
+      "description": "Festival of Lights in Judaism, marked by lighting the menorah for eight nights.",
+      "greetingMessages": {
+        "formal": "Happy Hanukkah!",
+        "casual": "Happy Hanukkah! 🕎",
+        "family": "Wishing you light and joy this Hanukkah."
+      },
+      "culturalTips": [
+        "🕎 Lighting the menorah nightly.",
+        "🍩 Sufganiyot (jelly donuts) and latkes are popular.",
+        "🎁 Small gifts and games like dreidel."
+      ],
+      "conversationStarters": [
+        "Do you light the menorah at home?",
+        "What’s your favorite Hanukkah food?",
+        "Any community events you joined?"
+      ]
+    },
+    {
+      "id": "orthodox_christmas",
+      "name": "Orthodox Christmas",
+      "type": "major",
+      "regions": ["Eastern Europe", "Russia", "Ethiopia"],
+      "month": "January",
+      "description": "Christmas celebrated on the Julian calendar in many Orthodox communities.",
+      "greetingMessages": {
+        "formal": "Merry Christmas!",
+        "casual": "Orthodox Christmas blessings!",
+        "family": "Wishing you peace and joy this Christmas."
+      },
+      "culturalTips": [
+        "⛪ Church services and family meals.",
+        "🍞 Traditional breads and fasting customs vary.",
+        "🎶 Carols and community gatherings."
+      ],
+      "conversationStarters": [
+        "How does your family celebrate?",
+        "Any special dishes you love?",
+        "Did you attend services?"
+      ]
+    },
+    {
+      "id": "orthodox_easter",
+      "name": "Orthodox Easter",
+      "type": "major",
+      "regions": ["Eastern Europe", "Russia", "Middle East"],
+      "month": "May",
+      "description": "Easter date observed by many Orthodox churches; services and family feasts.",
+      "greetingMessages": {
+        "formal": "Christ is Risen!",
+        "casual": "Happy Orthodox Easter!",
+        "family": "Wishing you a joyful and blessed Easter."
+      },
+      "culturalTips": [
+        "🥚 Egg‑dyeing traditions are common.",
+        "⛪ Midnight services and processions.",
+        "🍗 Family feasts after Lent."
+      ],
+      "conversationStarters": [
+        "How did you celebrate this year?",
+        "Any traditional foods at home?",
+        "Did you join the midnight service?"
+      ]
+    },
+    {
+      "id": "chuseok",
+      "name": "Chuseok (Korean Harvest Festival)",
+      "type": "major",
+      "regions": ["South Korea", "North Korea"],
+      "month": "September",
+      "description": "Korean harvest holiday with family gatherings, ancestral rites, and traditional food.",
+      "greetingMessages": {
+        "formal": "Happy Chuseok!",
+        "casual": "Happy Chuseok! 🎑",
+        "family": "Wishing you family warmth and good harvest."
+      },
+      "culturalTips": [
+        "🥟 Songpyeon (rice cakes) and hanbok attire.",
+        "🙏 Ancestral memorial rites.",
+        "🛣️ Travel to hometowns is common."
+      ],
+      "conversationStarters": [
+        "Did you travel home for Chuseok?",
+        "What dishes did you prepare?",
+        "Any family traditions you cherish?"
+      ]
+    },
+    {
+      "id": "obon",
+      "name": "Obon",
+      "type": "major",
+      "regions": ["Japan"],
+      "month": "August",
+      "description": "Japanese Buddhist festival honoring ancestors with dances, lanterns, and family visits.",
+      "greetingMessages": {
+        "formal": "Obon greetings.",
+        "casual": "Obon season wishes! 🏮",
+        "family": "Wishing you a peaceful Obon with family."
+      },
+      "culturalTips": [
+        "🏮 Bon Odori dances and lanterns.",
+        "🗾 Family gravesite visits and cleaning.",
+        "🍱 Seasonal foods and gatherings."
+      ],
+      "conversationStarters": [
+        "Did you attend Bon Odori?",
+        "Any family traditions during Obon?",
+        "How do you honor ancestors this season?"
+      ]
+    },
+    {
+      "id": "dia_de_los_muertos",
+      "name": "Día de los Muertos",
+      "type": "major",
+      "regions": ["Mexico"],
+      "month": "November",
+      "description": "Mexican holiday honoring ancestors with ofrendas, marigolds, and parades.",
+      "greetingMessages": {
+        "formal": "Feliz Día de los Muertos.",
+        "casual": "Día de los Muertos vibes! 💐",
+        "family": "Honoring loved ones—wishing you warmth and remembrance."
+      },
+      "culturalTips": [
+        "🕯️ Ofrendas (altars) with photos and favorite foods.",
+        "💐 Marigolds guide spirits.",
+        "🎭 Parades and sugar skull art."
+      ],
+      "conversationStarters": [
+        "Did you set up an ofrenda?",
+        "Which memories did you share?",
+        "Any local parades you joined?"
+      ]
+    },
+    {
+      "id": "carnival_brazil",
+      "name": "Carnival (Brazil)",
+      "type": "major",
+      "regions": ["Brazil"],
+      "month": "February",
+      "description": "Pre‑Lent festival with samba parades, street parties, and elaborate costumes.",
+      "greetingMessages": {
+        "formal": "Happy Carnival!",
+        "casual": "Carnaval! 🎉",
+        "family": "Wishing you vibrant and safe Carnival celebrations."
+      },
+      "culturalTips": [
+        "🥁 Samba schools parade in major cities.",
+        "🎭 Costumes and blocos (street parties).",
+        "🎶 Music and dance are central."
+      ],
+      "conversationStarters": [
+        "Did you watch the samba parade?",
+        "Any bloco you joined?",
+        "What city would you like to see Carnival in?"
+      ]
+    },
+    {
+      "id": "oktoberfest",
+      "name": "Oktoberfest",
+      "type": "cultural",
+      "regions": ["Germany"],
+      "month": "September",
+      "description": "Bavarian folk festival in Munich with tents, music, food, and traditions.",
+      "greetingMessages": {
+        "formal": "Oktoberfest greetings!",
+        "casual": "Oktoberfest time! 🎺",
+        "family": "Enjoy the Bavarian traditions and music."
+      },
+      "culturalTips": [
+        "🥨 Pretzels, traditional attire, and brass bands.",
+        "🎪 Tents host music and communal seating.",
+        "🎡 Fairground rides for families."
+      ],
+      "conversationStarters": [
+        "Have you visited Munich or a local festival?",
+        "What’s your favorite Bavarian food?",
+        "Any traditions you enjoy most?"
+      ]
+    },
+    {
+      "id": "bastille_day",
+      "name": "Bastille Day",
+      "type": "national",
+      "regions": ["France"],
+      "month": "July",
+      "description": "French National Day with military parades, fireworks, and celebrations.",
+      "greetingMessages": {
+        "formal": "Joyeuse Fête Nationale!",
+        "casual": "Happy Bastille Day! 🇫🇷",
+        "family": "Wishing you a festive Fête Nationale."
+      },
+      "culturalTips": [
+        "🎆 Fireworks and concerts in many cities.",
+        "🎺 Military parade on the Champs‑Élysées.",
+        "🗼 Picnics and community events."
+      ],
+      "conversationStarters": [
+        "Did you watch the parade or fireworks?",
+        "Any local events you joined?",
+        "What’s your favorite part of the day?"
+      ]
+    },
+    {
+      "id": "thanksgiving_us",
+      "name": "Thanksgiving (US)",
+      "type": "national",
+      "regions": ["United States"],
+      "month": "November",
+      "description": "Day of gratitude marked by family meals and traditions.",
+      "greetingMessages": {
+        "formal": "Happy Thanksgiving!",
+        "casual": "Happy Thanksgiving! 🦃",
+        "family": "Wishing you warmth and gratitude with your loved ones."
+      },
+      "culturalTips": [
+        "🦃 Family dinner with seasonal dishes.",
+        "📺 Parades and sports are common.",
+        "🙏 Sharing what you’re thankful for."
+      ],
+      "conversationStarters": [
+        "How did you celebrate this year?",
+        "What dish can’t you miss?",
+        "Any traditions you love most?"
+      ]
+    },
+    {
+      "id": "thanksgiving_canada",
+      "name": "Thanksgiving (Canada)",
+      "type": "national",
+      "regions": ["Canada"],
+      "month": "October",
+      "description": "Canadian day of gratitude and harvest celebration.",
+      "greetingMessages": {
+        "formal": "Happy Thanksgiving!",
+        "casual": "Happy Thanksgiving! 🍁",
+        "family": "Wishing you a cozy and thankful long weekend."
+      },
+      "culturalTips": [
+        "🍁 Family meals and fall activities.",
+        "🏈 Sports and community events.",
+        "👨‍👩‍👧‍👦 Time with loved ones."
+      ],
+      "conversationStarters": [
+        "How did you spend the long weekend?",
+        "Any favorite fall dishes?",
+        "Do you have an annual tradition?"
+      ]
+    },
+    {
+      "id": "timkat",
+      "name": "Timkat",
+      "type": "major",
+      "regions": ["Ethiopia"],
+      "month": "January",
+      "description": "Ethiopian Orthodox Epiphany with processions and water blessings.",
+      "greetingMessages": {
+        "formal": "Timkat blessings!",
+        "casual": "Happy Timkat! ✝️",
+        "family": "Wishing you a blessed and joyful Timkat."
+      },
+      "culturalTips": [
+        "🚶 Processions and colorful umbrellas.",
+        "💧 Blessing of water ceremonies.",
+        "🎶 Music and community gatherings."
+      ],
+      "conversationStarters": [
+        "Did you attend a procession?",
+        "How does your family celebrate?",
+        "Any favorite Timkat traditions?"
+      ]
+    },
+    {
+      "id": "kwanzaa",
+      "name": "Kwanzaa",
+      "type": "cultural",
+      "regions": ["United States", "Diaspora"],
+      "month": "December",
+      "description": "Week‑long celebration of African‑American culture and community.",
+      "greetingMessages": {
+        "formal": "Joyous Kwanzaa!",
+        "casual": "Happy Kwanzaa! 🕯️",
+        "family": "Wishing you unity, purpose, and creativity this Kwanzaa."
+      },
+      "culturalTips": [
+        "🕯️ Seven principles (Nguzo Saba) guide each day.",
+        "🎶 Cultural events and storytelling.",
+        "👨‍👩‍👧‍👦 Family and community focus."
+      ],
+      "conversationStarters": [
+        "How do you honor the seven principles?",
+        "Any community events you recommend?",
+        "What traditions are meaningful to you?"
+      ]
     }
   ]
 }

@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -22,12 +23,18 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.truecircle"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        // Optimized for mass market devices (₹5-6k phones)
+        minSdk = flutter.minSdkVersion  // Android 5.0+ for wider device support
+        targetSdk = 34  // Latest for Play Store compatibility
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        
+        // Multi-architecture support for all device types
+        // Keep APK smaller by targeting only ARM ABIs (most Android devices)
+        ndk {
+            abiFilters.clear()
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a")
+        }
     }
 
     buildTypes {
@@ -35,6 +42,21 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        debug {
+            isDebuggable = true
+            applicationIdSuffix = ".debug"
+        }
+    }
+    
+    // Universal APK for development; enable per-ABI splits for release builds via:
+    // flutter build apk --split-per-abi
+    splits {
+        abi {
+            isEnable = false
         }
     }
 }

@@ -12,8 +12,8 @@ abstract class OtpService {
   Future<bool> verifyCode(String code);
 
   static OtpService create() {
-    // Privacy-first: in sample mode, always use offline path regardless of flags.
-    if (tc.PermissionManager.isSampleMode) {
+    // Privacy-first: in offline mode, always use offline path regardless of flags.
+    if (tc.PermissionManager.isOfflineMode) {
       return OfflineOtpService();
     }
     // Build-time flag can request Firebase; we keep a stub to avoid deps here.

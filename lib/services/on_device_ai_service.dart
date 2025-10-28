@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/services.dart';
 
-/// ऑफ़लाइन ऑन-डिवाइस AI सर्विस (डॉ. आईरिस के लिए)
+/// Offline On-Device AI Service (for Dr. Iris)
 abstract class OnDeviceAIService {
   Future<bool> isSupported();
   Future<bool> initialize();

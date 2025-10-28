@@ -1,6 +1,6 @@
-﻿मैनें डॉ आईरिस से 10 सवाल किए जिनका जवाब यह मिला जल बताता है कि 
-AI अब तक एक्टिवेट नहीं हो पाई है और यह बेहद निराशाजनक रहा है। इसे सही तरीके से एक्टिवेट किये बिना हम कुछ नहीं कर सकते। इसे ऐक्टिव करना बहुत ज़रूरी है और इसे हAर सम्भव तरीके से टेस्ट कीजिये
-  ताकि हम आगे कदम बढ़ा सकें. 
+﻿Dr. Iris AI Testing Log:
+Testing 10 questions with Dr. Iris to verify AI activation status.
+AI needs proper activation and comprehensive testing to move forward with development.
 
 Dr. Iris:
 Hi, I’m Dr. Iris — your private emotional companion.

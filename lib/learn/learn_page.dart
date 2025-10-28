@@ -21,7 +21,7 @@ class LearnPage extends StatelessWidget {
             child: Text(tips[i]),
           ),
         ),
-        separatorBuilder: (_, __) => const SizedBox(height: 8),
+        separatorBuilder: (_, _) => const SizedBox(height: 8),
         itemCount: tips.length,
       ),
     );

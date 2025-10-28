@@ -1,10 +1,10 @@
-name: truecircle
-description: "TrueCircle — clean, neutral-only, English-only scaffold"
+name: true_circle
+description: "TrueCircle — Mental Health & Wellness App"
 publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.9.2
+  sdk: '>=3.9.2 <4.0.0'
 
 dependencies:
   flutter:
@@ -14,36 +14,61 @@ dependencies:
   hive_flutter: ^1.1.0
   path_provider: ^2.1.5
   json_annotation: ^4.9.0
+  animated_text_kit: ^4.3.0
+  audioplayers: ^6.0.0
+  video_player: ^2.8.1
+  speech_to_text: ^7.3.0
+  # Firebase dependencies
+  firebase_core: ^2.24.2
+  firebase_analytics: ^10.7.4
+  firebase_crashlytics: ^3.4.9
+  firebase_messaging: ^14.7.10
+  firebase_remote_config: ^4.3.17
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
   build_runner: ^2.4.13
   hive_generator: ^2.0.1
   json_serializable: ^6.8.0
-  flutter_launcher_icons: ^0.13.1
+  flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
   uses-material-design: true
   assets:
+    # App images and logos
+    - assets/images/
+    - assets/icons/
+    # Audio files
+    - assets/audiobook.mp3
     # Minimal assets needed for Dr. Iris offline suggestions
     - assets/ai/dr_iris_suggestions.json
+    - assets/ai/dr_iris_instructions.json
+    - assets/ai/dr_iris_poem.txt
     - assets/Dr_Iris.txt
     - assets/models/prompts.JSON
     # CBT content shown inside CBT Hub
     - assets/CBT_Techniques_En.json
     - assets/CBT_Thoughts_En.json
     - assets/Psychology_Articles_En.json
+    # Emotional Awareness content
+    - assets/Emotional_Awareness.JSON
+    # Additional app content
+    - assets/Coping_cards_En.json
+    - assets/Sleep_Tricks.json
+    - assets/FAQ.JSON
+    - assets/Privacy_Policy.JSON
+    - assets/Terms and Conditions.JSON
     # On-device low-end model (TFLite)
     - assets/models/TrueCircle.tflite
-    # Demo/sample data used across the app (include entire folder)
+    # Local data used across the app (include entire folder)
     - data/
 
 # App icon configuration (ready to generate)
 flutter_launcher_icons:
   android: true
   ios: false
-  image_path: "assets/icons/truecircle_logo.png"
+  image_path: "assets/images/TrueCircle-Logo.png"
   adaptive_icon_background: "#FFFFFF"
-  adaptive_icon_foreground: "assets/icons/truecircle_adaptive.png"
+  adaptive_icon_foreground: "assets/images/TrueCircle-Logo.png"

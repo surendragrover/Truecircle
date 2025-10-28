@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:truecircle/main.dart';
+import 'package:true_circle/main.dart';
 
 void main() {
   testWidgets('App boots to Neutral splash', (WidgetTester tester) async {

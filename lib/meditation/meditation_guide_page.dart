@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/truecircle_app_bar.dart';
 import '../services/json_data_service.dart';
+import 'meditation_detail_page.dart';
 
 class MeditationGuidePage extends StatelessWidget {
   const MeditationGuidePage({super.key});
@@ -22,7 +23,7 @@ class MeditationGuidePage extends StatelessWidget {
           return ListView.separated(
             padding: const EdgeInsets.all(12),
             itemCount: items.length,
-            separatorBuilder: (_, __) => const Divider(height: 1),
+            separatorBuilder: (_, _) => const Divider(height: 1),
             itemBuilder: (context, i) {
               final e = items[i];
               final title = (e['title'] ?? '').toString();
@@ -35,6 +36,14 @@ class MeditationGuidePage extends StatelessWidget {
                 title: Text(title.isEmpty ? 'Session' : title),
                 subtitle: Text('$type • $mins min • $diff\n$effect'),
                 isThreeLine: true,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => MeditationDetailPage(session: e),
+                    ),
+                  );
+                },
               );
             },
           );

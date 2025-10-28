@@ -1,222 +1,176 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import '../widgets/marketplace_discount_widget.dart';
+import '../widgets/coin_display_widget.dart';
 
-/// TrueCircleAppBar
-/// Reusable AppBar with brand styling, TrueCircle logo, upper menu, and bottom marquee
+/// TrueCircleAppBar - Clean & Modern
 class TrueCircleAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final Widget? leading;
   final List<Widget>? actions;
-  final bool showLogo;
-  final bool showUpperMenu;
+  final bool showCoins;
 
   const TrueCircleAppBar({
     super.key,
     required this.title,
     this.leading,
     this.actions,
-    this.showLogo = true, // Default में logo show करें
-    this.showUpperMenu = true, // Default में upper menu show करें
+    this.showCoins = true,
   });
 
-  static const String _privacyMessage =
-      'TrueCircle pe uski nijta ka pura khyal rakhate hue ise phone verify hote hi lock kar diya gaya hai aur ab ye internet se connect nahin hogi. TrueCircle aap dwara jo bhi jankari bhari ati hai uski jankari sirf aap tak hi seemit rahati hai. isliye aap ismen har entry bina kisi sankoch ke kar sakte hain. sahi parinam pane ke liye entry karte samay nishpksh rahen aur sachchai bharen. apki ye jaankaroi sirf apki hai aur apki hi rahegi.';
-
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 28);
-
-  /// Default upper menu actions
-  List<Widget> _buildDefaultActions(BuildContext context) {
-    return [
-      PopupMenuButton<String>(
-        icon: const Icon(Icons.more_vert),
-        onSelected: (value) => _handleMenuAction(context, value),
-        itemBuilder: (context) => [
-          const PopupMenuItem(value: 'profile', child: Text('Profile')),
-          const PopupMenuItem(value: 'settings', child: Text('Settings')),
-          const PopupMenuItem(value: 'help', child: Text('Help & Support')),
-          const PopupMenuItem(value: 'about', child: Text('About TrueCircle')),
-        ],
-      ),
-    ];
-  }
-
-  /// Handle menu actions
-  void _handleMenuAction(BuildContext context, String action) {
-    switch (action) {
-      case 'profile':
-        // TODO: Navigate to profile page
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(const SnackBar(content: Text('Profile coming soon!')));
-        break;
-      case 'settings':
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(const SnackBar(content: Text('Settings coming soon!')));
-        break;
-      case 'help':
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Help & Support coming soon!')),
-        );
-        break;
-      case 'about':
-        Navigator.pushNamed(context, '/about'); // About page पर navigate करें
-        break;
-    }
-  }
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    // Default logo leading widget
-    final defaultLeading = showLogo
-        ? Padding(
-            padding: const EdgeInsets.only(left: 8.0),
-            child: Image.asset(
-              'assets/icons/truecircle_logo.png',
-              height: 24,
-              width: 24,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) {
-                // Fallback if logo not found
-                return const Icon(Icons.circle, size: 24);
-              },
-            ),
-          )
-        : null;
-
-    // Combine provided actions with default upper menu
-    final combinedActions = <Widget>[
-      ...?actions, // User provided actions first
-      if (showUpperMenu) ..._buildDefaultActions(context),
-    ];
-
     return AppBar(
-      title: Text(title),
-      leading:
-          leading ?? defaultLeading, // Use provided leading or default logo
-      actions: combinedActions.isNotEmpty ? combinedActions : null,
-      backgroundColor: theme.appBarTheme.backgroundColor,
-      elevation: theme.appBarTheme.elevation ?? 0,
-      centerTitle: theme.appBarTheme.centerTitle ?? false,
-      iconTheme: theme.appBarTheme.iconTheme,
-      // bottom marquee
-      bottom: PreferredSize(
-        preferredSize: const Size.fromHeight(28),
-        child: Container(
-          height: 28,
-          width: double.infinity,
-          color: Colors.orangeAccent.withValues(
-            alpha: 0.95,
-          ), // a readable background
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          alignment: Alignment.centerLeft,
-          child: _MarqueeText(
-            text: _privacyMessage,
-            textStyle: const TextStyle(color: Colors.white, fontSize: 12),
-            pauseDuration: Duration(seconds: 2),
-            velocity: 40.0,
+      systemOverlayStyle: SystemUiOverlayStyle.light,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // TrueCircle Logo - New branded logo 🌟
+          Container(
+            width: 30,
+            height: 30,
+            margin: const EdgeInsets.only(right: 12),
+            child: ClipOval(
+              child: Image.asset(
+                'assets/images/TrueCircle-Logo.png',
+                width: 30,
+                height: 30,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Color(0xFF6366F1), Color(0xFF14B8A6)],
+                      ),
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.psychology_rounded,
+                      size: 18,
+                      color: Colors.white,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              title,
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
+      ),
+      iconTheme: const IconThemeData(color: Colors.white),
+      actionsIconTheme: const IconThemeData(color: Colors.white),
+      leading: leading,
+      actions: [
+        if (showCoins) ...[
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: SimpleCoinDisplay(
+              userId: 'default_user', // Replace with actual user ID
+              onTap: () => _showCoinDetailsModal(context),
+            ),
+          ),
+        ],
+        ...?actions,
+      ],
+      flexibleSpace: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color(0xFFEF4444), // Joy Red
+              Color(0xFFF59E0B), // Hope Orange
+              Color(0xFF10B981), // Calm Green
+              Color(0xFF3B82F6), // Clarity Blue
+              Color(0xFF8B5CF6), // Serenity Purple
+              Color(0xFFEC4899), // Warm Pink
+            ],
           ),
         ),
       ),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(12)),
+      ),
     );
   }
-}
 
-class _MarqueeText extends StatefulWidget {
-  final String text;
-  final TextStyle textStyle;
-  final double velocity; // pixels per second
-  final Duration pauseDuration;
-
-  const _MarqueeText({
-    super.key,
-    required this.text,
-    required this.textStyle,
-    this.velocity = 50.0,
-    this.pauseDuration = const Duration(seconds: 1),
-  });
-
-  @override
-  State<_MarqueeText> createState() => _MarqueeTextState();
-}
-
-class _MarqueeTextState extends State<_MarqueeText>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final containerWidth = constraints.maxWidth;
-        final textPainter = TextPainter(
-          text: TextSpan(text: widget.text, style: widget.textStyle),
-          textDirection: TextDirection.ltr,
-        )..layout();
-        final textWidth = textPainter.width;
-
-        // If text fits, render normally
-        if (textWidth <= containerWidth) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2),
-            child: Text(
-              widget.text,
-              style: widget.textStyle,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          );
-        }
-
-        // distance to travel before repeating
-        const gap = 48.0;
-        final distance = textWidth + gap;
-        final durationMs = (distance / widget.velocity * 1000).toInt().clamp(
-          3000,
-          60000,
-        );
-        final duration = Duration(milliseconds: durationMs);
-
-        if (_controller.duration != duration) {
-          _controller.duration = duration;
-          _controller.repeat();
-        }
-
-        return ClipRect(
-          child: AnimatedBuilder(
-            animation: _controller,
-            builder: (context, child) {
-              final offset = -(_controller.value * distance);
-              return Transform.translate(
-                offset: Offset(offset, 0),
-                child: Row(
-                  children: [
-                    const SizedBox(width: 12),
-                    Text(widget.text, style: widget.textStyle),
-                    SizedBox(width: gap),
-                    Text(widget.text, style: widget.textStyle),
-                    const SizedBox(width: 12),
-                  ],
-                ),
-              );
-            },
+  void _showCoinDetailsModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        height: MediaQuery.of(context).size.height * 0.7,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
-        );
-      },
+        ),
+        child: Column(
+          children: [
+            Container(
+              width: 40,
+              height: 4,
+              margin: const EdgeInsets.symmetric(vertical: 12),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade300,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/images/TrueCircle_Coin.png',
+                    width: 24,
+                    height: 24,
+                    color: Colors.amber,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(
+                        Icons.monetization_on,
+                        color: Colors.amber,
+                        size: 24,
+                      );
+                    },
+                  ),
+                  SizedBox(width: 8),
+                  Text(
+                    'आपके TrueCircle Coins',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(),
+            const Expanded(
+              child: SingleChildScrollView(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: CoinDisplayWidget(
+                  userId: 'default_user', // Replace with actual user ID
+                  showHistory: true,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

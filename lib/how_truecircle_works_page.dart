@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../home/home_page.dart';
+import 'home/home_page.dart';
 // Simplified: keep TC module self-contained with no cross-package imports
 // import '../services/cloud_sync_service.dart';
 // import '../services/loyalty_points_service.dart';
@@ -378,7 +378,7 @@ Join the TrueCircle community and share experiences with other users. Get valuab
               },
               icon: const Icon(Icons.rocket_launch),
               label: const Text(
-                'TrueCircle के साथ शुरू करें',
+                'Get started with TrueCircle',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               style: ElevatedButton.styleFrom(

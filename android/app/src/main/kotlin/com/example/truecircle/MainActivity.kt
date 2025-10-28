@@ -7,7 +7,9 @@ import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 import org.tensorflow.lite.Interpreter
+import java.io.File
 import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.nio.MappedByteBuffer
 import java.nio.channels.FileChannel
 
@@ -28,11 +30,14 @@ class MainActivity : FlutterActivity() {
 					"initializeAltModel" -> {
 						try {
 							if (interpreter == null) {
+								// Asset is declared as 'assets/models/TrueCircle.tflite' in pubspec.yaml
 								val model = loadModelFile("models/TrueCircle.tflite")
 								interpreter = Interpreter(model)
+								println("TrueCircle AI model loaded successfully")
 							}
 							result.success(true)
 						} catch (e: Exception) {
+							println("Failed to load TrueCircle AI model: ${e.message}")
 							e.printStackTrace()
 							result.success(false)
 						}
@@ -54,23 +59,40 @@ class MainActivity : FlutterActivity() {
 	}
 
 	private fun loadModelFile(assetPath: String): MappedByteBuffer {
-		// Flutter assets के लिए AFD प्राप्त करें
-		val afd: AssetFileDescriptor = assets.openFd(assetPath)
-		FileInputStream(afd.fileDescriptor).use { fis ->
-			val fileChannel: FileChannel = fis.channel
-			val startOffset = afd.startOffset
-			val declaredLength = afd.declaredLength
-			return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
+		// Try uncompressed asset path first
+		return try {
+			val afd: AssetFileDescriptor = assets.openFd(assetPath)
+			FileInputStream(afd.fileDescriptor).use { fis ->
+				val fileChannel: FileChannel = fis.channel
+				val startOffset = afd.startOffset
+				val declaredLength = afd.declaredLength
+				fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
+			}
+		} catch (e: Exception) {
+			// If compressed, copy to a temp file and memory-map it
+			val input = assets.open(assetPath)
+			val outFile = File(cacheDir, "tc_model.tflite")
+			FileOutputStream(outFile).use { out ->
+				input.copyTo(out)
+			}
+			val fis = FileInputStream(outFile)
+			val channel = fis.channel
+			channel.map(FileChannel.MapMode.READ_ONLY, 0, outFile.length())
 		}
 	}
 
 	private fun runModel(prompt: String): String? {
 		val tflite = interpreter ?: return null
+		
+		// Hidden System Context: Dr. Iris speaks with empathy but never repeats phrases.
+		// She answers in natural English, avoids clichés, and keeps tone realistic and grounded.
+		val systemPrompt = "[HIDDEN_CONTEXT: Dr. Iris - empathetic, non-repetitive, natural English, realistic tone] $prompt"
+		
 		// Based on provided IO:
 		// Inputs (int64): attention_mask [1, L], input_ids [1, L], token_type_ids [1, L]
 		// Outputs (float32): [1, L, 512] and pooled [1, 512]
 		// We'll implement a tiny, deterministic tokenizer to produce token ids from the prompt.
-		val tokens: LongArray = basicTokenize(prompt, maxLen = 32)
+		val tokens: LongArray = basicTokenize(systemPrompt, maxLen = 32)
 		val seqLen = tokens.size
 		if (seqLen <= 0) return null
 
@@ -158,7 +180,8 @@ class MainActivity : FlutterActivity() {
 	}
 
 	private fun safeFallback(prompt: String): String {
-		// Neutral, calm fallback (educational). Overridden when real model output is available.
-		return "I'm listening offline on your device. Try one small step: slow breathing, water, 2‑minute jot — ‘What matters for me right now?’"
+		// Return empty string to let Dart side handle all fallback responses
+		// This prevents duplicate responses between Kotlin and Dart sides
+		return ""
 	}
 }

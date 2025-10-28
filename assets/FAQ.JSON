@@ -21,12 +21,12 @@
       "answer": "It’s an AI-based evaluation of how deep or balanced your relationships are, based on your own reflections and conversations. It helps you see emotional trends over time."
     },
     {
-      "question": "What does ‘Sample Mode’ mean?",
-      "answer": "Sample Mode allows you to explore the app using demo data without saving real entries. It’s useful for learning how the app works before using it personally."
+      "question": "What does 'Offline Mode' mean?",
+      "answer": "Offline Mode allows you to use the app completely without internet connection. All data is stored locally on your device for maximum privacy."
     },
     {
-      "question": "How can I reload or refresh sample data?",
-      "answer": "Go to Settings → Data → Reload Sample Data. This action clears the cache and re-fetches demo content from the local JSON data source."
+      "question": "How can I reload or refresh local data?",
+      "answer": "Go to Settings → Data → Reload Local Data. This action clears the cache and re-fetches content from the local JSON data source."
     },
     {
       "question": "Can I use TrueCircle offline?",

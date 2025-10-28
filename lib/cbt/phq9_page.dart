@@ -109,6 +109,7 @@ class _PHQ9PageState extends State<PHQ9Page> {
             ButtonSegment(value: 3, label: Text('3')),
           ],
           selected: selected == null ? <int>{} : <int>{selected},
+          emptySelectionAllowed: true, // Allow empty selection
           onSelectionChanged: (newSel) {
             final val = newSel.isEmpty ? null : newSel.first;
             setState(() {

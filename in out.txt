@@ -1,0 +1,65 @@
+C:\Users\suren\AppData\Local\Programs\Python\Python311\python.exe: can't open file 'C:\\Users\\suren\\flutter_app\\truecircle\\tc\\assets\\models\\inspect_model.py': [Errno 2] No such file or directory
+PS C:\Users\suren\flutter_app\truecircle\tc> cd C:\Users\suren\flutter_app\truecircle\TC\assets\models
+PS C:\Users\suren\flutter_app\truecircle\TC\assets\models> python inspect_model.py
+2025-10-23 23:08:53.854171: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-10-23 23:09:03.955501: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Loading model: C:\Users\suren\flutter_app\truecircle\TC\assets\models\TrueCircle.tflite
+C:\Users\suren\AppData\Local\Programs\Python\Python311\Lib\site-packages\tensorflow\lite\python\interpreter.py:457: UserWarning:     Warning: tf.lite.Interpreter is deprecated and is scheduled for deletion in
+    TF 2.20. Please use the LiteRT interpreter from the ai_edge_litert package.
+    See the [migration guide](https://ai.google.dev/edge/litert/migration)
+    for details.
+
+  warnings.warn(_INTERPRETER_DELETION_WARNING)
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+
+Inputs (3)
+------------------------------------------------------------
+[0] name=int64_serving_attention_mask:0
+     index=0
+     shape=[np.int32(1), np.int32(1)]  dtype=<class 'numpy.int64'>
+     quantization: scales=[], zero_points=[], axis=0
+[1] name=int64_serving_input_ids:0
+     index=1
+     shape=[np.int32(1), np.int32(1)]  dtype=<class 'numpy.int64'>
+     quantization: scales=[], zero_points=[], axis=0
+[2] name=int64_serving_token_type_ids:0
+     index=2
+     shape=[np.int32(1), np.int32(1)]  dtype=<class 'numpy.int64'>
+     quantization: scales=[], zero_points=[], axis=0
+
+Outputs (2)
+------------------------------------------------------------
+[0] name=StatefulPartitionedCall:0
+     index=5404
+     shape=[np.int32(1), np.int32(1), np.int32(512)]  dtype=<class 'numpy.float32'>
+     quantization: scales=[], zero_points=[], axis=0
+[1] name=StatefulPartitionedCall:1
+     index=5405
+     shape=[np.int32(1), np.int32(512)]  dtype=<class 'numpy.float32'>
+     quantization: scales=[], zero_points=[], axis=0
+PS C:\Users\suren\flutter_app\truecircle\TC\assets\models>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

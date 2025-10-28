@@ -71,7 +71,7 @@ class _DrIrisPageState extends State<DrIrisPage> {
                     ),
                     const SizedBox(height: 8),
                     if (items.isEmpty)
-                      const Text('इस समय कोई सुझाव उपलब्ध नहीं है।'),
+                      const Text('No suggestions available right now.'),
                     ...items.map(
                       (q) => Card(
                         child: ListTile(
@@ -168,12 +168,13 @@ class _DrIrisPageState extends State<DrIrisPage> {
         final modelReply = await _ai.generateDrIrisResponse(prompt);
         reply = (modelReply.isNotEmpty)
             ? modelReply
-            : _generateOfflineReply(text, suggestions);
+            : 'AI response is currently unavailable. Please try again later.';
       } else {
-        reply = _generateOfflineReply(text, suggestions);
+        // No templated offline replies in default app
+        reply = 'AI model is not available on this device.';
       }
     } catch (_) {
-      reply = _generateOfflineReply(text, suggestions);
+      reply = 'AI response is currently unavailable. Please try again later.';
     }
 
     if (!mounted) return;
@@ -193,46 +194,9 @@ class _DrIrisPageState extends State<DrIrisPage> {
     });
   }
 
-  String _generateOfflineReply(String query, List<String> suggestions) {
-    // बहुत साधारण मिलान: Jaccard आधारित शब्द-ओवरलैप
-    final qTokens = _tokens(query);
-    String? best;
-    double bestScore = 0.0;
-    for (final s in suggestions) {
-      final sTokens = _tokens(s);
-      final inter = qTokens.intersection(sTokens).length.toDouble();
-      final union = qTokens.union(sTokens).length.toDouble();
-      final score = union == 0 ? 0.0 : inter / union;
-      if (score > bestScore) {
-        bestScore = score;
-        best = s;
-      }
-    }
+  // Removed offline templated replies in default app
 
-    // उत्तर टेम्पलेट (शांत, तटस्थ, शैक्षिक)
-    const fallbacks = [
-      "I'm here offline to listen. Choose one small step: sip water, take slow breaths, and write for 2 minutes about what matters most right now.",
-      'Pick one small thing you can control and gently focus on it today. Do a simple 2‑minute action that supports your attention/comfort.',
-      'Try slow 4‑4 breathing: inhale 4, pause 4, exhale 4. Then write one line — “What matters most for me right now?”',
-    ];
-
-    final base =
-        fallbacks[DateTime.now().millisecondsSinceEpoch % fallbacks.length];
-    if (best == null || bestScore < 0.2) {
-      return base;
-    }
-
-    return '$base\n\nRelated suggestion: “$best” — you can explore it in Learn/CBT modules.';
-  }
-
-  Set<String> _tokens(String s) {
-    return s
-        .toLowerCase()
-        .replaceAll(RegExp(r'[^a-zA-Z\u0900-\u097F0-9\s]'), ' ')
-        .split(RegExp(r'\s+'))
-        .where((e) => e.isNotEmpty)
-        .toSet();
-  }
+  // Removed tokenization utility (no longer used)
 }
 
 class _ChatMsg {

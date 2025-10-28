@@ -30,13 +30,13 @@ class BrandPreviewPage extends StatelessWidget {
                   Row(
                     children: [
                       Image.asset(
-                        'assets/images/truecircle_logo.png',
+                        'assets/images/TrueCircle-Logo.png',
                         height: 64,
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
-                          'assets/images/truecircle_logo.png',
+                          'assets/images/TrueCircle-Logo.png',
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ),

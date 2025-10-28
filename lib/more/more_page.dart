@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import '../services/json_data_service.dart';
-import '../festivals/festivals_page.dart';
 import '../relationships/relationship_insights_page.dart';
 import '../sleep/sleep_tracker_page.dart';
 import '../meditation/meditation_guide_page.dart';
 import '../safety/immediate_help_page.dart';
 import '../safety/safety_plan_page.dart';
+import '../safety/instant_relief_page.dart';
 import '../marketplace/marketplace_page.dart';
-import '../rewards/rewards_page.dart';
 import '../emotional_awareness/emotional_awareness_page.dart';
+import '../communication/communication_tracker_page.dart';
+import '../communication/interactive_insights_dashboard.dart';
 import '../how_truecircle_works_page.dart';
 import '../legal/privacy_policy_page.dart';
 import '../legal/terms_conditions_page.dart';
+import '../learn/faq_page.dart';
+import 'developer_options_page.dart';
 import 'model_roles_page.dart';
-import 'brand_preview_page.dart';
+import 'comprehensive_user_profile_builder.dart';
 import '../core/truecircle_app_bar.dart';
 
 class MorePage extends StatelessWidget {
@@ -22,13 +24,7 @@ class MorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TrueCircleAppBar(
-        title: 'More',
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Image.asset('assets/images/truecircle_logo.png', height: 24),
-        ),
-      ),
+      appBar: TrueCircleAppBar(title: 'More'),
       body: ListView(
         children: [
           Padding(
@@ -58,25 +54,15 @@ class MorePage extends StatelessWidget {
           ),
           _tile(
             context,
-            icon: Icons.palette_outlined,
-            title: 'Brand Preview (logo/theme)',
-            page: const BrandPreviewPage(),
+            icon: Icons.person_add_alt_1,
+            title: 'Complete Profile Builder',
+            page: const ComprehensiveUserProfileBuilder(),
           ),
-          _actionTile(
-            context,
-            icon: Icons.download_for_offline,
-            title: 'Prefill data (offline)',
-            subtitle: 'Visual fill from local JSON and scoring examples',
-            onTap: () => _importPrefillData(context),
-          ),
-          _actionTile(
-            context,
-            icon: Icons.info_outline,
-            title: 'Scoring and removal info',
-            subtitle:
-                'Prefilled items will hide/remove as you add your entries; no network',
-            onTap: () => _showScoringInfo(context),
-          ),
+          // Developer/internal utilities removed for end users:
+          // - Brand Preview (logo/theme)
+          // - Data Preloading Status
+          // - Prefill data (offline)
+          // - Scoring and removal info
           const Divider(height: 24),
           _tile(
             context,
@@ -93,15 +79,29 @@ class MorePage extends StatelessWidget {
           const Divider(height: 24),
           _tile(
             context,
-            icon: Icons.celebration_outlined,
-            title: 'Festivals',
-            page: const FestivalsPage(),
+            icon: Icons.help_outline,
+            title: 'FAQ',
+            page: const FaqPage(),
+          ),
+          const SizedBox(height: 4),
+          // Festivals moved to Home Quick Actions (removed from More to avoid duplication)
+          _tile(
+            context,
+            icon: Icons.people_outline,
+            title: 'Communication Tracker',
+            page: const CommunicationTrackerPage(),
           ),
           _tile(
             context,
             icon: Icons.favorite_outline,
             title: 'Relationship Insights',
             page: const RelationshipInsightsPage(),
+          ),
+          _tile(
+            context,
+            icon: Icons.psychology_outlined,
+            title: 'Interactive AI Insights',
+            page: const InteractiveInsightsDashboard(),
           ),
           _tile(
             context,
@@ -116,6 +116,12 @@ class MorePage extends StatelessWidget {
             page: const MeditationGuidePage(),
           ),
           const Divider(height: 24),
+          _tile(
+            context,
+            icon: Icons.spa_outlined,
+            title: 'Instant Relief',
+            page: const InstantReliefPage(),
+          ),
           _tile(
             context,
             icon: Icons.health_and_safety_outlined,
@@ -135,30 +141,16 @@ class MorePage extends StatelessWidget {
             title: 'Marketplace',
             page: const MarketplacePage(),
           ),
+          // Rewards moved to Home Quick Actions (removed from More to avoid duplication)
+          const Divider(height: 24),
           _tile(
             context,
-            icon: Icons.emoji_events_outlined,
-            title: 'Rewards',
-            page: const RewardsPage(),
+            icon: Icons.build_circle_outlined,
+            title: 'Developer Options',
+            page: const DeveloperOptionsPage(),
           ),
         ],
       ),
-    );
-  }
-
-  Widget _actionTile(
-    BuildContext context, {
-    required IconData icon,
-    required String title,
-    required String subtitle,
-    required VoidCallback onTap,
-  }) {
-    return ListTile(
-      leading: Icon(icon, color: Theme.of(context).colorScheme.primary),
-      title: Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
-      subtitle: Text(subtitle),
-      trailing: const Icon(Icons.chevron_right),
-      onTap: onTap,
     );
   }
 
@@ -174,100 +166,6 @@ class MorePage extends StatelessWidget {
       trailing: const Icon(Icons.chevron_right),
       onTap: () =>
           Navigator.of(context).push(MaterialPageRoute(builder: (_) => page)),
-    );
-  }
-
-  Future<void> _importPrefillData(BuildContext context) async {
-    final messenger = ScaffoldMessenger.of(context);
-    final navigator = Navigator.of(context, rootNavigator: true);
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (_) => const Center(child: CircularProgressIndicator()),
-    );
-    int total = 0;
-    try {
-      final svc = JsonDataService.instance;
-      // Core demos
-      final breathing = await svc.getBreathingSessions();
-      final mood = await svc.getMoodJournalEntries();
-      final checkins = await svc.getEmotionalCheckins();
-      final sleep = await svc.getSleepTrackerEntries();
-      final meditation = await svc.getMeditationGuides();
-      final relInsights = await svc.getRelationshipInsights();
-      final relInteractions = await svc.getRelationshipInteractions();
-      final festivals = await svc.getFestivalsList();
-      // CBT-related warm-up (to reduce first-open lag)
-      final cbtTechniques = await svc.getCbtTechniques();
-      final cbtThoughts = await svc.getCbtThoughts();
-      final copingCards = await svc.getCopingCards();
-      final cbtLessons = await svc.getCbtMicroLessons();
-      final eaCats = await svc.getEmotionalAwarenessCategories();
-      // Optional reading content
-      final articles = await svc.getPsychologyArticles();
-      total =
-          breathing.length +
-          mood.length +
-          checkins.length +
-          sleep.length +
-          meditation.length +
-          relInsights.length +
-          relInteractions.length +
-          festivals.length +
-          cbtTechniques.length +
-          cbtThoughts.length +
-          copingCards.length +
-          cbtLessons.length +
-          eaCats.length +
-          articles.length;
-    } catch (_) {
-      // ignore and still show a gentle message
-    } finally {
-      if (navigator.canPop()) {
-        navigator.pop();
-      }
-    }
-
-    // Removed context.mounted check to satisfy lint rule
-    messenger.showSnackBar(
-      SnackBar(
-        content: Text(
-          'Offline content is ready (total ~$total items). This is only for visual guidance — as you add your own entries/logs, it will gradually hide.',
-        ),
-      ),
-    );
-  }
-
-  void _showScoringInfo(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      showDragHandle: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-      ),
-      builder: (_) => SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                'Scoring and removal process',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-              ),
-              SizedBox(height: 8),
-              Text(
-                '• Prefilled content is for examples/visual guidance so you can see how scoring/analysis will look with your entries.\n'
-                '• As you add your own entries (Mood, Sleep, Breathing, etc.), example items will automatically hide/remove.\n'
-                '• No network/permissions — everything is from local JSON, on-device.\n'
-                '• You can edit/delete your entries anytime; example items are only for reference.',
-              ),
-              SizedBox(height: 12),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }
