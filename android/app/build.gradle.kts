@@ -48,7 +48,8 @@ android {
         }
         debug {
             isDebuggable = true
-            applicationIdSuffix = ".debug"
+            // Removed .debug suffix to match Firebase configuration
+            // applicationIdSuffix = ".debug"
         }
     }
     
