@@ -12,12 +12,12 @@ android {
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     defaultConfig {
@@ -74,7 +74,8 @@ dependencies {
     // implementation("org.tensorflow:tensorflow-lite-support:0.4.4")
 }
 
-// Suppress Java compilation warnings for Firebase plugins
+// Suppress all Java compilation warnings
 tasks.withType<JavaCompile> {
-    options.compilerArgs.addAll(listOf("-Xlint:-options", "-Xlint:-deprecation", "-Xlint:-unchecked"))
+    options.compilerArgs.addAll(listOf("-nowarn"))
+    options.isWarnings = false
 }
