@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "239213685086",
+    "project_id": "truecircle-dbcdb",
+    "storage_bucket": "truecircle-dbcdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239213685086:android:f25587f9c1c2b5df1107cf",
+        "android_client_info": {
+          "package_name": "com.example.truecircle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "239213685086-android-truecircle.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "239213685086-web-truecircle.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -35,6 +35,7 @@ class CoinRewardService {
     UserCoins? userCoins = _coinsBox?.get(userId);
 
     if (userCoins == null) {
+      // Create new UserCoins if doesn't exist
       userCoins = UserCoins();
       await _coinsBox?.put(userId, userCoins);
     }
