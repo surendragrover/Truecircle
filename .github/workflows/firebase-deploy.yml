@@ -1,0 +1,79 @@
+name: 🚀 TrueCircle Firebase Deploy
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+      
+    - name: ☕ Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+        
+    - name: 🐦 Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.3'
+        channel: 'stable'
+        
+    - name: 📦 Get Dependencies
+      run: flutter pub get
+      
+    - name: 🔍 Analyze Code
+      run: flutter analyze
+      
+    - name: 🧪 Run Tests
+      run: flutter test
+      
+    - name: 🔧 Build APK (Debug)
+      run: flutter build apk --debug
+      
+    - name: 🔧 Build APK (Release)
+      run: flutter build apk --release
+      
+    - name: 📱 Upload to Firebase App Distribution
+      uses: wzieba/Firebase-Distribution-Github-Action@v1
+      with:
+        appId: ${{ secrets.FIREBASE_APP_ID }}
+        serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+        groups: testers
+        file: build/app/outputs/flutter-apk/app-release.apk
+        releaseNotes: |
+          🎉 TrueCircle App Update
+          
+          ✨ Features:
+          - Hindi Coin Reward System
+          - Firebase Analytics Integration
+          - Daily Login Rewards
+          - Marketplace Discounts
+          
+          🔧 Technical:
+          - Bug fixes and performance improvements
+          - Updated dependencies
+          - Enhanced error tracking
+          
+          📱 Ready for testing!
+          
+    - name: 🎯 Deploy to Firebase Hosting (Web)
+      uses: FirebaseExtended/action-hosting-deploy@v0
+      with:
+        repoToken: '${{ secrets.GITHUB_TOKEN }}'
+        firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TRUECIRCLE_43256654 }}'
+        projectId: truecircle-43256654
+        channelId: live
+
+    - name: 📊 Send Analytics Event
+      run: |
+        echo "Deployment completed successfully! 🚀"
+        echo "APK Size: $(du -h build/app/outputs/flutter-apk/app-release.apk)"
+        echo "Commit: ${{ github.sha }}"
