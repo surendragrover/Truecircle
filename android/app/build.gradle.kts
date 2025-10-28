@@ -14,6 +14,10 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        // Suppress obsolete Java version warnings from Firebase plugins
+        tasks.withType<JavaCompile> {
+            options.compilerArgs.addAll(listOf("-Xlint:-options", "-Xlint:-deprecation"))
+        }
     }
 
     kotlinOptions {
