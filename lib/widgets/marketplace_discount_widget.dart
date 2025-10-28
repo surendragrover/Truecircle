@@ -104,7 +104,7 @@ class _MarketplaceDiscountWidgetState extends State<MarketplaceDiscountWidget> {
 
             // Price breakdown
             _buildPriceRow(
-              'मूल कीमत',
+              'Original Price',
               '₹${widget.originalPrice.toStringAsFixed(2)}',
               isOriginal: true,
             ),
@@ -117,7 +117,7 @@ class _MarketplaceDiscountWidgetState extends State<MarketplaceDiscountWidget> {
               ),
               const Divider(),
               _buildPriceRow(
-                'अंतिम कीमत',
+                'Final Price',
                 '₹${_finalPrice.toStringAsFixed(2)}',
                 isFinal: true,
               ),
@@ -140,7 +140,7 @@ class _MarketplaceDiscountWidgetState extends State<MarketplaceDiscountWidget> {
                     const SizedBox(width: 8),
                     Expanded(
                       child: Text(
-                        'आप ₹${_maxDiscount.toStringAsFixed(2)} बचा रहे हैं! (${((_maxDiscount / widget.originalPrice) * 100).toStringAsFixed(0)}% discount)',
+                        'You save ₹${_maxDiscount.toStringAsFixed(2)}! (${((_maxDiscount / widget.originalPrice) * 100).toStringAsFixed(0)}% discount)',
                         style: TextStyle(
                           color: Colors.green.shade700,
                           fontWeight: FontWeight.w600,
@@ -171,7 +171,7 @@ class _MarketplaceDiscountWidgetState extends State<MarketplaceDiscountWidget> {
                     const SizedBox(width: 8),
                     const Expanded(
                       child: Text(
-                        'अभी आपके पास कोई coins नहीं हैं। Conversations add करके coins earn करें!',
+                        'You currently have no coins. Add conversations to earn coins!',
                         style: TextStyle(color: Colors.orange, fontSize: 14),
                       ),
                     ),
@@ -206,7 +206,7 @@ class _MarketplaceDiscountWidgetState extends State<MarketplaceDiscountWidget> {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    'उपलब्ध coins: $_availableCoins',
+                    'Available coins: $_availableCoins',
                     style: TextStyle(
                       color: Colors.blue.shade700,
                       fontWeight: FontWeight.w500,
@@ -240,7 +240,7 @@ class _MarketplaceDiscountWidgetState extends State<MarketplaceDiscountWidget> {
                 ),
                 child: Text(
                   _maxDiscount > 0
-                      ? '₹${_finalPrice.toStringAsFixed(2)} में खरीदें (${_maxDiscount.round()} coins use करें)'
+                      ? 'Buy for ₹${_finalPrice.toStringAsFixed(2)} (Use ${_maxDiscount.round()} coins)'
                       : '₹${widget.originalPrice.toStringAsFixed(2)} में खरीदें',
                   style: const TextStyle(
                     fontSize: 16,

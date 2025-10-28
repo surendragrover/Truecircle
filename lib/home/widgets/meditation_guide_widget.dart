@@ -89,6 +89,8 @@ class _MeditationGuideWidgetState extends State<MeditationGuideWidget>
                           fontSize: 14,
                           color: Colors.grey.shade600,
                         ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
@@ -116,6 +118,8 @@ class _MeditationGuideWidgetState extends State<MeditationGuideWidget>
                   const Text(
                     'Short guided practices are available inside.',
                     style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 8),
                   SizedBox(

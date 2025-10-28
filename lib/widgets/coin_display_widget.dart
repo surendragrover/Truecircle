@@ -108,7 +108,7 @@ class _CoinDisplayWidgetState extends State<CoinDisplayWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'आपके TrueCircle Coins',
+                    'Your TrueCircle Coins',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -128,7 +128,7 @@ class _CoinDisplayWidgetState extends State<CoinDisplayWidget> {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'उपलब्ध / $_totalCoins कुल',
+                        'Available / $_totalCoins total',
                         style: TextStyle(
                           color: Colors.white.withValues(alpha: 0.9),
                           fontSize: 12,
@@ -138,7 +138,7 @@ class _CoinDisplayWidgetState extends State<CoinDisplayWidget> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '₹$_availableCoins की shopping discount मिलेगी!',
+                    'Get ₹$_availableCoins shopping discount!',
                     style: TextStyle(
                       color: Colors.white.withValues(alpha: 0.9),
                       fontSize: 11,
@@ -167,12 +167,12 @@ class _CoinDisplayWidgetState extends State<CoinDisplayWidget> {
               Icon(Icons.history, size: 48, color: Colors.grey.shade400),
               const SizedBox(height: 8),
               Text(
-                'अभी तक कोई coins नहीं मिले',
+                'No coins earned yet',
                 style: TextStyle(color: Colors.grey.shade600),
               ),
               const SizedBox(height: 4),
               Text(
-                'Conversations add करें और daily login करें!',
+                'Add conversations and login daily!',
                 style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
               ),
             ],
@@ -302,7 +302,7 @@ class DailyLoginChecker extends StatelessWidget {
       future: CoinRewardService.instance.checkAndGiveDailyReward(),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data?['rewarded'] == true) {
-          // Daily reward मिला है!
+          // Daily reward earned!
           WidgetsBinding.instance.addPostFrameCallback((_) {
             _showDailyRewardDialog(context);
             onRewardReceived?.call();
@@ -344,13 +344,13 @@ class DailyLoginChecker extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const Text(
-              '🎉 दैनिक बोनस मिला!',
+              '🎉 Daily Bonus Earned!',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             const Text(
-              'आज का 1 coin reward मिल गया!\nकल फिर से आएं और ज्यादा coins पाएं।',
+              'You earned 1 coin reward today!\nCome back tomorrow to earn more coins.',
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey),
             ),

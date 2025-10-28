@@ -3,7 +3,7 @@ import '../../cbt/cbt_hub_page.dart';
 import '../../iris/dr_iris_welcome_page.dart';
 import '../../emotional_awareness/emotional_awareness_page.dart';
 
-/// फीचर कार्ड्स Widget - Main feature cards for all app features
+/// Feature Cards Widget - Main feature cards for all app features
 class FeatureCardsWidget extends StatelessWidget {
   const FeatureCardsWidget({super.key});
 
@@ -16,7 +16,7 @@ class FeatureCardsWidget extends StatelessWidget {
           'Wellness Tools',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w600,
-            color: const Color(0xFF2A145D), // Deep Purple - गहरा बैंगनी
+            color: const Color(0xFF2A145D), // Deep Purple
           ),
         ),
         const SizedBox(height: 16),
@@ -112,7 +112,7 @@ class FeatureCardsWidget extends StatelessWidget {
   }
 }
 
-/// फीचर कार्ड - Individual feature card with gradient and animations
+/// Feature Card - Individual feature card with gradient and animations
 class _FeatureCard extends StatelessWidget {
   final String title;
   final String description;
@@ -157,7 +157,7 @@ class _FeatureCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            // Icon Container with Gradient - आइकन कंटेनर
+            // Icon Container with Gradient
             Container(
               width: 56,
               height: 56,
@@ -193,6 +193,8 @@ class _FeatureCard extends StatelessWidget {
                   Text(
                     description,
                     style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ],
               ),

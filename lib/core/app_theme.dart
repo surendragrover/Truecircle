@@ -33,22 +33,22 @@ class AppTheme {
     0xFFAB47BC,
   ); // Peaceful Lavender (mental peace)
 
-  // Background & Surface Colors - पृष्ठभूमि रंग
+  // Background & Surface Colors
   static const Color joyfulBackground = Color(
     0xFFFFF8F3,
-  ); // खुशियों की पृष्ठभूमि (हल्का गुलाबी-सफेद)
+  ); // Joyful background (light pink-white)
   static const Color hopeBackground = Color(
     0xFFF0F9FF,
-  ); // उम्मीद की पृष्ठभूमि (हल्का नीला-सफेद)
+  ); // Hope background (light blue-white)
   static const Color peacefulSurface = Color(
     0xFFFFFFFF,
-  ); // शांति की सतह (शुद्ध सफेद)
+  ); // Peaceful surface (pure white)
   static const Color warmTextDark = Color(
     0xFF2D1B69,
-  ); // गर्म गहरा पाठ (गहरा बैंगनी)
+  ); // Warm dark text (deep purple)
   static const Color gentleTextLight = Color(
     0xFF64748B,
-  ); // कोमल हल्का पाठ (हल्का नीला-स्लेटी)
+  ); // Gentle light text (light blue-slate)
 
   static ThemeData light([Color seed = primaryTrueCircle]) {
     final scheme =
@@ -56,19 +56,19 @@ class AppTheme {
           seedColor: seed,
           brightness: Brightness.light,
         ).copyWith(
-          primary: primaryTrueCircle, // मुख्य नीला - शांति और विश्वास
-          secondary: joyfulTeal, // खुशी का हरा-नीला - उम्मीद और ताजगी
-          tertiary: hopePurple, // उम्मीद का बैंगनी - रचनात्मकता
-          surface: peacefulSurface, // शांति की सफेद सतह
+          primary: primaryTrueCircle, // Primary blue - peace and trust
+          secondary: joyfulTeal, // Joyful teal - hope and freshness
+          tertiary: hopePurple, // Hope purple - creativity
+          surface: peacefulSurface, // Peaceful white surface
           surfaceContainer:
-              joyfulBackground, // खुशियों की हल्की पृष्ठभूमि (background के बजाय)
+              joyfulBackground, // Joyful light background (instead of background)
           onPrimary: Colors.white,
           onSecondary: Colors.white,
           onTertiary: Colors.white,
-          onSurface: warmTextDark, // गर्म गहरा पाठ
+          onSurface: warmTextDark, // Warm dark text
           outline: gentleTextLight,
           surfaceContainerHighest:
-              hopeBackground, // उम्मीद की हल्की पृष्ठभूमि (surfaceVariant के बजाय)
+              hopeBackground, // Hope light background (instead of surfaceVariant)
           primaryContainer: hopePurple.withValues(
             alpha: 0.1,
           ), // हल्का बैंगनी कंटेनर

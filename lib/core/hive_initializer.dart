@@ -43,7 +43,7 @@ class HiveInitializer {
       Hive.registerAdapter(ConversationInsightAdapter());
     }
 
-    // Coin reward models के लिए adapters
+    // Adapters for coin reward models
     if (!Hive.isAdapterRegistered(72)) {
       Hive.registerAdapter(CoinTransactionTypeAdapter());
     }
@@ -93,7 +93,7 @@ class HiveInitializer {
       await InstructionBasedService.instance.initialize();
     }
 
-    // 🎉 Coin Reward Service register करते हैं
+    // 🎉 Register Coin Reward Service
     if (!serviceLocator.isRegistered<CoinRewardService>()) {
       serviceLocator.registerSingleton<CoinRewardService>(
         CoinRewardService.instance,

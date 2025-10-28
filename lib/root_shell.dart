@@ -4,7 +4,7 @@ import 'home/home_page.dart';
 import 'cbt/cbt_hub_page.dart';
 import 'iris/dr_iris_welcome_page.dart';
 import 'more/more_page.dart';
-import 'widgets/coin_display_widget.dart';
+// import 'widgets/coin_display_widget.dart';
 
 class RootShell extends StatefulWidget {
   const RootShell({super.key});
@@ -28,8 +28,8 @@ class _RootShellState extends State<RootShell> {
       body: Stack(
         children: [
           IndexedStack(index: _index, children: pages),
-          // Daily login reward checker
-          const DailyLoginChecker(userId: 'default_user'),
+          // Daily login reward checker - temporarily disabled
+          // const DailyLoginChecker(userId: 'default_user'),
         ],
       ),
       bottomNavigationBar: Padding(

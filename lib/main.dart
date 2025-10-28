@@ -28,6 +28,17 @@ Future<void> main() async {
     return true;
   };
 
+  // Custom error widget to prevent red screen flash
+  ErrorWidget.builder = (FlutterErrorDetails details) {
+    return Container(
+      color: const Color(
+        0xFF6366F1,
+      ), // Use TrueCircle primary color instead of red
+      alignment: Alignment.center,
+      child: const Icon(Icons.refresh, color: Colors.white, size: 48),
+    );
+  };
+
   // Initialize Hive database
   await HiveInitializer.init();
 

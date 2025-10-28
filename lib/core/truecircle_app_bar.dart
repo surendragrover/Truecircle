@@ -152,7 +152,7 @@ class TrueCircleAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                   SizedBox(width: 8),
                   Text(
-                    'आपके TrueCircle Coins',
+                    'Your TrueCircle Coins',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../core/truecircle_app_bar.dart';
 import 'package:hive/hive.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../emotional_awareness/emotional_awareness_page.dart';
@@ -75,7 +74,11 @@ class _DrIrisWelcomePageState extends State<DrIrisWelcomePage> {
     return Scaffold(
       appBar: widget.isFirstTime
           ? null
-          : const TrueCircleAppBar(title: '🤖 Dr. Iris'),
+          : AppBar(
+              title: const Text('🤖 Dr. Iris'),
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(20.0),

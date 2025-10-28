@@ -66,6 +66,8 @@ class SleepTrackerWidget extends StatelessWidget {
                           fontSize: 14,
                           color: Colors.grey.shade600,
                         ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
@@ -362,10 +364,14 @@ class SleepTrackerWidget extends StatelessWidget {
         Text(
           value,
           style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
         Text(
           label,
           style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
       ],
     );
@@ -379,10 +385,14 @@ class SleepTrackerWidget extends StatelessWidget {
         Text(
           value,
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
         Text(
           label,
           style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
         ),
       ],
     );

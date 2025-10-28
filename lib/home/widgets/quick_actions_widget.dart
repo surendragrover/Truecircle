@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../emotional_awareness/emotional_awareness_page.dart';
 import '../../safety/immediate_help_page.dart';
 import '../../safety/instant_relief_page.dart';
 import '../../meditation/meditation_guide_page.dart';
@@ -28,21 +27,6 @@ class QuickActionsWidget extends StatelessWidget {
           children: [
             Expanded(
               child: _QuickActionCard(
-                title: 'Emotional Check-in',
-                subtitle: 'Emotional wellness',
-                icon: Icons.favorite_rounded,
-                color: const Color(0xFF14B8A6),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const EmotionalAwarenessPage(),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _QuickActionCard(
                 title: 'Instant Relief',
                 subtitle: 'Breathe & ground',
                 icon: Icons.spa_rounded,
@@ -50,24 +34,6 @@ class QuickActionsWidget extends StatelessWidget {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (_) => const InstantReliefPage()),
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        // Row 2
-        Row(
-          children: [
-            Expanded(
-              child: _QuickActionCard(
-                title: 'SOS',
-                subtitle: 'Immediate help',
-                icon: Icons.emergency_rounded,
-                color: const Color(0xFFEF4444),
-                onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const ImmediateHelpPage()),
                 ),
               ),
             ),
@@ -89,9 +55,22 @@ class QuickActionsWidget extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 12),
-        // Row 3 - Festivals & Rewards
+        // Row 2 - Emergency & Festivals
         Row(
           children: [
+            Expanded(
+              child: _QuickActionCard(
+                title: 'SOS',
+                subtitle: 'Immediate help',
+                icon: Icons.emergency_rounded,
+                color: const Color(0xFFEF4444),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const ImmediateHelpPage()),
+                ),
+              ),
+            ),
+            const SizedBox(width: 12),
             Expanded(
               child: _QuickActionCard(
                 title: 'Festivals',
@@ -104,8 +83,18 @@ class QuickActionsWidget extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 12),
+          ],
+        ),
+        const SizedBox(height: 12),
+        // Row 3 - Rewards (single card centered)
+        Row(
+          children: [
             Expanded(
+              flex: 1,
+              child: Container(), // Empty space
+            ),
+            Expanded(
+              flex: 2,
               child: _QuickActionCard(
                 title: 'Rewards',
                 subtitle: 'Badges & milestones',
@@ -116,6 +105,10 @@ class QuickActionsWidget extends StatelessWidget {
                   MaterialPageRoute(builder: (_) => const RewardsPage()),
                 ),
               ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(), // Empty space
             ),
           ],
         ),

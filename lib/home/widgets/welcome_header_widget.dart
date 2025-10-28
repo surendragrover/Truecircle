@@ -87,9 +87,9 @@ class _WelcomeHeaderWidgetState extends State<WelcomeHeaderWidget>
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Color(0xFF6366F1), // TrueCircle Primary - नीला (शांति)
-                  Color(0xFF14B8A6), // Joyful Teal - हरा-नीला (उम्मीद)
-                  Color(0xFF8B5CF6), // Hope Purple - बैंगनी (रचनात्मकता)
+                  Color(0xFF6366F1), // TrueCircle Primary - blue (peace)
+                  Color(0xFF14B8A6), // Joyful Teal - teal (hope)
+                  Color(0xFF8B5CF6), // Hope Purple - purple (creativity)
                 ],
               ),
               borderRadius: BorderRadius.circular(20),
