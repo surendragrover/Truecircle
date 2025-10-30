@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/truecircle_app_bar.dart';
 import '../core/data_visualizations.dart';
+import '../core/spacing.dart';
 import '../core/loading_animations.dart';
 import '../models/user_profile.dart';
 import '../services/integration_service.dart';
@@ -272,24 +273,24 @@ class _HomePageState extends State<HomePage> {
               wellnessScore: _dashboardData?.wellnessScore ?? 78,
               trend: _dashboardData?.wellnessTrend ?? 'Improving',
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: AppGaps.section),
 
             // Welcome Header with animations
             const WelcomeHeaderWidget(),
-            const SizedBox(height: 12),
+            const SizedBox(height: AppGaps.section),
             // (Removed session-language chip to avoid any language mentions in default UI)
 
             // Quick Actions
             const QuickActionsWidget(),
-            const SizedBox(height: 24),
+            const SizedBox(height: AppGaps.section),
 
             // Daily Stats
             const DailyStatsWidget(),
-            const SizedBox(height: 24),
+            const SizedBox(height: AppGaps.section),
 
             // Mood Tracker
             const MoodTrackerWidget(),
-            const SizedBox(height: 24),
+            const SizedBox(height: AppGaps.section),
 
             // Mood Frequency Chart - Professional analytics with responsive height
             LayoutBuilder(
@@ -322,31 +323,31 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppGaps.section),
 
             // Sleep Tracker - Moved to Top for Better Visibility
             const SleepTrackerWidget(),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppGaps.section),
 
             // CBT Hub - All CBT features in one place (WITHOUT sleep tracker)
             const CBTHubWidget(),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppGaps.section),
 
             // Mood Journal
             const MoodJournalWidget(),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppGaps.section),
 
             // Meditation Guide
             const MeditationGuideWidget(),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppGaps.section),
 
             // Breathing Exercises
             const BreathingExercisesWidget(),
-            const SizedBox(height: 8),
+            const SizedBox(height: AppGaps.small),
 
             // Psychology Articles
             const PsychologyArticlesWidget(),
-            const SizedBox(height: 24),
+            const SizedBox(height: AppGaps.section),
 
             // Weekly Trend Graph
             TrueCircleVisualizations.weeklyTrendGraph(
@@ -363,15 +364,15 @@ class _HomePageState extends State<HomePage> {
                   },
               height: 150,
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: AppGaps.section),
 
             // Festival Reminders
             const FestivalReminderWidget(),
-            const SizedBox(height: 24),
+            const SizedBox(height: AppGaps.section),
 
             // Inspirational Quote
             const InspirationalQuoteWidget(),
-            const SizedBox(height: 24),
+            const SizedBox(height: AppGaps.section),
 
             // Feature Usage Stats - Professional insights
             if (_dashboardData != null)
@@ -390,7 +391,7 @@ class _HomePageState extends State<HomePage> {
 
             // Feature Cards
             const FeatureCardsWidget(),
-            const SizedBox(height: 16),
+            const SizedBox(height: AppGaps.section),
             // Personalized features grid (6 items) showing recent user entries
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 0.0),
