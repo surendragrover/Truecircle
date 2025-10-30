@@ -108,8 +108,13 @@ class TrueCircleApp extends StatelessWidget {
               // Floating toggle button
               Positioned(
                 right: 12,
-                bottom: 80,
-                child: GestureDetector(
+                top: 12,
+                child: SafeArea(
+                  top: true,
+                  bottom: false,
+                  left: false,
+                  right: true,
+                  child: GestureDetector(
                   onTap: () {
                     final v = LogService.instance.overlayVisible.value;
                     LogService.instance.overlayVisible.value = !v;
@@ -132,6 +137,7 @@ class TrueCircleApp extends StatelessWidget {
                         letterSpacing: 1.2,
                       ),
                     ),
+                  ),
                   ),
                 ),
               ),
