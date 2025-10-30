@@ -272,7 +272,7 @@ class _HomePageState extends State<HomePage> {
               wellnessScore: _dashboardData?.wellnessScore ?? 78,
               trend: _dashboardData?.wellnessTrend ?? 'Improving',
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
 
             // Welcome Header with animations
             const WelcomeHeaderWidget(),
