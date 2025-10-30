@@ -2,7 +2,7 @@
 
 ## Architecture Overview
 
-**TrueCircle** is a mental health Flutter app with offline-first design, featuring CBT tools, AI assistant (Dr. Iris), and emotional wellness tracking.
+**TrueCircle** is an emotional health Flutter app with offline-first design, featuring CBT tools, AI assistant (Dr. Iris), and emotional wellness tracking.
 
 ### Key Architectural Patterns
 

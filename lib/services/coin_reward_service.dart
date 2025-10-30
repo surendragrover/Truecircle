@@ -52,16 +52,13 @@ class CoinRewardService {
       if (userCoins.canClaimDailyLogin()) {
         userCoins.giveDailyLoginReward();
 
-        // Create reward record
+        // Create reward record (fixed 1 coin per daily login)
         final reward = CoinReward(
           id: DateTime.now().millisecondsSinceEpoch.toString(),
           type: CoinTransactionType.dailyLogin,
-          amount: userCoins.dailyLoginStreak >= 7
-              ? 3
-              : (userCoins.dailyLoginStreak >= 3 ? 2 : 1),
+          amount: 1,
           timestamp: DateTime.now(),
-          description:
-              'रोज़ाना लॉगिन (${userCoins.dailyLoginStreak} दिन की streak)',
+          description: 'Daily login',
         );
 
         await _rewardsBox?.put(reward.id, reward);
@@ -81,13 +78,15 @@ class CoinRewardService {
         return {
           'rewarded': true,
           'coins': reward.amount,
-          'streak': userCoins.dailyLoginStreak,
-          'message':
-              'बधाई! आपको ${reward.amount} सिक्के मिले! 🎉\n${userCoins.dailyLoginStreak} दिन की streak!',
+          'streak': 0,
+          'message': 'Congrats! You received 1 coin! 🎉',
         };
       }
 
-      return {'rewarded': false, 'message': 'आज का reward पहले से claimed है!'};
+      return {
+        'rewarded': false,
+        'message': 'Today\'s reward is already claimed!',
+      };
     } catch (e) {
       debugPrint('Daily reward error: $e');
       return {'rewarded': false, 'message': 'Error claiming reward'};
@@ -107,7 +106,7 @@ class CoinRewardService {
         type: CoinTransactionType.entryReward,
         amount: 1,
         timestamp: DateTime.now(),
-        description: 'Communication entry के लिए reward',
+        description: 'Reward for completed entry',
       );
 
       await _rewardsBox?.put(reward.id, reward);
@@ -177,7 +176,7 @@ class CoinRewardService {
           type: CoinTransactionType.marketplacePurchase,
           amount: -coinsToUse, // Negative for usage
           timestamp: DateTime.now(),
-          description: '$itemName की खरीदारी में इस्तेमाल',
+          description: 'Used for purchasing $itemName',
         );
 
         await _rewardsBox?.put(usage.id, usage);

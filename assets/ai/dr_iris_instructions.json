@@ -77,7 +77,7 @@
   },
   {
     "keywords": ["money", "financial", "debt", "broke", "poor"],
-    "response": "Financial stress affects mental health deeply. Start with what you can control: track spending for one week, identify one unnecessary expense to cut, and focus on progress, not perfection. Your value isn't your net worth."
+    "response": "Financial stress affects emotional health deeply. Start with what you can control: track spending for one week, identify one unnecessary expense to cut, and focus on progress, not perfection. Your value isn't your net worth."
   },
   {
     "keywords": ["health", "sick", "illness", "chronic pain", "medical"],
@@ -513,7 +513,7 @@
   },
   {
     "keywords": ["money stress", "financial anxiety", "broke", "money worries"],
-    "response": "Financial stress affects mental health deeply because money represents security. Focus on what you can control: track spending for one week, identify one small cut, celebrate any progress."
+    "response": "Financial stress affects emotional health deeply because money represents security. Focus on what you can control: track spending for one week, identify one small cut, celebrate any progress."
   },
   {
     "keywords": ["health hopeless", "illness despair", "body failing", "medical fears"],
@@ -657,7 +657,7 @@
   },
   {
     "keywords": ["money anxiety", "financial fear", "economic stress", "poverty worry"],
-    "response": "Money anxiety affects mental health because financial security feels like survival. Make a simple plan with whatever you have, celebrate small improvements, and remember: your worth isn't your wealth."
+    "response": "Money anxiety affects emotional health because financial security feels like survival. Make a simple plan with whatever you have, celebrate small improvements, and remember: your worth isn't your wealth."
   },
   {
     "keywords": ["abilities hopeless", "skill despair", "not talented", "capability doubt"],

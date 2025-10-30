@@ -241,7 +241,7 @@ class _MarketplaceDiscountWidgetState extends State<MarketplaceDiscountWidget> {
                 child: Text(
                   _maxDiscount > 0
                       ? 'Buy for ₹${_finalPrice.toStringAsFixed(2)} (Use ${_maxDiscount.round()} coins)'
-                      : '₹${widget.originalPrice.toStringAsFixed(2)} में खरीदें',
+                      : 'Buy for ₹${widget.originalPrice.toStringAsFixed(2)}',
                   style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -300,19 +300,19 @@ class _MarketplaceDiscountWidgetState extends State<MarketplaceDiscountWidget> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Purchase Confirm करें'),
+        title: const Text('Confirm Purchase'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'आप ${_maxDiscount.round()} coins use करके ₹${_maxDiscount.toStringAsFixed(2)} बचाएंगे।',
+              'You will use ${_maxDiscount.round()} coins to save ₹${_maxDiscount.toStringAsFixed(2)}.',
             ),
             const SizedBox(height: 8),
             Text('Final amount: ₹${_finalPrice.toStringAsFixed(2)}'),
             const SizedBox(height: 8),
-            Text(
-              'Confirm करें?',
+            const Text(
+              'Proceed?',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ],

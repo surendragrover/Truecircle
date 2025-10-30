@@ -40,7 +40,7 @@
       "title": "The Psychology of Sleep and Dreams",
       "author": "Prof. David Kim, PhD",
       "summary": "Discover the psychological functions of sleep and the meaning behind our dreams.",
-      "body": "Sleep serves multiple psychological functions including memory consolidation, emotional regulation, and cognitive restoration. During REM sleep, our brains process emotions and experiences from the day. Dreams may help us work through unresolved conflicts and prepare for future challenges. Sleep deprivation can significantly impact mood, decision-making, and overall mental health."
+      "body": "Sleep serves multiple psychological functions including memory consolidation, emotional regulation, and cognitive restoration. During REM sleep, our brains process emotions and experiences from the day. Dreams may help us work through unresolved conflicts and prepare for future challenges. Sleep deprivation can significantly impact mood, decision-making, and overall emotional health."
     },
     {
       "id": "motivation_theories",
@@ -103,7 +103,7 @@
       "title": "Understanding the Psychology of Addiction",
       "author": "Dr. Catherine White, MD",
       "summary": "Learn about the psychological and neurological factors that contribute to addictive behaviors.",
-      "body": "Addiction involves changes in brain reward pathways, making it difficult to control behavior despite negative consequences. Risk factors include genetics, trauma, mental health issues, and environmental factors. Recovery involves addressing both the physical dependence and underlying psychological factors. Treatment approaches include therapy, support groups, and sometimes medication."
+      "body": "Addiction involves changes in brain reward pathways, making it difficult to control behavior despite negative consequences. Risk factors include genetics, trauma, emotional health issues, and environmental factors. Recovery involves addressing both the physical dependence and underlying psychological factors. Treatment approaches include therapy, support groups, and sometimes medication."
     },
     {
       "id": "group_psychology",
@@ -163,10 +163,10 @@
     },
     {
       "id": "mental_health_stigma",
-      "title": "Understanding and Combating Mental Health Stigma",
+      "title": "Understanding and Combating Emotional Health Stigma",
       "author": "Dr. Paul Martinez, MD",
-      "summary": "Learn about the sources of mental health stigma and how to promote acceptance and understanding.",
-      "body": "Mental health stigma involves negative attitudes and beliefs about mental illness. It can prevent people from seeking help and lead to discrimination. Stigma often stems from lack of knowledge, fear, and media portrayals. Combating stigma requires education, personal contact with those who have mental health conditions, and advocacy for policy changes that protect rights and promote inclusion."
+      "summary": "Learn about the sources of emotional health stigma and how to promote acceptance and understanding.",
+      "body": "Emotional health stigma involves negative attitudes and beliefs about mental illness. It can prevent people from seeking help and lead to discrimination. Stigma often stems from lack of knowledge, fear, and media portrayals. Combating stigma requires education, personal contact with those who have emotional health conditions, and advocacy for policy changes that protect rights and promote inclusion."
     },
     {
       "id": "habit_formation",
@@ -277,7 +277,7 @@
       "id": "therapy_approaches",
       "title": "Major Approaches to Psychological Therapy",
       "author": "Dr. Irvin Yalom, MD",
-      "summary": "Explore different therapeutic approaches and their effectiveness for various mental health conditions.",
+      "summary": "Explore different therapeutic approaches and their effectiveness for various emotional health conditions.",
       "body": "Major therapeutic approaches include cognitive-behavioral therapy (CBT), psychodynamic therapy, humanistic therapy, and family systems therapy. Each approach has different assumptions about human nature and change processes. Research shows that the therapeutic relationship is often more important than the specific technique used. Effective therapy involves collaboration, empathy, and evidence-based practices tailored to individual needs."
     },
     {
@@ -340,15 +340,15 @@
       "id": "humor_psychology",
       "title": "The Psychology of Humor and Laughter",
       "author": "Prof. Rod Martin, PhD",
-      "summary": "Understand the psychological functions of humor and its benefits for mental health.",
+      "summary": "Understand the psychological functions of humor and its benefits for emotional health.",
       "body": "Humor serves multiple psychological functions including stress relief, social bonding, coping with adversity, and communication. Laughter triggers the release of endorphins and reduces stress hormones. Different types of humor (affiliative, self-enhancing, aggressive, self-defeating) have different psychological effects. Healthy humor promotes resilience and social connection while unhealthy humor can damage relationships."
     },
     {
       "id": "digital_psychology",
-      "title": "Mental Health in the Digital Age",
+      "title": "Emotional Health in the Digital Age",
       "author": "Dr. Amit Sharma, PhD",
-      "summary": "Explore the impact of digital technology on mental health and strategies for healthy digital habits.",
-      "body": "Digital technology has made our lives easier but also created new challenges for mental health. Excessive screen time, social media addiction, and digital distractions can affect psychological well-being. Issues like cyberbullying, FOMO (fear of missing out), and constant connectivity can increase anxiety and depression. Developing digital wellness involves setting boundaries, practicing mindful technology use, and maintaining offline activities. Creating a healthy balance between digital and real-world interactions is essential for mental health in the modern age."
+      "summary": "Explore the impact of digital technology on emotional health and strategies for healthy digital habits.",
+      "body": "Digital technology has made our lives easier but also created new challenges for emotional health. Excessive screen time, social media addiction, and digital distractions can affect psychological well-being. Issues like cyberbullying, FOMO (fear of missing out), and constant connectivity can increase anxiety and depression. Developing digital wellness involves setting boundaries, practicing mindful technology use, and maintaining offline activities. Creating a healthy balance between digital and real-world interactions is essential for emotional health in the modern age."
     }
   ]
 }

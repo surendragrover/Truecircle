@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/truecircle_app_bar.dart';
 import '../services/json_data_service.dart';
+import '../services/coin_reward_service.dart';
 import '../services/emotional_awareness_service.dart';
 import '../models/emotional_awareness_selection.dart';
 import 'detailed_emotional_intake_form.dart';
@@ -331,9 +332,22 @@ class _EmotionalAwarenessPageState extends State<EmotionalAwarenessPage> {
     });
   }
 
-  void _completeCheckin(BuildContext context) {
-    // Show completion message
-    ScaffoldMessenger.of(context).showSnackBar(
+  Future<void> _completeCheckin(BuildContext context) async {
+    // Award coins for emotional check-in
+    try {
+      await CoinRewardService.instance.addBonusCoins(
+        2,
+        'Completed Emotional Check-in',
+      );
+    } catch (e) {
+      debugPrint('Failed to award coins: $e');
+    }
+
+    // Check mounted state before using context after async operation
+    if (!mounted) return;
+
+    // Show completion message with coins
+    ScaffoldMessenger.of(this.context).showSnackBar(
       SnackBar(
         content: Row(
           children: [
@@ -342,19 +356,19 @@ class _EmotionalAwarenessPageState extends State<EmotionalAwarenessPage> {
             Expanded(
               child: Text(
                 _selections.isNotEmpty
-                    ? 'Your emotional check-in is complete! ${_selections.length} items selected.'
-                    : 'Check-in completed. Welcome to your wellness dashboard!',
+                    ? 'Check-in complete! ${_selections.length} items selected. +2 coins earned! 🎉'
+                    : 'Check-in completed! +2 coins earned! Welcome to wellness! 🎉',
               ),
             ),
           ],
         ),
         backgroundColor: Colors.green,
         behavior: SnackBarBehavior.floating,
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 3),
       ),
     );
 
     // Navigate back to complete the flow
-    Navigator.of(context).pop();
+    Navigator.of(this.context).pop();
   }
 }

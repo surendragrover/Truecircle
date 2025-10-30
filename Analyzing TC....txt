@@ -1,0 +1,1222 @@
+Analyzing TC...
+
+warning - The declaration '<unnamed>' isn't referenced - lib\home\widgets\dr_iris_assistant_widget.dart:1:1 -
+       unused_element
+  error - 'class' can't be used as an identifier because it's a keyword -
+         lib\home\widgets\dr_iris_assistant_widget.dart:21:35 - expected_identifier_but_got_keyword
+  error - Undefined name 'class' - lib\home\widgets\dr_iris_assistant_widget.dart:21:35 - undefined_identifier
+  error - Expected to find ',' - lib\home\widgets\dr_iris_assistant_widget.dart:21:41 - expected_token
+  error - The argument type 'Type' can't be assigned to the parameter type 'Route<Object?>'.  -
+         lib\home\widgets\dr_iris_assistant_widget.dart:21:41 - argument_type_not_assignable
+  error - 'extends' can't be used as an identifier because it's a keyword -
+         lib\home\widgets\dr_iris_assistant_widget.dart:21:63 - expected_identifier_but_got_keyword
+  error - Expected to find ',' - lib\home\widgets\dr_iris_assistant_widget.dart:21:63 - expected_token
+  error - Too many positional arguments: 2 expected, but 5 found - lib\home\widgets\dr_iris_assistant_widget.dart:21:63
+         - extra_positional_arguments
+  error - Undefined name 'extends' - lib\home\widgets\dr_iris_assistant_widget.dart:21:63 - undefined_identifier
+  error - Expected to find ',' - lib\home\widgets\dr_iris_assistant_widget.dart:21:71 - expected_token
+  error - Expected to find ',' - lib\home\widgets\dr_iris_assistant_widget.dart:21:86 - expected_token
+  error - 'class' can't be used as an identifier because it's a keyword -
+         lib\home\widgets\dr_iris_assistant_widget.dart:21:87 - expected_identifier_but_got_keyword
+  error - Undefined name 'class' - lib\home\widgets\dr_iris_assistant_widget.dart:21:87 - undefined_identifier
+  error - Expected to find ',' - lib\home\widgets\dr_iris_assistant_widget.dart:21:93 - expected_token
+  error - 'extends' can't be used as an identifier because it's a keyword -
+         lib\home\widgets\dr_iris_assistant_widget.dart:21:115 - expected_identifier_but_got_keyword
+  error - Expected to find ',' - lib\home\widgets\dr_iris_assistant_widget.dart:21:115 - expected_token
+  error - Undefined name 'extends' - lib\home\widgets\dr_iris_assistant_widget.dart:21:115 - undefined_identifier
+  error - Expected to find ',' - lib\home\widgets\dr_iris_assistant_widget.dart:21:123 - expected_token
+  error - Expected to find ',' - lib\home\widgets\dr_iris_assistant_widget.dart:21:138 - expected_token
+  error - Too many positional arguments: 0 expected, but 1 found - lib\home\widgets\dr_iris_assistant_widget.dart:25:103
+         - extra_positional_arguments_could_be_named
+  error - Invalid constant value - lib\home\widgets\dr_iris_assistant_widget.dart:25:104 - invalid_constant
+  error - Expected to find '}' - lib\home\widgets\dr_iris_assistant_widget.dart:25:115 - expected_token
+  error - Expected to find '}' - lib\home\widgets\dr_iris_assistant_widget.dart:27:7 - expected_token
+  error - The named parameter 'width' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:33:9 -
+         undefined_named_parameter
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:33:31 - expected_token
+warning - Dead code - lib\home\widgets\dr_iris_assistant_widget.dart:33:34 - dead_code
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:33:34 - missing_identifier
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:33:34 - expected_token
+   info - An uninitialized variable should have an explicit type annotation -
+          lib\home\widgets\dr_iris_assistant_widget.dart:35:9 - prefer_typing_uninitialized_variables
+warning - The value of the local variable 'padding' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:35:9 -
+       unused_local_variable
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:35:9 - expected_token
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name -
+         lib\home\widgets\dr_iris_assistant_widget.dart:35:9 - missing_const_final_var_or_type
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:35:16 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:35:16 - unexpected_token
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:35:41 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:35:42 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:35:42 - unexpected_token
+warning - The label 'decoration' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:37:9 - unused_label
+  error - Function expressions can't be named - lib\home\widgets\dr_iris_assistant_widget.dart:37:66 -
+         named_function_expression
+  error - Too many positional arguments: 0 expected, but 1 found - lib\home\widgets\dr_iris_assistant_widget.dart:37:77
+         - extra_positional_arguments_could_be_named
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:37:112 - expected_token
+  error - 'DrIrisAssistantWidget' doesn't conform to the bound 'StatefulWidget' of the type parameter 'T' -
+         lib\home\widgets\dr_iris_assistant_widget.dart:37:121 - type_argument_not_matching_bounds
+warning - The declaration 'createState' isn't referenced - lib\home\widgets\dr_iris_assistant_widget.dart:37:144 -
+       unused_element
+warning - The label 'gradient' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:39:11 - unused_label
+  error - The named parameter 'colors' is required, but there's no corresponding argument -
+         lib\home\widgets\dr_iris_assistant_widget.dart:39:21 - missing_required_argument
+  error - The getter 'topLeft' isn't defined for the type 'dynamic Function()' -
+         lib\home\widgets\dr_iris_assistant_widget.dart:41:30 - undefined_getter
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:41:37 - expected_token
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:41:38 - expected_token
+   info - An uninitialized variable should have an explicit type annotation -
+          lib\home\widgets\dr_iris_assistant_widget.dart:43:13 - prefer_typing_uninitialized_variables
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:43:13 - strict_top_level_inference
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:43:13 - expected_token
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name -
+         lib\home\widgets\dr_iris_assistant_widget.dart:43:13 - missing_const_final_var_or_type
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:43:16 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:43:18 - strict_top_level_inference
+   info - The variable name 'Alignment' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:43:18 - non_constant_identifier_names
+  error - Functions must have an explicit list of parameters - lib\home\widgets\dr_iris_assistant_widget.dart:43:18 -
+         missing_function_parameters
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:43:27 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:43:27 - expected_executable
+   info - An uninitialized variable should have an explicit type annotation -
+          lib\home\widgets\dr_iris_assistant_widget.dart:43:28 - prefer_typing_uninitialized_variables
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:43:28 - strict_top_level_inference
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name -
+         lib\home\widgets\dr_iris_assistant_widget.dart:43:28 - missing_const_final_var_or_type
+   info - An uninitialized variable should have an explicit type annotation -
+          lib\home\widgets\dr_iris_assistant_widget.dart:45:13 - prefer_typing_uninitialized_variables
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:45:13 - strict_top_level_inference
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:45:13 - expected_token
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:45:19 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:45:21 - expected_executable
+  error - Can't have modifier 'const' here - lib\home\widgets\dr_iris_assistant_widget.dart:47:15 - extraneous_modifier
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:47:21 - strict_top_level_inference
+   info - The variable name 'Color' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:47:21 - non_constant_identifier_names
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:47:27 - missing_identifier
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:47:38 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:47:38 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:47:39 - strict_top_level_inference
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:47:50 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:47:55 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:47:55 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:47:62 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:47:62 - expected_executable
+  error - Can't have modifier 'const' here - lib\home\widgets\dr_iris_assistant_widget.dart:49:15 - extraneous_modifier
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:49:21 - strict_top_level_inference
+   info - The variable name 'Color' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:49:21 - non_constant_identifier_names
+  error - The name 'Color' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:49:21 -
+         duplicate_definition
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:49:27 - missing_identifier
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:49:38 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:49:38 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:49:39 - strict_top_level_inference
+  error - The name 'withValues' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:49:39 -
+         duplicate_definition
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:49:50 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:49:55 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:49:55 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:49:62 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:49:62 - expected_executable
+  error - Missing concrete implementation of 'abstract class State<T extends StatefulWidget> with Diagnosticable.build'
+         - lib\home\widgets\dr_iris_assistant_widget.dart:49:69 - non_abstract_class_inherits_abstract_member
+  error - 'DrIrisAssistantWidget' doesn't conform to the bound 'StatefulWidget' of the type parameter 'T' -
+         lib\home\widgets\dr_iris_assistant_widget.dart:49:111 - type_argument_not_matching_bounds
+  error - A class declaration must have a body, even if it is empty -
+         lib\home\widgets\dr_iris_assistant_widget.dart:49:132 - expected_body
+warning - The declaration '_DrIrisAssistantWidgetState' isn't referenced -
+       lib\home\widgets\dr_iris_assistant_widget.dart:49:139 - unused_element
+  error - Missing concrete implementation of 'abstract class State<T extends StatefulWidget> with Diagnosticable.build'
+         - lib\home\widgets\dr_iris_assistant_widget.dart:49:139 - non_abstract_class_inherits_abstract_member
+  error - The name '_DrIrisAssistantWidgetState' is already defined -
+         lib\home\widgets\dr_iris_assistant_widget.dart:49:139 - duplicate_definition
+  error - 'DrIrisAssistantWidget' doesn't conform to the bound 'StatefulWidget' of the type parameter 'T' -
+         lib\home\widgets\dr_iris_assistant_widget.dart:49:181 - type_argument_not_matching_bounds
+  error - A class declaration must have a body, even if it is empty -
+         lib\home\widgets\dr_iris_assistant_widget.dart:49:202 - expected_body
+  error - Can't have modifier 'const' here - lib\home\widgets\dr_iris_assistant_widget.dart:51:15 - extraneous_modifier
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:51:21 - strict_top_level_inference
+   info - The variable name 'Color' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:51:21 - non_constant_identifier_names
+  error - The name 'Color' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:51:21 -
+         duplicate_definition
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:51:27 - missing_identifier
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:51:38 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:51:38 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:51:39 - strict_top_level_inference
+  error - The name 'withValues' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:51:39 -
+         duplicate_definition
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:51:50 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:51:55 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:51:55 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:51:62 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:51:62 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:53:13 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:53:14 - expected_executable
+   info - An uninitialized variable should have an explicit type annotation -
+          lib\home\widgets\dr_iris_assistant_widget.dart:53:19 - prefer_typing_uninitialized_variables
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:53:19 - strict_top_level_inference
+  error - 'with' can't be used as an identifier because it's a keyword -
+         lib\home\widgets\dr_iris_assistant_widget.dart:53:19 - expected_identifier_but_got_keyword
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:53:19 - expected_token
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name -
+         lib\home\widgets\dr_iris_assistant_widget.dart:53:19 - missing_const_final_var_or_type
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:53:24 - strict_top_level_inference
+   info - The variable name 'TickerProviderStateMixin' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:53:24 - non_constant_identifier_names
+warning - The value of the local variable '<unnamed>' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:53:24
+       - unused_local_variable
+  error - Functions must have an explicit list of parameters - lib\home\widgets\dr_iris_assistant_widget.dart:53:24 -
+         missing_function_parameters
+  error - 'with' can't be used as an identifier because it's a keyword -
+         lib\home\widgets\dr_iris_assistant_widget.dart:53:54 - expected_identifier_but_got_keyword
+  error - Expected a statement - lib\home\widgets\dr_iris_assistant_widget.dart:53:54 - missing_statement
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:53:54 - expected_token
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:53:59 - expected_token
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:53:84 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:55:11 - missing_identifier
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:55:11 - expected_token
+  error - Unexpected text ')' - lib\home\widgets\dr_iris_assistant_widget.dart:55:11 - unexpected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:55:12 - missing_identifier
+  error - Unexpected text ',' - lib\home\widgets\dr_iris_assistant_widget.dart:55:12 - unexpected_token
+warning - The label 'borderRadius' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:57:11 - unused_label
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:57:49 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:57:50 - missing_identifier
+  error - Unexpected text ',' - lib\home\widgets\dr_iris_assistant_widget.dart:57:50 - unexpected_token
+   info - The local variable '_pulseController' starts with an underscore -
+          lib\home\widgets\dr_iris_assistant_widget.dart:57:78 - no_leading_underscores_for_local_identifiers
+   info - The local variable '_pulseController' starts with an underscore -
+          lib\home\widgets\dr_iris_assistant_widget.dart:57:122 - no_leading_underscores_for_local_identifiers
+warning - The value of the local variable '_pulseController' isn't used -
+       lib\home\widgets\dr_iris_assistant_widget.dart:57:122 - unused_local_variable
+  error - The name '_pulseController' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:57:122 -
+         duplicate_definition
+warning - The label 'border' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:59:11 - unused_label
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:61:26 - creation_with_non_type
+  error - Too many positional arguments: 0 expected, but 2 found - lib\home\widgets\dr_iris_assistant_widget.dart:61:69
+         - extra_positional_arguments_could_be_named
+  error - Undefined name 'late' - lib\home\widgets\dr_iris_assistant_widget.dart:61:69 - undefined_identifier
+  error - Expected to find ',' - lib\home\widgets\dr_iris_assistant_widget.dart:61:74 - expected_token
+  error - The operator '<' isn't defined for the type 'Type' - lib\home\widgets\dr_iris_assistant_widget.dart:61:83 -
+         undefined_operator
+  error - A comparison expression can't be an operand of another comparison expression -
+         lib\home\widgets\dr_iris_assistant_widget.dart:61:90 - equality_cannot_be_equality_operand
+  error - Local variable '_pulseAnimation' can't be referenced before it is declared -
+         lib\home\widgets\dr_iris_assistant_widget.dart:61:92 - referenced_before_declaration
+  error - The late local variable '_pulseAnimation' is definitely unassigned at this point -
+         lib\home\widgets\dr_iris_assistant_widget.dart:61:92 - definitely_unassigned_late_local_variable
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:61:107 - expected_token
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:65:11 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:65:12 - missing_identifier
+  error - Unexpected text ',' - lib\home\widgets\dr_iris_assistant_widget.dart:65:12 - unexpected_token
+   info - The local variable '_pulseAnimation' starts with an underscore -
+          lib\home\widgets\dr_iris_assistant_widget.dart:65:38 - no_leading_underscores_for_local_identifiers
+warning - The label 'boxShadow' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:67:11 - unused_label
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:69:25 - missing_identifier
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:69:25 - expected_token
+  error - Expected to find '}' - lib\home\widgets\dr_iris_assistant_widget.dart:77:13 - expected_token
+  error - Invalid context for 'super' invocation - lib\home\widgets\dr_iris_assistant_widget.dart:77:19 -
+         super_in_invalid_context
+  error - Expected to find ']' - lib\home\widgets\dr_iris_assistant_widget.dart:77:36 - expected_token
+   info - The local variable '_quickPrompts' starts with an underscore -
+          lib\home\widgets\dr_iris_assistant_widget.dart:77:58 - no_leading_underscores_for_local_identifiers
+warning - The value of the local variable '_quickPrompts' isn't used -
+       lib\home\widgets\dr_iris_assistant_widget.dart:77:58 - unused_local_variable
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:81:9 - missing_identifier
+   info - The local variable '_pulseController' starts with an underscore -
+          lib\home\widgets\dr_iris_assistant_widget.dart:81:15 - no_leading_underscores_for_local_identifiers
+warning - The value of the local variable '_pulseController' isn't used -
+       lib\home\widgets\dr_iris_assistant_widget.dart:81:15 - unused_local_variable
+  error - The name '_pulseController' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:81:15 -
+         duplicate_definition
+  error - The named parameter 'vsync' is required, but there's no corresponding argument -
+         lib\home\widgets\dr_iris_assistant_widget.dart:81:34 - missing_required_argument
+  error - Too many positional arguments: 0 expected, but 1 found - lib\home\widgets\dr_iris_assistant_widget.dart:81:58
+         - extra_positional_arguments_could_be_named
+  error - The named parameter 'child' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:83:9 -
+         undefined_named_parameter
+  error - 1 positional argument expected by 'Row', but 0 found - lib\home\widgets\dr_iris_assistant_widget.dart:85:11 -
+         not_enough_positional_arguments
+  error - Undefined name 'duration' - lib\home\widgets\dr_iris_assistant_widget.dart:85:28 - undefined_identifier
+  error - Expected to find ']' - lib\home\widgets\dr_iris_assistant_widget.dart:85:36 - expected_token
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:97:42 - expected_token
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:97:43 - expected_token
+  error - Expected to find ']' - lib\home\widgets\dr_iris_assistant_widget.dart:109:19 - expected_token
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:111:17 - expected_token
+  error - The method 'animate' isn't defined for the type 'AnimationController' -
+         lib\home\widgets\dr_iris_assistant_widget.dart:113:23 - undefined_method
+  error - The named parameter 'curve' is required, but there's no corresponding argument -
+         lib\home\widgets\dr_iris_assistant_widget.dart:113:31 - missing_required_argument
+  error - The named parameter 'parent' is required, but there's no corresponding argument -
+         lib\home\widgets\dr_iris_assistant_widget.dart:113:31 - missing_required_argument
+  error - Too many positional arguments: 0 expected, but 1 found - lib\home\widgets\dr_iris_assistant_widget.dart:113:53
+         - extra_positional_arguments_could_be_named
+  error - The named parameter 'child' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:115:15 -
+         undefined_named_parameter
+  error - The named parameter 'parent' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:117:42 -
+         undefined_named_parameter
+  error - The late local variable '_pulseController' is definitely unassigned at this point -
+         lib\home\widgets\dr_iris_assistant_widget.dart:117:50 - definitely_unassigned_late_local_variable
+  error - Too many positional arguments: 1 expected, but 3 found - lib\home\widgets\dr_iris_assistant_widget.dart:119:19
+         - extra_positional_arguments_could_be_named
+  error - The named parameter 'curve' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:121:43 -
+         undefined_named_parameter
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:125:36 - expected_token
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:129:40 - expected_token
+  error - The named parameter 'decoration' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:135:23 -
+         undefined_named_parameter
+  error - Methods can't be invoked in constant expressions - lib\home\widgets\dr_iris_assistant_widget.dart:137:32 -
+         const_eval_method_invocation
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:137:52 - missing_identifier
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:137:52 - expected_token
+  error - Function expressions can't be named - lib\home\widgets\dr_iris_assistant_widget.dart:141:32 -
+         named_function_expression
+  error - Too many positional arguments: 0 expected, but 1 found - lib\home\widgets\dr_iris_assistant_widget.dart:141:39
+         - extra_positional_arguments
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:141:49 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:141:94 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:141:94 - unexpected_token
+warning - The label 'child' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:143:23 - unused_label
+  error - Methods can't be invoked in constant expressions - lib\home\widgets\dr_iris_assistant_widget.dart:145:54 -
+         const_eval_method_invocation
+  error - The late local variable '_pulseController' is definitely unassigned at this point -
+         lib\home\widgets\dr_iris_assistant_widget.dart:145:54 - definitely_unassigned_late_local_variable
+  error - Too many positional arguments: 1 expected, but 2 found - lib\home\widgets\dr_iris_assistant_widget.dart:145:54
+         - extra_positional_arguments_could_be_named
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:145:80 - expected_token
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:151:23 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:151:24 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:151:24 - unexpected_token
+  error - Expected to find '}' - lib\home\widgets\dr_iris_assistant_widget.dart:153:21 - expected_token
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:153:22 - expected_token
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:153:25 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:153:30 - missing_identifier
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:153:30 - expected_token
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:153:30 - unexpected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:153:31 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:153:31 - unexpected_token
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:155:20 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:157:17 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:157:18 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:157:23 - strict_top_level_inference
+   info - The variable name 'DrIrisFeature' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:157:23 - non_constant_identifier_names
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:159:16 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:159:16 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:161:13 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:161:14 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:161:32 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:161:51 - expected_executable
+  error - Can't have modifier 'const' here - lib\home\widgets\dr_iris_assistant_widget.dart:165:13 - extraneous_modifier
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:165:19 - strict_top_level_inference
+   info - The variable name 'SizedBox' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:165:19 - non_constant_identifier_names
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:165:28 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:165:33 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:165:33 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:165:38 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:165:38 - expected_executable
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:165:83 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:165:124 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:165:124 - unexpected_token
+  error - The named parameter 'onTap' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:173:35 -
+         undefined_named_parameter
+  error - Too many positional arguments: 0 expected, but 1 found - lib\home\widgets\dr_iris_assistant_widget.dart:173:74
+         - extra_positional_arguments_could_be_named
+  error - The named parameter 'borderRadius' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:177:54 -
+         undefined_named_parameter
+  error - The named parameter 'children' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:179:17 -
+         undefined_named_parameter
+  error - 1 positional argument expected by 'Row', but 0 found - lib\home\widgets\dr_iris_assistant_widget.dart:181:29 -
+         not_enough_positional_arguments
+  error - The named parameter 'child' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:181:29 -
+         undefined_named_parameter
+  error - The named parameter 'children' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:183:21 -
+         undefined_named_parameter
+  error - The named parameter 'width' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:185:42 -
+         undefined_named_parameter
+  error - Too many positional arguments: 1 expected, but 3 found - lib\home\widgets\dr_iris_assistant_widget.dart:187:25
+         - extra_positional_arguments_could_be_named
+  error - The named parameter 'padding' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:189:50 -
+         undefined_named_parameter
+   info - Unnecessary 'const' keyword - lib\home\widgets\dr_iris_assistant_widget.dart:189:59 - unnecessary_const
+  error - Too many positional arguments: 0 expected, but 2 found - lib\home\widgets\dr_iris_assistant_widget.dart:189:90
+         - extra_positional_arguments_could_be_named
+  error - The argument type 'BoxDecoration' can't be assigned to the parameter type 'TextDecoration?'.  -
+         lib\home\widgets\dr_iris_assistant_widget.dart:193:75 - argument_type_not_assignable
+  error - Too many positional arguments: 0 expected, but 1 found - lib\home\widgets\dr_iris_assistant_widget.dart:193:95
+         - extra_positional_arguments_could_be_named
+  error - Methods can't be invoked in constant expressions - lib\home\widgets\dr_iris_assistant_widget.dart:195:34 -
+         const_eval_method_invocation
+  error - The named parameter 'gradient' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:197:37 -
+         undefined_named_parameter
+  error - The named parameter 'colors' is required, but there's no corresponding argument -
+         lib\home\widgets\dr_iris_assistant_widget.dart:197:47 - missing_required_argument
+  error - Too many positional arguments: 0 expected, but 1 found - lib\home\widgets\dr_iris_assistant_widget.dart:197:68
+         - extra_positional_arguments_could_be_named
+   info - Unnecessary 'const' keyword - lib\home\widgets\dr_iris_assistant_widget.dart:201:23 - unnecessary_const
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:201:29 -
+         creation_with_non_type
+  error - The named parameter 'begin' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:201:60 -
+         undefined_named_parameter
+  error - The getter 'topLeft' isn't defined for the type 'dynamic Function()' -
+         lib\home\widgets\dr_iris_assistant_widget.dart:201:77 - undefined_getter
+  error - 1 positional argument expected by 'Container', but 0 found -
+         lib\home\widgets\dr_iris_assistant_widget.dart:205:25 - not_enough_positional_arguments
+  error - The named parameter 'padding' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:205:25 -
+         undefined_named_parameter
+   info - Unnecessary 'const' keyword - lib\home\widgets\dr_iris_assistant_widget.dart:205:34 - unnecessary_const
+  error - The named parameter 'end' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:205:101 -
+         undefined_named_parameter
+  error - The getter 'bottomRight' isn't defined for the type 'dynamic Function()' -
+         lib\home\widgets\dr_iris_assistant_widget.dart:205:116 - undefined_getter
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:205:130 - expected_token
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:205:131 - expected_token
+  error - Expected to find ']' - lib\home\widgets\dr_iris_assistant_widget.dart:215:25 - expected_token
+  error - Expected to find '}' - lib\home\widgets\dr_iris_assistant_widget.dart:229:39 - expected_token
+  error - The named parameter 'borderRadius' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:233:35 -
+         undefined_named_parameter
+  error - The named parameter 'duration' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:233:81 -
+         undefined_named_parameter
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:235:21 - expected_token
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:237:19 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:237:20 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:237:20 - unexpected_token
+warning - The label 'border' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:237:31 - unused_label
+  error - The named parameter 'vsync' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:237:56 -
+         undefined_named_parameter
+  error - Invalid reference to 'this' expression - lib\home\widgets\dr_iris_assistant_widget.dart:237:63 -
+         invalid_reference_to_this
+  error - Too many positional arguments: 0 expected, but 2 found - lib\home\widgets\dr_iris_assistant_widget.dart:239:19
+         - extra_positional_arguments_could_be_named
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:239:25 -
+         creation_with_non_type
+  error - 1 positional argument expected by 'Text.new', but 0 found -
+         lib\home\widgets\dr_iris_assistant_widget.dart:241:36 - not_enough_positional_arguments
+  error - The named parameter 'color' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:241:36 -
+         undefined_named_parameter
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:241:49 -
+         creation_with_non_type
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:241:95 - expected_token
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:261:13 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:261:14 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:261:14 - unexpected_token
+warning - The label 'color' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:261:29 - unused_label
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:261:42 -
+         creation_with_non_type
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:261:81 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:261:82 - missing_identifier
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:261:82 - expected_token
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:261:82 - unexpected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:261:87 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:261:87 - unexpected_token
+   info - Unnecessary empty statement - lib\home\widgets\dr_iris_assistant_widget.dart:261:88 - empty_statements
+  error - The named parameter 'padding' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:269:15 -
+         undefined_named_parameter
+  error - The named parameter 'offset' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:269:63 -
+         undefined_named_parameter
+  error - Functions can't be assigned a value - lib\home\widgets\dr_iris_assistant_widget.dart:269:94 -
+         assignment_to_function
+  error - The argument type 'Animation<double>' can't be assigned to the parameter type 'Widget Function(BuildContext)'.
+         - lib\home\widgets\dr_iris_assistant_widget.dart:269:94 - argument_type_not_assignable
+  error - The named parameter 'decoration' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:271:15 -
+         undefined_named_parameter
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:273:30 -
+         creation_with_non_type
+  error - Undefined name '_pulseController' - lib\home\widgets\dr_iris_assistant_widget.dart:273:92 -
+         undefined_identifier
+  error - The named parameter 'borderRadius' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:275:17 -
+         undefined_named_parameter
+  error - The named parameter 'boxShadow' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:277:17 -
+         undefined_named_parameter
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:277:46 - expected_token
+  error - Expected to find ']' - lib\home\widgets\dr_iris_assistant_widget.dart:291:15 - expected_token
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:307:9 - expected_token
+  error - Expected to find '}' - lib\home\widgets\dr_iris_assistant_widget.dart:307:9 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:307:10 - missing_identifier
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:307:10 - expected_token
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:307:10 - unexpected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:309:7 - missing_identifier
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:309:7 - expected_token
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:309:7 - unexpected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:309:8 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:309:8 - unexpected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:309:50 - missing_identifier
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:309:50 - expected_token
+   info - An uninitialized variable should have an explicit type annotation -
+          lib\home\widgets\dr_iris_assistant_widget.dart:313:22 - prefer_typing_uninitialized_variables
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:313:22 - strict_top_level_inference
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:313:22 - expected_token
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name -
+         lib\home\widgets\dr_iris_assistant_widget.dart:313:22 - missing_const_final_var_or_type
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:313:27 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:313:29 - strict_top_level_inference
+  error - Functions must have an explicit list of parameters - lib\home\widgets\dr_iris_assistant_widget.dart:313:29 -
+         missing_function_parameters
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:313:44 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:313:44 - expected_executable
+   info - An uninitialized variable should have an explicit type annotation -
+          lib\home\widgets\dr_iris_assistant_widget.dart:313:45 - prefer_typing_uninitialized_variables
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:313:45 - strict_top_level_inference
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name -
+         lib\home\widgets\dr_iris_assistant_widget.dart:313:45 - missing_const_final_var_or_type
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:315:1 - missing_identifier
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:315:1 - expected_token
+   info - An uninitialized variable should have an explicit type annotation -
+          lib\home\widgets\dr_iris_assistant_widget.dart:316:19 - prefer_typing_uninitialized_variables
+   info - An uninitialized variable should have an explicit type annotation -
+          lib\home\widgets\dr_iris_assistant_widget.dart:316:19 - prefer_typing_uninitialized_variables
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:316:19 - strict_top_level_inference
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:316:19 - expected_token
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name -
+         lib\home\widgets\dr_iris_assistant_widget.dart:316:19 - missing_const_final_var_or_type
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:316:24 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:316:26 - strict_top_level_inference
+   info - The variable name 'Container' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:316:26 - non_constant_identifier_names
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:318:21 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:318:31 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:318:31 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant -
+         lib\home\widgets\dr_iris_assistant_widget.dart:318:33 - non_constant_default_value
+  error - Function expressions can't be named - lib\home\widgets\dr_iris_assistant_widget.dart:318:54 -
+         named_function_expression
+warning - The label 'shape' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:320:23 - unused_label
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:320:39 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:320:45 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:320:45 - unexpected_token
+  error - Undefined name '_pulseController' - lib\home\widgets\dr_iris_assistant_widget.dart:320:50 -
+         undefined_identifier
+warning - The label 'boxShadow' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:322:23 - unused_label
+  error - Undefined name '_floatingController' - lib\home\widgets\dr_iris_assistant_widget.dart:322:39 -
+         undefined_identifier
+  error - Expected to find ']' - lib\home\widgets\dr_iris_assistant_widget.dart:322:68 - expected_token
+  error - Invalid context for 'super' invocation - lib\home\widgets\dr_iris_assistant_widget.dart:324:39 -
+         super_in_invalid_context
+  error - Too many positional arguments: 0 expected, but 1 found - lib\home\widgets\dr_iris_assistant_widget.dart:324:39
+         - extra_positional_arguments_could_be_named
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:324:54 - expected_token
+warning - The label 'color' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:326:27 - unused_label
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:326:40 -
+         creation_with_non_type
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:326:79 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:326:80 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:326:80 - unexpected_token
+  error - Expected to find ',' - lib\home\widgets\dr_iris_assistant_widget.dart:328:27 - expected_token
+  error - The named parameter 'blurRadius' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:328:27 -
+         undefined_named_parameter
+  error - The named parameter 'spreadRadius' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:330:27 -
+         undefined_named_parameter
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:330:45 - missing_identifier
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:330:45 - expected_token
+   info - Use the generic function type syntax to declare the parameter 'build' -
+          lib\home\widgets\dr_iris_assistant_widget.dart:332:29 - use_function_type_syntax_for_parameters
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:332:64 - expected_token
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:362:66 - expected_token
+  error - Expected to find '}' - lib\home\widgets\dr_iris_assistant_widget.dart:364:41 - expected_token
+  error - Expected to find ']' - lib\home\widgets\dr_iris_assistant_widget.dart:384:19 - expected_token
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:390:14 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:390:14 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:390:23 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:390:24 - expected_executable
+   info - An uninitialized variable should have an explicit type annotation -
+          lib\home\widgets\dr_iris_assistant_widget.dart:392:21 - prefer_typing_uninitialized_variables
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:392:21 - strict_top_level_inference
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:392:21 - expected_token
+  error - The name 'child' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:392:21 -
+         duplicate_definition
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name -
+         lib\home\widgets\dr_iris_assistant_widget.dart:392:21 - missing_const_final_var_or_type
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:392:26 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:392:28 - strict_top_level_inference
+   info - The variable name 'Row' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:392:28 - non_constant_identifier_names
+  error - Can't have modifier 'const' here - lib\home\widgets\dr_iris_assistant_widget.dart:394:13 - extraneous_modifier
+  error - Function-typed parameters can't specify 'const', 'final' or 'var' in place of a return type -
+         lib\home\widgets\dr_iris_assistant_widget.dart:394:13 - function_typed_parameter_var
+   info - The variable name 'SizedBox' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:394:19 - non_constant_identifier_names
+   info - Use the generic function type syntax to declare the parameter 'SizedBox' -
+          lib\home\widgets\dr_iris_assistant_widget.dart:394:19 - use_function_type_syntax_for_parameters
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:394:33 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:394:33 - obsolete_colon_for_default_value
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:394:57 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:394:57 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant -
+         lib\home\widgets\dr_iris_assistant_widget.dart:394:59 - non_constant_default_value
+  error - The named parameter 'animation' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:400:36 -
+         undefined_named_parameter
+  error - The named parameter 'builder' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:402:43 -
+         undefined_named_parameter
+warning - The label 'crossAxisAlignment' isn't used - lib\home\widgets\dr_iris_assistant_widget.dart:404:17 -
+       unused_label
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:404:56 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:404:61 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:404:61 - unexpected_token
+  error - The named parameter 'mainAxisSize' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:406:17 -
+         undefined_named_parameter
+  error - The getter 'value' isn't defined for the type 'dynamic Function()' -
+         lib\home\widgets\dr_iris_assistant_widget.dart:406:89 - undefined_getter
+  error - The named parameter 'children' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:408:17 -
+         undefined_named_parameter
+  error - Expected to find ']' - lib\home\widgets\dr_iris_assistant_widget.dart:408:51 - expected_token
+  error - Expected to find ']' - lib\home\widgets\dr_iris_assistant_widget.dart:428:45 - expected_token
+  error - Expected to find '}' - lib\home\widgets\dr_iris_assistant_widget.dart:444:25 - expected_token
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:464:22 - expected_token
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:464:37 - expected_token
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:468:25 -
+         creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:470:42 -
+         creation_with_non_type
+  error - Too many positional arguments: 1 expected, but 3 found - lib\home\widgets\dr_iris_assistant_widget.dart:472:21
+         - extra_positional_arguments_could_be_named
+  error - Too many positional arguments: 0 expected, but 2 found - lib\home\widgets\dr_iris_assistant_widget.dart:476:48
+         - extra_positional_arguments_could_be_named
+  error - The named parameter 'color' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:478:23 -
+         undefined_named_parameter
+  error - The named parameter 'fontWeight' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:480:23 -
+         undefined_named_parameter
+  error - The named parameter 'mainAxisSize' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:482:39 -
+         undefined_named_parameter
+  error - The named parameter 'children' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:484:37 -
+         undefined_named_parameter
+  error - 1 positional argument expected by 'Row', but 0 found - lib\home\widgets\dr_iris_assistant_widget.dart:488:15 -
+         not_enough_positional_arguments
+  error - The argument for the named parameter 'children' was already specified -
+         lib\home\widgets\dr_iris_assistant_widget.dart:488:37 - duplicate_named_argument
+  error - The named parameter 'children' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:488:37 -
+         undefined_named_parameter
+  error - Expected to find ']' - lib\home\widgets\dr_iris_assistant_widget.dart:490:13 - expected_token
+  error - Methods can't be invoked in constant expressions - lib\home\widgets\dr_iris_assistant_widget.dart:496:13 -
+         const_eval_method_invocation
+  error - Too many positional arguments: 1 expected, but 2 found - lib\home\widgets\dr_iris_assistant_widget.dart:496:13
+         - extra_positional_arguments_could_be_named
+  error - 1 positional argument expected by 'Container', but 0 found -
+         lib\home\widgets\dr_iris_assistant_widget.dart:496:49 - not_enough_positional_arguments
+  error - The named parameter 'fontSize' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:496:49 -
+         undefined_named_parameter
+  error - The named parameter 'padding' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:498:15 -
+         undefined_named_parameter
+   info - Unnecessary 'const' keyword - lib\home\widgets\dr_iris_assistant_widget.dart:498:24 - unnecessary_const
+  error - The named parameter 'fontWeight' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:498:75 -
+         undefined_named_parameter
+  error - The argument for the named parameter 'color' was already specified -
+         lib\home\widgets\dr_iris_assistant_widget.dart:502:17 - duplicate_named_argument
+   info - Unnecessary 'const' keyword - lib\home\widgets\dr_iris_assistant_widget.dart:502:24 - unnecessary_const
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:502:30 -
+         creation_with_non_type
+  error - The named parameter 'borderRadius' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:504:17 -
+         undefined_named_parameter
+  error - The constructor being called isn't a const constructor - lib\home\widgets\dr_iris_assistant_widget.dart:504:31
+         - const_with_non_const
+  error - The named parameter 'boxShadow' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:506:17 -
+         undefined_named_parameter
+   info - Unnecessary 'const' keyword - lib\home\widgets\dr_iris_assistant_widget.dart:506:51 - unnecessary_const
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:506:57 -
+         creation_with_non_type
+  error - Too many positional arguments: 0 expected, but 1 found - lib\home\widgets\dr_iris_assistant_widget.dart:508:51
+         - extra_positional_arguments_could_be_named
+  error - 1 positional argument expected by 'Container', but 0 found -
+         lib\home\widgets\dr_iris_assistant_widget.dart:510:21 - not_enough_positional_arguments
+  error - The named parameter 'color' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:510:21 -
+         undefined_named_parameter
+   info - Unnecessary 'const' keyword - lib\home\widgets\dr_iris_assistant_widget.dart:510:28 - unnecessary_const
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:510:34 -
+         creation_with_non_type
+  error - The named parameter 'padding' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:510:99 -
+         undefined_named_parameter
+   info - Unnecessary 'const' keyword - lib\home\widgets\dr_iris_assistant_widget.dart:510:108 - unnecessary_const
+  error - The named parameter 'blurRadius' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:512:21 -
+         undefined_named_parameter
+  error - The named parameter 'offset' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:514:21 -
+         undefined_named_parameter
+   info - Unnecessary 'const' keyword - lib\home\widgets\dr_iris_assistant_widget.dart:514:29 - unnecessary_const
+  error - The named parameter 'borderRadius' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:516:47 -
+         undefined_named_parameter
+  error - The constructor being called isn't a const constructor - lib\home\widgets\dr_iris_assistant_widget.dart:516:61
+         - const_with_non_const
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:518:17 - expected_token
+  error - The named parameter 'border' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:518:45 -
+         undefined_named_parameter
+  error - The constructor being called isn't a const constructor - lib\home\widgets\dr_iris_assistant_widget.dart:518:53
+         - const_with_non_const
+  error - Expected to find ']' - lib\home\widgets\dr_iris_assistant_widget.dart:522:20 - expected_token
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:534:11 - expected_token
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:534:40 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:534:40 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:536:9 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:536:10 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:536:35 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:536:36 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:538:7 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:538:8 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:538:31 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:538:32 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:540:5 - expected_executable
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:540:6 - unexpected_token
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:540:27 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:540:28 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:542:3 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:542:22 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:542:23 - expected_executable
+  error - Can't have modifier 'const' here - lib\home\widgets\dr_iris_assistant_widget.dart:544:19 - extraneous_modifier
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:544:25 - strict_top_level_inference
+   info - The variable name 'SizedBox' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:544:25 - non_constant_identifier_names
+  error - The name 'SizedBox' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:544:25 -
+         duplicate_definition
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:544:34 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:544:40 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:544:40 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:544:44 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:544:44 - expected_executable
+  error - The argument type 'Future<Object?>' can't be assigned to the parameter type 'String'.  -
+         lib\home\widgets\dr_iris_assistant_widget.dart:548:5 - argument_type_not_assignable
+  error - The argument type 'String' can't be assigned to the parameter type 'BuildContext'.  -
+         lib\home\widgets\dr_iris_assistant_widget.dart:548:40 - argument_type_not_assignable
+  error - The argument type 'BuildContext' can't be assigned to the parameter type 'Route<Object?>'.  -
+         lib\home\widgets\dr_iris_assistant_widget.dart:550:7 - argument_type_not_assignable
+  error - The named parameter 'style' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:550:35 -
+         undefined_named_parameter
+  error - Too many positional arguments: 0 expected, but 1 found - lib\home\widgets\dr_iris_assistant_widget.dart:552:7
+         - extra_positional_arguments_could_be_named
+  error - The named parameter 'fontSize' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:552:47 -
+         undefined_named_parameter
+  error - The named parameter 'color' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:554:76 -
+         undefined_named_parameter
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:558:6 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:560:3 - missing_identifier
+  error - Expected to find ')' - lib\home\widgets\dr_iris_assistant_widget.dart:560:3 - expected_token
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:560:22 - expected_token
+  error - Expected an identifier - lib\home\widgets\dr_iris_assistant_widget.dart:560:23 - missing_identifier
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:560:23 - unexpected_token
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:562:18 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:562:19 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:563:15 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:563:16 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:564:13 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:564:14 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:567:13 - strict_top_level_inference
+   info - The variable name 'Container' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:567:13 - non_constant_identifier_names
+  error - The name 'Container' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:567:13 -
+         duplicate_definition
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:568:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:568:22 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:568:22 - obsolete_colon_for_default_value
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:569:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:569:25 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:569:25 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant -
+         lib\home\widgets\dr_iris_assistant_widget.dart:569:27 - non_constant_default_value
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:570:30 -
+         creation_with_non_type
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:574:34 -
+         creation_with_non_type
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:580:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:580:20 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:580:20 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:585:14 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:585:14 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:586:11 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:586:12 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:587:9 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:587:10 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:588:7 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:588:8 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:589:5 - expected_executable
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:589:6 - unexpected_token
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:590:3 - expected_executable
+warning - The declaration '_startChat' isn't referenced - lib\home\widgets\dr_iris_assistant_widget.dart:592:8 -
+       unused_element
+  error - The name '_startChat' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:592:8 -
+         duplicate_definition
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:600:1 - expected_executable
+  error - The name 'DrIrisFeature' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:602:7 -
+         duplicate_definition
+  error - Color isn't a type - lib\home\widgets\dr_iris_assistant_widget.dart:606:9 - not_a_type
+   info - An uninitialized variable should have an explicit type annotation -
+          lib\home\widgets\dr_iris_assistant_widget.dart:610:15 - prefer_typing_uninitialized_variables
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:610:15 - strict_top_level_inference
+  error - Expected to find ';' - lib\home\widgets\dr_iris_assistant_widget.dart:610:15 - expected_token
+  error - Variables must be declared using the keywords 'const', 'final', 'var' or a type name -
+         lib\home\widgets\dr_iris_assistant_widget.dart:610:15 - missing_const_final_var_or_type
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:610:23 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:610:25 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:612:17 - strict_top_level_inference
+   info - The variable name 'AnimatedBuilder' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:612:17 - non_constant_identifier_names
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:613:19 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:613:28 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:613:28 - obsolete_colon_for_default_value
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:614:19 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:614:26 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:614:26 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant -
+         lib\home\widgets\dr_iris_assistant_widget.dart:614:28 - non_constant_default_value
+  error - The getter 'value' isn't defined for the type 'dynamic Function()' -
+         lib\home\widgets\dr_iris_assistant_widget.dart:616:46 - undefined_getter
+  error - Undefined name '_floatingAnimation' - lib\home\widgets\dr_iris_assistant_widget.dart:618:36 -
+         undefined_identifier
+  error - Undefined name '_floatingAnimation' - lib\home\widgets\dr_iris_assistant_widget.dart:621:47 -
+         undefined_identifier
+  error - 1 positional argument expected by 'Container', but 0 found -
+         lib\home\widgets\dr_iris_assistant_widget.dart:623:31 - not_enough_positional_arguments
+  error - The named parameter 'width' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:623:31 -
+         undefined_named_parameter
+  error - The named parameter 'height' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:624:31 -
+         undefined_named_parameter
+  error - The property 'topLeft' can't be accessed on the type 'dynamic Function()' in a constant expression -
+         lib\home\widgets\dr_iris_assistant_widget.dart:628:42 - const_eval_property_access
+  error - The getter 'topLeft' isn't defined for the type 'dynamic Function()' -
+         lib\home\widgets\dr_iris_assistant_widget.dart:628:52 - undefined_getter
+  error - The getter 'bottomRight' isn't defined for the type 'dynamic Function()' -
+         lib\home\widgets\dr_iris_assistant_widget.dart:629:50 - undefined_getter
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:638:50 -
+         creation_with_non_type
+  error - The named parameter 'child' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:646:31 -
+         undefined_named_parameter
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:667:18 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:667:18 - expected_executable
+  error - Can't have modifier 'const' here - lib\home\widgets\dr_iris_assistant_widget.dart:669:17 - extraneous_modifier
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:669:23 - strict_top_level_inference
+   info - The variable name 'SizedBox' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:669:23 - non_constant_identifier_names
+  error - The name 'SizedBox' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:669:23 -
+         duplicate_definition
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:669:32 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:669:37 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:669:37 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:669:42 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:669:42 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:671:17 - strict_top_level_inference
+   info - The variable name 'Expanded' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:671:17 - non_constant_identifier_names
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:672:19 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:672:24 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:672:24 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant -
+         lib\home\widgets\dr_iris_assistant_widget.dart:672:26 - non_constant_default_value
+  error - Methods can't be invoked in constant expressions - lib\home\widgets\dr_iris_assistant_widget.dart:680:34 -
+         const_eval_method_invocation
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:690:29 -
+         creation_with_non_type
+  error - 1 positional argument expected by 'Container', but 0 found -
+         lib\home\widgets\dr_iris_assistant_widget.dart:692:25 - not_enough_positional_arguments
+  error - The named parameter 'padding' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:692:25 -
+         undefined_named_parameter
+  error - The named parameter 'child' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:700:25 -
+         undefined_named_parameter
+  error - 1 positional argument expected by 'Row', but 0 found - lib\home\widgets\dr_iris_assistant_widget.dart:701:27 -
+         not_enough_positional_arguments
+  error - The named parameter 'mainAxisSize' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:701:27 -
+         undefined_named_parameter
+  error - 1 positional argument expected by 'Container', but 0 found -
+         lib\home\widgets\dr_iris_assistant_widget.dart:704:31 - not_enough_positional_arguments
+  error - The named parameter 'width' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:704:31 -
+         undefined_named_parameter
+  error - The named parameter 'height' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:705:31 -
+         undefined_named_parameter
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:711:35 -
+         creation_with_non_type
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:725:18 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:725:18 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:726:15 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:726:16 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:727:13 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:727:14 - expected_executable
+  error - Can't have modifier 'const' here - lib\home\widgets\dr_iris_assistant_widget.dart:729:13 - extraneous_modifier
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:729:19 - strict_top_level_inference
+   info - The variable name 'SizedBox' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:729:19 - non_constant_identifier_names
+  error - The name 'SizedBox' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:729:19 -
+         duplicate_definition
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:729:28 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:729:34 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:729:34 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:729:39 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:729:39 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:732:13 - strict_top_level_inference
+   info - The variable name 'Container' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:732:13 - non_constant_identifier_names
+  error - The name 'Container' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:732:13 -
+         duplicate_definition
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:733:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:733:20 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:733:20 - obsolete_colon_for_default_value
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:734:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:734:22 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:734:22 - obsolete_colon_for_default_value
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:735:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:735:25 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:735:25 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant -
+         lib\home\widgets\dr_iris_assistant_widget.dart:735:27 - non_constant_default_value
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:746:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:746:20 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:746:20 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant -
+         lib\home\widgets\dr_iris_assistant_widget.dart:746:22 - non_constant_default_value
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:751:34 -
+         creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:753:25 -
+         creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:758:25 -
+         creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:768:25 -
+         creation_with_non_type
+  error - The named parameter 'child' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:771:21 -
+         undefined_named_parameter
+  error - Undefined name 'context' - lib\home\widgets\dr_iris_assistant_widget.dart:772:51 - undefined_identifier
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:774:48 -
+         creation_with_non_type
+  error - The name 'Row' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:781:36 - creation_with_non_type
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:799:14 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:799:14 - expected_executable
+  error - Can't have modifier 'const' here - lib\home\widgets\dr_iris_assistant_widget.dart:801:13 - extraneous_modifier
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:801:19 - strict_top_level_inference
+   info - The variable name 'SizedBox' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:801:19 - non_constant_identifier_names
+  error - The name 'SizedBox' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:801:19 -
+         duplicate_definition
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:801:28 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:801:34 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:801:34 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:801:39 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:801:39 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:804:13 - strict_top_level_inference
+   info - The variable name 'Container' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:804:13 - non_constant_identifier_names
+  error - The name 'Container' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:804:13 -
+         duplicate_definition
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:805:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:805:22 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:805:22 - obsolete_colon_for_default_value
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:806:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:806:25 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:806:25 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant -
+         lib\home\widgets\dr_iris_assistant_widget.dart:806:27 - non_constant_default_value
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:817:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:817:20 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:817:20 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant -
+         lib\home\widgets\dr_iris_assistant_widget.dart:817:22 - non_constant_default_value
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:824:25 -
+         creation_with_non_type
+  error - Undefined name '_quickPrompts' - lib\home\widgets\dr_iris_assistant_widget.dart:829:31 - undefined_identifier
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:835:14 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:835:14 - expected_executable
+  error - Can't have modifier 'const' here - lib\home\widgets\dr_iris_assistant_widget.dart:837:13 - extraneous_modifier
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:837:19 - strict_top_level_inference
+   info - The variable name 'SizedBox' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:837:19 - non_constant_identifier_names
+  error - The name 'SizedBox' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:837:19 -
+         duplicate_definition
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:837:28 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:837:34 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:837:34 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:837:39 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:837:39 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:840:13 - strict_top_level_inference
+   info - The variable name 'Container' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:840:13 - non_constant_identifier_names
+  error - The name 'Container' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:840:13 -
+         duplicate_definition
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:841:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:841:22 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:841:22 - obsolete_colon_for_default_value
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:842:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:842:25 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:842:25 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant -
+         lib\home\widgets\dr_iris_assistant_widget.dart:842:27 - non_constant_default_value
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:853:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:853:20 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:853:20 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant -
+         lib\home\widgets\dr_iris_assistant_widget.dart:853:22 - non_constant_default_value
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:860:25 -
+         creation_with_non_type
+  error - Undefined name '_features' - lib\home\widgets\dr_iris_assistant_widget.dart:870:31 - undefined_identifier
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:876:14 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:876:14 - expected_executable
+  error - Can't have modifier 'const' here - lib\home\widgets\dr_iris_assistant_widget.dart:878:13 - extraneous_modifier
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:878:19 - strict_top_level_inference
+   info - The variable name 'SizedBox' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:878:19 - non_constant_identifier_names
+  error - The name 'SizedBox' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:878:19 -
+         duplicate_definition
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:878:28 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:878:34 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:878:34 - obsolete_colon_for_default_value
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:878:39 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:878:39 - expected_executable
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:881:13 - strict_top_level_inference
+   info - The variable name 'Container' isn't a lowerCamelCase identifier -
+          lib\home\widgets\dr_iris_assistant_widget.dart:881:13 - non_constant_identifier_names
+  error - The name 'Container' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:881:13 -
+         duplicate_definition
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:882:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:882:22 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:882:22 - obsolete_colon_for_default_value
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:883:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:883:25 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:883:25 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant -
+         lib\home\widgets\dr_iris_assistant_widget.dart:883:27 - non_constant_default_value
+   info - Missing type annotation - lib\home\widgets\dr_iris_assistant_widget.dart:894:15 - strict_top_level_inference
+  error - Named parameters must be enclosed in curly braces ('{' and '}') -
+         lib\home\widgets\dr_iris_assistant_widget.dart:894:20 - named_parameter_outside_group
+  error - Using a colon as the separator before a default value is no longer supported -
+         lib\home\widgets\dr_iris_assistant_widget.dart:894:20 - obsolete_colon_for_default_value
+  error - The default value of an optional parameter must be constant -
+         lib\home\widgets\dr_iris_assistant_widget.dart:894:22 - non_constant_default_value
+  error - 1 positional argument expected by 'Row', but 0 found - lib\home\widgets\dr_iris_assistant_widget.dart:898:21 -
+         not_enough_positional_arguments
+  error - The named parameter 'mainAxisAlignment' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:898:21
+         - undefined_named_parameter
+  error - Undefined name 'context' - lib\home\widgets\dr_iris_assistant_widget.dart:908:59 - undefined_identifier
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:914:25 -
+         creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:924:25 -
+         creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:932:25 -
+         creation_with_non_type
+  error - A function body must be provided - lib\home\widgets\dr_iris_assistant_widget.dart:942:14 -
+         missing_function_body
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:942:14 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:943:11 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:943:12 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:944:9 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:944:10 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:945:7 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:945:8 - expected_executable
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:946:5 - expected_executable
+  error - Unexpected text ';' - lib\home\widgets\dr_iris_assistant_widget.dart:946:6 - unexpected_token
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:947:3 - expected_executable
+  error - Undefined name 'context' - lib\home\widgets\dr_iris_assistant_widget.dart:951:41 - undefined_identifier
+  error - 1 positional argument expected by 'Container', but 0 found -
+         lib\home\widgets\dr_iris_assistant_widget.dart:953:9 - not_enough_positional_arguments
+  error - The named parameter 'padding' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:953:9 -
+         undefined_named_parameter
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:955:24 -
+         creation_with_non_type
+  error - The name 'Color' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:958:26 -
+         creation_with_non_type
+  error - The named parameter 'child' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:961:9 -
+         undefined_named_parameter
+  error - Methods can't be invoked in constant expressions - lib\home\widgets\dr_iris_assistant_widget.dart:966:20 -
+         const_eval_method_invocation
+  error - DrIrisFeature isn't a type - lib\home\widgets\dr_iris_assistant_widget.dart:973:28 - not_a_type
+  error - 1 positional argument expected by 'Container', but 0 found -
+         lib\home\widgets\dr_iris_assistant_widget.dart:975:7 - not_enough_positional_arguments
+  error - The named parameter 'padding' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:975:7 -
+         undefined_named_parameter
+  error - The named parameter 'child' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:981:7 -
+         undefined_named_parameter
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:985:17 -
+         creation_with_non_type
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:995:17 -
+         creation_with_non_type
+  error - Color isn't a type - lib\home\widgets\dr_iris_assistant_widget.dart:1013:5 - not_a_type
+  error - 1 positional argument expected by 'Row', but 0 found - lib\home\widgets\dr_iris_assistant_widget.dart:1016:7 -
+         not_enough_positional_arguments
+  error - 1 positional argument expected by 'Container', but 0 found -
+         lib\home\widgets\dr_iris_assistant_widget.dart:1018:11 - not_enough_positional_arguments
+  error - The named parameter 'padding' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:1018:11 -
+         undefined_named_parameter
+  error - The named parameter 'child' isn't defined - lib\home\widgets\dr_iris_assistant_widget.dart:1023:11 -
+         undefined_named_parameter
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:1025:15 -
+         creation_with_non_type
+  error - 1 positional argument expected by 'Row', but 0 found - lib\home\widgets\dr_iris_assistant_widget.dart:1031:17
+         - not_enough_positional_arguments
+  error - The name 'SizedBox' isn't a class - lib\home\widgets\dr_iris_assistant_widget.dart:1047:21 -
+         creation_with_non_type
+warning - The declaration '_startChat' isn't referenced - lib\home\widgets\dr_iris_assistant_widget.dart:1061:8 -
+       unused_element
+  error - The name '_startChat' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:1061:8 -
+         duplicate_definition
+  error - Expected a method, getter, setter or operator declaration -
+         lib\home\widgets\dr_iris_assistant_widget.dart:1082:1 - expected_executable
+  error - The name 'DrIrisFeature' is already defined - lib\home\widgets\dr_iris_assistant_widget.dart:1084:7 -
+         duplicate_definition
+  error - Color isn't a type - lib\home\widgets\dr_iris_assistant_widget.dart:1088:9 - not_a_type
+
+742 issues found. (ran in 16.5s)
+PS C:\Users\suren\flutter_app\TC>

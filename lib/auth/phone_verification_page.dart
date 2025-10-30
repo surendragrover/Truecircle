@@ -74,20 +74,58 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
   @override
   void initState() {
     super.initState();
-    // Initialize selected country from locale (fallback to US if null)
-    // We'll update this via picker as needed.
-    // Do not block UI; this is synchronous.
+    // Initialize selected country with smart detection
     _selectedCountry = null; // defer to build for first resolve
-    // Prefill phone field with current locale dial code once UI is ready
+    // Auto-detect user's country once UI is ready
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      final cc = (Localizations.localeOf(context).countryCode ?? 'US')
-          .toUpperCase();
+      final cc = _detectUserCountry();
       final dial = _dialCodeFor(cc).trim();
       if (_phoneCtrl.text.isEmpty) {
         _phoneCtrl.text = dial;
       }
     });
+  }
+
+  String _detectUserCountry() {
+    try {
+      // Try to get from system locale first
+      final locale = Localizations.localeOf(context).countryCode;
+      if (locale != null) {
+        final countryCode = locale.toUpperCase();
+        // Validate if we support this country
+        final dialCode = _dialCodeFor(countryCode);
+        if (dialCode.isNotEmpty && dialCode != '+1') {
+          // Avoid defaulting to US
+          return countryCode;
+        }
+      }
+
+      // Enhanced fallback logic using timezone
+      final now = DateTime.now();
+      final offset = now.timeZoneOffset.inHours;
+
+      // India Standard Time (UTC+5:30)
+      if (offset == 5 || offset == 6) {
+        return 'IN';
+      }
+
+      // UK timezone (UTC+0 to UTC+1)
+      if (offset >= 0 && offset <= 1) {
+        return 'GB';
+      }
+
+      // US timezones (UTC-5 to UTC-8) - keep as fallback but not primary
+      if (offset >= -8 && offset <= -5) {
+        return 'US';
+      }
+
+      // Default to India as primary target market
+      return 'IN';
+    } catch (e) {
+      // Final fallback to India
+      return 'IN';
+    }
   }
 
   @override
@@ -121,6 +159,8 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
               TextField(
                 controller: _phoneCtrl,
                 keyboardType: TextInputType.phone,
+                textInputAction: TextInputAction.done,
+                onSubmitted: (_) => _verify(),
                 decoration: InputDecoration(
                   labelText: 'Phone number',
                   hintText: '${dial}XXXXXXXXXX',

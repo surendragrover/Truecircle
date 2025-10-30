@@ -71,23 +71,23 @@ class AppTheme {
               hopeBackground, // Hope light background (instead of surfaceVariant)
           primaryContainer: hopePurple.withValues(
             alpha: 0.1,
-          ), // हल्का बैंगनी कंटेनर
+          ), // Light purple container
           secondaryContainer: joyfulTeal.withValues(
             alpha: 0.1,
-          ), // हल्का हरा-नीला कंटेनर
+          ), // Light teal container
           tertiaryContainer: warmGold.withValues(
             alpha: 0.1,
-          ), // हल्का सोनहरा कंटेनर
+          ), // Light golden container
         );
 
     return ThemeData(
       useMaterial3: true,
       colorScheme: scheme,
-      scaffoldBackgroundColor: joyfulBackground, // खुशियों की हल्की पृष्ठभूमि
-      // Typography - जीवंत और शांतिदायक पाठ
+      scaffoldBackgroundColor: joyfulBackground, // Joyful light background
+      // Typography - vibrant and calming text
       textTheme: Typography.blackMountainView
           .apply(
-            bodyColor: warmTextDark, // गर्म गहरा पाठ
+            bodyColor: warmTextDark, // Warm dark text
             displayColor: warmTextDark,
           )
           .copyWith(
@@ -112,11 +112,11 @@ class AppTheme {
             labelLarge: TextStyle(color: gentleTextLight),
           ),
 
-      // AppBar - खुशियों से भरा शीर्ष बार
+      // AppBar - joyful top bar
       appBarTheme: AppBarTheme(
-        backgroundColor: peacefulSurface, // शांति की सफेद सतह
+        backgroundColor: peacefulSurface, // Peaceful white surface
         surfaceTintColor: Colors.transparent,
-        foregroundColor: warmTextDark, // गर्म गहरा पाठ
+        foregroundColor: warmTextDark, // Warm dark text
         elevation: 0,
         centerTitle: false,
         titleTextStyle: const TextStyle(
@@ -155,19 +155,19 @@ class AppTheme {
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          foregroundColor: joyfulTeal, // खुशी का हरा-नीला बटन
+          foregroundColor: joyfulTeal, // Joyful teal button
           textStyle: const TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
-      iconTheme: IconThemeData(color: warmTextDark), // गर्म आइकन
-      // सुंदर Input Fields - Beautiful Input Fields
+      iconTheme: IconThemeData(color: warmTextDark), // Warm icons
+      // Beautiful Input Fields
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: peacefulSurface, // शांति की सफेद सतह
+        fillColor: peacefulSurface, // Peaceful white surface
         hintStyle: TextStyle(
           color: gentleTextLight.withValues(alpha: 0.7),
-        ), // कोमल संकेत
-        labelStyle: TextStyle(color: gentleTextLight), // कोमल लेबल
+        ), // Gentle hint
+        labelStyle: TextStyle(color: gentleTextLight), // Gentle label
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide(color: Colors.grey.shade300),
@@ -197,51 +197,51 @@ class AppTheme {
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       ),
-      // जीवंत Tabs - Vibrant Tabs 🌈
+      // Vibrant Tabs 🌈
       tabBarTheme: TabBarThemeData(
-        labelColor: skyBlue, // आकाश नीला - असीम संभावनाएं
-        unselectedLabelColor: gentleTextLight, // कोमल हल्का
-        indicatorColor: joyfulTeal, // खुशी का हरा-नीला
+        labelColor: skyBlue, // Sky blue - endless possibilities
+        unselectedLabelColor: gentleTextLight, // Gentle light
+        indicatorColor: joyfulTeal, // Joyful teal
         dividerColor: Colors.grey.shade200,
         labelStyle: const TextStyle(fontWeight: FontWeight.w600),
         unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.normal),
       ),
 
-      // सुंदर विभाजक - Beautiful Dividers
+      // Beautiful Dividers
       dividerTheme: DividerThemeData(
         color: gentleTextLight.withValues(alpha: 0.2),
         thickness: 1,
         space: 1,
       ),
 
-      // खुशमिजाज ListTiles - Joyful ListTiles 🌈
+      // Joyful ListTiles 🌈
       listTileTheme: ListTileThemeData(
-        iconColor: springGreen, // वसंत हरा - नवजीवन
-        textColor: warmTextDark, // गर्म गहरा पाठ
-        tileColor: peacefulSurface, // शांति की सफेद सतह
+        iconColor: springGreen, // Spring green - renewal
+        textColor: warmTextDark, // Warm dark text
+        tileColor: peacefulSurface, // Peaceful white surface
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),
 
-      // आधुनिक SnackBars - Modern SnackBars
+      // Modern SnackBars
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: warmTextDark, // गर्म गहरी पृष्ठभूमि
+        backgroundColor: warmTextDark, // Warm dark background
         contentTextStyle: const TextStyle(color: Colors.white),
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
-      // सुनहरा FAB - Golden Floating Action Button �
+      // Golden Floating Action Button
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: warmGold, // सोनहरा - खुशी और ऊर्जा
+        backgroundColor: warmGold, // Golden - joy and energy
         foregroundColor: Colors.white,
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       ),
 
-      // खुशमिजाज Bottom Navigation - Joyful Bottom Navigation 🌈
+      // Joyful Bottom Navigation 🌈
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: peacefulSurface, // शांति की सफेद सतह
-        selectedItemColor: primaryTrueCircle, // मुख्य नीला
-        unselectedItemColor: gentleTextLight, // कोमल हल्का
+        backgroundColor: peacefulSurface, // Peaceful white surface
+        selectedItemColor: primaryTrueCircle, // Primary blue
+        unselectedItemColor: gentleTextLight, // Gentle light
         type: BottomNavigationBarType.fixed,
         elevation: 8,
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),

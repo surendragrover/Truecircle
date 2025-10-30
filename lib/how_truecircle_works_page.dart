@@ -72,7 +72,7 @@ class _HowTrueCircleWorksPageState extends State<HowTrueCircleWorksPage>
           _buildSectionCard(
             title: '🌟 What is TrueCircle?',
             content:
-                '''TrueCircle is a revolutionary emotional AI app that helps you understand your relationships and mental health. It's a privacy‑first app that provides AI‑powered insights with cultural context.
+                '''TrueCircle is a revolutionary emotional AI app that helps you understand your relationships and emotional health. It's a privacy‑first app that provides AI‑powered insights with cultural context.
 
 ✨ Key Highlights:
 • 100% Privacy Protected - Your data stays on your device

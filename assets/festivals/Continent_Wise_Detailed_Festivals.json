@@ -1,0 +1,686 @@
+{
+  "continentWiseFestivals": {
+    
+    "Asia": {
+      "SouthAsia": {
+        "India": [
+          {
+            "name": "Karva Chauth",
+            "region": "North India",
+            "type": "Religious/Matrimonial",
+            "description": "Wives fast for husband's longevity",
+            "month": "October-November",
+            "greetings": ["Happy Karva Chauth", "करवा चौथ की शुभकामनाएं"]
+          },
+          {
+            "name": "Teej",
+            "region": "Rajasthan/North India", 
+            "type": "Seasonal/Women's Festival",
+            "description": "Monsoon festival celebrated by women",
+            "month": "July-August",
+            "greetings": ["Happy Teej", "तीज की शुभकामनाएं"]
+          },
+          {
+            "name": "Pongal",
+            "region": "Tamil Nadu",
+            "type": "Harvest Festival",
+            "description": "Tamil harvest festival thanking nature",
+            "month": "January",
+            "greetings": ["Pongal Vazhthukal", "पोंगल की शुभकामनाएं"]
+          },
+          {
+            "name": "Onam", 
+            "region": "Kerala",
+            "type": "Cultural/Harvest",
+            "description": "Kerala's state festival welcoming King Mahabali",
+            "month": "August-September", 
+            "greetings": ["Onam Ashamsakal", "ओणम की शुभकामनाएं"]
+          },
+          {
+            "name": "Durga Puja",
+            "region": "West Bengal",
+            "type": "Religious/Cultural",
+            "description": "Major Bengali festival honoring Goddess Durga",
+            "month": "September-October",
+            "greetings": ["Subho Bijoya", "दुर्गा पूजा की शुभकामनाएं"]
+          },
+          {
+            "name": "Ganesh Chaturthi",
+            "region": "Maharashtra/Pan-India",
+            "type": "Religious",
+            "description": "Celebrating Lord Ganesha",
+            "month": "August-September",
+            "greetings": ["Ganpati Bappa Morya", "गणेश चतुर्थी की शुभकामनाएं"]
+          },
+          {
+            "name": "Baisakhi", 
+            "region": "Punjab",
+            "type": "Religious/Harvest",
+            "description": "Sikh New Year and harvest festival",
+            "month": "April",
+            "greetings": ["Baisakhi di lakh lakh vadhaiyan", "बैसाखी की शुभकामनाएं"]
+          },
+          {
+            "name": "Kumbh Mela",
+            "region": "Allahabad/Haridwar/Ujjain/Nashik",
+            "type": "Religious/Pilgrimage",
+            "description": "World's largest religious gathering",
+            "frequency": "Every 12 years (each location)",
+            "greetings": ["Har Har Gange", "कुंभ मेला की शुभकामनाएं"]
+          }
+        ],
+        
+        "Pakistan": [
+          {
+            "name": "Shandur Polo Festival", 
+            "region": "Northern Pakistan",
+            "type": "Sports/Cultural",
+            "description": "Polo tournament at world's highest polo ground",
+            "month": "July",
+            "greetings": ["Welcome to Shandur", "شاندور پولو فیسٹیول"]
+          },
+          {
+            "name": "Lok Virsa Folk Festival",
+            "region": "Islamabad",
+            "type": "Cultural/Arts", 
+            "description": "Celebrating Pakistani folk heritage",
+            "month": "October",
+            "greetings": ["Pakistani culture zindabad", "لوک ثقافت فیسٹیول"]
+          }
+        ],
+
+        "Bangladesh": [
+          {
+            "name": "Pahela Boishakh",
+            "region": "National",
+            "type": "Cultural/New Year",
+            "description": "Bengali New Year celebration", 
+            "month": "April",
+            "greetings": ["Subho Noboborsho", "শুভ নববর্ষ"]
+          },
+          {
+            "name": "Pohela Falgun",
+            "region": "National",
+            "type": "Seasonal/Cultural",
+            "description": "First day of spring in Bengali calendar",
+            "month": "February",
+            "greetings": ["Spring welcome", "বসন্তের শুভেচ্ছা"]
+          }
+        ],
+
+        "Sri Lanka": [
+          {
+            "name": "Vesak",
+            "region": "National", 
+            "type": "Buddhist Religious",
+            "description": "Celebrating Buddha's birth, enlightenment, death",
+            "month": "May",
+            "greetings": ["Vesak wishes", "වෙසක් සුභ පැතුම්"]
+          },
+          {
+            "name": "Sinhala Tamil New Year",
+            "region": "National",
+            "type": "Cultural/New Year", 
+            "description": "Traditional New Year for both communities",
+            "month": "April",
+            "greetings": ["Subha Aluth Awuruddak", "புத்தாண்டு வாழ்த்துக்கள்"]
+          }
+        ]
+      },
+
+      "EastAsia": {
+        "China": [
+          {
+            "name": "Mid-Autumn Festival",
+            "region": "National",
+            "type": "Traditional/Family",
+            "description": "Moon viewing and family reunions",
+            "month": "September-October", 
+            "greetings": ["Happy Mid-Autumn Festival", "中秋快乐"]
+          },
+          {
+            "name": "Dragon Boat Festival", 
+            "region": "National",
+            "type": "Traditional/Sports",
+            "description": "Dragon boat racing and zongzi eating",
+            "month": "June",
+            "greetings": ["Happy Dragon Boat Festival", "端午节快乐"]
+          },
+          {
+            "name": "Qingming Festival",
+            "region": "National",
+            "type": "Traditional/Ancestral",
+            "description": "Tomb sweeping and honoring ancestors",
+            "month": "April",
+            "greetings": ["Qingming greetings", "清明节安好"]
+          },
+          {
+            "name": "Double Seventh Festival", 
+            "region": "National",
+            "type": "Traditional/Romance",
+            "description": "Chinese Valentine's Day",
+            "month": "August",
+            "greetings": ["Happy Qixi Festival", "七夕节快乐"]
+          }
+        ],
+
+        "Japan": [
+          {
+            "name": "Golden Week",
+            "region": "National",
+            "type": "National Holidays",
+            "description": "Series of national holidays",
+            "month": "April-May",
+            "greetings": ["Happy Golden Week", "ゴールデンウィーク"]
+          },
+          {
+            "name": "Obon Festival",
+            "region": "National", 
+            "type": "Buddhist/Ancestral",
+            "description": "Honoring deceased ancestors",
+            "month": "August",
+            "greetings": ["Obon wishes", "お盆の挨拶"]
+          },
+          {
+            "name": "Tanabata",
+            "region": "National",
+            "type": "Traditional/Romance",
+            "description": "Star festival celebrating love story",
+            "month": "July",
+            "greetings": ["Happy Tanabata", "七夕おめでとう"]
+          },
+          {
+            "name": "Hanami",
+            "region": "National",
+            "type": "Seasonal/Cultural",
+            "description": "Cherry blossom viewing",
+            "month": "March-May", 
+            "greetings": ["Enjoy hanami", "花見を楽しんで"]
+          },
+          {
+            "name": "Shichi-Go-San",
+            "region": "National",
+            "type": "Cultural/Children",
+            "description": "Children's blessing ceremony",
+            "month": "November",
+            "greetings": ["Shichi-Go-San omedetou", "七五三おめでとう"]
+          }
+        ],
+
+        "SouthKorea": [
+          {
+            "name": "Chuseok",
+            "region": "National",
+            "type": "Traditional/Harvest",
+            "description": "Korean Thanksgiving and harvest festival",
+            "month": "September-October",
+            "greetings": ["Happy Chuseok", "추석 잘 보내세요"]
+          },
+          {
+            "name": "Seollal", 
+            "region": "National",
+            "type": "Traditional/New Year",
+            "description": "Korean Lunar New Year",
+            "month": "January-February",
+            "greetings": ["Saehae bok mani badeuseyo", "새해 복 많이 받으세요"]
+          },
+          {
+            "name": "Buddha's Birthday",
+            "region": "National",
+            "type": "Buddhist Religious",
+            "description": "Celebrating birth of Buddha",
+            "month": "May",
+            "greetings": ["Bucheonim osin nal", "부처님 오신 날"]
+          }
+        ]
+      },
+
+      "SoutheastAsia": {
+        "Thailand": [
+          {
+            "name": "Songkran",
+            "region": "National",
+            "type": "Traditional/New Year",
+            "description": "Thai New Year water festival",
+            "month": "April",
+            "greetings": ["Sawasdee Pee Mai", "สวัสดีปีใหม่"]
+          },
+          {
+            "name": "Loy Krathong",
+            "region": "National", 
+            "type": "Traditional/Water",
+            "description": "Festival of floating offerings",
+            "month": "November",
+            "greetings": ["Happy Loy Krathong", "วันลอยกระทง"]
+          },
+          {
+            "name": "Phi Ta Khon",
+            "region": "Dan Sai, Loei Province",
+            "type": "Buddhist/Ghost Festival",
+            "description": "Ghost mask festival",
+            "month": "March-July",
+            "greetings": ["Bun Luang wishes", "บุญหลวง"]
+          }
+        ],
+
+        "Indonesia": [
+          {
+            "name": "Nyepi",
+            "region": "Bali",
+            "type": "Hindu Religious",
+            "description": "Day of silence and reflection", 
+            "month": "March",
+            "greetings": ["Rahajeng Nyepi", "राहजेंग न्येपी"]
+          },
+          {
+            "name": "Galungan",
+            "region": "Bali",
+            "type": "Hindu Religious", 
+            "description": "Victory of good over evil",
+            "duration": "10 days",
+            "greetings": ["Rahajeng Galungan", "राहजेंग गलुंगन"]
+          },
+          {
+            "name": "Independence Day",
+            "region": "National",
+            "type": "National",
+            "description": "Indonesian independence celebration",
+            "month": "August",
+            "greetings": ["Merdeka", "मर्देका"]
+          }
+        ],
+
+        "Vietnam": [
+          {
+            "name": "Tet Nguyen Dan",
+            "region": "National",
+            "type": "Traditional/New Year",
+            "description": "Vietnamese Lunar New Year", 
+            "month": "January-February",
+            "greetings": ["Chuc Mung Nam Moi", "चुक मुंग नाम मोई"]
+          },
+          {
+            "name": "Mid-Autumn Festival",
+            "region": "National",
+            "type": "Traditional/Children",
+            "description": "Children's festival with mooncakes",
+            "month": "September-October",
+            "greetings": ["Tet Trung Thu", "तेत त्रुंग थु"]
+          }
+        ],
+
+        "Philippines": [
+          {
+            "name": "Sinulog Festival",
+            "region": "Cebu",
+            "type": "Religious/Cultural",
+            "description": "Honoring Santo Niño",
+            "month": "January", 
+            "greetings": ["Viva Pit Senyor", "विवा पित सेन्योर"]
+          },
+          {
+            "name": "Ati-Atihan",
+            "region": "Aklan",
+            "type": "Religious/Cultural",
+            "description": "Santo Niño celebration with tribal dancing",
+            "month": "January",
+            "greetings": ["Hala Bira", "हाला बीरा"]
+          }
+        ],
+
+        "Malaysia": [
+          {
+            "name": "Thaipusam", 
+            "region": "National (Hindu community)",
+            "type": "Hindu Religious",
+            "description": "Lord Murugan festival with kavadi carrying",
+            "month": "January-February",
+            "greetings": ["Thaipusam Vazhthukkal", "थाईपुसम वऴ्थुक्कल"]
+          },
+          {
+            "name": "Chinese New Year",
+            "region": "National (Chinese community)",
+            "type": "Traditional/New Year", 
+            "description": "Lunar New Year celebration",
+            "month": "January-February",
+            "greetings": ["Gong Xi Fa Cai", "गोंग शी फा चाई"]
+          }
+        ]
+      },
+
+      "MiddleEast": [
+        {
+          "country": "Iran",
+          "festivals": [
+            {
+              "name": "Nowruz",
+              "type": "Persian New Year", 
+              "description": "Persian New Year and spring equinox",
+              "month": "March",
+              "greetings": ["Nowruz Mubarak", "نوروز مبارک"]
+            },
+            {
+              "name": "Chaharshanbe Suri",
+              "type": "Fire Festival",
+              "description": "Festival of fire before Nowruz",
+              "month": "March",
+              "greetings": ["Fire festival wishes", "چهارشنبه سوری"]
+            }
+          ]
+        },
+        {
+          "country": "Turkey",
+          "festivals": [
+            {
+              "name": "Republic Day",
+              "type": "National",
+              "description": "Celebrating Turkish Republic",
+              "month": "October",
+              "greetings": ["Cumhuriyet Bayramı", "जुम्हुरियत बायराम"]
+            }
+          ]
+        },
+        {
+          "country": "Israel",
+          "festivals": [
+            {
+              "name": "Purim", 
+              "type": "Jewish Religious",
+              "description": "Celebrating deliverance from Haman",
+              "month": "February-March",
+              "greetings": ["Chag Purim Sameach", "חג פורים שמח"]
+            },
+            {
+              "name": "Sukkot",
+              "type": "Jewish Religious",
+              "description": "Festival of booths/tabernacles",
+              "month": "September-October", 
+              "greetings": ["Chag Sukkot Sameach", "חג סוכות שמח"]
+            }
+          ]
+        }
+      ]
+    },
+
+    "Europe": {
+      "WesternEurope": {
+        "France": [
+          {
+            "name": "Bastille Day",
+            "type": "National",
+            "description": "French National Day",
+            "month": "July",
+            "greetings": ["Bonne Fête Nationale", "बोन्ने फेते नेशनाल"]
+          },
+          {
+            "name": "Fête de la Musique",
+            "type": "Cultural/Music",
+            "description": "Make Music Day",
+            "month": "June",
+            "greetings": ["Bonne Fête de la Musique", "बोन्ने फेते दे ला म्यूज़ीक"]
+          }
+        ],
+        
+        "Germany": [
+          {
+            "name": "Oktoberfest",
+            "region": "Munich",
+            "type": "Cultural/Beer",
+            "description": "World's largest beer festival",
+            "month": "September-October",
+            "greetings": ["Prost", "प्रोस्त"]
+          },
+          {
+            "name": "German Unity Day",
+            "type": "National",
+            "description": "Celebrating German reunification",
+            "month": "October", 
+            "greetings": ["Tag der Deutschen Einheit", "टाग डेर डॉयचेन आइनहाइत"]
+          }
+        ],
+
+        "Spain": [
+          {
+            "name": "La Tomatina",
+            "region": "Buñol",
+            "type": "Cultural/Food Fight",
+            "description": "Tomato throwing festival",
+            "month": "August",
+            "greetings": ["¡Viva La Tomatina!", "विवा ला तोमातीना"]
+          },
+          {
+            "name": "Running of Bulls",
+            "region": "Pamplona",
+            "type": "Cultural/Adventure",
+            "description": "San Fermín festival with bull running",
+            "month": "July",
+            "greetings": ["¡Viva San Fermín!", "विवा सान फेर्मीन"]
+          }
+        ],
+
+        "Italy": [
+          {
+            "name": "Carnival of Venice",
+            "region": "Venice",
+            "type": "Cultural/Arts",
+            "description": "Elaborate mask carnival",
+            "month": "February-March",
+            "greetings": ["Buon Carnevale", "बुओन कार्नेवाले"]
+          },
+          {
+            "name": "Palio di Siena",
+            "region": "Siena", 
+            "type": "Cultural/Sports",
+            "description": "Historic horse race",
+            "month": "July & August",
+            "greetings": ["Forza Palio", "फोर्ज़ा पालियो"]
+          }
+        ]
+      },
+
+      "NorthernEurope": {
+        "Norway": [
+          {
+            "name": "Constitution Day",
+            "type": "National",
+            "description": "Norwegian National Day",
+            "month": "May",
+            "greetings": ["Gratulerer med dagen", "ग्रातुलेरेर मेद डागेन"]
+          },
+          {
+            "name": "Northern Lights Festival",
+            "type": "Natural/Tourism",
+            "description": "Aurora viewing season",
+            "months": "September-March",
+            "greetings": ["Aurora wishes", "अरोरा विशेस"]
+          }
+        ],
+
+        "Sweden": [
+          {
+            "name": "Midsummer", 
+            "type": "Traditional/Seasonal",
+            "description": "Summer solstice celebration",
+            "month": "June",
+            "greetings": ["Glad Midsommar", "ग्लाड मिडसोम्मार"]
+          },
+          {
+            "name": "Lucia Day",
+            "type": "Traditional/Light",
+            "description": "Festival of lights in winter",
+            "month": "December",
+            "greetings": ["Glad Lucia", "ग्लाड लूसिया"]
+          }
+        ],
+
+        "Finland": [
+          {
+            "name": "Juhannus",
+            "type": "Traditional/Midsummer",
+            "description": "Finnish Midsummer celebration",
+            "month": "June",
+            "greetings": ["Hyvää Juhannusta", "ह्यवा जुहान्नुस्ता"]
+          }
+        ]
+      }
+    },
+
+    "Africa": {
+      "NorthAfrica": [
+        {
+          "country": "Morocco",
+          "festivals": [
+            {
+              "name": "Fes Festival of World Sacred Music",
+              "type": "Cultural/Music/Spiritual",
+              "description": "International sacred music festival",
+              "month": "June",
+              "greetings": ["Ahlan wa sahlan", "अहलान वा सहलान"]
+            }
+          ]
+        },
+        {
+          "country": "Egypt",
+          "festivals": [
+            {
+              "name": "Sham el-Nessim",
+              "type": "Traditional/Spring",
+              "description": "Ancient spring festival",
+              "month": "April-May",
+              "greetings": ["Kol sana wenta tayeb", "कोल सना वेंता तायेब"]
+            }
+          ]
+        }
+      ],
+
+      "SubSaharanAfrica": [
+        {
+          "country": "Nigeria", 
+          "festivals": [
+            {
+              "name": "Argungu Fishing Festival",
+              "type": "Cultural/Traditional",
+              "description": "Traditional fishing competition",
+              "month": "February-March",
+              "greetings": ["Barka da Argungu", "बर्का दा अर्गुंगु"]
+            }
+          ]
+        },
+        {
+          "country": "South Africa",
+          "festivals": [
+            {
+              "name": "Heritage Day",
+              "type": "National/Cultural",
+              "description": "Celebrating South African heritage",
+              "month": "September",
+              "greetings": ["Happy Heritage Day", "हैप्पी हेरिटेज डे"]
+            }
+          ]
+        }
+      ]
+    },
+
+    "Americas": {
+      "NorthAmerica": [
+        {
+          "country": "USA",
+          "festivals": [
+            {
+              "name": "Independence Day",
+              "type": "National",
+              "description": "American independence celebration",
+              "month": "July",
+              "greetings": ["Happy 4th of July", "हैप्पी फोर्थ ऑफ जुलाई"]
+            },
+            {
+              "name": "Thanksgiving",
+              "type": "National/Traditional",
+              "description": "Harvest thanksgiving celebration",
+              "month": "November",
+              "greetings": ["Happy Thanksgiving", "हैप्पी थैंक्सगिविंग"]
+            }
+          ]
+        },
+        {
+          "country": "Canada",
+          "festivals": [
+            {
+              "name": "Canada Day",
+              "type": "National", 
+              "description": "Canadian confederation celebration",
+              "month": "July",
+              "greetings": ["Happy Canada Day", "हैप्पी कैनडा डे"]
+            }
+          ]
+        },
+        {
+          "country": "Mexico",
+          "festivals": [
+            {
+              "name": "Day of the Dead",
+              "type": "Traditional/Ancestral",
+              "description": "Honoring deceased loved ones",
+              "month": "November",
+              "greetings": ["Feliz Día de los Muertos", "फेलिज़ डिया दे लॉस मुएर्तोस"]
+            }
+          ]
+        }
+      ],
+
+      "SouthAmerica": [
+        {
+          "country": "Brazil",
+          "festivals": [
+            {
+              "name": "Carnival", 
+              "type": "Cultural/Music/Dance",
+              "description": "Famous Brazilian carnival",
+              "month": "February-March",
+              "greetings": ["Feliz Carnaval", "फेलिज़ कार्नावल"]
+            }
+          ]
+        },
+        {
+          "country": "Argentina",
+          "festivals": [
+            {
+              "name": "Tango Festival",
+              "type": "Cultural/Dance",
+              "description": "Celebrating Argentine tango",
+              "month": "August",
+              "greetings": ["Viva el Tango", "विवा एल तांगो"]
+            }
+          ]
+        }
+      ]
+    },
+
+    "Oceania": [
+      {
+        "country": "Australia",
+        "festivals": [
+          {
+            "name": "Australia Day",
+            "type": "National",
+            "description": "Australian national day",
+            "month": "January",
+            "greetings": ["Happy Australia Day", "हैप्पी ऑस्ट्रेलिया डे"]
+          }
+        ]
+      },
+      {
+        "country": "New Zealand",
+        "festivals": [
+          {
+            "name": "Waitangi Day",
+            "type": "National",
+            "description": "New Zealand national day", 
+            "month": "February",
+            "greetings": ["Happy Waitangi Day", "हैप्पी वाइतांगी डे"]
+          }
+        ]
+      }
+    ]
+  }
+}

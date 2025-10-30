@@ -20,7 +20,7 @@ class MarketplacePage extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'अपने coins का इस्तेमाल करके 40% तक discount पाएं!',
+              'Use your coins to save up to 40%!',
               style: TextStyle(fontSize: 16, color: Colors.grey.shade700),
             ),
             const SizedBox(height: 24),
@@ -29,7 +29,7 @@ class MarketplacePage extends StatelessWidget {
             _buildProductCard(
               context,
               'Premium Meditation Course',
-              'गहरे meditation techniques सीखें',
+              'Learn deep meditation techniques',
               299.0,
               Icons.self_improvement,
               Colors.purple,
@@ -41,7 +41,7 @@ class MarketplacePage extends StatelessWidget {
             _buildProductCard(
               context,
               'Personal CBT Therapy Session',
-              'Professional therapist के साथ 1-on-1 session',
+              '1-on-1 session with a professional therapist',
               799.0,
               Icons.psychology,
               Colors.blue,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../services/app_data_preloader.dart';
+import '../../festivals/festivals_page.dart';
 
 /// Festival Reminder Widget - Cultural festival celebrations
 /// Upcoming festivals and celebration reminders for global users
@@ -83,7 +84,7 @@ class FestivalReminderWidget extends StatelessWidget {
                 final festival = snapshot.data!.first;
                 return _buildFestivalCard(festival);
               }
-              return _buildDefaultFestivalCard();
+              return _buildDefaultFestivalCard(context);
             },
           ),
 
@@ -220,7 +221,7 @@ class FestivalReminderWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildDefaultFestivalCard() {
+  Widget _buildDefaultFestivalCard(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -307,7 +308,12 @@ class FestivalReminderWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: OutlinedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const FestivalsPage()),
+                    );
+                  },
                   icon: const Icon(Icons.calendar_today_outlined, size: 16),
                   label: const Text('View Calendar'),
                   style: OutlinedButton.styleFrom(
@@ -321,7 +327,12 @@ class FestivalReminderWidget extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const FestivalsPage()),
+                    );
+                  },
                   icon: const Icon(Icons.explore_outlined, size: 16),
                   label: const Text('Explore'),
                   style: ElevatedButton.styleFrom(
@@ -342,11 +353,9 @@ class FestivalReminderWidget extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton.icon(
         onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Festival calendar coming soon! 🎊'),
-              behavior: SnackBarBehavior.floating,
-            ),
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const FestivalsPage()),
           );
         },
         icon: const Icon(Icons.event_available_rounded, size: 18),

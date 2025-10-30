@@ -558,9 +558,9 @@ class _CBTPersonalContextFormState extends State<CBTPersonalContextForm> {
           controller: _familyMentalHealthController,
           maxLines: 2,
           decoration: const InputDecoration(
-            labelText: 'Family Mental Health History',
+            labelText: 'Family Emotional Health History',
             hintText:
-                'Any depression, anxiety, or other mental health issues in family?',
+                'Any depression, anxiety, or other emotional health issues in family?',
             border: OutlineInputBorder(),
           ),
         ),
@@ -608,7 +608,7 @@ class _CBTPersonalContextFormState extends State<CBTPersonalContextForm> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Your social situations and work environment impact your mental health:',
+          'Your social situations and work environment impact your emotional health:',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 16),

@@ -37,7 +37,7 @@ class DailyStatsWidget extends StatelessWidget {
           ),
           child: Column(
             children: [
-              // Header with Date - दिनांक के साथ हेडर
+              // Header with Date
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -77,7 +77,7 @@ class DailyStatsWidget extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              // Stats Row - आंकड़े पंक्ति
+              // Stats Row
               Row(
                 children: [
                   Expanded(
@@ -135,7 +135,7 @@ class DailyStatsWidget extends StatelessWidget {
   }
 }
 
-/// आंकड़े आइटम - Individual stat item
+/// Individual stat item
 class _StatItem extends StatelessWidget {
   final IconData icon;
   final String label;

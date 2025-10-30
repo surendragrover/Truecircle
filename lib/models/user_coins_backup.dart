@@ -53,7 +53,7 @@ class UserCoins extends HiveObject {
         CoinTransaction(
           amount: -amount,
           type: CoinTransactionType.purchase,
-          description: description ?? 'Marketplace खरीदारी',
+          description: description ?? 'Marketplace purchase',
           timestamp: DateTime.now(),
         ),
       );
@@ -86,7 +86,7 @@ class UserCoins extends HiveObject {
     addCoins(
       coinsToAdd,
       CoinTransactionType.dailyLogin,
-      description: 'रोज़ाना लॉगिन ($dailyLoginStreak दिन की streak)',
+      description: 'Daily login ($dailyLoginStreak-day streak)',
     );
   }
 
@@ -141,13 +141,13 @@ enum CoinTransactionType {
   String get description {
     switch (this) {
       case CoinTransactionType.dailyLogin:
-        return 'रोज़ाना लॉगिन बोनस';
+        return 'Daily login bonus';
       case CoinTransactionType.conversationEntry:
-        return 'बातचीत की entry';
+        return 'Conversation entry';
       case CoinTransactionType.purchase:
-        return 'खरीदारी';
+        return 'Purchase';
       case CoinTransactionType.bonus:
-        return 'बोनस';
+        return 'Bonus';
     }
   }
 

@@ -12,6 +12,7 @@ import '../services/on_device_ai_service.dart';
 import '../services/instruction_based_service.dart';
 import '../services/communication_tracker_service.dart';
 import '../services/coin_reward_service.dart';
+import '../services/festival_data_service.dart';
 import 'service_locator.dart';
 
 /// Centralized Hive initialization
@@ -107,6 +108,13 @@ class HiveInitializer {
         CommunicationTrackerService(),
       );
       await CommunicationTrackerService().initialize();
+    }
+
+    // Register Festival Data Service
+    if (!serviceLocator.isRegistered<FestivalDataService>()) {
+      serviceLocator.registerSingleton<FestivalDataService>(
+        FestivalDataService(),
+      );
     }
   }
 }

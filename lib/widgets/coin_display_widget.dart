@@ -137,11 +137,24 @@ class _CoinDisplayWidgetState extends State<CoinDisplayWidget> {
                     ],
                   ),
                   const SizedBox(height: 4),
-                  Text(
-                    'Get ₹$_availableCoins shopping discount!',
-                    style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.9),
-                      fontSize: 11,
+                  GestureDetector(
+                    onTap: () => _showCoinInfoDialog(context),
+                    child: Row(
+                      children: [
+                        Text(
+                          'Get ₹$_availableCoins shopping discount!',
+                          style: TextStyle(
+                            color: Colors.white.withValues(alpha: 0.9),
+                            fontSize: 11,
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        Icon(
+                          Icons.info_outline,
+                          size: 12,
+                          color: Colors.white.withValues(alpha: 0.7),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -222,22 +235,22 @@ class _CoinDisplayWidgetState extends State<CoinDisplayWidget> {
       case CoinTransactionType.dailyLogin:
         icon = Icons.login;
         iconColor = Colors.green;
-        typeText = 'दैनिक लॉगिन';
+        typeText = 'Daily login';
         break;
       case CoinTransactionType.entryReward:
         icon = Icons.add_comment;
         iconColor = Colors.blue;
-        typeText = 'नई Entry';
+        typeText = 'New entry';
         break;
       case CoinTransactionType.bonus:
         icon = Icons.star;
         iconColor = Colors.amber;
-        typeText = 'बोनस';
+        typeText = 'Bonus';
         break;
       case CoinTransactionType.marketplacePurchase:
         icon = Icons.shopping_cart;
         iconColor = Colors.red;
-        typeText = 'इस्तेमाल';
+        typeText = 'Spent';
         break;
     }
 
@@ -274,18 +287,100 @@ class _CoinDisplayWidgetState extends State<CoinDisplayWidget> {
     final difference = now.difference(date);
 
     if (difference.inDays > 0) {
-      return '${difference.inDays} दिन पहले';
+      return '${difference.inDays} day(s) ago';
     } else if (difference.inHours > 0) {
-      return '${difference.inHours} घंटे पहले';
+      return '${difference.inHours} hour(s) ago';
     } else if (difference.inMinutes > 0) {
-      return '${difference.inMinutes} मिनट पहले';
+      return '${difference.inMinutes} minute(s) ago';
     } else {
-      return 'अभी';
+      return 'just now';
     }
+  }
+
+  void _showCoinInfoDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/TrueCircle_Coin.png',
+              width: 24,
+              height: 24,
+              errorBuilder: (context, error, stackTrace) {
+                return const Icon(
+                  Icons.monetization_on,
+                  color: Colors.amber,
+                  size: 24,
+                );
+              },
+            ),
+            const SizedBox(width: 8),
+            const Text('How TrueCircle coins work'),
+          ],
+        ),
+        content: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _buildInfoSection('🎯 How to earn coins', [
+                'Daily login: 1 coin per day',
+                'Complete a full entry: 1 coin',
+                'Note: No rewards for chatting with Dr. Iris',
+              ]),
+              const SizedBox(height: 16),
+              _buildInfoSection('💰 How to spend coins', [
+                '1 coin = ₹1 shopping discount',
+                'Use in marketplace for premium features',
+                'Redeem for special content',
+                'Save up for special rewards',
+              ]),
+              const SizedBox(height: 16),
+              _buildInfoSection('📊 Coin types', [
+                'Available coins: ready to spend',
+                'Total coins: lifetime earnings',
+              ]),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Got it!'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildInfoSection(String title, List<String> points) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 8),
+        ...points.map(
+          (point) => Padding(
+            padding: const EdgeInsets.only(left: 8, bottom: 4),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text('• ', style: TextStyle(fontWeight: FontWeight.bold)),
+                Expanded(child: Text(point)),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
 
-// Daily Login Reward Check Widget (App startup पर use करें)
+// Daily Login Reward Check Widget (use on app startup)
 class DailyLoginChecker extends StatelessWidget {
   final String userId;
   final VoidCallback? onRewardReceived;
@@ -344,13 +439,13 @@ class DailyLoginChecker extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             const Text(
-              '🎉 Daily Bonus Earned!',
+              '🎉 Daily bonus received!',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
             const Text(
-              'You earned 1 coin reward today!\nCome back tomorrow to earn more coins.',
+              'You earned 1 coin today!\nCome back tomorrow to earn more.',
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.grey),
             ),
@@ -365,7 +460,7 @@ class DailyLoginChecker extends StatelessWidget {
                   vertical: 12,
                 ),
               ),
-              child: const Text('धन्यवाद!'),
+              child: const Text('Thanks!'),
             ),
           ],
         ),

@@ -61,14 +61,14 @@ class BrandPreviewPage extends StatelessWidget {
                       CircleAvatar(
                         radius: 24,
                         backgroundImage: const AssetImage(
-                          'assets/images/avatar.png',
+                          'assets/images/Avatar.png',
                         ),
                         backgroundColor: scheme.surfaceContainerHighest,
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: Text(
-                          'assets/images/avatar.png',
+                          'assets/images/Avatar.png',
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                       ),

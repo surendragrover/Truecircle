@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../cbt/cbt_hub_page.dart';
 import '../../iris/dr_iris_welcome_page.dart';
 import '../../emotional_awareness/emotional_awareness_page.dart';
+import '../../sleep/sleep_tracker_page.dart';
+import '../../meditation/meditation_guide_page.dart';
 
 /// Feature Cards Widget - Main feature cards for all app features
 class FeatureCardsWidget extends StatelessWidget {
@@ -69,7 +71,7 @@ class FeatureCardsWidget extends StatelessWidget {
         ),
         const SizedBox(height: 16),
 
-        // Sleep Tracking Feature (Coming Soon)
+        // Sleep Tracking Feature
         _FeatureCard(
           title: '😴 Sleep Tracker',
           description: 'Monitor your sleep patterns and quality',
@@ -78,18 +80,14 @@ class FeatureCardsWidget extends StatelessWidget {
           gradient: const LinearGradient(
             colors: [Color(0xFF42A5F5), Color(0xFF14B8A6)],
           ),
-          onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('😴 Sleep tracking feature coming soon!'),
-                backgroundColor: Color(0xFF42A5F5),
-              ),
-            );
-          },
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const SleepTrackerPage()),
+          ),
         ),
         const SizedBox(height: 16),
 
-        // Meditation Feature (Coming Soon)
+        // Meditation Feature
         _FeatureCard(
           title: '🧘‍♀️ Meditation',
           description: 'Guided meditation and mindfulness exercises',
@@ -98,14 +96,10 @@ class FeatureCardsWidget extends StatelessWidget {
           gradient: const LinearGradient(
             colors: [Color(0xFF66BB6A), Color(0xFF14B8A6)],
           ),
-          onTap: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('🧘‍♀️ Meditation feature coming soon!'),
-                backgroundColor: Color(0xFF66BB6A),
-              ),
-            );
-          },
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const MeditationGuidePage()),
+          ),
         ),
       ],
     );
@@ -176,7 +170,7 @@ class _FeatureCard extends StatelessWidget {
             ),
             const SizedBox(width: 16),
 
-            // Content - सामग्री
+            // Content
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -200,7 +194,7 @@ class _FeatureCard extends StatelessWidget {
               ),
             ),
 
-            // Arrow Icon - तीर आइकन
+            // Arrow Icon
             Container(
               width: 32,
               height: 32,

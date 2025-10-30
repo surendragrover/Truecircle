@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:audioplayers/audioplayers.dart';
-import '../emotional_awareness/emotional_awareness_page.dart';
 import '../root_shell.dart';
+import '../services/coin_reward_service.dart';
 
 class DrIrisWelcomePage extends StatefulWidget {
   final bool isFirstTime;
@@ -43,29 +43,158 @@ class _DrIrisWelcomePageState extends State<DrIrisWelcomePage> {
     }
   }
 
-  void _startEmotionalCheckin() async {
-    // Mark first-time welcome as complete
-    if (widget.isFirstTime) {
-      try {
-        final box = await Hive.openBox('app_prefs');
-        await box.put('dr_iris_welcomed', true);
-      } catch (e) {
-        debugPrint('Hive error: $e');
-      }
-    }
+  void _showWallet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        height: MediaQuery.of(context).size.height * 0.7,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        child: Column(
+          children: [
+            // Header
+            Container(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/images/TrueCircle_Coin.png',
+                    width: 32,
+                    height: 32,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(
+                        Icons.monetization_on,
+                        color: Colors.amber,
+                        size: 32,
+                      );
+                    },
+                  ),
+                  const SizedBox(width: 12),
+                  const Text(
+                    'My Wallet',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.close),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(height: 1),
+            // Current Balance
+            Container(
+              padding: const EdgeInsets.all(20),
+              child: FutureBuilder<int>(
+                future: CoinRewardService.instance.getUserCoinsCount(),
+                builder: (context, snapshot) {
+                  final coins = snapshot.data ?? 0;
+                  return Column(
+                    children: [
+                      const Text(
+                        'Current Balance',
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/TrueCircle_Coin.png',
+                            width: 28,
+                            height: 28,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Icon(
+                                Icons.monetization_on,
+                                color: Colors.amber,
+                                size: 28,
+                              );
+                            },
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            '$coins Coins',
+                            style: const TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.amber,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+            // Information Sections
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildWalletInfoSection('💰 How to Earn Coins', [
+                      'Daily login: 1 coin per day',
+                      'Complete a full entry: 1 coin',
+                      'Note: No rewards for chatting with Dr. Iris',
+                    ]),
+                    const SizedBox(height: 20),
+                    _buildWalletInfoSection('🛍️ How to Spend Coins', [
+                      '1 Coin = ₹1 shopping discount',
+                      'Use at marketplace for premium features',
+                      'Redeem for exclusive content',
+                      'Save up for special rewards',
+                    ]),
+                    const SizedBox(height: 20),
+                    _buildWalletInfoSection('📊 Coin Types', [
+                      'Available coins: ready to spend',
+                      'Total coins: lifetime earnings',
+                    ]),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-    if (!mounted) return;
-
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (_) => const EmotionalAwarenessPage()))
-        .then((_) {
-          // After check-in, navigate to home dashboard
-          if (!mounted) return;
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (_) => const RootShell()),
-            (route) => false,
-          );
-        });
+  Widget _buildWalletInfoSection(String title, List<String> points) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 12),
+        ...points.map(
+          (point) => Padding(
+            padding: const EdgeInsets.only(left: 8, bottom: 8),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  '• ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.amber,
+                  ),
+                ),
+                Expanded(child: Text(point)),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   @override
@@ -78,6 +207,58 @@ class _DrIrisWelcomePageState extends State<DrIrisWelcomePage> {
               title: const Text('🤖 Dr. Iris'),
               backgroundColor: Colors.transparent,
               elevation: 0,
+              actions: [
+                // User Wallet - Coin Display
+                Container(
+                  margin: const EdgeInsets.only(right: 16, top: 8, bottom: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.amber.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: Colors.amber.withValues(alpha: 0.3),
+                    ),
+                  ),
+                  child: InkWell(
+                    onTap: () => _showWallet(context),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          'assets/images/TrueCircle_Coin.png',
+                          width: 20,
+                          height: 20,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Icon(
+                              Icons.monetization_on,
+                              color: Colors.amber,
+                              size: 20,
+                            );
+                          },
+                        ),
+                        const SizedBox(width: 4),
+                        FutureBuilder<int>(
+                          future: CoinRewardService.instance
+                              .getUserCoinsCount(),
+                          builder: (context, snapshot) {
+                            final coins = snapshot.data ?? 0;
+                            return Text(
+                              '$coins',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.amber,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -172,15 +353,17 @@ class _DrIrisWelcomePageState extends State<DrIrisWelcomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    // TrueCircle Logo - Pure Inner Circle Only 🌟
+                    // Dr. Iris Avatar �
                     ClipOval(
                       child: Image.asset(
-                        'assets/images/TrueCircle-Logo.png',
+                        'assets/images/Avatar.png',
                         width: 80,
                         height: 80,
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
                           return Container(
+                            width: 80,
+                            height: 80,
                             decoration: const BoxDecoration(
                               gradient: LinearGradient(
                                 colors: [Color(0xFF8B5CF6), Color(0xFFEC4899)],
@@ -248,25 +431,6 @@ class _DrIrisWelcomePageState extends State<DrIrisWelcomePage> {
               const SizedBox(height: 30),
 
               // Navigation Buttons - Rainbow Actions 🌈
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: _startEmotionalCheckin,
-                  icon: const Icon(Icons.favorite_rounded),
-                  label: const Text('💖 Start Emotional Check-in'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFEC4899), // Hot Pink
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.all(16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                ),
-              ),
-
-              const SizedBox(height: 16),
-
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton.icon(

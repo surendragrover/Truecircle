@@ -655,7 +655,7 @@ class _ComprehensiveUserProfileBuilderState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Family relationships deeply impact mental health:',
+          'Family relationships deeply impact emotional health:',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 16),
@@ -810,7 +810,7 @@ class _ComprehensiveUserProfileBuilderState
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Lifestyle habits affect both physical and mental health:',
+          'Lifestyle habits affect both physical and emotional health:',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         ),
         const SizedBox(height: 16),

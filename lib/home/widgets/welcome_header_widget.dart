@@ -135,11 +135,11 @@ class _WelcomeHeaderWidgetState extends State<WelcomeHeaderWidget>
                     _buildLogo(),
                     const SizedBox(height: 16),
 
-                    // Welcome Title - स्वागत शीर्षक
+                    // Welcome Title
                     const Text(
                       'Welcome to TrueCircle',
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 20,
                         fontWeight: FontWeight.w700,
                         color: Colors.white,
                         shadows: [
@@ -150,14 +150,16 @@ class _WelcomeHeaderWidgetState extends State<WelcomeHeaderWidget>
                           ),
                         ],
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 8),
 
-                    // Subtitle - उपशीर्षक
+                    // Subtitle
                     Text(
                       'Your emotional wellness companion 🌈',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 14,
                         color: Colors.white.withValues(alpha: 0.9),
                         shadows: const [
                           Shadow(
@@ -167,6 +169,8 @@ class _WelcomeHeaderWidgetState extends State<WelcomeHeaderWidget>
                           ),
                         ],
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
@@ -186,7 +190,7 @@ class _WelcomeHeaderWidgetState extends State<WelcomeHeaderWidget>
         height: 80,
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
-          // Fallback circular icon - वैकल्पिक आइकन
+          // Fallback circular icon
           return Container(
             width: 80,
             height: 80,

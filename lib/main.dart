@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'firebase_options.dart';
+import 'core/log_service.dart';
+import 'widgets/log_console_overlay.dart';
 import 'core/hive_initializer.dart';
 import 'core/app_theme.dart';
 import 'core/preloading_splash_screen.dart';
@@ -16,6 +18,19 @@ import 'services/app_data_preloader.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize LogService early so logs are captured from startup
+  await LogService.instance.init();
+  // Mirror all debugPrint calls into our LogService
+  final originalDebugPrint = debugPrint;
+  debugPrint = (String? message, {int? wrapWidth}) {
+    if (message != null) {
+      // Fire-and-forget log write; no await for performance
+      LogService.instance.log(message);
+    }
+    // Also print to console in debug/dev
+    originalDebugPrint(message, wrapWidth: wrapWidth);
+  };
 
   try {
     // Initialize Firebase with proper options
@@ -82,11 +97,62 @@ class TrueCircleApp extends StatelessWidget {
 
       // Enhanced Material App Configuration
       builder: (context, child) {
+        final media = MediaQuery.of(
+          context,
+        ).copyWith(textScaler: const TextScaler.linear(1.0));
         return MediaQuery(
-          data: MediaQuery.of(
-            context,
-          ).copyWith(textScaler: const TextScaler.linear(1.0)),
-          child: child!,
+          data: media,
+          child: Stack(
+            children: [
+              child!,
+              // Floating toggle button
+              Positioned(
+                right: 12,
+                bottom: 80,
+                child: GestureDetector(
+                  onTap: () {
+                    final v = LogService.instance.overlayVisible.value;
+                    LogService.instance.overlayVisible.value = !v;
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.black.withValues(alpha: 0.6),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: Colors.white24),
+                    ),
+                    child: const Text(
+                      'LOG',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              // Live Log console overlay
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: ValueListenableBuilder<bool>(
+                  valueListenable: LogService.instance.overlayVisible,
+                  builder: (context, visible, _) {
+                    if (!visible) return const SizedBox.shrink();
+                    return SizedBox(
+                      height: 280,
+                      child: const LogConsoleOverlay(),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -172,8 +238,7 @@ class _PreloadingWrapperState extends State<_PreloadingWrapper> {
       // Preload all JSON data for instant feature access
       await AppDataPreloader.instance.preloadAllData();
 
-      // Keep splash minimal to reduce perceived startup delay
-      await Future.delayed(const Duration(milliseconds: 300));
+      // Skip artificial delay to avoid pending timers in tests and speed up boot
     } catch (e) {
       if (kDebugMode) {
         debugPrint('Error during preloading: $e');
@@ -201,9 +266,31 @@ class _StartupGate extends StatelessWidget {
   Future<(bool needsOnboarding, bool needsPhone, bool needsFirstTimeWelcome)>
   _gate() async {
     final box = await Hive.openBox('app_prefs');
+
+    // Note: Do NOT reset persisted flags here. Keeping values ensures
+    // users don't get asked for phone/OTP on every restart.
+
     final done = box.get('onboarding_done', defaultValue: false) as bool;
     final phone = box.get('phone_verified', defaultValue: false) as bool;
     final welcomed = box.get('dr_iris_welcomed', defaultValue: false) as bool;
+
+    // Debug information
+    if (kDebugMode) {
+      debugPrint('Startup Gate Status:');
+      debugPrint('Onboarding done: $done');
+      debugPrint('Phone verified: $phone');
+      debugPrint('Dr Iris welcomed: $welcomed');
+      debugPrint(
+        'Will show: ${!done
+            ? "Onboarding"
+            : !phone
+            ? "Phone"
+            : !welcomed
+            ? "Dr Iris Welcome"
+            : "Home"}',
+      );
+    }
+
     return (!done, !phone, !welcomed);
   }
 

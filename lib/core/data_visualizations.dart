@@ -189,10 +189,30 @@ class _WellnessScoreCardState extends State<_WellnessScoreCard>
                       ),
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 12),
                   Text(
                     _getScoreDescription(_scoreAnimation.value),
                     style: const TextStyle(fontSize: 14, color: Colors.white70),
+                  ),
+                  const SizedBox(height: 8),
+                  // Weekly Goal Progress
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.flag_outlined,
+                        color: Colors.white70,
+                        size: 16,
+                      ),
+                      const SizedBox(width: 6),
+                      Text(
+                        'Weekly Goal: ${_getWeeklyGoal(_scoreAnimation.value)}',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: Colors.white60,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               );
@@ -250,6 +270,13 @@ class _WellnessScoreCardState extends State<_WellnessScoreCard>
     if (score >= 60) return 'Good progress, keep it up! 💪';
     if (score >= 40) return 'You\'re on the right track 🌱';
     return 'Focus on self-care today 💚';
+  }
+
+  String _getWeeklyGoal(double currentScore) {
+    if (currentScore >= 90) return 'Maintain excellence';
+    if (currentScore >= 75) return 'Reach 85+ points';
+    if (currentScore >= 60) return 'Achieve 75+ points';
+    return 'Build to 60+ points';
   }
 }
 

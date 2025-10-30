@@ -1,5 +1,5 @@
 name: true_circle
-description: "TrueCircle — Mental Health & Wellness App"
+description: "TrueCircle — Emotional Health & Wellness App"
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -19,11 +19,11 @@ dependencies:
   video_player: ^2.8.1
   speech_to_text: ^7.3.0
   # Firebase dependencies
-  firebase_core: ^2.24.2
-  firebase_analytics: ^10.7.4
-  firebase_crashlytics: ^3.4.9
-  firebase_messaging: ^14.7.10
-  firebase_remote_config: ^4.3.17
+  firebase_core: ^4.2.0
+  firebase_analytics: ^12.0.3
+  firebase_crashlytics: ^5.0.3
+  firebase_messaging: ^16.0.3
+  firebase_remote_config: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +62,8 @@ flutter:
     - assets/Terms and Conditions.JSON
     # On-device low-end model (TFLite)
     - assets/models/TrueCircle.tflite
+    # Festival databases for global celebrations
+    - assets/festivals/
     # Local data used across the app (include entire folder)
     - data/
 

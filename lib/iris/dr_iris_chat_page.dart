@@ -8,6 +8,8 @@ import 'package:path_provider/path_provider.dart';
 
 import '../core/service_locator.dart';
 import '../services/on_device_ai_service.dart';
+import '../services/coin_reward_service.dart';
+import '../services/profanity_filter.dart';
 
 class DrIrisChatPage extends StatefulWidget {
   const DrIrisChatPage({super.key});
@@ -27,6 +29,9 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
   bool _isLoading = false;
   bool _showTypingIndicator = false;
   AnimationController? _typingAnimationController;
+  AnimationController? _coinAnimationController;
+  Animation<double>? _coinAnimation;
+  final bool _showCoinAnimation = false;
 
   @override
   void initState() {
@@ -36,6 +41,18 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
       duration: const Duration(milliseconds: 1200),
       vsync: this,
     )..repeat();
+
+    _coinAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 2000),
+      vsync: this,
+    );
+
+    _coinAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _coinAnimationController!,
+        curve: Curves.elasticOut,
+      ),
+    );
     _loadChatHistory();
     _showWelcomeMessage();
     _initializeAIService();
@@ -104,7 +121,7 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
     if (_messages.isEmpty) {
       final welcomeMessage = ChatMessage(
         text:
-            "Hello! I'm Dr. Iris, your emotional wellness companion. I don't just listen - I provide practical solutions and actionable steps for mental health challenges. Whether you're dealing with anxiety, depression, relationship issues, or life crises, I'll guide you with both empathy and concrete strategies. Share what's troubling you, and I'll help you find a path forward.",
+            "Hello! I'm Dr. Iris, your emotional wellness companion. I don't just listen - I provide practical solutions and actionable steps for emotional health challenges. Whether you're dealing with anxiety, depression, relationship issues, or life crises, I'll guide you with both empathy and concrete strategies. Share what's troubling you, and I'll help you find a path forward.",
         isFromDrIris: true,
         timestamp: DateTime.now(),
       );
@@ -133,7 +150,7 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
               ),
               child: ClipOval(
                 child: Image.asset(
-                  'assets/images/avatar.png',
+                  'assets/images/Avatar.png',
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
                     return Container(
@@ -161,6 +178,51 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
         backgroundColor: Colors.white,
         elevation: 0,
         actions: [
+          // User Wallet - Coin Display
+          Container(
+            margin: const EdgeInsets.only(right: 8, top: 8, bottom: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            decoration: BoxDecoration(
+              color: Colors.amber.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: Colors.amber.withValues(alpha: 0.3)),
+            ),
+            child: InkWell(
+              onTap: () => _showWallet(context),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    'assets/images/TrueCircle_Coin.png',
+                    width: 18,
+                    height: 18,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(
+                        Icons.monetization_on,
+                        color: Colors.amber,
+                        size: 18,
+                      );
+                    },
+                  ),
+                  const SizedBox(width: 4),
+                  FutureBuilder<int>(
+                    future: CoinRewardService.instance.getUserCoinsCount(),
+                    builder: (context, snapshot) {
+                      final coins = snapshot.data ?? 0;
+                      return Text(
+                        '$coins',
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.amber,
+                          fontSize: 13,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
           PopupMenuButton<String>(
             onSelected: (value) {
               switch (value) {
@@ -210,22 +272,75 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
           ),
         ],
       ),
-      body: Column(
+      body: Stack(
         children: [
-          Expanded(
-            child: ListView.builder(
-              controller: _scrollController,
-              padding: const EdgeInsets.all(16),
-              itemCount: _messages.length + (_showTypingIndicator ? 1 : 0),
-              itemBuilder: (context, index) {
-                if (index == _messages.length) {
-                  return _buildTypingIndicator();
-                }
-                return _ChatBubble(message: _messages[index]);
-              },
-            ),
+          Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  controller: _scrollController,
+                  padding: const EdgeInsets.all(16),
+                  itemCount: _messages.length + (_showTypingIndicator ? 1 : 0),
+                  itemBuilder: (context, index) {
+                    if (index == _messages.length) {
+                      return _buildTypingIndicator();
+                    }
+                    return _ChatBubble(message: _messages[index]);
+                  },
+                ),
+              ),
+              _buildMessageInput(),
+            ],
           ),
-          _buildMessageInput(),
+          // Coin Animation Overlay
+          if (_showCoinAnimation)
+            Positioned(
+              top: 100,
+              right: 20,
+              child: AnimatedBuilder(
+                animation: _coinAnimation!,
+                builder: (context, child) {
+                  return Transform.scale(
+                    scale: 0.5 + (_coinAnimation!.value * 1.5),
+                    child: Transform.rotate(
+                      angle:
+                          _coinAnimation!.value * 6.28 * 3, // 3 full rotations
+                      child: Container(
+                        width: 60,
+                        height: 60,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFFFFD700), Color(0xFFFFA500)],
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.amber.withValues(alpha: 0.5),
+                              blurRadius: 10,
+                              spreadRadius: 2,
+                            ),
+                          ],
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            'assets/images/TrueCircle_Coin.png',
+                            width: 40,
+                            height: 40,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Icon(
+                                Icons.monetization_on,
+                                color: Color(0xFF8B4513),
+                                size: 40,
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
         ],
       ),
     );
@@ -262,28 +377,39 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
                 builder: (context, child) {
                   return Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: List.generate(3, (index) {
-                      return Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 2),
-                        child: AnimatedOpacity(
-                          duration: const Duration(milliseconds: 200),
-                          opacity:
-                              (_typingAnimationController!.value * 3 - index)
-                                      .clamp(0.0, 1.0) >
-                                  0.5
-                              ? 1.0
-                              : 0.3,
-                          child: Container(
-                            width: 8,
-                            height: 8,
-                            decoration: BoxDecoration(
-                              color: Colors.purple[400],
-                              shape: BoxShape.circle,
+                    children: [
+                      ...List.generate(3, (index) {
+                        return Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 2),
+                          child: AnimatedOpacity(
+                            duration: const Duration(milliseconds: 200),
+                            opacity:
+                                (_typingAnimationController!.value * 3 - index)
+                                        .clamp(0.0, 1.0) >
+                                    0.5
+                                ? 1.0
+                                : 0.3,
+                            child: Container(
+                              width: 8,
+                              height: 8,
+                              decoration: BoxDecoration(
+                                color: Colors.purple[400],
+                                shape: BoxShape.circle,
+                              ),
                             ),
                           ),
+                        );
+                      }),
+                      const SizedBox(width: 8),
+                      const Text(
+                        'Thinking…',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFF6B21A8),
+                          fontWeight: FontWeight.w500,
                         ),
-                      );
-                    }),
+                      ),
+                    ],
                   );
                 },
               ),
@@ -358,6 +484,21 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
     final text = _messageController.text.trim();
     if (text.isEmpty || _isLoading) return;
 
+    // Profanity filter: block sending offensive content to Dr. Iris
+    if (ProfanityFilter.hasProfanity(text)) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Please avoid offensive language. Your message was not sent.',
+            ),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
+      return;
+    }
+
     final userMessage = ChatMessage(
       text: text,
       isFromDrIris: false,
@@ -375,15 +516,47 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
     await _saveChatHistory();
 
     try {
+      // Show enhanced thinking mode with visible progress
       await Future.delayed(const Duration(milliseconds: 1000));
+
+      // Add thinking message with animated dots (English)
+      final thinkingMessage = ChatMessage(
+        text:
+            "🤔 Dr. Iris is thinking…\n\n💭 Processing your message\n⚡ Preparing the best response\n🎯 Thinking Mode…",
+        isFromDrIris: true,
+        timestamp: DateTime.now(),
+      );
+
+      setState(() {
+        _messages.add(thinkingMessage);
+        _showTypingIndicator = false; // Hide typing, show thinking
+      });
+
+      _scrollToBottom();
+
+      // Show thinking for 3 seconds so user can see
+      await Future.delayed(const Duration(milliseconds: 3000));
 
       String response;
       try {
         response = await _aiService.generateDrIrisResponse(text);
+        // Ensure response is not empty
+        if (response.trim().isEmpty) {
+          throw Exception('AI service returned empty response');
+        }
       } catch (e) {
         debugPrint('AI service failed, using contextual fallback: $e');
         response = _getContextualFallbackResponse(text);
       }
+
+      // Remove thinking message before adding real response
+      setState(() {
+        if (_messages.isNotEmpty &&
+            (_messages.last.text.contains("Thinking Mode") ||
+                _messages.last.text.contains("Dr. Iris is thinking"))) {
+          _messages.removeLast();
+        }
+      });
 
       final drIrisMessage = ChatMessage(
         text: response,
@@ -399,6 +572,8 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
 
       _scrollToBottom();
       await _saveChatHistory();
+
+      // No rewards for chatting with Dr. Iris (as per app rules)
     } catch (e) {
       setState(() {
         _isLoading = false;
@@ -414,6 +589,8 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
       );
     }
   }
+
+  // Profanity filtering handled by ProfanityFilter service
 
   void _scrollToBottom() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -591,7 +768,7 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
       return "Asking for help is one of the bravest and wisest things we can do as human beings. It shows self-awareness, hope, and inner strength, even when everything feels impossible or hopeless. I'm deeply honored that you're trusting me with whatever you're carrying right now. What feels most urgent or heavy in your heart that you'd like support with?";
     }
 
-    // Physical health affecting mental health
+    // Physical health affecting emotional health
     if (message.contains('sick') ||
         message.contains('pain') ||
         message.contains('illness') ||
@@ -606,7 +783,7 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
         message.contains('money') ||
         message.contains('financial') ||
         message.contains('fired')) {
-      return "Work and financial stress touch our fundamental needs for security, purpose, and survival. These pressures can affect every aspect of our wellbeing and relationships. When our livelihood feels threatened or unstable, it creates ripple effects throughout our emotional world. How is this work or financial situation impacting your daily life and mental health?";
+      return "Work and financial stress touch our fundamental needs for security, purpose, and survival. These pressures can affect every aspect of our wellbeing and relationships. When our livelihood feels threatened or unstable, it creates ripple effects throughout our emotional world. How is this work or financial situation impacting your daily life and emotional health?";
     }
 
     // Emotionally intelligent default responses with natural variation
@@ -745,7 +922,164 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
     _messageController.dispose();
     _scrollController.dispose();
     _typingAnimationController?.dispose();
+    _coinAnimationController?.dispose();
     super.dispose();
+  }
+
+  // Coin reward animation removed: no rewards for chatting with Dr. Iris
+
+  void _showWallet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        height: MediaQuery.of(context).size.height * 0.7,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        child: Column(
+          children: [
+            // Header
+            Container(
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/images/TrueCircle_Coin.png',
+                    width: 32,
+                    height: 32,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Icon(
+                        Icons.monetization_on,
+                        color: Colors.amber,
+                        size: 32,
+                      );
+                    },
+                  ),
+                  const SizedBox(width: 12),
+                  const Text(
+                    'My Wallet',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.close),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(height: 1),
+            // Current Balance
+            Container(
+              padding: const EdgeInsets.all(20),
+              child: FutureBuilder<int>(
+                future: CoinRewardService.instance.getUserCoinsCount(),
+                builder: (context, snapshot) {
+                  final coins = snapshot.data ?? 0;
+                  return Column(
+                    children: [
+                      const Text(
+                        'Current Balance',
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/TrueCircle_Coin.png',
+                            width: 28,
+                            height: 28,
+                            errorBuilder: (context, error, stackTrace) {
+                              return const Icon(
+                                Icons.monetization_on,
+                                color: Colors.amber,
+                                size: 28,
+                              );
+                            },
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            '$coins Coins',
+                            style: const TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.amber,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+            // Information Sections
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildWalletInfoSection('💰 How to Earn Coins', [
+                      'Daily login: 1 coin per day',
+                      'Complete a full entry: 1 coin',
+                      'Note: No rewards for chatting with Dr. Iris',
+                    ]),
+                    const SizedBox(height: 20),
+                    _buildWalletInfoSection('🛍️ How to Spend Coins', [
+                      '1 Coin = ₹1 shopping discount',
+                      'Use at marketplace for premium features',
+                      'Redeem for exclusive content',
+                      'Save up for special rewards',
+                    ]),
+                    const SizedBox(height: 20),
+                    _buildWalletInfoSection('📊 Coin Types', [
+                      'Available coins: ready to spend',
+                      'Total coins: lifetime earnings',
+                    ]),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildWalletInfoSection(String title, List<String> points) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 12),
+        ...points.map(
+          (point) => Padding(
+            padding: const EdgeInsets.only(left: 8, bottom: 8),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  '• ',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.amber,
+                  ),
+                ),
+                Expanded(child: Text(point)),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -789,7 +1123,7 @@ class _ChatBubble extends StatelessWidget {
               ),
               child: ClipOval(
                 child: Image.asset(
-                  'assets/images/avatar.png',
+                  'assets/images/Avatar.png',
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
                     return Container(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// मूड ट्रैकर Widget - Quick mood tracking widget
+/// Quick mood tracking widget
 class MoodTrackerWidget extends StatefulWidget {
   const MoodTrackerWidget({super.key});
 
@@ -28,7 +28,7 @@ class _MoodTrackerWidgetState extends State<MoodTrackerWidget> {
           'How are you feeling?',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
             fontWeight: FontWeight.w600,
-            color: const Color(0xFF2A145D), // Deep Purple - गहरा बैंगनी
+            color: const Color(0xFF2A145D), // Deep Purple
           ),
         ),
         const SizedBox(height: 16),
@@ -164,7 +164,7 @@ class _MoodTrackerWidgetState extends State<MoodTrackerWidget> {
   }
 }
 
-/// मूड आइटम - Mood item data class
+/// Mood item data class
 class MoodItem {
   final String emoji;
   final String label;

@@ -71,23 +71,45 @@ class _OnboardingPageState extends State<OnboardingPage> {
   @override
   void initState() {
     super.initState();
-    // Detect country from system locale
+    // Detect country automatically
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _detectCountryFromLocale();
+      _detectUserCountry();
     });
   }
 
-  void _detectCountryFromLocale() {
+  void _detectUserCountry() {
     try {
-      // First try to get from system locale
+      // Try to get from system locale first
       final locale = Localizations.localeOf(context).countryCode;
       if (locale != null && _countries.containsKey(locale)) {
         setState(() => _selectedCountry = locale);
         return;
       }
 
-      // Fallback to common countries based on Flutter defaults
-      // Most Flutter setups default to US, but we prioritize IN for this app
+      // Enhanced fallback logic - prioritize common countries for TrueCircle
+      // Check timezone to make better guess
+      final now = DateTime.now();
+      final offset = now.timeZoneOffset.inHours;
+
+      // India Standard Time (UTC+5:30)
+      if (offset == 5 || offset == 6) {
+        setState(() => _selectedCountry = 'IN');
+        return;
+      }
+
+      // US timezones (UTC-5 to UTC-8)
+      if (offset >= -8 && offset <= -5) {
+        setState(() => _selectedCountry = 'US');
+        return;
+      }
+
+      // UK timezone (UTC+0 to UTC+1)
+      if (offset >= 0 && offset <= 1) {
+        setState(() => _selectedCountry = 'GB');
+        return;
+      }
+
+      // Default to India as primary target market
       setState(() => _selectedCountry = 'IN');
     } catch (e) {
       // Final fallback to India
@@ -253,6 +275,13 @@ class _OnboardingPageState extends State<OnboardingPage> {
       }
     } finally {
       if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  // Handle Enter key press on phone number field
+  void _submitPhoneNumber() {
+    if (!_busy) {
+      _getOtp();
     }
   }
 
@@ -428,7 +457,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ),
               const SizedBox(height: 8),
               Text(
-                'Mental Health & Wellness',
+                'Emotional Health & Wellness',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey[600],
@@ -515,6 +544,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             controller: _phoneController,
                             keyboardType: TextInputType.phone,
                             textInputAction: TextInputAction.done,
+                            onSubmitted: (_) => _submitPhoneNumber(),
                             maxLength: _getExpectedPhoneLength(
                               _selectedCountry,
                             ),

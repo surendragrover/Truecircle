@@ -19,7 +19,7 @@ class _DrIrisPageState extends State<DrIrisPage> {
   final TextEditingController _textController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
-  // साधारण चैट संदेश संरचना (पूरी तरह ऑफ़लाइन, इन-मैमोरी)
+  // Simple chat message structure (fully offline, in-memory)
   final List<_ChatMsg> _messages = [];
 
   @override
@@ -57,7 +57,7 @@ class _DrIrisPageState extends State<DrIrisPage> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    // चैट संदेश (यदि हों)
+                    // Chat messages (if any)
                     if (_messages.isNotEmpty) ...[
                       const SizedBox(height: 8),
                       ..._messages.map((m) => _MessageBubble(message: m)),
@@ -78,7 +78,7 @@ class _DrIrisPageState extends State<DrIrisPage> {
                           leading: const Icon(Icons.question_answer_outlined),
                           title: Text(q),
                           onTap: () {
-                            // सुझाव को इनपुट में भरें
+                            // Paste suggestion into input
                             _textController.text = q;
                             _textController
                                 .selection = TextSelection.fromPosition(
@@ -88,9 +88,7 @@ class _DrIrisPageState extends State<DrIrisPage> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 80,
-                    ), // इनपुट क्षेत्र के लिए नीचे स्पेस
+                    const SizedBox(height: 80), // Extra space for input area
                   ],
                 ),
               ),
@@ -152,7 +150,7 @@ class _DrIrisPageState extends State<DrIrisPage> {
     String reply;
     try {
       if (_aiReady) {
-        // हालिया 3 यूज़र मैसेज लेकर कॉन्टेक्स्ट जोड़ें
+        // Add context using the latest 3 user messages
         final recent = _messages
             .where((m) => m.user)
             .map((m) => m.text)
@@ -182,7 +180,7 @@ class _DrIrisPageState extends State<DrIrisPage> {
       _messages.add(_ChatMsg(user: false, text: reply));
     });
 
-    // नीचे स्क्रॉल करें
+    // Scroll to bottom
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_scrollController.hasClients) {
         _scrollController.animateTo(

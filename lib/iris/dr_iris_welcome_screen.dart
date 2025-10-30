@@ -4,7 +4,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:audioplayers/audioplayers.dart';
 import '../emotional_awareness/emotional_awareness_page.dart';
 import '../root_shell.dart';
-import '../core/video_auto_player.dart';
+
 import 'package:hive/hive.dart';
 
 class DrIrisWelcomeScreen extends StatefulWidget {
@@ -21,7 +21,6 @@ class _DrIrisWelcomeScreenState extends State<DrIrisWelcomeScreen>
   late Animation<double> _avatarAnimation;
   late AnimationController _textController;
   late AnimationController _fadeController;
-  bool _isPlaying = false;
 
   final AudioPlayer _audioPlayer = AudioPlayer();
   List<AnimatedText> _animatedTextWidgets = [];
@@ -98,31 +97,14 @@ class _DrIrisWelcomeScreenState extends State<DrIrisWelcomeScreen>
 
   Future<void> _playWelcomeAudio() async {
     try {
-      await _audioPlayer.play(AssetSource('audio/dr_iris_welcome.mp3'));
-      if (mounted) {
-        setState(() {
-          _isPlaying = true;
-        });
-      }
+      // Try to play the available audiobook
+      await _audioPlayer.play(AssetSource('audiobook.mp3'));
     } catch (e) {
-      // Audio not available, continue silently
+      debugPrint('Audio playback failed: $e');
     }
   }
 
-  void _toggleAudio() async {
-    try {
-      if (_isPlaying) {
-        await _audioPlayer.pause();
-      } else {
-        await _audioPlayer.resume();
-      }
-      setState(() {
-        _isPlaying = !_isPlaying;
-      });
-    } catch (e) {
-      // Handle audio error
-    }
-  }
+  // Removed manual audio toggle UI; audio still auto-plays in _playWelcomeAudio.
 
   @override
   void dispose() {
@@ -209,7 +191,7 @@ class _DrIrisWelcomeScreenState extends State<DrIrisWelcomeScreen>
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(60),
                             child: Image.asset(
-                              'assets/images/dr_iris_avatar.png',
+                              'assets/images/Avatar.png',
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) {
                                 return const Icon(
@@ -226,44 +208,7 @@ class _DrIrisWelcomeScreenState extends State<DrIrisWelcomeScreen>
                   },
                 ),
 
-                const SizedBox(height: 20),
-
-                // Audio Control Button
-                AnimatedBuilder(
-                  animation: _avatarAnimation,
-                  builder: (context, child) {
-                    return Opacity(
-                      opacity: _avatarAnimation.value,
-                      child: FloatingActionButton(
-                        onPressed: _toggleAudio,
-                        backgroundColor: const Color(0xFFB57EDC),
-                        child: Icon(
-                          _isPlaying ? Icons.pause : Icons.play_arrow,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-
-                const SizedBox(height: 20),
-
-                // TrueCircle Coin Animation Video
-                AnimatedBuilder(
-                  animation: _avatarAnimation,
-                  builder: (context, child) {
-                    return Transform.scale(
-                      scale: _avatarAnimation.value * 0.8,
-                      child: Opacity(
-                        opacity: _avatarAnimation.value,
-                        child: const TrueCircleCoinAnimation(size: 100),
-                      ),
-                    );
-                  },
-                ),
-
-                const SizedBox(height: 30),
+                const SizedBox(height: 24),
 
                 // Animated Text from the poem (loaded from asset)
                 Expanded(

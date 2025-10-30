@@ -1,0 +1,449 @@
+{
+  "seasonalAndSpecialFestivals": {
+    
+    "SpringFestivals": {
+      "equinoxCelebrations": [
+        {
+          "name": "Nowruz",
+          "countries": ["Iran", "Afghanistan", "Tajikistan", "Kurdistan"],
+          "type": "Persian New Year",
+          "description": "Ancient celebration of spring equinox",
+          "duration": "13 days",
+          "greetings": ["Nowruz Mubarak", "نوروز مبارک", "नौरोज़ मुबारक"]
+        },
+        {
+          "name": "Holi",
+          "countries": ["India", "Nepal"],
+          "type": "Hindu Spring Festival", 
+          "description": "Festival of colors celebrating spring",
+          "month": "March",
+          "greetings": ["Happy Holi", "होली की शुभकामनाएं", "Holi Hai!"]
+        },
+        {
+          "name": "Ostara",
+          "countries": ["Germanic/Celtic regions", "Neo-pagan communities"],
+          "type": "Spring Equinox/Pagan",
+          "description": "Ancient spring celebration of balance",
+          "month": "March 20-21",
+          "greetings": ["Blessed Ostara", "Spring Blessings"]
+        }
+      ],
+      
+      "cherryBlossomFestivals": [
+        {
+          "name": "Hanami",
+          "country": "Japan",
+          "type": "Nature/Cultural",
+          "description": "Cherry blossom viewing tradition",
+          "peak": "Late March - Early May",
+          "locations": ["Tokyo", "Kyoto", "Osaka", "Nara"],
+          "greetings": ["Hanami wo tanoshinde", "花見を楽しんで"]
+        },
+        {
+          "name": "Cherry Blossom Festival",
+          "country": "USA (Washington DC)",
+          "type": "Cultural/Tourism",
+          "description": "Celebrating Japanese gift of cherry trees",
+          "month": "March-April",
+          "greetings": ["Enjoy the blossoms", "Cherry blossom season"]
+        },
+        {
+          "name": "Sakura Matsuri",
+          "countries": ["Various (Japanese diaspora)"],
+          "type": "Cultural/Japanese Heritage",
+          "description": "Japanese spring festival celebrations",
+          "month": "March-May",
+          "greetings": ["Sakura no kisetsu", "桜の季節"]
+        }
+      ]
+    },
+
+    "SummerFestivals": {
+      "solsticeCelebrations": [
+        {
+          "name": "Midsummer", 
+          "countries": ["Sweden", "Norway", "Denmark", "Finland"],
+          "type": "Traditional/Seasonal",
+          "description": "Summer solstice celebration with midnight sun",
+          "date": "June 21-24",
+          "traditions": ["Maypole dancing", "Flower crowns", "Bonfires"],
+          "greetings": ["Glad Midsommar", "Happy Midsummer"]
+        },
+        {
+          "name": "White Nights Festival",
+          "country": "Russia (St. Petersburg)",
+          "type": "Cultural/Arts",
+          "description": "Celebrating the white nights phenomenon",
+          "period": "May-July",
+          "greetings": ["Belye Nochi", "Белые ночи"]
+        },
+        {
+          "name": "Stonehenge Summer Solstice",
+          "country": "England",
+          "type": "Ancient/Spiritual",
+          "description": "Druid and neo-pagan solstice gathering",
+          "date": "June 21",
+          "greetings": ["Blessed Solstice", "Merry Litha"]
+        }
+      ],
+      
+      "musicAndArtsFestivals": [
+        {
+          "name": "Edinburgh Festival Fringe",
+          "country": "Scotland",
+          "type": "Arts/Theatre",
+          "description": "World's largest arts festival",
+          "month": "August",
+          "greetings": ["Festival greetings", "Arts celebration"]
+        },
+        {
+          "name": "Glastonbury Festival",
+          "country": "England", 
+          "type": "Music/Arts",
+          "description": "Legendary music and arts festival",
+          "month": "June",
+          "greetings": ["Glasto vibes", "Festival spirit"]
+        }
+      ]
+    },
+
+    "AutumnFestivals": {
+      "harvestCelebrations": [
+        {
+          "name": "Thanksgiving",
+          "countries": ["USA", "Canada"],
+          "type": "Harvest/National",
+          "description": "Gratitude and harvest celebration",
+          "months": ["November (USA)", "October (Canada)"],
+          "greetings": ["Happy Thanksgiving", "Grateful hearts"]
+        },
+        {
+          "name": "Chuseok",
+          "country": "South Korea",
+          "type": "Harvest/Ancestral",
+          "description": "Korean harvest festival and ancestor honoring",
+          "month": "September-October",
+          "greetings": ["Chuseok jal bonaesaeyo", "추석 잘 보내세요"]
+        },
+        {
+          "name": "Mid-Autumn Festival",
+          "countries": ["China", "Taiwan", "Singapore", "Malaysia"],
+          "type": "Traditional/Family",
+          "description": "Moon viewing and family reunions", 
+          "month": "September-October",
+          "greetings": ["Zhongqiu kuaile", "中秋快乐"]
+        },
+        {
+          "name": "Pongal",
+          "country": "India (Tamil Nadu)",
+          "type": "Harvest/Tamil",
+          "description": "Tamil harvest thanksgiving festival",
+          "month": "January",
+          "greetings": ["Pongal Vazhthukkal", "पोंगल वाऴ्थुक्कल"]
+        }
+      ],
+      
+      "foliageFestivals": [
+        {
+          "name": "Kouyou Season",
+          "country": "Japan",
+          "type": "Nature/Seasonal",
+          "description": "Autumn leaves viewing season",
+          "months": "October-November", 
+          "greetings": ["Kouyou wo tanoshinde", "紅葉を楽しんで"]
+        },
+        {
+          "name": "New England Fall Foliage",
+          "country": "USA (Northeast)",
+          "type": "Tourism/Natural",
+          "description": "Spectacular autumn color displays",
+          "months": "September-October",
+          "greetings": ["Enjoy the colors", "Fall foliage season"]
+        }
+      ]
+    },
+
+    "WinterFestivals": {
+      "lightFestivals": [
+        {
+          "name": "Diwali",
+          "countries": ["India", "Nepal", "Sri Lanka", "Mauritius"],
+          "type": "Hindu/Light",
+          "description": "Festival of lights celebrating victory of light over darkness",
+          "month": "October-November", 
+          "greetings": ["Happy Diwali", "दिवाली की शुभकामनाएं", "Shubh Deepavali"]
+        },
+        {
+          "name": "Hanukkah",
+          "countries": ["Israel", "Jewish communities worldwide"],
+          "type": "Jewish/Light",
+          "description": "Eight-day festival of lights",
+          "month": "November-December",
+          "greetings": ["Chag Hanukkah Sameach", "חג חנוכה שמח", "Happy Hanukkah"]
+        },
+        {
+          "name": "Lucia Day",
+          "countries": ["Sweden", "Norway", "Denmark"],
+          "type": "Christian/Light",
+          "description": "Festival of lights in darkest winter", 
+          "date": "December 13",
+          "greetings": ["Glad Lucia", "Lucia blessings"]
+        },
+        {
+          "name": "Loy Krathong",
+          "country": "Thailand",
+          "type": "Buddhist/Water/Light",
+          "description": "Festival of floating lights and offerings",
+          "month": "November",
+          "greetings": ["Loy Krathong wishes", "วันลอยกระทง"]
+        }
+      ],
+      
+      "newYearCelebrations": [
+        {
+          "name": "Chinese New Year",
+          "countries": ["China", "Taiwan", "Singapore", "Malaysia", "Chinese diaspora"],
+          "type": "Lunar New Year",
+          "description": "Spring Festival marking lunar new year",
+          "duration": "15 days",
+          "greetings": ["Gong Xi Fa Cai", "恭喜发财", "Xin Nian Kuai Le"]
+        },
+        {
+          "name": "Seollal",
+          "country": "South Korea",
+          "type": "Lunar New Year/Korean", 
+          "description": "Korean New Year celebration",
+          "duration": "3 days",
+          "greetings": ["Saehae bok mani badeuseyo", "새해 복 많이 받으세요"]
+        },
+        {
+          "name": "Tet Nguyen Dan",
+          "country": "Vietnam",
+          "type": "Lunar New Year/Vietnamese",
+          "description": "Vietnamese New Year festival",
+          "duration": "7 days",
+          "greetings": ["Chuc Mung Nam Moi", "Chúc Mừng Năm Mới"]
+        }
+      ]
+    },
+
+    "MonthlySpecialOccasions": {
+      "January": [
+        {
+          "name": "New Year's Day",
+          "scope": "Global", 
+          "type": "Gregorian New Year",
+          "greetings": ["Happy New Year", "नया साल मुबारक"]
+        },
+        {
+          "name": "Makar Sankranti",
+          "country": "India",
+          "type": "Hindu/Solar",
+          "greetings": ["Til gud ghya ani gud gud bola", "मकर संक्रांति की शुभकामनाएं"]
+        }
+      ],
+      
+      "February": [
+        {
+          "name": "Valentine's Day",
+          "scope": "Global",
+          "type": "Romance/Commercial",
+          "greetings": ["Happy Valentine's Day", "Love and happiness"]
+        },
+        {
+          "name": "Maha Shivratri",
+          "countries": ["India", "Nepal"],
+          "type": "Hindu Religious",
+          "greetings": ["Har Har Mahadev", "महाशिवरात्रि की शुभकामनाएं"]
+        }
+      ],
+
+      "March": [
+        {
+          "name": "International Women's Day",
+          "scope": "Global",
+          "type": "Social/Political",
+          "greetings": ["Happy Women's Day", "Women empowerment"]
+        },
+        {
+          "name": "St. Patrick's Day",
+          "countries": ["Ireland", "Irish diaspora"],
+          "type": "Cultural/Religious",
+          "greetings": ["Top o' the morning", "Sláinte"]
+        }
+      ],
+
+      "April": [
+        {
+          "name": "Easter",
+          "scope": "Christian world",
+          "type": "Christian Religious",
+          "greetings": ["Happy Easter", "He is risen"]
+        },
+        {
+          "name": "Earth Day",
+          "scope": "Global", 
+          "type": "Environmental",
+          "greetings": ["Save the Earth", "Environmental consciousness"]
+        }
+      ],
+
+      "May": [
+        {
+          "name": "Labour Day",
+          "scope": "Global",
+          "type": "Social/Political",
+          "greetings": ["Workers' solidarity", "Labour rights"]
+        },
+        {
+          "name": "Mother's Day",
+          "scope": "Many countries",
+          "type": "Family/Commercial",
+          "greetings": ["Happy Mother's Day", "Maa ka pyaar"]
+        }
+      ],
+
+      "June": [
+        {
+          "name": "Father's Day",
+          "scope": "Many countries", 
+          "type": "Family/Commercial",
+          "greetings": ["Happy Father's Day", "Papa ki jaan"]
+        },
+        {
+          "name": "World Music Day",
+          "scope": "Global",
+          "type": "Cultural/Arts",
+          "greetings": ["Make music", "Celebrate rhythm"]
+        }
+      ],
+
+      "July": [
+        {
+          "name": "Independence celebrations",
+          "countries": ["USA (4th)", "France (14th)", "Various"],
+          "type": "National",
+          "greetings": ["Freedom and liberty", "National pride"]
+        }
+      ],
+
+      "August": [
+        {
+          "name": "Independence Day India",
+          "country": "India",
+          "type": "National",
+          "greetings": ["Jai Hind", "स्वतंत्रता दिवस की शुभकामनाएं"]
+        }
+      ],
+
+      "September": [
+        {
+          "name": "Teacher's Day",
+          "scope": "Many countries",
+          "type": "Educational/Social",
+          "greetings": ["Guru Dakshina", "शिक्षक दिवस की शुभकामनाएं"]
+        }
+      ],
+
+      "October": [
+        {
+          "name": "Gandhi Jayanti",
+          "countries": ["India", "UN International Day of Non-Violence"],
+          "type": "National/International",
+          "greetings": ["Ahimsa Paramo Dharma", "गांधी जयंती की शुभकामनाएं"]
+        },
+        {
+          "name": "Halloween",
+          "countries": ["USA", "Ireland", "UK", "Canada"],
+          "type": "Cultural/Celtic",
+          "greetings": ["Trick or Treat", "Spooky fun"]
+        }
+      ],
+
+      "November": [
+        {
+          "name": "Diwali (varies)",
+          "countries": ["India", "Hindu diaspora"],
+          "type": "Hindu Religious",
+          "greetings": ["Deepavali wishes", "दिवाली की रौशनी"]
+        }
+      ],
+
+      "December": [
+        {
+          "name": "Christmas",
+          "scope": "Christian world + secular celebration",
+          "type": "Christian Religious/Cultural",
+          "greetings": ["Merry Christmas", "Peace and joy"]
+        },
+        {
+          "name": "Kwanzaa",
+          "scope": "African-American communities",
+          "type": "Cultural/Pan-African",
+          "greetings": ["Harambee", "Unity and heritage"]
+        }
+      ]
+    },
+
+    "WeeklyAndDailyCelebrations": {
+      "weeklyObservances": [
+        {
+          "day": "Sunday",
+          "observances": ["Christian Sabbath", "Family day", "Rest day"],
+          "greetings": ["Blessed Sunday", "Family time"]
+        },
+        {
+          "day": "Friday", 
+          "observances": ["Jumu'ah (Islamic)", "Shabbat preparation", "TGIF"],
+          "greetings": ["Jumma Mubarak", "Shabbat Shalom preparation"]
+        },
+        {
+          "day": "Saturday",
+          "observances": ["Jewish Sabbath", "Weekend celebration"],
+          "greetings": ["Shabbat Shalom", "Weekend vibes"]
+        }
+      ],
+      
+      "dailyObservances": [
+        {
+          "occasion": "Birthdays",
+          "scope": "Universal",
+          "greetings": ["Happy Birthday", "जन्मदिन मुबारक", "Many happy returns"]
+        },
+        {
+          "occasion": "Anniversaries",
+          "scope": "Universal",
+          "greetings": ["Happy Anniversary", "सालगिरह मुबारक", "Cheers to love"]
+        },
+        {
+          "occasion": "Graduations",
+          "scope": "Educational milestones",
+          "greetings": ["Congratulations", "बधाई हो", "Achievement unlocked"]
+        }
+      ]
+    },
+
+    "ConversationStarters": {
+      "seasonalQuestions": [
+        "What's your favorite festival of this season?",
+        "How do you celebrate the changing seasons?",
+        "Do you have any special seasonal traditions?",
+        "Which seasonal festival brings you the most joy?"
+      ],
+      
+      "culturalQuestions": [
+        "What festivals from your culture would you like to share?",
+        "Have you ever participated in a festival from another culture?",
+        "What's the most colorful festival you know?",
+        "Which festival has the best food traditions?"
+      ],
+      
+      "universalQuestions": [
+        "What does celebration mean to you?",
+        "How do festivals bring communities together?",
+        "What's your favorite way to mark special occasions?",
+        "Which festival tradition would you like to start?"
+      ]
+    }
+  }
+}

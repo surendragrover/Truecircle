@@ -141,16 +141,34 @@ class CommunicationTrackerService {
       // Generate insights based on this entry
       await _generateInsightsForEntry(entry);
 
-      // 🎉 हर entry के लिए 1 coin reward देते हैं
+      // 🎉 Give 1 coin reward only for fully completed entries
       try {
-        await CoinRewardService.instance.giveEntryReward();
-        debugPrint('Entry coin reward दिया गया!');
+        if (_isEntryComplete(entry)) {
+          await CoinRewardService.instance.giveEntryReward();
+          debugPrint('Entry coin reward given!');
+        } else {
+          debugPrint('Entry not complete — no coin awarded.');
+        }
       } catch (e) {
         debugPrint('Entry coin reward error: $e');
       }
     } catch (e) {
       debugPrint('Error saving communication entry: $e');
     }
+  }
+
+  /// Check if an entry is "fully filled"
+  /// Minimal criteria:
+  /// - Non-empty conversation summary
+  /// - Duration > 0 minutes
+  /// - At least one topic discussed OR one emotion recorded
+  bool _isEntryComplete(CommunicationEntry entry) {
+    final hasSummary = entry.conversationSummary.trim().isNotEmpty;
+    final hasDuration = entry.conversationDuration > 0;
+    final hasTopicsOrEmotions =
+        (entry.topicsDiscussed.isNotEmpty ||
+        entry.emotionsExperienced.isNotEmpty);
+    return hasSummary && hasDuration && hasTopicsOrEmotions;
   }
 
   /// Get all communication entries

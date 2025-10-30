@@ -93,6 +93,25 @@ class _InstantReliefPageState extends State<InstantReliefPage>
                           ).colorScheme.primary.withValues(alpha: 0.3),
                         ),
                       ),
+                      child: Center(
+                        child: ClipOval(
+                          child: Image.asset(
+                            'assets/images/Avatar.png',
+                            width: 72,
+                            height: 72,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Icon(
+                                Icons.psychology_rounded,
+                                size: 48,
+                                color: Theme.of(
+                                  context,
+                                ).colorScheme.primary.withValues(alpha: 0.7),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 8),

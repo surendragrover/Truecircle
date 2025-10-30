@@ -39,13 +39,8 @@ class UserCoins extends HiveObject {
         dailyLoginStreak = 1; // Reset streak if gap
       }
 
-      // Calculate bonus based on streak
+      // Fixed daily login reward: always 1 coin (no streak bonus)
       int coinsToAdd = 1;
-      if (dailyLoginStreak >= 7) {
-        coinsToAdd = 3; // Weekly bonus
-      } else if (dailyLoginStreak >= 3) {
-        coinsToAdd = 2; // 3-day streak bonus
-      }
 
       totalCoins += coinsToAdd;
       lastDailyReward = today;
@@ -89,8 +84,8 @@ class UserCoins extends HiveObject {
 
   factory UserCoins.fromJson(Map<String, dynamic> json) => UserCoins(
     totalCoins: json['totalCoins'] ?? 0,
-    lastDailyReward: json['lastDailyReward'] != null 
-        ? DateTime.parse(json['lastDailyReward']) 
+    lastDailyReward: json['lastDailyReward'] != null
+        ? DateTime.parse(json['lastDailyReward'])
         : null,
     dailyLoginStreak: json['dailyLoginStreak'] ?? 0,
   );

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../services/app_data_preloader.dart';
+import '../../cbt/psychology_articles_page.dart';
 
-/// Psychology Articles Widget - Educational content for mental health awareness
+/// Psychology Articles Widget - Educational content for emotional health awareness
 /// Real psychology articles from preloaded JSON data
 class PsychologyArticlesWidget extends StatelessWidget {
   const PsychologyArticlesWidget({super.key});
@@ -56,7 +57,7 @@ class PsychologyArticlesWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Educational mental health resources',
+                      'Educational emotional health resources',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey.shade600,
@@ -102,7 +103,7 @@ class PsychologyArticlesWidget extends StatelessWidget {
   Widget _buildArticleCard(dynamic article) {
     final title = article['title'] ?? 'Psychology Article';
     final summary =
-        article['summary'] ?? 'Educational content about mental health';
+        article['summary'] ?? 'Educational content about emotional health';
 
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
@@ -212,12 +213,12 @@ class PsychologyArticlesWidget extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               const Text(
-                'Understanding Mental Health',
+                'Understanding Emotional Health',
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
               Text(
-                'Learn about the fundamentals of mental health and emotional wellness.',
+                'Learn about the fundamentals of emotional health and emotional wellness.',
                 style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
               ),
               const SizedBox(height: 12),
@@ -255,10 +256,10 @@ class PsychologyArticlesWidget extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton.icon(
         onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Psychology Articles library coming soon! 📚'),
-              behavior: SnackBarBehavior.floating,
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const PsychologyArticlesPage(),
             ),
           );
         },

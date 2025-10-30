@@ -3,8 +3,7 @@ import 'dart:ui';
 import 'home/home_page.dart';
 import 'cbt/cbt_hub_page.dart';
 import 'iris/dr_iris_welcome_page.dart';
-import 'more/more_page.dart';
-// import 'widgets/coin_display_widget.dart';
+import 'widgets/coin_display_widget.dart';
 
 class RootShell extends StatefulWidget {
   const RootShell({super.key});
@@ -22,14 +21,13 @@ class _RootShellState extends State<RootShell> {
       const HomePage(),
       const CBTHubPage(),
       const DrIrisWelcomePage(),
-      const MorePage(),
     ];
     return Scaffold(
       body: Stack(
         children: [
           IndexedStack(index: _index, children: pages),
-          // Daily login reward checker - temporarily disabled
-          // const DailyLoginChecker(userId: 'default_user'),
+          // Daily login reward checker - checks for reward on app startup
+          const DailyLoginChecker(userId: 'default_user'),
         ],
       ),
       bottomNavigationBar: Padding(
@@ -90,7 +88,7 @@ class _RootShellState extends State<RootShell> {
                       ),
                       child: ClipOval(
                         child: Image.asset(
-                          'assets/images/avatar.png',
+                          'assets/images/Avatar.png',
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return Icon(
@@ -114,7 +112,7 @@ class _RootShellState extends State<RootShell> {
                       ),
                       child: ClipOval(
                         child: Image.asset(
-                          'assets/images/avatar.png',
+                          'assets/images/Avatar.png',
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return const Icon(
@@ -127,11 +125,6 @@ class _RootShellState extends State<RootShell> {
                       ),
                     ),
                     label: 'Dr. Iris',
-                  ),
-                  NavigationDestination(
-                    icon: Icon(Icons.menu, color: Colors.grey.shade600),
-                    selectedIcon: _GradientIcon(Icons.menu),
-                    label: 'More',
                   ),
                 ],
               ),

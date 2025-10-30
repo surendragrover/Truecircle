@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 /// Enhanced Dr. Iris AI Service specifically for TrueCircle.tflite model
-/// Handles emotional healing, relationship guidance, and mental health support
+/// Handles emotional healing, relationship guidance, and emotional health support
 class DrIrisAIService {
   static const _methodChannel = MethodChannel('truecircle_ai_channel');
 
@@ -113,7 +113,7 @@ class DrIrisAIService {
     prompt.writeln('Your main purpose is to:');
     prompt.writeln('- Heal emotional pain and suffering');
     prompt.writeln('- Save and strengthen relationships');
-    prompt.writeln('- Improve mental health and wellbeing');
+    prompt.writeln('- Improve emotional health and wellbeing');
     prompt.writeln('- Provide practical, actionable solutions');
     prompt.writeln('');
 

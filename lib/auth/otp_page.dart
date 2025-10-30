@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import '../services/otp_service.dart';
+import '../services/coin_reward_service.dart';
 import '../iris/dr_iris_welcome_screen.dart';
 import '../core/truecircle_app_bar.dart';
 
@@ -71,7 +72,7 @@ class _OtpPageState extends State<OtpPage> {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('✅ OTP Verified Successfully!'),
+              content: Text('✅ OTP verified successfully!'),
               backgroundColor: Colors.green,
               duration: Duration(seconds: 1),
             ),
@@ -83,13 +84,32 @@ class _OtpPageState extends State<OtpPage> {
           final box = await Hive.openBox('app_prefs');
           await box.put('phone_verified', true);
           await box.delete('pending_phone');
+
+          // 🎉 Give login reward after successful phone verification
+          final rewardResult = await CoinRewardService.instance
+              .checkAndGiveDailyReward();
+          if (rewardResult['rewarded'] == true) {
+            if (mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    '🎉 Welcome bonus: ${rewardResult['coins']} coin(s)!',
+                  ),
+                  backgroundColor: Colors.green,
+                  duration: const Duration(seconds: 3),
+                ),
+              );
+            }
+          }
         } catch (e) {
           // Continue even if Hive fails
           debugPrint('Hive error in OTP verification: $e');
         }
 
         // Small delay for user feedback
-        await Future.delayed(const Duration(milliseconds: 1500));
+        await Future.delayed(
+          const Duration(milliseconds: 2000),
+        ); // Increased to show reward message
 
         if (!mounted) return;
 
@@ -127,6 +147,21 @@ class _OtpPageState extends State<OtpPage> {
         final box = await Hive.openBox('app_prefs');
         await box.put('phone_verified', true);
         await box.delete('pending_phone');
+
+        // 🎉 Give login reward after successful verification (fallback)
+        final rewardResult = await CoinRewardService.instance
+            .checkAndGiveDailyReward();
+        if (rewardResult['rewarded'] == true && mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                '🎉 Welcome bonus: ${rewardResult['coins']} coin(s)!',
+              ),
+              backgroundColor: Colors.green,
+              duration: const Duration(seconds: 2),
+            ),
+          );
+        }
       } catch (e) {
         debugPrint('Hive error in fallback verification: $e');
       }
@@ -144,7 +179,7 @@ class _OtpPageState extends State<OtpPage> {
   Widget build(BuildContext context) {
     final hint = Theme.of(context).hintColor;
     return Scaffold(
-      appBar: const TrueCircleAppBar(title: 'Enter code'),
+      appBar: const TrueCircleAppBar(title: 'Enter Code'),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -196,7 +231,7 @@ class _OtpPageState extends State<OtpPage> {
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
                       : const Icon(Icons.verified_outlined),
-                  label: Text(_busy ? 'Verifying...' : 'Verify OTP'),
+                  label: Text(_busy ? 'Verifying…' : 'Verify OTP'),
                 ),
               ),
             ],

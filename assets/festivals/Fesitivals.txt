@@ -1,0 +1,359 @@
+{
+  "festivals": [
+    // --- Universal/Global Festivals ---
+    { "name": "New Year's Day", "countries": ["Global"], "type": "Secular" },
+    { "name": "International Workers' Day (May Day)", "countries": ["Global"], "type": "Secular" },
+    { "name": "Christmas Day", "countries": ["Global"], "type": "Christianity" },
+    { "name": "Carnival", "countries": ["Brazil", "Europe", "Caribbean"], "type": "Secular/Catholic" },
+    { "name": "Halloween", "countries": ["USA", "Europe"], "type": "Pagan/Secular" },
+
+    // --- Christianity ---
+    { "name": "Easter", "countries": ["Global"], "type": "Christianity" },
+    { "name": "Good Friday", "countries": ["Global"], "type": "Christianity" },
+    { "name": "Saint Patrick's Day", "countries": ["Ireland", "USA"], "type": "Christianity/Ireland" },
+    { "name": "Epiphany", "countries": ["Europe"], "type": "Christianity" },
+
+    // --- Islam ---
+    { "name": "Eid al-Fitr", "countries": ["Muslim World"], "type": "Islam" },
+    { "name": "Eid al-Adha", "countries": ["Muslim World"], "type": "Islam" },
+    { "name": "Ramadan", "countries": ["Muslim World"], "type": "Islam" },
+    { "name": "Mawlid", "countries": ["Muslim World"], "type": "Islam" },
+    { "name": "Ashura", "countries": ["Muslim World"], "type": "Islam/Shia" },
+
+    // --- Hinduism/Sanatan Dharma ---
+    { "name": "Diwali (Deepavali)", "countries": ["India", "Nepal", "Diaspora"], "type": "Hinduism/Jainism/Sikhism" },
+    { "name": "Holi", "countries": ["India", "Nepal"], "type": "Hinduism" },
+    { "name": "Durga Puja/Navaratri", "countries": ["India"], "type": "Hinduism" },
+    { "name": "Makar Sankranti", "countries": ["India"], "type": "Hinduism" },
+    { "name": "Kumbh Mela", "countries": ["India"], "type": "Hinduism", "UNESCO": true },
+    { "name": "Ramlila", "countries": ["India"], "type": "Hinduism", "UNESCO": true },
+    { "name": "Garba", "countries": ["India (Gujarat)"], "type": "Hinduism", "UNESCO": true },
+
+    // --- Buddhism/Asia ---
+    { "name": "Vesak (Buddha Purnima)", "countries": ["Asia"], "type": "Buddhism" },
+    { "name": "Magha Puja", "countries": ["Thailand"], "type": "Buddhism" },
+    { "name": "Asalha Puja", "countries": ["Sri Lanka"], "type": "Buddhism" },
+    { "name": "Obon", "countries": ["Japan"], "type": "Buddhism/Shinto" },
+
+    // --- Sikhism ---
+    { "name": "Guru Nanak Gurpurab", "countries": ["India", "Global Sikh Community"], "type": "Sikhism" },
+    { "name": "Vaisakhi", "countries": ["India", "Sikh Diaspora"], "type": "Sikhism" },
+    { "name": "Hola Mohalla", "countries": ["India"], "type": "Sikhism" },
+
+    // --- Judaism ---
+    { "name": "Passover", "countries": ["Israel", "Jewish Diaspora"], "type": "Judaism" },
+    { "name": "Yom Kippur", "countries": ["Israel", "Jewish Diaspora"], "type": "Judaism" },
+    { "name": "Hanukkah", "countries": ["Global"], "type": "Judaism" },
+    { "name": "Purim", "countries": ["Israel"], "type": "Judaism" },
+
+    // --- Tribal/Indigenous/Ethnic (भारत एवं विश्व) ---
+    { "name": "Hornbill Festival", "countries": ["India (Nagaland)"], "type": "Indigenous/Tribal", "UNESCO": false },
+    { "name": "Jambay Lhakhang Drup", "countries": ["Bhutan"], "type": "Indigenous/Buddhist" },
+    { "name": "Naadam Festival", "countries": ["Mongolia"], "type": "Mongol Cultural" },
+    { "name": "Korzok Gustor Festival", "countries": ["India (Ladakh)"], "type": "Buddhist/Tribal" },
+    { "name": "Chapchar Kut", "countries": ["India (Mizoram)"], "type": "Tribal/Harvest" },
+    { "name": "Inti Raymi", "countries": ["Peru"], "type": "Incan/Cultural" },
+    { "name": "Timket", "countries": ["Ethiopia"], "type": "Christianity/Ethiopian" },
+
+    // --- Country-Specific National Days ---
+    { "name": "Independence Day", "countries": ["India", "USA", "Multiple"], "type": "National Day" },
+    { "name": "Bastille Day", "countries": ["France"], "type": "National Day" },
+    { "name": "Australia Day", "countries": ["Australia"], "type": "National Day" },
+    { "name": "Canada Day", "countries": ["Canada"], "type": "National Day" },
+
+    // --- International & Diaspora ---
+    { "name": "Nowruz", "countries": ["Iran", "Central Asia"], "type": "Persian New Year", "UNESCO": true },
+    { "name": "Carnival of Barranquilla", "countries": ["Colombia"], "type": "Latin American Carnival" },
+    { "name": "Songkran", "countries": ["Thailand"], "type": "Asian/Water Festival" },
+
+    // --- Special List: UNESCO Intangible Cultural Heritage (Just some examples, hundreds more!) ---
+    { "name": "Yoga", "countries": ["India"], "type": "Spiritual/Intangible Heritage", "UNESCO": true },
+    { "name": "Durga Puja", "countries": ["India"], "type": "Hinduism", "UNESCO": true },
+    { "name": "Chhau Dance Festival", "countries": ["India (East)"], "type": "Dance/Folk", "UNESCO": true },
+    { "name": "Kutiyattam", "countries": ["India (Kerala)"], "type": "Sanskrit Theatre", "UNESCO": true },
+
+    // --- Asia-Pacific Regional Festivals ---
+    { "name": "Tet (Vietnamese New Year)", "countries": ["Vietnam"], "type": "Asian Lunar New Year" },
+    { "name": "Mid-Autumn Festival", "countries": ["China", "East Asia"], "type": "East Asian Moon Festival" },
+    { "name": "Thingyan", "countries": ["Myanmar"], "type": "Asian Water Festival" },
+
+    // --- Europe ---
+    { "name": "La Tomatina", "countries": ["Spain"], "type": "Regional/Unique" },
+    { "name": "Up Helly Aa", "countries": ["Scotland"], "type": "Viking/Heritage" },
+    { "name": "Oktoberfest", "countries": ["Germany"], "type": "Secular/Cultural" },
+
+    // --- Africa ---
+    { "name": "Kwanzaa", "countries": ["USA/African Diaspora"], "type": "African American/Cultural" },
+    { "name": "Oshun Festival", "countries": ["Nigeria"], "type": "Yoruba Indigenous" },
+
+    // --- Americas & Caribbean ---
+    { "name": "Day of the Dead (Día de los Muertos)", "countries": ["Mexico"], "type": "Indigenous/Catholic" },
+    { "name": "Junkanoo", "countries": ["Bahamas"], "type": "Afro-Caribbean" },
+    { "name": "Thanksgiving", "countries": ["USA", "Canada"], "type": "Secular/National" }
+    // List to be MUCH longer — add all public, regional, tribal, community, faith, lunar, harvest, solstice, equinox, protest, remembrance, and country days as found in global compendiums, UNESCO, and national resources.
+  ]
+}
+{
+  "countries": [
+    {
+      "country": "India",
+      "festivals": [
+        {"name": "Diwali", "type": "Religious/Cultural", "religion": ["Hinduism", "Jainism", "Sikhism"]},
+        {"name": "Holi", "type": "Religious/Cultural", "religion": ["Hinduism"]},
+        {"name": "Ganesh Chaturthi", "type": "Religious/Cultural", "religion": ["Hinduism"]},
+        {"name": "Eid al-Fitr", "type": "Religious", "religion": ["Islam"]},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"]},
+        {"name": "Raksha Bandhan", "type": "Religious/Cultural", "religion": ["Hinduism"]},
+        {"name": "Pongal", "type": "Religious/Cultural", "religion": ["Hinduism"]},
+        {"name": "Onam", "type": "Cultural"},
+        {"name": "Navaratri/Durga Puja", "type": "Religious/Cultural", "religion": ["Hinduism"]},
+        {"name": "Baisakhi (Vaisakhi)", "type": "Religious/Cultural", "religion": ["Sikhism", "Hinduism"]}
+      ]
+    },
+    {
+      "country": "United States",
+      "festivals": [
+        {"name": "Independence Day", "type": "National"},
+        {"name": "Thanksgiving", "type": "National"},
+        {"name": "Halloween", "type": "Cultural"},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"]},
+        {"name": "Easter", "type": "Religious", "religion": ["Christianity"]},
+        {"name": "Hanukkah", "type": "Religious", "religion": ["Judaism"]},
+        {"name": "Kwanzaa", "type": "Cultural"}
+      ]
+    },
+    {
+      "country": "Japan",
+      "festivals": [
+        {"name": "New Year's Day", "type": "National"},
+        {"name": "Golden Week", "type": "National"},
+        {"name": "Obon", "type": "Religious/Cultural", "religion": ["Buddhism","Shinto"]},
+        {"name": "Cherry Blossom Festival", "type": "Cultural"},
+        {"name": "Setsubun", "type": "Religious/Cultural", "religion": ["Shinto"]}
+      ]
+    },
+    {
+      "country": "Brazil",
+      "festivals": [
+        {"name": "Carnival", "type": "Cultural"},
+        {"name": "Independence Day", "type": "National"},
+        {"name": "Republic Day", "type": "National"},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"]}
+      ]
+    }
+  ]
+}
+{
+  "countries": [
+    {
+      "country": "China",
+      "festivals": [
+        {"name": "Chinese New Year (Spring Festival)", "type": "Cultural/Religious", "priority": "high"},
+        {"name": "Mid-Autumn Festival", "type": "Cultural", "priority": "medium"},
+        {"name": "Qingming Festival", "type": "Cultural/Religious", "priority": "medium"},
+        {"name": "Dragon Boat Festival", "type": "Cultural", "priority": "medium"},
+        {"name": "National Day", "type": "National", "priority": "high"}
+      ]
+    },
+    {
+      "country": "Russia",
+      "festivals": [
+        {"name": "New Year's Day", "type": "National", "priority": "high"},
+        {"name": "Orthodox Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "high"},
+        {"name": "Maslenitsa", "type": "Cultural/Religious", "priority": "medium"},
+        {"name": "Victory Day", "type": "National", "priority": "high"},
+        {"name": "International Women's Day", "type": "National", "priority": "medium"}
+      ]
+    },
+    {
+      "country": "Germany",
+      "festivals": [
+        {"name": "Oktoberfest", "type": "Cultural", "priority": "high"},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "high"},
+        {"name": "German Unity Day", "type": "National", "priority": "high"},
+        {"name": "Carnival (Karneval/Fasching)", "type": "Cultural", "priority": "medium"},
+        {"name": "Easter", "type": "Religious", "religion": ["Christianity"], "priority": "medium"}
+      ]
+    },
+    {
+      "country": "France",
+      "festivals": [
+        {"name": "Bastille Day", "type": "National", "priority": "high"},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "high"},
+        {"name": "Easter", "type": "Religious", "religion": ["Christianity"], "priority": "medium"},
+        {"name": "Vendanges Festival (Grape Harvest)", "type": "Cultural", "priority": "medium"},
+        {"name": "Nice Carnival", "type": "Cultural", "priority": "medium"}
+      ]
+    },
+    {
+      "country": "United Kingdom",
+      "festivals": [
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "high"},
+        {"name": "Easter", "type": "Religious", "religion": ["Christianity"], "priority": "high"},
+        {"name": "Bonfire Night (Guy Fawkes Night)", "type": "Cultural", "priority": "medium"},
+        {"name": "St. Patrick's Day", "type": "Cultural/Religious", "religion": ["Christianity"], "priority": "medium"},
+        {"name": "Notting Hill Carnival", "type": "Cultural", "priority": "medium"}
+      ]
+    }
+  ]
+}
+{
+  "countries": [
+    {
+      "country": "Canada",
+      "festivals": [
+        {"name": "Canada Day", "type": "National", "priority": "high"},
+        {"name": "Thanksgiving", "type": "National", "priority": "high"},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "high"},
+        {"name": "Victoria Day", "type": "National", "priority": "medium"},
+        {"name": "Hanukkah", "type": "Religious", "religion": ["Judaism"], "priority": "medium"}
+      ]
+    },
+    {
+      "country": "Australia",
+      "festivals": [
+        {"name": "Australia Day", "type": "National", "priority": "high"},
+        {"name": "ANZAC Day", "type": "National", "priority": "high"},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "high"},
+        {"name": "Melbourne Cup Day", "type": "Cultural", "priority": "medium"},
+        {"name": "Easter", "type": "Religious", "religion": ["Christianity"], "priority": "medium"}
+      ]
+    },
+    {
+      "country": "Mexico",
+      "festivals": [
+        {"name": "Day of the Dead (Día de Muertos)", "type": "Cultural/Religious", "priority": "high"},
+        {"name": "Independence Day", "type": "National", "priority": "high"},
+        {"name": "Cinco de Mayo", "type": "Cultural/National", "priority": "medium"},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "high"},
+        {"name": "Guelaguetza Festival", "type": "Cultural", "priority": "medium"}
+      ]
+    },
+    {
+      "country": "South Africa",
+      "festivals": [
+        {"name": "Freedom Day", "type": "National", "priority": "high"},
+        {"name": "Heritage Day", "type": "National/Cultural", "priority": "medium"},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "high"},
+        {"name": "Eid al-Fitr", "type": "Religious", "religion": ["Islam"], "priority": "medium"},
+        {"name": "Diwali", "type": "Religious/Cultural", "religion": ["Hinduism"], "priority": "medium"}
+      ]
+    },
+    {
+      "country": "Saudi Arabia",
+      "festivals": [
+        {"name": "Eid al-Fitr", "type": "Religious", "religion": ["Islam"], "priority": "high"},
+        {"name": "Eid al-Adha", "type": "Religious", "religion": ["Islam"], "priority": "high"},
+        {"name": "Saudi National Day", "type": "National", "priority": "high"},
+        {"name": "Ramadan", "type": "Religious", "religion": ["Islam"], "priority": "high"}
+      ]
+    }
+  ]
+}
+{
+  "countries": [
+    {
+      "country": "South Korea",
+      "festivals": [
+        {"name": "Seollal (Lunar New Year)", "type": "Cultural/Religious", "priority": "high"},
+        {"name": "Chuseok (Harvest Festival)", "type": "Cultural", "priority": "high"},
+        {"name": "Buddha's Birthday", "type": "Religious", "religion": ["Buddhism"], "priority": "medium"},
+        {"name": "Dano Festival", "type": "Cultural", "priority": "medium"}
+      ]
+    },
+    {
+      "country": "Italy",
+      "festivals": [
+        {"name": "Carnival of Venice", "type": "Cultural", "priority": "high"},
+        {"name": "Easter", "type": "Religious", "religion": ["Christianity"], "priority": "high"},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "high"},
+        {"name": "Liberation Day", "type": "National", "priority": "medium"},
+        {"name": "Festa della Repubblica", "type": "National", "priority": "medium"}
+      ]
+    },
+    {
+      "country": "Turkey",
+      "festivals": [
+        {"name": "Republic Day", "type": "National", "priority": "high"},
+        {"name": "Ramadan (Ramazan Bayramı)", "type": "Religious", "religion": ["Islam"], "priority": "high"},
+        {"name": "Eid al-Adha (Kurban Bayramı)", "type": "Religious", "religion": ["Islam"], "priority": "high"},
+        {"name": "National Sovereignty and Children's Day", "type": "National", "priority": "medium"}
+      ]
+    },
+    {
+      "country": "Argentina",
+      "festivals": [
+        {"name": "Carnival", "type": "Cultural", "priority": "medium"},
+        {"name": "Independence Day", "type": "National", "priority": "high"},
+        {"name": "Day of Remembrance for Truth and Justice", "type": "National", "priority": "medium"},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "high"}
+      ]
+    },
+    {
+      "country": "Egypt",
+      "festivals": [
+        {"name": "Revolution Day", "type": "National", "priority": "high"},
+        {"name": "Eid al-Fitr", "type": "Religious", "religion": ["Islam"], "priority": "high"},
+        {"name": "Eid al-Adha", "type": "Religious", "religion": ["Islam"], "priority": "high"},
+        {"name": "Coptic Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "medium"}
+      ]
+    }
+  ]
+}
+
+
+
+{
+  "countries": [
+    {
+      "country": "France",
+      "festivals": [
+        {"name": "Bastille Day", "type": "National", "priority": "high"},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "high"},
+        {"name": "Easter", "type": "Religious", "religion": ["Christianity"], "priority": "medium"},
+        {"name": "Nice Carnival", "type": "Cultural", "priority": "medium"},
+        {"name": "Fête de la Musique", "type": "Cultural", "priority": "medium"}
+      ]
+    },
+    {
+      "country": "Spain",
+      "festivals": [
+        {"name": "La Tomatina", "type": "Cultural", "priority": "medium"},
+        {"name": "Running of the Bulls", "type": "Cultural", "priority": "medium"},
+        {"name": "Semana Santa (Holy Week)", "type": "Religious", "religion": ["Christianity"], "priority": "high"},
+        {"name": "Fiesta de San Fermín", "type": "Cultural", "priority": "medium"},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "high"}
+      ]
+    },
+    {
+      "country": "Indonesia",
+      "festivals": [
+        {"name": "Nyepi (Balinese Day of Silence)", "type": "Religious", "religion": ["Hinduism"], "priority": "high"},
+        {"name": "Idul Fitri (Eid al-Fitr)", "type": "Religious", "religion": ["Islam"], "priority": "high"},
+        {"name": "Waisak (Vesak)", "type": "Religious", "religion": ["Buddhism"], "priority": "medium"},
+        {"name": "Christmas", "type": "Religious", "religion": ["Christianity"], "priority": "medium"},
+        {"name": "Independence Day", "type": "National", "priority": "high"}
+      ]
+    },
+    {
+      "country": "Pakistan",
+      "festivals": [
+        {"name": "Pakistan Day", "type": "National", "priority": "high"},
+        {"name": "Eid al-Fitr", "type": "Religious", "religion": ["Islam"], "priority": "high"},
+        {"name": "Eid al-Adha", "type": "Religious", "religion": ["Islam"], "priority": "high"},
+        {"name": "Ashura", "type": "Religious", "religion": ["Islam"], "priority": "medium"},
+        {"name": "Independence Day", "type": "National", "priority": "high"}
+      ]
+    },
+    {
+      "country": "United Arab Emirates",
+      "festivals": [
+        {"name": "Commemoration Day", "type": "National", "priority": "high"},
+        {"name": "National Day", "type": "National", "priority": "high"},
+        {"name": "Eid al-Fitr", "type": "Religious", "religion": ["Islam"], "priority": "high"},
+        {"name": "Eid al-Adha", "type": "Religious", "religion": ["Islam"], "priority": "high"},
+        {"name": "Islamic New Year", "type": "Religious", "religion": ["Islam"], "priority": "medium"}
+      ]
+    }
+  ]
+}

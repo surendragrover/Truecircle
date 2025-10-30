@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-/// प्रेरणादायक उद्धरण Widget - Daily inspirational quotes
+/// Daily inspirational quotes widget
 class InspirationalQuoteWidget extends StatefulWidget {
   const InspirationalQuoteWidget({super.key});
 
@@ -20,8 +20,9 @@ class _InspirationalQuoteWidgetState extends State<InspirationalQuoteWidget> {
       color: Color(0xFF6366F1),
     ),
     QuoteItem(
-      text: "Your mental health is just as important as your physical health.",
-      author: "Mental Health Advocate",
+      text:
+          "Your emotional health is just as important as your physical health.",
+      author: "Emotional Health Advocate",
       color: Color(0xFF14B8A6),
     ),
     QuoteItem(
@@ -68,7 +69,7 @@ class _InspirationalQuoteWidgetState extends State<InspirationalQuoteWidget> {
               'Daily Inspiration',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.w600,
-                color: const Color(0xFF2A145D), // Deep Purple - गहरा बैंगनी
+                color: const Color(0xFF2A145D), // Deep Purple
               ),
             ),
             GestureDetector(
@@ -114,7 +115,7 @@ class _InspirationalQuoteWidgetState extends State<InspirationalQuoteWidget> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Quote Icon - उद्धरण आइकन
+                // Quote Icon
                 Container(
                   width: 40,
                   height: 40,
@@ -130,7 +131,7 @@ class _InspirationalQuoteWidgetState extends State<InspirationalQuoteWidget> {
                 ),
                 const SizedBox(height: 16),
 
-                // Quote Text - उद्धरण पाठ
+                // Quote Text
                 Text(
                   quote.text,
                   style: TextStyle(
@@ -142,7 +143,7 @@ class _InspirationalQuoteWidgetState extends State<InspirationalQuoteWidget> {
                 ),
                 const SizedBox(height: 12),
 
-                // Author - लेखक
+                // Author
                 Row(
                   children: [
                     Container(
@@ -179,7 +180,7 @@ class _InspirationalQuoteWidgetState extends State<InspirationalQuoteWidget> {
   }
 }
 
-/// उद्धरण आइटम - Quote item data class
+/// Quote item data class
 class QuoteItem {
   final String text;
   final String author;

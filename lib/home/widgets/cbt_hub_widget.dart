@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../cbt/cbt_hub_page.dart';
 import '../../cbt/cbt_personal_context_form.dart';
 import '../../cbt/cbt_thoughts_page.dart';
 import '../../cbt/coping_cards_page.dart';
@@ -9,7 +10,7 @@ import '../../cbt/gad7_page.dart';
 import '../../cbt/psychology_articles_page.dart';
 
 /// CBT Hub Widget - All CBT features in one centralized hub
-/// All CBT techniques और tools in one place
+/// All CBT techniques and tools in one place
 class CBTHubWidget extends StatelessWidget {
   const CBTHubWidget({super.key});
 
@@ -134,7 +135,7 @@ class CBTHubWidget extends StatelessWidget {
               _buildCBTFeatureCard(
                 context,
                 'Screening Tests',
-                'Mental health assessment',
+                'Emotional health assessment',
                 Icons.quiz_rounded,
                 Colors.red,
                 () => _openScreeningTests(context),
@@ -379,11 +380,9 @@ class CBTHubWidget extends StatelessWidget {
   }
 
   void _openCBTHubFullView(BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Full CBT Hub coming soon! 🚀'),
-        behavior: SnackBarBehavior.floating,
-      ),
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const CBTHubPage()),
     );
   }
 }
@@ -423,20 +422,60 @@ class CBTFeaturePage extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             ElevatedButton(
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('${_getFeatureTitle(feature)} coming soon!'),
-                    behavior: SnackBarBehavior.floating,
-                  ),
-                );
-              },
+              onPressed: () => _navigateToFeature(context, feature),
               child: const Text('Start Session'),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _navigateToFeature(BuildContext context, String feature) {
+    switch (feature) {
+      case 'thought_diary':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const CBTThoughtsPage()),
+        );
+        break;
+      case 'coping_cards':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const CopingCardsPage()),
+        );
+        break;
+      case 'micro_lessons':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const CBTMicroLessonsPage()),
+        );
+        break;
+      case 'techniques':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const CBTTechniquesPage()),
+        );
+        break;
+      case 'screening_tests':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const PHQ9Page()),
+        );
+        break;
+      case 'psychology_library':
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const PsychologyArticlesPage()),
+        );
+        break;
+      default:
+        // For unknown features, navigate to CBT Hub
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const CBTHubPage()),
+        );
+    }
   }
 
   String _getFeatureTitle(String feature) {
@@ -484,13 +523,13 @@ class CBTFeaturePage extends StatelessWidget {
       case 'coping_cards':
         return 'Interactive cards with positive affirmations and coping strategies for difficult moments.';
       case 'micro_lessons':
-        return 'Short, focused lessons on mental health topics and CBT principles.';
+        return 'Short, focused lessons on emotional health topics and CBT principles.';
       case 'techniques':
         return 'Learn and practice proven CBT techniques for managing emotions and thoughts.';
       case 'screening_tests':
-        return 'Professional screening tools like PHQ-9 and GAD-7 for mental health assessment.';
+        return 'Professional screening tools like PHQ-9 and GAD-7 for emotional health assessment.';
       case 'psychology_library':
-        return 'Educational articles and resources on mental health and psychological wellbeing.';
+        return 'Educational articles and resources on emotional health and psychological wellbeing.';
       default:
         return 'Explore this CBT feature to improve your mental wellness.';
     }

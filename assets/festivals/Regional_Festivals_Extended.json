@@ -1,0 +1,591 @@
+{
+  "regionSpecificFestivals": {
+    
+    "South_Asia": {
+      "India": [
+        {
+          "id": "holi",
+          "name": "Holi",
+          "localNames": ["होली", "Festival of Colors", "Rangwali Holi"],
+          "regions": ["Pan-India", "Nepal"],
+          "category": "Religious/Cultural",
+          "type": "major",
+          "description": "Spring festival celebrating victory of good over evil with colors",
+          "monthsObserved": ["March"],
+          "greetingMessages": {
+            "formal": "होली की हार्दिक शुभकामनाएं! Happy Holi!",
+            "casual": "Happy Holi! 🎨🌈",
+            "family": "रंगों से भरा हो आपका जीवन! Holi Mubarak! 💖"
+          }
+        },
+        {
+          "id": "karwa_chauth",
+          "name": "Karwa Chauth", 
+          "localNames": ["करवा चौथ"],
+          "regions": ["North India", "Punjab", "Rajasthan", "UP"],
+          "category": "Religious/Cultural",
+          "type": "minor",
+          "description": "Married women fast for husband's longevity",
+          "monthsObserved": ["October", "November"],
+          "greetingMessages": {
+            "formal": "करवा चौथ की शुभकामनाएं!",
+            "casual": "Happy Karwa Chauth! 🌙💍",
+            "family": "सुहाग की लंबी उम्र की कामना! करवा चौथ मुबारक! 👰"
+          }
+        }
+      ],
+      "Pakistan": [
+        {
+          "id": "pakistan_day",
+          "name": "Pakistan Day",
+          "localNames": ["یوم پاکستان"],
+          "category": "National",
+          "type": "major",
+          "description": "Celebrating Pakistan Resolution and independence movement",
+          "monthsObserved": ["March"],
+          "greetingMessages": {
+            "formal": "Pakistan Day Mubarak! پاکستان دن مبارک",
+            "casual": "Happy Pakistan Day! 🇵🇰✨",
+            "family": "पाकिस्तान दिवस मुबारक! National pride का दिन! 💚"
+          }
+        }
+      ],
+      "Bangladesh": [
+        {
+          "id": "pohela_boishakh",
+          "name": "Pohela Boishakh",
+          "localNames": ["পহেলা বৈশাখ", "Bengali New Year"],
+          "category": "New Year/Cultural",
+          "type": "major",
+          "description": "Bengali New Year celebration with traditional festivities",
+          "monthsObserved": ["April"],
+          "greetingMessages": {
+            "formal": "শুভ নববর্ষ! Happy Bengali New Year!",
+            "casual": "Shubho Noboborsho! 🎊🌸",
+            "family": "बंगाली नववर्ष मुबारक! नई शुरुआत का पर्व! 🎭"
+          }
+        }
+      ]
+    },
+
+    "East_Asia": {
+      "China": [
+        {
+          "id": "mid_autumn_festival",
+          "name": "Mid-Autumn Festival",
+          "localNames": ["中秋节", "Moon Festival", "Mooncake Festival"],
+          "category": "Cultural/Harvest",
+          "type": "major",
+          "description": "Family reunion festival celebrating full moon with mooncakes",
+          "monthsObserved": ["September", "October"],
+          "greetingMessages": {
+            "formal": "中秋快乐! Happy Mid-Autumn Festival!",
+            "casual": "Happy Moon Festival! 🥮🌕",
+            "family": "चांद पर्व मुबारक! Family reunion का खुशी का दिन! 🏮"
+          }
+        },
+        {
+          "id": "dragon_boat_festival",
+          "name": "Dragon Boat Festival",
+          "localNames": ["端午节", "Duanwu Festival"],
+          "category": "Cultural/Sports",
+          "type": "major", 
+          "description": "Racing dragon boats and eating sticky rice dumplings",
+          "monthsObserved": ["June"],
+          "greetingMessages": {
+            "formal": "端午安康! Happy Dragon Boat Festival!",
+            "casual": "Dragon Boat Festival! 🐲🚣",
+            "family": "ड्रैगन बोट त्योहार मुबारक! रेसिंग और zongzi का मज़ा! 🥟"
+          }
+        }
+      ],
+      "Japan": [
+        {
+          "id": "obon",
+          "name": "Obon",
+          "localNames": ["お盆", "Bon Festival"],
+          "category": "Religious/Cultural",
+          "type": "major",
+          "description": "Honoring spirits of ancestors with family gatherings",
+          "monthsObserved": ["July", "August"],
+          "greetingMessages": {
+            "formal": "お盆休みをお楽しみください",
+            "casual": "Happy Obon! 🏮👻",
+            "family": "Obon मुबारक! पूर्वजों को याद करने का समय 🕯️"
+          }
+        },
+        {
+          "id": "golden_week",
+          "name": "Golden Week",
+          "localNames": ["ゴールデンウィーク"],
+          "category": "National/Cultural",
+          "type": "major",
+          "description": "Series of national holidays creating week-long celebration",
+          "monthsObserved": ["April", "May"],
+          "greetingMessages": {
+            "formal": "ゴールデンウィークをお楽しみください",
+            "casual": "Happy Golden Week! ⭐🎌",
+            "family": "Golden Week मुबारक! छुट्टियों का सुनहरा सप्ताह! ✨"
+          }
+        }
+      ],
+      "South Korea": [
+        {
+          "id": "chuseok",
+          "name": "Chuseok",
+          "localNames": ["추석", "Korean Thanksgiving"],
+          "category": "Cultural/Harvest",
+          "type": "major",
+          "description": "Korean harvest festival honoring ancestors",
+          "monthsObserved": ["September", "October"],
+          "greetingMessages": {
+            "formal": "추석 잘 보내세요! Happy Chuseok!",
+            "casual": "Happy Chuseok! 🌕🍂",
+            "family": "चुसेओक मुबारक! Korean harvest festival की खुशियां! 🥧"
+          }
+        }
+      ]
+    },
+
+    "Southeast_Asia": {
+      "Thailand": [
+        {
+          "id": "songkran",
+          "name": "Songkran", 
+          "localNames": ["สงกรานต์", "Thai New Year", "Water Festival"],
+          "category": "New Year/Cultural",
+          "type": "major",
+          "description": "Thai New Year water festival with cleansing rituals",
+          "monthsObserved": ["April"],
+          "greetingMessages": {
+            "formal": "สวัสดีปีใหม่ไทย! Happy Songkran!",
+            "casual": "Happy Songkran! 💦🎊",
+            "family": "सॉन्गक्रान मुबारक! Thai New Year water festival! 🌊"
+          }
+        },
+        {
+          "id": "loy_krathong",
+          "name": "Loy Krathong",
+          "localNames": ["ลอยกระทง", "Festival of Lights"],
+          "category": "Cultural/Spiritual",
+          "type": "major",
+          "description": "Floating decorated baskets on water to honor water spirits",
+          "monthsObserved": ["November"],
+          "greetingMessages": {
+            "formal": "ลอยกระทงสุขสันต์! Happy Loy Krathong!",
+            "casual": "Happy Loy Krathong! 🏮🛶",
+            "family": "लॉय क्राथोंग मुबारक! Water festival और lights का जादू! ✨"
+          }
+        }
+      ],
+      "Vietnam": [
+        {
+          "id": "tet_nguyen_dan",
+          "name": "Tet Nguyen Dan",
+          "localNames": ["Tết", "Vietnamese New Year"],
+          "category": "New Year/Cultural", 
+          "type": "major",
+          "description": "Vietnamese Lunar New Year with family reunions",
+          "monthsObserved": ["January", "February"],
+          "greetingMessages": {
+            "formal": "Chúc Mừng Năm Mới! Happy Tet!",
+            "casual": "Happy Tet! 🧧🐉",
+            "family": "तेत मुबारक! Vietnamese New Year की खुशियां! 🎊"
+          }
+        }
+      ],
+      "Indonesia": [
+        {
+          "id": "independence_day_indonesia",
+          "name": "Indonesian Independence Day",
+          "localNames": ["Hari Kemerdekaan", "17 Agustus"],
+          "category": "National",
+          "type": "major",
+          "description": "Celebrating Indonesian independence from Dutch rule",
+          "monthsObserved": ["August"],
+          "greetingMessages": {
+            "formal": "Selamat Hari Kemerdekaan Indonesia!",
+            "casual": "Merdeka! 🇮🇩🎆", 
+            "family": "इंडोनेशियाई स्वतंत्रता दिवस मुबारक! Merdeka! 🏮"
+          }
+        }
+      ]
+    },
+
+    "Middle_East": {
+      "Iran": [
+        {
+          "id": "yalda_night",
+          "name": "Yalda Night",
+          "localNames": ["شب یلدا", "Longest Night"],
+          "category": "Cultural/Seasonal",
+          "type": "major",
+          "description": "Celebrating winter solstice with family gatherings",
+          "monthsObserved": ["December"],
+          "greetingMessages": {
+            "formal": "شب یلدا مبارک! Happy Yalda Night!",
+            "casual": "Happy Yalda! 🍉🕯️",
+            "family": "यल्दा रात मुबारक! Winter solstice का जश्न! 🌟"
+          }
+        }
+      ],
+      "Turkey": [
+        {
+          "id": "republic_day_turkey",
+          "name": "Republic Day", 
+          "localNames": ["Cumhuriyet Bayramı"],
+          "category": "National",
+          "type": "major",
+          "description": "Celebrating establishment of Turkish Republic",
+          "monthsObserved": ["October"],
+          "greetingMessages": {
+            "formal": "Cumhuriyet Bayramınız Kutlu Olsun!",
+            "casual": "Happy Republic Day Turkey! 🇹🇷🎊",
+            "family": "तुर्की गणतंत्र दिवस मुबारक! Republic celebration! 🏛️"
+          }
+        }
+      ],
+      "Israel": [
+        {
+          "id": "passover",
+          "name": "Passover",
+          "localNames": ["פסח", "Pesach"],
+          "category": "Religious",
+          "religion": "Judaism",
+          "type": "major",
+          "description": "Jewish festival commemorating exodus from Egypt",
+          "monthsObserved": ["March", "April"],
+          "greetingMessages": {
+            "formal": "Chag Pesach Sameach! Happy Passover!",
+            "casual": "Happy Passover! 🍷📖",
+            "family": "पासओवर मुबारक! Freedom और liberation का पर्व! ✡️"
+          }
+        }
+      ],
+      "United_Arab_Emirates": [
+        {
+          "id": "uae_national_day",
+          "name": "UAE National Day",
+          "localNames": ["يوم الاتحاد", "Union Day"],
+          "category": "National",
+          "type": "major", 
+          "description": "Celebrating formation of United Arab Emirates",
+          "monthsObserved": ["December"],
+          "greetingMessages": {
+            "formal": "عيد الاتحاد مبارك! Happy UAE National Day!",
+            "casual": "Happy UAE National Day! 🇦🇪🎉",
+            "family": "UAE राष्ट्रीय दिवस मुबारक! Union का जश्न! ✨"
+          }
+        }
+      ],
+      "Saudi_Arabia": [
+        {
+          "id": "saudi_national_day",
+          "name": "Saudi National Day", 
+          "localNames": ["اليوم الوطني السعودي", "Al-Yawm Al-Watani"],
+          "category": "National",
+          "type": "major",
+          "description": "Celebrating Saudi Arabia's unification and founding",
+          "monthsObserved": ["September"],
+          "greetingMessages": {
+            "formal": "اليوم الوطني مبارك! Happy Saudi National Day!",
+            "casual": "Happy Saudi National Day! 🇸🇦👑", 
+            "family": "Saudi राष्ट्रीय दिवस मुबारक! Kingdom का सम्मान! 🕌"
+          }
+        }
+      ],
+      "Egypt": [
+        {
+          "id": "revolution_day_egypt",
+          "name": "Revolution Day",
+          "localNames": ["ثورة 25 يناير", "January 25 Revolution"],
+          "category": "National",
+          "type": "major",
+          "description": "Commemorating Egyptian Revolution for democracy",
+          "monthsObserved": ["January"],
+          "greetingMessages": {
+            "formal": "ثورة مصر مبارك! Happy Revolution Day!",
+            "casual": "Happy Egyptian Revolution Day! 🇪🇬⚖️",
+            "family": "मिस्र क्रांति दिवस मुबारक! Democracy के लिए संघर्ष! 🏛️"
+          }
+        }
+      ]
+    },
+
+    "Europe": {
+      "Spain": [
+        {
+          "id": "running_of_bulls",
+          "name": "Running of the Bulls",
+          "localNames": ["San Fermín", "Encierro"],
+          "category": "Cultural/Sports",
+          "type": "unique",
+          "description": "Traditional bull running festival in Pamplona",
+          "monthsObserved": ["July"],
+          "greetingMessages": {
+            "formal": "¡Viva San Fermín!",
+            "casual": "Running with the Bulls! 🐂🏃",
+            "family": "सैन फर्मिन त्योहार मुबारक! Bull running का रोमांच! 🎯"
+          }
+        },
+        {
+          "id": "feria_de_abril",
+          "name": "Feria de Abril",
+          "localNames": ["April Fair", "Seville Fair"],
+          "category": "Cultural",
+          "type": "major",
+          "description": "Andalusian fair with flamenco, horses and traditional dress",
+          "monthsObserved": ["April", "May"],
+          "greetingMessages": {
+            "formal": "¡Feliz Feria de Abril!",
+            "casual": "Happy Feria! 💃🐎",
+            "family": "फेरिया दे अब्रिल मुबारक! Flamenco और horses का जश्न! 🌸"
+          }
+        }
+      ],
+      "Italy": [
+        {
+          "id": "carnival_venice",
+          "name": "Carnival of Venice",
+          "localNames": ["Carnevale di Venezia"],
+          "category": "Cultural/Arts",
+          "type": "major",
+          "description": "Historic masked carnival with elaborate costumes",
+          "monthsObserved": ["February", "March"],
+          "greetingMessages": {
+            "formal": "Buon Carnevale di Venezia!",
+            "casual": "Happy Venice Carnival! 🎭🎪",
+            "family": "वेनिस कार्निवल मुबारक! Masks और mystery का जादू! 🎨"
+          }
+        }
+      ],
+      "Netherlands": [
+        {
+          "id": "kings_day",
+          "name": "King's Day",
+          "localNames": ["Koningsdag"],
+          "category": "National", 
+          "type": "major",
+          "description": "Dutch national holiday celebrating the King's birthday",
+          "monthsObserved": ["April"],
+          "greetingMessages": {
+            "formal": "Gelukkige Koningsdag!",
+            "casual": "Happy King's Day! 🇳🇱👑",
+            "family": "किंग्स डे मुबारक! Orange celebration का दिन! 🧡"
+          }
+        }
+      ],
+      "Ireland": [
+        {
+          "id": "st_patricks_day",
+          "name": "St. Patrick's Day",
+          "localNames": ["Lá Fhéile Pádraig"],
+          "category": "Religious/Cultural",
+          "type": "major",
+          "description": "Irish cultural celebration honoring patron saint",
+          "monthsObserved": ["March"],
+          "greetingMessages": {
+            "formal": "Happy St. Patrick's Day! Lá Fhéile Pádraig sona dhuit!",
+            "casual": "Happy St. Paddy's Day! 🍀🎩",
+            "family": "सेंट पैट्रिक दिवस मुबारक! Irish culture का जश्न! ☘️"
+          }
+        }
+      ]
+    },
+
+    "Africa": {
+      "Ethiopia": [
+        {
+          "id": "timkat",
+          "name": "Timkat",
+          "localNames": ["ጥምቀት", "Ethiopian Epiphany"],
+          "category": "Religious",
+          "religion": "Christianity (Orthodox)",
+          "type": "major",
+          "description": "Ethiopian Orthodox celebration of Christ's baptism",
+          "monthsObserved": ["January"],
+          "greetingMessages": {
+            "formal": "መልካም ጥምቀት! Happy Timkat!",
+            "casual": "Happy Timkat! ✝️💦",
+            "family": "तिमकत मुबारक! Ethiopian Orthodox celebration! 🕊️"
+          }
+        }
+      ],
+      "South Africa": [
+        {
+          "id": "heritage_day_sa",
+          "name": "Heritage Day",
+          "localNames": ["National Braai Day"],
+          "category": "National/Cultural",
+          "type": "major",
+          "description": "Celebrating South African cultural diversity",
+          "monthsObserved": ["September"],
+          "greetingMessages": {
+            "formal": "Happy Heritage Day South Africa!",
+            "casual": "Happy Heritage Day! 🇿🇦🔥",
+            "family": "हेरिटेज डे मुबारक! Cultural diversity का जश्न! 🌈"
+          }
+        }
+      ],
+      "Egypt": [
+        {
+          "id": "sham_el_nessim",
+          "name": "Sham el-Nessim",
+          "localNames": ["شم النسيم", "Smelling the Breeze"],
+          "category": "Cultural/Seasonal",
+          "type": "major",
+          "description": "Ancient Egyptian spring festival",
+          "monthsObserved": ["April", "May"],
+          "greetingMessages": {
+            "formal": "كل عام وأنتم بخير في شم النسيم",
+            "casual": "Happy Sham el-Nessim! 🌸🥚",
+            "family": "शाम अल-नसीम मुबारक! Spring festival का आनंद! 🌺"
+          }
+        }
+      ]
+    },
+
+    "Americas": {
+      "Mexico": [
+        {
+          "id": "cinco_de_mayo",
+          "name": "Cinco de Mayo",
+          "localNames": ["5 de Mayo"],
+          "category": "National/Historical",
+          "type": "major",
+          "description": "Commemorating Mexican victory over French forces",
+          "monthsObserved": ["May"],
+          "greetingMessages": {
+            "formal": "¡Feliz Cinco de Mayo!",
+            "casual": "Happy Cinco de Mayo! 🇲🇽🎉",
+            "family": "सिंको दे मेयो मुबारक! Mexican victory celebration! 🌮"
+          }
+        },
+        {
+          "id": "dia_de_independencia_mexico",
+          "name": "Mexican Independence Day",
+          "localNames": ["Día de la Independencia", "El Grito"],
+          "category": "National",
+          "type": "major",
+          "description": "Celebrating Mexican independence from Spain",
+          "monthsObserved": ["September"],
+          "greetingMessages": {
+            "formal": "¡Viva México! ¡Feliz Día de la Independencia!",
+            "casual": "Viva México! 🇲🇽🎆",
+            "family": "मैक्सिकन स्वतंत्रता दिवस मुबारक! Viva México! 🎊"
+          }
+        }
+      ],
+      "Brazil": [
+        {
+          "id": "festa_junina",
+          "name": "Festa Junina",
+          "localNames": ["June Festivals", "São João"],
+          "category": "Cultural/Religious",
+          "type": "major",
+          "description": "Rural Brazilian festivals celebrating Catholic saints",
+          "monthsObserved": ["June"],
+          "greetingMessages": {
+            "formal": "Feliz Festa Junina!",
+            "casual": "Happy Festa Junina! 🌽🔥",
+            "family": "फेस्टा जुनिना मुबारक! Brazilian rural celebration! 🎪"
+          }
+        }
+      ],
+      "Canada": [
+        {
+          "id": "canada_day",
+          "name": "Canada Day",
+          "localNames": ["Fête du Canada"],
+          "category": "National",
+          "type": "major",
+          "description": "Canadian national day celebrating Confederation",
+          "monthsObserved": ["July"],
+          "greetingMessages": {
+            "formal": "Happy Canada Day! Joyeuse fête du Canada!",
+            "casual": "Happy Canada Day! 🇨🇦🍁",
+            "family": "कनाडा दिवस मुबारक! Maple leaf celebration! 🏒"
+          }
+        }
+      ],
+      "Argentina": [
+        {
+          "id": "tango_festival",
+          "name": "Tango Festival",
+          "localNames": ["Festival de Tango"],
+          "category": "Arts & Music/Cultural",
+          "type": "major",
+          "description": "Celebrating Argentine tango music and dance",
+          "monthsObserved": ["August"],
+          "greetingMessages": {
+            "formal": "¡Feliz Festival de Tango!",
+            "casual": "Happy Tango Festival! 💃🎵",
+            "family": "टैंगो फेस्टिवल मुबारक! Argentine dance का जश्न! 🎭"
+          }
+        }
+      ]
+    },
+
+    "Oceania": {
+      "Australia": [
+        {
+          "id": "australia_day",
+          "name": "Australia Day",
+          "category": "National",
+          "type": "major",
+          "description": "Australian national day marking British arrival",
+          "monthsObserved": ["January"],
+          "greetingMessages": {
+            "formal": "Happy Australia Day!",
+            "casual": "Happy Australia Day! 🇦🇺🦘",
+            "family": "ऑस्ट्रेलिया दिवस मुबारक! Aussie spirit celebration! 🏄"
+          }
+        },
+        {
+          "id": "melbourne_cup",
+          "name": "Melbourne Cup",
+          "localNames": ["The Race That Stops a Nation"],
+          "category": "Sports & Recreation",
+          "type": "major",
+          "description": "Famous Australian horse racing event",
+          "monthsObserved": ["November"],
+          "greetingMessages": {
+            "formal": "Enjoy the Melbourne Cup!",
+            "casual": "Melbourne Cup day! 🏇🏆",
+            "family": "मेलबर्न कप मुबारक! Horse racing का महाकुंभ! 🐎"
+          }
+        }
+      ],
+      "New Zealand": [
+        {
+          "id": "waitangi_day",
+          "name": "Waitangi Day",
+          "category": "National/Historical",
+          "type": "major",
+          "description": "Commemorating signing of Treaty of Waitangi",
+          "monthsObserved": ["February"],
+          "greetingMessages": {
+            "formal": "Happy Waitangi Day!",
+            "casual": "Happy Waitangi Day! 🇳🇿🤝",
+            "family": "वैतांगी दिवस मुबारक! Treaty celebration! ⚖️"
+          }
+        }
+      ]
+    }
+  },
+
+  "additionalCategories": {
+    "LunarBasedFestivals": [
+      "Eid ul-Fitr", "Eid ul-Adha", "Chinese New Year", "Diwali", "Vesak", "Chuseok"
+    ],
+    "SolarBasedFestivals": [
+      "Christmas", "Nowruz", "Summer Solstice", "Winter Solstice", "Easter"
+    ],
+    "ModernCreatedFestivals": [
+      "International Women's Day", "Earth Day", "World Music Day", "Valentine's Day"
+    ],
+    "AncientFestivals": [
+      "Nowruz", "Sham el-Nessim", "Yalda Night", "Celtic Samhain", "Roman Saturnalia"
+    ]
+  }
+}
