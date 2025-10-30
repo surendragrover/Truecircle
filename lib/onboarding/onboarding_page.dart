@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
+import '../models/user_profile.dart';
 import '../auth/otp_page.dart';
 import '../services/otp_service.dart';
 
@@ -13,9 +14,13 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> {
   bool _busy = false;
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
   String _selectedCountry = 'IN'; // Default to India
   String _error = '';
+  String _nameError = '';
+  String _emailError = '';
 
   // Comprehensive country data with flag emojis and dial codes
   final Map<String, Map<String, String>> _countries = {
@@ -184,11 +189,34 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   Future<void> _getOtp() async {
     final phoneNumber = _phoneController.text.trim();
+    final name = _nameController.text.trim();
+    final email = _emailController.text.trim();
 
     // Clear any previous error
     setState(() => _error = '');
 
     // Validation
+    if (name.isEmpty) {
+      setState(() => _nameError = 'Please enter your name');
+      return;
+    }
+    if (!ProfileValidator.isValidName(name)) {
+      setState(() => _nameError = 'Name must be 2–50 characters');
+      return;
+    } else {
+      _nameError = '';
+    }
+
+    if (email.isEmpty) {
+      setState(() => _emailError = 'Please enter your email');
+      return;
+    }
+    if (!ProfileValidator.isValidEmail(email)) {
+      setState(() => _emailError = 'Please enter a valid email');
+      return;
+    } else {
+      _emailError = '';
+    }
     if (phoneNumber.isEmpty) {
       setState(() => _error = 'Please enter your phone number');
       return;
@@ -253,6 +281,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
         final box = await Hive.openBox('app_prefs');
         await box.put('onboarding_done', true);
         await box.put('pending_phone', fullNumber);
+        await box.put('pending_name', name);
+        await box.put('pending_email', email);
       } catch (storageError) {
         // Continue anyway - offline mode doesn't require storage
       }
@@ -382,6 +412,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
     _phoneController.dispose();
     super.dispose();
   }
@@ -431,15 +463,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
                             color: Colors.white,
                           ),
                           SizedBox(height: 8),
-                          Text(
-                            'TrueCircle',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.white,
-                              letterSpacing: 0.5,
-                            ),
-                          ),
                         ],
                       ),
                     );
@@ -466,7 +489,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ),
               const SizedBox(height: 40),
 
-              // Phone Input Section
+              // Basic Info Section (Name & Email)
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -485,10 +508,131 @@ class _OnboardingPageState extends State<OnboardingPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'Enter your phone number',
+                      'Tell us about you',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    TextField(
+                      controller: _nameController,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        label: RichText(
+                          text: const TextSpan(
+                            text: 'Your name',
+                            style: TextStyle(color: Colors.black87),
+                            children: [
+                              TextSpan(
+                                text: ' *',
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            ],
+                          ),
+                        ),
+                        hintText: 'e.g., Aarav Sharma',
+                        errorText: _nameError.isEmpty ? null : _nameError,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.grey[300]!),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor,
+                            width: 2,
+                          ),
+                        ),
+                        prefixIcon: const Icon(Icons.person_outline),
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+                      onChanged: (_) {
+                        if (_nameError.isNotEmpty) {
+                          setState(() => _nameError = '');
+                        }
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    TextField(
+                      controller: _emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        label: RichText(
+                          text: const TextSpan(
+                            text: 'Email',
+                            style: TextStyle(color: Colors.black87),
+                            children: [
+                              TextSpan(
+                                text: ' *',
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            ],
+                          ),
+                        ),
+                        hintText: 'you@example.com',
+                        errorText: _emailError.isEmpty ? null : _emailError,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(color: Colors.grey[300]!),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            color: Theme.of(context).primaryColor,
+                            width: 2,
+                          ),
+                        ),
+                        prefixIcon: const Icon(Icons.email_outlined),
+                        filled: true,
+                        fillColor: Colors.white,
+                      ),
+                      onChanged: (_) {
+                        if (_emailError.isNotEmpty) {
+                          setState(() => _emailError = '');
+                        }
+                      },
+                    ),
+                  ],
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              // Phone Input Section
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.grey.shade300),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.08),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RichText(
+                      text: const TextSpan(
+                        text: 'Enter your phone number',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: ' *',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(height: 16),
