@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:audioplayers/audioplayers.dart';
+import '../core/log_service.dart';
 import '../root_shell.dart';
 import '../services/coin_reward_service.dart';
 
@@ -22,6 +23,10 @@ class _DrIrisWelcomePageState extends State<DrIrisWelcomePage> {
 
     // Auto-play welcome audio
     _playWelcomeAudio();
+
+    // Ensure live log overlay doesn't cover onboarding buttons
+    // Hide it when this page is shown
+    LogService.instance.overlayVisible.value = false;
   }
 
   @override
@@ -435,6 +440,8 @@ class _DrIrisWelcomePageState extends State<DrIrisWelcomePage> {
                 width: double.infinity,
                 child: OutlinedButton.icon(
                   onPressed: () async {
+                    // Hide overlay so new screen isn't obscured
+                    LogService.instance.overlayVisible.value = false;
                     // Mark welcomed and navigate to home without check-in
                     final nav = Navigator.of(context);
                     try {

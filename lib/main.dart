@@ -115,29 +115,29 @@ class TrueCircleApp extends StatelessWidget {
                   left: false,
                   right: true,
                   child: GestureDetector(
-                  onTap: () {
-                    final v = LogService.instance.overlayVisible.value;
-                    LogService.instance.overlayVisible.value = !v;
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 8,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.6),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: Colors.white24),
-                    ),
-                    child: const Text(
-                      'LOG',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 1.2,
+                    onTap: () {
+                      final v = LogService.instance.overlayVisible.value;
+                      LogService.instance.overlayVisible.value = !v;
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withValues(alpha: 0.6),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.white24),
+                      ),
+                      child: const Text(
+                        'LOG',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 1.2,
+                        ),
                       ),
                     ),
-                  ),
                   ),
                 ),
               ),
