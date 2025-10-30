@@ -267,6 +267,13 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Dr. Iris AI Assistant with Wellness Score (moved up below AppBar)
+            DrIrisAssistantWidget(
+              wellnessScore: _dashboardData?.wellnessScore ?? 78,
+              trend: _dashboardData?.wellnessTrend ?? 'Improving',
+            ),
+            const SizedBox(height: 16),
+
             // Welcome Header with animations
             const WelcomeHeaderWidget(),
             const SizedBox(height: 12),
@@ -274,13 +281,6 @@ class _HomePageState extends State<HomePage> {
 
             // Quick Actions
             const QuickActionsWidget(),
-            const SizedBox(height: 24),
-
-            // Dr. Iris AI Assistant with Wellness Score
-            DrIrisAssistantWidget(
-              wellnessScore: _dashboardData?.wellnessScore ?? 78,
-              trend: _dashboardData?.wellnessTrend ?? 'Improving',
-            ),
             const SizedBox(height: 24),
 
             // Daily Stats
