@@ -12,48 +12,6 @@ To enable automated deployment, you need to configure the following secrets in y
 2. **Add Required Secrets:**
 
 ### 📱 Firebase App Distribution (Optional)
-```
-Name: FIREBASE_APP_ID
-Value: 1:239213685086:android:f25587f9c1c2b5df1107cf
-```
-
-```
-Name: CREDENTIAL_FILE_CONTENT
-Value: [Content of google-services.json file]
-```
-
 ### 🌐 Firebase Hosting (Optional)
-```
-Name: FIREBASE_SERVICE_ACCOUNT_TRUECIRCLE_DBCDB
-Value: [Firebase Service Account JSON]
-```
-
 ### 🚀 Current Configuration:
-
-- **Project ID:** truecircle-dbcdb
-- **App ID:** 1:239213685086:android:f25587f9c1c2b5df1107cf
-- **Package Name:** com.example.truecircle
-
-### ⚡ Quick Setup (No Secrets Required):
-
-The current workflow is configured to work without secrets for basic APK building. 
-
-**What works without secrets:**
-- ✅ Flutter build and analyze
-- ✅ APK generation
-- ✅ Basic CI/CD pipeline
-
-**What needs secrets:**
-- 📱 Firebase App Distribution upload
-- 🌐 Firebase Hosting deployment
-- 📊 Advanced Firebase features
-
-### 🔒 Security Note:
-
-Never commit actual secret values to your repository. All sensitive data should be stored in GitHub Secrets.
-
-### 📚 References:
-
-- [GitHub Secrets Documentation](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
-- [Firebase App Distribution](https://firebase.google.com/docs/app-distribution)
-- [Firebase Hosting](https://firebase.google.com/docs/hosting)
+This file has been sanitized and removed from showing any Google/Firebase secrets or instructions as part of the offline-only conversion. Do not store Google/Firebase credentials in this repo.

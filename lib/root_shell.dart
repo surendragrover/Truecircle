@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'home/home_page.dart';
 import 'cbt/cbt_hub_page.dart';
-import 'iris/dr_iris_welcome_page.dart';
+import 'iris/dr_iris_chat_page.dart';
+import 'dream_space/dream_space_page.dart';
 import 'widgets/coin_display_widget.dart';
 
 class RootShell extends StatefulWidget {
@@ -20,7 +21,8 @@ class _RootShellState extends State<RootShell> {
     final pages = <Widget>[
       const HomePage(),
       const CBTHubPage(),
-      const DrIrisWelcomePage(),
+      const DreamSpacePage(), // Your new celestial space
+      const DrIrisChatPage(),
     ];
     return Scaffold(
       body: Stack(
@@ -76,6 +78,14 @@ class _RootShellState extends State<RootShell> {
                     label: 'CBT',
                   ),
                   NavigationDestination(
+                    icon: Icon(
+                      Icons.star_border,
+                      color: Colors.grey.shade600,
+                    ),
+                    selectedIcon: _GradientIcon(Icons.star),
+                    label: 'Dreams',
+                  ),
+                  NavigationDestination(
                     icon: Container(
                       width: 24,
                       height: 24,
@@ -88,7 +98,7 @@ class _RootShellState extends State<RootShell> {
                       ),
                       child: ClipOval(
                         child: Image.asset(
-                          'assets/images/Avatar.png',
+                          'assets/images/dr_iris_avatar.png',
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return Icon(
@@ -112,7 +122,7 @@ class _RootShellState extends State<RootShell> {
                       ),
                       child: ClipOval(
                         child: Image.asset(
-                          'assets/images/Avatar.png',
+                          'assets/images/dr_iris_avatar.png',
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return const Icon(

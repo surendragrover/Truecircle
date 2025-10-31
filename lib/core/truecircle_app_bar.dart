@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import '../widgets/marketplace_discount_widget.dart';
 import '../widgets/coin_display_widget.dart';
 
@@ -19,7 +20,7 @@ class TrueCircleAppBar extends StatelessWidget implements PreferredSizeWidget {
   });
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 36);
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +71,32 @@ class TrueCircleAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ],
+      ),
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(36),
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          alignment: Alignment.centerLeft,
+          child: DefaultTextStyle(
+            style: TextStyle(
+              color: Colors
+                  .black87, // darker color for better readability on the ticker
+              fontSize: 15, // increased by 2 points for improved legibility
+              fontWeight: FontWeight.w500,
+            ),
+            child: AnimatedTextKit(
+              repeatForever: true,
+              pause: const Duration(milliseconds: 800),
+              animatedTexts: [
+                TyperAnimatedText(
+                  'Private by default • Deep by design — Your feelings stay on-device. Dr. Iris listens, supports, and suggests relationship-first actions when needed.',
+                  speed: const Duration(milliseconds: 60),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
       iconTheme: const IconThemeData(color: Colors.white),
       actionsIconTheme: const IconThemeData(color: Colors.white),

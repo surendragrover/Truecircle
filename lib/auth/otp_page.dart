@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import '../services/otp_service.dart';
 import '../services/coin_reward_service.dart';
-import '../iris/dr_iris_welcome_screen.dart';
+import '../iris/dr_iris_welcome_page.dart';
+import '../services/privacy_guard.dart';
 import '../core/truecircle_app_bar.dart';
+import '../core/spacing.dart';
 
 class OtpPage extends StatefulWidget {
   final String? phoneNumber;
@@ -83,7 +85,27 @@ class _OtpPageState extends State<OtpPage> {
         try {
           final box = await Hive.openBox('app_prefs');
           await box.put('phone_verified', true);
+          // Mark the app as offline-forced after verification
+          await box.put('force_offline', true);
           await box.delete('pending_phone');
+
+          // Immediately apply privacy enforcement so analytics/crashlytics
+          // and messaging are disabled for this session.
+          try {
+            await PrivacyGuard.enforceIfNeeded();
+          } catch (_) {}
+
+          // Persist basic profile details if collected during onboarding
+          final name = (box.get('pending_name') as String?)?.trim();
+          final email = (box.get('pending_email') as String?)?.trim();
+          if (name != null && name.isNotEmpty) {
+            await box.put('user_name', name);
+            await box.delete('pending_name');
+          }
+          if (email != null && email.isNotEmpty) {
+            await box.put('user_email', email);
+            await box.delete('pending_email');
+          }
 
           // 🎉 Give login reward after successful phone verification
           final rewardResult = await CoinRewardService.instance
@@ -113,9 +135,11 @@ class _OtpPageState extends State<OtpPage> {
 
         if (!mounted) return;
 
-        // Navigate to Dr Iris Welcome page (proper first-time flow)
+        // Navigate to Dr. Iris welcome (first time), then user can continue
         Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (_) => const DrIrisWelcomeScreen()),
+          MaterialPageRoute(
+            builder: (_) => const DrIrisWelcomePage(isFirstTime: true),
+          ),
           (route) => false, // Clear navigation stack
         );
         return;
@@ -146,7 +170,20 @@ class _OtpPageState extends State<OtpPage> {
       try {
         final box = await Hive.openBox('app_prefs');
         await box.put('phone_verified', true);
+        // Mark the app as offline-forced after verification (fallback path)
+        await box.put('force_offline', true);
         await box.delete('pending_phone');
+
+        final name = (box.get('pending_name') as String?)?.trim();
+        final email = (box.get('pending_email') as String?)?.trim();
+        if (name != null && name.isNotEmpty) {
+          await box.put('user_name', name);
+          await box.delete('pending_name');
+        }
+        if (email != null && email.isNotEmpty) {
+          await box.put('user_email', email);
+          await box.delete('pending_email');
+        }
 
         // 🎉 Give login reward after successful verification (fallback)
         final rewardResult = await CoinRewardService.instance
@@ -168,7 +205,9 @@ class _OtpPageState extends State<OtpPage> {
 
       if (!mounted) return;
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const DrIrisWelcomeScreen()),
+        MaterialPageRoute(
+          builder: (_) => const DrIrisWelcomePage(isFirstTime: true),
+        ),
       );
     } finally {
       if (mounted) setState(() => _busy = false);
@@ -188,7 +227,7 @@ class _OtpPageState extends State<OtpPage> {
             children: [
               if (_phone.isNotEmpty)
                 Text('Code sent to: $_phone', style: TextStyle(color: hint)),
-              const SizedBox(height: 12),
+              SizedBox(height: AppGaps.section),
               TextField(
                 controller: _codeCtrl,
                 keyboardType: TextInputType.number,
@@ -198,11 +237,27 @@ class _OtpPageState extends State<OtpPage> {
                 style: Theme.of(
                   context,
                 ).textTheme.headlineSmall?.copyWith(letterSpacing: 8.0),
-                decoration: const InputDecoration(
-                  labelText: 'Enter 6-digit OTP',
+                decoration: InputDecoration(
+                  label: RichText(
+                    text: TextSpan(
+                      text: 'OTP code',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(context).hintColor,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: ' *',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.error,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                   hintText: 'Enter 000000',
                   helperText: 'Offline mode: Use 000000 or 123456',
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   counterText: '',
                 ),
                 onChanged: (value) {
@@ -213,13 +268,13 @@ class _OtpPageState extends State<OtpPage> {
                 onSubmitted: (_) => _verify(),
               ),
               if (_error != null) ...[
-                const SizedBox(height: 8),
+                SizedBox(height: AppGaps.small),
                 Text(
                   _error!,
                   style: TextStyle(color: Theme.of(context).colorScheme.error),
                 ),
               ],
-              const SizedBox(height: 16),
+              SizedBox(height: AppGaps.section),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(

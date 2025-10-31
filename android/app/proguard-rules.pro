@@ -7,9 +7,7 @@
 -keep class io.flutter.plugins.**  { *; }
 -keep class io.flutter.embedding.**  { *; }
 
-# Google Play Core (for split APKs compatibility)
--keep class com.google.android.play.core.** { *; }
--dontwarn com.google.android.play.core.**
+# Google Play Core rules removed — offline-only build (no Google Play Core usage)
 
 # TensorFlow Lite
 -keep class org.tensorflow.lite.** { *; }

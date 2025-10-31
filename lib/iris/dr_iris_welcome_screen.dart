@@ -31,7 +31,7 @@ class _DrIrisWelcomeScreenState extends State<DrIrisWelcomeScreen>
     super.initState();
     _initializeAnimations();
     _loadPoemFromAsset();
-    _playWelcomeAudio();
+    _maybePlayWelcomeAudioOnce();
   }
 
   void _initializeAnimations() {
@@ -95,12 +95,21 @@ class _DrIrisWelcomeScreenState extends State<DrIrisWelcomeScreen>
     }
   }
 
-  Future<void> _playWelcomeAudio() async {
+  Future<void> _maybePlayWelcomeAudioOnce() async {
     try {
-      // Try to play the available audiobook
-      await _audioPlayer.play(AssetSource('audiobook.mp3'));
+      final box = await Hive.openBox('app_prefs');
+      final played =
+          box.get('welcome_audio_played', defaultValue: false) as bool;
+      if (!played) {
+        await _audioPlayer.play(AssetSource('audiobook.mp3'));
+        await box.put('welcome_audio_played', true);
+      }
     } catch (e) {
-      debugPrint('Audio playback failed: $e');
+      try {
+        await _audioPlayer.play(AssetSource('audiobook.mp3'));
+      } catch (err) {
+        debugPrint('Audio playback failed: $err');
+      }
     }
   }
 
@@ -117,20 +126,59 @@ class _DrIrisWelcomeScreenState extends State<DrIrisWelcomeScreen>
 
   void _startEmotionalCheckin() async {
     // Store that user completed Dr. Iris intro
-    final box = await Hive.openBox('userPrefs');
-    await box.put('completed_iris_intro', true);
+    final userBox = await Hive.openBox('userPrefs');
+    await userBox.put('completed_iris_intro', true);
+    // Also set the legacy startup gate flag to prevent re-showing welcome
+    final prefs = await Hive.openBox('app_prefs');
+    await prefs.put('dr_iris_welcomed', true);
 
-    if (mounted) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const EmotionalAwarenessPage()),
-      );
+    // Prefill the emotional intake with the welcome poem/text so the
+    // Emotional Check-in starts with this context (helpful for first-time users).
+    try {
+      final intakeBox = await Hive.openBox('emotional_intake');
+      if ((_poemContent).trim().isNotEmpty) {
+        // Put poem into 'current_mood' as a starter text for the detailed form.
+        await intakeBox.put('current_mood', _poemContent.trim());
+      }
+    } catch (e) {
+      debugPrint('Failed to prefill emotional intake: $e');
     }
+
+    if (!mounted) return;
+    // Navigate to Emotional Check-in and await result so we can then route
+    // the user to Home (and show a helpful message if the check-in looks
+    // concerning).
+    final nav = Navigator.of(context);
+    final scaffold = ScaffoldMessenger.of(context);
+    final result = await nav.push<bool?>(
+      MaterialPageRoute(builder: (context) => const EmotionalAwarenessPage()),
+    );
+    final isBad = result == true;
+    if (isBad) {
+      scaffold.showSnackBar(
+        const SnackBar(
+          content: Text(
+            'We noticed signs that you may need support. Redirecting you to the dashboard.',
+          ),
+          backgroundColor: Colors.orange,
+        ),
+      );
+      await Future.delayed(const Duration(milliseconds: 700));
+    }
+    if (!mounted) return;
+    nav.pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => const RootShell()),
+      (route) => false,
+    );
   }
 
   void _exploreApp() async {
     // Store that user completed Dr. Iris intro
-    final box = await Hive.openBox('userPrefs');
-    await box.put('completed_iris_intro', true);
+    final userBox = await Hive.openBox('userPrefs');
+    await userBox.put('completed_iris_intro', true);
+    // Also set the legacy startup gate flag to prevent re-showing welcome
+    final prefs = await Hive.openBox('app_prefs');
+    await prefs.put('dr_iris_welcomed', true);
 
     if (mounted) {
       // Go directly to main app
@@ -191,13 +239,20 @@ class _DrIrisWelcomeScreenState extends State<DrIrisWelcomeScreen>
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(60),
                             child: Image.asset(
-                              'assets/images/Avatar.png',
+                              'assets/images/avatar.png',
                               fit: BoxFit.cover,
                               errorBuilder: (context, error, stackTrace) {
-                                return const Icon(
-                                  Icons.psychology_outlined,
-                                  size: 60,
-                                  color: Colors.white,
+                                // Fallback to legacy capitalized filename if lowercase not present
+                                return Image.asset(
+                                  'assets/images/Avatar.png',
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (c, e, s) {
+                                    return const Icon(
+                                      Icons.psychology_outlined,
+                                      size: 60,
+                                      color: Colors.white,
+                                    );
+                                  },
                                 );
                               },
                             ),

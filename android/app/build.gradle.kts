@@ -1,9 +1,11 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
-    id("com.google.gms.google-services")
+    // Google Services plugin removed for offline-only build
 }
 
 android {
@@ -25,25 +27,48 @@ android {
         applicationId = "com.example.truecircle"
         // Optimized for mass market devices (₹5-6k phones)
         minSdk = flutter.minSdkVersion  // Android 5.0+ for wider device support
-        targetSdk = 34  // Latest for Play Store compatibility
+    targetSdk = 35  // Target latest Android SDK for Play Store compliance
         versionCode = flutter.versionCode
         versionName = flutter.versionName
         
-        // Multi-architecture support for all device types
-        // Keep APK smaller by targeting only ARM ABIs (most Android devices)
-        ndk {
-            abiFilters.clear()
-            abiFilters += listOf("armeabi-v7a", "arm64-v8a")
+        // Do not set ndk.abiFilters when using ABI splits; splits below control ABIs
+    }
+
+    // Load signing properties from key.properties if present
+    val keystoreProperties = Properties()
+    val keystorePropertiesFile = rootProject.file("key.properties")
+    if (keystorePropertiesFile.exists()) {
+        keystorePropertiesFile.inputStream().use { keystoreProperties.load(it) }
+    }
+
+    signingConfigs {
+        if (keystoreProperties.isNotEmpty()) {
+            create("release") {
+                val storeFilePath = keystoreProperties.getProperty("storeFile")
+                if (storeFilePath != null) {
+                    storeFile = file(storeFilePath)
+                }
+                storePassword = keystoreProperties.getProperty("storePassword")
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+            }
         }
     }
 
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
-            isMinifyEnabled = true
-            isShrinkResources = true
+    release {
+            // Use release signing if configured, else fall back to debug signing
+            signingConfig = if (signingConfigs.findByName("release") != null)
+                signingConfigs.getByName("release")
+            else
+                signingConfigs.getByName("debug")
+            // Disable code shrinking and resource shrinking for offline release builds
+            // to avoid R8 removing classes from optional Play Core / deferred
+            // components that we don't include. This produces a slightly larger
+            // APK but avoids missing-class R8 errors when removing Google
+            // Play libraries from the project.
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         debug {
@@ -53,13 +78,8 @@ android {
         }
     }
     
-    // Universal APK for development; enable per-ABI splits for release builds via:
-    // flutter build apk --split-per-abi
-    splits {
-        abi {
-            isEnable = false
-        }
-    }
+    // Note: Do not configure Gradle ABI splits here to avoid conflicts with
+    // Flutter's --split-per-abi flag which configures splits automatically.
 }
 
 flutter {

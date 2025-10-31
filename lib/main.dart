@@ -1,20 +1,25 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'firebase_options.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'l10n/app_localizations.dart';
+// Firebase removed for offline-only build
 import 'core/log_service.dart';
-import 'widgets/log_console_overlay.dart';
+// Log console overlay removed from main UI for release / privacy
 import 'core/hive_initializer.dart';
 import 'core/app_theme.dart';
 import 'core/preloading_splash_screen.dart';
-import 'onboarding/onboarding_page.dart';
 import 'package:hive/hive.dart';
 import 'auth/phone_verification_page.dart';
-import 'iris/dr_iris_welcome_page.dart';
+// import removed: legacy Dr Iris welcome screen is no longer used
 import 'iris/dr_iris_chat_page.dart';
+import 'iris/dr_iris_welcome_page.dart';
 import 'root_shell.dart';
 import 'services/app_data_preloader.dart';
+import 'services/geo_service.dart';
+import 'services/privacy_guard.dart';
+import 'core/reward_listener.dart';
+import 'marketplace/marketplace_page.dart';
+import 'dream_space/dream_space_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,30 +37,41 @@ Future<void> main() async {
     originalDebugPrint(message, wrapWidth: wrapWidth);
   };
 
-  try {
-    // Initialize Firebase with proper options
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-
-    // Pass all uncaught "fatal" errors from the framework to Crashlytics
-    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
-  } catch (e) {
-    // Firebase initialization failed - continue without Firebase
+  // Firebase has been removed. Use local error handling and logging instead.
+  FlutterError.onError = (FlutterErrorDetails details) {
+    // Log to local LogService so errors are captured in debug overlay/logs
+    LogService.instance.log('Flutter Error: ${details.exception}');
     if (kDebugMode) {
-      debugPrint('Firebase initialization failed: $e');
+      // still print in debug
+      debugPrint('Flutter Error: ${details.exception}');
     }
-    // Set basic error handler
-    FlutterError.onError = (FlutterErrorDetails details) {
-      if (kDebugMode) {
-        debugPrint('Flutter Error: ${details.exception}');
-      }
-    };
+  };
+
+  // Initialize Hive database before enforcing privacy mode so that
+  // PrivacyGuard can read persisted flags (force_offline) reliably.
+  try {
+    await HiveInitializer.init();
+  } catch (e) {
+    if (kDebugMode) {
+      debugPrint('Hive initialization failed: $e');
+    }
+    // Continue without Hive - app should still work with limited functionality
   }
 
-  // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
+  // Enforce privacy mode on every startup (after Hive init but before runApp)
+  // PrivacyGuard reads persisted flags (e.g., 'force_offline') and must be
+  // called after Hive initialization above.
+  try {
+    await PrivacyGuard.enforceIfNeeded();
+  } catch (_) {}
+
+  // Pass all uncaught asynchronous errors to local logging (Crashlytics removed).
   PlatformDispatcher.instance.onError = (error, stack) {
-    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    LogService.instance.log('Unhandled async error: $error');
+    if (kDebugMode) {
+      debugPrint('Unhandled async error: $error');
+      debugPrint('$stack');
+    }
     return true;
   };
 
@@ -70,15 +86,8 @@ Future<void> main() async {
     );
   };
 
-  // Initialize Hive database with error handling
-  try {
-    await HiveInitializer.init();
-  } catch (e) {
-    if (kDebugMode) {
-      debugPrint('Hive initialization failed: $e');
-    }
-    // Continue without Hive - app should still work with limited functionality
-  }
+  // Hive has already been initialized earlier in main to ensure privacy
+  // enforcement is applied before runApp.
 
   runApp(const TrueCircleApp());
 }
@@ -89,11 +98,24 @@ class TrueCircleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'TrueCircle - Emotional Wellness Companion',
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.appTitle,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en', ''), // English, no country code
+      ],
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(),
       home: const _SafeWrapper(),
-      routes: {'/iris/chat': (context) => const DrIrisChatPage()},
+      routes: {
+        '/iris/chat': (context) => const DrIrisChatPage(),
+        '/marketplace': (context) => const MarketplacePage(),
+        '/dream-space': (context) => const DreamSpacePage(),
+      },
 
       // Enhanced Material App Configuration
       builder: (context, child) {
@@ -104,59 +126,9 @@ class TrueCircleApp extends StatelessWidget {
           data: media,
           child: Stack(
             children: [
-              child!,
-              // Floating toggle button
-              Positioned(
-                right: 12,
-                top: 12,
-                child: SafeArea(
-                  top: true,
-                  bottom: false,
-                  left: false,
-                  right: true,
-                  child: GestureDetector(
-                    onTap: () {
-                      final v = LogService.instance.overlayVisible.value;
-                      LogService.instance.overlayVisible.value = !v;
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 8,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.black.withValues(alpha: 0.6),
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: Colors.white24),
-                      ),
-                      child: const Text(
-                        'LOG',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 1.2,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              // Live Log console overlay
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: ValueListenableBuilder<bool>(
-                  valueListenable: LogService.instance.overlayVisible,
-                  builder: (context, visible, _) {
-                    if (!visible) return const SizedBox.shrink();
-                    return SizedBox(
-                      height: 280,
-                      child: const LogConsoleOverlay(),
-                    );
-                  },
-                ),
-              ),
+              // Wrap the app with RewardListener so any pending coin reward
+              // events are handled globally and animation is shown.
+              RewardListener(child: child!),
             ],
           ),
         );
@@ -184,18 +156,18 @@ class _SafeWrapper extends StatelessWidget {
                 children: [
                   const Icon(Icons.refresh, color: Colors.white, size: 64),
                   const SizedBox(height: 16),
-                  const Text(
-                    'TrueCircle',
-                    style: TextStyle(
+                  Text(
+                    AppLocalizations.of(context)!.trueCircle,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 8),
-                  const Text(
-                    'Loading...',
-                    style: TextStyle(color: Colors.white70, fontSize: 16),
+                  Text(
+                    AppLocalizations.of(context)!.loading,
+                    style: const TextStyle(color: Colors.white70, fontSize: 16),
                   ),
                   const SizedBox(height: 32),
                   ElevatedButton(
@@ -211,7 +183,7 @@ class _SafeWrapper extends StatelessWidget {
                       backgroundColor: Colors.white,
                       foregroundColor: const Color(0xFF6366F1),
                     ),
-                    child: const Text('Retry'),
+                    child: Text(AppLocalizations.of(context)!.retry),
                   ),
                 ],
               ),
@@ -241,6 +213,13 @@ class _PreloadingWrapperState extends State<_PreloadingWrapper> {
 
   Future<void> _preloadData() async {
     try {
+      // Attempt to detect user's country by IP once at install/startup and cache it.
+      try {
+        await GeoService.instance.detectAndStoreCountry();
+      } catch (e) {
+        debugPrint('Geo detection skipped: $e');
+      }
+
       // Preload all JSON data for instant feature access
       await AppDataPreloader.instance.preloadAllData();
 
@@ -269,53 +248,35 @@ class _PreloadingWrapperState extends State<_PreloadingWrapper> {
 class _StartupGate extends StatelessWidget {
   const _StartupGate();
 
-  Future<(bool needsOnboarding, bool needsPhone, bool needsFirstTimeWelcome)>
-  _gate() async {
+  Future<(bool needsPhone, bool needsFirstTimeWelcome)> _gate() async {
     final box = await Hive.openBox('app_prefs');
-
-    // Note: Do NOT reset persisted flags here. Keeping values ensures
-    // users don't get asked for phone/OTP on every restart.
-
-    final done = box.get('onboarding_done', defaultValue: false) as bool;
     final phone = box.get('phone_verified', defaultValue: false) as bool;
     final welcomed = box.get('dr_iris_welcomed', defaultValue: false) as bool;
 
-    // Debug information
     if (kDebugMode) {
       debugPrint('Startup Gate Status:');
-      debugPrint('Onboarding done: $done');
       debugPrint('Phone verified: $phone');
       debugPrint('Dr Iris welcomed: $welcomed');
       debugPrint(
-        'Will show: ${!done
-            ? "Onboarding"
-            : !phone
-            ? "Phone"
-            : !welcomed
-            ? "Dr Iris Welcome"
-            : "Home"}',
+        'Will show: ${!phone ? "Phone" : !welcomed ? "Dr Iris Welcome" : "Home"}',
       );
     }
 
-    return (!done, !phone, !welcomed);
+    return (!phone, !welcomed);
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<(bool, bool, bool)>(
+    return FutureBuilder<(bool, bool)>(
       future: _gate(),
       builder: (context, snap) {
         if (snap.connectionState != ConnectionState.done) {
           return const Scaffold(body: _BrandSplash());
         }
-        final data = snap.data ?? (true, false, true);
-        final showOnboarding = data.$1;
-        final showPhone = data.$2;
-        final showWelcome = data.$3;
+        final data = snap.data ?? (true, true);
+        final showPhone = data.$1;
+        final showWelcome = data.$2;
 
-        if (showOnboarding) {
-          return const OnboardingPage();
-        }
         if (showPhone) {
           return const PhoneVerificationPage();
         }
@@ -384,9 +345,9 @@ class _BrandSplashState extends State<_BrandSplash>
           const SizedBox(height: 12),
           FadeTransition(
             opacity: _fade,
-            child: const Text(
-              'TrueCircle',
-              style: TextStyle(
+            child: Text(
+              AppLocalizations.of(context)!.trueCircle,
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w700,
                 color: Colors.white, // White text on gradient

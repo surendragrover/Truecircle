@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../cbt/cbt_hub_page.dart';
-import '../../iris/dr_iris_welcome_page.dart';
 import '../../emotional_awareness/emotional_awareness_page.dart';
 import '../../sleep/sleep_tracker_page.dart';
 import '../../meditation/meditation_guide_page.dart';
@@ -39,21 +38,7 @@ class FeatureCardsWidget extends StatelessWidget {
         ),
         const SizedBox(height: 16),
 
-        // Dr. Iris AI Feature
-        _FeatureCard(
-          title: '🤖 Dr. Iris AI',
-          description: 'Your personal AI wellness assistant',
-          icon: Icons.smart_toy_rounded,
-          color: const Color(0xFF8B5CF6), // Hope Purple 💜
-          gradient: const LinearGradient(
-            colors: [Color(0xFF8B5CF6), Color(0xFFAB47BC)],
-          ),
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (_) => const DrIrisWelcomePage()),
-          ),
-        ),
-        const SizedBox(height: 16),
+        // (Removed duplicate Dr. Iris card to avoid showing same feature twice on Home)
 
         // Emotional Check-in Feature
         _FeatureCard(

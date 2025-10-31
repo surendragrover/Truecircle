@@ -1,155 +1,94 @@
 import 'package:flutter/material.dart';
-import '../core/truecircle_app_bar.dart';
-import '../widgets/marketplace_discount_widget.dart';
+import './gift_model.dart';
+import './gift_service.dart';
 
-class MarketplacePage extends StatelessWidget {
+class MarketplacePage extends StatefulWidget {
   const MarketplacePage({super.key});
+
+  @override
+  State<MarketplacePage> createState() => _MarketplacePageState();
+}
+
+class _MarketplacePageState extends State<MarketplacePage> {
+  final GiftService _giftService = GiftService();
+  late Future<List<Gift>> _giftsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _giftsFuture = _giftService.getAvailableGifts();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const TrueCircleAppBar(title: 'TrueCircle Marketplace'),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              '🛍️ TrueCircle Marketplace',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+      appBar: AppBar(
+        title: const Text('Gift Marketplace'),
+      ),
+      body: FutureBuilder<List<Gift>>(
+        future: _giftsFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return const Center(child: Text('Failed to load gifts.'));
+          }
+          final gifts = snapshot.data ?? [];
+          if (gifts.isEmpty) {
+            return const Center(child: Text('No gifts available right now.'));
+          }
+
+          return GridView.builder(
+            padding: const EdgeInsets.all(16.0),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16.0,
+              mainAxisSpacing: 16.0,
+              childAspectRatio: 0.75,
             ),
-            const SizedBox(height: 8),
-            Text(
-              'Use your coins to save up to 40%!',
-              style: TextStyle(fontSize: 16, color: Colors.grey.shade700),
-            ),
-            const SizedBox(height: 24),
-
-            // Sample product 1
-            _buildProductCard(
-              context,
-              'Premium Meditation Course',
-              'Learn deep meditation techniques',
-              299.0,
-              Icons.self_improvement,
-              Colors.purple,
-            ),
-
-            const SizedBox(height: 16),
-
-            // Sample product 2
-            _buildProductCard(
-              context,
-              'Personal CBT Therapy Session',
-              '1-on-1 session with a professional therapist',
-              799.0,
-              Icons.psychology,
-              Colors.blue,
-            ),
-
-            const SizedBox(height: 16),
-
-            // Sample product 3
-            _buildProductCard(
-              context,
-              'Wellness Journal - Premium',
-              'Beautiful handmade wellness journal',
-              450.0,
-              Icons.book,
-              Colors.green,
-            ),
-
-            const SizedBox(height: 16),
-
-            // Sample product 4
-            _buildProductCard(
-              context,
-              'Stress Relief Essential Oils Kit',
-              'Natural aromatherapy oils set',
-              650.0,
-              Icons.spa,
-              Colors.orange,
-            ),
-          ],
-        ),
+            itemCount: gifts.length,
+            itemBuilder: (context, index) {
+              return _buildGiftCard(gifts[index]);
+            },
+          );
+        },
       ),
     );
   }
 
-  Widget _buildProductCard(
-    BuildContext context,
-    String title,
-    String description,
-    double price,
-    IconData icon,
-    Color color,
-  ) {
+  Widget _buildGiftCard(Gift gift) {
     return Card(
-      elevation: 4,
+      elevation: 4.0,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // Product image
-          Container(
-            height: 120,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  color.withValues(alpha: 0.1),
-                  color.withValues(alpha: 0.3),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(12),
-                topRight: Radius.circular(12),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                gift.imageAsset,
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.card_giftcard, size: 64, color: Colors.grey),
               ),
             ),
-            child: Center(child: Icon(icon, size: 60, color: color)),
           ),
-
           Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  description,
-                  style: TextStyle(color: Colors.grey.shade600, fontSize: 14),
-                ),
-                const SizedBox(height: 16),
-
-                // 🎉 Coin discount widget
-                MarketplaceDiscountWidget(
-                  userId: 'default_user',
-                  originalPrice: price,
-                  onPurchaseComplete: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Row(
-                          children: [
-                            const Icon(Icons.check_circle, color: Colors.white),
-                            const SizedBox(width: 8),
-                            Text('$title successfully purchased! 🎉'),
-                          ],
-                        ),
-                        backgroundColor: Colors.green,
-                        duration: const Duration(seconds: 3),
-                      ),
-                    );
-                  },
-                ),
-              ],
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Text(
+              gift.name,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Text(
+              '${gift.price} coins',
+              style: const TextStyle(fontSize: 14, color: Colors.amber),
+              textAlign: TextAlign.center,
             ),
           ),
         ],

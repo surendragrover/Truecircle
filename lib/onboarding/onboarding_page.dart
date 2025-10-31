@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import '../models/user_profile.dart';
 import '../auth/otp_page.dart';
 import '../services/otp_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -287,6 +288,19 @@ class _OnboardingPageState extends State<OnboardingPage> {
         // Continue anyway - offline mode doesn't require storage
       }
 
+      // Compose an email to users@truecircle.online with the collected user info.
+      // This opens the user's mail client so they can confirm/send (no automatic sending).
+      try {
+        await _composeUserInfoEmail(
+          name: name,
+          email: email,
+          phone: fullNumber,
+          country: _selectedCountry,
+        );
+      } catch (e) {
+        // Ignore errors launching mail client
+      }
+
       // Short delay for user feedback
       await Future.delayed(const Duration(milliseconds: 800));
 
@@ -305,6 +319,30 @@ class _OnboardingPageState extends State<OnboardingPage> {
       }
     } finally {
       if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _composeUserInfoEmail({
+    required String name,
+    required String email,
+    required String phone,
+    required String country,
+  }) async {
+    final subject = Uri.encodeComponent('New TrueCircle signup');
+    final body = Uri.encodeComponent('''New onboarding signup details:
+Name: $name
+Email: $email
+Phone: $phone
+Country: $country
+
+Please add this user to the internal testing list.
+''');
+    final uri = Uri.parse(
+      'mailto:users@truecircle.online?subject=$subject&body=$body',
+    );
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     }
   }
 

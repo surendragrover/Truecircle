@@ -121,7 +121,7 @@ class _DrIrisChatPageState extends State<DrIrisChatPage>
     if (_messages.isEmpty) {
       final welcomeMessage = ChatMessage(
         text:
-            "Hello! I'm Dr. Iris, your emotional wellness companion. I don't just listen - I provide practical solutions and actionable steps for emotional health challenges. Whether you're dealing with anxiety, depression, relationship issues, or life crises, I'll guide you with both empathy and concrete strategies. Share what's troubling you, and I'll help you find a path forward.",
+            "As soon as the app finished setup, it switched itself to offline mode. Everything you do here stays on your device and never leaves it. You can delete the app's logs at any time. So you can speak openly with Dr. Iris—your privacy is safe.",
         isFromDrIris: true,
         timestamp: DateTime.now(),
       );

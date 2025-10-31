@@ -54,11 +54,13 @@ class _PhoneVerificationPageState extends State<PhoneVerificationPage> {
       await box.put('user_phone', num);
       await box.put('user_phone_cc', cc);
       await box.put('phone_verified', true);
+      // Enforce offline privacy mode immediately after verification
+      await box.put('force_offline', true);
       if (!mounted) return;
       if (widget.returnResult) {
         Navigator.of(context).pop(true);
       } else {
-        // Navigate to Dr. Iris welcome page after phone verification
+        // Navigate to Dr. Iris welcome page (first time)
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (_) => const DrIrisWelcomePage(isFirstTime: true),

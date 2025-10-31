@@ -20,12 +20,17 @@ import 'widgets/psychology_articles_widget.dart';
 import 'widgets/mood_journal_widget.dart';
 import 'widgets/meditation_guide_widget.dart';
 import 'widgets/personalized_features_widget.dart';
+import 'widgets/relationship_insights_widget.dart';
+import 'widgets/communication_tracker_widget.dart';
+import 'widgets/relationship_behavior_widget.dart';
 import '../iris/dr_iris_assistant_widget.dart';
 import '../more/more_page.dart';
 import '../legal/privacy_policy_page.dart';
 import '../legal/terms_conditions_page.dart';
 import '../learn/faq_page.dart';
 import '../how_truecircle_works_page.dart';
+import '../widgets/coin_display_widget.dart';
+import '../widgets/rotating_coin.dart';
 
 /// Main Home Page - Ultimate Professional Dashboard with Analytics
 class HomePage extends StatefulWidget {
@@ -268,17 +273,26 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Dr. Iris AI Assistant with Wellness Score (moved up below AppBar)
+            // Marquee moved into the global AppBar (TrueCircleAppBar)
+            // Welcome Header with animations (kept directly under AppBar)
+            const WelcomeHeaderWidget(),
+            const SizedBox(height: AppGaps.section),
+
+            // Dr. Iris AI Assistant just below the TrueCircle header
             DrIrisAssistantWidget(
               wellnessScore: _dashboardData?.wellnessScore ?? 78,
               trend: _dashboardData?.wellnessTrend ?? 'Improving',
             ),
             const SizedBox(height: AppGaps.section),
-
-            // Welcome Header with animations
-            const WelcomeHeaderWidget(),
-            const SizedBox(height: AppGaps.section),
             // (Removed session-language chip to avoid any language mentions in default UI)
+
+            // Relationship feature cards under Dr. Iris
+            const RelationshipInsightsHomeWidget(),
+            const SizedBox(height: AppGaps.section),
+            const CommunicationTrackerHomeWidget(),
+            const SizedBox(height: AppGaps.section),
+            const RelationshipBehaviorHomeWidget(),
+            const SizedBox(height: AppGaps.section),
 
             // Quick Actions
             const QuickActionsWidget(),
@@ -329,12 +343,12 @@ class _HomePageState extends State<HomePage> {
             const SleepTrackerWidget(),
             const SizedBox(height: AppGaps.section),
 
-            // CBT Hub - All CBT features in one place (WITHOUT sleep tracker)
-            const CBTHubWidget(),
+            // Mood Journal (moved above CBT Hub)
+            const MoodJournalWidget(),
             const SizedBox(height: AppGaps.section),
 
-            // Mood Journal
-            const MoodJournalWidget(),
+            // CBT Hub - All CBT features in one place (WITHOUT sleep tracker)
+            const CBTHubWidget(),
             const SizedBox(height: AppGaps.section),
 
             // Meditation Guide
@@ -366,10 +380,6 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: AppGaps.section),
 
-            // Festival Reminders
-            const FestivalReminderWidget(),
-            const SizedBox(height: AppGaps.section),
-
             // Inspirational Quote
             const InspirationalQuoteWidget(),
             const SizedBox(height: AppGaps.section),
@@ -398,6 +408,14 @@ class _HomePageState extends State<HomePage> {
               child: const PersonalizedFeaturesWidget(),
             ),
 
+            // Move Festivals & Rewards widgets to the bottom
+            const SizedBox(height: AppGaps.section),
+            // Festival Reminders (moved to bottom as requested)
+            const FestivalReminderWidget(),
+            const SizedBox(height: AppGaps.section),
+            // Rewards summary widget near the bottom
+            const CoinDisplayWidget(userId: 'demo_user', showHistory: false),
+
             // Bottom padding to prevent overflow
             SizedBox(height: MediaQuery.of(context).padding.bottom + 20),
           ],
@@ -424,18 +442,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(20),
               child: Row(
                 children: [
-                  Image.asset(
-                    'assets/images/TrueCircle_Coin.png',
-                    width: 32,
-                    height: 32,
-                    errorBuilder: (context, error, stackTrace) {
-                      return const Icon(
-                        Icons.monetization_on,
-                        color: Colors.amber,
-                        size: 32,
-                      );
-                    },
-                  ),
+                  const RotatingCoin(size: 32, tint: Colors.amber),
                   const SizedBox(width: 12),
                   const Text(
                     'My Wallet',

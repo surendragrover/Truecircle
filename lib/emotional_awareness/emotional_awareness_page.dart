@@ -369,6 +369,9 @@ class _EmotionalAwarenessPageState extends State<EmotionalAwarenessPage> {
     );
 
     // Navigate back to complete the flow
-    Navigator.of(this.context).pop();
+    // Determine a simple heuristic for a 'concerning' (bad) check-in:
+    // If the user marked any item as Regular/Often, consider it a flag.
+    final isBad = _selections.values.any((v) => v == EAOccurrenceType.regular);
+    Navigator.of(this.context).pop(isBad);
   }
 }

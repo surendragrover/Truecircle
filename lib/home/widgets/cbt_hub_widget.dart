@@ -8,6 +8,8 @@ import '../../cbt/cbt_techniques_page.dart';
 import '../../cbt/phq9_page.dart';
 import '../../cbt/gad7_page.dart';
 import '../../cbt/psychology_articles_page.dart';
+import '../../widgets/entry_box.dart';
+import '../../core/log_service.dart';
 
 /// CBT Hub Widget - All CBT features in one centralized hub
 /// All CBT techniques and tools in one place
@@ -152,7 +154,15 @@ class CBTHubWidget extends StatelessWidget {
           ),
 
           const SizedBox(height: 16),
-
+          // Quick entry for CBT notes
+          EntryBox(
+            hintText: 'Quick CBT note or thought...',
+            submitLabel: 'Save',
+            onSubmit: (text) async {
+              LogService.instance.log('CBTQuick: $text');
+            },
+          ),
+          const SizedBox(height: 12),
           // Quick Access Button
           SizedBox(
             width: double.infinity,

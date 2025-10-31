@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../services/coin_reward_service.dart';
+import 'rotating_coin.dart';
+import 'sunburst_effect.dart';
+import 'coin_earn_animation_dialog.dart';
 import '../models/coin_reward.dart';
 
 class CoinDisplayWidget extends StatefulWidget {
@@ -21,6 +24,7 @@ class _CoinDisplayWidgetState extends State<CoinDisplayWidget> {
   int _availableCoins = 0;
   List<CoinReward> _rewardHistory = [];
   bool _isLoading = true;
+  bool _showSunburst = false;
 
   @override
   void initState() {
@@ -82,24 +86,31 @@ class _CoinDisplayWidgetState extends State<CoinDisplayWidget> {
         ),
         child: Row(
           children: [
-            Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.2),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Image.asset(
-                'assets/images/TrueCircle_Coin.png',
-                width: 32,
-                height: 32,
-                color: Colors.white,
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(
-                    Icons.monetization_on,
-                    color: Colors.white,
-                    size: 32,
-                  );
-                },
+            GestureDetector(
+              onTap: () async {
+                // Trigger sunburst effect when coin is tapped
+                setState(() => _showSunburst = true);
+                await Future.delayed(const Duration(milliseconds: 900));
+                if (mounted) setState(() => _showSunburst = false);
+              },
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.white.withValues(alpha: 0.2),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    const RotatingCoin(size: 32, tint: Colors.white),
+                    if (_showSunburst)
+                      const SizedBox(
+                        width: 120,
+                        height: 120,
+                        child: SunburstEffect(size: 120, color: Colors.amber),
+                      ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(width: 16),
@@ -326,7 +337,7 @@ class _CoinDisplayWidgetState extends State<CoinDisplayWidget> {
             children: [
               _buildInfoSection('🎯 How to earn coins', [
                 'Daily login: 1 coin per day',
-                'Complete a full entry: 1 coin',
+                'Fill all entry fields completely: 1 coin',
                 'Note: No rewards for chatting with Dr. Iris',
               ]),
               const SizedBox(height: 16),
@@ -393,78 +404,29 @@ class DailyLoginChecker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<Map<String, dynamic>>(
-      future: CoinRewardService.instance.checkAndGiveDailyReward(),
+    return FutureBuilder<bool>(
+      future: CoinRewardService.instance.isDailyRewardAvailable(),
       builder: (context, snapshot) {
-        if (snapshot.hasData && snapshot.data?['rewarded'] == true) {
-          // Daily reward earned!
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            _showDailyRewardDialog(context);
+        if (snapshot.hasData && snapshot.data == true) {
+          WidgetsBinding.instance.addPostFrameCallback((_) async {
+            // Show animation dialog first, then finalize the reward.
+            await showDialog(
+              context: context,
+              barrierDismissible: false,
+              builder: (context) => const CoinEarnAnimationDialog(),
+            );
+
+            try {
+              await CoinRewardService.instance.finalizeDailyReward();
+            } catch (_) {}
             onRewardReceived?.call();
           });
         }
-        return const SizedBox.shrink(); // Invisible widget
+        return const SizedBox.shrink();
       },
     );
   }
-
-  void _showDailyRewardDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.amber.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Image.asset(
-                'assets/images/TrueCircle_Coin.png',
-                width: 50,
-                height: 50,
-                color: Colors.amber,
-                errorBuilder: (context, error, stackTrace) {
-                  return const Icon(
-                    Icons.monetization_on,
-                    size: 50,
-                    color: Colors.amber,
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              '🎉 Daily bonus received!',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'You earned 1 coin today!\nCome back tomorrow to earn more.',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () => Navigator.of(context).pop(),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.amber,
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 32,
-                  vertical: 12,
-                ),
-              ),
-              child: const Text('Thanks!'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
+
+// Dialog implementation moved to `coin_earn_animation_dialog.dart` to
+// allow global reuse by a reward listener.

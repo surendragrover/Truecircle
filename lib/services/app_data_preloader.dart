@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'dart:ui' as ui;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'package:hive/hive.dart';
 
 /// Comprehensive Data Preloader Service
 /// Loads all JSON files at app startup for instant feature access
@@ -32,6 +35,8 @@ class AppDataPreloader {
         _loadMoodData(),
         _loadBreathingData(),
         _loadDemoData(),
+        // Detect user's country on first run (no-op if already stored)
+        _detectCountryByIp(),
       ]);
 
       _isPreloaded = true;
@@ -215,6 +220,53 @@ class AppDataPreloader {
         debugPrint('❌ Error loading Festival data: $e');
       }
       _preloadedData['festivals'] = [];
+    }
+  }
+
+  /// Attempt to detect user's country from IP on first install.
+  /// Saves detected country to Hive key 'detected_country'.
+  Future<void> _detectCountryByIp() async {
+    // Respect forced offline mode: skip any network detection
+    try {
+      final box = await Hive.openBox('app_prefs');
+      final offline = box.get('force_offline', defaultValue: false) as bool;
+      if (offline) return;
+    } catch (_) {}
+    try {
+      // Only attempt detection if not already stored
+      final box = await Hive.openBox('app_prefs');
+      final existing = box.get('detected_country');
+      if (existing != null && existing.toString().isNotEmpty) return;
+
+      // Use ipapi.co for a lightweight lookup. Fallback to device locale on failure.
+      final uri = Uri.parse('https://ipapi.co/json/');
+      final resp = await http.get(uri).timeout(const Duration(seconds: 5));
+      if (resp.statusCode == 200) {
+        final data = jsonDecode(resp.body) as Map<String, dynamic>;
+        final country =
+            (data['country_name'] ?? data['country'])?.toString() ?? '';
+        if (country.isNotEmpty) {
+          await box.put('detected_country', country);
+          // Silent success; no user-facing/network logs
+          return;
+        }
+      }
+    } catch (e) {
+      // Silent failure; app remains fully offline-capable
+    }
+
+    // Fallback: try platform locale
+    try {
+      final localeName = ui.PlatformDispatcher.instance.locale.toString();
+      final parts = localeName.split('_');
+      if (parts.length >= 2) {
+        final countryFromLocale = parts[1];
+        final box = await Hive.openBox('app_prefs');
+        await box.put('detected_country', countryFromLocale);
+        // Silent success; no logs
+      }
+    } catch (e) {
+      // Ignore
     }
   }
 

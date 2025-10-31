@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
 
 /// Auto-playing video widget with customizable controls
 /// Used for TrueCircle coin animation and other promotional videos
-class VideoAutoPlayer extends StatefulWidget {
+class VideoAutoPlayer extends StatelessWidget {
   final String videoPath;
   final bool autoPlay;
   final bool loop;
@@ -26,149 +25,32 @@ class VideoAutoPlayer extends StatefulWidget {
   });
 
   @override
-  State<VideoAutoPlayer> createState() => _VideoAutoPlayerState();
-}
-
-class _VideoAutoPlayerState extends State<VideoAutoPlayer> {
-  VideoPlayerController? _controller;
-  bool _isInitialized = false;
-  bool _hasError = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _initializeVideoPlayer();
-  }
-
-  Future<void> _initializeVideoPlayer() async {
-    try {
-      _controller = VideoPlayerController.asset(widget.videoPath);
-
-      await _controller!.initialize();
-
-      if (mounted) {
-        setState(() {
-          _isInitialized = true;
-        });
-
-        _controller!.addListener(() {
-          if (_controller!.value.position >= _controller!.value.duration) {
-            widget.onVideoEnd?.call();
-          }
-        });
-
-        if (widget.autoPlay) {
-          await _controller!.play();
-        }
-
-        if (widget.loop) {
-          await _controller!.setLooping(true);
-        }
-      }
-    } catch (e) {
-      if (mounted) {
-        setState(() {
-          _hasError = true;
-        });
-      }
-    }
-  }
-
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (_hasError) {
-      return Container(
-        width: widget.width,
-        height: widget.height,
-        decoration: BoxDecoration(
-          color: Colors.grey.shade200,
-          borderRadius: BorderRadius.circular(8),
+    // Lightweight placeholder since in-app videos are not required.
+    // Encourage using external (YouTube/SMS) links instead.
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        gradient: LinearGradient(
+          colors: [Colors.grey.shade100, Colors.grey.shade200],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
+      ),
+      child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.videocam_off, size: 48, color: Colors.grey.shade400),
-            const SizedBox(height: 8),
+            Icon(Icons.videocam_off, size: 36, color: Colors.grey.shade500),
+            const SizedBox(height: 6),
             Text(
-              'Video unavailable',
+              'Video shown externally',
               style: TextStyle(color: Colors.grey.shade600, fontSize: 12),
             ),
           ],
         ),
-      );
-    }
-
-    if (!_isInitialized) {
-      return Container(
-        width: widget.width,
-        height: widget.height,
-        decoration: BoxDecoration(
-          color: Colors.grey.shade100,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: const Center(child: CircularProgressIndicator()),
-      );
-    }
-
-    return SizedBox(
-      width: widget.width,
-      height: widget.height,
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: AspectRatio(
-              aspectRatio: _controller!.value.aspectRatio,
-              child: VideoPlayer(_controller!),
-            ),
-          ),
-
-          if (widget.showControls)
-            Positioned(
-              bottom: 8,
-              right: 8,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      setState(() {
-                        if (_controller!.value.isPlaying) {
-                          _controller!.pause();
-                        } else {
-                          _controller!.play();
-                        }
-                      });
-                    },
-                    icon: Icon(
-                      _controller!.value.isPlaying
-                          ? Icons.pause
-                          : Icons.play_arrow,
-                      color: Colors.white,
-                    ),
-                    style: IconButton.styleFrom(
-                      backgroundColor: Colors.black54,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      _controller!.seekTo(Duration.zero);
-                    },
-                    icon: const Icon(Icons.replay, color: Colors.white),
-                    style: IconButton.styleFrom(
-                      backgroundColor: Colors.black54,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-        ],
       ),
     );
   }
@@ -187,13 +69,31 @@ class TrueCircleCoinAnimation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return VideoAutoPlayer(
-      videoPath: 'assets/images/TrueCircle_Coin.mp4',
-      width: size,
-      height: size,
-      autoPlay: true,
-      loop: true,
-      fit: BoxFit.contain,
+    // Replace video with a static coin image to reduce app size
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(size * 0.1),
+      child: Image.asset(
+        'assets/images/TrueCircle_Coin.png',
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
+        errorBuilder: (context, error, stack) {
+          return Container(
+            width: size,
+            height: size,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: Colors.grey.shade200,
+              borderRadius: BorderRadius.circular(size * 0.1),
+            ),
+            child: Icon(
+              Icons.monetization_on,
+              size: size * 0.6,
+              color: Colors.amber,
+            ),
+          );
+        },
+      ),
     );
   }
 }

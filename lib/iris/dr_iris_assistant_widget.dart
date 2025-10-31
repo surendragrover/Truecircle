@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dr_iris_chat_page.dart';
+import '../core/log_service.dart';
+// entry_box not used here; removed import
 
 class DrIrisAssistantWidget extends StatefulWidget {
   final double? wellnessScore;
@@ -190,29 +192,31 @@ class _DrIrisAssistantWidgetState extends State<DrIrisAssistantWidget>
                       ),
                       const SizedBox(height: 8),
 
-                      // Action Button
+                      // Action Button - make label clearly readable (white pill with dark text)
                       Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 12,
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.15),
+                          color: Colors
+                              .white, // opaque so text is visible on any gradient
                           borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: Colors.white.withValues(alpha: 0.3),
-                            width: 1,
-                          ),
+                          border: Border.all(color: Colors.white70, width: 1),
                         ),
-                        child: const Text(
+                        child: Text(
                           'Chat Now →',
                           style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.primary,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),
+                      const SizedBox(height: 8),
+                      // Quick entry for Dr. Iris (inline small entry to avoid
+                      // any widget naming conflicts)
+                      _DrIrisQuickEntry(),
                     ],
                   ),
                 ),
@@ -263,6 +267,93 @@ class _DrIrisAssistantWidgetState extends State<DrIrisAssistantWidget>
           ),
         ],
       ),
+    );
+  }
+}
+
+/// Small inline quick entry widget for Dr. Iris assistant card.
+class _DrIrisQuickEntry extends StatefulWidget {
+  const _DrIrisQuickEntry();
+
+  @override
+  State<_DrIrisQuickEntry> createState() => _DrIrisQuickEntryState();
+}
+
+class _DrIrisQuickEntryState extends State<_DrIrisQuickEntry> {
+  final TextEditingController _c = TextEditingController();
+  bool _busy = false;
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
+
+  Future<void> _save() async {
+    final text = _c.text.trim();
+    if (text.isEmpty) return;
+    setState(() => _busy = true);
+    try {
+      // Simple logging for now; extend to persist to Hive or journal later
+      LogService.instance.log('DrIrisQuickNote: $text');
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Saved note for Dr. Iris')),
+        );
+        _c.clear();
+      }
+    } catch (e) {
+      debugPrint('Quick entry save error: $e');
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: TextField(
+            controller: _c,
+            decoration: InputDecoration(
+              hintText: 'Jot a quick mood note...',
+              isDense: true,
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 10,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(color: Colors.white24),
+              ),
+              filled: true,
+              fillColor: Colors.white.withValues(alpha: 0.06),
+            ),
+            style: const TextStyle(color: Colors.white),
+          ),
+        ),
+        const SizedBox(width: 8),
+        SizedBox(
+          height: 40,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white,
+              foregroundColor: Theme.of(context).colorScheme.primary,
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              textStyle: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+            onPressed: _busy ? null : _save,
+            child: _busy
+                ? const SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
+                : const Text('Save'),
+          ),
+        ),
+      ],
     );
   }
 }
