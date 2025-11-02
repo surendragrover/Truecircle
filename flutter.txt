@@ -1,0 +1,31 @@
+
+ERROR: Missing classes detected while running R8. Please add the missing classes or apply additional keep rules that are generated in C:\Users\suren\flutter_app\TC\build\app\outputs\mapping\release\missing_rules.txt.
+ERROR: R8: Missing class com.google.android.play.core.splitcompat.SplitCompatApplication (referenced from: void io.flutter.embedding.android.FlutterPlayStoreSplitApplication.<init>() and 2 other contexts)
+Missing class com.google.android.play.core.splitinstall.SplitInstallException (referenced from: void io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager.lambda$installDeferredComponent$1(int, java.lang.String, java.lang.Exception))
+Missing class com.google.android.play.core.splitinstall.SplitInstallManager (referenced from: com.google.android.play.core.splitinstall.SplitInstallManager io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager.splitInstallManager and 5 other contexts)
+Missing class com.google.android.play.core.splitinstall.SplitInstallManagerFactory (referenced from: void io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager.<init>(android.content.Context, io.flutter.embedding.engine.FlutterJNI))
+Missing class com.google.android.play.core.splitinstall.SplitInstallRequest$Builder (referenced from: void io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager.installDeferredComponent(int, java.lang.String))
+Missing class com.google.android.play.core.splitinstall.SplitInstallRequest (referenced from: void io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager.installDeferredComponent(int, java.lang.String))
+Missing class com.google.android.play.core.splitinstall.SplitInstallSessionState (referenced from: void io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager$FeatureInstallStateUpdatedListener.onStateUpdate(com.google.android.play.core.splitinstall.SplitInstallSessionState) and 1 other context)
+Missing class com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener (referenced from: void io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager.<init>(android.content.Context, io.flutter.embedding.engine.FlutterJNI) and 2 other contexts)
+Missing class com.google.android.play.core.tasks.OnFailureListener (referenced from: void io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager.installDeferredComponent(int, java.lang.String))
+Missing class com.google.android.play.core.tasks.OnSuccessListener (referenced from: void io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager.installDeferredComponent(int, java.lang.String))
+Missing class com.google.android.play.core.tasks.Task (referenced from: void io.flutter.embedding.engine.deferredcomponents.PlayStoreDeferredComponentManager.installDeferredComponent(int, java.lang.String) and 1 other context)
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:minifyReleaseWithR8'.
+> A failure occurred while executing com.android.build.gradle.internal.tasks.R8Task$R8Runnable
+   > Compilation failed to complete
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 46s
+Running Gradle task 'assembleRelease'...                           47.2s
+Gradle task assembleRelease failed with exit code 1
+PS C:\Users\suren\flutter_app\tc>
