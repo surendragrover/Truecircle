@@ -1,1 +1,129 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Hive database files (if they shouldn't be committed)
+*.hive
+*.lock
+
+# API Keys and Secrets
 serviceAccountKey.json
+api.env
+*.key
+*.pem
+
+# Firebase
+firebase_options.dart
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Temporary files
+*.tmp
+*.temp
+/tmp/
+
+# Build outputs
+*.apk
+*.aab
+*.ipa
+*.exe
+*.dmg
+*.deb
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Generated files
+*.g.dart
+*.freezed.dart
+*.gr.dart
+
+# iOS/macOS specific
+**/ios/**/Pods/
+**/ios/**/.symlinks/
+**/ios/**/profile
+**/ios/**/xcuserdata
+**/ios/.generated/
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/ephemeral
+**/ios/Flutter/app.flx
+**/ios/Flutter/app.zip
+**/ios/Flutter/flutter_assets/
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/ServiceDefinitions.json
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/macos/Flutter/GeneratedPluginRegistrant.swift
+
+# Web specific
+**/web/.dart_tool/
+**/web/.packages
+
+# Windows specific
+**/windows/flutter/ephemeral/
+
+# Linux specific
+**/linux/flutter/ephemeral/
+
+# Test related
+.test_coverage.dart
+*.test.dart.js
+*.test.dart.js.map
+
+# IDX
+.idx/
+
+# Logs
+logs/
+*.log
+flutter_*.log
+
+# Windows specific files
+Thumbs.db
+desktop.ini

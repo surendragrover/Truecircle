@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 📚 Documentation / प्रलेखन
+    url: https://github.com/surendragrover/Truecircle/blob/main/TrueCircle_Complete_Documentation.md
+    about: पूर्ण प्रोजेक्ट डॉक्यूमेंटेशन पढ़ें / Read complete project documentation
+  - name: 💬 Discussions / चर्चा
+    url: https://github.com/surendragrover/Truecircle/discussions
+    about: सामान्य चर्चा और सवाल / General discussions and questions
+  - name: 🔒 Privacy Guide / प्राइवेसी गाइड
+    url: https://github.com/surendragrover/Truecircle/blob/main/PRIVACY_DEMO_MODE_GUIDE.md
+    about: Privacy Mode और demo data गाइड / Privacy Mode and demo data guide
