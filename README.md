@@ -12,7 +12,9 @@
 - Flutter (Android/iOS)
 - Firebase / Supabase
 - Natural Language Processing (NLP)
-- Multi-language support (English first, Hindi planned)
+- Full bilingual support (Hindi & English)
+- On-device AI with cloud fallback
+- Google Translate API for enhanced translations
 
 ## 🛠️ Getting Started
 ```bash
@@ -21,6 +23,36 @@ cd TrueCircle-App
 flutter pub get
 flutter run
 ```
+
+## 🆘 Having Problems? / समस्या हो रही है?
+
+If you're experiencing difficulties with the app, we have comprehensive help available:
+
+### Quick Help Access
+1. **In-App Help Menu**: Tap the `?` icon in the app header
+2. **Troubleshooting Guide**: See [TROUBLESHOOTING_GUIDE.md](TROUBLESHOOTING_GUIDE.md)
+3. **Common Issues**:
+   - Translation not working → Check `api.env` file
+   - Dr. Iris in sample mode → Download AI models from Settings
+   - App running slow → Clear cache in Settings
+
+### API Configuration
+The app works without API keys, but some features are limited. To enable full functionality:
+
+1. Copy `api.env` to your project root (already present)
+2. Add your Google Translate API key:
+   ```
+   GOOGLE_TRANSLATE_API_KEY=your_actual_key_here
+   ```
+3. Get your API key from: https://console.cloud.google.com/apis/credentials
+
+**Note**: Without API keys, the app uses fallback translations and sample AI responses. Core features still work!
+
+### Bilingual Support
+- The app fully supports Hindi (हिन्दी) and English
+- Error messages appear in both languages
+- Help documentation available in both languages
+- Fallback translations work even without API keys
 
 ## 🤝 Contributing
 Please contact the owner before making any contributions. This is proprietary software.

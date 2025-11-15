@@ -4,6 +4,8 @@ import 'dart:math';
 import '../core/service_locator.dart';
 import '../services/on_device_ai_service.dart';
 import '../services/ai_orchestrator_service.dart';
+import '../services/language_service.dart';
+import '../widgets/bilingual_error_dialog.dart';
 // Updated to use Service Locator for platform-agnostic AI service access
 
 // Represents a single message in the chat.
@@ -70,6 +72,8 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
     if (!modelsReady) {
       debugPrint('ℹ️ Dr. Iris: Models not ready yet, staying in sample response mode');
       setState(() { _serviceAvailable = false; });
+      // Show info message to user once if not shown before
+      _showAIServiceInfoOnce();
       return;
     }
 
@@ -80,7 +84,50 @@ class _DrIrisDashboardState extends State<DrIrisDashboard> {
     } catch (e) {
       _serviceAvailable = false;
       debugPrint('⚠️ Dr. Iris: AI Service fetch failed, fallback to sample responses: $e');
+      // Show error info to user once if not shown before
+      _showAIServiceInfoOnce();
     }
+  }
+
+  bool _hasShownAIInfo = false;
+  void _showAIServiceInfoOnce() async {
+    if (_hasShownAIInfo) return;
+    _hasShownAIInfo = true;
+    
+    // Wait for the widget to be fully built
+    await Future.delayed(const Duration(milliseconds: 500));
+    
+    if (!mounted) return;
+    
+    // Show a friendly snackbar instead of dialog to not interrupt user
+    final isHindi = LanguageService.instance.isHindi;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            const Icon(Icons.info_outline, color: Colors.white),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                isHindi 
+                  ? 'डॉ. आइरिस नमूना मोड में चल रही हैं। पूर्ण AI के लिए मॉडल डाउनलोड करें।'
+                  : 'Dr. Iris is in sample mode. Download AI models for full functionality.',
+                style: const TextStyle(fontSize: 13),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: Colors.blue.shade700,
+        duration: const Duration(seconds: 5),
+        action: SnackBarAction(
+          label: isHindi ? 'मदद' : 'Help',
+          textColor: Colors.white,
+          onPressed: () {
+            BilingualErrorDialog.showAIServiceError(context);
+          },
+        ),
+      ),
+    );
   }
 
   Future<void> _loadMoodContext() async {
