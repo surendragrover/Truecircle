@@ -43,3 +43,14 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# TrueCircle - ignore offline models
+assets/models/
+*.pt
+*.onnx
+*.onnx.data
+*.bin
+*.gguf
+*.tflite
+*.log
+
