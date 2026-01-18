@@ -1,0 +1,203 @@
+{
+  "sections": {
+    "A_Emotional_State": [
+      {
+        "id": "A1",
+        "question": "How are you feeling today?",
+        "options": ["Heavy", "Lost", "Confused", "Slightly Okay", "Stable"]
+      },
+      {
+        "id": "A2",
+        "question": "Which emotion describes you right now?",
+        "options": ["Overwhelmed", "Anxious", "Lonely", "Drained", "Frustrated", "Hopeful", "Numb"]
+      },
+      {
+        "id": "A3",
+        "question": "How intense is your current emotional state?",
+        "options": ["Very Low", "Low", "Moderate", "High", "Very High"]
+      },
+      {
+        "id": "A4",
+        "question": "What’s bothering you the most today?",
+        "options": ["My thoughts", "My feelings", "Other people", "Stress", "Uncertainty", "Everything feels heavy"]
+      },
+      {
+        "id": "A5",
+        "question": "What do you need emotionally right now?",
+        "options": ["Comfort", "Reassurance", "Calm", "Understanding", "Clarity", "Space"]
+      }
+    ],
+    "B_Life_Struggle": [
+      {
+        "id": "B1",
+        "question": "What is your biggest struggle right now?",
+        "options": ["Emotions", "Relationships", "Money", "Purpose", "Health / Stress"]
+      },
+      {
+        "id": "B2",
+        "question": "What hurts you the most lately?",
+        "options": ["People", "Expectations", "Lack of direction", "Financial pressure", "My own mind"]
+      },
+      {
+        "id": "B3",
+        "question": "Which area feels the most unstable for you?",
+        "options": ["Mind", "Heart", "Finances", "Discipline", "Confidence", "Relationships"]
+      },
+      {
+        "id": "B4",
+        "question": "What do you feel stuck in?",
+        "options": ["Past memories", "Overthinking", "Decisions", "Responsibilities", "Fear", "Routine"]
+      },
+      {
+        "id": "B5",
+        "question": "What drains your energy the most?",
+        "options": ["Stress", "Negative thoughts", "Family issues", "Work pressure", "Loneliness", "Uncertainty"]
+      }
+    ],
+    "C_Clarity_Direction": [
+      {
+        "id": "C1",
+        "question": "What do you want today?",
+        "options": ["Clarity", "Relief", "Direction", "Strength", "Silence"]
+      },
+      {
+        "id": "C2",
+        "question": "What type of clarity are you looking for?",
+        "options": ["Emotional clarity", "Relationship clarity", "Financial clarity", "Life direction clarity", "Self-understanding"]
+      },
+      {
+        "id": "C3",
+        "question": "What pace do you want for today?",
+        "options": ["Slow", "Gentle", "Balanced", "Steady", "Fast"]
+      },
+      {
+        "id": "C4",
+        "question": "Do you want clarity for your day or for deeper patterns?",
+        "options": ["My day", "My emotions", "My habits", "My patterns", "All of them"]
+      },
+      {
+        "id": "C5",
+        "question": "Which important decision is on your mind right now?",
+        "options": ["Relationship decision", "Career decision", "Money decision", "Personal life choice", "Emotional boundary decision"]
+      }
+    ],
+    "D_Relationship": [
+      {
+        "id": "D1",
+        "question": "What describes your current relationship state?",
+        "options": ["Connected", "Confused", "Hurt", "Unsure", "Distant", "Broken"]
+      },
+      {
+        "id": "D2",
+        "question": "What are you feeling most in your relationships?",
+        "options": ["Misunderstood", "Ignored", "Unsupported", "Overattached", "Emotionally tired", "Hopeful"]
+      },
+      {
+        "id": "D3",
+        "question": "What do you want clarity about in your relationship?",
+        "options": ["Future", "Feelings", "Communication", "Trust", "Compatibility"]
+      },
+      {
+        "id": "D4",
+        "question": "What scares you the most about relationships?",
+        "options": ["Losing someone", "Being judged", "Being ignored", "Being replaced", "Being misunderstood"]
+      },
+      {
+        "id": "D5",
+        "question": "Which pattern do you notice in yourself?",
+        "options": ["Overgiving", "Holding back", "Overthinking", "Avoiding conflict", "Emotional shutdown"]
+      }
+    ],
+    "E_Mental_Strength": [
+      {
+        "id": "E1",
+        "question": "How much mental energy do you have today?",
+        "options": ["Very Low", "Low", "Moderate", "Good", "High"]
+      },
+      {
+        "id": "E2",
+        "question": "How well are you coping with stress right now?",
+        "options": ["Not coping", "Struggling", "Barely managing", "Managing", "Coping well"]
+      },
+      {
+        "id": "E3",
+        "question": "What do you need to get through today?",
+        "options": ["Focus", "Calm", "Motivation", "Reassurance", "Guidance"]
+      },
+      {
+        "id": "E4",
+        "question": "What is your biggest internal barrier right now?",
+        "options": ["Fear", "Doubt", "Guilt", "Insecurity", "Anger"]
+      },
+      {
+        "id": "E5",
+        "question": "What type of support do you want today?",
+        "options": ["Honest reflection", "Practical steps", "Comfort", "Stability", "Motivation"]
+      }
+    ],
+    "F_Financial": [
+      {
+        "id": "F1",
+        "question": "What is stressing you financially right now?",
+        "options": ["Overspending", "Income inconsistency", "Debt", "Family needs", "Saving pressure"]
+      },
+      {
+        "id": "F2",
+        "question": "How confident do you feel about your financial habits?",
+        "options": ["Not confident", "Slightly confident", "Neutral", "Confident", "Fully in control"]
+      },
+      {
+        "id": "F3",
+        "question": "What financial clarity do you need?",
+        "options": ["Managing expenses", "Improving income", "Saving better", "Reducing debt", "Understanding money flow"]
+      }
+    ],
+    "G_Healing": [
+      {
+        "id": "G1",
+        "question": "What are you trying to heal from?",
+        "options": ["Betrayal", "Loneliness", "Failure", "Heartbreak", "Past trauma", "My own mistakes"]
+      },
+      {
+        "id": "G2",
+        "question": "What feels incomplete inside you?",
+        "options": ["Closure", "Self-worth", "Confidence", "Peace", "Forgiveness"]
+      },
+      {
+        "id": "G3",
+        "question": "What do you need to begin healing?",
+        "options": ["Understanding", "Acceptance", "Patience", "Support", "Guidance"]
+      },
+      {
+        "id": "G4",
+        "question": "Which phase of healing are you in?",
+        "options": ["I just broke", "I am trying", "I am learning", "I am healing", "I am rebuilding"]
+      },
+      {
+        "id": "G5",
+        "question": "What emotional weight do you want to let go of?",
+        "options": ["Expectations", "Past pain", "Guilt", "Anger", "Fear"]
+      }
+    ],
+    "H_Habits": [
+      {
+        "id": "H1",
+        "question": "What do you want to improve today?",
+        "options": ["Focus", "Discipline", "Sleep", "Calmness", "Productivity"]
+      },
+      {
+        "id": "H2",
+        "question": "What is distracting you the most today?",
+        "options": ["Phone", "Thoughts", "People", "Workload", "Emotions"]
+      },
+      {
+        "id": "H3",
+        "question": "Which habit feels hardest to maintain?",
+        "options": ["Consistency", "Sleep routine", "Eating discipline", "Emotional control", "Self-care"]
+      },
+      {
+        "id": "H4",
+        "question": "What is your biggest personal weakness lately?",
+        "options": ["Laziness", "Overthinking", "Emotional reactiveness", "Procrastination", "Lack of discipline"]
+      },
+

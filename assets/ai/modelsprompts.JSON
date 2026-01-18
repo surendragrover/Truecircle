@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "language": "hi-en",
+  "notes": "Safe, neutral, offline prompts for on-device testing. Educational only.",
+  "prompts": [
+    "मैं बहुत तनाव में हूँ, अभी एक छोटा कदम क्या हो सकता है?",
+    "नींद नहीं आ रही — 2 मिनट की कोई शांत अभ्यास बताइए।",
+    "दिन भर चिंतित महसूस कर रहा/रही हूँ; एक छोटा‑सा स्थिर करने वाला सुझाव दें।",
+    "काम पर ध्यान नहीं लग रहा — फोकस रीसेट कैसे करूँ?",
+    "मूड लो है, आज के लिए एक सरल लक्ष्य तय करने में मदद करें।",
+    "गहरी 4‑4 साँसों की एक छोटी गाइड दें।",
+    "5‑4‑3‑2‑1 ग्राउंडिंग कैसे करूँ?",
+    "निगेटिव विचारों को रीफ्रेम करने के लिए एक CBT संकेत दीजिए।",
+    "आज gratitude की 2‑3 पंक्तियाँ कैसे लिखूँ?",
+    "सेफ्टी प्लान कहाँ मिलेगा और क्या रखना चाहिए?",
+    "मैं खुद के साथ दयालु कैसे रहूँ — एक वाक्य सुझाएँ।",
+    "सुबह की शुरुआत शांत रखने के लिए एक छोटा रूटीन बताइए।",
+    "Feeling overwhelmed. One small step right now?",
+    "Can you guide 4‑4 breathing in one short line?",
+    "Do a 5‑4‑3‑2‑1 grounding with me.",
+    "Help me reframe a negative thought (CBT prompt).",
+    "I need a calm check‑in question to start journaling.",
+    "What’s a tiny plan I can commit to today?",
+    "I’m anxious; give me a quick self‑soothing tip.",
+    "How do I set a gentle boundary for the day?"
+  ]
+}

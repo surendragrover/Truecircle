@@ -1,0 +1,354 @@
+{
+  "psychology_articles": [
+    {
+      "id": "cognitive_biases_overview",
+      "title": "Understanding Cognitive Biases in Daily Life",
+      "author": "Dr. Sarah Chen, PhD",
+      "summary": "Explore how cognitive biases like confirmation bias and anchoring affect our decision-making process.",
+      "body": "Cognitive biases are systematic patterns of thinking that deviate from rationality. These mental shortcuts, while often helpful, can lead us astray in important decisions. Confirmation bias makes us seek information that confirms our existing beliefs, while anchoring bias causes us to rely too heavily on the first piece of information we receive. Understanding these biases helps us make more informed choices in our personal and professional lives."
+    },
+    {
+      "id": "neuroplasticity_basics",
+      "title": "The Brain's Amazing Ability to Rewire Itself",
+      "author": "Prof. Michael Rodriguez, PhD",
+      "summary": "Discover how neuroplasticity allows our brains to form new neural pathways throughout our lives.",
+      "body": "Neuroplasticity refers to the brain's remarkable ability to reorganize itself by forming new neural connections. This process continues throughout our lives, allowing us to learn new skills, recover from brain injuries, and adapt to new situations. Research shows that activities like learning new languages, playing musical instruments, and regular exercise can enhance neuroplasticity and improve cognitive function."
+    },
+    {
+      "id": "stress_response_system",
+      "title": "How Your Body Responds to Stress",
+      "author": "Dr. Emily Thompson, MD",
+      "summary": "Learn about the physiological changes that occur when we encounter stressful situations.",
+      "body": "When we perceive a threat, our body activates the fight-or-flight response. The hypothalamus signals the adrenal glands to release stress hormones like cortisol and adrenaline. These hormones increase heart rate, blood pressure, and glucose levels, preparing us to face danger. While this response is vital for survival, chronic stress can lead to health problems including anxiety, depression, and cardiovascular disease."
+    },
+    {
+      "id": "memory_formation",
+      "title": "The Science Behind How We Form Memories",
+      "author": "Dr. James Wilson, PhD",
+      "summary": "Understand the complex process of how our brains encode, store, and retrieve memories.",
+      "body": "Memory formation involves three key stages: encoding, storage, and retrieval. During encoding, our brains convert sensory information into a form that can be stored. The hippocampus plays a crucial role in consolidating short-term memories into long-term ones. Factors like attention, emotion, and repetition significantly influence how well we remember information. Sleep also plays a vital role in memory consolidation."
+    },
+    {
+      "id": "emotional_intelligence",
+      "title": "Developing Emotional Intelligence for Better Relationships",
+      "author": "Dr. Lisa Park, PhD",
+      "summary": "Explore the four components of emotional intelligence and their impact on personal success.",
+      "body": "Emotional intelligence consists of four key components: self-awareness, self-regulation, empathy, and social skills. Self-awareness involves understanding our own emotions and their effects on others. Self-regulation is the ability to manage our emotions effectively. Empathy allows us to understand and share the feelings of others. Strong social skills help us build and maintain healthy relationships."
+    },
+    {
+      "id": "sleep_psychology",
+      "title": "The Psychology of Sleep and Dreams",
+      "author": "Prof. David Kim, PhD",
+      "summary": "Discover the psychological functions of sleep and the meaning behind our dreams.",
+      "body": "Sleep serves multiple psychological functions including memory consolidation, emotional regulation, and cognitive restoration. During REM sleep, our brains process emotions and experiences from the day. Dreams may help us work through unresolved conflicts and prepare for future challenges. Sleep deprivation can significantly impact mood, decision-making, and overall mental health."
+    },
+    {
+      "id": "motivation_theories",
+      "title": "Understanding What Drives Human Behavior",
+      "author": "Dr. Rachel Green, PhD",
+      "summary": "Explore different theories of motivation and how they apply to achieving personal goals.",
+      "body": "Motivation theories help explain why people behave the way they do. Maslow's hierarchy of needs suggests we're motivated by a progression from basic needs to self-actualization. Self-determination theory emphasizes the importance of autonomy, competence, and relatedness. Understanding these theories can help us set more effective goals and maintain long-term motivation."
+    },
+    {
+      "id": "personality_development",
+      "title": "How Personality Develops Throughout Life",
+      "author": "Prof. Mark Johnson, PhD",
+      "summary": "Learn how our personalities form and continue to evolve as we age.",
+      "body": "Personality development is influenced by both genetic factors and environmental experiences. The Big Five personality traits (openness, conscientiousness, extraversion, agreeableness, and neuroticism) show both stability and change throughout life. Research indicates that personalities can continue to develop well into adulthood, influenced by life experiences, relationships, and conscious efforts at self-improvement."
+    },
+    {
+      "id": "social_influence",
+      "title": "The Power of Social Influence on Individual Behavior",
+      "author": "Dr. Anna Martinez, PhD",
+      "summary": "Understand how social pressures and group dynamics shape our thoughts and actions.",
+      "body": "Social influence occurs through conformity, compliance, and obedience. We often conform to group norms to fit in or avoid conflict. Compliance involves changing behavior in response to direct requests. Obedience refers to following orders from authority figures. Understanding these processes helps us recognize when we're being influenced and make more autonomous decisions."
+    },
+    {
+      "id": "learning_psychology",
+      "title": "How We Learn: Classical and Operant Conditioning",
+      "author": "Prof. Robert Brown, PhD",
+      "summary": "Explore the fundamental principles of learning through conditioning and reinforcement.",
+      "body": "Classical conditioning involves learning associations between stimuli, as demonstrated in Pavlov's famous experiment with dogs. Operant conditioning focuses on how consequences shape behavior - behaviors followed by positive outcomes are more likely to be repeated. These principles are widely applied in education, therapy, and behavior modification programs."
+    },
+    {
+      "id": "cognitive_development",
+      "title": "Piaget's Stages of Cognitive Development",
+      "author": "Dr. Jennifer Lee, PhD",
+      "summary": "Understand how children's thinking abilities develop through distinct stages.",
+      "body": "Jean Piaget identified four stages of cognitive development: sensorimotor (0-2 years), preoperational (2-7 years), concrete operational (7-11 years), and formal operational (11+ years). Each stage represents qualitatively different ways of thinking. Understanding these stages helps parents and educators provide appropriate learning experiences for children at different developmental levels."
+    },
+    {
+      "id": "attachment_theory",
+      "title": "The Lasting Impact of Early Attachment Relationships",
+      "author": "Dr. Susan Taylor, PhD",
+      "summary": "Learn how early relationships with caregivers shape our future relationships and emotional well-being.",
+      "body": "Attachment theory, developed by John Bowlby, describes how early relationships with caregivers create internal working models that guide future relationships. Secure attachment leads to better emotional regulation and healthier relationships. Insecure attachment styles (anxious, avoidant, disorganized) can create challenges in adult relationships but can be addressed through therapy and conscious effort."
+    },
+    {
+      "id": "decision_making",
+      "title": "The Psychology Behind Decision Making",
+      "author": "Prof. Alex Thompson, PhD",
+      "summary": "Explore how we make decisions and the factors that influence our choices.",
+      "body": "Decision-making involves both rational and emotional processes. We use heuristics (mental shortcuts) to make quick decisions, but these can sometimes lead to biases. Emotions play a crucial role in decision-making, often providing valuable information about our values and preferences. Understanding these processes can help us make better decisions in important life situations."
+    },
+    {
+      "id": "positive_psychology",
+      "title": "The Science of Happiness and Well-being",
+      "author": "Dr. Martin Seligman, PhD",
+      "summary": "Discover research-based strategies for increasing happiness and life satisfaction.",
+      "body": "Positive psychology focuses on what makes life worth living. Research shows that happiness is influenced by genetics (50%), circumstances (10%), and intentional activities (40%). Practices like gratitude, mindfulness, exercise, and strong relationships can significantly increase well-being. The PERMA model (Positive emotions, Engagement, Relationships, Meaning, Achievement) provides a framework for flourishing."
+    },
+    {
+      "id": "addiction_psychology",
+      "title": "Understanding the Psychology of Addiction",
+      "author": "Dr. Catherine White, MD",
+      "summary": "Learn about the psychological and neurological factors that contribute to addictive behaviors.",
+      "body": "Addiction involves changes in brain reward pathways, making it difficult to control behavior despite negative consequences. Risk factors include genetics, trauma, mental health issues, and environmental factors. Recovery involves addressing both the physical dependence and underlying psychological factors. Treatment approaches include therapy, support groups, and sometimes medication."
+    },
+    {
+      "id": "group_psychology",
+      "title": "How Groups Influence Individual Behavior",
+      "author": "Prof. Daniel Garcia, PhD",
+      "summary": "Explore phenomena like groupthink, social loafing, and bystander effect in group settings.",
+      "body": "Groups can significantly influence individual behavior through various mechanisms. Groupthink occurs when the desire for harmony results in poor decision-making. Social loafing refers to reduced effort when working in groups. The bystander effect shows that people are less likely to help in emergencies when others are present. Understanding these phenomena helps us work more effectively in groups."
+    },
+    {
+      "id": "trauma_recovery",
+      "title": "The Psychology of Trauma and Recovery",
+      "author": "Dr. Maria Rodriguez, PhD",
+      "summary": "Understand how traumatic experiences affect the mind and the path to healing.",
+      "body": "Trauma can result from single incidents or prolonged exposure to distressing events. It affects the brain's stress response system and can lead to PTSD, depression, and anxiety. Recovery involves processing traumatic memories in a safe environment, often with professional help. Resilience factors include social support, coping skills, and meaning-making abilities."
+    },
+    {
+      "id": "perception_reality",
+      "title": "How Perception Shapes Our Reality",
+      "author": "Prof. John Davis, PhD",
+      "summary": "Learn how our brains interpret sensory information and create our subjective reality.",
+      "body": "Perception is an active process where our brains interpret sensory information based on past experiences, expectations, and context. Optical illusions demonstrate how perception can differ from reality. Cultural background, emotions, and attention all influence how we perceive the world. Understanding perception helps us recognize that our reality is subjective and can be influenced by many factors."
+    },
+    {
+      "id": "language_cognition",
+      "title": "The Relationship Between Language and Thought",
+      "author": "Dr. Karen Miller, PhD",
+      "summary": "Explore how language influences thinking and whether thought is possible without language.",
+      "body": "The relationship between language and thought has been debated for centuries. The Sapir-Whorf hypothesis suggests that language shapes thought, while others argue that thought exists independently of language. Research shows that language can influence certain types of thinking, particularly in areas like color perception and spatial relationships, but doesn't completely determine thought patterns."
+    },
+    {
+      "id": "creativity_psychology",
+      "title": "The Psychology of Creativity and Innovation",
+      "author": "Prof. Lisa Johnson, PhD",
+      "summary": "Understand the cognitive processes behind creative thinking and how to enhance creativity.",
+      "body": "Creativity involves generating novel and useful ideas. It requires both divergent thinking (generating many ideas) and convergent thinking (evaluating and refining ideas). The creative process often involves preparation, incubation, illumination, and verification stages. Factors that enhance creativity include curiosity, openness to experience, intrinsic motivation, and exposure to diverse experiences."
+    },
+    {
+      "id": "self_concept",
+      "title": "The Development of Self-Concept and Identity",
+      "author": "Dr. Thomas Anderson, PhD",
+      "summary": "Learn how we develop our sense of self and identity throughout life.",
+      "body": "Self-concept is our perception of ourselves, including our abilities, characteristics, and values. It develops through social interactions, feedback from others, and personal experiences. Identity formation is particularly important during adolescence but continues throughout life. A healthy self-concept involves realistic self-knowledge, self-acceptance, and the ability to adapt to changing circumstances."
+    },
+    {
+      "id": "moral_development",
+      "title": "How Moral Reasoning Develops",
+      "author": "Prof. Janet Wilson, PhD",
+      "summary": "Explore Kohlberg's stages of moral development and factors that influence moral behavior.",
+      "body": "Lawrence Kohlberg identified three levels of moral development: preconventional (focused on consequences), conventional (focused on social approval), and postconventional (focused on universal principles). Moral behavior is influenced by cognitive development, empathy, social learning, and cultural factors. Understanding moral development helps in education and addressing ethical dilemmas."
+    },
+    {
+      "id": "prejudice_stereotypes",
+      "title": "The Psychology of Prejudice and Stereotypes",
+      "author": "Dr. Michelle Brown, PhD",
+      "summary": "Understand how stereotypes form and strategies for reducing prejudice and bias.",
+      "body": "Stereotypes are oversimplified generalizations about groups of people. They can lead to prejudice (negative attitudes) and discrimination (unfair treatment). Stereotypes often develop through limited exposure, social learning, and cognitive shortcuts. Reducing prejudice involves increasing contact between groups, education, empathy development, and conscious efforts to challenge biased thinking."
+    },
+    {
+      "id": "mental_health_stigma",
+      "title": "Understanding and Combating Mental Health Stigma",
+      "author": "Dr. Paul Martinez, MD",
+      "summary": "Learn about the sources of mental health stigma and how to promote acceptance and understanding.",
+      "body": "Mental health stigma involves negative attitudes and beliefs about mental illness. It can prevent people from seeking help and lead to discrimination. Stigma often stems from lack of knowledge, fear, and media portrayals. Combating stigma requires education, personal contact with those who have mental health conditions, and advocacy for policy changes that protect rights and promote inclusion."
+    },
+    {
+      "id": "habit_formation",
+      "title": "The Science of Habit Formation and Change",
+      "author": "Prof. Charles Duhigg, PhD",
+      "summary": "Discover how habits form in the brain and evidence-based strategies for changing them.",
+      "body": "Habits form through a neurological loop involving a cue, routine, and reward. The basal ganglia automate these behaviors to conserve mental energy. Changing habits involves identifying triggers, replacing routines, and ensuring rewards. The 21-day rule is a myth - habit formation can take anywhere from 18 to 254 days depending on complexity and individual factors."
+    },
+    {
+      "id": "flow_state",
+      "title": "Achieving Flow: The Psychology of Optimal Experience",
+      "author": "Dr. Mihaly Csikszentmihalyi, PhD",
+      "summary": "Learn about flow states and how to create conditions for optimal performance and satisfaction.",
+      "body": "Flow is a psychological state of complete immersion in an activity. Characteristics include intense focus, loss of self-consciousness, and intrinsic motivation. Flow occurs when challenges match skill level, goals are clear, and feedback is immediate. Activities that promote flow include sports, music, art, and work that provides autonomy and mastery opportunities."
+    },
+    {
+      "id": "gender_psychology",
+      "title": "Understanding Gender Differences in Psychology",
+      "author": "Dr. Janet Hyde, PhD",
+      "summary": "Explore research on psychological differences between genders and their implications.",
+      "body": "Research shows that psychological differences between genders are generally small and highly overlapping. Some consistent differences include spatial abilities, aggression, and communication styles, but these are influenced by both biological and social factors. Understanding gender differences helps combat stereotypes while recognizing that individual variation is much greater than group differences."
+    },
+    {
+      "id": "adolescent_brain",
+      "title": "The Developing Adolescent Brain",
+      "author": "Prof. Laurence Steinberg, PhD",
+      "summary": "Learn about brain development during adolescence and its impact on behavior.",
+      "body": "The adolescent brain undergoes significant changes, particularly in the prefrontal cortex responsible for executive functions. This leads to increased risk-taking, emotional intensity, and peer influence. The limbic system develops faster than the prefrontal cortex, creating an imbalance between emotional and rational decision-making. Understanding these changes helps adults work more effectively with teenagers."
+    },
+    {
+      "id": "workplace_psychology",
+      "title": "Psychology in the Workplace: Motivation and Performance",
+      "author": "Dr. Frederick Herzberg, PhD",
+      "summary": "Explore psychological principles that influence workplace satisfaction and productivity.",
+      "body": "Workplace psychology examines factors that influence job satisfaction and performance. Herzberg's two-factor theory distinguishes between hygiene factors (salary, working conditions) and motivators (achievement, recognition). Other important factors include autonomy, purpose, social connections, and opportunities for growth. Applying psychological principles can improve both employee well-being and organizational effectiveness."
+    },
+    {
+      "id": "aging_cognition",
+      "title": "Cognitive Changes in Aging: Myths and Realities",
+      "author": "Prof. Timothy Salthouse, PhD",
+      "summary": "Understand how cognitive abilities change with age and strategies for maintaining mental sharpness.",
+      "body": "Aging affects cognitive abilities differently across domains. Processing speed and working memory typically decline, while vocabulary and general knowledge often improve. Many cognitive changes attributed to aging are actually due to disease, disuse, or cohort effects. Staying mentally active, physically fit, socially connected, and managing health conditions can help maintain cognitive function."
+    },
+    {
+      "id": "cultural_psychology",
+      "title": "How Culture Shapes Psychology and Behavior",
+      "author": "Dr. Shinobu Kitayama, PhD",
+      "summary": "Explore how cultural background influences psychological processes and behavior patterns.",
+      "body": "Culture significantly influences psychological processes including cognition, emotion, and social behavior. Individualistic cultures emphasize independence and personal achievement, while collectivistic cultures prioritize interdependence and group harmony. These differences affect everything from self-concept to decision-making styles. Understanding cultural psychology promotes cross-cultural understanding and effective communication."
+    },
+    {
+      "id": "resilience_psychology",
+      "title": "Building Psychological Resilience",
+      "author": "Dr. Ann Masten, PhD",
+      "summary": "Learn about the factors that contribute to resilience and how to develop this crucial skill.",
+      "body": "Resilience is the ability to bounce back from adversity and adapt to challenges. Key factors include social support, emotional regulation skills, optimistic thinking, problem-solving abilities, and meaning-making capacity. Resilience can be developed through practices like mindfulness, gratitude, goal-setting, and building strong relationships. It's not about avoiding difficulties but learning to cope effectively with them."
+    },
+    {
+      "id": "communication_psychology",
+      "title": "The Psychology of Effective Communication",
+      "author": "Prof. Deborah Tannen, PhD",
+      "summary": "Understand the psychological principles behind effective interpersonal communication.",
+      "body": "Effective communication involves both verbal and nonverbal elements. Active listening, empathy, and clear expression are crucial skills. Communication styles can vary based on culture, gender, and personality. Understanding psychological barriers to communication (assumptions, emotional states, different perspectives) helps improve relationships and reduce conflicts."
+    },
+    {
+      "id": "procrastination_psychology",
+      "title": "Understanding and Overcoming Procrastination",
+      "author": "Dr. Tim Pychyl, PhD",
+      "summary": "Learn about the psychological roots of procrastination and evidence-based strategies for overcoming it.",
+      "body": "Procrastination is often an emotion regulation strategy rather than a time management problem. People procrastinate to avoid negative emotions associated with tasks. Factors include perfectionism, fear of failure, lack of intrinsic motivation, and poor emotional regulation. Overcoming procrastination involves addressing underlying emotions, breaking tasks into smaller steps, and developing better self-compassion."
+    },
+    {
+      "id": "mindfulness_psychology",
+      "title": "The Psychology of Mindfulness and Meditation",
+      "author": "Dr. Jon Kabat-Zinn, PhD",
+      "summary": "Explore the psychological benefits of mindfulness practice and its applications in therapy.",
+      "body": "Mindfulness involves paying attention to the present moment without judgment. Research shows it can reduce stress, anxiety, and depression while improving attention, emotional regulation, and overall well-being. Mindfulness-based interventions are used to treat various psychological conditions. Regular practice literally changes brain structure, increasing gray matter in areas associated with learning and memory."
+    },
+    {
+      "id": "behavioral_economics",
+      "title": "Psychology Meets Economics: Behavioral Decision Making",
+      "author": "Prof. Daniel Kahneman, PhD",
+      "summary": "Learn how psychological factors influence economic decisions and financial behavior.",
+      "body": "Behavioral economics combines psychology and economics to understand how people actually make decisions, rather than how they should make them rationally. Concepts like loss aversion, mental accounting, and present bias explain many financial behaviors. Understanding these psychological factors can help individuals make better financial decisions and organizations design more effective policies."
+    },
+    {
+      "id": "social_media_psychology",
+      "title": "The Psychology of Social Media Use",
+      "author": "Dr. Larry Rosen, PhD",
+      "summary": "Understand how social media affects psychological well-being and behavior patterns.",
+      "body": "Social media use can have both positive and negative psychological effects. Benefits include social connection and access to information. Risks include addiction-like behaviors, comparison with others, cyberbullying, and sleep disruption. The design of social media platforms uses psychological principles to encourage engagement. Mindful use involves setting boundaries and being aware of how social media affects mood and behavior."
+    },
+    {
+      "id": "leadership_psychology",
+      "title": "The Psychology of Leadership and Influence",
+      "author": "Prof. Robert Cialdini, PhD",
+      "summary": "Explore psychological principles that make leaders effective and influential.",
+      "body": "Effective leadership involves understanding human psychology and motivation. Key principles include reciprocity, consistency, social proof, liking, authority, and scarcity. Transformational leaders inspire others through vision, intellectual stimulation, and individual consideration. Emotional intelligence, authenticity, and ethical behavior are crucial for sustainable leadership effectiveness."
+    },
+    {
+      "id": "learning_disabilities",
+      "title": "Understanding Learning Disabilities and Differences",
+      "author": "Dr. Sally Shaywitz, MD",
+      "summary": "Learn about different types of learning disabilities and effective intervention strategies.",
+      "body": "Learning disabilities affect how the brain processes information, making certain academic skills difficult despite normal intelligence. Common types include dyslexia (reading), dyscalculia (math), and dysgraphia (writing). Early identification and appropriate interventions can help individuals with learning disabilities succeed academically and professionally. Understanding these differences promotes inclusion and reduces stigma."
+    },
+    {
+      "id": "therapy_approaches",
+      "title": "Major Approaches to Psychological Therapy",
+      "author": "Dr. Irvin Yalom, MD",
+      "summary": "Explore different therapeutic approaches and their effectiveness for various mental health conditions.",
+      "body": "Major therapeutic approaches include cognitive-behavioral therapy (CBT), psychodynamic therapy, humanistic therapy, and family systems therapy. Each approach has different assumptions about human nature and change processes. Research shows that the therapeutic relationship is often more important than the specific technique used. Effective therapy involves collaboration, empathy, and evidence-based practices tailored to individual needs."
+    },
+    {
+      "id": "personality_disorders",
+      "title": "Understanding Personality Disorders",
+      "author": "Prof. Theodore Millon, PhD",
+      "summary": "Learn about different personality disorders and their impact on functioning and relationships.",
+      "body": "Personality disorders involve enduring patterns of thinking, feeling, and behaving that deviate from cultural expectations and cause distress or impairment. They typically develop by early adulthood and affect multiple life areas. Treatment often involves long-term therapy focused on developing healthier coping strategies and relationship skills. Understanding personality disorders reduces stigma and promotes empathy."
+    },
+    {
+      "id": "sports_psychology",
+      "title": "Psychology in Sports and Athletic Performance",
+      "author": "Dr. Jim Taylor, PhD",
+      "summary": "Explore how psychological factors influence athletic performance and strategies for mental training.",
+      "body": "Sports psychology examines mental factors that affect athletic performance including motivation, confidence, concentration, and emotional control. Techniques like visualization, goal-setting, self-talk, and relaxation can enhance performance. Mental skills training helps athletes cope with pressure, overcome setbacks, and maintain focus. These principles also apply to other performance domains like music and academics."
+    },
+    {
+      "id": "environmental_psychology",
+      "title": "How Our Environment Affects Psychology and Behavior",
+      "author": "Prof. Roger Barker, PhD",
+      "summary": "Understand the psychological impact of physical environments on mood, behavior, and well-being.",
+      "body": "Environmental psychology studies how physical settings influence human behavior and well-being. Factors like lighting, noise, crowding, and natural elements affect mood, productivity, and stress levels. Design principles can create environments that promote healing, learning, or social interaction. Understanding these relationships helps create spaces that support psychological well-being and optimal functioning."
+    },
+    {
+      "id": "consumer_psychology",
+      "title": "The Psychology Behind Consumer Behavior",
+      "author": "Dr. Robert Heath, PhD",
+      "summary": "Learn how psychological principles influence purchasing decisions and brand loyalty.",
+      "body": "Consumer psychology examines how people make purchasing decisions and relate to brands. Factors include emotions, social influence, cognitive biases, and unconscious processes. Marketing strategies often use psychological principles like scarcity, social proof, and emotional appeals. Understanding these influences helps consumers make more conscious choices and businesses create more ethical marketing practices."
+    },
+    {
+      "id": "family_psychology",
+      "title": "Family Dynamics and Psychology",
+      "author": "Dr. Salvador Minuchin, MD",
+      "summary": "Explore how family systems and relationships influence individual psychological development.",
+      "body": "Family psychology examines how family relationships and dynamics affect individual development and well-being. Concepts include family roles, boundaries, communication patterns, and multigenerational influences. Healthy families provide support, structure, and opportunities for growth while allowing individual autonomy. Family therapy helps address dysfunctional patterns and improve relationships."
+    },
+    {
+      "id": "grief_psychology",
+      "title": "The Psychology of Grief and Loss",
+      "author": "Dr. Elisabeth Kübler-Ross, MD",
+      "summary": "Understand the psychological process of grief and healthy ways to cope with loss.",
+      "body": "Grief is a natural response to loss that affects thoughts, emotions, behaviors, and physical health. While often described in stages (denial, anger, bargaining, depression, acceptance), grief is actually a unique, non-linear process. Healthy grief involves gradually adapting to life without the lost person or thing. Complicated grief may require professional support to process and integrate the loss."
+    },
+    {
+      "id": "color_psychology",
+      "title": "How Colors Affect Mood and Behavior",
+      "author": "Prof. Angela Wright, PhD",
+      "summary": "Explore the psychological effects of different colors on emotions, cognition, and behavior.",
+      "body": "Colors can influence mood, emotions, and even physiological responses. Warm colors (red, orange, yellow) tend to be energizing and attention-grabbing, while cool colors (blue, green, purple) are often calming and soothing. Cultural associations and personal experiences also affect color perception. Understanding color psychology has applications in design, marketing, therapy, and creating optimal environments."
+    },
+    {
+      "id": "music_psychology",
+      "title": "The Psychology of Music and Its Effects on the Mind",
+      "author": "Dr. Daniel Levitin, PhD",
+      "summary": "Learn how music affects the brain, emotions, memory, and overall psychological well-being.",
+      "body": "Music has profound effects on the brain, activating multiple neural networks simultaneously. It can influence mood, reduce stress, improve memory, and even alleviate pain. Music therapy is used to treat various conditions including depression, anxiety, and dementia. The psychological effects of music are influenced by factors like tempo, key, personal associations, and cultural background."
+    },
+    {
+      "id": "humor_psychology",
+      "title": "The Psychology of Humor and Laughter",
+      "author": "Prof. Rod Martin, PhD",
+      "summary": "Understand the psychological functions of humor and its benefits for mental health.",
+      "body": "Humor serves multiple psychological functions including stress relief, social bonding, coping with adversity, and communication. Laughter triggers the release of endorphins and reduces stress hormones. Different types of humor (affiliative, self-enhancing, aggressive, self-defeating) have different psychological effects. Healthy humor promotes resilience and social connection while unhealthy humor can damage relationships."
+    },
+    {
+      "id": "digital_psychology",
+      "title": "Mental Health in the Digital Age",
+      "author": "Dr. Amit Sharma, PhD",
+      "summary": "Explore the impact of digital technology on mental health and strategies for healthy digital habits.",
+      "body": "Digital technology has made our lives easier but also created new challenges for mental health. Excessive screen time, social media addiction, and digital distractions can affect psychological well-being. Issues like cyberbullying, FOMO (fear of missing out), and constant connectivity can increase anxiety and depression. Developing digital wellness involves setting boundaries, practicing mindful technology use, and maintaining offline activities. Creating a healthy balance between digital and real-world interactions is essential for mental health in the modern age."
+    }
+  ]
+}

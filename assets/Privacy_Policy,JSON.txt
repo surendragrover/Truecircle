@@ -1,0 +1,44 @@
+{
+  "app_name": "TrueCircle",
+  "category": "Privacy Policy",
+  "language": "English",
+  "version": "1.0",
+  "sections": [
+    {
+      "title": "Introduction",
+      "content": "TrueCircle respects your privacy and is committed to protecting your personal and emotional data. This Privacy Policy explains how we collect, use, store, and protect your information when you use our app and services."
+    },
+    {
+      "title": "Data We Collect",
+      "content": "We collect only the information you voluntarily provide, such as reflections, journal entries, emotions, or relationship details. No hidden tracking, third-party analytics, or advertisements are used within TrueCircle."
+    },
+    {
+      "title": "How We Use Your Data",
+      "content": "Your data is used solely to provide emotional insights, personalized reflections, and AI-generated guidance. We do not sell, rent, or share your data with any third parties."
+    },
+    {
+      "title": "Data Security",
+      "content": "All data is stored securely using end-to-end encryption. TrueCircle does not transmit or expose your emotional data to any external servers without your consent."
+    },
+    {
+      "title": "Offline Mode",
+      "content": "TrueCircle works offline. Your data remains stored on your device and syncs only when you choose to connect online. You have full control over synchronization."
+    },
+    {
+      "title": "Your Control",
+      "content": "You can edit or delete your reflections anytime. You can also clear your data cache and reset all entries from the app settings."
+    },
+    {
+      "title": "Children’s Privacy",
+      "content": "TrueCircle is designed for users above 13 years old. We do not knowingly collect or store information from children under this age."
+    },
+    {
+      "title": "Policy Updates",
+      "content": "We may update this Privacy Policy to improve clarity or comply with legal requirements. The latest version will always be available within the app."
+    },
+    {
+      "title": "Contact",
+      "content": "For privacy-related concerns, email us at privacy@truecircle.online or use the in-app Support tab."
+    }
+  ]
+}

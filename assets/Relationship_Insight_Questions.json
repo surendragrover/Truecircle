@@ -1,0 +1,345 @@
+{
+  "title": "Relationship Insight Questions",
+  "description": "रिश्तों की स्वास्थ्य स्थिति और जोखिम स्तर का आकलन करने के लिए डिज़ाइन किए गए प्रश्न",
+  "questions": [
+    {
+      "id": 1,
+      "focus_area": "हाल की बातचीत और दूरी",
+      "question_hindi": "इस व्यक्ति के साथ आपकी अंतिम अर्थपूर्ण बातचीत कब हुई थी?",
+      "question_english": "When was the last meaningful conversation you had with this person?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "recent",
+          "label_hindi": "हाल में (1 सप्ताह के भीतर)",
+          "label_english": "Recent (1 week)"
+        },
+        {
+          "value": "old",
+          "label_hindi": "पुराना (1 महीना+)",
+          "label_english": "Old (1 month+)"
+        },
+        {
+          "value": "very_old",
+          "label_hindi": "बहुत पुराना (3 महीना+)",
+          "label_english": "Very Old (3 months+)"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "focus_area": "बचना/तनाव",
+      "question_hindi": "क्या आप हाल के दिनों में उनके कॉल या संदेशों से बचते हैं?",
+      "question_english": "Do you actively avoid their calls or messages in recent days?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "yes",
+          "label_hindi": "हाँ",
+          "label_english": "Yes"
+        },
+        {
+          "value": "no",
+          "label_hindi": "नहीं",
+          "label_english": "No"
+        },
+        {
+          "value": "sometimes",
+          "label_hindi": "कभी-कभी",
+          "label_english": "Sometimes"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "focus_area": "संचार की गुणवत्ता",
+      "question_hindi": "1 से 5 के पैमाने पर (5 बेहतरीन होने के रूप में), उनके साथ संवाद करना कितना आसान और सुखद है?",
+      "question_english": "On a scale of 1 to 5 (5 being Excellent), how easy and enjoyable is communication with them?",
+      "answer_format": "scale",
+      "scale_range": {
+        "min": 1,
+        "max": 5,
+        "labels": {
+          "1": "बहुत कठिन/अप्रिय",
+          "2": "कठिन",
+          "3": "ठीक",
+          "4": "आसान",
+          "5": "बेहतरीन"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "focus_area": "भावनात्मक निवेश",
+      "question_hindi": "क्या आपको लगता है कि आप इस रिश्ते में उनसे ज्यादा मेहनत करते हैं?",
+      "question_english": "Do you feel you put more effort into this relationship than they do?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "yes",
+          "label_hindi": "हाँ",
+          "label_english": "Yes"
+        },
+        {
+          "value": "no",
+          "label_hindi": "नहीं",
+          "label_english": "No"
+        },
+        {
+          "value": "equal",
+          "label_hindi": "बराबर",
+          "label_english": "Equal"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "focus_area": "भरोसा और निर्भरता",
+      "question_hindi": "क्या आप बिना झिझक उनसे बड़ी मदद (पैसा, सलाह) मांग सकते हैं?",
+      "question_english": "Could you ask them for major help (money, advice) without hesitation?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "yes",
+          "label_hindi": "हाँ",
+          "label_english": "Yes"
+        },
+        {
+          "value": "maybe",
+          "label_hindi": "शायद",
+          "label_english": "Maybe"
+        },
+        {
+          "value": "no",
+          "label_hindi": "नहीं",
+          "label_english": "No"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "focus_area": "संघर्ष की उपस्थिति",
+      "question_hindi": "क्या हाल में (पिछले 3 महीनों में) आपका कोई अनसुलझा विवाद या बड़ी असहमति हुई है?",
+      "question_english": "Have you had an unresolved argument or major disagreement recently (last 3 months)?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "yes",
+          "label_hindi": "हाँ",
+          "label_english": "Yes"
+        },
+        {
+          "value": "no",
+          "label_hindi": "नहीं",
+          "label_english": "No"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "focus_area": "भविष्य की योजना",
+      "question_hindi": "क्या अगले दो सप्ताह में उनसे मिलने या कॉल करने की आपकी कोई ठोस योजना है?",
+      "question_english": "Do you have a concrete plan to meet or call them in the next two weeks?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "yes",
+          "label_hindi": "हाँ",
+          "label_english": "Yes"
+        },
+        {
+          "value": "no",
+          "label_hindi": "नहीं",
+          "label_english": "No"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "focus_area": "पारिवारिक/साझीदार संबंध",
+      "question_hindi": "क्या आप पाते हैं कि आप चुपचाप उनसे दूरी बना रहे हैं या उनके साथ कम शारीरिक स्नेह दिखा रहे हैं?",
+      "question_english": "Do you find yourself silently withdrawing or being less physically affectionate around them?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "yes",
+          "label_hindi": "हाँ",
+          "label_english": "Yes"
+        },
+        {
+          "value": "no",
+          "label_hindi": "नहीं",
+          "label_english": "No"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "focus_area": "मित्र/सहयोगी संबंध",
+      "question_hindi": "जब आपको कोई कठिन बात करनी होती है, तो क्या यह व्यक्ति आपकी पसंदीदा पसंद है?",
+      "question_english": "When you need to discuss something difficult, is this person your preferred choice?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "yes",
+          "label_hindi": "हाँ",
+          "label_english": "Yes"
+        },
+        {
+          "value": "no",
+          "label_hindi": "नहीं",
+          "label_english": "No"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "focus_area": "परिवार (विस्तारित)",
+      "question_hindi": "क्या आप उनकी जीवन की मुख्य घटनाओं (हाल की खबरें, स्वास्थ्य) के बारे में जानते हैं?",
+      "question_english": "Are you updated on their major life events (recent news, health)?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "yes",
+          "label_hindi": "हाँ",
+          "label_english": "Yes"
+        },
+        {
+          "value": "mostly",
+          "label_hindi": "ज्यादातर",
+          "label_english": "Mostly"
+        },
+        {
+          "value": "no",
+          "label_hindi": "नहीं",
+          "label_english": "No"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "focus_area": "कार्य (बॉस/अधीनस्थ)",
+      "question_hindi": "क्या आपको लगता है कि उनके साथ आपका रिश्ता अभी तनावपूर्ण या कठिन है?",
+      "question_english": "Do you feel your relationship with them is stressful or tense right now?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "yes",
+          "label_hindi": "हाँ",
+          "label_english": "Yes"
+        },
+        {
+          "value": "no",
+          "label_hindi": "नहीं",
+          "label_english": "No"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "focus_area": "पड़ोसी/परिचित",
+      "question_hindi": "क्या आपने पिछले सप्ताह में उन्हें स्वीकार किया है (हाथ हिलाया/नमस्ते कहा)?",
+      "question_english": "Have you acknowledged them (waved/said hello) in the last week?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "yes",
+          "label_hindi": "हाँ",
+          "label_english": "Yes"
+        },
+        {
+          "value": "no",
+          "label_hindi": "नहीं",
+          "label_english": "No"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "focus_area": "रोमांटिक साझीदार",
+      "question_hindi": "क्या आप अक्सर उनके साथ होते हुए भी अकेलेपन या दूरी की भावना महसूस करते हैं?",
+      "question_english": "Do you often feel a sense of loneliness or disconnect even when you are with them?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "yes",
+          "label_hindi": "हाँ",
+          "label_english": "Yes"
+        },
+        {
+          "value": "no",
+          "label_hindi": "नहीं",
+          "label_english": "No"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "focus_area": "मित्र/साथी",
+      "question_hindi": "आप अपने जीवन के बड़े फैसलों पर इस व्यक्ति की राय को कितना महत्व देते हैं?",
+      "question_english": "How much do you value this person's opinion on your big life decisions?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "value_a_lot",
+          "label_hindi": "बहुत महत्व देता हूं",
+          "label_english": "Value a lot"
+        },
+        {
+          "value": "value_slightly",
+          "label_hindi": "थोड़ा महत्व देता हूं",
+          "label_english": "Value slightly"
+        },
+        {
+          "value": "not_much",
+          "label_hindi": "ज्यादा नहीं",
+          "label_english": "Not much"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "focus_area": "सामान्य भावना",
+      "question_hindi": "इस रिश्ते के साथ आप जो मुख्य भावना जोड़ते हैं वह अभी क्या है?",
+      "question_english": "What is the dominant emotion you associate with this relationship right now?",
+      "answer_format": "multiple_choice",
+      "options": [
+        {
+          "value": "positive",
+          "label_hindi": "सकारात्मक",
+          "label_english": "Positive"
+        },
+        {
+          "value": "neutral",
+          "label_hindi": "तटस्थ",
+          "label_english": "Neutral"
+        },
+        {
+          "value": "negative",
+          "label_hindi": "नकारात्मक",
+          "label_english": "Negative"
+        }
+      ]
+    }
+  ],
+  "scoring": {
+    "description": "स्कोरिंग सिस्टम रिश्ते की स्वास्थ्य स्थिति का आकलन करता है",
+    "categories": {
+      "healthy": {
+        "range": "80-100",
+        "description_hindi": "स्वस्थ रिश्ता",
+        "description_english": "Healthy Relationship"
+      },
+      "moderate": {
+        "range": "50-79",
+        "description_hindi": "मध्यम जोखिम",
+        "description_english": "Moderate Risk"
+      },
+      "at_risk": {
+        "range": "0-49",
+        "description_hindi": "उच्च जोखिम",
+        "description_english": "High Risk"
+      }
+    }
+  }
+}

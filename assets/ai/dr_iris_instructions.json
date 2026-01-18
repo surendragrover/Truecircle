@@ -1,0 +1,886 @@
+[
+  {
+    "keywords": ["anxious", "anxiety", "worried", "nervous"],
+    "response": "I understand you're feeling anxious. Let's start with a simple breathing technique: breathe in for 4 counts, hold for 4, and exhale for 6. This activates your parasympathetic nervous system and helps calm your mind."
+  },
+  {
+    "keywords": ["depressed", "depression", "sad", "down", "low mood"],
+    "response": "Depression can feel overwhelming, but small steps make a difference. Try the 5-4-3-2-1 grounding technique: notice 5 things you can see, 4 you can touch, 3 you can hear, 2 you can smell, and 1 you can taste."
+  },
+  {
+    "keywords": ["panic", "panic attack", "can't breathe"],
+    "response": "You're experiencing intense feelings, but you're safe right now. Try the STOP technique: Stop what you're doing, Take a breath, Observe your surroundings, and Proceed mindfully. Focus on your exhale being longer than your inhale."
+  },
+  {
+    "keywords": ["stress", "stressed", "overwhelmed", "too much"],
+    "response": "When everything feels like too much, break it down into smaller pieces. Write down just 3 things you need to do today. Complete one at a time. Remember: you don't have to carry everything at once."
+  },
+  {
+    "keywords": ["lonely", "alone", "isolated", "no friends"],
+    "response": "Loneliness is painful, but it's temporary. Start with small connections: smile at a neighbor, text one person, or join one online community. Even tiny interactions plant seeds for bigger connections."
+  },
+  {
+    "keywords": ["angry", "furious", "rage", "mad"],
+    "response": "Anger often signals that something important to you is being threatened. Try the TIPP technique: change your Temperature (cold water on face), do Intense exercise for 5 minutes, use Paced breathing, or try Progressive muscle relaxation."
+  },
+  {
+    "keywords": ["sleep", "insomnia", "can't sleep", "tired"],
+    "response": "Sleep struggles affect everything. Create a wind-down routine: no screens 1 hour before bed, try the 4-7-8 breathing (inhale 4, hold 7, exhale 8), and keep your bedroom cool and dark. If your mind races, write worries on paper first."
+  },
+  {
+    "keywords": ["relationship", "partner", "boyfriend", "girlfriend", "marriage"],
+    "response": "Relationships need both connection and space to breathe. Try the HALT check: are you Hungry, Angry, Lonely, or Tired? Address these first, then communicate using 'I feel' statements rather than 'you always/never' language."
+  },
+  {
+    "keywords": ["work", "job", "career", "boss", "workplace"],
+    "response": "Work stress can consume your whole life if you let it. Set clear boundaries: define your work hours, take actual lunch breaks, and practice the 'good enough' rule - not everything needs to be perfect."
+  },
+  {
+    "keywords": ["family", "parents", "siblings", "relatives"],
+    "response": "Family relationships are complex because they're loaded with history. You can love someone and still need boundaries. Practice the gray rock method for difficult family members: be boring, brief, and non-reactive."
+  },
+  {
+    "keywords": ["trauma", "ptsd", "flashback", "triggered"],
+    "response": "Trauma lives in your body, not just your mind. When triggered, try grounding: press your feet firmly on the floor, hold an ice cube, or name 5 things you can see around you. Remind yourself: 'That was then, this is now. I am safe.'"
+  },
+  {
+    "keywords": ["suicide", "suicidal", "end it all", "kill myself"],
+    "response": "These thoughts are signs of deep pain, not weakness. You matter, and this feeling will pass. Call a crisis helpline immediately: National Suicide Prevention Lifeline 988. Create a safety plan with someone you trust. You deserve support right now."
+  },
+  {
+    "keywords": ["self-harm", "cutting", "hurt myself"],
+    "response": "Self-harm often helps regulate intense emotions, but there are safer alternatives. Try holding ice cubes, drawing red lines on your skin, intense exercise, or screaming into a pillow. Your pain is real and deserves attention, not more pain."
+  },
+  {
+    "keywords": ["eating", "food", "weight", "body image", "fat", "thin"],
+    "response": "Your relationship with food reflects your relationship with yourself. Try intuitive eating: eat when hungry, stop when satisfied, and notice how different foods make you feel. Your worth isn't measured by numbers on a scale."
+  },
+  {
+    "keywords": ["addiction", "drugs", "alcohol", "drinking", "substance"],
+    "response": "Addiction is often self-medication for deeper pain. Recovery happens one moment at a time. Use the HALT check regularly, find healthy dopamine sources (exercise, music, connection), and remember: relapse doesn't erase progress."
+  },
+  {
+    "keywords": ["perfectionism", "perfectionist", "not good enough", "failure"],
+    "response": "Perfectionism is fear wearing a mask of high standards. Try the 80% rule: most things only need to be 80% perfect to be effective. Progress beats perfection every single time."
+  },
+  {
+    "keywords": ["procrastination", "lazy", "can't start", "postponing"],
+    "response": "Procrastination is often perfectionism or fear in disguise. Use the 2-minute rule: if something takes less than 2 minutes, do it now. For bigger tasks, commit to just 10 minutes. Starting is usually the hardest part."
+  },
+  {
+    "keywords": ["confidence", "self-esteem", "insecure", "not worthy"],
+    "response": "Confidence isn't about feeling fearless; it's about acting despite the fear. Keep a daily wins journal - write down 3 things you did well each day, no matter how small. Your inner critic isn't your truth."
+  },
+  {
+    "keywords": ["boundaries", "saying no", "people pleaser", "can't refuse"],
+    "response": "Boundaries aren't walls; they're gates with you as the gatekeeper. Start small: say 'let me think about it' instead of automatic yes. Remember: saying no to others means saying yes to yourself."
+  },
+  {
+    "keywords": ["money", "financial", "debt", "broke", "poor"],
+    "response": "Financial stress affects mental health deeply. Start with what you can control: track spending for one week, identify one unnecessary expense to cut, and focus on progress, not perfection. Your value isn't your net worth."
+  },
+  {
+    "keywords": ["health", "sick", "illness", "chronic pain", "medical"],
+    "response": "Chronic health issues can feel isolating and overwhelming. Focus on what's within your control: rest when needed, celebrate small improvements, and don't compare your inside to others' outsides. Healing isn't always linear."
+  },
+  {
+    "keywords": ["grief", "loss", "death", "died", "mourning"],
+    "response": "Grief has no timeline or 'right way' to process. Allow yourself to feel everything: anger, sadness, even moments of joy. Create rituals to honor your loss. Healing doesn't mean forgetting; it means learning to carry love alongside the pain."
+  },
+  {
+    "keywords": ["change", "transition", "moving", "new job", "life changes"],
+    "response": "Change is the only constant, but that doesn't make it easier. Focus on what stays the same during transitions - your values, strengths, and support system. Take change in small bites, not huge swallows."
+  },
+  {
+    "keywords": ["motivation", "unmotivated", "no energy", "don't care"],
+    "response": "Motivation is like a muscle - it needs exercise to grow stronger. Start with tiny actions: make your bed, drink a glass of water, walk for 5 minutes. Action creates motivation more than motivation creates action."
+  },
+  {
+    "keywords": ["jealousy", "envious", "comparing", "others have more"],
+    "response": "Comparison steals joy and creates a rigged game where you'll always lose. Practice gratitude daily: write down 3 specific things you're thankful for. Remember: social media shows highlight reels, not reality."
+  },
+  {
+    "keywords": ["forgiveness", "can't forgive", "betrayed", "hurt by someone"],
+    "response": "Forgiveness is for you, not them. It doesn't mean what they did was okay; it means you're choosing freedom over resentment. Start by forgiving yourself for being human, then work outward."
+  },
+  {
+    "keywords": ["purpose", "meaning", "pointless", "what's the point"],
+    "response": "Purpose doesn't have to be grandiose. It can be as simple as making one person smile each day. Ask yourself: what small difference can I make right where I am? Meaning is created through action, not found through thinking."
+  },
+  {
+    "keywords": ["aging", "getting old", "youth", "time running out"],
+    "response": "Aging means you've survived and learned things younger you couldn't imagine. Focus on what you've gained: wisdom, resilience, clarity about what matters. Every stage of life has unique gifts and challenges."
+  },
+  {
+    "keywords": ["technology", "social media", "phone addiction", "screen time"],
+    "response": "Technology should serve you, not the other way around. Set phone-free zones and times. Use the 20-20-20 rule: every 20 minutes, look at something 20 feet away for 20 seconds. Real connection happens offline too."
+  },
+  {
+    "keywords": ["weather", "seasonal", "winter blues", "SAD"],
+    "response": "Seasonal changes affect your brain chemistry. Get morning sunlight exposure, maintain regular sleep schedules, and consider a light therapy lamp for winter months. Your body is responding normally to environmental changes."
+  },
+  {
+    "keywords": ["crying", "can't stop crying", "tears", "emotional"],
+    "response": "Crying is your body's natural stress release system. Let the tears flow without judgment - they're healing, not weakness. After crying, drink water and do something gentle for yourself. Emotions are temporary visitors, not permanent residents."
+  },
+  {
+    "keywords": ["hope", "hopeless", "no hope", "giving up"],
+    "response": "Hopelessness is depression's biggest lie. When you can't see the forest for the trees, focus on just the next step forward. Hope is built through small actions, not grand gestures. You've survived 100% of your difficult days so far."
+  },
+  {
+    "keywords": ["control", "controlling", "can't control", "micromanage"],
+    "response": "The only thing you can truly control is your response to what happens. Use the circle of control: inside are your actions, thoughts, and choices. Outside are other people, weather, and outcomes. Focus your energy inside the circle."
+  },
+  {
+    "keywords": ["trust", "can't trust", "betrayal", "suspicious"],
+    "response": "Trust is rebuilt slowly, brick by brick. Start by trusting yourself to handle whatever comes your way. Trust others based on consistent actions over time, not just words. It's okay to trust partially until someone proves themselves fully."
+  },
+  {
+    "keywords": ["fear", "scared", "afraid", "frightened"],
+    "response": "Fear often signals something important is at stake. Ask yourself: is this fear protecting me from real danger, or is it just trying to keep me small? Feel the fear, name it, then take one small brave step anyway."
+  },
+  {
+    "keywords": ["shame", "ashamed", "embarrassed", "humiliated"],
+    "response": "Shame says 'I am bad' while guilt says 'I did something bad.' Shame thrives in secrecy and silence. Share your shame with someone safe - you'll often find it loses its power when exposed to compassion."
+  },
+  {
+    "keywords": ["criticism", "judged", "people talking", "what others think"],
+    "response": "Other people's opinions of you are none of your business. Those who mind don't matter, and those who matter don't mind. Focus on the feedback from people whose opinions you actually value and respect."
+  },
+  {
+    "keywords": ["patience", "impatient", "waiting", "slow progress"],
+    "response": "Patience is a skill you can develop, not just a personality trait. When impatient, take three deep breaths and ask: 'What can I learn while I wait?' Progress often happens invisibly before you see visible results."
+  },
+  {
+    "keywords": ["expectations", "disappointed", "let down", "expected more"],
+    "response": "Expectations are premeditated resentments. Hold your plans lightly and your values firmly. When disappointed, grieve what you hoped for, then ask: 'What opportunity might this disappointment be revealing?'"
+  },
+  {
+    "keywords": ["success", "failure", "achievement", "goals"],
+    "response": "Success isn't a destination; it's a practice. Redefine success as growth, not just outcomes. Every 'failure' contains information for your next attempt. You're not behind; you're exactly where you need to be."
+  },
+  {
+    "keywords": ["creativity", "creative block", "inspiration", "artistic"],
+    "response": "Creativity flourishes with constraints, not complete freedom. Set a timer for 15 minutes and create something - anything. Perfectionism kills creativity; play nurtures it. Your unique perspective is your creative superpower."
+  },
+  {
+    "keywords": ["exercise", "fitness", "workout", "physical activity"],
+    "response": "Exercise is medicine for both body and mind. Start where you are: walk for 10 minutes, do 5 push-ups, stretch for 3 minutes. Movement doesn't have to be perfect or intense to be beneficial. Something is always better than nothing."
+  },
+  {
+    "keywords": ["meditation", "mindfulness", "present moment", "awareness"],
+    "response": "Mindfulness isn't about emptying your mind; it's about noticing what's in it without judgment. Start with 3 minutes daily. When your mind wanders (and it will), gently return attention to your breath. This gentle return IS the practice."
+  },
+  {
+    "keywords": ["habit", "routine", "consistency", "discipline"],
+    "response": "Habits are built through repetition, not perfection. Start ridiculously small: one push-up, one page read, one minute of meditation. Make it so easy you can't say no. Consistency beats intensity every time."
+  },
+  {
+    "keywords": ["decision", "choices", "can't decide", "indecisive"],
+    "response": "Decision paralysis often stems from perfectionism. Most decisions are reversible. Use the 10-10-10 rule: How will I feel about this decision in 10 minutes, 10 months, and 10 years? Trust your gut after you've informed your head."
+  },
+  {
+    "keywords": ["learning", "studying", "education", "knowledge"],
+    "response": "Learning is a lifelong adventure, not a destination. Embrace beginner's mind - being bad at something is the first step to being good at it. Focus on progress over perfection, and celebrate small wins along the way."
+  },
+  {
+    "keywords": ["communication", "talking", "expressing", "conversation"],
+    "response": "Good communication is more about listening than talking. Use the WAIT principle: Why Am I Talking? Seek to understand before seeking to be understood. Your goal is connection, not being right."
+  },
+  {
+    "keywords": ["time management", "busy", "no time", "overwhelmed"],
+    "response": "You have the same 24 hours as everyone else. The issue isn't time management; it's priority management. List your tasks, then ask: 'What would happen if I didn't do this?' Focus on important, not just urgent."
+  },
+  {
+    "keywords": ["gratitude", "thankful", "appreciation", "blessed"],
+    "response": "Gratitude is a practice that rewires your brain for positivity. Write down 3 specific things you're grateful for each morning. Focus on why you're grateful, not just what. Gratitude turns what you have into enough."
+  },
+  {
+    "keywords": ["adventure", "exploration", "new experiences", "curiosity"],
+    "response": "Life begins at the end of your comfort zone. Start with micro-adventures: try a new food, take a different route home, talk to a stranger. Curiosity is courage in disguise. Your comfort zone will expand if you gently push its boundaries."
+  },
+  {
+    "keywords": ["nature", "outdoors", "environment", "natural"],
+    "response": "Nature is medicine for the soul. Even 10 minutes outside can shift your perspective. If you can't get outside, bring nature in: plants, natural light, nature sounds. You're part of the natural world, not separate from it."
+  },
+  {
+    "keywords": ["spirituality", "faith", "religion", "meaning"],
+    "response": "Spirituality is about connection - to something larger than yourself, whether that's God, universe, humanity, or nature. It's deeply personal. Find practices that fill you with peace, wonder, or gratitude."
+  },
+  {
+    "keywords": ["community", "belonging", "connection", "tribe"],
+    "response": "Humans are wired for connection. Start where you are: be the neighbor you wish you had, volunteer for causes you care about, join groups aligned with your interests. Community is built one conversation at a time."
+  },
+  {
+    "keywords": ["legacy", "impact", "contribution", "making a difference"],
+    "response": "Your legacy isn't what you achieve; it's how you make others feel and grow. Small acts of kindness ripple outward in ways you'll never know. You're already making a difference by being authentically you."
+  },
+  {
+    "keywords": ["energy", "tired", "exhausted", "drained"],
+    "response": "Energy management is more important than time management. Notice what gives you energy vs. what drains it. Protect your energy like the finite resource it is. Rest isn't earned; it's required for sustainable living."
+  },
+  {
+    "keywords": ["focus", "concentration", "attention", "distracted"],
+    "response": "Focus is a muscle that gets stronger with practice. Start with single-tasking: do one thing at a time with full attention. Remove distractions before starting important work. Your attention is your most valuable currency."
+  },
+  {
+    "keywords": ["passion", "purpose", "calling", "what I love"],
+    "response": "Passion isn't always found; it's often developed through engagement and mastery. Follow your curiosity, not just your passion. Ask: 'What problems do I enjoy solving?' Your purpose might be right in front of you."
+  },
+  {
+    "keywords": ["resilience", "bounce back", "recovery", "strength"],
+    "response": "Resilience isn't about being unbreakable; it's about knowing how to put yourself back together. Build your resilience toolkit: good friends, healthy habits, coping strategies, and self-compassion. You're stronger than you know."
+  },
+  {
+    "keywords": ["vulnerability", "opening up", "sharing feelings", "being real"],
+    "response": "Vulnerability is courage, not weakness. It's the birthplace of connection, creativity, and change. Start small: share something real with someone safe. Your authenticity gives others permission to be authentic too."
+  },
+  {
+    "keywords": ["independence", "autonomy", "self-reliance", "on my own"],
+    "response": "True independence includes knowing when to ask for help. Self-reliance doesn't mean isolation. Balance independence with interdependence - we all need each other sometimes, and that's not weakness."
+  },
+  {
+    "keywords": ["growth", "development", "improvement", "getting better"],
+    "response": "Growth happens in the spaces between your comfort zone and panic zone. Be patient with your process. You're not the same person you were a year ago, even if the changes feel invisible. Keep showing up for yourself."
+  },
+  {
+    "keywords": ["balance", "work-life balance", "equilibrium", "harmony"],
+    "response": "Balance isn't a perfect split; it's about being present wherever you are. Some seasons require more work, others more rest. Listen to what your life needs right now, not what others expect from you."
+  },
+  {
+    "keywords": ["wisdom", "learning from experience", "insight", "understanding"],
+    "response": "Wisdom comes from experience plus reflection. Ask yourself regularly: 'What did I learn today?' Your mistakes are data, not verdicts. Every experience - good or bad - adds to your wisdom bank."
+  },
+  {
+    "keywords": ["acceptance", "letting go", "surrender", "can't change"],
+    "response": "Acceptance isn't giving up; it's choosing peace over resistance to reality. You can accept what is while still working toward what could be. Some battles aren't worth fighting; some things are worth releasing."
+  },
+  {
+    "keywords": ["intuition", "gut feeling", "inner voice", "instinct"],
+    "response": "Your intuition is information, not infallible. It's worth listening to, especially about people and situations. Quiet the external noise to hear your inner voice more clearly. Trust yourself while staying open to new information."
+  },
+  {
+    "keywords": ["celebration", "success", "achievement", "milestone"],
+    "response": "Celebrate your wins, no matter how small. You worked hard to get here. Acknowledging progress motivates future progress. Don't wait for permission to feel proud of yourself. You've earned this moment."
+  },
+  {
+    "keywords": ["rest", "relaxation", "downtime", "recharge"],
+    "response": "Rest is productive, not lazy. Your brain needs downtime to process and integrate experiences. Schedule rest like any other important appointment. You can't pour from an empty cup; fill yourself first."
+  },
+  {
+    "keywords": ["comparison", "others doing better", "behind in life", "not enough"],
+    "response": "Comparison is the thief of joy. You're seeing everyone else's highlight reel while living your behind-the-scenes reality. Focus on your own growth, your own pace, your own journey. You're exactly where you need to be."
+  },
+  {
+    "keywords": ["guilt", "feeling bad", "should have", "regret"],
+    "response": "Guilt about the past serves no one. Learn from it, make amends if needed, then release it. Ask: 'What can I do differently moving forward?' Your past doesn't define you; your next choice does."
+  },
+  {
+    "keywords": ["overwhelm", "too much", "can't handle", "drowning"],
+    "response": "When overwhelmed, your brain needs structure. Make a list of everything on your mind. Sort by urgent vs. important. Do one thing at a time. Remember: you don't have to solve everything today."
+  },
+  {
+    "keywords": ["identity", "who am I", "sense of self", "lost"],
+    "response": "You are not your job, your relationships, or your circumstances. You are the consciousness experiencing all of these. Your identity evolves; that's growth, not loss. Stay curious about who you're becoming."
+  },
+  {
+    "keywords": ["courage", "bravery", "facing fears", "taking risks"],
+    "response": "Courage isn't the absence of fear; it's action in the presence of fear. Start with micro-courage: speak up in one meeting, try one new thing, have one difficult conversation. Courage builds courage."
+  },
+  {
+    "keywords": ["kindness", "compassion", "empathy", "caring"],
+    "response": "Kindness is a strength, not a weakness. It starts with how you treat yourself. You can be kind and still have boundaries. Small acts of kindness create ripple effects you may never see but always matter."
+  },
+  {
+    "keywords": ["adventure", "spontaneity", "trying new things", "exploration"],
+    "response": "Life rewards the brave and curious. Say yes to invitations that scare you a little. Try things that interest you, even if you might not be good at them. Your comfort zone is a beautiful place, but nothing grows there."
+  },
+  {
+    "keywords": ["seasons", "phases", "cycles", "transitions"],
+    "response": "Life moves in seasons, just like nature. Winter seasons of rest and reflection prepare you for spring seasons of growth and new beginnings. Honor where you are in your current season."
+  },
+  {
+    "keywords": ["simplicity", "simple living", "minimalism", "less is more"],
+    "response": "Simplicity creates space for what matters most. Start small: declutter one drawer, say no to one commitment, focus on one goal at a time. Simplicity isn't about having less; it's about having enough."
+  },
+  {
+    "keywords": ["joy", "happiness", "contentment", "peace"],
+    "response": "Joy is different from happiness. Happiness depends on circumstances; joy comes from within. Cultivate small joys daily: a warm cup of coffee, a text from a friend, a sunset. Joy is a choice you can make moment by moment."
+  },
+  {
+    "keywords": ["curiosity", "wonder", "questions", "learning"],
+    "response": "Curiosity is the antidote to boredom and judgment. Stay curious about people, ideas, and experiences. Ask better questions: 'What can I learn from this?' instead of 'Why is this happening to me?'"
+  },
+  {
+    "keywords": ["authenticity", "being real", "true to myself", "genuine"],
+    "response": "Authenticity isn't about being perfect; it's about being real. You don't owe anyone a version of yourself that exhausts you. The right people will love you for who you truly are, not who you pretend to be."
+  },
+  {
+    "keywords": ["flow", "in the zone", "momentum", "rhythm"],
+    "response": "Flow states happen when challenge meets skill level perfectly. Find activities that fully engage you. Minimize distractions, set clear goals, and allow yourself to get lost in meaningful work. Flow is where magic happens."
+  },
+  {
+    "keywords": ["mystery", "unknown", "uncertainty", "not knowing"],
+    "response": "Life's mystery is a feature, not a bug. You don't need to have it all figured out. Embrace the unknown as space for possibility. Some of life's best surprises come from paths you never planned to take."
+  },
+  {
+    "keywords": ["connection", "relationships", "love", "bonds"],
+    "response": "Connection is a human need, not a want. Quality matters more than quantity. Invest in relationships that energize you and gently distance yourself from those that drain you. You teach people how to treat you."
+  },
+  {
+    "keywords": ["progress", "moving forward", "steps", "advancement"],
+    "response": "Progress isn't always linear. Some days you move forward, some days you rest, some days you even move backward - and that's all part of the journey. Celebrate small wins and trust the process."
+  },
+  {
+    "keywords": ["healing", "recovery", "getting better", "wellness"],
+    "response": "Healing happens in layers, not all at once. Be patient with your process. Some days will be harder than others, and that doesn't mean you're not healing. You're exactly where you need to be in your journey."
+  },
+  {
+    "keywords": ["strength", "power", "capability", "resilient"],
+    "response": "Your strength isn't measured by how much you can carry, but by how gracefully you can set things down. True strength includes knowing your limits and asking for help when you need it."
+  },
+  {
+    "keywords": ["freedom", "liberation", "independence", "autonomy"],
+    "response": "True freedom comes from within. It's not the absence of constraints, but the ability to choose your response to any situation. You always have the freedom to choose your attitude and actions."
+  },
+  {
+    "keywords": ["dreams", "aspirations", "goals", "vision"],
+    "response": "Dreams give direction to your steps. They don't all have to come true to be valuable - they show you what matters to you. Take one small step toward a dream today, even if you can't see the whole staircase."
+  },
+  {
+    "keywords": ["potential", "possibilities", "capability", "what if"],
+    "response": "Your potential is like a seed - it needs the right conditions to grow, but the possibility is already within you. Don't limit yourself based on past performance. You're capable of more than you know."
+  },
+  {
+    "keywords": ["present", "now", "this moment", "here"],
+    "response": "This moment is the only one you truly have. The past is a memory, the future is imagination, but life happens now. Take a deep breath and notice something beautiful about this exact moment."
+  },
+  {
+    "keywords": ["enough", "sufficient", "adequate", "plenty"],
+    "response": "You are enough, right now, as you are. Not when you lose weight, get promoted, find love, or fix all your problems. Today. As you are. You are enough. Let that sink in slowly."
+  },
+  {
+    "keywords": ["overwhelmed by memories", "flashbacks", "past haunting"],
+    "response": "Memories can flood in unbidden. Let's anchor ourselves in this moment with simple grounding techniques: feel your feet on the floor, name 5 things you can see, and breathe slowly."
+  },
+  {
+    "keywords": ["can't sleep", "insomnia", "sleep troubles", "sleepless nights"],
+    "response": "Sleep troubles can worsen emotions. Create a wind-down ritual: dim lights 1 hour before bed, try 4-7-8 breathing (inhale 4, hold 7, exhale 8), and write tomorrow's worries on paper to clear your mind."
+  },
+  {
+    "keywords": ["feel rejected", "rejection", "not accepted", "pushed away"],
+    "response": "Rejection hurts deeply, but it's often about compatibility, not your worth. Your value doesn't decrease based on someone's inability to see it. Focus on those who appreciate you."
+  },
+  {
+    "keywords": ["stuck in life", "going nowhere", "no progress", "stagnant"],
+    "response": "Feeling stuck can be heavy. Sometimes we need to be still before we leap forward. Make one tiny change today - even changing your morning routine can shift energy and create momentum."
+  },
+  {
+    "keywords": ["anxious about future", "worried about tomorrow", "what if", "uncertain future"],
+    "response": "The unknown can be frightening because our minds fill blanks with worst-case scenarios. Focus on what you can control today. The future is built one present moment at a time."
+  },
+  {
+    "keywords": ["feel unloved", "nobody loves me", "unlovable", "no affection"],
+    "response": "Feeling unloved can be painful, but love exists in many forms. Notice small acts of care: a friend's text, a pet's comfort, or even your own self-care. Love often appears quietly."
+  },
+  {
+    "keywords": ["can't forgive myself", "self-forgiveness", "guilty about past", "shame"],
+    "response": "Self-forgiveness is the hardest but most crucial skill. Start by treating yourself like you would a good friend who made the same mistake. You were doing your best with what you knew then."
+  },
+  {
+    "keywords": ["feel empty inside", "hollow", "numb", "void"],
+    "response": "Emptiness often signals that you've been giving too much without refilling yourself. Start small: what brought you joy as a child? Reconnect with one simple pleasure today."
+  },
+  {
+    "keywords": ["responsibilities overwhelming", "too much to do", "burden", "overloaded"],
+    "response": "When responsibilities crush your spirit, it's time to prioritize ruthlessly. List everything, then ask: 'What happens if I don't do this?' You might be surprised how much is optional."
+  },
+  {
+    "keywords": ["constantly criticized", "nothing good enough", "always wrong"],
+    "response": "Constant criticism is exhausting and often says more about the critic than you. Build your inner supportive voice by acknowledging one thing you did well each day, however small."
+  },
+  {
+    "keywords": ["afraid to trust", "can't trust anyone", "trust issues", "betrayed before"],
+    "response": "When trust has been broken, it's wise to be cautious. Trust can be rebuilt gradually - start by trusting yourself to handle whatever comes, then extend trust in small increments to others."
+  },
+  {
+    "keywords": ["sad all the time", "persistent sadness", "can't be happy", "always down"],
+    "response": "Persistent sadness is like fog - it clouds everything but it's not permanent. Try the GLAD technique daily: one thing you're Grateful for, something you Learned, something you Accomplished, and one Delight."
+  },
+  {
+    "keywords": ["can't express feelings", "emotions stuck", "hard to talk", "bottled up"],
+    "response": "When emotions get stuck, they need safe expression. Try writing them out first, talking to yourself aloud, or even drawing your feelings. Expression doesn't always need words."
+  },
+  {
+    "keywords": ["family anxiety", "nervous around family", "family stress", "family triggers"],
+    "response": "Family can trigger old patterns because they knew us 'before.' Practice the 5-4-3-2-1 grounding technique before family interactions: 5 things you see, 4 you hear, 3 you touch, 2 you smell, 1 you taste."
+  },
+  {
+    "keywords": ["disconnected from myself", "lost identity", "don't know who I am"],
+    "response": "Identity confusion is common during life transitions. Try this: What are 3 things that remain true about you regardless of circumstances? Your core values are your North Star."
+  },
+  {
+    "keywords": ["hopeless about love", "will never find love", "alone forever"],
+    "response": "Love hopelessness often comes from past hurt. The most important relationship is with yourself. When you genuinely enjoy your own company, you attract healthier connections."
+  },
+  {
+    "keywords": ["stressed constantly", "always tense", "chronic stress", "never relaxed"],
+    "response": "Chronic stress keeps your body in fight-or-flight mode. Try the STOP technique throughout your day: Stop what you're doing, Take a breath, Observe your surroundings, Proceed mindfully."
+  },
+  {
+    "keywords": ["feel abandoned", "everyone leaves", "left behind", "deserted"],
+    "response": "Abandonment cuts deep because humans need connection to survive. Remember: people leave for many reasons that have nothing to do with your worth. You are not too much or too little."
+  },
+  {
+    "keywords": ["fearful of future", "scared of what's coming", "future anxiety"],
+    "response": "Future fear often multiplies because we imagine facing challenges with only today's resources. Remember: future you will have more skills, knowledge, and strength than present you."
+  },
+  {
+    "keywords": ["ashamed of myself", "deep shame", "feel dirty", "fundamentally flawed"],
+    "response": "Shame whispers lies about your core worth. It's different from guilt - shame says 'I am bad' while guilt says 'I did something bad.' You are inherently worthy, regardless of your actions."
+  },
+  {
+    "keywords": ["frustrated all the time", "everything annoys me", "short temper", "irritated"],
+    "response": "Constant frustration often signals unmet needs or values conflicts. Ask yourself: 'What am I really frustrated about?' Usually it's deeper than surface annoyances."
+  },
+  {
+    "keywords": ["lost in life", "no direction", "don't know where to go", "aimless"],
+    "response": "Being lost is not a permanent state - it's information that you're between chapters. When you don't know where to go, focus on how you want to feel. Let feelings guide direction."
+  },
+  {
+    "keywords": ["emotions overwhelming", "feelings too intense", "emotional flood", "can't handle"],
+    "response": "When emotions flood, remember: feelings are temporary visitors, not permanent residents. Try the RAIN technique: Recognize what you're feeling, Allow it to be there, Investigate with kindness, Non-attachment."
+  },
+  {
+    "keywords": ["isolated", "cut off", "nobody understands", "alone in world"],
+    "response": "Isolation feeds on itself and creates distorted thinking. Even tiny connections matter: smile at a cashier, pet an animal, or text someone 'thinking of you.' Connection is built one moment at a time."
+  },
+  {
+    "keywords": ["decision anxiety", "can't choose", "paralyzed by options", "afraid to decide"],
+    "response": "Decision paralysis often stems from perfectionism. Try the 'good enough' principle: most decisions are reversible or adjustable. Choose based on your values, not fear of making mistakes."
+  },
+  {
+    "keywords": ["career hopeless", "job despair", "work meaningless", "professional stuck"],
+    "response": "Career despair can feel all-consuming. Start with small experiments: What tasks energize you? What problems do you enjoy solving? Career change often happens in small pivots, not giant leaps."
+  },
+  {
+    "keywords": ["regret past mistakes", "should have done differently", "if only", "past haunts"],
+    "response": "Regret shows you've learned and grown - that's actually good news. The person who made those decisions was doing their best with limited information. Honor their effort and your growth."
+  },
+  {
+    "keywords": ["insecure", "not confident", "doubt myself", "low self-esteem"],
+    "response": "Insecurity is often perfectionism in disguise. Try the evidence technique: What proof do you have that you're capable? Start collecting daily evidence of your competence, however small."
+  },
+  {
+    "keywords": ["no motivation", "can't get started", "apathetic", "don't care"],
+    "response": "Motivation is overrated - it's unreliable. Build systems instead. Commit to doing something for just 2 minutes. Action creates motivation more often than motivation creates action."
+  },
+  {
+    "keywords": ["emotionally numb", "feel nothing", "dead inside", "can't feel"],
+    "response": "Numbness is your mind's way of protecting you from overwhelm. It's temporary. Start with tiny sensations: hold an ice cube, listen to one song that used to move you, or pet an animal."
+  },
+  {
+    "keywords": ["disappointed in myself", "let myself down", "failed again", "self-disappointment"],
+    "response": "Self-disappointment hurts because you care about growth. Reframe it: you're not failing, you're learning. Every 'failure' contains data for your next attempt."
+  },
+  {
+    "keywords": ["social overwhelm", "people exhausting", "drained by others", "social battery"],
+    "response": "Social overwhelm is real, especially for sensitive people. It's okay to need recovery time after social interactions. Schedule buffer time and don't apologize for your social energy limits."
+  },
+  {
+    "keywords": ["anxious alone", "scared when by myself", "solitude anxiety", "fear of being alone"],
+    "response": "Alone-time anxiety often stems from avoiding uncomfortable thoughts. Practice being alone for just 5 minutes without distractions. Gradually increase as you learn your own company is safe."
+  },
+  {
+    "keywords": ["guilt about past", "guilty conscience", "did wrong thing", "moral regret"],
+    "response": "Guilt serves a purpose - it shows you have a moral compass. Make amends if possible, learn the lesson, then practice self-compassion. Carrying guilt forever helps no one."
+  },
+  {
+    "keywords": ["fear rejection", "scared they'll leave", "abandonment fear", "not good enough"],
+    "response": "Rejection fear often creates the very thing we fear by making us act desperate or inauthentic. Focus on being genuinely yourself - the right people will stay, and the wrong ones doing you a favor by leaving."
+  },
+  {
+    "keywords": ["work overwhelmed", "job stress", "too much at work", "workplace pressure"],
+    "response": "Work overwhelm is epidemic in our culture. Practice saying 'Let me check my capacity and get back to you' instead of automatic 'yes.' Your worth isn't your productivity."
+  },
+  {
+    "keywords": ["relationship anxiety", "worried about partner", "love fears", "relationship stress"],
+    "response": "Relationship anxiety often stems from trying to control outcomes. Focus on being the partner you'd want to have rather than managing your partner's feelings or choices."
+  },
+  {
+    "keywords": ["sad about past", "nostalgic pain", "miss old times", "past better"],
+    "response": "Past-focused sadness is natural, especially during transitions. Honor what was good about the past while staying open to what's possible now. Both can coexist beautifully."
+  },
+  {
+    "keywords": ["money stress", "financial anxiety", "broke", "money worries"],
+    "response": "Financial stress affects mental health deeply because money represents security. Focus on what you can control: track spending for one week, identify one small cut, celebrate any progress."
+  },
+  {
+    "keywords": ["health hopeless", "illness despair", "body failing", "medical fears"],
+    "response": "Health challenges can feel overwhelming and isolating. Focus on what your body CAN do today, however small. Healing isn't always linear, and setbacks don't erase progress."
+  },
+  {
+    "keywords": ["exhausted", "bone tired", "no energy", "physically drained"],
+    "response": "Exhaustion is your body's way of demanding rest. In our productivity-obsessed culture, rest feels guilty but it's necessary. You can't pour from an empty cup."
+  },
+  {
+    "keywords": ["fear of failure", "scared to try", "might mess up", "failure anxiety"],
+    "response": "Failure fear keeps us small and safe but also stagnant. Redefine failure as data collection. Every attempt teaches you something valuable, regardless of the outcome."
+  },
+  {
+    "keywords": ["lonely in crowd", "surrounded but alone", "fake connections", "surface relationships"],
+    "response": "Being lonely in a crowd is common - it's about connection quality, not quantity. One genuine conversation can cure loneliness better than a dozen shallow interactions."
+  },
+  {
+    "keywords": ["unappreciated", "taken for granted", "nobody notices", "invisible efforts"],
+    "response": "Feeling unappreciated hurts because humans need recognition. Start by appreciating yourself - acknowledge your own efforts before needing others to see them."
+  },
+  {
+    "keywords": ["scared to speak up", "voice anxiety", "afraid to say something", "silent suffering"],
+    "response": "Speaking up feels risky when you've been dismissed before. Start small: practice your voice with safe people or even alone. Your perspective has value and deserves to be heard."
+  },
+  {
+    "keywords": ["missed opportunities", "should have taken chance", "regret not trying", "what if"],
+    "response": "Missed opportunities sting because they represent unlived possibilities. But every 'no' or missed chance led you to where you are now. New opportunities are always emerging."
+  },
+  {
+    "keywords": ["work emotions", "crying at job", "emotional at work", "feelings overwhelm"],
+    "response": "Emotions at work feel unprofessional but they're human. If possible, take a 5-minute break, breathe deeply, and remind yourself: having feelings doesn't make you weak or unprofessional."
+  },
+  {
+    "keywords": ["afraid to express", "scared to show feelings", "emotional safety", "vulnerability fear"],
+    "response": "Expression fear often comes from past experiences of being judged or rejected for feelings. Start with safe people or journaling. Your emotions are valid and deserve acknowledgment."
+  },
+  {
+    "keywords": ["criticism anxiety", "scared of feedback", "afraid of judgment", "perfectionism fear"],
+    "response": "Criticism anxiety can paralyze growth. Try to separate constructive feedback (about actions) from personal attacks (about character). Good feedback helps you improve specific behaviors."
+  },
+  {
+    "keywords": ["hopeless about friends", "can't make connections", "friendship despair", "social failure"],
+    "response": "Friendship formation is mysterious and can't be forced. Focus on being genuinely interested in others rather than trying to be interesting. Authentic curiosity is magnetic."
+  },
+  {
+    "keywords": ["relationship sadness", "past love hurt", "heartbreak", "romantic grief"],
+    "response": "Relationship grief is valid regardless of how it ended. Allow yourself to mourn what you hoped for, not just what you lost. Heartbreak eventually becomes wisdom."
+  },
+  {
+    "keywords": ["expectations overwhelming", "too much pressure", "can't meet standards", "impossible demands"],
+    "response": "When expectations overwhelm, ask yourself: Whose expectations are these really? Some are self-imposed, some are others', and many are assumed rather than real."
+  },
+  {
+    "keywords": ["change anxiety", "scared of different", "transitions hard", "fear unknown"],
+    "response": "Change anxiety is natural because our brains prefer predictability for safety. Focus on what stays the same during transitions - your values, strengths, and capacity to adapt."
+  },
+  {
+    "keywords": ["disappointed in others", "let down by people", "expectations unmet", "others failing"],
+    "response": "Disappointment in others often reflects the gap between our hopes and their reality. People can only give what they have. Adjusting expectations preserves relationships and sanity."
+  },
+  {
+    "keywords": ["slow progress frustration", "not fast enough", "behind schedule", "impatient growth"],
+    "response": "Progress rarely happens at the speed we want. Think of growth like a plant - most of the important work happens underground before you see visible changes."
+  },
+  {
+    "keywords": ["fear being alone", "solitude scary", "need people around", "abandonment terror"],
+    "response": "Fear of aloneness often masks fear of our own thoughts. Learning to enjoy your own company is one of life's greatest gifts. Start with 10 minutes of peaceful solitude."
+  },
+  {
+    "keywords": ["love life hopeless", "romantic despair", "will die alone", "relationship failure"],
+    "response": "Love despair can feel permanent when you're in it. But love often arrives when we're not desperately seeking it. Focus on becoming someone you'd want to date."
+  },
+  {
+    "keywords": ["family gathering anxiety", "relatives stress", "holiday dread", "family pressure"],
+    "response": "Family events can trigger old patterns and roles. Prepare by deciding who you want to be at the gathering, rather than who you've always been. You get to choose your responses."
+  },
+  {
+    "keywords": ["misunderstood sadness", "nobody gets me", "feel different", "communication gap"],
+    "response": "Being misunderstood is lonely, but it's often about finding your people rather than being fundamentally flawed. Clear, kind communication helps, but you don't need universal understanding."
+  },
+  {
+    "keywords": ["news overwhelm", "media anxiety", "world problems", "information overload"],
+    "response": "Information overwhelm is real in our connected world. Limit news consumption to specific times, choose quality sources, and balance negative news with positive or neutral content."
+  },
+  {
+    "keywords": ["guilt not helping", "should do more", "not enough contribution", "selfish shame"],
+    "response": "Helper's guilt is common among caring people. You can't save everyone, and burning yourself out helps no one. Put on your own oxygen mask first - it's not selfish, it's sustainable."
+  },
+  {
+    "keywords": ["exam anxiety", "test stress", "academic pressure", "performance fear"],
+    "response": "Exam anxiety can hijack your performance despite good preparation. Use the 4-7-8 breathing technique before tests, and remind yourself: your worth isn't determined by any single grade."
+  },
+  {
+    "keywords": ["career growth hopeless", "job advancement stuck", "professional plateau", "work stagnation"],
+    "response": "Career plateaus happen to everyone and can be opportunities for skill development or direction reassessment. Sometimes staying still helps you figure out where you really want to go."
+  },
+  {
+    "keywords": ["friends disconnected", "lost touch", "friendship fading", "social drift"],
+    "response": "Friendship drift is normal as people grow and change. Reaching out feels vulnerable but it's usually welcomed. A simple 'thinking of you' text can revive dormant connections."
+  },
+  {
+    "keywords": ["deadline stress", "time pressure", "running out of time", "urgency anxiety"],
+    "response": "Deadline pressure can motivate or paralyze. Break the task into smallest possible pieces, focus on progress not perfection, and remember: most deadlines aren't actually life-or-death."
+  },
+  {
+    "keywords": ["public speaking fear", "presentation anxiety", "stage fright", "speaking terror"],
+    "response": "Public speaking anxiety is incredibly common. Remember: the audience wants you to succeed, not fail. Prepare well, practice self-compassion, and focus on your message, not your fear."
+  },
+  {
+    "keywords": ["mistakes sadness", "error regret", "wish I hadn't", "wrong choice pain"],
+    "response": "Mistake sadness shows you've learned something. The goal isn't to never make mistakes - it's to make new ones. Each error adds to your wisdom bank."
+  },
+  {
+    "keywords": ["self-frustration", "mad at myself", "angry at own behavior", "self-irritation"],
+    "response": "Self-frustration often comes from perfectionist standards. Talk to yourself like you would a good friend facing the same challenge. Compassion motivates better than criticism."
+  },
+  {
+    "keywords": ["personal goals hopeless", "dreams unreachable", "ambitions impossible", "goal despair"],
+    "response": "Goal despair often means your dreams need breaking down into smaller steps. What's one tiny action you could take today toward any goal? Movement creates momentum."
+  },
+  {
+    "keywords": ["health test anxiety", "medical fear", "doctor visits", "results worry"],
+    "response": "Health anxiety is natural because we can't control everything about our bodies. Focus on what you can influence: sleep, nutrition, movement, and stress management."
+  },
+  {
+    "keywords": ["relationship stress", "partner problems", "love difficulties", "connection struggles"],
+    "response": "Relationship stress often improves with better communication and boundaries. Focus on expressing your needs clearly rather than hoping others will guess what you need."
+  },
+  {
+    "keywords": ["past decision guilt", "wrong choice regret", "should have decided differently", "decision shame"],
+    "response": "Decision regret is universal because we can't see all outcomes in advance. You made the best choice with the information and emotional capacity you had then."
+  },
+  {
+    "keywords": ["lonely after moving", "new place isolation", "relocation loneliness", "starting over"],
+    "response": "Moving loneliness is temporary but painful. Join one group or class based on an interest, be patient with the friendship-building process, and give yourself time to feel at home."
+  },
+  {
+    "keywords": ["task overwhelm", "too many things", "endless to-do", "responsibility flood"],
+    "response": "Task overwhelm signals the need for ruthless prioritization. Try the Eisenhower Matrix: urgent/important, important/not urgent, urgent/not important, neither. Focus energy on the first two boxes."
+  },
+  {
+    "keywords": ["money anxiety", "financial fear", "economic stress", "poverty worry"],
+    "response": "Money anxiety affects mental health because financial security feels like survival. Make a simple plan with whatever you have, celebrate small improvements, and remember: your worth isn't your wealth."
+  },
+  {
+    "keywords": ["abilities hopeless", "skill despair", "not talented", "capability doubt"],
+    "response": "Ability doubt often compares your inside struggles with others' outside successes. Everyone has different strengths and learning timelines. Focus on your own growth, not comparisons."
+  },
+  {
+    "keywords": ["social expectations stress", "others' demands", "pressure to conform", "social rules"],
+    "response": "Social expectations can suffocate authenticity. Ask yourself: What would I do if I knew nobody was watching? That answer often points toward your truth."
+  },
+  {
+    "keywords": ["work change anxiety", "job transition fear", "career shift stress", "professional unknown"],
+    "response": "Work changes feel threatening because jobs represent security and identity. Focus on transferable skills you're building and the growth opportunities in uncertainty."
+  },
+  {
+    "keywords": ["city loneliness", "urban isolation", "big city alone", "metropolitan solitude"],
+    "response": "City loneliness is paradoxical - surrounded by people but feeling alone. Start with regular spots: same coffee shop, gym, or library. Familiarity creates connection opportunities."
+  },
+  {
+    "keywords": ["lost old friends", "friendship grief", "people moved on", "social loss"],
+    "response": "Losing friends to life changes hurts deeply. Grieve the loss while staying open to new connections. Some friendships are meant for seasons, others for lifetimes."
+  },
+  {
+    "keywords": ["others expectations", "external pressure", "living for approval", "pleasing others"],
+    "response": "Living for others' expectations is exhausting because you can never control their opinions. Focus on your own values and let others' approval be a nice bonus, not a necessity."
+  },
+  {
+    "keywords": ["family conflict anxiety", "relatives fighting", "home tension", "family stress"],
+    "response": "Family conflict anxiety is hard because you can't easily distance from family. Focus on your own behavior and responses rather than trying to fix everyone else."
+  },
+  {
+    "keywords": ["change making hopeless", "can't improve", "stuck in patterns", "transformation despair"],
+    "response": "Change despair often comes from expecting too much too fast. Focus on 1% improvements. Small, consistent changes compound over time into major transformations."
+  },
+  {
+    "keywords": ["slow recovery frustrated", "healing taking long", "progress too gradual", "impatient healing"],
+    "response": "Recovery frustration is normal because healing isn't linear. Some days you'll feel worse before feeling better. Trust the process and celebrate micro-improvements."
+  },
+  {
+    "keywords": ["social gathering anxiety", "party fear", "group events stress", "social situations"],
+    "response": "Social gathering anxiety is manageable with preparation. Have an exit strategy, bring a friend if possible, and give yourself permission to leave early if needed."
+  },
+  {
+    "keywords": ["missed chances sadness", "opportunities lost", "what could have been", "regret paths"],
+    "response": "Missed opportunity sadness assumes one path was definitively better. But life isn't linear - the path you're on has led to growth and experiences the other path couldn't offer."
+  },
+  {
+    "keywords": ["family loneliness", "alone with relatives", "family disconnect", "blood relation isolation"],
+    "response": "Family loneliness is particularly painful because we expect automatic connection. Sometimes biological relationships need intentional effort to become emotional relationships."
+  },
+  {
+    "keywords": ["perfection guilt", "not perfect shame", "flawed human", "imperfection anxiety"],
+    "response": "Perfection guilt assumes you should be superhuman. Embrace your beautiful imperfection - it's what makes you relatable, loveable, and authentically human."
+  },
+  {
+    "keywords": ["personal relationships hopeless", "connection despair", "intimacy fear", "relationship failure"],
+    "response": "Relationship despair often reflects past wounds rather than future possibilities. Every relationship teaches you something about yourself and what you need in connections."
+  },
+  {
+    "keywords": ["exam deadline stress", "academic pressure", "school overwhelm", "student anxiety"],
+    "response": "Academic stress can feel all-consuming. Break study sessions into manageable chunks, use active recall techniques, and remember: grades don't define your intelligence or worth."
+  },
+  {
+    "keywords": ["making mistakes anxiety", "error fear", "afraid to mess up", "perfectionist paralysis"],
+    "response": "Mistake anxiety can paralyze action completely. Reframe mistakes as learning opportunities and remember: the only real failure is not trying at all."
+  },
+  {
+    "keywords": ["emotions disconnected", "feelings shut off", "emotional numbness", "can't access feelings"],
+    "response": "Emotional disconnection is often protection from overwhelm. Reconnection happens gradually. Start by noticing physical sensations and work up to emotional awareness."
+  },
+  {
+    "keywords": ["life progress frustrated", "growth too slow", "behind peers", "development impatience"],
+    "response": "Life progress comparison steals joy from your unique journey. Everyone develops at different rates in different areas. Trust your timing and celebrate small forward movements."
+  },
+  {
+    "keywords": ["past failures sad", "previous mistakes hurt", "failure grief", "error regret"],
+    "response": "Past failure sadness shows you care about growth. Those failures taught you resilience, wisdom, and humility that success alone couldn't provide."
+  },
+  {
+    "keywords": ["health future anxiety", "medical fear", "aging worry", "body concerns"],
+    "response": "Health anxiety often amplifies because we catastrophize about futures we can't predict. Focus on what you can control today: nutrition, movement, sleep, and stress management."
+  },
+  {
+    "keywords": ["emotions stress overwhelmed", "feeling flood", "too many emotions", "emotional chaos"],
+    "response": "When emotions flood everything, you need an emotional life jacket. Try the STOP technique: Stop what you're doing, Take a breath, Observe what you're feeling, Proceed with intention."
+  },
+  {
+    "keywords": ["surrounded lonely", "people around but alone", "social loneliness", "crowd isolation"],
+    "response": "Being lonely among people reveals the difference between physical presence and emotional connection. Quality matters more than quantity in relationships."
+  },
+  {
+    "keywords": ["not achieving guilt", "underachievement shame", "potential waste", "success guilt"],
+    "response": "Achievement guilt often comes from external definitions of success. Define success for yourself based on your values, not society's metrics or others' expectations."
+  },
+  {
+    "keywords": ["personal growth hopeless", "self-improvement despair", "development stuck", "growth plateau"],
+    "response": "Growth plateaus are normal parts of development. Sometimes you need to consolidate gains before the next leap forward. Trust that growth is happening even when invisible."
+  },
+  {
+    "keywords": ["social rejection anxiety", "group exclusion fear", "not fitting in", "acceptance worry"],
+    "response": "Social rejection anxiety often overestimates others' judgment and underestimates your own worth. Not everyone will connect with you, and that's perfectly normal and healthy."
+  },
+  {
+    "keywords": ["work life balance stress", "career family pressure", "multiple responsibilities", "juggling overwhelm"],
+    "response": "Work-life balance is really about work-life integration. Some seasons require more focus on work, others on family. Aim for harmony over perfect balance."
+  },
+  {
+    "keywords": ["loved ones loss sad", "grief", "death mourning", "bereavement"],
+    "response": "Grief has no timeline and no 'right way' to process. Honor your loved one by living fully while carrying their memory. Love doesn't end with death."
+  },
+  {
+    "keywords": ["communication difficulties frustrated", "misunderstandings", "can't express clearly", "conversation problems"],
+    "response": "Communication frustration often improves with patience and practice. Focus on being understood rather than being right. Sometimes understanding matters more than agreement."
+  },
+  {
+    "keywords": ["future challenges anxiety", "upcoming difficulties", "anticipated problems", "worry about tomorrow"],
+    "response": "Anticipating challenges can help you prepare, but anxiety about them can paralyze. Focus on building your general resilience rather than solving imaginary future problems."
+  },
+  {
+    "keywords": ["current situation hopeless", "circumstances despair", "life conditions overwhelming", "situation stuck"],
+    "response": "When current situations feel hopeless, focus on the smallest possible positive change. Sometimes shifting your perspective is the first step toward shifting your circumstances."
+  },
+  {
+    "keywords": ["trying to connect lonely", "effort not working", "reaching out failing", "connection attempts unsuccessful"],
+    "response": "Connection attempts don't always work immediately, and that's not a reflection of your worth. Keep trying with different people and approaches. The right connections will respond."
+  },
+  {
+    "keywords": ["past relationship guilt", "romantic regret", "love mistakes", "partnership shame"],
+    "response": "Relationship guilt often comes from hindsight wisdom you didn't have during the relationship. You were learning about love, which requires practice and mistakes."
+  },
+  {
+    "keywords": ["home responsibilities overwhelming", "household duties", "family obligations", "domestic stress"],
+    "response": "Home overwhelm affects everyone, especially caregivers. Delegate what you can, lower standards where safe, and remember: good enough parenting/partnering is actually good enough."
+  },
+  {
+    "keywords": ["important decisions anxiety", "big choices fear", "life decisions paralysis", "major choice stress"],
+    "response": "Important decisions feel overwhelming because we overestimate their permanence. Most decisions can be adjusted as you learn more. Choose based on your current values and available information."
+  },
+  {
+    "keywords": ["achieving goals hopeless", "dreams unreachable", "objectives impossible", "aspirations despair"],
+    "response": "Goal despair often means your dreams need better strategy, not abandonment. Break big goals into smaller milestones and focus on the process, not just the outcome."
+  },
+  {
+    "keywords": ["support lack frustrated", "no help", "doing alone", "unsupported"],
+    "response": "Lack of support is exhausting and isolating. Start by asking for specific help with specific tasks. People often want to help but don't know how."
+  },
+  {
+    "keywords": ["breakup loneliness", "relationship ended alone", "romantic loss", "partner gone"],
+    "response": "Post-breakup loneliness is intense because you're grieving both the person and the future you imagined together. Take time to rediscover who you are outside that relationship."
+  },
+  {
+    "keywords": ["new experiences anxiety", "trying new things fear", "unknown activities stress", "novelty worry"],
+    "response": "New experience anxiety is normal because unfamiliar situations feel unpredictable. Start with low-stakes new experiences to build confidence in your ability to handle novelty."
+  },
+  {
+    "keywords": ["not understood sad", "misunderstood pain", "nobody gets me", "communication failure"],
+    "response": "Being misunderstood hurts because humans are wired for connection. Sometimes the issue is finding your people rather than convincing the wrong people to understand you."
+  },
+  {
+    "keywords": ["being selfish guilt", "self-care shame", "own needs guilt", "putting self first"],
+    "response": "Selfishness guilt often comes from over-giving until you're empty. Healthy selfishness ensures you have something to give. You can't pour from an empty cup."
+  },
+  {
+    "keywords": ["daily routine overwhelmed", "everyday tasks", "regular activities stress", "normal life pressure"],
+    "response": "Daily routine overwhelm signals the need for simplification. Identify what's truly necessary versus what you think you 'should' do. Permission to do less can be revolutionary."
+  },
+  {
+    "keywords": ["public perception anxiety", "what others think", "reputation worry", "image concern"],
+    "response": "Public perception anxiety can control your choices if you let it. Remember: others think about you far less than you imagine, and their opinions reflect them more than you."
+  },
+  {
+    "keywords": ["work progress frustrated", "job advancement slow", "career development stuck", "professional growth"],
+    "response": "Work progress frustration is common in competitive environments. Focus on skill development and relationship building rather than just advancement. Growth isn't always upward."
+  },
+  {
+    "keywords": ["social life hopeless", "friendship despair", "no social connections", "socially isolated"],
+    "response": "Social despair can feel permanent when you're in it. Start with interest-based activities rather than trying to force friendships. Shared interests create natural connection opportunities."
+  },
+  {
+    "keywords": ["friends but lonely", "social but isolated", "connected but alone", "surrounded loneliness"],
+    "response": "Having friends but feeling lonely often means your connections lack depth. Try sharing something more vulnerable or authentic with one trusted person to deepen the relationship."
+  },
+  {
+    "keywords": ["work mistakes anxiety", "job errors fear", "professional failure worry", "workplace perfectionism"],
+    "response": "Work mistake anxiety can paralyze performance. Remember: every expert was once a beginner who made mistakes. Focus on learning from errors rather than avoiding them completely."
+  },
+  {
+    "keywords": ["job loss sad", "unemployment grief", "career ended", "work identity lost"],
+    "response": "Job loss grief is real because work often provides identity and security. Allow yourself to mourn while exploring what kind of work would truly fit your values and interests."
+  },
+  {
+    "keywords": ["family expectations overwhelmed", "relatives pressure", "family demands", "blood obligation"],
+    "response": "Family expectations can feel inescapable because they're tied to love and loyalty. Remember: you can love your family and still make choices that differ from their expectations."
+  },
+  {
+    "keywords": ["finding purpose hopeless", "meaning despair", "life direction lost", "significance doubt"],
+    "response": "Purpose despair often comes from thinking purpose must be grandiose. Purpose can be simple: being kind, raising children well, or making one person's day better."
+  },
+  {
+    "keywords": ["personal safety anxiety", "security worry", "danger fear", "vulnerability concern"],
+    "response": "Safety anxiety can hyperactivate your nervous system. Balance reasonable precautions with living fully. Most feared scenarios are statistically unlikely, but your caution shows self-care."
+  },
+  {
+    "keywords": ["social interaction loneliness", "people contact but alone", "surface connections", "shallow relationships"],
+    "response": "Social interactions without connection can feel lonelier than actual solitude. Focus on quality over quantity - one meaningful conversation beats ten superficial ones."
+  },
+  {
+    "keywords": ["progress lack frustrated", "no advancement", "stuck in place", "development stalled"],
+    "response": "Progress isn't always visible or linear. Sometimes you're building foundation that will support future growth. Trust that internal changes often precede external ones."
+  },
+  {
+    "keywords": ["financial stability anxiety", "money security worry", "economic fear", "financial future"],
+    "response": "Financial stability anxiety reflects deep survival fears. Focus on building emergency funds gradually and developing multiple income skills rather than worrying about distant economic scenarios."
+  },
+  {
+    "keywords": ["family conflicts sad", "relatives fighting", "home discord", "family harmony broken"],
+    "response": "Family conflict sadness is deep because family is supposed to be your safe haven. You can't control others' behavior, but you can model the peace you want to see."
+  },
+  {
+    "keywords": ["resolving issues hopeless", "problems unsolvable", "situation impossible", "solution despair"],
+    "response": "When problems feel unsolvable, break them into smaller components. Sometimes the real issue isn't the obvious problem but the underlying unmet need or value conflict."
+  },
+  {
+    "keywords": ["personal expectations overwhelmed", "self-pressure", "own standards too high", "self-imposed stress"],
+    "response": "Personal expectations can be harsher than any external pressure. Practice self-compassion by speaking to yourself like you would a beloved friend facing the same challenge."
+  }
+]
