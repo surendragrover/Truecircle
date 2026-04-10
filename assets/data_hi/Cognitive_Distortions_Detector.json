@@ -1,0 +1,45 @@
+﻿{
+    "title":  "Cognitive Distortions Detector",
+    "description":  "Identify thinking errors in stressful moments.",
+    "questions":  [
+                      {
+                          "id":  "situation",
+                          "question":  "What situation triggered the thought?",
+                          "type":  "text",
+                          "placeholder":  "Describe the event..."
+                      },
+                      {
+                          "id":  "automatic_thought",
+                          "question":  "What automatic thought came first?",
+                          "type":  "text",
+                          "placeholder":  "Write the exact thought..."
+                      },
+                      {
+                          "id":  "dominant_distortion",
+                          "question":  "Which distortion best matches this thought?",
+                          "type":  "single",
+                          "options":  [
+                                          "All-or-nothing thinking",
+                                          "Catastrophizing",
+                                          "Mind reading",
+                                          "Fortune telling",
+                                          "Overgeneralization",
+                                          "Personalization",
+                                          "Labeling",
+                                          "Emotional reasoning"
+                                      ]
+                      },
+                      {
+                          "id":  "emotion_intensity",
+                          "question":  "Emotion intensity (0-10)",
+                          "type":  "text",
+                          "placeholder":  "0 = none, 10 = extreme"
+                      },
+                      {
+                          "id":  "balanced_reframe",
+                          "question":  "What is a more balanced alternative thought?",
+                          "type":  "text",
+                          "placeholder":  "Rewrite this thought realistically..."
+                      }
+                  ]
+}

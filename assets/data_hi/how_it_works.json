@@ -1,0 +1,59 @@
+{
+  "en": {
+    "title": "How TrueCircle Works",
+    "subtitle": "Simple daily flow for emotional awareness and consistency",
+    "version": "1.1",
+    "last_updated": "2026-04-06",
+    "sections": [
+      {
+        "step": 1,
+        "icon": "favorite",
+        "title": "Start With Emotional Check-In",
+        "description": "First-time users complete Emotional Check-In before entering the dashboard."
+      },
+      {
+        "step": 2,
+        "icon": "edit_note",
+        "title": "Fill Daily Reflection Forms",
+        "description": "Use Mood Journal, trackers, and guided entries to log emotions and events."
+      },
+      {
+        "step": 3,
+        "icon": "assignment",
+        "title": "Run Screening Tests",
+        "description": "Use GAD-7 and PHQ-9 style questionnaires from the Screening Tests tile."
+      },
+      {
+        "step": 4,
+        "icon": "hub",
+        "title": "Use CBT Hub Tools",
+        "description": "Access CBT practices like thought work, coping tools, and micro-lessons."
+      },
+      {
+        "step": 5,
+        "icon": "stars",
+        "title": "Earn Rewards Coins",
+        "description": "Get coin rewards from daily activity and completed forms."
+      },
+      {
+        "step": 6,
+        "icon": "account_balance_wallet",
+        "title": "Use Wallet Benefits",
+        "description": "Redeem coins for discount offers or activate temporary free upgrade, subject to eligibility."
+      },
+      {
+        "step": 7,
+        "icon": "wifi",
+        "title": "Switch Online and Offline Mode",
+        "description": "Core journaling works offline, while billing and subscription actions require online mode."
+      },
+      {
+        "step": 8,
+        "icon": "support_agent",
+        "title": "Get Help When Needed",
+        "description": "Use WhatsApp support from Settings for assistance."
+      }
+    ],
+    "privacy_note": "Personal entries are intended to stay local and privacy-first. See Privacy Policy for full details."
+  }
+}

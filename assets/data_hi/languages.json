@@ -1,0 +1,36 @@
+﻿{
+    "languages":  [
+                      {
+                          "code":  "en",
+                          "name":  "English",
+                          "native":  "English",
+                          "flag":  "ðŸ‡ºðŸ‡¸",
+                          "rtl":  false,
+                          "tts_code":  "en-US"
+                      },
+                      {
+                          "code":  "hi",
+                          "name":  "Hindi",
+                          "native":  "à¤¹à¤¿à¤¨à¥à¤¦à¥€",
+                          "flag":  "ðŸ‡®ðŸ‡³",
+                          "rtl":  false,
+                          "tts_code":  "hi-IN"
+                      },
+                      {
+                          "code":  "es",
+                          "name":  "Spanish",
+                          "native":  "EspaÃ±ol",
+                          "flag":  "ðŸ‡ªðŸ‡¸",
+                          "rtl":  false,
+                          "tts_code":  "es-ES"
+                      },
+                      {
+                          "code":  "ar",
+                          "name":  "Arabic",
+                          "native":  "Ø§Ù„Ø¹Ø±Ø¨ÙŠØ©",
+                          "flag":  "ðŸ‡¸ðŸ‡¦",
+                          "rtl":  true,
+                          "tts_code":  "ar-SA"
+                      }
+                  ]
+}

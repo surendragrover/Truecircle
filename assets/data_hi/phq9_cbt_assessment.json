@@ -1,0 +1,52 @@
+{
+  "assessment_name": "PHQ-9 Depression Screening",
+  "assessment_code": "PHQ9_V1",
+  "time_estimate_minutes": 5,
+  "questions": [
+    {
+      "id": "phq1",
+      "question": "Over the last 2 weeks, how often have you had little interest or pleasure in doing things?",
+      "options": ["Not at all", "Several days", "More than half the days", "Nearly every day"]
+    },
+    {
+      "id": "phq2",
+      "question": "Over the last 2 weeks, how often have you felt down, depressed, or hopeless?",
+      "options": ["Not at all", "Several days", "More than half the days", "Nearly every day"]
+    },
+    {
+      "id": "phq3",
+      "question": "Over the last 2 weeks, how often have you had trouble falling or staying asleep, or sleeping too much?",
+      "options": ["Not at all", "Several days", "More than half the days", "Nearly every day"]
+    },
+    {
+      "id": "phq4",
+      "question": "Over the last 2 weeks, how often have you felt tired or had little energy?",
+      "options": ["Not at all", "Several days", "More than half the days", "Nearly every day"]
+    },
+    {
+      "id": "phq5",
+      "question": "Over the last 2 weeks, how often have you had poor appetite or overeating?",
+      "options": ["Not at all", "Several days", "More than half the days", "Nearly every day"]
+    },
+    {
+      "id": "phq6",
+      "question": "Over the last 2 weeks, how often have you felt bad about yourself, or that you are a failure, or have let yourself or your family down?",
+      "options": ["Not at all", "Several days", "More than half the days", "Nearly every day"]
+    },
+    {
+      "id": "phq7",
+      "question": "Over the last 2 weeks, how often have you had trouble concentrating on things, such as reading or watching television?",
+      "options": ["Not at all", "Several days", "More than half the days", "Nearly every day"]
+    },
+    {
+      "id": "phq8",
+      "question": "Over the last 2 weeks, how often have you been moving or speaking so slowly that other people could have noticed, or the opposite being so fidgety or restless that you have been moving a lot more than usual?",
+      "options": ["Not at all", "Several days", "More than half the days", "Nearly every day"]
+    },
+    {
+      "id": "phq9",
+      "question": "Over the last 2 weeks, how often have you had thoughts that you would be better off dead, or of hurting yourself in some way?",
+      "options": ["Not at all", "Several days", "More than half the days", "Nearly every day"]
+    }
+  ]
+}

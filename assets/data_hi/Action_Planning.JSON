@@ -1,0 +1,45 @@
+{
+  "assessment_name": "Emotional Check-In Part 3: Action Planning",
+  "assessment_code": "EMO_PART_3",
+  "time_estimate_minutes": 2,
+  "questions": [
+    {
+      "id": "ap_1",
+      "question": "Which self-care step will you take in the next 24 hours?",
+      "options": [
+        "10 minute walk",
+        "Breathing exercise",
+        "Journaling",
+        "Talk to a trusted person",
+        "Sleep routine reset"
+      ]
+    },
+    {
+      "id": "ap_2",
+      "question": "What is your backup plan if your mood goes down?",
+      "options": [
+        "Grounding technique",
+        "Music and rest",
+        "Short break from work",
+        "Call support person",
+        "Professional help reach-out"
+      ]
+    },
+    {
+      "id": "ap_3",
+      "question": "What time will you do a 5-minute check-in tomorrow?",
+      "options": [
+        "Morning",
+        "Afternoon",
+        "Evening",
+        "Before Sleep"
+      ]
+    },
+    {
+      "id": "ap_4",
+      "question": "Write one supportive line for yourself today.",
+      "type": "text",
+      "placeholder": "Example: I am making progress, I do not need to be perfect."
+    }
+  ]
+}

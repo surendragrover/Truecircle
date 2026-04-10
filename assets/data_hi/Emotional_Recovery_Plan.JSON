@@ -1,0 +1,46 @@
+{
+  "assessment_name": "Emotional Check-In Part 4: Recovery Plan",
+  "assessment_code": "EMO_PART_4",
+  "time_estimate_minutes": 2,
+  "questions": [
+    {
+      "id": "rp_1",
+      "question": "What is the first step you will take for emotional recovery today?",
+      "options": [
+        "5 minute deep breathing",
+        "10 minute mindful walk",
+        "Short journaling",
+        "Message a trusted person",
+        "Early sleep reset"
+      ]
+    },
+    {
+      "id": "rp_2",
+      "question": "If the trigger repeats, which immediate grounding method will you use?",
+      "options": [
+        "5-4-3-2-1 grounding",
+        "Cold water splash",
+        "Box breathing",
+        "Pause and reframe",
+        "Take a short timeout"
+      ]
+    },
+    {
+      "id": "rp_3",
+      "question": "Choose one realistic emotional goal for tomorrow.",
+      "options": [
+        "Less reactivity",
+        "Better boundary",
+        "Calm communication",
+        "Reduced overthinking",
+        "Self-compassion practice"
+      ]
+    },
+    {
+      "id": "rp_4",
+      "question": "Write your recovery affirmation for today.",
+      "type": "text",
+      "placeholder": "Example: I am getting better step by step."
+    }
+  ]
+}

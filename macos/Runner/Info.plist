@@ -28,5 +28,9 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs microphone access for voice interactions with Dr. Iris</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs location access to detect your country for emergency services</string>
 </dict>
 </plist>

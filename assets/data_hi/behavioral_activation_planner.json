@@ -1,0 +1,53 @@
+﻿{
+    "title":  "Behavioral Activation Planner",
+    "description":  "Plan mood-lifting actions and track completion.",
+    "questions":  [
+                      {
+                          "id":  "current_mood",
+                          "question":  "Current mood before activity (0-10)",
+                          "type":  "text",
+                          "placeholder":  "0 = very low, 10 = very good"
+                      },
+                      {
+                          "id":  "selected_activity_type",
+                          "question":  "Activity type",
+                          "type":  "single",
+                          "options":  [
+                                          "Physical movement",
+                                          "Social connection",
+                                          "Work/study task",
+                                          "Self-care",
+                                          "Relaxation",
+                                          "Meaningful responsibility"
+                                      ]
+                      },
+                      {
+                          "id":  "specific_activity",
+                          "question":  "Specific activity you will do",
+                          "type":  "text",
+                          "placeholder":  "Example: 15-minute walk"
+                      },
+                      {
+                          "id":  "planned_time",
+                          "question":  "When will you do it?",
+                          "type":  "text",
+                          "placeholder":  "Date and time"
+                      },
+                      {
+                          "id":  "completion_status",
+                          "question":  "Completion status",
+                          "type":  "single",
+                          "options":  [
+                                          "Completed",
+                                          "Partially completed",
+                                          "Not completed"
+                                      ]
+                      },
+                      {
+                          "id":  "post_mood",
+                          "question":  "Mood after activity (0-10)",
+                          "type":  "text",
+                          "placeholder":  "0 = very low, 10 = very good"
+                      }
+                  ]
+}

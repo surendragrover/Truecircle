@@ -1,0 +1,114 @@
+﻿{
+    "IN":  {
+               "name":  "India",
+               "emergency":  "112",
+               "suicide_prevention":  "+91 8690888121",
+               "helplines":  [
+                                 {
+                                     "name":  "AASRA",
+                                     "number":  "91-22-27546669"
+                                 },
+                                 {
+                                     "name":  "iCall",
+                                     "number":  "9152987821"
+                                 }
+                             ]
+           },
+    "US":  {
+               "name":  "United States",
+               "emergency":  "911",
+               "suicide_prevention":  "988",
+               "helplines":  [
+                                 {
+                                     "name":  "Crisis Text Line",
+                                     "number":  "Text HOME to 741741"
+                                 },
+                                 {
+                                     "name":  "National Suicide Prevention",
+                                     "number":  "1-800-273-8255"
+                                 }
+                             ]
+           },
+    "UK":  {
+               "name":  "United Kingdom",
+               "emergency":  "999",
+               "suicide_prevention":  "116 123",
+               "helplines":  [
+                                 {
+                                     "name":  "Samaritans",
+                                     "number":  "116 123"
+                                 },
+                                 {
+                                     "name":  "NHS Mental Health",
+                                     "number":  "111"
+                                 }
+                             ]
+           },
+    "CA":  {
+               "name":  "Canada",
+               "emergency":  "911",
+               "suicide_prevention":  "1-833-456-4566",
+               "helplines":  [
+                                 {
+                                     "name":  "Crisis Services Canada",
+                                     "number":  "1-833-456-4566"
+                                 },
+                                 {
+                                     "name":  "Text Line",
+                                     "number":  "Text HOME to 686868"
+                                 }
+                             ]
+           },
+    "AU":  {
+               "name":  "Australia",
+               "emergency":  "000",
+               "suicide_prevention":  "13 11 14",
+               "helplines":  [
+                                 {
+                                     "name":  "Lifeline",
+                                     "number":  "13 11 14"
+                                 },
+                                 {
+                                     "name":  "Beyond Blue",
+                                     "number":  "1300 22 4636"
+                                 }
+                             ]
+           },
+    "PK":  {
+               "name":  "Pakistan",
+               "emergency":  "15",
+               "suicide_prevention":  "042 35761999",
+               "helplines":  [
+                                 {
+                                     "name":  "Umang",
+                                     "number":  "042 35761999"
+                                 },
+                                 {
+                                     "name":  "Rozan",
+                                     "number":  "051 2722345"
+                                 }
+                             ]
+           },
+    "BD":  {
+               "name":  "Bangladesh",
+               "emergency":  "999",
+               "suicide_prevention":  "+880 9612-119988",
+               "helplines":  [
+                                 {
+                                     "name":  "Kaan Pete Roi",
+                                     "number":  "+880 9612-119988"
+                                 }
+                             ]
+           },
+    "DEFAULT":  {
+                    "name":  "International",
+                    "emergency":  "112",
+                    "suicide_prevention":  "Please search local emergency numbers",
+                    "helplines":  [
+                                      {
+                                          "name":  "Befrienders Worldwide",
+                                          "website":  "befrienders.org"
+                                      }
+                                  ]
+                }
+}

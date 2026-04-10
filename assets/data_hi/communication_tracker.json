@@ -1,0 +1,153 @@
+﻿{
+    "title":  "Communication Tracker",
+    "description":  "Log daily interactions to understand your emotional and relationship patterns.",
+    "sections":  {
+                     "contact_log_questions":  [
+                                                   {
+                                                       "id":  "contact_date",
+                                                       "question":  "Date of interaction",
+                                                       "type":  "text",
+                                                       "placeholder":  "YYYY-MM-DD"
+                                                   },
+                                                   {
+                                                       "id":  "contact_time",
+                                                       "question":  "Approximate time",
+                                                       "type":  "text",
+                                                       "placeholder":  "e.g. 8:30 PM"
+                                                   },
+                                                   {
+                                                       "id":  "contact_person_type",
+                                                       "question":  "Whom did you talk to?",
+                                                       "type":  "multi",
+                                                       "options":  [
+                                                                       "Family member",
+                                                                       "Friend",
+                                                                       "Relative",
+                                                                       "Neighbor",
+                                                                       "Coworker",
+                                                                       "Partner/Spouse",
+                                                                       "Teacher/Mentor",
+                                                                       "Other"
+                                                                   ]
+                                                   },
+                                                   {
+                                                       "id":  "contact_person_name",
+                                                       "question":  "Name or initials",
+                                                       "type":  "text",
+                                                       "placeholder":  "Name or initials"
+                                                   },
+                                                   {
+                                                       "id":  "contact_mode",
+                                                       "question":  "Mode of communication",
+                                                       "type":  "single",
+                                                       "options":  [
+                                                                       "In person",
+                                                                       "Phone call",
+                                                                       "WhatsApp",
+                                                                       "Text message",
+                                                                       "Video call",
+                                                                       "Social media",
+                                                                       "Other"
+                                                                   ]
+                                                   },
+                                                   {
+                                                       "id":  "conversation_topic",
+                                                       "question":  "What did you mostly talk about?",
+                                                       "type":  "multi",
+                                                       "options":  [
+                                                                       "Daily routine",
+                                                                       "Work/Study",
+                                                                       "Health",
+                                                                       "Money",
+                                                                       "Relationship concerns",
+                                                                       "Family matters",
+                                                                       "Future plans",
+                                                                       "Conflict/argument",
+                                                                       "Other"
+                                                                   ]
+                                                   },
+                                                   {
+                                                       "id":  "conversation_tone",
+                                                       "question":  "How was the overall tone?",
+                                                       "type":  "single",
+                                                       "options":  [
+                                                                       "Calm and supportive",
+                                                                       "Neutral",
+                                                                       "Slightly tense",
+                                                                       "Stressful",
+                                                                       "Heated argument"
+                                                                   ]
+                                                   },
+                                                   {
+                                                       "id":  "stressful_dialogue_present",
+                                                       "question":  "Was there any stressful or painful dialogue?",
+                                                       "type":  "single",
+                                                       "options":  [
+                                                                       "No",
+                                                                       "Yes, mild",
+                                                                       "Yes, moderate",
+                                                                       "Yes, severe"
+                                                                   ]
+                                                   },
+                                                   {
+                                                       "id":  "stress_trigger_details",
+                                                       "question":  "If stressful, what triggered it?",
+                                                       "type":  "multi",
+                                                       "options":  [
+                                                                       "Misunderstanding",
+                                                                       "Not applicable",
+                                                                       "Criticism",
+                                                                       "Comparison/judgment",
+                                                                       "Money pressure",
+                                                                       "Work pressure",
+                                                                       "Family expectation",
+                                                                       "Lack of response/being ignored",
+                                                                       "Old unresolved issue",
+                                                                       "Other"
+                                                                   ]
+                                                   },
+                                                   {
+                                                       "id":  "how_you_felt",
+                                                       "question":  "How did you feel after this interaction?",
+                                                       "type":  "multi",
+                                                       "options":  [
+                                                                       "Relaxed",
+                                                                       "Connected",
+                                                                       "Heard",
+                                                                       "Confused",
+                                                                       "Sad",
+                                                                       "Anxious",
+                                                                       "Angry",
+                                                                       "Guilty",
+                                                                       "Numb"
+                                                                   ]
+                                                   },
+                                                   {
+                                                       "id":  "impact_intensity",
+                                                       "question":  "Emotional impact intensity (0 to 10)",
+                                                       "type":  "text",
+                                                       "placeholder":  "0 = no impact, 10 = extremely intense"
+                                                   },
+                                                   {
+                                                       "id":  "next_step",
+                                                       "question":  "What is your next healthy step?",
+                                                       "type":  "multi",
+                                                       "options":  [
+                                                                       "Clarify calmly",
+                                                                       "Take a pause",
+                                                                       "Set a boundary",
+                                                                       "Apologize if needed",
+                                                                       "Ask for support",
+                                                                       "Journal before responding",
+                                                                       "No action needed right now"
+                                                                   ]
+                                                   },
+                                                   {
+                                                       "id":  "notes",
+                                                       "question":  "Anything else you want to remember?",
+                                                       "type":  "text",
+                                                       "placeholder":  "Short notes..."
+                                                   }
+                                               ]
+                 }
+}

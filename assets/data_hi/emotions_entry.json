@@ -1,0 +1,296 @@
+﻿{
+    "en":  {
+               "daily_questions":  [
+                                       {
+                                           "id":  "mood_general",
+                                           "question":  "How would you describe your overall mood today?",
+                                           "type":  "scale",
+                                           "options":  [
+                                                           "Very Low",
+                                                           "Low",
+                                                           "Neutral",
+                                                           "Good",
+                                                           "Excellent"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "mood_on_factors",
+                                           "question":  "What usually turns your mood ON?",
+                                           "type":  "multiselect",
+                                           "options":  [
+                                                           "Talking to a close person",
+                                                           "Music",
+                                                           "Prayer/Meditation",
+                                                           "Exercise/Walk",
+                                                           "Good food",
+                                                           "Nature",
+                                                           "Creative work",
+                                                           "Rest/Sleep"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "mood_off_factors",
+                                           "question":  "What usually turns your mood OFF?",
+                                           "type":  "multiselect",
+                                           "options":  [
+                                                           "Loneliness",
+                                                           "Conflict",
+                                                           "Financial stress",
+                                                           "Health worry",
+                                                           "Overthinking",
+                                                           "Lack of sleep",
+                                                           "Work pressure",
+                                                           "Negative comments"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "preferred_talk_person",
+                                           "question":  "Whom do you feel most comfortable talking to?",
+                                           "type":  "single",
+                                           "options":  [
+                                                           "Mother",
+                                                           "Father",
+                                                           "Partner",
+                                                           "Friend",
+                                                           "Sibling",
+                                                           "Counselor",
+                                                           "No one currently"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "favorite_clothes_color",
+                                           "question":  "Which color clothes make you feel best?",
+                                           "type":  "single",
+                                           "options":  [
+                                                           "White",
+                                                           "Black",
+                                                           "Blue",
+                                                           "Green",
+                                                           "Red",
+                                                           "Yellow",
+                                                           "Pink",
+                                                           "Other"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "favorite_flower",
+                                           "question":  "Which flower do you like the most?",
+                                           "type":  "single",
+                                           "options":  [
+                                                           "Rose",
+                                                           "Lotus",
+                                                           "Sunflower",
+                                                           "Jasmine",
+                                                           "Lily",
+                                                           "Marigold",
+                                                           "Tulip",
+                                                           "Other"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "favorite_crockery_color",
+                                           "question":  "Which crockery color feels pleasant to you?",
+                                           "type":  "single",
+                                           "options":  [
+                                                           "White",
+                                                           "Blue",
+                                                           "Green",
+                                                           "Cream",
+                                                           "Brown",
+                                                           "Black",
+                                                           "Mixed colors"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "hobbies",
+                                           "question":  "What are your hobbies or interests?",
+                                           "type":  "multiselect",
+                                           "options":  [
+                                                           "Reading",
+                                                           "Music",
+                                                           "Gaming",
+                                                           "Cooking",
+                                                           "Travel",
+                                                           "Art/Craft",
+                                                           "Sports",
+                                                           "Gardening",
+                                                           "Writing",
+                                                           "Photography"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "energy_level",
+                                           "question":  "What is your energy level right now?",
+                                           "type":  "scale",
+                                           "options":  [
+                                                           "Exhausted",
+                                                           "Low",
+                                                           "Moderate",
+                                                           "High",
+                                                           "Energetic"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "stress_triggers",
+                                           "question":  "What triggered stress today?",
+                                           "type":  "multiselect",
+                                           "options":  [
+                                                           "Work",
+                                                           "Relationships",
+                                                           "Health",
+                                                           "Finance",
+                                                           "Family",
+                                                           "Nothing particular"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "coping_mechanism",
+                                           "question":  "How did you cope with difficult emotions?",
+                                           "type":  "text",
+                                           "placeholder":  "Write freely..."
+                                       },
+                                       {
+                                           "id":  "mood_notes",
+                                           "question":  "Any specific event that affected your mood today?",
+                                           "type":  "text",
+                                           "placeholder":  "Write what happened and how it felt..."
+                                       },
+                                       {
+                                           "id":  "harsh_self_talk",
+                                           "question":  "What is the harshest thing you told yourself today?",
+                                           "type":  "text",
+                                           "placeholder":  "Write the exact line..."
+                                       },
+                                       {
+                                           "id":  "avoidance_pattern",
+                                           "question":  "What did you avoid today because it felt emotionally heavy?",
+                                           "type":  "multiselect",
+                                           "options":  [
+                                                           "Phone calls/messages",
+                                                           "Work/study task",
+                                                           "Family conversation",
+                                                           "Partner conversation",
+                                                           "Social interaction",
+                                                           "Decision making",
+                                                           "Self-care",
+                                                           "Nothing avoided"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "emotion_under_anger",
+                                           "question":  "When you felt angry or irritated, what was under that feeling?",
+                                           "type":  "single",
+                                           "options":  [
+                                                           "Hurt",
+                                                           "Fear",
+                                                           "Rejection",
+                                                           "Shame",
+                                                           "Helplessness",
+                                                           "Exhaustion",
+                                                           "Not sure"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "guilt_or_shame",
+                                           "question":  "How strong were guilt or shame feelings today?",
+                                           "type":  "scale",
+                                           "options":  [
+                                                           "None",
+                                                           "Mild",
+                                                           "Moderate",
+                                                           "High",
+                                                           "Very High"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "control_check",
+                                           "question":  "How much of today\u0027s stress was in your control?",
+                                           "type":  "single",
+                                           "options":  [
+                                                           "Almost none",
+                                                           "A little",
+                                                           "About half",
+                                                           "Mostly",
+                                                           "Almost all"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "boundary_pressure",
+                                           "question":  "Did you say yes to something you wanted to say no to?",
+                                           "type":  "single",
+                                           "options":  [
+                                                           "Yes",
+                                                           "No",
+                                                           "Not sure"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "loneliness_level",
+                                           "question":  "How lonely did you feel today, even around people?",
+                                           "type":  "scale",
+                                           "options":  [
+                                                           "Not at all",
+                                                           "A little",
+                                                           "Moderate",
+                                                           "High",
+                                                           "Very High"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "core_need_today",
+                                           "question":  "What did you need most emotionally today but did not receive?",
+                                           "type":  "single",
+                                           "options":  [
+                                                           "Safety",
+                                                           "Understanding",
+                                                           "Respect",
+                                                           "Rest",
+                                                           "Connection",
+                                                           "Appreciation",
+                                                           "Clarity"
+                                                       ]
+                                       },
+                                       {
+                                           "id":  "repair_action",
+                                           "question":  "What one repair action can you take in next 24 hours?",
+                                           "type":  "text",
+                                           "placeholder":  "One small realistic step..."
+                                       }
+                                   ],
+               "relationship_questions":  [
+                                              {
+                                                  "id":  "partner_quality",
+                                                  "question":  "How was your interaction with your partner today?",
+                                                  "type":  "scale",
+                                                  "options":  [
+                                                                  "Very Poor",
+                                                                  "Poor",
+                                                                  "Neutral",
+                                                                  "Good",
+                                                                  "Excellent"
+                                                              ]
+                                              }
+                                          ],
+               "sleep_questions":  [
+                                       {
+                                           "id":  "sleep_duration",
+                                           "question":  "How many hours did you sleep?",
+                                           "type":  "number",
+                                           "min":  0,
+                                           "max":  12
+                                       },
+                                       {
+                                           "id":  "sleep_quality",
+                                           "question":  "Rate your sleep quality",
+                                           "type":  "scale",
+                                           "options":  [
+                                                           "Very Poor",
+                                                           "Poor",
+                                                           "Average",
+                                                           "Good",
+                                                           "Excellent"
+                                                       ]
+                                       }
+                                   ]
+           }
+}

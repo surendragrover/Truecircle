@@ -1,0 +1,24 @@
+﻿{
+    "techniques":  [
+                       {
+                           "id":  "grounding_54321",
+                           "name":  "5-4-3-2-1 Grounding",
+                           "category":  "anxiety",
+                           "description":  "Use five senses to ground in present moment."
+                       }
+                   ],
+    "entries":  [
+                    {
+                        "entry_id":  "TC_001",
+                        "category":  "anxiety",
+                        "emotion":  "worry",
+                        "difficulty":  3,
+                        "technique":  "grounding",
+                        "prompt":  "I notice you\u0027re feeling anxious. Let\u0027s try grounding together.",
+                        "validation":  "Anxiety is your mind trying to protect you.",
+                        "reframe":  "What if this worry is just a signal, not a command?",
+                        "micro_action":  "Name 5 things you can see right now.",
+                        "closure":  "You handled this moment with awareness."
+                    }
+                ]
+}

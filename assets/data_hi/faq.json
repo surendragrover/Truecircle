@@ -1,0 +1,49 @@
+{
+  "app_name": "TrueCircle",
+  "category": "FAQ",
+  "language": "English",
+  "version": "1.1",
+  "last_updated": "2026-04-06",
+  "faqs": [
+    {
+      "question": "What is TrueCircle?",
+      "answer": "TrueCircle is an emotional wellness companion app with guided check-ins, journaling, CBT tools, and relationship insights."
+    },
+    {
+      "question": "Do I need to complete Emotional Check-In first?",
+      "answer": "Yes. On first setup, Emotional Check-In is mandatory before entering the main dashboard."
+    },
+    {
+      "question": "Can I use the app in offline mode?",
+      "answer": "Yes. Most reflection features and local content continue to work offline. Your entries stay on device."
+    },
+    {
+      "question": "What changes when I switch to online mode?",
+      "answer": "Online mode enables network-dependent actions such as subscription-related billing requests and remote support flows."
+    },
+    {
+      "question": "How do rewards and coins work?",
+      "answer": "You earn coins from daily usage and form submissions. Coins can be used for wallet actions like discount redemption and temporary upgrade offers."
+    },
+    {
+      "question": "Why is subscription action disabled sometimes?",
+      "answer": "Subscription and billing actions are available only in online mode. Enable online mode from Settings."
+    },
+    {
+      "question": "Are screening tests available?",
+      "answer": "Yes. Dashboard includes Screening Tests with GAD-7 and PHQ-9 forms."
+    },
+    {
+      "question": "Is my data private?",
+      "answer": "TrueCircle is designed for privacy-first usage with local storage flows for personal entries. Please review Privacy Policy for complete details."
+    },
+    {
+      "question": "Does TrueCircle replace professional therapy?",
+      "answer": "No. It supports self-reflection and emotional tracking, but it is not a replacement for licensed medical or mental health care."
+    },
+    {
+      "question": "How can I contact support?",
+      "answer": "Open Settings and use the WhatsApp support button. You can also reach the team at hi@truecircleai.com."
+    }
+  ]
+}

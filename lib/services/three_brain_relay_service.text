@@ -1,0 +1,369 @@
+import 'dart:math';
+
+import 'package:flutter/foundation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'onnx_three_brain_inference.dart';
+
+enum BrainPhase { idle, brainA, brain1, brain2 }
+
+class RelayChatMessage {
+  const RelayChatMessage({
+    required this.text,
+    required this.isUser,
+    required this.timestamp,
+  });
+
+  final String text;
+  final bool isUser;
+  final DateTime timestamp;
+}
+
+class RelayResponse {
+  const RelayResponse({
+    required this.replyText,
+    required this.emotionalScore,
+    required this.stabilityScore,
+    required this.patternSummary,
+  });
+
+  final String replyText;
+  final double emotionalScore;
+  final double stabilityScore;
+  final String patternSummary;
+}
+
+class _BrainAReport {
+  const _BrainAReport({
+    required this.emotion,
+    required this.intensity,
+    required this.intent,
+    required this.summary,
+  });
+
+  final String emotion;
+  final double intensity;
+  final String intent;
+  final String summary;
+}
+
+class _Brain1Pattern {
+  const _Brain1Pattern({
+    required this.emotionalScore,
+    required this.stabilityScore,
+    required this.primaryNeed,
+    required this.patternSummary,
+  });
+
+  final double emotionalScore;
+  final double stabilityScore;
+  final String primaryNeed;
+  final String patternSummary;
+}
+
+class ThreeBrainRelayService {
+  ThreeBrainRelayService._();
+
+  static final ThreeBrainRelayService instance = ThreeBrainRelayService._();
+  static const String _chatKey = 'relay_chat_history';
+  static const String _entriesKey = 'user_entries';
+
+  final ValueNotifier<BrainPhase> activePhase =
+      ValueNotifier<BrainPhase>(BrainPhase.idle);
+  bool _busy = false;
+  final OnnxThreeBrainInference _onnx = OnnxThreeBrainInference();
+  ValueNotifier<Map<String, String>> get resolvedModelPaths =>
+      _onnx.resolvedModelPaths;
+  Future<ModelCompatibilityReport> runModelCompatibilityCheck() =>
+      _onnx.runCompatibilityCheck();
+
+  Future<List<RelayChatMessage>> getHistory() async {
+    final Box<dynamic> box = Hive.box('userBox');
+    final List<dynamic> raw =
+        (box.get(_chatKey, defaultValue: <dynamic>[]) as List<dynamic>?) ??
+            <dynamic>[];
+    return raw.map((dynamic e) {
+      final Map<dynamic, dynamic> map = e as Map<dynamic, dynamic>;
+      return RelayChatMessage(
+        text: (map['text'] as String?) ?? '',
+        isUser: (map['isUser'] as bool?) ?? false,
+        timestamp: DateTime.tryParse((map['ts'] as String?) ?? '') ??
+            DateTime.fromMillisecondsSinceEpoch(0),
+      );
+    }).toList(growable: false);
+  }
+
+  Future<void> addEntry({
+    required String source,
+    required double mood,
+    String note = '',
+  }) async {
+    final Box<dynamic> box = Hive.box('userBox');
+    final List<dynamic> entries =
+        (box.get(_entriesKey, defaultValue: <dynamic>[]) as List<dynamic>?) ??
+            <dynamic>[];
+    entries.add(
+      <String, dynamic>{
+        'source': source,
+        'mood': mood,
+        'note': note,
+        'ts': DateTime.now().toIso8601String(),
+      },
+    );
+    if (entries.length > 200) {
+      entries.removeRange(0, entries.length - 200);
+    }
+    await box.put(_entriesKey, entries);
+  }
+
+  Future<RelayResponse> processTurn({
+    required String userText,
+    String? audioTranscript,
+  }) async {
+    if (_busy) {
+      throw StateError('Relay is processing another turn.');
+    }
+    _busy = true;
+    try {
+      final Box<dynamic> box = Hive.box('userBox');
+      final List<RelayChatMessage> history = await getHistory();
+      final List<dynamic> entries =
+          (box.get(_entriesKey, defaultValue: <dynamic>[]) as List<dynamic>?) ??
+              <dynamic>[];
+
+      activePhase.value = BrainPhase.brainA;
+      await Future<void>.delayed(const Duration(milliseconds: 120));
+      final _BrainAReport reportA = await _runBrainA(
+        text: userText,
+        audioTranscript: audioTranscript ?? userText,
+      );
+
+      activePhase.value = BrainPhase.brain1;
+      await Future<void>.delayed(const Duration(milliseconds: 120));
+      final _Brain1Pattern pattern = await _runBrain1(
+        report: reportA,
+        userText: userText,
+        history: history,
+        entries: entries,
+      );
+
+      activePhase.value = BrainPhase.brain2;
+      await Future<void>.delayed(const Duration(milliseconds: 120));
+      final String reply = await _runBrain2(
+        pattern: pattern,
+        userText: userText,
+      );
+
+      await _saveTurn(userText: userText, reply: reply);
+      return RelayResponse(
+        replyText: reply,
+        emotionalScore: pattern.emotionalScore,
+        stabilityScore: pattern.stabilityScore,
+        patternSummary: pattern.patternSummary,
+      );
+    } finally {
+      activePhase.value = BrainPhase.idle;
+      _busy = false;
+    }
+  }
+
+  Future<_BrainAReport> _runBrainA({
+    required String text,
+    required String audioTranscript,
+  }) async {
+    final String normalized = '$text $audioTranscript'.toLowerCase();
+    String emotion = 'neutral';
+    double intensity = 0.45;
+    String intent = 'share';
+
+    if (_containsAny(normalized, <String>[
+      'anxious',
+      'anxiety',
+      'panic',
+      'fear',
+      'scared'
+    ])) {
+      emotion = 'anxious';
+      intensity = 0.78;
+      intent = 'safety';
+    } else if (_containsAny(normalized, <String>[
+      'sad',
+      'alone',
+      'hopeless',
+      'empty',
+      'down'
+    ])) {
+      emotion = 'sad';
+      intensity = 0.74;
+      intent = 'support';
+    } else if (_containsAny(normalized, <String>[
+      'angry',
+      'frustrated',
+      'irritated',
+      'upset'
+    ])) {
+      emotion = 'angry';
+      intensity = 0.72;
+      intent = 'release';
+    } else if (_containsAny(normalized, <String>[
+      'happy',
+      'grateful',
+      'better',
+      'good'
+    ])) {
+      emotion = 'positive';
+      intensity = 0.38;
+      intent = 'reflect';
+    }
+
+    if (normalized.contains('!')) {
+      intensity = min(1.0, intensity + 0.08);
+    }
+
+    final String? onnxOutput = await _onnx.inferBrainA(
+      text: text,
+      audioTranscript: audioTranscript,
+    );
+    return _BrainAReport(
+      emotion: emotion,
+      intensity: intensity,
+      intent: intent,
+      summary:
+          'Emotion=$emotion, intensity=${intensity.toStringAsFixed(2)}, intent=$intent'
+          '${onnxOutput == null ? '' : ', onnx=$onnxOutput'}',
+    );
+  }
+
+  Future<_Brain1Pattern> _runBrain1({
+    required _BrainAReport report,
+    required String userText,
+    required List<RelayChatMessage> history,
+    required List<dynamic> entries,
+  }) async {
+    final String normalized = userText.toLowerCase();
+    final List<double> moods = <double>[];
+    for (final dynamic e in entries) {
+      if (e is Map && e['mood'] is num) {
+        moods.add((e['mood'] as num).toDouble());
+      }
+    }
+
+    final double avgMood =
+        moods.isEmpty ? 3.0 : moods.reduce((double a, double b) => a + b) / moods.length;
+    final double emotionalScore = (6 - avgMood).clamp(1.0, 5.0);
+
+    double stability = 5.0 - report.intensity * 2.2;
+    if (_containsAny(normalized, <String>[
+      'not sleeping',
+      'cant sleep',
+      'overthinking',
+      'helpless'
+    ])) {
+      stability -= 0.7;
+    }
+    if (_containsAny(normalized, <String>['better', 'improving', 'calm'])) {
+      stability += 0.5;
+    }
+    stability = stability.clamp(1.0, 5.0);
+
+    final String primaryNeed = switch (report.intent) {
+      'safety' => 'grounding_and_safety',
+      'support' => 'emotional_validation',
+      'release' => 'calm_expression',
+      _ => 'gentle_reflection',
+    };
+
+    final int userTurns = history.where((RelayChatMessage m) => m.isUser).length + 1;
+    final String summary =
+        'Turns=$userTurns, avgMood=${avgMood.toStringAsFixed(2)}, ${report.summary}, need=$primaryNeed';
+
+    final String entriesSummary = moods.isEmpty
+        ? 'no_entries'
+        : 'entries=${moods.length}, avgMood=${avgMood.toStringAsFixed(2)}';
+    final String historySummary = 'userTurns=${history.where((RelayChatMessage m) => m.isUser).length}';
+    final String? onnxPattern = await _onnx.inferBrain1(
+      brainAReport: report.summary,
+      userText: userText,
+      entriesSummary: entriesSummary,
+      historySummary: historySummary,
+    );
+
+    return _Brain1Pattern(
+      emotionalScore: emotionalScore,
+      stabilityScore: stability,
+      primaryNeed: primaryNeed,
+      patternSummary: onnxPattern == null ? summary : '$summary, onnx=$onnxPattern',
+    );
+  }
+
+  Future<String> _runBrain2({
+    required _Brain1Pattern pattern,
+    required String userText,
+  }) async {
+    final String? onnxReply = await _onnx.inferBrain2(
+      patternSummary: pattern.patternSummary,
+      userText: userText,
+    );
+    if (onnxReply != null && onnxReply.trim().isNotEmpty) {
+      return onnxReply;
+    }
+    final String empathy = switch (pattern.primaryNeed) {
+      'grounding_and_safety' =>
+        'I can feel this is heavy right now, and you are not alone in this moment.',
+      'emotional_validation' =>
+        'Thank you for sharing this honestly. Your feelings make sense.',
+      'calm_expression' =>
+        'It sounds really overwhelming. It is okay to slow this down with me.',
+      _ => 'I hear you, and I am with you gently in this.',
+    };
+
+    final String cbtStep = switch (pattern.primaryNeed) {
+      'grounding_and_safety' =>
+        'Can we do one grounding step: name 5 things you can see, then take 3 slow breaths?',
+      'emotional_validation' =>
+        'Would you like to note one thought behind this feeling, then check if there is a kinder alternative thought?',
+      'calm_expression' =>
+        'Let us release pressure softly: describe the event, your thought, and your body sensation in one line each.',
+      _ => 'Let us pick one tiny helpful action for the next 10 minutes.',
+    };
+
+    final String closing =
+        'We can go step by step. I will stay non-judgmental and supportive with you.';
+
+    return '$empathy\n\n$cbtStep\n\n$closing';
+  }
+
+  Future<void> _saveTurn({
+    required String userText,
+    required String reply,
+  }) async {
+    final Box<dynamic> box = Hive.box('userBox');
+    final List<dynamic> raw =
+        (box.get(_chatKey, defaultValue: <dynamic>[]) as List<dynamic>?) ??
+            <dynamic>[];
+    raw.add(
+      <String, dynamic>{
+        'text': userText,
+        'isUser': true,
+        'ts': DateTime.now().toIso8601String(),
+      },
+    );
+    raw.add(
+      <String, dynamic>{
+        'text': reply,
+        'isUser': false,
+        'ts': DateTime.now().toIso8601String(),
+      },
+    );
+    if (raw.length > 300) {
+      raw.removeRange(0, raw.length - 300);
+    }
+    await box.put(_chatKey, raw);
+  }
+
+  bool _containsAny(String text, List<String> keywords) {
+    for (final String k in keywords) {
+      if (text.contains(k)) return true;
+    }
+    return false;
+  }
+}

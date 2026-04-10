@@ -1,0 +1,191 @@
+{
+    "title":  "Relationship Monitoring",
+    "description":  "Capture deeper relationship signals so guidance can be personal and accurate.",
+    "sections":  {
+                     "relationship_monitoring_questions":  [
+                                                               {
+                                                                   "id":  "entry_date",
+                                                                   "question":  "Entry date",
+                                                                   "type":  "text",
+                                                                   "placeholder":  "YYYY-MM-DD"
+                                                               },
+                                                               {
+                                                                   "id":  "relationship_type",
+                                                                   "question":  "Relationship type",
+                                                                   "type":  "single",
+                                                                   "options":  [
+                                                                                   "Partner/Spouse",
+                                                                                   "Parent",
+                                                                                   "Child",
+                                                                                   "Sibling",
+                                                                                   "Friend",
+                                                                                   "Relative",
+                                                                                   "Neighbor",
+                                                                                   "Coworker",
+                                                                                   "Other"
+                                                                               ]
+                                                               },
+                                                               {
+                                                                   "id":  "person_name",
+                                                                   "question":  "Person name or initials",
+                                                                   "type":  "text",
+                                                                   "placeholder":  "Name or initials"
+                                                               },
+                                                               {
+                                                                   "id":  "today_interaction_summary",
+                                                                   "question":  "What did you discuss with this person today?",
+                                                                   "type":  "text",
+                                                                   "placeholder":  "Write important topics, tone, and key points..."
+                                                               },
+                                                               {
+                                                                   "id":  "special_event_or_trigger",
+                                                                   "question":  "Was there any notable event or trigger?",
+                                                                   "type":  "text",
+                                                                   "placeholder":  "Jaise paise, trust, time, family pressure, etc."
+                                                               },
+                                                               {
+                                                                   "id":  "interaction_frequency",
+                                                                   "question":  "How often do you interact?",
+                                                                   "type":  "single",
+                                                                   "options":  [
+                                                                                   "Daily",
+                                                                                   "Several times a week",
+                                                                                   "Weekly",
+                                                                                   "Rarely"
+                                                                               ]
+                                                               },
+                                                               {
+                                                                   "id":  "trust_level",
+                                                                   "question":  "Current trust level (0 to 10)",
+                                                                   "type":  "text",
+                                                                   "placeholder":  "0 = no trust, 10 = full trust"
+                                                               },
+                                                               {
+                                                                   "id":  "emotional_safety",
+                                                                   "question":  "Do you feel emotionally safe in this relationship?",
+                                                                   "type":  "single",
+                                                                   "options":  [
+                                                                                   "Yes",
+                                                                                   "Mostly yes",
+                                                                                   "Sometimes",
+                                                                                   "Rarely",
+                                                                                   "No"
+                                                                               ]
+                                                               },
+                                                               {
+                                                                   "id":  "strengths",
+                                                                   "question":  "Current strengths in this relationship",
+                                                                   "type":  "multi",
+                                                                   "options":  [
+                                                                                   "Respect",
+                                                                                   "Trust",
+                                                                                   "Care",
+                                                                                   "Emotional support",
+                                                                                   "Practical support",
+                                                                                   "Good communication",
+                                                                                   "Shared values",
+                                                                                   "Shared goals"
+                                                                               ]
+                                                               },
+                                                               {
+                                                                   "id":  "stress_patterns",
+                                                                   "question":  "Stress patterns noticed",
+                                                                   "type":  "multi",
+                                                                   "options":  [
+                                                                                   "Frequent misunderstandings",
+                                                                                   "Silent treatment",
+                                                                                   "Harsh tone",
+                                                                                   "Blame/criticism",
+                                                                                   "Control behavior",
+                                                                                   "Boundary violations",
+                                                                                   "Financial tension",
+                                                                                   "No major stress pattern"
+                                                                               ]
+                                                               },
+                                                               {
+                                                                   "id":  "recent_conflict",
+                                                                   "question":  "Any recent conflict?",
+                                                                   "type":  "single",
+                                                                   "options":  [
+                                                                                   "No",
+                                                                                   "Yes, minor",
+                                                                                   "Yes, moderate",
+                                                                                   "Yes, severe"
+                                                                               ]
+                                                               },
+                                                               {
+                                                                   "id":  "conflict_details",
+                                                                   "question":  "If conflict happened, what was it about?",
+                                                                   "type":  "text",
+                                                                   "placeholder":  "Short description..."
+                                                               },
+                                                               {
+                                                                   "id":  "repair_attempt",
+                                                                   "question":  "Did either side attempt repair?",
+                                                                   "type":  "single",
+                                                                   "options":  [
+                                                                                   "Yes, both",
+                                                                                   "Yes, only me",
+                                                                                   "Yes, only other person",
+                                                                                   "No",
+                                                                                   "Not needed"
+                                                                               ]
+                                                               },
+                                                               {
+                                                                   "id":  "after_interaction_feeling",
+                                                                   "question":  "How do you usually feel after interactions?",
+                                                                   "type":  "multi",
+                                                                   "options":  [
+                                                                                   "Calm",
+                                                                                   "Connected",
+                                                                                   "Hopeful",
+                                                                                   "Confused",
+                                                                                   "Drained",
+                                                                                   "Anxious",
+                                                                                   "Sad",
+                                                                                   "Angry"
+                                                                               ]
+                                                               },
+                                                               {
+                                                                   "id":  "my_reaction_pattern",
+                                                                   "question":  "How was my reaction today?",
+                                                                   "type":  "multi",
+                                                                   "options":  [
+                                                                                   "Calmly listened",
+                                                                                   "Explained respectfully",
+                                                                                   "Avoided conversation",
+                                                                                   "Raised voice",
+                                                                                   "Withdrew/silent",
+                                                                                   "Cried/panicked",
+                                                                                   "Asked for pause and reset"
+                                                                               ]
+                                                               },
+                                                               {
+                                                                   "id":  "stress_intensity",
+                                                                   "question":  "Today's relationship stress intensity (0 to 10)",
+                                                                   "type":  "text",
+                                                                   "placeholder":  "0 = no stress, 10 = extreme stress"
+                                                               },
+                                                               {
+                                                                   "id":  "next_boundary_or_step",
+                                                                   "question":  "What healthy step do you want to take next?",
+                                                                   "type":  "multi",
+                                                                   "options":  [
+                                                                                   "Clarify expectations",
+                                                                                   "Set boundary respectfully",
+                                                                                   "Schedule calm conversation",
+                                                                                   "Take emotional space",
+                                                                                   "Seek counseling/support",
+                                                                                   "Practice active listening",
+                                                                                   "No immediate step"
+                                                                               ]
+                                                               },
+                                                               {
+                                                                   "id":  "reflection_notes",
+                                                                   "question":  "Reflection notes",
+                                                                   "type":  "text",
+                                                                   "placeholder":  "Anything important to remember..."
+                                                               }
+                                                           ]
+                 }
+}

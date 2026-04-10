@@ -1,0 +1,713 @@
+﻿{
+    "relapse_prevention_plan":  {
+                                    "title":  "Comprehensive Relapse Prevention Plan",
+                                    "description":  "Warning signs recognition and evidence-based coping protocols for sustained recovery",
+                                    "version":  "1.0",
+                                    "domains":  [
+                                                    "substance_use",
+                                                    "depression",
+                                                    "anxiety",
+                                                    "eating_disorders",
+                                                    "self_harm",
+                                                    "burnout",
+                                                    "trauma",
+                                                    "behavioral_addictions"
+                                                ],
+                                    "universal_framework":  {
+                                                                "stages_of_relapse":  {
+                                                                                          "emotional_relapse":  "Poor self-care, not using coping skills",
+                                                                                          "mental_relapse":  "Internal struggle between wanting to use and wanting to stay clean",
+                                                                                          "physical_relapse":  "Actual return to addictive behavior"
+                                                                                      },
+                                                                "core_principles":  [
+                                                                                        "Relapse is a process, not an event",
+                                                                                        "Recovery is possible at any stage",
+                                                                                        "Self-efficacy is built through success",
+                                                                                        "Connection protects against relapse",
+                                                                                        "Progress, not perfection"
+                                                                                    ]
+                                                            },
+                                    "warning_signs_catalog":  {
+                                                                  "early_warning_signs":  {
+                                                                                              "description":  "Subtle changes indicating risk (Days to weeks before relapse)",
+                                                                                              "signs":  [
+                                                                                                            {
+                                                                                                                "id":  "EWS-001",
+                                                                                                                "sign":  "Isolation and withdrawal",
+                                                                                                                "indicator":  "Canceling plans, not returning calls, avoiding support groups",
+                                                                                                                "risk_level":  "high",
+                                                                                                                "urgency":  "24-48 hours"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "id":  "EWS-002",
+                                                                                                                "sign":  "Poor sleep hygiene",
+                                                                                                                "indicator":  "Less than 6 hours or more than 10 hours consistently",
+                                                                                                                "risk_level":  "high",
+                                                                                                                "urgency":  "48 hours"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "id":  "EWS-003",
+                                                                                                                "sign":  "Neglecting self-care",
+                                                                                                                "indicator":  "Skipping meals, poor hygiene, disheveled appearance",
+                                                                                                                "risk_level":  "medium",
+                                                                                                                "urgency":  "72 hours"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "id":  "EWS-004",
+                                                                                                                "sign":  "Irritability and mood swings",
+                                                                                                                "indicator":  "Snapping at loved ones, road rage, emotional volatility",
+                                                                                                                "risk_level":  "medium",
+                                                                                                                "urgency":  "48 hours"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "id":  "EWS-005",
+                                                                                                                "sign":  "Complacency",
+                                                                                                                "indicator":  "Skipping meetings, \u0027I got this\u0027 attitude, reducing support",
+                                                                                                                "risk_level":  "high",
+                                                                                                                "urgency":  "24 hours"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "id":  "EWS-006",
+                                                                                                                "sign":  "Romanticizing past use",
+                                                                                                                "indicator":  "Remembering \u0027good times\u0027, forgetting consequences",
+                                                                                                                "risk_level":  "critical",
+                                                                                                                "urgency":  "Immediate"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "id":  "EWS-007",
+                                                                                                                "sign":  "Bottling emotions",
+                                                                                                                "indicator":  "Saying \u0027I\u0027m fine\u0027 when clearly not, avoiding vulnerability",
+                                                                                                                "risk_level":  "high",
+                                                                                                                "urgency":  "24 hours"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "id":  "EWS-008",
+                                                                                                                "sign":  "Major schedule changes",
+                                                                                                                "indicator":  "Quitting job, ending relationship, moving impulsively",
+                                                                                                                "risk_level":  "high",
+                                                                                                                "urgency":  "48 hours"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "id":  "EWS-009",
+                                                                                                                "sign":  "HALT states",
+                                                                                                                "indicator":  "Hungry, Angry, Lonely, Tired - basic needs unmet",
+                                                                                                                "risk_level":  "medium",
+                                                                                                                "urgency":  "Immediate"
+                                                                                                            },
+                                                                                                            {
+                                                                                                                "id":  "EWS-010",
+                                                                                                                "sign":  "Secretive behavior",
+                                                                                                                "indicator":  "Hiding phone, lying about whereabouts, sneaking",
+                                                                                                                "risk_level":  "critical",
+                                                                                                                "urgency":  "Immediate"
+                                                                                                            }
+                                                                                                        ]
+                                                                                          },
+                                                                  "mental_relapse_indicators":  {
+                                                                                                    "description":  "Cognitive precursors to behavioral relapse",
+                                                                                                    "signs":  [
+                                                                                                                  {
+                                                                                                                      "id":  "MRI-001",
+                                                                                                                      "sign":  "Stinking thinking",
+                                                                                                                      "indicator":  "Cynicism, negativity, all-or-nothing thoughts",
+                                                                                                                      "intervention":  "Thought records, cognitive restructuring"
+                                                                                                                  },
+                                                                                                                  {
+                                                                                                                      "id":  "MRI-002",
+                                                                                                                      "sign":  "Planning relapse",
+                                                                                                                      "indicator":  "Thinking about how/where/when to use",
+                                                                                                                      "intervention":  "Play the tape through, call sponsor immediately"
+                                                                                                                  },
+                                                                                                                  {
+                                                                                                                      "id":  "MRI-003",
+                                                                                                                      "sign":  "Bargaining",
+                                                                                                                      "indicator":  "Just one time, special occasion, controlled use",
+                                                                                                                      "intervention":  "Review consequences list, emergency contact"
+                                                                                                                  },
+                                                                                                                  {
+                                                                                                                      "id":  "MRI-004",
+                                                                                                                      "sign":  "Permission-giving thoughts",
+                                                                                                                      "indicator":  "I deserve this, I\u0027ve been good, earned it",
+                                                                                                                      "intervention":  "Values clarification, reward alternatives"
+                                                                                                                  },
+                                                                                                                  {
+                                                                                                                      "id":  "MRI-005",
+                                                                                                                      "sign":  "Testing control",
+                                                                                                                      "indicator":  "Going to old places, contacting using friends",
+                                                                                                                      "intervention":  "Leave immediately, call support, avoid triggers"
+                                                                                                                  }
+                                                                                                              ]
+                                                                                                },
+                                                                  "physical_imminent_signs":  {
+                                                                                                  "description":  "Immediate precursors to relapse behavior",
+                                                                                                  "signs":  [
+                                                                                                                {
+                                                                                                                    "id":  "PIS-001",
+                                                                                                                    "sign":  "Craving intensity spike",
+                                                                                                                    "indicator":  "Physical urge, obsessive thoughts, tunnel vision",
+                                                                                                                    "action":  "Urge surfing, ice on face, intense exercise"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "id":  "PIS-002",
+                                                                                                                    "sign":  "Opportunity seeking",
+                                                                                                                    "indicator":  "Driving to dealer area, buying substances \u0027just in case\u0027",
+                                                                                                                    "action":  "Call emergency contact, go to safe place, 911 if needed"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "id":  "PIS-003",
+                                                                                                                    "sign":  "Final exit behaviors",
+                                                                                                                    "indicator":  "Giving away recovery items, writing goodbye notes",
+                                                                                                                    "action":  "Crisis intervention, hospitalization, 24/7 supervision"
+                                                                                                                }
+                                                                                                            ]
+                                                                                              }
+                                                              },
+                                    "coping_protocols":  {
+                                                             "immediate_interventions":  {
+                                                                                             "title":  "Emergency Protocol (0-60 minutes)",
+                                                                                             "steps":  [
+                                                                                                           {
+                                                                                                               "step":  1,
+                                                                                                               "action":  "STOP - Pause and breathe",
+                                                                                                               "technique":  "Box breathing: 4 counts in, hold, out, hold",
+                                                                                                               "duration":  "2 minutes"
+                                                                                                           },
+                                                                                                           {
+                                                                                                               "step":  2,
+                                                                                                               "action":  "Remove from trigger environment",
+                                                                                                               "technique":  "Leave location, turn off phone, go to safe space",
+                                                                                                               "duration":  "Immediate"
+                                                                                                           },
+                                                                                                           {
+                                                                                                               "step":  3,
+                                                                                                               "action":  "Contact support person",
+                                                                                                               "technique":  "Call sponsor, therapist, or crisis line",
+                                                                                                               "duration":  "15 minutes minimum"
+                                                                                                           },
+                                                                                                           {
+                                                                                                               "step":  4,
+                                                                                                               "action":  "Delay decision",
+                                                                                                               "technique":  "20-minute rule - wait before any action",
+                                                                                                               "duration":  "20 minutes"
+                                                                                                           },
+                                                                                                           {
+                                                                                                               "step":  5,
+                                                                                                               "action":  "Sensory grounding",
+                                                                                                               "technique":  "5-4-3-2-1 senses technique, cold water on face",
+                                                                                                               "duration":  "5 minutes"
+                                                                                                           }
+                                                                                                       ]
+                                                                                         },
+                                                             "short_term_strategies":  {
+                                                                                           "title":  "Crisis Management (1-24 hours)",
+                                                                                           "strategies":  [
+                                                                                                              {
+                                                                                                                  "id":  "STS-001",
+                                                                                                                  "name":  "Urge Surfing",
+                                                                                                                  "description":  "Riding the wave of craving without acting",
+                                                                                                                  "technique":  "Visualize urge as wave, observe peak and fall, don\u0027t fight it",
+                                                                                                                  "effectiveness":  "Cravings peak at 20-30 minutes then subside",
+                                                                                                                  "evidence_base":  "Mindfulness-Based Relapse Prevention"
+                                                                                                              },
+                                                                                                              {
+                                                                                                                  "id":  "STS-002",
+                                                                                                                  "name":  "Opposite Action",
+                                                                                                                  "description":  "Doing opposite of emotion urge",
+                                                                                                                  "technique":  "If urge to isolate â†’ call someone; if urge to use â†’ go to meeting",
+                                                                                                                  "effectiveness":  "Breaks behavioral patterns",
+                                                                                                                  "evidence_base":  "Dialectical Behavior Therapy"
+                                                                                                              },
+                                                                                                              {
+                                                                                                                  "id":  "STS-003",
+                                                                                                                  "name":  "TIPP Skills",
+                                                                                                                  "description":  "Physiological calming",
+                                                                                                                  "technique":  "Temperature (cold), Intense exercise, Paced breathing, Progressive muscle relaxation",
+                                                                                                                  "effectiveness":  "Rapid nervous system regulation",
+                                                                                                                  "evidence_base":  "DBT Crisis Survival Skills"
+                                                                                                              },
+                                                                                                              {
+                                                                                                                  "id":  "STS-004",
+                                                                                                                  "name":  "Play the Tape Through",
+                                                                                                                  "description":  "Consequence visualization",
+                                                                                                                  "technique":  "Imagine using â†’ consequences â†’ regret â†’ starting over",
+                                                                                                                  "effectiveness":  "Activates prefrontal cortex, reduces impulsivity",
+                                                                                                                  "evidence_base":  "Cognitive Behavioral Therapy"
+                                                                                                              },
+                                                                                                              {
+                                                                                                                  "id":  "STS-005",
+                                                                                                                  "name":  "Self-Soothing Kit",
+                                                                                                                  "description":  "Five senses comfort",
+                                                                                                                  "technique":  "Vision (photos), Hearing (music), Smell (lavender), Taste (tea), Touch (blanket)",
+                                                                                                                  "effectiveness":  "Reduces distress without substances",
+                                                                                                                  "evidence_base":  "Self-compassion research"
+                                                                                                              }
+                                                                                                          ]
+                                                                                       },
+                                                             "medium_term_maintenance":  {
+                                                                                             "title":  "Stabilization (1-7 days)",
+                                                                                             "protocols":  [
+                                                                                                               {
+                                                                                                                   "id":  "MTM-001",
+                                                                                                                   "name":  "Schedule Restructuring",
+                                                                                                                   "description":  "Fill risky time blocks",
+                                                                                                                   "actions":  [
+                                                                                                                                   "Add 2 support meetings this week",
+                                                                                                                                   "Schedule daily check-ins with sponsor",
+                                                                                                                                   "Plan structured activities for high-risk hours",
+                                                                                                                                   "Remove 50% of unstructured alone time"
+                                                                                                                               ],
+                                                                                                                   "accountability":  "Share schedule with 2 people"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "id":  "MTM-002",
+                                                                                                                   "name":  "Trigger Mapping",
+                                                                                                                   "description":  "Identify and neutralize triggers",
+                                                                                                                   "actions":  [
+                                                                                                                                   "List 10 specific triggers from past week",
+                                                                                                                                   "Create avoidance plan for external triggers",
+                                                                                                                                   "Develop coping cards for internal triggers",
+                                                                                                                                   "Remove paraphernalia and substances from environment"
+                                                                                                                               ],
+                                                                                                                   "accountability":  "Review with therapist"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "id":  "MTM-003",
+                                                                                                                   "name":  "Sleep Restoration",
+                                                                                                                   "description":  "Reset circadian rhythm",
+                                                                                                                   "actions":  [
+                                                                                                                                   "Fixed wake time 7 AM daily",
+                                                                                                                                   "No screens 1 hour before bed",
+                                                                                                                                   "Melatonin or sleep hygiene protocol",
+                                                                                                                                   "Sleep diary tracking"
+                                                                                                                               ],
+                                                                                                                   "accountability":  "Report sleep hours to support person"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "id":  "MTM-004",
+                                                                                                                   "name":  "Nutrition Stabilization",
+                                                                                                                   "description":  "Blood sugar regulation",
+                                                                                                                   "actions":  [
+                                                                                                                                   "Regular meal times (3 meals + 2 snacks)",
+                                                                                                                                   "Protein at each meal",
+                                                                                                                                   "Hydration tracking (8 glasses)",
+                                                                                                                                   "Limit caffeine and sugar"
+                                                                                                                               ],
+                                                                                                                   "accountability":  "Food log review"
+                                                                                                               },
+                                                                                                               {
+                                                                                                                   "id":  "MTM-005",
+                                                                                                                   "name":  "Connection Repair",
+                                                                                                                   "description":  "Rebuild support network",
+                                                                                                                   "actions":  [
+                                                                                                                                   "Apologize to harmed relationships",
+                                                                                                                                   "Attend 3 meetings in 7 days",
+                                                                                                                                   "Schedule social activities",
+                                                                                                                                   "Join recovery community event"
+                                                                                                                               ],
+                                                                                                                   "accountability":  "Meeting attendance verification"
+                                                                                                               }
+                                                                                                           ]
+                                                                                         },
+                                                             "long_term_resilience":  {
+                                                                                          "title":  "Sustained Recovery (Ongoing)",
+                                                                                          "pillars":  [
+                                                                                                          {
+                                                                                                              "id":  "LTR-001",
+                                                                                                              "name":  "Purpose and Meaning",
+                                                                                                              "description":  "Recovery beyond abstinence",
+                                                                                                              "activities":  [
+                                                                                                                                 "Volunteer work in recovery community",
+                                                                                                                                 "Mentorship of newcomers",
+                                                                                                                                 "Career or education goals",
+                                                                                                                                 "Creative pursuits and hobbies"
+                                                                                                                             ],
+                                                                                                              "review_frequency":  "Monthly"
+                                                                                                          },
+                                                                                                          {
+                                                                                                              "id":  "LTR-002",
+                                                                                                              "name":  "Physical Wellness",
+                                                                                                              "description":  "Body as foundation",
+                                                                                                              "activities":  [
+                                                                                                                                 "Regular exercise (4x/week)",
+                                                                                                                                 "Annual physical health screening",
+                                                                                                                                 "Medication compliance if prescribed",
+                                                                                                                                 "Substance-free pain management"
+                                                                                                                             ],
+                                                                                                              "review_frequency":  "Quarterly"
+                                                                                                          },
+                                                                                                          {
+                                                                                                              "id":  "LTR-003",
+                                                                                                              "name":  "Emotional Regulation",
+                                                                                                              "description":  "Healthy coping repertoire",
+                                                                                                              "activities":  [
+                                                                                                                                 "Weekly therapy or counseling",
+                                                                                                                                 "Daily meditation practice",
+                                                                                                                                 "Journaling and self-reflection",
+                                                                                                                                 "Emotion identification skills"
+                                                                                                                             ],
+                                                                                                              "review_frequency":  "Weekly"
+                                                                                                          },
+                                                                                                          {
+                                                                                                              "id":  "LTR-004",
+                                                                                                              "name":  "Cognitive Fitness",
+                                                                                                              "description":  "Mental resilience",
+                                                                                                              "activities":  [
+                                                                                                                                 "Cognitive behavioral techniques",
+                                                                                                                                 "Challenging stinking thinking",
+                                                                                                                                 "Gratitude practice",
+                                                                                                                                 "Learning and growth mindset"
+                                                                                                                             ],
+                                                                                                              "review_frequency":  "Daily"
+                                                                                                          },
+                                                                                                          {
+                                                                                                              "id":  "LTR-005",
+                                                                                                              "name":  "Social Connection",
+                                                                                                              "description":  "Community belonging",
+                                                                                                              "activities":  [
+                                                                                                                                 "Regular fellowship meetings",
+                                                                                                                                 "Sober social network",
+                                                                                                                                 "Family therapy or mediation",
+                                                                                                                                 "Healthy relationship skills"
+                                                                                                                             ],
+                                                                                                              "review_frequency":  "Weekly"
+                                                                                                          },
+                                                                                                          {
+                                                                                                              "id":  "LTR-006",
+                                                                                                              "name":  "Spiritual Foundation",
+                                                                                                              "description":  "Connection to something greater",
+                                                                                                              "activities":  [
+                                                                                                                                 "Meditation or prayer practice",
+                                                                                                                                 "Nature connection",
+                                                                                                                                 "Values clarification exercises",
+                                                                                                                                 "Service to others"
+                                                                                                                             ],
+                                                                                                              "review_frequency":  "Daily"
+                                                                                                          }
+                                                                                                      ]
+                                                                                      }
+                                                         },
+                                    "domain_specific_protocols":  {
+                                                                      "substance_use":  {
+                                                                                            "specific_triggers":  [
+                                                                                                                      "Drug paraphernalia",
+                                                                                                                      "Specific locations (bars, dealer areas)",
+                                                                                                                      "Using friends",
+                                                                                                                      "Payday or money availability",
+                                                                                                                      "Physical pain",
+                                                                                                                      "Celebrations and holidays"
+                                                                                                                  ],
+                                                                                            "medication_assisted_treatment":  {
+                                                                                                                                  "opioid":  [
+                                                                                                                                                 "Buprenorphine",
+                                                                                                                                                 "Naltrexone",
+                                                                                                                                                 "Methadone"
+                                                                                                                                             ],
+                                                                                                                                  "alcohol":  [
+                                                                                                                                                  "Disulfiram",
+                                                                                                                                                  "Naltrexone",
+                                                                                                                                                  "Acamprosate"
+                                                                                                                                              ],
+                                                                                                                                  "nicotine":  [
+                                                                                                                                                   "Varenicline",
+                                                                                                                                                   "Bupropion",
+                                                                                                                                                   "NRT"
+                                                                                                                                               ]
+                                                                                                                              },
+                                                                                            "harm_reduction":  {
+                                                                                                                   "never_use_alone":  "Have naloxone available",
+                                                                                                                   "test_supplies":  "Fentanyl test strips",
+                                                                                                                   "safe_consumption":  "Supervised sites where available"
+                                                                                                               }
+                                                                                        },
+                                                                      "depression":  {
+                                                                                         "behavioral_activation":  {
+                                                                                                                       "schedule_pleasant_activities":  "At least one per day",
+                                                                                                                       "increase_mastery_experiences":  "Build competence",
+                                                                                                                       "reduce_avoidance":  "Gradual approach to avoided activities"
+                                                                                                                   },
+                                                                                         "warning_signs":  [
+                                                                                                               "Sleeping more than 10 hours",
+                                                                                                               "Not showering for 3+ days",
+                                                                                                               "Missing work/school",
+                                                                                                               "Social withdrawal",
+                                                                                                               "Suicidal ideation"
+                                                                                                           ],
+                                                                                         "intervention":  {
+                                                                                                              "mild":  "Increase therapy frequency, behavioral activation",
+                                                                                                              "moderate":  "Psychiatrist consultation, possible medication adjustment",
+                                                                                                              "severe":  "Hospitalization, intensive outpatient program"
+                                                                                                          }
+                                                                                     },
+                                                                      "eating_disorders":  {
+                                                                                               "specific_triggers":  [
+                                                                                                                         "Scale weight changes",
+                                                                                                                         "Mirror checking",
+                                                                                                                         "Food rules violation",
+                                                                                                                         "Social eating",
+                                                                                                                         "Body comparison",
+                                                                                                                         "Clothing fit changes"
+                                                                                                                     ],
+                                                                                               "meal_support":  {
+                                                                                                                    "structure":  "3 meals + 2-3 snacks daily",
+                                                                                                                    "supervision":  "Support person for challenging meals",
+                                                                                                                    "accountability":  "Photo log or meal completion tracking"
+                                                                                                                },
+                                                                                               "medical_monitoring":  [
+                                                                                                                          "Weight and vital signs",
+                                                                                                                          "Electrolyte panels",
+                                                                                                                          "Cardiac function",
+                                                                                                                          "Bone density"
+                                                                                                                      ]
+                                                                                           },
+                                                                      "self_harm":  {
+                                                                                        "alternatives_to_try":  [
+                                                                                                                    "Ice cube holding",
+                                                                                                                    "Red marker on skin",
+                                                                                                                    "Intense exercise",
+                                                                                                                    "Cold shower",
+                                                                                                                    "Screaming into pillow",
+                                                                                                                    "Tearing paper",
+                                                                                                                    "Butterfly project (draw instead of cut)"
+                                                                                                                ],
+                                                                                        "safety_planning":  {
+                                                                                                                "remove_means":  "Dispose of sharp objects",
+                                                                                                                "environment":  "Stay in public areas",
+                                                                                                                "distraction":  "Delay 15 minutes with activity",
+                                                                                                                "support":  "Call crisis line or trusted person"
+                                                                                                            }
+                                                                                    }
+                                                                  },
+                                    "crisis_contacts":  {
+                                                            "emergency":  {
+                                                                              "911":  "Immediate danger to self or others",
+                                                                              "988":  "Suicide and Crisis Lifeline (US)",
+                                                                              "text_741741":  "Crisis Text Line"
+                                                                          },
+                                                            "professional":  {
+                                                                                 "therapist":  "Insert contact",
+                                                                                 "psychiatrist":  "Insert contact",
+                                                                                 "primary_care":  "Insert contact"
+                                                                             },
+                                                            "personal_support":  {
+                                                                                     "sponsor":  "Insert contact",
+                                                                                     "family_member_1":  "Insert contact",
+                                                                                     "family_member_2":  "Insert contact",
+                                                                                     "sober_friend_1":  "Insert contact",
+                                                                                     "sober_friend_2":  "Insert contact"
+                                                                                 },
+                                                            "community_resources":  {
+                                                                                        "local_meetings":  "AA/NA/SMART Recovery schedule",
+                                                                                        "crisis_center":  "Local walk-in center address",
+                                                                                        "hospital":  "Nearest ER with psych unit"
+                                                                                    }
+                                                        },
+                                    "maintenance_tools":  {
+                                                              "daily_check_in":  {
+                                                                                     "time":  "Morning and evening",
+                                                                                     "questions":  [
+                                                                                                       "How am I feeling emotionally (1-10)?",
+                                                                                                       "Did I sleep 7-8 hours?",
+                                                                                                       "Have I eaten regular meals?",
+                                                                                                       "Have I used any coping skills today?",
+                                                                                                       "Do I need to reach out for support?",
+                                                                                                       "What am I grateful for today?"
+                                                                                                   ]
+                                                                                 },
+                                                              "weekly_review":  {
+                                                                                    "day":  "Sunday",
+                                                                                    "activities":  [
+                                                                                                       "Review warning signs checklist",
+                                                                                                       "Assess coping skill usage",
+                                                                                                       "Plan week\u0027s meetings and activities",
+                                                                                                       "Check in with support people",
+                                                                                                       "Celebrate wins, learn from challenges"
+                                                                                                   ]
+                                                                                },
+                                                              "monthly_assessment":  {
+                                                                                         "areas":  [
+                                                                                                       "Physical health markers",
+                                                                                                       "Mental health stability",
+                                                                                                       "Relationship quality",
+                                                                                                       "Purpose and meaning",
+                                                                                                       "Financial stability",
+                                                                                                       "Recovery capital assessment"
+                                                                                                   ]
+                                                                                     }
+                                                          },
+                                    "relapse_response":  {
+                                                             "if_relapse_occurs":  {
+                                                                                       "immediate":  [
+                                                                                                         "Ensure physical safety (OD protocol if substance use)",
+                                                                                                         "Contact emergency support",
+                                                                                                         "Remove access to means",
+                                                                                                         "Do not use again (\u0027just one more\u0027)"
+                                                                                                     ],
+                                                                                       "24_hours":  [
+                                                                                                        "Contact sponsor/therapist immediately",
+                                                                                                        "Attend meeting or support group",
+                                                                                                        "Analyze trigger chain",
+                                                                                                        "Adjust safety plan"
+                                                                                                    ],
+                                                                                       "1_week":  [
+                                                                                                      "Intensive therapy sessions",
+                                                                                                      "Possible treatment program return",
+                                                                                                      "Medical evaluation",
+                                                                                                      "Rebuild routine and structure"
+                                                                                                  ],
+                                                                                       "reframe":  [
+                                                                                                       "This is a lapse, not a failure",
+                                                                                                       "Recovery is still possible",
+                                                                                                       "Learn from this experience",
+                                                                                                       "Strengthen plan based on new information"
+                                                                                                   ]
+                                                                                   },
+                                                             "protracted_withdrawal":  {
+                                                                                           "duration":  "Months to years",
+                                                                                           "symptoms":  [
+                                                                                                            "Sleep disturbance",
+                                                                                                            "Anhedonia",
+                                                                                                            "Cravings",
+                                                                                                            "Cognitive fog",
+                                                                                                            "Emotional volatility"
+                                                                                                        ],
+                                                                                           "management":  "Continued support, lifestyle medicine, patience"
+                                                                                       }
+                                                         }
+                                },
+    "title":  "Relapse Prevention Plan",
+    "description":  "Log warning signs, risk level, coping actions, and support steps to prevent relapse.",
+    "questions":  [
+                      {
+                          "id":  "plan_date",
+                          "question":  "Plan date",
+                          "type":  "text",
+                          "placeholder":  "YYYY-MM-DD"
+                      },
+                      {
+                          "id":  "recovery_domain",
+                          "question":  "Primary recovery domain",
+                          "type":  "single",
+                          "options":  [
+                                          "Substance use",
+                                          "Depression",
+                                          "Anxiety",
+                                          "Eating concerns",
+                                          "Self-harm urges",
+                                          "Burnout",
+                                          "Trauma response",
+                                          "Behavioral addiction",
+                                          "Other"
+                                      ]
+                      },
+                      {
+                          "id":  "current_stage",
+                          "question":  "Current relapse stage",
+                          "type":  "single",
+                          "options":  [
+                                          "Stable recovery",
+                                          "Early warning signs",
+                                          "Emotional relapse",
+                                          "Mental relapse",
+                                          "High-risk/imminent relapse"
+                                      ]
+                      },
+                      {
+                          "id":  "warning_signs_present",
+                          "question":  "Warning signs present right now",
+                          "type":  "multi",
+                          "options":  [
+                                          "Isolation",
+                                          "Poor sleep",
+                                          "Skipping meals/self-care",
+                                          "Irritability",
+                                          "Complacency",
+                                          "Romanticizing past behavior",
+                                          "Bottling emotions",
+                                          "Strong cravings/urges",
+                                          "Secrecy",
+                                          "Other"
+                                      ]
+                      },
+                      {
+                          "id":  "current_risk_level",
+                          "question":  "Current risk level",
+                          "type":  "single",
+                          "options":  [
+                                          "Low",
+                                          "Moderate",
+                                          "High",
+                                          "Critical"
+                                      ]
+                      },
+                      {
+                          "id":  "top_triggers",
+                          "question":  "Top triggers this week",
+                          "type":  "multi",
+                          "options":  [
+                                          "Conflict",
+                                          "Loneliness",
+                                          "Work stress",
+                                          "Financial stress",
+                                          "Health issue",
+                                          "Social event",
+                                          "Specific places/people",
+                                          "Unstructured time",
+                                          "Other"
+                                      ]
+                      },
+                      {
+                          "id":  "immediate_coping_actions",
+                          "question":  "Immediate coping actions you will use (next 60 min)",
+                          "type":  "text",
+                          "placeholder":  "Example: breathe, leave trigger area, call support..."
+                      },
+                      {
+                          "id":  "support_contacts_to_reach",
+                          "question":  "Who will you contact now?",
+                          "type":  "text",
+                          "placeholder":  "Name + contact method"
+                      },
+                      {
+                          "id":  "means_safety_step",
+                          "question":  "Any safety step needed right now?",
+                          "type":  "single",
+                          "options":  [
+                                          "No",
+                                          "Remove means/paraphernalia",
+                                          "Stay with trusted person",
+                                          "Call crisis support",
+                                          "Go to emergency care"
+                                      ]
+                      },
+                      {
+                          "id":  "next_24h_plan",
+                          "question":  "24-hour stabilization plan",
+                          "type":  "text",
+                          "placeholder":  "Meetings, routines, sleep, meals, check-ins..."
+                      },
+                      {
+                          "id":  "next_7d_plan",
+                          "question":  "7-day relapse prevention plan",
+                          "type":  "text",
+                          "placeholder":  "Concrete weekly plan..."
+                      },
+                      {
+                          "id":  "confidence_score",
+                          "question":  "Confidence to follow plan (0-10)",
+                          "type":  "text",
+                          "placeholder":  "0 = none, 10 = very high"
+                      },
+                      {
+                          "id":  "barriers_expected",
+                          "question":  "Expected barriers",
+                          "type":  "text",
+                          "placeholder":  "What might get in the way?"
+                      },
+                      {
+                          "id":  "backup_plan",
+                          "question":  "Backup plan if urges spike again",
+                          "type":  "text",
+                          "placeholder":  "If-then emergency script..."
+                      }
+                  ]
+}

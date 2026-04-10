@@ -1,0 +1,1320 @@
+﻿[
+    {
+        "id":  1,
+        "situation":  "Received feedback on my project with some constructive criticism",
+        "automatic_thought":  "I completely failed. My work is totally useless.",
+        "emotion":  "Shame, Hopelessness",
+        "emotion_intensity":  85,
+        "belief_in_thought":  90,
+        "distortion_type":  "All-or-Nothing Thinking",
+        "evidence_for":  [
+                             "There were 3 areas marked for improvement",
+                             "The feedback wasn\u0027t 100% positive"
+                         ],
+        "evidence_against":  [
+                                 "The reviewer said the overall concept was strong",
+                                 "5 sections were marked as excellent",
+                                 "My manager praised my creativity"
+                             ],
+        "balanced_thought":  "My project had both strengths and areas for improvement. The criticism doesn\u0027t erase the good work I did.",
+        "belief_in_balanced":  75,
+        "emotion_after":  "Disappointed but hopeful",
+        "emotion_intensity_after":  40
+    },
+    {
+        "id":  2,
+        "situation":  "Got a B+ on my final exam instead of an A",
+        "automatic_thought":  "If I don\u0027t get an A, I\u0027ve completely failed. I\u0027m not smart enough.",
+        "emotion":  "Disappointment, Anxiety",
+        "emotion_intensity":  80,
+        "belief_in_thought":  85,
+        "distortion_type":  "All-or-Nothing Thinking",
+        "evidence_for":  [
+                             "I aimed for an A and didn\u0027t achieve it",
+                             "I made a few mistakes on the exam"
+                         ],
+        "evidence_against":  [
+                                 "B+ is still a good grade",
+                                 "One grade doesn\u0027t define my intelligence",
+                                 "I\u0027ve gotten As on other exams"
+                             ],
+        "balanced_thought":  "A B+ demonstrates good understanding. I can learn from my mistakes without labeling myself a failure.",
+        "belief_in_balanced":  70,
+        "emotion_after":  "Acceptance",
+        "emotion_intensity_after":  35
+    },
+    {
+        "id":  3,
+        "situation":  "Burned dinner while cooking for guests",
+        "automatic_thought":  "I ruined everything. I\u0027m a terrible cook and host.",
+        "emotion":  "Embarrassment, Self-criticism",
+        "emotion_intensity":  75,
+        "belief_in_thought":  80,
+        "distortion_type":  "All-or-Nothing Thinking",
+        "evidence_for":  [
+                             "The main dish was burned",
+                             "I felt embarrassed serving takeout"
+                         ],
+        "evidence_against":  [
+                                 "The appetizers and dessert were perfect",
+                                 "Guests said they enjoyed the evening",
+                                 "I\u0027ve cooked successful meals before"
+                             ],
+        "balanced_thought":  "One burned dish doesn\u0027t ruin an entire evening. My guests cared more about the company than the food.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Mild embarrassment",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  4,
+        "situation":  "Didn\u0027t get the promotion I applied for",
+        "automatic_thought":  "I\u0027m either the best or I\u0027m nothing. I\u0027m obviously not good enough.",
+        "emotion":  "Inadequacy, Shame",
+        "emotion_intensity":  90,
+        "belief_in_thought":  85,
+        "distortion_type":  "All-or-Nothing Thinking",
+        "evidence_for":  [
+                             "I didn\u0027t get the promotion",
+                             "Someone else was chosen over me"
+                         ],
+        "evidence_against":  [
+                                 "My manager said I was a strong candidate",
+                                 "I received positive feedback",
+                                 "I can apply again in the future"
+                             ],
+        "balanced_thought":  "Not getting this promotion is disappointing, but it doesn\u0027t make me worthless. I have value regardless of my job title.",
+        "belief_in_balanced":  65,
+        "emotion_after":  "Disappointed but resilient",
+        "emotion_intensity_after":  45
+    },
+    {
+        "id":  5,
+        "situation":  "Made a mistake during my presentation at work",
+        "automatic_thought":  "I messed up one slide, so the whole presentation was a disaster.",
+        "emotion":  "Humiliation, Anxiety",
+        "emotion_intensity":  70,
+        "belief_in_thought":  75,
+        "distortion_type":  "All-or-Nothing Thinking",
+        "evidence_for":  [
+                             "I stumbled over one data point",
+                             "I felt unprofessional in that moment"
+                         ],
+        "evidence_against":  [
+                                 "The other 19 slides went smoothly",
+                                 "Colleagues complimented me afterward",
+                                 "Everyone makes minor errors"
+                             ],
+        "balanced_thought":  "One error in a 20-slide presentation doesn\u0027t make it a disaster. The overall message was delivered effectively.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Relief",
+        "emotion_intensity_after":  25
+    },
+    {
+        "id":  6,
+        "situation":  "Got rejected from a job I really wanted",
+        "automatic_thought":  "I\u0027ll never get hired anywhere. I\u0027m unemployable.",
+        "emotion":  "Hopelessness, Fear",
+        "emotion_intensity":  85,
+        "belief_in_thought":  80,
+        "distortion_type":  "Overgeneralization",
+        "evidence_for":  [
+                             "This was my third rejection this month",
+                             "The job market feels competitive"
+                         ],
+        "evidence_against":  [
+                                 "I\u0027ve been employed before and succeeded",
+                                 "Rejection is normal in job searching",
+                                 "I have skills employers value"
+                             ],
+        "balanced_thought":  "This rejection is disappointing but doesn\u0027t predict my entire future. I can learn from this and keep trying.",
+        "belief_in_balanced":  70,
+        "emotion_after":  "Determined",
+        "emotion_intensity_after":  40
+    },
+    {
+        "id":  7,
+        "situation":  "My date didn\u0027t want a second date",
+        "automatic_thought":  "No one will ever want to date me. I\u0027m destined to be alone.",
+        "emotion":  "Loneliness, Rejection",
+        "emotion_intensity":  80,
+        "belief_in_thought":  75,
+        "distortion_type":  "Overgeneralization",
+        "evidence_for":  [
+                             "This person wasn\u0027t interested",
+                             "I\u0027ve been single for a while"
+                         ],
+        "evidence_against":  [
+                                 "I\u0027ve had relationships before",
+                                 "Not every date will be a match",
+                                 "I have qualities people find attractive"
+                             ],
+        "balanced_thought":  "This one date not working out doesn\u0027t mean I\u0027ll never find someone. Compatibility is complex and takes time.",
+        "belief_in_balanced":  65,
+        "emotion_after":  "Acceptance",
+        "emotion_intensity_after":  35
+    },
+    {
+        "id":  8,
+        "situation":  "Stumbled over my words during a toast at a wedding",
+        "automatic_thought":  "I\u0027m always awkward in public speaking. I make a fool of myself every time.",
+        "emotion":  "Embarrassment, Shame",
+        "emotion_intensity":  75,
+        "belief_in_thought":  85,
+        "distortion_type":  "Overgeneralization",
+        "evidence_for":  [
+                             "I felt nervous and stumbled a bit",
+                             "It wasn\u0027t as smooth as I hoped"
+                         ],
+        "evidence_against":  [
+                                 "I\u0027ve given successful speeches before",
+                                 "People smiled and applauded afterward",
+                                 "Being nervous doesn\u0027t equal being terrible"
+                             ],
+        "balanced_thought":  "I stumbled a bit, but I\u0027ve spoken successfully before. One moment doesn\u0027t define my public speaking ability.",
+        "belief_in_balanced":  75,
+        "emotion_after":  "Mild embarrassment",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  9,
+        "situation":  "My friend was short with me on the phone",
+        "automatic_thought":  "People are always mean to me. No one really cares about me.",
+        "emotion":  "Hurt, Isolation",
+        "emotion_intensity":  70,
+        "belief_in_thought":  70,
+        "distortion_type":  "Overgeneralization",
+        "evidence_for":  [
+                             "My friend seemed distracted",
+                             "I felt dismissed in that moment"
+                         ],
+        "evidence_against":  [
+                                 "My friend has been supportive many times",
+                                 "They might have been busy or stressed",
+                                 "People have off days"
+                             ],
+        "balanced_thought":  "My friend might have been having a bad day. One brief call doesn\u0027t mean no one cares about me.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Understanding",
+        "emotion_intensity_after":  25
+    },
+    {
+        "id":  10,
+        "situation":  "Burned the cookies I was baking",
+        "automatic_thought":  "I can\u0027t cook anything right. I\u0027m useless in the kitchen.",
+        "emotion":  "Frustration, Self-criticism",
+        "emotion_intensity":  65,
+        "belief_in_thought":  75,
+        "distortion_type":  "Overgeneralization",
+        "evidence_for":  [
+                             "The cookies were burned",
+                             "This is the second baking mistake this month"
+                         ],
+        "evidence_against":  [
+                                 "I\u0027ve successfully cooked many meals before",
+                                 "Baking requires precision and everyone makes mistakes"
+                             ],
+        "balanced_thought":  "I made a mistake with the cookies, but I\u0027ve cooked successfully before. I\u0027m learning and improving.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Mild frustration",
+        "emotion_intensity_after":  20
+    },
+    {
+        "id":  11,
+        "situation":  "My boss didn\u0027t say good morning to me",
+        "automatic_thought":  "She\u0027s angry with me about something. She must think I\u0027m doing a terrible job.",
+        "emotion":  "Anxiety, Fear",
+        "emotion_intensity":  75,
+        "belief_in_thought":  70,
+        "distortion_type":  "Mind Reading",
+        "evidence_for":  [
+                             "She walked past without making eye contact",
+                             "She seemed serious this morning"
+                         ],
+        "evidence_against":  [
+                                 "She was on her phone and might not have noticed me",
+                                 "She praised my work in yesterday\u0027s meeting",
+                                 "She smiled at me later"
+                             ],
+        "balanced_thought":  "I don\u0027t know why my boss didn\u0027t say good morning. There could be many explanations unrelated to me or my work.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Neutral",
+        "emotion_intensity_after":  20
+    },
+    {
+        "id":  12,
+        "situation":  "My friends went to lunch without inviting me",
+        "automatic_thought":  "They\u0027re excluding me on purpose. They must be talking about me behind my back.",
+        "emotion":  "Hurt, Paranoia",
+        "emotion_intensity":  80,
+        "belief_in_thought":  75,
+        "distortion_type":  "Mind Reading",
+        "evidence_for":  [
+                             "I saw them together at the restaurant",
+                             "I wasn\u0027t invited"
+                         ],
+        "evidence_against":  [
+                                 "They might have planned it spontaneously",
+                                 "They\u0027ve included me in many other activities",
+                                 "They texted me later asking about my day"
+                             ],
+        "balanced_thought":  "I don\u0027t know why I wasn\u0027t invited. There are many innocent explanations, and assuming the worst isn\u0027t helpful.",
+        "belief_in_balanced":  75,
+        "emotion_after":  "Slightly disappointed",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  13,
+        "situation":  "A stranger looked at me and then looked away quickly",
+        "automatic_thought":  "They think I look weird. They\u0027re judging my appearance negatively.",
+        "emotion":  "Self-consciousness, Shame",
+        "emotion_intensity":  70,
+        "belief_in_thought":  65,
+        "distortion_type":  "Mind Reading",
+        "evidence_for":  [
+                             "They looked at me and then away",
+                             "I felt self-conscious in that moment"
+                         ],
+        "evidence_against":  [
+                                 "I don\u0027t know what they were thinking",
+                                 "People look around constantly in public",
+                                 "Strangers\u0027 opinions don\u0027t define me"
+                             ],
+        "balanced_thought":  "I can\u0027t know what a stranger is thinking. Their glance likely had nothing to do with me.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Neutral",
+        "emotion_intensity_after":  15
+    },
+    {
+        "id":  14,
+        "situation":  "My partner has been quiet this evening",
+        "automatic_thought":  "They\u0027re losing interest in me. They must be thinking about ending the relationship.",
+        "emotion":  "Anxiety, Sadness",
+        "emotion_intensity":  85,
+        "belief_in_thought":  70,
+        "distortion_type":  "Mind Reading",
+        "evidence_for":  [
+                             "They haven\u0027t talked much tonight",
+                             "They seem distant"
+                         ],
+        "evidence_against":  [
+                                 "They had a stressful day at work",
+                                 "They said I love you this morning",
+                                 "Everyone needs quiet time sometimes"
+                             ],
+        "balanced_thought":  "My partner is probably just tired or preoccupied. I should ask how they\u0027re feeling rather than assuming the worst.",
+        "belief_in_balanced":  75,
+        "emotion_after":  "Concerned but calm",
+        "emotion_intensity_after":  35
+    },
+    {
+        "id":  15,
+        "situation":  "My colleague didn\u0027t respond to my email immediately",
+        "automatic_thought":  "She thinks my ideas are stupid and not worth responding to.",
+        "emotion":  "Inadequacy, Rejection",
+        "emotion_intensity":  70,
+        "belief_in_thought":  65,
+        "distortion_type":  "Mind Reading",
+        "evidence_for":  [
+                             "It\u0027s been 3 hours and no response",
+                             "The email was important to me"
+                         ],
+        "evidence_against":  [
+                                 "She might be in meetings",
+                                 "She often takes time to respond",
+                                 "Response time doesn\u0027t indicate opinion quality"
+                             ],
+        "balanced_thought":  "There are many reasons for a delayed email response. Assuming negative judgment isn\u0027t based on facts.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Patient",
+        "emotion_intensity_after":  20
+    },
+    {
+        "id":  16,
+        "situation":  "Have a headache that won\u0027t go away",
+        "automatic_thought":  "This is definitely a brain tumor. I\u0027m going to die and leave my family alone.",
+        "emotion":  "Terror, Panic",
+        "emotion_intensity":  95,
+        "belief_in_thought":  60,
+        "distortion_type":  "Catastrophizing",
+        "evidence_for":  [
+                             "The headache has lasted all day",
+                             "It\u0027s more painful than usual"
+                         ],
+        "evidence_against":  [
+                                 "I\u0027ve had headaches before that went away",
+                                 "Most headaches are benign",
+                                 "I can see a doctor if concerned"
+                             ],
+        "balanced_thought":  "While this headache is uncomfortable, it\u0027s most likely stress-related. I can monitor it and see a doctor if it persists.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Concerned but calm",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  17,
+        "situation":  "Running late for an important meeting",
+        "automatic_thought":  "I\u0027m going to get fired. This is a disaster. My career is over.",
+        "emotion":  "Panic, Terror",
+        "emotion_intensity":  90,
+        "belief_in_thought":  70,
+        "distortion_type":  "Catastrophizing",
+        "evidence_for":  [
+                             "Being late is unprofessional",
+                             "This is an important meeting"
+                         ],
+        "evidence_against":  [
+                                 "Everyone is occasionally late",
+                                 "Being late once doesn\u0027t result in firing",
+                                 "I have a good track record"
+                             ],
+        "balanced_thought":  "Being late is unfortunate but not career-ending. I can apologize and make sure it doesn\u0027t become a pattern.",
+        "belief_in_balanced":  90,
+        "emotion_after":  "Anxious but functional",
+        "emotion_intensity_after":  40
+    },
+    {
+        "id":  18,
+        "situation":  "Economy is showing signs of recession",
+        "automatic_thought":  "I\u0027m definitely going to lose my job and become homeless. I\u0027ll never recover financially.",
+        "emotion":  "Terror, Hopelessness",
+        "emotion_intensity":  85,
+        "belief_in_thought":  65,
+        "distortion_type":  "Catastrophizing",
+        "evidence_for":  [
+                             "The economy is uncertain",
+                             "Some companies are laying off workers"
+                         ],
+        "evidence_against":  [
+                                 "Not all recessions affect all industries equally",
+                                 "I have emergency savings",
+                                 "I have marketable skills"
+                             ],
+        "balanced_thought":  "While economic uncertainty is real, catastrophizing doesn\u0027t help. I can focus on what I can control.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Cautious but prepared",
+        "emotion_intensity_after":  35
+    },
+    {
+        "id":  19,
+        "situation":  "Feeling anxious about an upcoming flight",
+        "automatic_thought":  "The plane is going to crash. I\u0027m going to die. I shouldn\u0027t get on that plane.",
+        "emotion":  "Terror, Panic",
+        "emotion_intensity":  95,
+        "belief_in_thought":  50,
+        "distortion_type":  "Catastrophizing",
+        "evidence_for":  [
+                             "Plane crashes do happen occasionally",
+                             "I feel very anxious about flying"
+                         ],
+        "evidence_against":  [
+                                 "Flying is statistically the safest mode of travel",
+                                 "Millions of flights land safely every day",
+                                 "My anxiety is a feeling, not a prediction"
+                             ],
+        "balanced_thought":  "My anxiety makes me feel like something bad will happen, but statistics show flying is very safe. My feelings aren\u0027t facts.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Nervous but manageable",
+        "emotion_intensity_after":  40
+    },
+    {
+        "id":  20,
+        "situation":  "My child has a fever and cough",
+        "automatic_thought":  "This is going to turn into something serious. My child might die and it will be all my fault.",
+        "emotion":  "Terror, Guilt",
+        "emotion_intensity":  90,
+        "belief_in_thought":  55,
+        "distortion_type":  "Catastrophizing",
+        "evidence_for":  [
+                             "My child is sick and uncomfortable",
+                             "Illnesses can sometimes become serious"
+                         ],
+        "evidence_against":  [
+                                 "Children get sick frequently and usually recover quickly",
+                                 "Most childhood illnesses are mild",
+                                 "I have access to medical care"
+                             ],
+        "balanced_thought":  "My child has a common illness. While it\u0027s worrying, most childhood illnesses resolve with proper care and monitoring.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Concerned but capable",
+        "emotion_intensity_after":  35
+    },
+    {
+        "id":  21,
+        "situation":  "Feeling overwhelmed with work and family responsibilities",
+        "automatic_thought":  "I should be able to handle all of this without getting stressed. What\u0027s wrong with me?",
+        "emotion":  "Shame, Inadequacy",
+        "emotion_intensity":  80,
+        "belief_in_thought":  85,
+        "distortion_type":  "Should Statements",
+        "evidence_for":  [
+                             "Other people seem to manage similar responsibilities",
+                             "I expect myself to be capable"
+                         ],
+        "evidence_against":  [
+                                 "Everyone has limits and gets stressed sometimes",
+                                 "Stress is a normal human response",
+                                 "Perfection is impossible"
+                             ],
+        "balanced_thought":  "I\u0027m human, and stress is a normal response to heavy demands. I can be kind to myself while managing my responsibilities.",
+        "belief_in_balanced":  75,
+        "emotion_after":  "Self-compassion",
+        "emotion_intensity_after":  35
+    },
+    {
+        "id":  22,
+        "situation":  "Made a decision that didn\u0027t work out as planned",
+        "automatic_thought":  "I should have known better. I\u0027m so stupid for not seeing this coming.",
+        "emotion":  "Self-criticism, Regret",
+        "emotion_intensity":  85,
+        "belief_in_thought":  80,
+        "distortion_type":  "Should Statements",
+        "evidence_for":  [
+                             "The outcome was negative",
+                             "In hindsight, I can see warning signs"
+                         ],
+        "evidence_against":  [
+                                 "I made the best decision I could with the information I had",
+                                 "Hindsight is always clearer",
+                                 "Everyone makes decisions that don\u0027t work out"
+                             ],
+        "balanced_thought":  "I made the best choice I could with what I knew then. I can learn from this without harsh self-judgment.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Acceptance",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  23,
+        "situation":  "Comparing my career progress to peers",
+        "automatic_thought":  "I should be further along in my career by now. I\u0027m falling behind everyone else.",
+        "emotion":  "Inadequacy, Envy",
+        "emotion_intensity":  75,
+        "belief_in_thought":  70,
+        "distortion_type":  "Should Statements",
+        "evidence_for":  [
+                             "Some peers have higher titles or salaries",
+                             "I had expected to achieve more by this age"
+                         ],
+        "evidence_against":  [
+                                 "Everyone\u0027s timeline is different",
+                                 "Life isn\u0027t a race with a single finish line",
+                                 "I\u0027m exactly where I need to be for my journey"
+                             ],
+        "balanced_thought":  "There\u0027s no \u0027right\u0027 timeline for success. I\u0027m on my own path with my own unique circumstances and achievements.",
+        "belief_in_balanced":  70,
+        "emotion_after":  "Contentment",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  24,
+        "situation":  "My partner didn\u0027t anticipate my needs",
+        "automatic_thought":  "They should know what I need without me having to tell them. If they loved me, they\u0027d just know.",
+        "emotion":  "Disappointment, Resentment",
+        "emotion_intensity":  70,
+        "belief_in_thought":  65,
+        "distortion_type":  "Should Statements",
+        "evidence_for":  [
+                             "I feel like my partner should understand me",
+                             "It would feel more romantic if they just knew"
+                         ],
+        "evidence_against":  [
+                                 "No one is a mind reader",
+                                 "Clear communication leads to better relationships",
+                                 "Different people show love differently"
+                             ],
+        "balanced_thought":  "People aren\u0027t mind readers. Clear communication helps my partner understand me better and strengthens our relationship.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Understanding",
+        "emotion_intensity_after":  25
+    },
+    {
+        "id":  25,
+        "situation":  "Made a mistake at work",
+        "automatic_thought":  "I should never make mistakes. Perfection is the minimum standard.",
+        "emotion":  "Shame, Anxiety",
+        "emotion_intensity":  85,
+        "belief_in_thought":  75,
+        "distortion_type":  "Should Statements",
+        "evidence_for":  [
+                             "Mistakes can have consequences",
+                             "I hold myself to high standards"
+                         ],
+        "evidence_against":  [
+                                 "Everyone makes mistakes - it\u0027s part of being human",
+                                 "Mistakes are opportunities to learn",
+                                 "Perfection is an impossible standard"
+                             ],
+        "balanced_thought":  "Mistakes are part of learning and growth. I can strive for excellence without demanding impossible perfection.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Self-acceptance",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  26,
+        "situation":  "Feeling down and unmotivated today",
+        "automatic_thought":  "I feel like a failure, so I must be a failure. My feelings prove it\u0027s true.",
+        "emotion":  "Depression, Hopelessness",
+        "emotion_intensity":  85,
+        "belief_in_thought":  90,
+        "distortion_type":  "Emotional Reasoning",
+        "evidence_for":  [
+                             "I feel unsuccessful and defeated",
+                             "The feeling is very strong and persistent"
+                         ],
+        "evidence_against":  [
+                                 "Feelings are not facts - they\u0027re temporary states",
+                                 "I\u0027ve had successes in the past",
+                                 "My accomplishments still exist"
+                             ],
+        "balanced_thought":  "I feel like a failure right now, but that feeling isn\u0027t proof of fact. I\u0027m experiencing a difficult emotion, not an objective truth.",
+        "belief_in_balanced":  75,
+        "emotion_after":  "Sad but realistic",
+        "emotion_intensity_after":  50
+    },
+    {
+        "id":  27,
+        "situation":  "Feeling anxious about accepting a new opportunity",
+        "automatic_thought":  "I feel anxious about this decision, so it must be the wrong choice. My anxiety is warning me.",
+        "emotion":  "Anxiety, Confusion",
+        "emotion_intensity":  80,
+        "belief_in_thought":  75,
+        "distortion_type":  "Emotional Reasoning",
+        "evidence_for":  [
+                             "My gut feeling says this is risky",
+                             "I feel very nervous about it"
+                         ],
+        "evidence_against":  [
+                                 "Anxiety often accompanies important decisions, even good ones",
+                                 "Growth happens outside my comfort zone",
+                                 "Fear of change is different from actual danger"
+                             ],
+        "balanced_thought":  "Anxiety often accompanies important changes. I should evaluate the decision based on facts, not just my emotional response.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Cautious but open",
+        "emotion_intensity_after":  40
+    },
+    {
+        "id":  28,
+        "situation":  "Looking in the mirror and feeling unattractive",
+        "automatic_thought":  "I feel ugly today, so I must actually look terrible. My feelings reflect reality.",
+        "emotion":  "Shame, Self-consciousness",
+        "emotion_intensity":  75,
+        "belief_in_thought":  85,
+        "distortion_type":  "Emotional Reasoning",
+        "evidence_for":  [
+                             "I feel very unattractive right now",
+                             "The feeling seems very real and true"
+                         ],
+        "evidence_against":  [
+                                 "My appearance hasn\u0027t changed overnight",
+                                 "Self-esteem fluctuates based on mood",
+                                 "This feeling will pass"
+                             ],
+        "balanced_thought":  "My appearance hasn\u0027t changed; my mood has. This feeling will pass, and it doesn\u0027t reflect objective reality.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Neutral",
+        "emotion_intensity_after":  25
+    },
+    {
+        "id":  29,
+        "situation":  "Feeling guilty after setting a boundary with a friend",
+        "automatic_thought":  "I feel guilty, so I must have done something wrong. Guilt means I\u0027m bad.",
+        "emotion":  "Guilt, Shame",
+        "emotion_intensity":  80,
+        "belief_in_thought":  85,
+        "distortion_type":  "Emotional Reasoning",
+        "evidence_for":  [
+                             "The guilt feels very intense",
+                             "I feel bad about saying no"
+                         ],
+        "evidence_against":  [
+                                 "Setting healthy boundaries is necessary, not wrong",
+                                 "Guilt can be triggered by unrealistic expectations",
+                                 "I have a right to prioritize my own needs"
+                             ],
+        "balanced_thought":  "Setting boundaries is healthy, even if it feels uncomfortable. My guilt reflects my caring nature, not wrongdoing.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Uncomfortable but justified",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  30,
+        "situation":  "Feeling overwhelmed by a complex task",
+        "automatic_thought":  "I feel overwhelmed, so this task must be impossible. I can\u0027t do it.",
+        "emotion":  "Overwhelm, Defeat",
+        "emotion_intensity":  85,
+        "belief_in_thought":  80,
+        "distortion_type":  "Emotional Reasoning",
+        "evidence_for":  [
+                             "The task feels impossible right now",
+                             "I feel paralyzed by the complexity"
+                         ],
+        "evidence_against":  [
+                                 "I\u0027ve completed complex tasks before",
+                                 "Breaking tasks down makes them manageable",
+                                 "Feeling overwhelmed is a signal to strategize"
+                             ],
+        "balanced_thought":  "Feeling overwhelmed signals I need to break this down, not that it\u0027s impossible. I can tackle this step by step.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Challenged but capable",
+        "emotion_intensity_after":  40
+    },
+    {
+        "id":  31,
+        "situation":  "Received 10 compliments and 1 criticism at work",
+        "automatic_thought":  "That one criticism proves I\u0027m doing everything wrong. The compliments don\u0027t count.",
+        "emotion":  "Shame, Defeat",
+        "emotion_intensity":  80,
+        "belief_in_thought":  85,
+        "distortion_type":  "Mental Filter",
+        "evidence_for":  [
+                             "The criticism was specific and pointed out real areas for improvement"
+                         ],
+        "evidence_against":  [
+                                 "I received 10 compliments from colleagues and clients",
+                                 "The criticism was minor compared to the positive feedback",
+                                 "Most people focus on my strengths"
+                             ],
+        "balanced_thought":  "I received mostly positive feedback with one area to improve. The criticism is valuable but doesn\u0027t negate the compliments.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Balanced perspective",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  32,
+        "situation":  "One person at the party seemed bored talking to me",
+        "automatic_thought":  "I must be boring. The whole party was a failure because of that one interaction.",
+        "emotion":  "Embarrassment, Inadequacy",
+        "emotion_intensity":  75,
+        "belief_in_thought":  70,
+        "distortion_type":  "Mental Filter",
+        "evidence_for":  [
+                             "One person seemed disinterested",
+                             "They checked their phone during our conversation"
+                         ],
+        "evidence_against":  [
+                                 "I had engaging conversations with 5 other people",
+                                 "Several people laughed at my jokes",
+                                 "The host thanked me for coming"
+                             ],
+        "balanced_thought":  "Most people seemed to enjoy talking to me. One person\u0027s mood doesn\u0027t define my social skills.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Acceptance",
+        "emotion_intensity_after":  20
+    },
+    {
+        "id":  33,
+        "situation":  "Performance review was mostly positive but mentioned one growth area",
+        "automatic_thought":  "The criticism means I\u0027m failing at my job. The positive parts don\u0027t matter.",
+        "emotion":  "Anxiety, Inadequacy",
+        "emotion_intensity":  80,
+        "belief_in_thought":  75,
+        "distortion_type":  "Mental Filter",
+        "evidence_for":  [
+                             "My manager mentioned I could be more proactive",
+                             "This is an area I need to work on"
+                         ],
+        "evidence_against":  [
+                                 "The review was rated \u0027exceeds expectations\u0027 overall",
+                                 "My manager praised my technical skills",
+                                 "I received a raise based on the review"
+                             ],
+        "balanced_thought":  "The review was largely positive with constructive feedback for growth. This is normal and healthy.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Motivated",
+        "emotion_intensity_after":  25
+    },
+    {
+        "id":  34,
+        "situation":  "Made a small typo in an email after a productive day",
+        "automatic_thought":  "I\u0027m so careless. This typo ruins my entire day of good work.",
+        "emotion":  "Self-criticism, Frustration",
+        "emotion_intensity":  70,
+        "belief_in_thought":  75,
+        "distortion_type":  "Mental Filter",
+        "evidence_for":  [
+                             "I made a spelling error in an important email",
+                             "It was noticed by the recipient"
+                         ],
+        "evidence_against":  [
+                                 "I completed 15 other tasks perfectly today",
+                                 "The typo didn\u0027t change the meaning of the message",
+                                 "Everyone makes minor errors"
+                             ],
+        "balanced_thought":  "One typo doesn\u0027t erase a day of productive work. I can correct it and move on.",
+        "belief_in_balanced":  90,
+        "emotion_after":  "Mild annoyance",
+        "emotion_intensity_after":  15
+    },
+    {
+        "id":  35,
+        "situation":  "Vacation had 5 sunny days and 1 rainy afternoon",
+        "automatic_thought":  "The rain ruined the whole trip. It was a waste of money.",
+        "emotion":  "Disappointment, Regret",
+        "emotion_intensity":  75,
+        "belief_in_thought":  70,
+        "distortion_type":  "Mental Filter",
+        "evidence_for":  [
+                             "We missed the beach that afternoon",
+                             "The rain was disappointing"
+                         ],
+        "evidence_against":  [
+                                 "We had 5 beautiful days of sunshine",
+                                 "We explored indoor museums during the rain",
+                                 "The overall experience was wonderful"
+                             ],
+        "balanced_thought":  "One rainy afternoon doesn\u0027t ruin a week-long vacation. We adapted and still had a great time.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Contentment",
+        "emotion_intensity_after":  20
+    },
+    {
+        "id":  36,
+        "situation":  "Got promoted at work",
+        "automatic_thought":  "I only got promoted because they were short on managers, not because I\u0027m actually qualified.",
+        "emotion":  "Imposter syndrome, Anxiety",
+        "emotion_intensity":  80,
+        "belief_in_thought":  70,
+        "distortion_type":  "Disqualifying the Positive",
+        "evidence_for":  [
+                             "The company did need to fill the position quickly",
+                             "The hiring process was expedited"
+                         ],
+        "evidence_against":  [
+                                 "I have 5 years of relevant experience",
+                                 "I\u0027ve exceeded targets consistently",
+                                 "My manager specifically recommended me"
+                             ],
+        "balanced_thought":  "While timing played a role, I was promoted because of my skills and performance. I earned this.",
+        "belief_in_balanced":  75,
+        "emotion_after":  "Pride with humility",
+        "emotion_intensity_after":  35
+    },
+    {
+        "id":  37,
+        "situation":  "Friend complimented my kindness",
+        "automatic_thought":  "She\u0027s just saying that to be nice. She doesn\u0027t really mean it.",
+        "emotion":  "Discomfort, Skepticism",
+        "emotion_intensity":  65,
+        "belief_in_thought":  60,
+        "distortion_type":  "Disqualifying the Positive",
+        "evidence_for":  [
+                             "People sometimes give compliments to be polite",
+                             "I find it hard to accept praise"
+                         ],
+        "evidence_against":  [
+                                 "My friend is usually honest and direct",
+                                 "She gave specific examples of my kindness",
+                                 "Other people have said similar things"
+                             ],
+        "balanced_thought":  "My friend gave me a genuine compliment. I can accept that I have positive qualities others notice.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Appreciation",
+        "emotion_intensity_after":  25
+    },
+    {
+        "id":  38,
+        "situation":  "Finished a project on time",
+        "automatic_thought":  "Anyone could have done that. It\u0027s not a real achievement.",
+        "emotion":  "Emptiness, Invalidation",
+        "emotion_intensity":  70,
+        "belief_in_thought":  75,
+        "distortion_type":  "Disqualifying the Positive",
+        "evidence_for":  [
+                             "The project wasn\u0027t extremely complex",
+                             "Other people have done similar work"
+                         ],
+        "evidence_against":  [
+                                 "I managed the timeline effectively",
+                                 "I solved several unexpected problems",
+                                 "My client was satisfied with the result"
+                             ],
+        "balanced_thought":  "Completing a project on time requires planning, effort, and skill. This is a legitimate accomplishment.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Satisfaction",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  39,
+        "situation":  "Received a scholarship for my studies",
+        "automatic_thought":  "It was probably because not many people applied. I\u0027m not actually smart.",
+        "emotion":  "Imposter syndrome, Shame",
+        "emotion_intensity":  75,
+        "belief_in_thought":  65,
+        "distortion_type":  "Disqualifying the Positive",
+        "evidence_for":  [
+                             "The application pool might have been smaller this year",
+                             "I got lucky with the essay topic"
+                         ],
+        "evidence_against":  [
+                                 "Scholarships are competitive regardless of applicant numbers",
+                                 "I have strong academic performance",
+                                 "The committee specifically praised my essay"
+                             ],
+        "balanced_thought":  "I earned this scholarship through my academic performance and potential. External circumstances don\u0027t negate my merit.",
+        "belief_in_balanced":  75,
+        "emotion_after":  "Gratitude and pride",
+        "emotion_intensity_after":  35
+    },
+    {
+        "id":  40,
+        "situation":  "Partner expressed love and appreciation",
+        "automatic_thought":  "They only love me because they haven\u0027t realized how flawed I am yet.",
+        "emotion":  "Anxiety, Insecurity",
+        "emotion_intensity":  80,
+        "belief_in_thought":  70,
+        "distortion_type":  "Disqualifying the Positive",
+        "evidence_for":  [
+                             "I do have flaws and imperfections",
+                             "I\u0027m afraid of being truly seen"
+                         ],
+        "evidence_against":  [
+                                 "My partner has seen me at my worst and stayed",
+                                 "They\u0027ve known me for years",
+                                 "Love includes accepting imperfections"
+                             ],
+        "balanced_thought":  "My partner sees my flaws and chooses to love me anyway. Their love is based on knowing the real me.",
+        "belief_in_balanced":  70,
+        "emotion_after":  "Loved and accepted",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  41,
+        "situation":  "Made a mistake on a work report",
+        "automatic_thought":  "I\u0027m a complete idiot and a total failure. This proves I\u0027m incompetent.",
+        "emotion":  "Shame, Self-loathing",
+        "emotion_intensity":  90,
+        "belief_in_thought":  85,
+        "distortion_type":  "Labeling",
+        "evidence_for":  [
+                             "I made an error in the report",
+                             "The mistake was embarrassing"
+                         ],
+        "evidence_against":  [
+                                 "I\u0027ve successfully completed dozens of reports before",
+                                 "Mistakes are part of learning",
+                                 "My overall performance is strong"
+                             ],
+        "balanced_thought":  "I made a mistake, but that doesn\u0027t define my entire identity. I\u0027m a capable person who had a moment of error.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Regret but self-compassion",
+        "emotion_intensity_after":  35
+    },
+    {
+        "id":  42,
+        "situation":  "Another driver cut me off in traffic",
+        "automatic_thought":  "What a jerk! People are so selfish and terrible.",
+        "emotion":  "Anger, Cynicism",
+        "emotion_intensity":  80,
+        "belief_in_thought":  75,
+        "distortion_type":  "Labeling",
+        "evidence_for":  [
+                             "The driver acted inconsiderately",
+                             "They didn\u0027t signal before changing lanes"
+                         ],
+        "evidence_against":  [
+                                 "I don\u0027t know their situation - maybe they were rushing to an emergency",
+                                 "Most drivers are careful and polite",
+                                 "One action doesn\u0027t define a person\u0027s character"
+                             ],
+        "balanced_thought":  "That driver made an inconsiderate move, but I don\u0027t know their situation. One action doesn\u0027t make them a terrible person.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Annoyed but understanding",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  43,
+        "situation":  "Didn\u0027t get the job I interviewed for",
+        "automatic_thought":  "I\u0027m unemployable and worthless. No one will ever hire me.",
+        "emotion":  "Despair, Shame",
+        "emotion_intensity":  85,
+        "belief_in_thought":  80,
+        "distortion_type":  "Labeling",
+        "evidence_for":  [
+                             "I didn\u0027t get this specific job",
+                             "The rejection stings"
+                         ],
+        "evidence_against":  [
+                                 "I\u0027ve been employed before and succeeded",
+                                 "I have valuable skills and experience",
+                                 "The right opportunity will come along"
+                             ],
+        "balanced_thought":  "I didn\u0027t get this specific job, but I\u0027m skilled and valuable. This rejection doesn\u0027t define my worth.",
+        "belief_in_balanced":  75,
+        "emotion_after":  "Disappointed but resilient",
+        "emotion_intensity_after":  40
+    },
+    {
+        "id":  44,
+        "situation":  "Friend canceled our plans last minute",
+        "automatic_thought":  "She\u0027s so flaky and unreliable. I can\u0027t count on anyone.",
+        "emotion":  "Anger, Betrayal",
+        "emotion_intensity":  75,
+        "belief_in_thought":  70,
+        "distortion_type":  "Labeling",
+        "evidence_for":  [
+                             "She canceled at the last minute",
+                             "This has happened before"
+                         ],
+        "evidence_against":  [
+                                 "She\u0027s been there for me many times before",
+                                 "She might have a good reason for canceling",
+                                 "I shouldn\u0027t label her entire character based on one incident"
+                             ],
+        "balanced_thought":  "My friend canceled once, but she\u0027s been reliable in the past. I shouldn\u0027t label her entire character based on one incident.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Understanding",
+        "emotion_intensity_after":  25
+    },
+    {
+        "id":  45,
+        "situation":  "Forgot to call my mom back",
+        "automatic_thought":  "I\u0027m such a terrible daughter and a bad person.",
+        "emotion":  "Guilt, Shame",
+        "emotion_intensity":  80,
+        "belief_in_thought":  85,
+        "distortion_type":  "Labeling",
+        "evidence_for":  [
+                             "I forgot to return the call",
+                             "My mom was waiting to hear from me"
+                         ],
+        "evidence_against":  [
+                                 "I call my mom regularly and we have a good relationship",
+                                 "One instance of forgetfulness doesn\u0027t make me terrible",
+                                 "I can apologize and make it right"
+                             ],
+        "balanced_thought":  "I forgot to call back, but that doesn\u0027t make me a terrible person. I can call now and apologize.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Mild guilt",
+        "emotion_intensity_after":  20
+    },
+    {
+        "id":  46,
+        "situation":  "My child is struggling in school",
+        "automatic_thought":  "It\u0027s all my fault for being a bad parent. I should have done more.",
+        "emotion":  "Guilt, Shame",
+        "emotion_intensity":  90,
+        "belief_in_thought":  80,
+        "distortion_type":  "Personalization",
+        "evidence_for":  [
+                             "I could have helped more with homework",
+                             "I work long hours"
+                         ],
+        "evidence_against":  [
+                                 "My child\u0027s struggles have many factors - learning style, school environment, social dynamics",
+                                 "I support my child in many ways",
+                                 "Blaming myself entirely isn\u0027t helpful"
+                             ],
+        "balanced_thought":  "My child\u0027s struggles have multiple causes. I can support them without taking all the blame.",
+        "belief_in_balanced":  75,
+        "emotion_after":  "Concerned but empowered",
+        "emotion_intensity_after":  40
+    },
+    {
+        "id":  47,
+        "situation":  "My friend seems depressed lately",
+        "automatic_thought":  "I must have done something to upset them. It\u0027s my fault they\u0027re sad.",
+        "emotion":  "Guilt, Anxiety",
+        "emotion_intensity":  80,
+        "belief_in_thought":  70,
+        "distortion_type":  "Personalization",
+        "evidence_for":  [
+                             "I haven\u0027t been as available lately",
+                             "I feel responsible for my friends\u0027 wellbeing"
+                         ],
+        "evidence_against":  [
+                                 "Depression has many causes - biological, situational, chemical",
+                                 "My friend has other support systems",
+                                 "Assuming I\u0027m the cause is self-centered"
+                             ],
+        "balanced_thought":  "My friend\u0027s depression likely has many causes. I can offer support without assuming I\u0027m the cause.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Compassionate",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  48,
+        "situation":  "My team lost the game",
+        "automatic_thought":  "If I had played better, we would have won. It\u0027s all on me.",
+        "emotion":  "Guilt, Shame",
+        "emotion_intensity":  85,
+        "belief_in_thought":  75,
+        "distortion_type":  "Personalization",
+        "evidence_for":  [
+                             "I missed a shot that could have tied the game",
+                             "I feel responsible for the team\u0027s performance"
+                         ],
+        "evidence_against":  [
+                                 "Team sports involve many players and factors",
+                                 "My teammates also made mistakes",
+                                 "The other team played well too"
+                             ],
+        "balanced_thought":  "I contributed to the game, but I don\u0027t control the entire outcome. Teams win and lose together.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Disappointed but fair",
+        "emotion_intensity_after":  35
+    },
+    {
+        "id":  49,
+        "situation":  "My partner is in a bad mood",
+        "automatic_thought":  "I must have done something wrong to cause it. What did I do?",
+        "emotion":  "Anxiety, Guilt",
+        "emotion_intensity":  80,
+        "belief_in_thought":  70,
+        "distortion_type":  "Personalization",
+        "evidence_for":  [
+                             "We had a small disagreement yesterday",
+                             "I feel responsible for their happiness"
+                         ],
+        "evidence_against":  [
+                                 "My partner mentioned work stress this morning",
+                                 "They said it\u0027s not about me",
+                                 "Everyone has bad days unrelated to their partner"
+                             ],
+        "balanced_thought":  "My partner\u0027s mood could be due to many factors. I shouldn\u0027t automatically assume it\u0027s about me.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Supportive",
+        "emotion_intensity_after":  25
+    },
+    {
+        "id":  50,
+        "situation":  "The dinner party I hosted felt awkward",
+        "automatic_thought":  "I must be terrible at hosting. I ruined everything.",
+        "emotion":  "Embarrassment, Shame",
+        "emotion_intensity":  75,
+        "belief_in_thought":  80,
+        "distortion_type":  "Personalization",
+        "evidence_for":  [
+                             "There were some awkward silences",
+                             "Not everyone seemed to click"
+                         ],
+        "evidence_against":  [
+                                 "Group dynamics are complex and not solely my responsibility",
+                                 "Some guests said they had a good time",
+                                 "Awkward moments happen at every gathering"
+                             ],
+        "balanced_thought":  "I facilitated the gathering, but I can\u0027t control how every interaction goes. Group dynamics are complex.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Acceptance",
+        "emotion_intensity_after":  25
+    },
+    {
+        "id":  51,
+        "situation":  "Failed an exam",
+        "automatic_thought":  "I failed because my teacher is terrible and doesn\u0027t know how to teach. It\u0027s not my fault at all.",
+        "emotion":  "Anger, Victimhood",
+        "emotion_intensity":  80,
+        "belief_in_thought":  70,
+        "distortion_type":  "Blaming",
+        "evidence_for":  [
+                             "The lectures were confusing",
+                             "The exam questions seemed unfair"
+                         ],
+        "evidence_against":  [
+                                 "Other students passed the same exam",
+                                 "I could have studied differently",
+                                 "I have control over my preparation"
+                             ],
+        "balanced_thought":  "External factors played a role, but I also could have prepared differently. I should focus on what I can control for next time.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Empowered",
+        "emotion_intensity_after":  35
+    },
+    {
+        "id":  52,
+        "situation":  "Struggling with weight management",
+        "automatic_thought":  "I\u0027m overweight because fast food companies manipulate people. It\u0027s not my fault at all.",
+        "emotion":  "Resentment, Helplessness",
+        "emotion_intensity":  75,
+        "belief_in_thought":  65,
+        "distortion_type":  "Blaming",
+        "evidence_for":  [
+                             "Marketing does influence food choices",
+                             "Unhealthy food is heavily advertised"
+                         ],
+        "evidence_against":  [
+                                 "I make my own food choices",
+                                 "I have access to healthy food options",
+                                 "I can learn about nutrition and make changes"
+                             ],
+        "balanced_thought":  "While marketing plays a role, I make my own food choices. I can take responsibility for my health decisions.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Empowered",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  53,
+        "situation":  "Marriage ended in divorce",
+        "automatic_thought":  "My marriage failed because my ex is a narcissist. I had nothing to do with it.",
+        "emotion":  "Anger, Victimhood",
+        "emotion_intensity":  85,
+        "belief_in_thought":  75,
+        "distortion_type":  "Blaming",
+        "evidence_for":  [
+                             "My ex had significant issues",
+                             "They were unwilling to change"
+                         ],
+        "evidence_against":  [
+                                 "Relationships involve two people",
+                                 "I can reflect on my own patterns",
+                                 "Blaming entirely prevents growth"
+                             ],
+        "balanced_thought":  "While my ex had issues, I can also reflect on my own patterns to grow for future relationships.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Acceptance",
+        "emotion_intensity_after":  40
+    },
+    {
+        "id":  54,
+        "situation":  "Not advancing at work as quickly as desired",
+        "automatic_thought":  "I can\u0027t get ahead because the system is rigged against people like me. There\u0027s no point trying.",
+        "emotion":  "Resignation, Anger",
+        "emotion_intensity":  80,
+        "belief_in_thought":  60,
+        "distortion_type":  "Blaming",
+        "evidence_for":  [
+                             "There are systemic barriers in my industry",
+                             "I\u0027ve faced discrimination"
+                         ],
+        "evidence_against":  [
+                                 "Many people from similar backgrounds do succeed",
+                                 "I can still develop skills and seek opportunities",
+                                 "Giving up guarantees failure"
+                             ],
+        "balanced_thought":  "While systemic barriers exist, I can still focus on developing skills and seeking opportunities within my control.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Determined",
+        "emotion_intensity_after":  35
+    },
+    {
+        "id":  55,
+        "situation":  "Financial difficulties",
+        "automatic_thought":  "I\u0027m broke because the economy is terrible and my parents didn\u0027t teach me about money. It\u0027s never my fault.",
+        "emotion":  "Resentment, Helplessness",
+        "emotion_intensity":  75,
+        "belief_in_thought":  65,
+        "distortion_type":  "Blaming",
+        "evidence_for":  [
+                             "The economy has been challenging",
+                             "I didn\u0027t receive financial education growing up"
+                         ],
+        "evidence_against":  [
+                                 "I can learn financial skills now",
+                                 "I make spending decisions daily",
+                                 "Many people overcome similar backgrounds"
+                             ],
+        "balanced_thought":  "External factors affect finances, but I can also learn budgeting and financial skills now to improve my situation.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Empowered",
+        "emotion_intensity_after":  30
+    },
+    {
+        "id":  56,
+        "situation":  "Thinking about applying for a dream job",
+        "automatic_thought":  "I\u0027ll never get this job, so there\u0027s no point in applying. I know I\u0027ll be rejected.",
+        "emotion":  "Hopelessness, Defeat",
+        "emotion_intensity":  85,
+        "belief_in_thought":  80,
+        "distortion_type":  "Fortune Telling",
+        "evidence_for":  [
+                             "The job is competitive",
+                             "I don\u0027t meet every single requirement"
+                         ],
+        "evidence_against":  [
+                                 "I won\u0027t know unless I try",
+                                 "I have transferable skills",
+                                 "Not trying guarantees failure"
+                             ],
+        "balanced_thought":  "I don\u0027t know what will happen. I have a chance if I apply, and not trying guarantees failure.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Hopeful",
+        "emotion_intensity_after":  40
+    },
+    {
+        "id":  57,
+        "situation":  "Considering asking someone on a date",
+        "automatic_thought":  "They\u0027ll definitely say no. I can tell they\u0027re not interested in me.",
+        "emotion":  "Fear, Rejection",
+        "emotion_intensity":  90,
+        "belief_in_thought":  85,
+        "distortion_type":  "Fortune Telling",
+        "evidence_for":  [
+                             "I haven\u0027t noticed obvious signs of interest",
+                             "They might not be looking for a relationship"
+                         ],
+        "evidence_against":  [
+                                 "I can\u0027t read their mind",
+                                 "They might be interested but shy too",
+                                 "Rejection isn\u0027t the end of the world"
+                             ],
+        "balanced_thought":  "I don\u0027t know how they\u0027ll respond unless I ask. Fear of rejection shouldn\u0027t stop me from trying.",
+        "belief_in_balanced":  75,
+        "emotion_after":  "Nervous but brave",
+        "emotion_intensity_after":  50
+    },
+    {
+        "id":  58,
+        "situation":  "Planning to start a new business",
+        "automatic_thought":  "My business will definitely fail. Most new businesses fail within the first year.",
+        "emotion":  "Fear, Paralysis",
+        "emotion_intensity":  85,
+        "belief_in_thought":  75,
+        "distortion_type":  "Fortune Telling",
+        "evidence_for":  [
+                             "Statistics show many businesses fail",
+                             "The market is competitive"
+                         ],
+        "evidence_against":  [
+                                 "Many businesses also succeed",
+                                 "I can learn from failures",
+                                 "Not starting guarantees no success"
+                             ],
+        "balanced_thought":  "While risks exist, I can\u0027t predict the future. I can plan carefully and adapt as I learn.",
+        "belief_in_balanced":  80,
+        "emotion_after":  "Cautiously optimistic",
+        "emotion_intensity_after":  45
+    },
+    {
+        "id":  59,
+        "situation":  "About to take an important test",
+        "automatic_thought":  "I\u0027m going to fail this test. I just know I won\u0027t remember anything.",
+        "emotion":  "Anxiety, Panic",
+        "emotion_intensity":  90,
+        "belief_in_thought":  80,
+        "distortion_type":  "Fortune Telling",
+        "evidence_for":  [
+                             "I feel very anxious",
+                             "I struggled with some material"
+                         ],
+        "evidence_against":  [
+                                 "I\u0027ve passed tests before",
+                                 "I\u0027ve studied and prepared",
+                                 "Anxiety doesn\u0027t predict performance"
+                             ],
+        "balanced_thought":  "I\u0027ve prepared and passed tests before. My anxiety doesn\u0027t predict my actual performance.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Nervous but prepared",
+        "emotion_intensity_after":  50
+    },
+    {
+        "id":  60,
+        "situation":  "Haven\u0027t heard back from a job application",
+        "automatic_thought":  "They\u0027ve definitely rejected me and just haven\u0027t sent the email yet. I should give up.",
+        "emotion":  "Defeat, Hopelessness",
+        "emotion_intensity":  80,
+        "belief_in_thought":  70,
+        "distortion_type":  "Fortune Telling",
+        "evidence_for":  [
+                             "It\u0027s been two weeks with no response",
+                             "They might have found another candidate"
+                         ],
+        "evidence_against":  [
+                                 "Hiring processes often take time",
+                                 "No response doesn\u0027t mean rejection",
+                                 "I should follow up before assuming"
+                             ],
+        "balanced_thought":  "I don\u0027t know the status yet. I should follow up rather than assuming the worst.",
+        "belief_in_balanced":  85,
+        "emotion_after":  "Proactive",
+        "emotion_intensity_after":  30
+    }
+]

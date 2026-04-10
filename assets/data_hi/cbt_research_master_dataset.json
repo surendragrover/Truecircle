@@ -1,0 +1,829 @@
+{
+  "dataset_id": "cbt_research_master_dataset",
+  "version": "1.0.0",
+  "created_on": "2026-04-06",
+  "language_support": [
+    "en"
+  ],
+  "purpose": "Evidence-grounded CBT knowledge base for generating safe, structured, personalized responses in conversational mental health support.",
+  "intended_use": [
+    "Psychoeducation",
+    "Guided self-help",
+    "Micro-interventions",
+    "Measurement-based check-ins",
+    "Relapse prevention planning"
+  ],
+  "non_goals": [
+    "Not a diagnostic system",
+    "Not emergency or crisis care",
+    "Not a substitute for licensed clinical care"
+  ],
+  "safety_protocol": {
+    "red_flags": [
+      "current suicidal intent",
+      "self-harm plan or recent attempt",
+      "homicidal intent",
+      "psychosis with impaired reality testing",
+      "mania with severe risk behavior",
+      "substance intoxication with safety risk",
+      "domestic violence imminent risk"
+    ],
+    "immediate_actions": [
+      "Prioritize immediate safety over CBT technique delivery.",
+      "Advise contacting local emergency services right away.",
+      "Encourage reaching trusted person for in-person support now.",
+      "Keep language calm, direct, and non-judgmental.",
+      "Do not provide detailed self-harm method content.",
+      "If user location unknown, ask country/state first, then provide crisis contacts."
+    ],
+    "crisis_message_templates": [
+      {
+        "lang": "en",
+        "text": "Your safety comes first right now. If you might hurt yourself or someone else, call local emergency services immediately and contact a trusted person now."
+      }
+    ]
+  },
+  "evidence_sources": [
+    {
+      "id": "E01",
+      "citation": "Cuijpers et al. (2023). Cognitive behavior therapy vs controls/other psychotherapies/pharmacotherapies for depression: 409 trials, 52,702 patients.",
+      "type": "comprehensive_meta_analysis",
+      "doi": "10.1002/wps.21069",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36640411/",
+      "summary": "CBT shows robust benefit for depression across a very large evidence base and remains a core first-line option.",
+      "confidence": "high"
+    },
+    {
+      "id": "E02",
+      "citation": "Cuijpers et al. (2016). Meta-analytic update of CBT for major depression and anxiety disorders.",
+      "type": "meta_analysis_update",
+      "doi": "10.1002/wps.20346",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27717254/",
+      "summary": "CBT effective for major depression, GAD, panic disorder, and social anxiety; effect sizes remain clinically meaningful after bias adjustments.",
+      "confidence": "high"
+    },
+    {
+      "id": "E03",
+      "citation": "Hofmann et al. (2012). The Efficacy of Cognitive Behavioral Therapy: A Review of Meta-analyses.",
+      "type": "umbrella_meta_review",
+      "doi": "10.1007/s10608-012-9476-1",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23459093/",
+      "summary": "Broad cross-disorder support for CBT, especially anxiety spectrum conditions.",
+      "confidence": "moderate_high"
+    },
+    {
+      "id": "E04",
+      "citation": "NICE NG222 (2022; reviewed Jan 30, 2026). Depression in adults: treatment and management.",
+      "type": "clinical_guideline",
+      "url": "https://www.nice.org.uk/guidance/ng222",
+      "summary": "Recommends structured psychological interventions including CBT pathways, relapse prevention, and matched-care treatment selection.",
+      "confidence": "high"
+    },
+    {
+      "id": "E05",
+      "citation": "NICE CG113 (GAD and Panic; updated surveillance 2019/2020).",
+      "type": "clinical_guideline",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK552847/",
+      "summary": "Supports CBT-based interventions and stepped-care pathways for generalized anxiety and panic disorder.",
+      "confidence": "high"
+    },
+    {
+      "id": "E06",
+      "citation": "NICE CG159 (Social Anxiety Disorder; reviewed May 21, 2024).",
+      "type": "clinical_guideline",
+      "url": "https://www.nice.org.uk/guidance/cg159",
+      "summary": "CBT is a key recommendation for social anxiety across functional and symptom outcomes.",
+      "confidence": "high"
+    },
+    {
+      "id": "E07",
+      "citation": "NICE NG116 (PTSD; reviewed Apr 8, 2025).",
+      "type": "clinical_guideline",
+      "url": "https://www.nice.org.uk/guidance/ng116",
+      "summary": "Trauma-focused CBT remains central in PTSD care pathways when clinically appropriate.",
+      "confidence": "high"
+    },
+    {
+      "id": "E08",
+      "citation": "Andrews et al. (2018). Computer therapy for anxiety and depression disorders.",
+      "type": "meta_analysis",
+      "doi": "10.1016/j.janxdis.2018.01.001",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29422409/",
+      "summary": "Computerized CBT is effective, acceptable, and practical for common anxiety/depression conditions.",
+      "confidence": "moderate_high"
+    },
+    {
+      "id": "E09",
+      "citation": "Lee et al. (2023). Digital CBT-I effects on depression and anxiety.",
+      "type": "systematic_review_meta_analysis",
+      "doi": "10.1038/s41746-023-00800-3",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36966184/",
+      "summary": "Digital CBT for insomnia improves insomnia and also improves depressive/anxiety symptoms in many contexts.",
+      "confidence": "moderate_high"
+    },
+    {
+      "id": "E10",
+      "citation": "Lin et al. (2023). dCBT-I for insomnia and depression RCT meta-analysis.",
+      "type": "systematic_review_meta_analysis",
+      "doi": "10.7717/peerj.16137",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37927792/",
+      "summary": "dCBT-I showed meaningful short- and longer-term reduction in insomnia and depression severity.",
+      "confidence": "moderate_high"
+    },
+    {
+      "id": "E11",
+      "citation": "Breedvelt et al. (2024). IPD meta-analysis of psychological interventions for depression relapse prevention.",
+      "type": "individual_participant_data_meta_analysis",
+      "doi": "10.1038/s44220-023-00178-x",
+      "url": "https://www.nature.com/articles/s44220-023-00178-x",
+      "summary": "Psychological strategies can reduce relapse risk; personalization and maintenance planning improve durability.",
+      "confidence": "moderate_high"
+    },
+    {
+      "id": "E12",
+      "citation": "Cuijpers et al. (2023). Transdiagnostic treatment of depression and anxiety.",
+      "type": "meta_analysis",
+      "doi": "10.1017/S0033291722003841",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36606456/",
+      "summary": "Transdiagnostic CBT approaches are effective and useful in mixed-symptom presentations.",
+      "confidence": "moderate_high"
+    }
+  ],
+  "clinical_foundations": {
+    "core_assumptions": [
+      "Thoughts, emotions, body sensations, and behaviors interact in maintainable loops.",
+      "Small behavioral shifts can quickly reduce avoidance and restore agency.",
+      "Thought reappraisal works best when paired with behavioral testing.",
+      "Relapse prevention should start early, not only after remission."
+    ],
+    "high_value_mechanisms": [
+      "behavioral activation",
+      "cognitive reappraisal",
+      "exposure and response prevention principles",
+      "attention retraining and grounding",
+      "problem-solving training",
+      "sleep regularization"
+    ]
+  },
+  "emotion_taxonomy_42": {
+    "ordered_emotions": [
+      "anger",
+      "anxiety",
+      "sadness",
+      "fear",
+      "disgust",
+      "guilt",
+      "shame",
+      "jealousy",
+      "envy",
+      "horror",
+      "pain",
+      "empathetic_pain",
+      "awkwardness",
+      "confusion",
+      "joy",
+      "happiness",
+      "love",
+      "adoration",
+      "romance",
+      "excitement",
+      "anticipation",
+      "surprise",
+      "trust",
+      "relief",
+      "satisfaction",
+      "triumph",
+      "pride",
+      "admiration",
+      "nostalgia",
+      "longing",
+      "desire",
+      "craving",
+      "calmness",
+      "realization",
+      "awe",
+      "wonder",
+      "amusement",
+      "interest",
+      "sympathy",
+      "compassion",
+      "hope",
+      "gratitude"
+    ],
+    "need_routing": {
+      "grounding_and_safety": [
+        "anxiety",
+        "fear",
+        "horror",
+        "pain",
+        "empathetic_pain"
+      ],
+      "emotional_validation": [
+        "sadness",
+        "guilt",
+        "shame",
+        "longing",
+        "nostalgia"
+      ],
+      "calm_expression": [
+        "anger",
+        "disgust",
+        "jealousy",
+        "envy",
+        "awkwardness",
+        "confusion",
+        "craving"
+      ],
+      "strengthen_and_savor": [
+        "joy",
+        "happiness",
+        "love",
+        "adoration",
+        "romance",
+        "excitement",
+        "anticipation",
+        "surprise",
+        "trust",
+        "relief",
+        "satisfaction",
+        "triumph",
+        "pride",
+        "admiration",
+        "desire",
+        "calmness",
+        "realization",
+        "awe",
+        "wonder",
+        "amusement",
+        "interest",
+        "sympathy",
+        "compassion",
+        "hope",
+        "gratitude"
+      ]
+    }
+  },
+  "formulation_schema": {
+    "required_fields": [
+      "presenting_problem",
+      "triggers",
+      "automatic_thoughts",
+      "emotions",
+      "body_sensations",
+      "behaviors",
+      "short_term_relief",
+      "long_term_cost",
+      "core_belief_hypothesis",
+      "protective_factors",
+      "values_target"
+    ],
+    "minimum_data_rule": "If fewer than 4 fields are known, ask clarifying questions before prescribing advanced interventions."
+  },
+  "measurement_based_care": {
+    "trackers": [
+      {
+        "name": "PHQ-9",
+        "use": "depression severity trend",
+        "cadence_days": 14
+      },
+      {
+        "name": "GAD-7",
+        "use": "anxiety severity trend",
+        "cadence_days": 14
+      },
+      {
+        "name": "Sleep quality 1-5",
+        "use": "sleep-linked vulnerability tracking",
+        "cadence_days": 1
+      },
+      {
+        "name": "Avoidance count",
+        "use": "behavioral activation readiness",
+        "cadence_days": 1
+      }
+    ],
+    "step_up_triggers": [
+      "Rapid worsening over 2 consecutive check-ins",
+      "Functioning collapse in work/school/self-care",
+      "Persistent severe insomnia with daytime impairment",
+      "Emergent safety risk indicators"
+    ]
+  },
+  "response_generation_contract": {
+    "global_rules": [
+      "Always validate emotion before technique.",
+      "Keep first intervention small enough to be done in <=10 minutes unless user asks for deeper plan.",
+      "One reply must include: validation + formulation hint + one practical step + check-in question.",
+      "Prefer collaborative language: 'shall we', 'can we try', 'would you like'.",
+      "Never shame, command, or overpromise outcomes.",
+      "If uncertainty is high, explicitly say so and gather more context."
+    ],
+    "forbidden_output_patterns": [
+      "diagnostic certainty without assessment",
+      "invalidating statements (e.g., 'just relax', 'you are overreacting')",
+      "method details for self-harm",
+      "absolute guarantees ('this will definitely cure')"
+    ],
+    "default_reply_shape": [
+      "empathic_reflection",
+      "normalization_or_context",
+      "micro_intervention",
+      "confidence_scaling_question",
+      "next_step_commitment"
+    ],
+    "tone_profiles": {
+      "clinical_concise_en": {
+        "style": "clear, collaborative, low-jargon",
+        "example_openers": [
+          "That sounds genuinely difficult, and your reaction makes sense.",
+          "Let us map what is happening and pick one actionable next step."
+        ]
+      }
+    }
+  },
+  "decision_routes": [
+    {
+      "route_id": "R1_anxiety_hyperarousal",
+      "trigger_signals": [
+        "panic",
+        "racing thoughts",
+        "chest tightness",
+        "what-if loops"
+      ],
+      "primary_goals": [
+        "downshift arousal",
+        "reduce catastrophic interpretation",
+        "restore perceived control"
+      ],
+      "interventions_priority": [
+        "paced_breathing_3min",
+        "grounding_54321",
+        "probability_reframe",
+        "worry_time_box"
+      ],
+      "evidence_ids": [
+        "E02",
+        "E03",
+        "E05",
+        "E12"
+      ]
+    },
+    {
+      "route_id": "R2_depression_inertia",
+      "trigger_signals": [
+        "no energy",
+        "stuck in bed",
+        "hopeless",
+        "stopped routine"
+      ],
+      "primary_goals": [
+        "break avoidance cycle",
+        "create rapid mastery signal",
+        "rebuild routine reliability"
+      ],
+      "interventions_priority": [
+        "behavioral_activation_tiny_task",
+        "if_then_activation_plan",
+        "self_compassion_reframe",
+        "activity_reward_pairing"
+      ],
+      "evidence_ids": [
+        "E01",
+        "E02",
+        "E04",
+        "E11"
+      ]
+    },
+    {
+      "route_id": "R3_social_anxiety",
+      "trigger_signals": [
+        "fear of judgment",
+        "avoid calls",
+        "avoid meetings",
+        "post-event rumination"
+      ],
+      "primary_goals": [
+        "reduce avoidance",
+        "test feared predictions",
+        "shift attention outward"
+      ],
+      "interventions_priority": [
+        "graded_social_exposure",
+        "prediction_test",
+        "attention_shift_task",
+        "post_event_evidence_log"
+      ],
+      "evidence_ids": [
+        "E02",
+        "E06",
+        "E12"
+      ]
+    },
+    {
+      "route_id": "R4_sleep_driven_distress",
+      "trigger_signals": [
+        "insomnia",
+        "frequent awakenings",
+        "next-day fatigue",
+        "sleep worry"
+      ],
+      "primary_goals": [
+        "stabilize sleep schedule",
+        "reduce arousal at bedtime",
+        "lower sleep performance anxiety"
+      ],
+      "interventions_priority": [
+        "sleep_window_consistency",
+        "stimulus_control",
+        "winddown_ritual",
+        "cognitive_offloading_journal"
+      ],
+      "evidence_ids": [
+        "E09",
+        "E10",
+        "E04"
+      ]
+    },
+    {
+      "route_id": "R5_relapse_warning",
+      "trigger_signals": [
+        "withdrawing again",
+        "routine drop",
+        "negative thought frequency increasing",
+        "sleep deterioration"
+      ],
+      "primary_goals": [
+        "identify early warning signs",
+        "reactivate maintenance plan",
+        "prevent full episode recurrence"
+      ],
+      "interventions_priority": [
+        "relapse_signature_review",
+        "maintenance_calendar",
+        "support_contact_plan",
+        "booster_skill_practice"
+      ],
+      "evidence_ids": [
+        "E04",
+        "E11"
+      ]
+    }
+  ],
+  "techniques_library": [
+    {
+      "technique_id": "paced_breathing_3min",
+      "name": "Paced Breathing (3 minutes)",
+      "category": "anxiety_regulation",
+      "when_to_use": [
+        "acute arousal",
+        "panic surge",
+        "pre-exposure preparation"
+      ],
+      "steps": [
+        "Inhale gently for 4 seconds.",
+        "Exhale slowly for 6 seconds.",
+        "Repeat for 3 minutes; keep shoulders relaxed.",
+        "Rate distress before and after."
+      ],
+      "dosage": "1-3 rounds/day and as-needed",
+      "contraindications": [
+        "none major for general users; adapt for respiratory medical conditions"
+      ],
+      "evidence_ids": [
+        "E02",
+        "E05"
+      ]
+    },
+    {
+      "technique_id": "grounding_54321",
+      "name": "5-4-3-2-1 Grounding",
+      "category": "attention_anchoring",
+      "when_to_use": [
+        "derealization",
+        "rumination spiral",
+        "panic onset"
+      ],
+      "steps": [
+        "Name 5 things you can see.",
+        "Name 4 things you can feel.",
+        "Name 3 things you can hear.",
+        "Name 2 things you can smell.",
+        "Name 1 thing you can taste."
+      ],
+      "dosage": "as-needed, up to multiple times/day",
+      "evidence_ids": [
+        "E02",
+        "E03"
+      ]
+    },
+    {
+      "technique_id": "behavioral_activation_tiny_task",
+      "name": "Behavioral Activation Tiny Task",
+      "category": "depression_activation",
+      "when_to_use": [
+        "low motivation",
+        "anhedonia",
+        "shutdown pattern"
+      ],
+      "steps": [
+        "Pick one 5-10 minute task aligned with a value (health, connection, responsibility).",
+        "Define exact start time and location.",
+        "Do task even if mood is low.",
+        "Record mastery and pleasure 0-10 after completion."
+      ],
+      "dosage": "minimum 1 tiny task/day",
+      "evidence_ids": [
+        "E01",
+        "E04"
+      ]
+    },
+    {
+      "technique_id": "if_then_activation_plan",
+      "name": "If-Then Activation Plan",
+      "category": "implementation_intention",
+      "when_to_use": [
+        "procrastination",
+        "habit inconsistency"
+      ],
+      "steps": [
+        "Write: If it is <time/cue>, then I will <tiny action>.",
+        "Add friction reducer (prepare materials now).",
+        "Add social/accountability check if possible."
+      ],
+      "dosage": "1-3 active if-then plans/week",
+      "evidence_ids": [
+        "E01",
+        "E11"
+      ]
+    },
+    {
+      "technique_id": "probability_reframe",
+      "name": "Probability Reframe",
+      "category": "cognitive_restructuring",
+      "when_to_use": [
+        "catastrophizing",
+        "fortune-telling"
+      ],
+      "steps": [
+        "State feared prediction in one sentence.",
+        "Estimate probability 0-100.",
+        "List 3 pieces of evidence for and 3 against.",
+        "Generate balanced prediction."
+      ],
+      "dosage": "daily thought log for 1-2 key worries",
+      "evidence_ids": [
+        "E02",
+        "E03"
+      ]
+    },
+    {
+      "technique_id": "worry_time_box",
+      "name": "Scheduled Worry Time",
+      "category": "worry_management",
+      "when_to_use": [
+        "persistent worry loops",
+        "difficulty disengaging from uncertainty"
+      ],
+      "steps": [
+        "Choose one 15-minute worry slot daily.",
+        "Postpone intrusive worries to that slot.",
+        "During slot: write worry, classify controllable vs uncontrollable, act on controllable item."
+      ],
+      "dosage": "daily for 2-3 weeks",
+      "evidence_ids": [
+        "E02",
+        "E05"
+      ]
+    },
+    {
+      "technique_id": "graded_social_exposure",
+      "name": "Graded Social Exposure",
+      "category": "exposure",
+      "when_to_use": [
+        "social avoidance",
+        "fear of embarrassment"
+      ],
+      "steps": [
+        "Build fear ladder 0-10 with 8-12 situations.",
+        "Start at moderate step (3-4/10).",
+        "Repeat each step until distress drops or confidence rises.",
+        "Move to next step gradually."
+      ],
+      "dosage": "3+ exposure practices/week",
+      "evidence_ids": [
+        "E02",
+        "E06"
+      ]
+    },
+    {
+      "technique_id": "prediction_test",
+      "name": "Behavioral Experiment",
+      "category": "cognitive_behavioral_test",
+      "when_to_use": [
+        "rigid negative beliefs",
+        "mind-reading assumptions"
+      ],
+      "steps": [
+        "Define prediction clearly.",
+        "Run small real-world test.",
+        "Record outcome and learning.",
+        "Update belief confidence."
+      ],
+      "dosage": "1 experiment every 2-3 days",
+      "evidence_ids": [
+        "E01",
+        "E02",
+        "E12"
+      ]
+    },
+    {
+      "technique_id": "sleep_window_consistency",
+      "name": "Sleep Window Consistency",
+      "category": "cbt_i",
+      "when_to_use": [
+        "irregular sleep schedule",
+        "long wake time in bed"
+      ],
+      "steps": [
+        "Fix wake time daily.",
+        "Set bedtime to protect a realistic sleep window.",
+        "Avoid daytime oversleeping.",
+        "Track sleep efficiency weekly."
+      ],
+      "dosage": "daily for at least 2 weeks",
+      "evidence_ids": [
+        "E09",
+        "E10"
+      ]
+    },
+    {
+      "technique_id": "stimulus_control",
+      "name": "Stimulus Control for Insomnia",
+      "category": "cbt_i",
+      "when_to_use": [
+        "bed associated with wakefulness",
+        "prolonged sleep latency"
+      ],
+      "steps": [
+        "Use bed only for sleep/intimacy.",
+        "If awake more than about 20 minutes, leave bed and do calm activity.",
+        "Return when sleepy.",
+        "Repeat consistently."
+      ],
+      "dosage": "nightly",
+      "evidence_ids": [
+        "E09",
+        "E10"
+      ]
+    },
+    {
+      "technique_id": "relapse_signature_review",
+      "name": "Relapse Signature Review",
+      "category": "relapse_prevention",
+      "when_to_use": [
+        "early warning signs",
+        "post-recovery maintenance"
+      ],
+      "steps": [
+        "List top 5 personal early warning signs.",
+        "Map each sign to one immediate action.",
+        "Share plan with at least one trusted contact.",
+        "Review weekly."
+      ],
+      "dosage": "weekly review",
+      "evidence_ids": [
+        "E04",
+        "E11"
+      ]
+    }
+  ],
+  "micro_intervention_templates": [
+    {
+      "template_id": "T1_validate_plus_step_en",
+      "when": "high_emotion_low_energy",
+      "text": "What you are feeling is valid. For now, let us take one small step: do [tiny_task] for the next 5 minutes. After that, rate from 0-10 how much your tension or heaviness changed."
+    },
+    {
+      "template_id": "T2_anxiety_reframe_en",
+      "when": "catastrophic_worry",
+      "text": "Your mind is running a worst-case scenario right now. Let us test it: what is the realistic probability from 0-100, and what are 3 pieces of evidence against it?"
+    },
+    {
+      "template_id": "T3_sleep_reset_en",
+      "when": "sleep_related_distress",
+      "text": "Instead of forcing sleep, let us stabilize the routine: fixed wake time + 20-minute rule + pre-sleep winddown. Shall we make an exact plan for tonight?"
+    },
+    {
+      "template_id": "T4_relapse_prevent_en",
+      "when": "early_relapse",
+      "text": "This setback is not permanent. Today we will pick just one warning sign from your relapse signature and set one immediate action for it."
+    }
+  ],
+  "personalization_rules": {
+    "use_recent_data_first": true,
+    "priority_order": [
+      "last_14_day_mood_trend",
+      "sleep_quality_trend",
+      "avoidance_pattern",
+      "user_stated_values",
+      "previously_successful_techniques"
+    ],
+    "response_adaptation": [
+      "If user energy is low, reduce task complexity by 50%.",
+      "If user reports repeated failure, shrink target to 2-minute action.",
+      "If user improves for 7+ days, transition to maintenance and relapse prevention."
+    ]
+  },
+  "quality_assurance": {
+    "reply_must_include": [
+      "at least 1 validation sentence",
+      "at least 1 actionable behavior step",
+      "at least 1 follow-up question"
+    ],
+    "reply_should_avoid": [
+      "long theory dump when user is distressed",
+      "multiple interventions in one message unless user asks",
+      "excessive technical jargon"
+    ],
+    "review_checklist": [
+      "Is safety screened?",
+      "Is intervention matched to formulation?",
+      "Is action small and specific?",
+      "Is language supportive and collaborative?",
+      "Is progress metric defined?"
+      ]
+  },
+  "response_enforcement": {
+    "strict_alignment_gate": true,
+    "gate_rule": "If generated reply is not aligned with detected primary emotion and routed need, block it and issue corrected aligned reply.",
+    "confidence_thresholding": {
+      "emotion_detection_min_confidence": 0.42,
+      "learning_override_min_confidence": 0.55,
+      "low_confidence_fallback_need": "gentle_reflection"
+    },
+    "semantic_alignment": {
+      "enabled": true,
+      "alignment_score_threshold": 0.62,
+      "weights": {
+        "emotion_signal": 0.35,
+        "need_signal": 0.35,
+        "action_cue": 0.20,
+        "user_context_overlap": 0.10
+      }
+    },
+    "alignment_requirements": [
+      "emotion_reflection_present",
+      "need_specific_step_present",
+      "collaborative_action_cue_present"
+    ],
+    "learning_policy": {
+      "store_misaligned_reply_events": true,
+      "store_accepted_snippets": true,
+      "brain1_need_override_after_success_count": 3,
+      "brain2_prefer_recent_accepted_snippets": true,
+      "quarantine_rejected_snippets": true
+    }
+  },
+  "runtime_orchestration": {
+    "single_brain_activation": {
+      "enabled": true,
+      "rule": "Only one brain can be active at a time; current brain must complete and deactivate before next brain activates.",
+      "sequence": [
+        "brainA",
+        "brain1",
+        "brain2"
+      ]
+    },
+    "sos_system": {
+      "enabled": true,
+      "name": "Safety Override System",
+      "trigger_signals": [
+        "suicide_intent",
+        "self_harm_intent",
+        "harm_to_others_intent",
+        "acute_psychosis_risk"
+      ],
+      "behavior": [
+        "Override normal brain pipeline on trigger",
+        "Return immediate safety-first response",
+        "Persist SOS event for review and escalation"
+      ]
+    },
+    "srs_system": {
+      "enabled": true,
+      "name": "Self Review Scoring",
+      "pass_threshold": 70,
+      "checks": [
+        "emotion_reflection_present",
+        "need_specific_step_present",
+        "collaborative_action_cue_present",
+        "corrected_or_not"
+      ],
+      "behavior": [
+        "Score every final reply",
+        "Store SRS event in memory",
+        "Feed accepted patterns into learning memory"
+      ]
+    }
+  }
+}

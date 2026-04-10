@@ -1,0 +1,166 @@
+﻿{
+    "title":  "Weekly CBT Progress Scorecard",
+    "description":  "Review weekly symptom load, skill use, and relationship stability.",
+    "questions":  [
+                      {
+                          "id":  "week_range",
+                          "question":  "Week range",
+                          "type":  "text",
+                          "placeholder":  "Example: 2026-02-03 to 2026-02-09"
+                      },
+                      {
+                          "id":  "average_mood_score",
+                          "question":  "Average mood score (0-10)",
+                          "type":  "text",
+                          "placeholder":  "Weekly average"
+                      },
+                      {
+                          "id":  "depression_load",
+                          "question":  "Depression burden this week (0-10)",
+                          "type":  "text",
+                          "placeholder":  "0 = none, 10 = severe"
+                      },
+                      {
+                          "id":  "anxiety_load",
+                          "question":  "Anxiety load this week",
+                          "type":  "single",
+                          "options":  [
+                                          "Low",
+                                          "Moderate",
+                                          "High",
+                                          "Very high"
+                                      ]
+                      },
+                      {
+                          "id":  "irritability_level",
+                          "question":  "Irritability level this week",
+                          "type":  "single",
+                          "options":  [
+                                          "Low",
+                                          "Moderate",
+                                          "High",
+                                          "Very high"
+                                      ]
+                      },
+                      {
+                          "id":  "sleep_quality_score",
+                          "question":  "Sleep quality score (0-10)",
+                          "type":  "text",
+                          "placeholder":  "Based on overall week sleep"
+                      },
+                      {
+                          "id":  "sleep_hours_avg",
+                          "question":  "Average sleep hours per night",
+                          "type":  "text",
+                          "placeholder":  "Example: 6.5"
+                      },
+                      {
+                          "id":  "energy_level",
+                          "question":  "Energy level this week",
+                          "type":  "single",
+                          "options":  [
+                                          "Very low",
+                                          "Low",
+                                          "Moderate",
+                                          "Good"
+                                      ]
+                      },
+                      {
+                          "id":  "skills_used",
+                          "question":  "Which CBT skills did you use?",
+                          "type":  "multi",
+                          "options":  [
+                                          "Thought reframing",
+                                          "Breathing/grounding",
+                                          "Behavioral activation",
+                                          "Exposure practice",
+                                          "Journaling",
+                                          "Communication repair"
+                                      ]
+                      },
+                      {
+                          "id":  "skills_consistency_days",
+                          "question":  "How many days did you actively use CBT skills?",
+                          "type":  "text",
+                          "placeholder":  "0 to 7 days"
+                      },
+                      {
+                          "id":  "relationship_stability",
+                          "question":  "Relationship stability this week",
+                          "type":  "single",
+                          "options":  [
+                                          "Stable and supportive",
+                                          "Mostly stable",
+                                          "Mixed",
+                                          "Stressful",
+                                          "Highly unstable"
+                                      ]
+                      },
+                      {
+                          "id":  "high_stress_interactions_count",
+                          "question":  "How many high-stress interactions happened this week?",
+                          "type":  "text",
+                          "placeholder":  "Count"
+                      },
+                      {
+                          "id":  "supportive_interactions_count",
+                          "question":  "How many supportive interactions happened this week?",
+                          "type":  "text",
+                          "placeholder":  "Count"
+                      },
+                      {
+                          "id":  "functional_impact",
+                          "question":  "How much did symptoms affect daily functioning?",
+                          "type":  "single",
+                          "options":  [
+                                          "No impact",
+                                          "Mild impact",
+                                          "Moderate impact",
+                                          "Severe impact"
+                                      ]
+                      },
+                      {
+                          "id":  "risk_flag",
+                          "question":  "Any safety concern this week?",
+                          "type":  "single",
+                          "options":  [
+                                          "No",
+                                          "Yes - mild concern",
+                                          "Yes - moderate concern",
+                                          "Yes - urgent concern"
+                                      ]
+                      },
+                      {
+                          "id":  "top_trigger_theme",
+                          "question":  "Main trigger theme this week",
+                          "type":  "single",
+                          "options":  [
+                                          "Relationship conflict",
+                                          "Work/study pressure",
+                                          "Health concern",
+                                          "Financial stress",
+                                          "Loneliness",
+                                          "Unstructured routine",
+                                          "Other"
+                                      ]
+                      },
+                      {
+                          "id":  "next_week_focus",
+                          "question":  "Top focus for next week",
+                          "type":  "text",
+                          "placeholder":  "One clear actionable focus..."
+                      },
+                      {
+                          "id":  "micro_goal_next_week",
+                          "question":  "One measurable micro-goal for next week",
+                          "type":  "text",
+                          "placeholder":  "Example: Practice thought reframing 5 days"
+                      },
+                      {
+                          "id":  "support_plan_next_week",
+                          "question":  "Who will support you next week and how?",
+                          "type":  "text",
+                          "placeholder":  "Name + contact plan"
+                      }
+                  ]
+}

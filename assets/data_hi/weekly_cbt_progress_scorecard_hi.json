@@ -1,0 +1,166 @@
+{
+  "title": "साप्ताहिक सीबीटी प्रगति स्कोरकार्ड",
+  "description": "साप्ताहिक लक्षण भार, कौशल उपयोग और संबंध स्थिरता की समीक्षा करें।",
+  "questions": [
+    {
+      "id": "week_range",
+      "question": "सप्ताह सीमा",
+      "type": "text",
+      "placeholder": "उदाहरण: 2026-02-03 से 2026-02-09 तक"
+    },
+    {
+      "id": "average_mood_score",
+      "question": "औसत मूड स्कोर (0-10)",
+      "type": "text",
+      "placeholder": "साप्ताहिक औसत"
+    },
+    {
+      "id": "depression_load",
+      "question": "इस सप्ताह अवसाद का बोझ (0-10)",
+      "type": "text",
+      "placeholder": "0 = कोई नहीं, 10 = गंभीर"
+    },
+    {
+      "id": "anxiety_load",
+      "question": "इस सप्ताह चिंता का बोझ रहेगा",
+      "type": "single",
+      "options": [
+        "कम",
+        "मध्यम",
+        "उच्च",
+        "बहुत ऊँचा"
+      ]
+    },
+    {
+      "id": "irritability_level",
+      "question": "इस सप्ताह चिड़चिड़ापन का स्तर",
+      "type": "single",
+      "options": [
+        "कम",
+        "मध्यम",
+        "उच्च",
+        "बहुत ऊँचा"
+      ]
+    },
+    {
+      "id": "sleep_quality_score",
+      "question": "नींद की गुणवत्ता स्कोर (0-10)",
+      "type": "text",
+      "placeholder": "समग्र सप्ताह की नींद के आधार पर"
+    },
+    {
+      "id": "sleep_hours_avg",
+      "question": "प्रति रात औसत नींद के घंटे",
+      "type": "text",
+      "placeholder": "उदाहरण: 6.5"
+    },
+    {
+      "id": "energy_level",
+      "question": "इस सप्ताह ऊर्जा स्तर",
+      "type": "single",
+      "options": [
+        "बहुत कम",
+        "कम",
+        "मध्यम",
+        "अच्छा"
+      ]
+    },
+    {
+      "id": "skills_used",
+      "question": "आपने कौन से सीबीटी कौशल का उपयोग किया?",
+      "type": "multi",
+      "options": [
+        "पुनः फ़्रेमिंग करने का विचार किया",
+        "साँस लेना/ग्राउंडिंग",
+        "व्यवहारिक सक्रियता",
+        "एक्सपोज़र अभ्यास",
+        "journaling",
+        "संचार मरम्मत"
+      ]
+    },
+    {
+      "id": "skills_consistency_days",
+      "question": "आपने कितने दिनों तक सीबीटी कौशल का सक्रिय रूप से उपयोग किया?",
+      "type": "text",
+      "placeholder": "0 से 7 दिन"
+    },
+    {
+      "id": "relationship_stability",
+      "question": "इस सप्ताह रिश्ते में स्थिरता रहेगी",
+      "type": "single",
+      "options": [
+        "स्थिर और सहायक",
+        "अधिकतर स्थिर",
+        "मिश्रित",
+        "तनावपूर्ण",
+        "अत्यधिक अस्थिर"
+      ]
+    },
+    {
+      "id": "high_stress_interactions_count",
+      "question": "इस सप्ताह कितनी उच्च-तनावपूर्ण बातचीत हुई?",
+      "type": "text",
+      "placeholder": "गिनती करना"
+    },
+    {
+      "id": "supportive_interactions_count",
+      "question": "इस सप्ताह कितनी सहायक बातचीत हुई?",
+      "type": "text",
+      "placeholder": "गिनती करना"
+    },
+    {
+      "id": "functional_impact",
+      "question": "लक्षणों ने दैनिक कामकाज को कितना प्रभावित किया?",
+      "type": "single",
+      "options": [
+        "कोई असर नहीं",
+        "हल्का असर",
+        "मध्यम प्रभाव",
+        "गंभीर प्रभाव"
+      ]
+    },
+    {
+      "id": "risk_flag",
+      "question": "इस सप्ताह कोई सुरक्षा संबंधी चिंता?",
+      "type": "single",
+      "options": [
+        "नहीं",
+        "हाँ - हल्की चिंता",
+        "हाँ - मध्यम चिंता",
+        "हाँ - तत्काल चिंता"
+      ]
+    },
+    {
+      "id": "top_trigger_theme",
+      "question": "इस सप्ताह का मुख्य ट्रिगर विषय",
+      "type": "single",
+      "options": [
+        "रिश्ते में टकराव",
+        "काम/पढ़ाई का दबाव",
+        "स्वास्थ्य के बारे में बातें",
+        "वित्तीय तनाव",
+        "अकेलापन",
+        "असंरचित दिनचर्या",
+        "अन्य"
+      ]
+    },
+    {
+      "id": "next_week_focus",
+      "question": "अगले सप्ताह के लिए शीर्ष फोकस",
+      "type": "text",
+      "placeholder": "एक स्पष्ट कार्रवाई योग्य फोकस..."
+    },
+    {
+      "id": "micro_goal_next_week",
+      "question": "अगले सप्ताह के लिए एक मापने योग्य सूक्ष्म लक्ष्य",
+      "type": "text",
+      "placeholder": "उदाहरण: 5 दिनों तक विचार पुनर्रचना का अभ्यास करें"
+    },
+    {
+      "id": "support_plan_next_week",
+      "question": "अगले सप्ताह कौन आपका समर्थन करेगा और कैसे?",
+      "type": "text",
+      "placeholder": "नाम + संपर्क योजना"
+    }
+  ]
+}

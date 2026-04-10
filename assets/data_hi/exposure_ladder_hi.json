@@ -1,0 +1,522 @@
+{
+  "exposure_ladder": {
+    "title": "चिंता एक्सपोज़र पदानुक्रम - 50 श्रेणीबद्ध चरण",
+    "description": "चिंता प्रबंधन के लिए प्रगतिशील एक्सपोज़र कदम, कम से कम से लेकर सबसे अधिक परेशानी तक का आदेश दिया गया",
+    "total_steps": 50,
+    "steps": [
+      {
+        "id": 1,
+        "step": "'चिंता' शब्द को कागज पर लिख लें",
+        "difficulty": 1,
+        "category": "लेखन/चिंतन",
+        "estimated_suds": 10,
+        "duration_minutes": 2
+      },
+      {
+        "id": 2,
+        "step": "चिंता के लक्षणों के बारे में एक लेख पढ़ें",
+        "difficulty": 1,
+        "category": "पढ़ना",
+        "estimated_suds": 15,
+        "duration_minutes": 5
+      },
+      {
+        "id": 3,
+        "step": "मानसिक स्वास्थ्य के बारे में एक वृत्तचित्र देखें",
+        "difficulty": 2,
+        "category": "मिडिया",
+        "estimated_suds": 20,
+        "duration_minutes": 30
+      },
+      {
+        "id": 4,
+        "step": "अकेले गहरी साँस लेने के व्यायाम का अभ्यास करें",
+        "difficulty": 2,
+        "category": "भौतिक",
+        "estimated_suds": 15,
+        "duration_minutes": 5
+      },
+      {
+        "id": 5,
+        "step": "किसी शांत कमरे में 5 मिनट तक आंखें बंद करके बैठें",
+        "difficulty": 2,
+        "category": "भौतिक",
+        "estimated_suds": 20,
+        "duration_minutes": 5
+      },
+      {
+        "id": 6,
+        "step": "चिंता के बारे में निर्देशित ध्यान सुनें",
+        "difficulty": 2,
+        "category": "ऑडियो",
+        "estimated_suds": 25,
+        "duration_minutes": 10
+      },
+      {
+        "id": 7,
+        "step": "पिछले हल्के चिंता अनुभव के बारे में लिखें",
+        "difficulty": 3,
+        "category": "लेखन/चिंतन",
+        "estimated_suds": 25,
+        "duration_minutes": 10
+      },
+      {
+        "id": 8,
+        "step": "भीड़-भाड़ वाली जगहों की तस्वीरें देखें",
+        "difficulty": 3,
+        "category": "तस्वीर",
+        "estimated_suds": 30,
+        "duration_minutes": 5
+      },
+      {
+        "id": 9,
+        "step": "किसी के भाषण देने का वीडियो देखें",
+        "difficulty": 3,
+        "category": "मिडिया",
+        "estimated_suds": 30,
+        "duration_minutes": 10
+      },
+      {
+        "id": 10,
+        "step": "प्रगतिशील मांसपेशी विश्राम का अभ्यास करें",
+        "difficulty": 3,
+        "category": "भौतिक",
+        "estimated_suds": 25,
+        "duration_minutes": 15
+      },
+      {
+        "id": 11,
+        "step": "मेलबॉक्स तक चलें और अकेले ही वापस आएं",
+        "difficulty": 4,
+        "category": "आउटडोर",
+        "estimated_suds": 35,
+        "duration_minutes": 5
+      },
+      {
+        "id": 12,
+        "step": "परिवार के किसी सदस्य को फ़ोन करें",
+        "difficulty": 4,
+        "category": "सामाजिक",
+        "estimated_suds": 35,
+        "duration_minutes": 5
+      },
+      {
+        "id": 13,
+        "step": "किसी मित्र को टेक्स्ट संदेश भेजें",
+        "difficulty": 4,
+        "category": "सामाजिक",
+        "estimated_suds": 30,
+        "duration_minutes": 2
+      },
+      {
+        "id": 14,
+        "step": "डिलीवरी ऐप के जरिए खाना ऑर्डर करें",
+        "difficulty": 4,
+        "category": "सामाजिक",
+        "estimated_suds": 35,
+        "duration_minutes": 10
+      },
+      {
+        "id": 15,
+        "step": "सड़क पर खड़ी कार में बैठें",
+        "difficulty": 4,
+        "category": "आउटडोर",
+        "estimated_suds": 35,
+        "duration_minutes": 10
+      },
+      {
+        "id": 16,
+        "step": "ऑफ-पीक घंटों के दौरान किसी शांत पार्क में जाएँ",
+        "difficulty": 5,
+        "category": "आउटडोर",
+        "estimated_suds": 40,
+        "duration_minutes": 15
+      },
+      {
+        "id": 17,
+        "step": "एक साथी के साथ किसी छोटी स्थानीय दुकान पर जाएँ",
+        "difficulty": 5,
+        "category": "सामाजिक",
+        "estimated_suds": 45,
+        "duration_minutes": 15
+      },
+      {
+        "id": 18,
+        "step": "कैमरा बंद करके वर्चुअल मीटिंग में भाग लें",
+        "difficulty": 5,
+        "category": "सामाजिक",
+        "estimated_suds": 40,
+        "duration_minutes": 30
+      },
+      {
+        "id": 19,
+        "step": "फ़ोन द्वारा डॉक्टर से अपॉइंटमेंट लें",
+        "difficulty": 5,
+        "category": "सामाजिक",
+        "estimated_suds": 45,
+        "duration_minutes": 5
+      },
+      {
+        "id": 20,
+        "step": "दोस्त के साथ शांत समय में किसी रेस्तरां में खाना खाएं",
+        "difficulty": 5,
+        "category": "सामाजिक",
+        "estimated_suds": 45,
+        "duration_minutes": 45
+      },
+      {
+        "id": 21,
+        "step": "पास के शहर में अकेले ड्राइव करें",
+        "difficulty": 6,
+        "category": "आउटडोर",
+        "estimated_suds": 50,
+        "duration_minutes": 30
+      },
+      {
+        "id": 22,
+        "step": "एक छोटी सभा में भाग लें (3-5 लोग)",
+        "difficulty": 6,
+        "category": "सामाजिक",
+        "estimated_suds": 55,
+        "duration_minutes": 60
+      },
+      {
+        "id": 23,
+        "step": "एक छोटे समूह में चर्चा में बोलें",
+        "difficulty": 6,
+        "category": "सामाजिक",
+        "estimated_suds": 55,
+        "duration_minutes": 15
+      },
+      {
+        "id": 24,
+        "step": "किसी मित्र के साथ मूवी थिएटर जाएँ",
+        "difficulty": 6,
+        "category": "सामाजिक",
+        "estimated_suds": 50,
+        "duration_minutes": 120
+      },
+      {
+        "id": 25,
+        "step": "ऑफ-पीक के दौरान सार्वजनिक परिवहन लें",
+        "difficulty": 6,
+        "category": "आउटडोर",
+        "estimated_suds": 55,
+        "duration_minutes": 30
+      },
+      {
+        "id": 26,
+        "step": "किराने की दुकान पर अकेले खरीदारी करें",
+        "difficulty": 7,
+        "category": "आउटडोर",
+        "estimated_suds": 60,
+        "duration_minutes": 30
+      },
+      {
+        "id": 27,
+        "step": "कैमरे के साथ वर्चुअल मीटिंग में भाग लें",
+        "difficulty": 7,
+        "category": "सामाजिक",
+        "estimated_suds": 60,
+        "duration_minutes": 45
+      },
+      {
+        "id": 28,
+        "step": "कैशियर से छोटी-मोटी बातचीत करें",
+        "difficulty": 7,
+        "category": "सामाजिक",
+        "estimated_suds": 65,
+        "duration_minutes": 5
+      },
+      {
+        "id": 29,
+        "step": "किसी व्यस्त शॉपिंग मॉल में जाएँ",
+        "difficulty": 7,
+        "category": "आउटडोर",
+        "estimated_suds": 65,
+        "duration_minutes": 45
+      },
+      {
+        "id": 30,
+        "step": "किसी कार्य बैठक में व्यक्तिगत रूप से भाग लें",
+        "difficulty": 7,
+        "category": "सामाजिक",
+        "estimated_suds": 65,
+        "duration_minutes": 60
+      },
+      {
+        "id": 31,
+        "step": "किसी रेस्तरां में अकेले खाना खाएं",
+        "difficulty": 8,
+        "category": "सामाजिक",
+        "estimated_suds": 70,
+        "duration_minutes": 45
+      },
+      {
+        "id": 32,
+        "step": "2-3 लोगों को एक संक्षिप्त प्रस्तुति दें",
+        "difficulty": 8,
+        "category": "सामाजिक",
+        "estimated_suds": 75,
+        "duration_minutes": 15
+      },
+      {
+        "id": 33,
+        "step": "भीड़-भाड़ वाले समय में सार्वजनिक परिवहन लें",
+        "difficulty": 8,
+        "category": "आउटडोर",
+        "estimated_suds": 70,
+        "duration_minutes": 45
+      },
+      {
+        "id": 34,
+        "step": "10+ लोगों के साथ एक पार्टी में भाग लें",
+        "difficulty": 8,
+        "category": "सामाजिक",
+        "estimated_suds": 75,
+        "duration_minutes": 120
+      },
+      {
+        "id": 35,
+        "step": "शिकायत करें या किसी स्टोर पर कोई वस्तु लौटाएँ",
+        "difficulty": 8,
+        "category": "सामाजिक",
+        "estimated_suds": 75,
+        "duration_minutes": 15
+      },
+      {
+        "id": 36,
+        "step": "किसी भीड़ भरे संगीत कार्यक्रम या कार्यक्रम में जाएँ",
+        "difficulty": 9,
+        "category": "सामाजिक",
+        "estimated_suds": 80,
+        "duration_minutes": 180
+      },
+      {
+        "id": 37,
+        "step": "एक बड़े समूह की बैठक में बोलें (10+ लोग)",
+        "difficulty": 9,
+        "category": "सामाजिक",
+        "estimated_suds": 80,
+        "duration_minutes": 30
+      },
+      {
+        "id": 38,
+        "step": "किसी अपरिचित शहर में अकेले यात्रा करें",
+        "difficulty": 9,
+        "category": "आउटडोर",
+        "estimated_suds": 80,
+        "duration_minutes": 480
+      },
+      {
+        "id": 39,
+        "step": "नौकरी के लिए साक्षात्कार में भाग लें",
+        "difficulty": 9,
+        "category": "सामाजिक",
+        "estimated_suds": 85,
+        "duration_minutes": 60
+      },
+      {
+        "id": 40,
+        "step": "एक बड़े समूह (20+ लोग) के सामने प्रस्तुतिकरण दें",
+        "difficulty": 9,
+        "category": "सामाजिक",
+        "estimated_suds": 85,
+        "duration_minutes": 30
+      },
+      {
+        "id": 41,
+        "step": "पहली डेट पर जाएं",
+        "difficulty": 10,
+        "category": "सामाजिक",
+        "estimated_suds": 85,
+        "duration_minutes": 120
+      },
+      {
+        "id": 42,
+        "step": "किसी नेटवर्किंग कार्यक्रम में अकेले भाग लें",
+        "difficulty": 10,
+        "category": "सामाजिक",
+        "estimated_suds": 90,
+        "duration_minutes": 120
+      },
+      {
+        "id": 43,
+        "step": "50+ लोगों के सामने बोलें",
+        "difficulty": 10,
+        "category": "सामाजिक",
+        "estimated_suds": 90,
+        "duration_minutes": 30
+      },
+      {
+        "id": 44,
+        "step": "हवाई जहाज़ पर अकेले उड़ो",
+        "difficulty": 10,
+        "category": "आउटडोर",
+        "estimated_suds": 90,
+        "duration_minutes": 300
+      },
+      {
+        "id": 45,
+        "step": "उच्च-स्तरीय प्रदर्शन समीक्षा में भाग लें",
+        "difficulty": 10,
+        "category": "सामाजिक",
+        "estimated_suds": 90,
+        "duration_minutes": 60
+      },
+      {
+        "id": 46,
+        "step": "किसी शादी में टोस्ट दें",
+        "difficulty": 10,
+        "category": "सामाजिक",
+        "estimated_suds": 95,
+        "duration_minutes": 5
+      },
+      {
+        "id": 47,
+        "step": "किसी कार्यशाला या प्रशिक्षण सत्र का नेतृत्व करें",
+        "difficulty": 10,
+        "category": "सामाजिक",
+        "estimated_suds": 95,
+        "duration_minutes": 120
+      },
+      {
+        "id": 48,
+        "step": "लाइव टेलीविज़न या रेडियो पर दिखाई दें",
+        "difficulty": 10,
+        "category": "सामाजिक",
+        "estimated_suds": 95,
+        "duration_minutes": 30
+      },
+      {
+        "id": 49,
+        "step": "500 से अधिक लोगों को मुख्य भाषण दें",
+        "difficulty": 10,
+        "category": "सामाजिक",
+        "estimated_suds": 100,
+        "duration_minutes": 60
+      },
+      {
+        "id": 50,
+        "step": "30 मिनट के लिए सबसे खराब स्थिति के दृश्य का सामना करें",
+        "difficulty": 10,
+        "category": "तुरीयावस्था",
+        "estimated_suds": 100,
+        "duration_minutes": 30
+      }
+    ],
+    "usage_guidelines": {
+      "start_at_lowest": "1-3 कठिनाई रेटिंग वाले चरणों से प्रारंभ करें",
+      "mastery_criteria": "आगे बढ़ने से पहले चिंता को 50% कम करते हुए 3 बार चरण पूरा करें",
+      "suds_scale": "संकट पैमाने की व्यक्तिपरक इकाइयाँ (0-100)",
+      "safety_behavior_elimination": "धीरे-धीरे बैसाखियाँ हटाएँ (जैसे, फ़ोन, साथी)",
+      "frequency": "सर्वोत्तम परिणामों के लिए प्रतिदिन या हर दूसरे दिन अभ्यास करें",
+      "therapist_guidance": "30+ चरणों के लिए सीबीटी चिकित्सक के साथ काम करने की अनुशंसा की जाती है"
+    },
+    "categories": [
+      "लेखन/चिंतन",
+      "पढ़ना",
+      "मिडिया",
+      "भौतिक",
+      "ऑडियो",
+      "तस्वीर",
+      "आउटडोर",
+      "सामाजिक",
+      "तुरीयावस्था"
+    ]
+  },
+  "title": "एक्सपोज़र सीढ़ी",
+  "description": "एसयूडीएस, पूर्णता और सीख का उपयोग करके श्रेणीबद्ध एक्सपोज़र प्रयासों की योजना बनाएं और लॉग करें।",
+  "questions": [
+    {
+      "id": "fear_topic",
+      "question": "डर का विषय जिसे आप लक्षित कर रहे हैं",
+      "type": "text",
+      "placeholder": "उदाहरण: सार्वजनिक भाषण/भीड़ की चिंता"
+    },
+    {
+      "id": "selected_step_id",
+      "question": "चयनित सीढ़ी चरण आईडी",
+      "type": "text",
+      "placeholder": "1 से 50"
+    },
+    {
+      "id": "selected_step_description",
+      "question": "चयनित चरण विवरण",
+      "type": "text",
+      "placeholder": "ऊपर सीढ़ी से चरण कॉपी/पेस्ट करें"
+    },
+    {
+      "id": "pre_suds",
+      "question": "एक्सपोज़र से पहले SUDS (0-100)",
+      "type": "text",
+      "placeholder": "0=शांति, 100=अत्यधिक कष्ट"
+    },
+    {
+      "id": "predicted_outcome",
+      "question": "आप क्या भविष्यवाणी करते हैं क्या होगा?",
+      "type": "text",
+      "placeholder": "आपकी भयभीत भविष्यवाणी..."
+    },
+    {
+      "id": "safety_behaviors_used",
+      "question": "सुरक्षा व्यवहार का उपयोग किया गया",
+      "type": "multi",
+      "options": [
+        "कोई नहीं",
+        "फ़ोन की जाँच",
+        "आँख मिलाने से बचना",
+        "निकास के निकट रहना",
+        "साथी निर्भरता",
+        "आश्वासन की तलाश",
+        "भागने की योजना मन में",
+        "अन्य"
+      ]
+    },
+    {
+      "id": "completion_status",
+      "question": "एक्सपोज़र पूरा होने की स्थिति",
+      "type": "single",
+      "options": [
+        "पूर्णतः पूर्ण",
+        "आंशिक रूप से पूरा हुआ",
+        "कोशिश की लेकिन रुक गया",
+        "आज छोड़ दिया"
+      ]
+    },
+    {
+      "id": "peak_suds",
+      "question": "एक्सपोज़र के दौरान पीक एसयूडीएस (0-100)",
+      "type": "text",
+      "placeholder": "उच्चतम संकट पहुँच गया"
+    },
+    {
+      "id": "post_suds",
+      "question": "एक्सपोज़र के बाद एसयूडीएस (0-100)",
+      "type": "text",
+      "placeholder": "अंत में संकट"
+    },
+    {
+      "id": "disconfirmation",
+      "question": "क्या जिस नतीजे का डर था वह हुआ?",
+      "type": "single",
+      "options": [
+        "नहीं",
+        "आंशिक रूप से",
+        "हाँ"
+      ]
+    },
+    {
+      "id": "learning_note",
+      "question": "इस प्रयास से आपने क्या सीखा?",
+      "type": "text",
+      "placeholder": "प्रमुख शिक्षा..."
+    },
+    {
+      "id": "next_step_plan",
+      "question": "अगला एक्सपोज़र चरण योजना",
+      "type": "text",
+      "placeholder": "वही चरण दोहराएँ या अगले चरण पर जाएँ?"
+    }
+  ]
+}

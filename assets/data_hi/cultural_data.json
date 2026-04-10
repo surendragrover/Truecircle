@@ -1,0 +1,282 @@
+{
+  "festivals": [
+    {
+      "name": "Lohri",
+      "hindiName": "Lohri",
+      "type": "minor",
+      "regions": ["Punjab", "Haryana", "North India"],
+      "description": "Harvest festival with bonfires, folk songs, and dance, marking the end of winter.",
+      "greetingMessages": {
+        "formal": "Happy Lohri!",
+        "casual": "Happy Lohri! Fire and music time.",
+        "family": "Wishing you a warm and joyful Lohri celebration."
+      },
+      "culturalTips": [
+        "Share a bonfire photo with family and friends.",
+        "Talk about seasonal foods and local traditions.",
+        "Celebrate with music and dance moments."
+      ]
+    },
+    {
+      "name": "Makar Sankranti",
+      "hindiName": "Makar Sankranti",
+      "type": "major",
+      "regions": ["Pan-India"],
+      "description": "Harvest festival marking the Sun's transition into Capricorn, often celebrated with kite flying and festive sweets.",
+      "greetingMessages": {
+        "formal": "Happy Makar Sankranti!",
+        "casual": "Happy Makar Sankranti! Enjoy the kite skies.",
+        "family": "Wishing your day is filled with sweetness and sunshine."
+      },
+      "culturalTips": [
+        "Share a kite-flying photo.",
+        "Discuss festival foods and family recipes.",
+        "Mention harvest traditions in your region."
+      ]
+    },
+    {
+      "name": "Pongal",
+      "hindiName": "Pongal",
+      "type": "major",
+      "regions": ["Tamil Nadu"],
+      "description": "Tamil harvest festival honoring gratitude, nature, and community.",
+      "greetingMessages": {
+        "formal": "Happy Pongal!",
+        "casual": "Happy Pongal! Wishing you prosperity.",
+        "family": "May this Pongal bring joy, abundance, and peace."
+      },
+      "culturalTips": [
+        "Share a photo of a festive meal.",
+        "Talk about home decorations and rangoli.",
+        "Celebrate with traditional food stories."
+      ]
+    },
+    {
+      "name": "Republic Day",
+      "hindiName": "Republic Day",
+      "type": "major",
+      "regions": ["All India"],
+      "description": "Commemorates the adoption of the Indian Constitution in 1950.",
+      "greetingMessages": {
+        "formal": "Happy Republic Day!",
+        "casual": "Happy Republic Day! Proud and grateful.",
+        "family": "Wishing you a meaningful and proud Republic Day."
+      },
+      "culturalTips": [
+        "Share moments from local celebrations.",
+        "Discuss values of democracy and citizenship."
+      ]
+    },
+    {
+      "name": "Vasant Panchami",
+      "hindiName": "Vasant Panchami",
+      "type": "minor",
+      "regions": ["Pan-India"],
+      "description": "Festival celebrating spring, learning, and cultural renewal.",
+      "greetingMessages": {
+        "formal": "Happy Vasant Panchami!",
+        "casual": "Happy Vasant Panchami! Welcome spring.",
+        "family": "Wishing your home a bright and peaceful spring season."
+      },
+      "culturalTips": [
+        "Share spring-themed photos.",
+        "Discuss learning goals and creative activities."
+      ]
+    },
+    {
+      "name": "Maha Shivratri",
+      "hindiName": "Maha Shivratri",
+      "type": "major",
+      "regions": ["Pan-India"],
+      "description": "A spiritual observance dedicated to Lord Shiva.",
+      "greetingMessages": {
+        "formal": "Happy Maha Shivratri!",
+        "casual": "Happy Maha Shivratri! Wishing you strength and calm.",
+        "family": "May this day bring peace, reflection, and blessings."
+      },
+      "culturalTips": [
+        "Share a respectful temple or prayer moment.",
+        "Discuss meaningful spiritual practices."
+      ]
+    },
+    {
+      "name": "Holi",
+      "hindiName": "Holi",
+      "type": "major",
+      "regions": ["Pan-India"],
+      "description": "Festival of colors symbolizing joy, renewal, and the victory of good over evil.",
+      "greetingMessages": {
+        "formal": "Happy Holi!",
+        "casual": "Happy Holi! Have a colorful day.",
+        "family": "Wishing your family a joyful and vibrant Holi."
+      },
+      "culturalTips": [
+        "Share colorful celebration photos.",
+        "Talk about favorite festival sweets.",
+        "Celebrate with music and community."
+      ]
+    },
+    {
+      "name": "Ram Navami",
+      "hindiName": "Ram Navami",
+      "type": "minor",
+      "regions": ["Pan-India"],
+      "description": "Celebrates the birth anniversary of Lord Rama.",
+      "greetingMessages": {
+        "formal": "Happy Ram Navami!",
+        "casual": "Happy Ram Navami! Wishing you peace.",
+        "family": "May this day bring harmony and blessings to your family."
+      },
+      "culturalTips": [
+        "Share meaningful prayer moments.",
+        "Discuss values from traditional stories."
+      ]
+    },
+    {
+      "name": "Ugadi",
+      "hindiName": "Ugadi",
+      "type": "major",
+      "regions": ["Andhra Pradesh", "Telangana", "Karnataka"],
+      "description": "New Year festival celebrated with gratitude and fresh beginnings.",
+      "greetingMessages": {
+        "formal": "Happy Ugadi!",
+        "casual": "Happy Ugadi! New year, new hope.",
+        "family": "Wishing your family a joyful and prosperous new year."
+      },
+      "culturalTips": [
+        "Share photos of New Year traditions.",
+        "Talk about seasonal dishes and family customs."
+      ]
+    },
+    {
+      "name": "Gudi Padwa",
+      "hindiName": "Gudi Padwa",
+      "type": "major",
+      "regions": ["Maharashtra"],
+      "description": "Traditional Maharashtrian New Year celebration.",
+      "greetingMessages": {
+        "formal": "Happy Gudi Padwa!",
+        "casual": "Happy Gudi Padwa! Wishing you happiness.",
+        "family": "May the new year bring positivity and success."
+      },
+      "culturalTips": [
+        "Share photos of home decorations.",
+        "Discuss festive food and family rituals."
+      ]
+    },
+    {
+      "name": "Cheti Chand",
+      "hindiName": "Cheti Chand",
+      "type": "minor",
+      "regions": ["Sindhi Community"],
+      "description": "Sindhi New Year celebration honoring community and tradition.",
+      "greetingMessages": {
+        "formal": "Happy Cheti Chand!",
+        "casual": "Happy Cheti Chand! Wishing you joy.",
+        "family": "May this day bring peace and prosperity to your home."
+      },
+      "culturalTips": [
+        "Share traditional celebration moments.",
+        "Discuss music, stories, and family customs."
+      ]
+    },
+    {
+      "name": "Eid-ul-Fitr",
+      "hindiName": "Eid-ul-Fitr",
+      "type": "major",
+      "regions": ["All India", "Muslim Community"],
+      "description": "Festival marking the end of Ramadan with prayers, gratitude, and shared meals.",
+      "greetingMessages": {
+        "formal": "Eid Mubarak!",
+        "casual": "Eid Mubarak! Wishing you joy and peace.",
+        "family": "May your Eid be filled with warmth, kindness, and celebration."
+      },
+      "culturalTips": [
+        "Share a celebration photo respectfully.",
+        "Talk about meaningful family traditions.",
+        "Celebrate generosity and community connection."
+      ]
+    },
+    {
+      "name": "Eid-ul-Adha",
+      "hindiName": "Eid-ul-Adha",
+      "type": "major",
+      "regions": ["All India", "Muslim Community"],
+      "description": "Festival honoring sacrifice, compassion, and faith.",
+      "greetingMessages": {
+        "formal": "Eid-ul-Adha Mubarak!",
+        "casual": "Eid Mubarak! Wishing you blessings.",
+        "family": "May this Eid bring peace, gratitude, and togetherness."
+      },
+      "culturalTips": [
+        "Share a respectful family gathering moment.",
+        "Discuss values of generosity and compassion."
+      ]
+    },
+    {
+      "name": "Muharram",
+      "hindiName": "Muharram",
+      "type": "minor",
+      "regions": ["All India", "Muslim Community"],
+      "description": "A period of remembrance, reflection, and spiritual significance.",
+      "greetingMessages": {
+        "formal": "Wishing you peace during Muharram.",
+        "casual": "Peace and reflection to you in Muharram.",
+        "family": "May this time bring remembrance, dignity, and calm."
+      },
+      "culturalTips": [
+        "Share reflective and respectful messages.",
+        "Discuss values of compassion and remembrance."
+      ]
+    },
+    {
+      "name": "Milad-un-Nabi",
+      "hindiName": "Milad-un-Nabi",
+      "type": "minor",
+      "regions": ["All India", "Muslim Community"],
+      "description": "Commemorates the birth anniversary of Prophet Muhammad.",
+      "greetingMessages": {
+        "formal": "Milad-un-Nabi Mubarak!",
+        "casual": "Wishing you peace on Milad-un-Nabi.",
+        "family": "May this day bring blessings, gratitude, and unity."
+      },
+      "culturalTips": [
+        "Share thoughtful community messages.",
+        "Talk about kindness and service values."
+      ]
+    },
+    {
+      "name": "Gurpurab (Guru Nanak Jayanti)",
+      "hindiName": "Gurpurab (Guru Nanak Jayanti)",
+      "type": "major",
+      "regions": ["Punjab", "Pan-India"],
+      "description": "Celebrates the birth anniversary of Guru Nanak Dev Ji.",
+      "greetingMessages": {
+        "formal": "Happy Guru Nanak Jayanti!",
+        "casual": "Wishing you a blessed Gurpurab.",
+        "family": "May this Gurpurab bring peace, humility, and joy."
+      },
+      "culturalTips": [
+        "Share moments of service and gratitude.",
+        "Discuss teachings that inspire daily life."
+      ]
+    },
+    {
+      "name": "Christmas",
+      "hindiName": "Christmas",
+      "type": "major",
+      "regions": ["All India", "Christian Community"],
+      "description": "Celebrates the birth of Jesus Christ with prayers, gifts, and family gatherings.",
+      "greetingMessages": {
+        "formal": "Merry Christmas!",
+        "casual": "Merry Christmas! Wishing you warmth and joy.",
+        "family": "May your home be filled with peace and festive happiness."
+      },
+      "culturalTips": [
+        "Share festive decoration photos.",
+        "Celebrate with music and gratitude.",
+        "Discuss traditions that bring family together."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,236 @@
+﻿{
+    "app_name":  "TrueCircle",
+    "feature":  "Weekly CBT Progress Scorecard",
+    "currency_unit":  "1 Coin",
+    "scorecard_content":  [
+                              {
+                                  "category":  "Symptom Trend - Emotional State",
+                                  "items":  [
+                                                {
+                                                    "id":  1,
+                                                    "question":  "Frequency of anxiety spikes this week?"
+                                                },
+                                                {
+                                                    "id":  2,
+                                                    "question":  "Intensity of low mood episodes (1-10)?"
+                                                },
+                                                {
+                                                    "id":  3,
+                                                    "question":  "Daily average of irritability levels?"
+                                                },
+                                                {
+                                                    "id":  4,
+                                                    "question":  "Ability to find joy in small activities?"
+                                                },
+                                                {
+                                                    "id":  5,
+                                                    "question":  "Frequency of feeling overwhelmed by tasks?"
+                                                },
+                                                {
+                                                    "id":  6,
+                                                    "question":  "Instances of sudden emotional exhaustion?"
+                                                },
+                                                {
+                                                    "id":  7,
+                                                    "question":  "Level of restlessness during the day?"
+                                                },
+                                                {
+                                                    "id":  8,
+                                                    "question":  "Frequency of self-critical thoughts?"
+                                                },
+                                                {
+                                                    "id":  9,
+                                                    "question":  "Sense of hopelessness about the future?"
+                                                },
+                                                {
+                                                    "id":  10,
+                                                    "question":  "Overall emotional stability score?"
+                                                }
+                                            ]
+                              },
+                              {
+                                  "category":  "Symptom Trend - Physical \u0026 Behavioral",
+                                  "items":  [
+                                                {
+                                                    "id":  11,
+                                                    "question":  "Quality of sleep compared to last week?"
+                                                },
+                                                {
+                                                    "id":  12,
+                                                    "question":  "Physical symptoms of stress (e.g., headaches)?"
+                                                },
+                                                {
+                                                    "id":  13,
+                                                    "question":  "Appetite consistency throughout the week?"
+                                                },
+                                                {
+                                                    "id":  14,
+                                                    "question":  "Energy levels during afternoon hours?"
+                                                },
+                                                {
+                                                    "id":  15,
+                                                    "question":  "Tendency to procrastinate on self-care?"
+                                                },
+                                                {
+                                                    "id":  16,
+                                                    "question":  "Social withdrawal or isolation frequency?"
+                                                },
+                                                {
+                                                    "id":  17,
+                                                    "question":  "Focus and concentration levels?"
+                                                },
+                                                {
+                                                    "id":  18,
+                                                    "question":  "Physical relaxation achieved before bed?"
+                                                },
+                                                {
+                                                    "id":  19,
+                                                    "question":  "Frequency of panic-like sensations?"
+                                                },
+                                                {
+                                                    "id":  20,
+                                                    "question":  "Ability to maintain a routine?"
+                                                }
+                                            ]
+                              },
+                              {
+                                  "category":  "Skill Usage - Cognitive Reframing",
+                                  "items":  [
+                                                {
+                                                    "id":  21,
+                                                    "question":  "Identified \u0027All-or-Nothing\u0027 thinking patterns?"
+                                                },
+                                                {
+                                                    "id":  22,
+                                                    "question":  "Challenged negative automatic thoughts?"
+                                                },
+                                                {
+                                                    "id":  23,
+                                                    "question":  "Looked for evidence against intrusive thoughts?"
+                                                },
+                                                {
+                                                    "id":  24,
+                                                    "question":  "Practiced \u0027Balanced Thinking\u0027 exercises?"
+                                                },
+                                                {
+                                                    "id":  25,
+                                                    "question":  "Replaced \u0027Should\u0027 statements with preferences?"
+                                                },
+                                                {
+                                                    "id":  26,
+                                                    "question":  "Identified emotional reasoning triggers?"
+                                                },
+                                                {
+                                                    "id":  27,
+                                                    "question":  "Used the \u0027Thought Record\u0027 tool today?"
+                                                },
+                                                {
+                                                    "id":  28,
+                                                    "question":  "Decatastrophized a future worry?"
+                                                },
+                                                {
+                                                    "id":  29,
+                                                    "question":  "Practiced self-compassion affirmations?"
+                                                },
+                                                {
+                                                    "id":  30,
+                                                    "question":  "Successfully relabeled a cognitive distortion?"
+                                                }
+                                            ]
+                              },
+                              {
+                                  "category":  "Skill Usage - Behavioral Activation \u0026 Coping",
+                                  "items":  [
+                                                {
+                                                    "id":  31,
+                                                    "question":  "Completed at least one \u0027Mastery\u0027 task?"
+                                                },
+                                                {
+                                                    "id":  32,
+                                                    "question":  "Engaged in a \u0027Pleasure\u0027 activity despite low mood?"
+                                                },
+                                                {
+                                                    "id":  33,
+                                                    "question":  "Used Deep Breathing (Box Breathing) techniques?"
+                                                },
+                                                {
+                                                    "id":  34,
+                                                    "question":  "Practiced Progressive Muscle Relaxation (PMR)?"
+                                                },
+                                                {
+                                                    "id":  35,
+                                                    "question":  "Used Grounding (5-4-3-2-1 method) during stress?"
+                                                },
+                                                {
+                                                    "id":  36,
+                                                    "question":  "Applied the \u00275-Minute Rule\u0027 for tasks?"
+                                                },
+                                                {
+                                                    "id":  37,
+                                                    "question":  "Managed time using a structured schedule?"
+                                                },
+                                                {
+                                                    "id":  38,
+                                                    "question":  "Exposed self to a mildly uncomfortable social situation?"
+                                                },
+                                                {
+                                                    "id":  39,
+                                                    "question":  "Used mindfulness to stay in the present moment?"
+                                                },
+                                                {
+                                                    "id":  40,
+                                                    "question":  "Avoided maladaptive coping (e.g., excessive scrolling)?"
+                                                }
+                                            ]
+                              },
+                              {
+                                  "category":  "Relationship \u0026 Emotional Health Monitor",
+                                  "items":  [
+                                                {
+                                                    "id":  41,
+                                                    "question":  "Communitated feelings clearly to a partner/friend?"
+                                                },
+                                                {
+                                                    "id":  42,
+                                                    "question":  "Set a healthy boundary this week?"
+                                                },
+                                                {
+                                                    "id":  43,
+                                                    "question":  "Practiced active listening in conversations?"
+                                                },
+                                                {
+                                                    "id":  44,
+                                                    "question":  "Managed a conflict without emotional escalation?"
+                                                },
+                                                {
+                                                    "id":  45,
+                                                    "question":  "Identified a projection in a relationship?"
+                                                },
+                                                {
+                                                    "id":  46,
+                                                    "question":  "Expressed gratitude to someone close?"
+                                                },
+                                                {
+                                                    "id":  47,
+                                                    "question":  "Checked in with self before responding to others?"
+                                                },
+                                                {
+                                                    "id":  48,
+                                                    "question":  "Shared a vulnerability with a trusted person?"
+                                                },
+                                                {
+                                                    "id":  49,
+                                                    "question":  "Maintained emotional independence in interactions?"
+                                                },
+                                                {
+                                                    "id":  50,
+                                                    "question":  "Felt a sense of connection with the community?"
+                                                }
+                                            ]
+                              }
+                          ],
+    "rewards":  {
+                    "completion_bonus":  "1 Coin",
+                    "message":  "You are doing great! Your consistency is the key to your emotional well-being."
+                }
+}

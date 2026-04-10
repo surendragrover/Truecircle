@@ -1,0 +1,46 @@
+{
+  "assessment_name": "इमोशनल चेक-इन भाग 4: रिकवरी प्लान",
+  "assessment_code": "EMO_PART_4",
+  "time_estimate_minutes": 2,
+  "questions": [
+    {
+      "id": "rp_1",
+      "question": "आज भावनात्मक रिकवरी के लिए आपका पहला कदम क्या होगा?",
+      "options": [
+        "5 मिनट गहरी सांस",
+        "10 मिनट mindful walk",
+        "छोटा journaling",
+        "विश्वसनीय व्यक्ति को संदेश",
+        "जल्दी सोने का रीसेट"
+      ]
+    },
+    {
+      "id": "rp_2",
+      "question": "अगर ट्रिगर दोबारा आए तो तुरंत कौन-सा grounding तरीका अपनाएंगे?",
+      "options": [
+        "5-4-3-2-1 grounding",
+        "ठंडे पानी के छींटे",
+        "box breathing",
+        "रुकें और reframe करें",
+        "छोटा timeout लें"
+      ]
+    },
+    {
+      "id": "rp_3",
+      "question": "कल के लिए एक वास्तविक भावनात्मक लक्ष्य चुनें।",
+      "options": [
+        "कम प्रतिक्रिया देना",
+        "बेहतर boundary",
+        "शांत संवाद",
+        "overthinking कम करना",
+        "self-compassion अभ्यास"
+      ]
+    },
+    {
+      "id": "rp_4",
+      "question": "आज के लिए अपना recovery affirmation लिखें।",
+      "type": "text",
+      "placeholder": "उदाहरण: मैं धीरे-धीरे बेहतर हो रहा/रही हूं।"
+    }
+  ]
+}

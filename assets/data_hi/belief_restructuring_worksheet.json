@@ -1,0 +1,42 @@
+﻿{
+    "title":  "Belief Restructuring Worksheet",
+    "description":  "Challenge rigid beliefs with evidence and balanced thinking.",
+    "questions":  [
+                      {
+                          "id":  "core_belief",
+                          "question":  "What belief is active right now?",
+                          "type":  "text",
+                          "placeholder":  "Example: I am not good enough"
+                      },
+                      {
+                          "id":  "evidence_for",
+                          "question":  "Evidence supporting this belief",
+                          "type":  "text",
+                          "placeholder":  "List facts only..."
+                      },
+                      {
+                          "id":  "evidence_against",
+                          "question":  "Evidence against this belief",
+                          "type":  "text",
+                          "placeholder":  "List counter-facts..."
+                      },
+                      {
+                          "id":  "cognitive_flexibility",
+                          "question":  "How flexible is this belief?",
+                          "type":  "single",
+                          "options":  [
+                                          "Very rigid",
+                                          "Somewhat rigid",
+                                          "Mixed",
+                                          "Somewhat flexible",
+                                          "Very flexible"
+                                      ]
+                      },
+                      {
+                          "id":  "new_belief",
+                          "question":  "Write a healthier replacement belief",
+                          "type":  "text",
+                          "placeholder":  "Balanced and realistic version..."
+                      }
+                  ]
+}

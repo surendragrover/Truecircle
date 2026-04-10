@@ -1,0 +1,953 @@
+﻿{
+    "trigger_response_chain_analysis":  {
+                                            "title":  "Trigger-Response Chain Analysis Dataset",
+                                            "description":  "Complete mapping of situation-thought-feeling-action cycles for cognitive-behavioral analysis",
+                                            "total_chains":  50,
+                                            "framework":  {
+                                                              "situation":  "External trigger or internal event",
+                                                              "automatic_thought":  "Immediate interpretation (cognitive distortion often present)",
+                                                              "emotion":  "Resulting feeling state with intensity (0-100)",
+                                                              "physiological_response":  "Bodily sensations",
+                                                              "behavior":  "Action or inaction taken",
+                                                              "consequence":  "Short and long-term outcome",
+                                                              "alternative_thought":  "Balanced reframe",
+                                                              "alternative_outcome":  "Healthier result"
+                                                          },
+                                            "chains":  [
+                                                           {
+                                                               "id":  1,
+                                                               "category":  "Social Anxiety",
+                                                               "situation":  "Receiving a group chat message but not responding immediately",
+                                                               "automatic_thought":  "Everyone thinks I\u0027m rude or ignoring them on purpose",
+                                                               "cognitive_distortion":  "Mind Reading",
+                                                               "emotion":  {
+                                                                               "type":  "Anxiety",
+                                                                               "intensity":  65
+                                                                           },
+                                                               "physiological_response":  "Stomach tightening, heart racing",
+                                                               "behavior":  "Avoid opening the chat, overthink response for hours",
+                                                               "consequence":  "Missed connection, increased isolation, rumination",
+                                                               "alternative_thought":  "People are busy too; a thoughtful reply later is better than a rushed one",
+                                                               "alternative_outcome":  "Responded calmly after 2 hours, conversation continued normally"
+                                                           },
+                                                           {
+                                                               "id":  2,
+                                                               "category":  "Social Anxiety",
+                                                               "situation":  "Walking into a coffee shop alone",
+                                                               "automatic_thought":  "Everyone is staring at me and judging how I look",
+                                                               "cognitive_distortion":  "Spotlight Effect",
+                                                               "emotion":  {
+                                                                               "type":  "Embarrassment",
+                                                                               "intensity":  70
+                                                                           },
+                                                               "physiological_response":  "Face flushing, sweating, trembling hands",
+                                                               "behavior":  "Rushed to corner seat, avoided eye contact, left quickly",
+                                                               "consequence":  "Didn\u0027t enjoy coffee, reinforced fear of public spaces",
+                                                               "alternative_thought":  "Most people are focused on their own phones and drinks",
+                                                               "alternative_outcome":  "Ordered calmly, sat by window, observed others were absorbed in themselves"
+                                                           },
+                                                           {
+                                                               "id":  3,
+                                                               "category":  "Social Anxiety",
+                                                               "situation":  "Being asked a question in a meeting",
+                                                               "automatic_thought":  "My answer will sound stupid and everyone will think I\u0027m incompetent",
+                                                               "cognitive_distortion":  "Catastrophizing",
+                                                               "emotion":  {
+                                                                               "type":  "Fear",
+                                                                               "intensity":  80
+                                                                           },
+                                                               "physiological_response":  "Throat closing, mind going blank, sweating",
+                                                               "behavior":  "Mumbled \u0027I don\u0027t know,\u0027 looked down, avoided speaking rest of meeting",
+                                                               "consequence":  "Boss followed up privately, felt ashamed for days",
+                                                               "alternative_thought":  "I was asked because my opinion matters; imperfect is okay",
+                                                               "alternative_outcome":  "Gave partial answer, colleague added to it, discussion continued"
+                                                           },
+                                                           {
+                                                               "id":  4,
+                                                               "category":  "Performance Anxiety",
+                                                               "situation":  "Deadline approaching for project submission",
+                                                               "automatic_thought":  "If it\u0027s not perfect, I\u0027ll fail completely and lose my job",
+                                                               "cognitive_distortion":  "All-or-Nothing Thinking",
+                                                               "emotion":  {
+                                                                               "type":  "Panic",
+                                                                               "intensity":  85
+                                                                           },
+                                                               "physiological_response":  "Chest tightness, insomnia, loss of appetite",
+                                                               "behavior":  "Procrastinated due to fear, then worked 14-hour marathon",
+                                                               "consequence":  "Exhaustion, subpar work due to rushing, burnout",
+                                                               "alternative_thought":  "Good enough on time is better than perfect late",
+                                                               "alternative_outcome":  "Submitted solid draft, received feedback, improved iteratively"
+                                                           },
+                                                           {
+                                                               "id":  5,
+                                                               "category":  "Performance Anxiety",
+                                                               "situation":  "Making a mistake in front of colleague",
+                                                               "automatic_thought":  "Now they know I\u0027m a fraud and shouldn\u0027t be in this role",
+                                                               "cognitive_distortion":  "Imposter Syndrome",
+                                                               "emotion":  {
+                                                                               "type":  "Shame",
+                                                                               "intensity":  75
+                                                                           },
+                                                               "physiological_response":  "Heat waves, nausea, desire to disappear",
+                                                               "behavior":  "Over-apologized, offered to do their work to compensate",
+                                                               "consequence":  "Colleague uncomfortable, own workload doubled, resentment built",
+                                                               "alternative_thought":  "Everyone makes mistakes; recovery matters more than perfection",
+                                                               "alternative_outcome":  "Acknowledged error, fixed it together, relationship strengthened"
+                                                           },
+                                                           {
+                                                               "id":  6,
+                                                               "category":  "Health Anxiety",
+                                                               "situation":  "Noticing an unusual headache",
+                                                               "automatic_thought":  "This is definitely a brain tumor, I\u0027m going to die",
+                                                               "cognitive_distortion":  "Catastrophizing",
+                                                               "emotion":  {
+                                                                               "type":  "Terror",
+                                                                               "intensity":  90
+                                                                           },
+                                                               "physiological_response":  "Hyperventilation, dizziness, Googling symptoms for hours",
+                                                               "behavior":  "ER visit at 2 AM, demanded CT scan, reassurance-seeking",
+                                                               "consequence":  "Medical bills, doctor frustration, reinforced anxiety cycle",
+                                                               "alternative_thought":  "Headaches have many causes; I\u0027ve had 100 before that weren\u0027t serious",
+                                                               "alternative_outcome":  "Took pain reliever, rested, headache gone by morning"
+                                                           },
+                                                           {
+                                                               "id":  7,
+                                                               "category":  "Health Anxiety",
+                                                               "situation":  "Heart racing after climbing stairs",
+                                                               "automatic_thought":  "I\u0027m having a heart attack, something is seriously wrong",
+                                                               "cognitive_distortion":  "Emotional Reasoning",
+                                                               "emotion":  {
+                                                                               "type":  "Dread",
+                                                                               "intensity":  85
+                                                                           },
+                                                               "physiological_response":  "Palpitations, sweating, checking pulse obsessively",
+                                                               "behavior":  "Sat down immediately, avoided stairs for weeks",
+                                                               "consequence":  "Deconditioning, increased fitness anxiety, social withdrawal",
+                                                               "alternative_thought":  "Heart rate increases with exertion; that\u0027s normal physiology",
+                                                               "alternative_outcome":  "Continued activity, heart rate normalized, built confidence"
+                                                           },
+                                                           {
+                                                               "id":  8,
+                                                               "category":  "Relationship Anxiety",
+                                                               "situation":  "Partner hasn\u0027t texted back in 3 hours",
+                                                               "automatic_thought":  "They\u0027re losing interest or cheating on me",
+                                                               "cognitive_distortion":  "Jumping to Conclusions",
+                                                               "emotion":  {
+                                                                               "type":  "Jealousy/Fear",
+                                                                               "intensity":  80
+                                                                           },
+                                                               "physiological_response":  "Stomach knots, checking phone every minute, irritability",
+                                                               "behavior":  "Sent 5 follow-up texts, accused them of neglect when they replied",
+                                                               "consequence":  "Partner felt suffocated, argument ensued, relationship strain",
+                                                               "alternative_thought":  "They\u0027re likely busy at work; we have plans tonight anyway",
+                                                               "alternative_outcome":  "Focused on own tasks, received text at lunch, evening went well"
+                                                           },
+                                                           {
+                                                               "id":  9,
+                                                               "category":  "Relationship Anxiety",
+                                                               "situation":  "Friend canceled plans last minute",
+                                                               "automatic_thought":  "They don\u0027t actually like me, nobody wants to spend time with me",
+                                                               "cognitive_distortion":  "Overgeneralization",
+                                                               "emotion":  {
+                                                                               "type":  "Rejection",
+                                                                               "intensity":  75
+                                                                           },
+                                                               "physiological_response":  "Chest heaviness, crying, isolation urge",
+                                                               "behavior":  "Deleted their contact, posted vague sad message, withdrew from others",
+                                                               "consequence":  "Friend confused and hurt, support network weakened",
+                                                               "alternative_thought":  "Cancellations happen; their reason seemed genuine and apologetic",
+                                                               "alternative_outcome":  "Rescheduled for next week, used evening for self-care"
+                                                           },
+                                                           {
+                                                               "id":  10,
+                                                               "category":  "Relationship Anxiety",
+                                                               "situation":  "Partner looking at their phone during dinner",
+                                                               "automatic_thought":  "They\u0027d rather be anywhere but here with me",
+                                                               "cognitive_distortion":  "Personalization",
+                                                               "emotion":  {
+                                                                               "type":  "Hurt",
+                                                                               "intensity":  70
+                                                                           },
+                                                               "physiological_response":  "Tension in jaw, loss of appetite, tearfulness",
+                                                               "behavior":  "Shut down emotionally, gave one-word answers, left table",
+                                                               "consequence":  "Partner confused, evening ruined, no resolution",
+                                                               "alternative_thought":  "They mentioned a work crisis earlier; this is probably that",
+                                                               "alternative_outcome":  "Asked if everything okay, they apologized, put phone away"
+                                                           },
+                                                           {
+                                                               "id":  11,
+                                                               "category":  "Generalized Anxiety",
+                                                               "situation":  "Checking bank account balance",
+                                                               "automatic_thought":  "I\u0027m one emergency away from financial ruin",
+                                                               "cognitive_distortion":  "Fortune Telling",
+                                                               "emotion":  {
+                                                                               "type":  "Dread",
+                                                                               "intensity":  75
+                                                                           },
+                                                               "physiological_response":  "Tight chest, doom scrolling expenses, insomnia",
+                                                               "behavior":  "Checked account 20 times, canceled necessary medical appointment",
+                                                               "consequence":  "Health issue worsened, missed early intervention window",
+                                                               "alternative_thought":  "I have savings and a stable job; I can handle surprises",
+                                                               "alternative_outcome":  "Reviewed budget once, kept appointment, felt in control"
+                                                           },
+                                                           {
+                                                               "id":  12,
+                                                               "category":  "Generalized Anxiety",
+                                                               "situation":  "Hearing about layoffs at another company",
+                                                               "automatic_thought":  "My company is next, I\u0027ll lose everything, end up homeless",
+                                                               "cognitive_distortion":  "Catastrophizing Chain",
+                                                               "emotion":  {
+                                                                               "type":  "Terror",
+                                                                               "intensity":  85
+                                                                           },
+                                                               "physiological_response":  "Adrenaline surge, inability to focus, catastrophizing spiral",
+                                                               "behavior":  "Applied to 50 jobs in panic, told boss considering leaving (wasn\u0027t)",
+                                                               "consequence":  "Professional reputation damaged, unnecessary stress",
+                                                               "alternative_thought":  "Different industry, my performance reviews are excellent",
+                                                               "alternative_outcome":  "Updated resume calmly, networked casually, kept perspective"
+                                                           },
+                                                           {
+                                                               "id":  13,
+                                                               "category":  "Generalized Anxiety",
+                                                               "situation":  "Child is 10 minutes late coming home",
+                                                               "automatic_thought":  "They\u0027ve been kidnapped or in a terrible accident",
+                                                               "cognitive_distortion":  "Catastrophizing",
+                                                               "emotion":  {
+                                                                               "type":  "Panic",
+                                                                               "intensity":  95
+                                                                           },
+                                                               "physiological_response":  "Shaking, calling repeatedly, preparing to call police",
+                                                               "behavior":  "Drove to school, called all friends\u0027 parents, created scene",
+                                                               "consequence":  "Child embarrassed, lost trust, anxiety modeled for them",
+                                                               "alternative_thought":  "Traffic is bad; they\u0027re 16 and responsible",
+                                                               "alternative_outcome":  "Texted once, started dinner, they arrived with valid reason"
+                                                           },
+                                                           {
+                                                               "id":  14,
+                                                               "category":  "Panic Disorder",
+                                                               "situation":  "Feeling slightly dizzy in grocery store",
+                                                               "automatic_thought":  "I\u0027m going to faint here, everyone will stare, I\u0027ll be humiliated",
+                                                               "cognitive_distortion":  "Catastrophizing",
+                                                               "emotion":  {
+                                                                               "type":  "Panic",
+                                                                               "intensity":  90
+                                                                           },
+                                                               "physiological_response":  "Hyperventilation, tunnel vision, urge to flee",
+                                                               "behavior":  "Abandoned cart, ran to car, drove home shaking, avoided store for months",
+                                                               "consequence":  "Limited food options, reinforced agoraphobia, shame",
+                                                               "alternative_thought":  "Dizzy could be hunger or standing up fast; it will pass",
+                                                               "alternative_outcome":  "Sat on bench, drank water, finished shopping slowly"
+                                                           },
+                                                           {
+                                                               "id":  15,
+                                                               "category":  "Panic Disorder",
+                                                               "situation":  "Heart palpitations while watching TV",
+                                                               "automatic_thought":  "Panic attack coming, I can\u0027t handle it, I need to escape",
+                                                               "cognitive_distortion":  "Fear of Fear",
+                                                               "emotion":  {
+                                                                               "type":  "Terror",
+                                                                               "intensity":  95
+                                                                           },
+                                                               "physiological_response":  "Adrenaline dump, shaking, depersonalization",
+                                                               "behavior":  "Called ambulance, went to ER, took emergency benzo",
+                                                               "consequence":  "Medical bills, dependency fear, reinforced medical anxiety",
+                                                               "alternative_thought":  "This is anxiety, not dangerous; I\u0027ve survived 100 times",
+                                                               "alternative_outcome":  "Used grounding techniques, peaked and passed in 10 minutes"
+                                                           },
+                                                           {
+                                                               "id":  16,
+                                                               "category":  "OCD",
+                                                               "situation":  "Touching a doorknob in public restroom",
+                                                               "automatic_thought":  "I\u0027m contaminated with deadly germs, I\u0027ll spread disease to family",
+                                                               "cognitive_distortion":  "Inflated Responsibility",
+                                                               "emotion":  {
+                                                                               "type":  "Disgust/Fear",
+                                                                               "intensity":  90
+                                                                           },
+                                                               "physiological_response":  "Skin crawling, compulsive urge, distress",
+                                                               "behavior":  "Washed hands 50 times, avoided touching family, threw away clothes",
+                                                               "consequence":  "Bleeding hands, isolation, 3 hours lost to ritual",
+                                                               "alternative_thought":  "Normal germs exist; my immune system handles them daily",
+                                                               "alternative_outcome":  "Washed once normally, moved on, no illness occurred"
+                                                           },
+                                                           {
+                                                               "id":  17,
+                                                               "category":  "OCD",
+                                                               "situation":  "Having a violent intrusive thought about loved one",
+                                                               "automatic_thought":  "Having this thought means I\u0027m dangerous and might act on it",
+                                                               "cognitive_distortion":  "Thought-Action Fusion",
+                                                               "emotion":  {
+                                                                               "type":  "Horror",
+                                                                               "intensity":  95
+                                                                           },
+                                                               "physiological_response":  "Guilt, compulsive checking, mental reviewing",
+                                                               "behavior":  "Avoided loved one, sought reassurance, performed mental rituals",
+                                                               "consequence":  "Relationship distance, exhaustion, reinforced OCD cycle",
+                                                               "alternative_thought":  "Thoughts are not actions; this is OCD, not reality",
+                                                               "alternative_outcome":  "Acknowledged thought, let it pass, continued normal interaction"
+                                                           },
+                                                           {
+                                                               "id":  18,
+                                                               "category":  "PTSD",
+                                                               "situation":  "Hearing a car backfire",
+                                                               "automatic_thought":  "I\u0027m back there, it\u0027s happening again, I\u0027m not safe",
+                                                               "cognitive_distortion":  "Flashback/Time Distortion",
+                                                               "emotion":  {
+                                                                               "type":  "Terror",
+                                                                               "intensity":  100
+                                                                           },
+                                                               "physiological_response":  "Full flashback, dissociation, survival mode activation",
+                                                               "behavior":  "Dove under table, screamed, fought off help, ran away",
+                                                               "consequence":  "Injury from fall, public scene, retraumatization",
+                                                               "alternative_thought":  "This is 2024, I\u0027m safe, that was a car, not gunfire",
+                                                               "alternative_outcome":  "Grounded with 5-4-3-2-1 technique, anxiety peaked and subsided"
+                                                           },
+                                                           {
+                                                               "id":  19,
+                                                               "category":  "PTSD",
+                                                               "situation":  "Smell of a particular cologne",
+                                                               "automatic_thought":  "He\u0027s here, I need to get out now",
+                                                               "cognitive_distortion":  "Triggered Association",
+                                                               "emotion":  {
+                                                                               "type":  "Terror",
+                                                                               "intensity":  90
+                                                                           },
+                                                               "physiological_response":  "Freeze response, hypervigilance, scanning exits",
+                                                               "behavior":  "Fled building, hid in bathroom for an hour, missed important event",
+                                                               "consequence":  "Professional setback, isolation, trigger generalization",
+                                                               "alternative_thought":  "Many men wear this scent; it doesn\u0027t mean he\u0027s here",
+                                                               "alternative_outcome":  "Noticed smell, felt anxiety rise, used breathing, stayed present"
+                                                           },
+                                                           {
+                                                               "id":  20,
+                                                               "category":  "Depression",
+                                                               "situation":  "Waking up in the morning",
+                                                               "automatic_thought":  "What\u0027s the point? Nothing will get better anyway",
+                                                               "cognitive_distortion":  "Hopelessness",
+                                                               "emotion":  {
+                                                                               "type":  "Despair",
+                                                                               "intensity":  85
+                                                                           },
+                                                               "physiological_response":  "Heaviness, fatigue, inability to move",
+                                                               "behavior":  "Stayed in bed until 2 PM, avoided all responsibilities",
+                                                               "consequence":  "Job warning, worsened mood, reinforced helplessness",
+                                                               "alternative_thought":  "Yesterday was hard but I managed one small task",
+                                                               "alternative_outcome":  "Got up for shower, celebrated small win, built momentum"
+                                                           },
+                                                           {
+                                                               "id":  21,
+                                                               "category":  "Depression",
+                                                               "situation":  "Friend shares good news about promotion",
+                                                               "automatic_thought":  "Everyone is moving forward except me, I\u0027m a failure",
+                                                               "cognitive_distortion":  "Comparing",
+                                                               "emotion":  {
+                                                                               "type":  "Envy/Shame",
+                                                                               "intensity":  80
+                                                                           },
+                                                               "physiological_response":  "Chest tightness, withdrawal urge, tearfulness",
+                                                               "behavior":  "Faked congratulations, ended call quickly, isolated for days",
+                                                               "consequence":  "Friend felt rejected, lost support, deepened depression",
+                                                               "alternative_thought":  "Their success doesn\u0027t diminish my worth; I\u0027m on my own path",
+                                                               "alternative_outcome":  "Celebrated genuinely, felt inspired, reconnected with goals"
+                                                           },
+                                                           {
+                                                               "id":  22,
+                                                               "category":  "Depression",
+                                                               "situation":  "Making a small error at work",
+                                                               "automatic_thought":  "I mess up everything, I\u0027m worthless, should quit",
+                                                               "cognitive_distortion":  "Overgeneralization",
+                                                               "emotion":  {
+                                                                               "type":  "Self-loathing",
+                                                                               "intensity":  85
+                                                                           },
+                                                               "physiological_response":  "Energy drain, hopelessness, physical slowing",
+                                                               "behavior":  "Called in sick next 3 days, avoided all tasks, ruminated",
+                                                               "consequence":  "Work piled up, performance review affected, isolation",
+                                                               "alternative_thought":  "One mistake among hundreds of good tasks; I\u0027m human",
+                                                               "alternative_outcome":  "Fixed error, informed supervisor, moved on to next task"
+                                                           },
+                                                           {
+                                                               "id":  23,
+                                                               "category":  "Anger Management",
+                                                               "situation":  "Driver cuts you off in traffic",
+                                                               "automatic_thought":  "They did that on purpose to disrespect me",
+                                                               "cognitive_distortion":  "Hostile Attribution Bias",
+                                                               "emotion":  {
+                                                                               "type":  "Rage",
+                                                                               "intensity":  90
+                                                                           },
+                                                               "physiological_response":  "Adrenaline surge, face red, gripping wheel",
+                                                               "behavior":  "Tailgated, yelled, made obscene gesture, followed them",
+                                                               "consequence":  "Road rage incident, potential accident, legal trouble",
+                                                               "alternative_thought":  "Maybe they didn\u0027t see me, or have an emergency",
+                                                               "alternative_outcome":  "Took deep breath, let them go, arrived safely"
+                                                           },
+                                                           {
+                                                               "id":  24,
+                                                               "category":  "Anger Management",
+                                                               "situation":  "Partner forgets to buy milk you asked for",
+                                                               "automatic_thought":  "They never listen to me, I don\u0027t matter to them",
+                                                               "cognitive_distortion":  "Magnification",
+                                                               "emotion":  {
+                                                                               "type":  "Anger/Hurt",
+                                                                               "intensity":  75
+                                                                           },
+                                                               "physiological_response":  "Tension, raised voice, aggressive posture",
+                                                               "behavior":  "Yelled, brought up past mistakes, silent treatment for days",
+                                                               "consequence":  "Partner defensive, cycle of resentment, no milk anyway",
+                                                               "alternative_thought":  "They forgot once; I\u0027ve forgotten things too",
+                                                               "alternative_outcome":  "Asked if everything okay, went together, turned into nice outing"
+                                                           },
+                                                           {
+                                                               "id":  25,
+                                                               "category":  "Perfectionism",
+                                                               "situation":  "Email draft has one typo after sending",
+                                                               "automatic_thought":  "Now everyone will think I\u0027m careless and unprofessional",
+                                                               "cognitive_distortion":  "Catastrophizing",
+                                                               "emotion":  {
+                                                                               "type":  "Shame",
+                                                                               "intensity":  80
+                                                                           },
+                                                               "physiological_response":  "Heat waves, nausea, replaying mistake",
+                                                               "behavior":  "Sent correction email, then apology email, then explanation email",
+                                                               "consequence":  "Looked insecure, annoyed recipient, reinforced perfectionism",
+                                                               "alternative_thought":  "Everyone makes typos; the content matters more",
+                                                               "alternative_outcome":  "Noticed typo, laughed, moved on, no one mentioned it"
+                                                           },
+                                                           {
+                                                               "id":  26,
+                                                               "category":  "Perfectionism",
+                                                               "situation":  "Receiving constructive feedback",
+                                                               "automatic_thought":  "I\u0027m not good enough, I should just give up",
+                                                               "cognitive_distortion":  "All-or-Nothing",
+                                                               "emotion":  {
+                                                                               "type":  "Defeat",
+                                                                               "intensity":  85
+                                                                           },
+                                                               "physiological_response":  "Tears, shutdown, inability to process words",
+                                                               "behavior":  "Quit project, avoided mentor, stopped trying new things",
+                                                               "consequence":  "Stunted growth, lost opportunity, fixed mindset",
+                                                               "alternative_thought":  "Feedback is how I improve; they believe I can do better",
+                                                               "alternative_outcome":  "Took notes, asked questions, implemented suggestions"
+                                                           },
+                                                           {
+                                                               "id":  27,
+                                                               "category":  "Low Self-Esteem",
+                                                               "situation":  "Receiving a compliment on appearance",
+                                                               "automatic_thought":  "They\u0027re just being nice/pitying me, don\u0027t really mean it",
+                                                               "cognitive_distortion":  "Discounting Positives",
+                                                               "emotion":  {
+                                                                               "type":  "Discomfort",
+                                                                               "intensity":  60
+                                                                           },
+                                                               "physiological_response":  "Blushing, deflection urge, looking away",
+                                                               "behavior":  "Argued with compliment, insulted self, changed subject",
+                                                               "consequence":  "Complimenter uncomfortable, missed connection, reinforced negative self-view",
+                                                               "alternative_thought":  "They have no reason to lie; I can accept kindness",
+                                                               "alternative_outcome":  "Said thank you, felt warmth, conversation deepened"
+                                                           },
+                                                           {
+                                                               "id":  28,
+                                                               "category":  "Low Self-Esteem",
+                                                               "situation":  "Being asked to lead a project",
+                                                               "automatic_thought":  "They must be desperate, I\u0027ll fail and disappoint everyone",
+                                                               "cognitive_distortion":  "Self-Deprecation",
+                                                               "emotion":  {
+                                                                               "type":  "Anxiety",
+                                                                               "intensity":  80
+                                                                           },
+                                                               "physiological_response":  "Imposter feelings, paralysis, self-doubt",
+                                                               "behavior":  "Declined opportunity, suggested \u0027more qualified\u0027 person",
+                                                               "consequence":  "Career stagnation, others advanced, reinforced incompetence belief",
+                                                               "alternative_thought":  "They asked because they see potential in me",
+                                                               "alternative_outcome":  "Accepted, asked for support, succeeded with team"
+                                                           },
+                                                           {
+                                                               "id":  29,
+                                                               "category":  "Fear of Abandonment",
+                                                               "situation":  "Friend takes 2 hours to reply to text",
+                                                               "automatic_thought":  "They\u0027re done with me, finding reasons to pull away",
+                                                               "cognitive_distortion":  "Abandonment Schema",
+                                                               "emotion":  {
+                                                                               "type":  "Desperation",
+                                                                               "intensity":  85
+                                                                           },
+                                                               "physiological_response":  "Anxiety spiral, checking phone obsessively, crying",
+                                                               "behavior":  "Sent 10 texts, called, showed up at their house uninvited",
+                                                               "consequence":  "Friend overwhelmed, actual distance created, self-fulfilling prophecy",
+                                                               "alternative_thought":  "They\u0027re at work; our friendship is secure",
+                                                               "alternative_outcome":  "Waited patiently, they replied at lunch, plans confirmed"
+                                                           },
+                                                           {
+                                                               "id":  30,
+                                                               "category":  "Fear of Abandonment",
+                                                               "situation":  "Partner wants to spend evening alone",
+                                                               "automatic_thought":  "They don\u0027t love me anymore, preparing to leave",
+                                                               "cognitive_distortion":  "Catastrophizing",
+                                                               "emotion":  {
+                                                                               "type":  "Terror",
+                                                                               "intensity":  90
+                                                                           },
+                                                               "physiological_response":  "Clinging behavior, panic, desperation",
+                                                               "behavior":  "Cried, begged them to stay, accused them of not caring",
+                                                               "consequence":  "Partner felt suffocated, genuine relationship strain",
+                                                               "alternative_thought":  "Healthy relationships include alone time; this is normal",
+                                                               "alternative_outcome":  "Wished them good time, enjoyed own evening, reunited happily"
+                                                           },
+                                                           {
+                                                               "id":  31,
+                                                               "category":  "Eating Disorder",
+                                                               "situation":  "Eating a cookie someone offered",
+                                                               "automatic_thought":  "I\u0027ve ruined everything, I\u0027ll gain 10 pounds immediately",
+                                                               "cognitive_distortion":  "Catastrophizing",
+                                                               "emotion":  {
+                                                                               "type":  "Guilt",
+                                                                               "intensity":  95
+                                                                           },
+                                                               "physiological_response":  "Stomach churning, urge to purge, self-loathing",
+                                                               "behavior":  "Forced vomiting, exercised 3 hours, restricted next 2 days",
+                                                               "consequence":  "Physical harm, binge-restrict cycle, isolation",
+                                                               "alternative_thought":  "One cookie is part of a balanced life; my body knows what to do",
+                                                               "alternative_outcome":  "Enjoyed cookie, continued normal eating, no compensation"
+                                                           },
+                                                           {
+                                                               "id":  32,
+                                                               "category":  "Eating Disorder",
+                                                               "situation":  "Seeing number on scale go up 1 pound",
+                                                               "automatic_thought":  "I\u0027m disgusting, out of control, need to punish myself",
+                                                               "cognitive_distortion":  "All-or-Nothing",
+                                                               "emotion":  {
+                                                                               "type":  "Self-hatred",
+                                                                               "intensity":  100
+                                                                           },
+                                                               "physiological_response":  "Despair, body checking, mirror avoidance",
+                                                               "behavior":  "Threw out all food, water fast, body checking 50 times daily",
+                                                               "consequence":  "Medical instability, hospitalization risk, life disruption",
+                                                               "alternative_thought":  "Weight fluctuates daily; this is normal variation",
+                                                               "alternative_outcome":  "Noticed number, reminded self of normal fluctuation, ate breakfast"
+                                                           },
+                                                           {
+                                                               "id":  33,
+                                                               "category":  "Substance Use",
+                                                               "situation":  "Stressful day at work ending",
+                                                               "automatic_thought":  "I need a drink to unwind, I can\u0027t relax without it",
+                                                               "cognitive_distortion":  "Dependence Belief",
+                                                               "emotion":  {
+                                                                               "type":  "Craving/Urge",
+                                                                               "intensity":  85
+                                                                           },
+                                                               "physiological_response":  "Tension, anticipatory relief, automatic drive",
+                                                               "behavior":  "Stopped at liquor store, drank 4 drinks alone",
+                                                               "consequence":  "Hangover, missed morning meeting, tolerance increased",
+                                                               "alternative_thought":  "I\u0027ve relaxed without alcohol before; I can try other ways",
+                                                               "alternative_outcome":  "Called friend, took walk, slept well, clear morning"
+                                                           },
+                                                           {
+                                                               "id":  34,
+                                                               "category":  "Substance Use",
+                                                               "situation":  "Party where others are using drugs",
+                                                               "automatic_thought":  "Just once won\u0027t hurt, I can control it this time",
+                                                               "cognitive_distortion":  "Permission-Giving",
+                                                               "emotion":  {
+                                                                               "type":  "Excitement/Justification",
+                                                                               "intensity":  80
+                                                                           },
+                                                               "physiological_response":  "Euphoria anticipation, minimization of risk",
+                                                               "behavior":  "Used, lost control, binged, missed work next day",
+                                                               "consequence":  "Relapse, shame cycle, health risks, relationship damage",
+                                                               "alternative_thought":  "One is never one for me; my recovery comes first",
+                                                               "alternative_outcome":  "Left party early, called sponsor, woke up proud"
+                                                           },
+                                                           {
+                                                               "id":  35,
+                                                               "category":  "Procrastination",
+                                                               "situation":  "Opening laptop to start important project",
+                                                               "automatic_thought":  "It\u0027s too big, I\u0027ll fail anyway, better to avoid it",
+                                                               "cognitive_distortion":  "Overwhelm/Avoidance",
+                                                               "emotion":  {
+                                                                               "type":  "Anxiety",
+                                                                               "intensity":  75
+                                                                           },
+                                                               "physiological_response":  "Paralysis, distraction urge, mental block",
+                                                               "behavior":  "Watched 4 hours of videos, ordered delivery, felt worse",
+                                                               "consequence":  "Deadline panic, rushed work, self-criticism",
+                                                               "alternative_thought":  "I just need to start with one small section",
+                                                               "alternative_outcome":  "Worked 25 minutes, built momentum, finished early"
+                                                           },
+                                                           {
+                                                               "id":  36,
+                                                               "category":  "Procrastination",
+                                                               "situation":  "Sunday evening before work week",
+                                                               "automatic_thought":  "Weekend is over, life is just work and misery",
+                                                               "cognitive_distortion":  "Sunday Scaries",
+                                                               "emotion":  {
+                                                                               "type":  "Dread",
+                                                                               "intensity":  70
+                                                                           },
+                                                               "physiological_response":  "Sunday night insomnia, anxiety, depression",
+                                                               "behavior":  "Stayed up late dreading, unprepared Monday, called in sick",
+                                                               "consequence":  "Wasted Sunday, work backlog, reinforced avoidance",
+                                                               "alternative_thought":  "Monday is fresh start; I can prepare tonight",
+                                                               "alternative_outcome":  "Prepped Sunday evening, good sleep, confident Monday"
+                                                           },
+                                                           {
+                                                               "id":  37,
+                                                               "category":  "Social Comparison",
+                                                               "situation":  "Scrolling Instagram seeing vacations",
+                                                               "automatic_thought":  "Everyone has perfect lives except me, I\u0027m failing at life",
+                                                               "cognitive_distortion":  "Compare and Despair",
+                                                               "emotion":  {
+                                                                               "type":  "Inadequacy",
+                                                                               "intensity":  80
+                                                                           },
+                                                               "physiological_response":  "Deflation, envy, self-criticism spiral",
+                                                               "behavior":  "Deleted own posts, stalked ex\u0027s profile, bought things can\u0027t afford",
+                                                               "consequence":  "Debt, decreased self-worth, social media addiction",
+                                                               "alternative_thought":  "People post highlights; I don\u0027t see their struggles",
+                                                               "alternative_outcome":  "Put phone down, listed own blessings, planned real activity"
+                                                           },
+                                                           {
+                                                               "id":  38,
+                                                               "category":  "Social Comparison",
+                                                               "situation":  "High school reunion invitation",
+                                                               "automatic_thought":  "They\u0027ll judge my lack of success, I have nothing to show",
+                                                               "cognitive_distortion":  "Status Anxiety",
+                                                               "emotion":  {
+                                                                               "type":  "Shame",
+                                                                               "intensity":  85
+                                                                           },
+                                                               "physiological_response":  "Avoidance urge, identity crisis, worthlessness",
+                                                               "behavior":  "Declined, lied about being busy, stalked attendees online",
+                                                               "consequence":  "Missed reconnections, reinforced inadequacy, isolation",
+                                                               "alternative_thought":  "Success is subjective; I\u0027ve grown in ways that matter to me",
+                                                               "alternative_outcome":  "Attended, reconnected authentically, no one asked about status"
+                                                           },
+                                                           {
+                                                               "id":  39,
+                                                               "category":  "Fear of Conflict",
+                                                               "situation":  "Roommate left dirty dishes again",
+                                                               "automatic_thought":  "If I say something, they\u0027ll hate me and I\u0027ll have to move",
+                                                               "cognitive_distortion":  "Conflict Catastrophizing",
+                                                               "emotion":  {
+                                                                               "type":  "Resentment/Fear",
+                                                                               "intensity":  70
+                                                                           },
+                                                               "physiological_response":  "Stomach knots, rehearsing speeches, avoidance",
+                                                               "behavior":  "Cleaned silently, built resentment, exploded over small thing later",
+                                                               "consequence":  "Actual conflict worse, relationship damage, unfair burden",
+                                                               "alternative_thought":  "Reasonable requests are okay; we can solve this together",
+                                                               "alternative_outcome":  "Calm conversation, agreed on schedule, relationship improved"
+                                                           },
+                                                           {
+                                                               "id":  40,
+                                                               "category":  "Fear of Conflict",
+                                                               "situation":  "Restaurant serves wrong order",
+                                                               "automatic_thought":  "I can\u0027t send it back, they\u0027ll spit in my food or cause scene",
+                                                               "cognitive_distortion":  "Catastrophizing",
+                                                               "emotion":  {
+                                                                               "type":  "Anxiety",
+                                                                               "intensity":  75
+                                                                           },
+                                                               "physiological_response":  "Stomach tightness, eating wrong food, discomfort",
+                                                               "behavior":  "Ate meal didn\u0027t want, paid full price, felt miserable",
+                                                               "consequence":  "Unsatisfied meal, reinforced passivity, wasted money",
+                                                               "alternative_thought":  "Mistakes happen; politely asking is normal and acceptable",
+                                                               "alternative_outcome":  "Politely mentioned error, got correct meal, enjoyed dinner"
+                                                           },
+                                                           {
+                                                               "id":  41,
+                                                               "category":  "Rejection Sensitivity",
+                                                               "situation":  "Application for volunteer position rejected",
+                                                               "automatic_thought":  "I\u0027m fundamentally unlikable and unworthy of any position",
+                                                               "cognitive_distortion":  "Global Labeling",
+                                                               "emotion":  {
+                                                                               "type":  "Devastation",
+                                                                               "intensity":  90
+                                                                           },
+                                                               "physiological_response":  "Collapse, crying, identity crisis",
+                                                               "behavior":  "Withdrew all other applications, isolated, stopped trying",
+                                                               "consequence":  "Missed opportunities, depression, self-fulfilling failure",
+                                                               "alternative_thought":  "Not a fit for this role; doesn\u0027t define my worth",
+                                                               "alternative_outcome":  "Asked for feedback, applied elsewhere, got better fit position"
+                                                           },
+                                                           {
+                                                               "id":  42,
+                                                               "category":  "Rejection Sensitivity",
+                                                               "situation":  "Date doesn\u0027t want second date",
+                                                               "automatic_thought":  "I\u0027m unlovable, too broken for anyone to want",
+                                                               "cognitive_distortion":  "Overgeneralization",
+                                                               "emotion":  {
+                                                                               "type":  "Grief/Shame",
+                                                                               "intensity":  85
+                                                                           },
+                                                               "physiological_response":  "Chest pain, hopelessness, dating app deletion",
+                                                               "behavior":  "Texted begging for chance, then blocked them, then blamed self",
+                                                               "consequence":  "Humiliation, reinforced unlovable belief, dating avoidance",
+                                                               "alternative_thought":  "Compatibility is mutual; we both deserve right fit",
+                                                               "alternative_outcome":  "Wished them well, processed briefly, stayed open to others"
+                                                           },
+                                                           {
+                                                               "id":  43,
+                                                               "category":  "Existential Anxiety",
+                                                               "situation":  "Lying awake at 3 AM",
+                                                               "automatic_thought":  "Life is meaningless, we\u0027re all going to die, nothing matters",
+                                                               "cognitive_distortion":  "Existential Spiral",
+                                                               "emotion":  {
+                                                                               "type":  "Dread",
+                                                                               "intensity":  90
+                                                                           },
+                                                               "physiological_response":  "Panic, insomnia, depersonalization",
+                                                               "behavior":  "Frantic Googling, woke partner, existential crisis",
+                                                               "consequence":  "Exhaustion, nihilism, functional impairment",
+                                                               "alternative_thought":  "Meaning is created through connection and experience",
+                                                               "alternative_outcome":  "Used grounding techniques, morning brought perspective"
+                                                           },
+                                                           {
+                                                               "id":  44,
+                                                               "category":  "Existential Anxiety",
+                                                               "situation":  "Birthday milestone (30, 40, 50)",
+                                                               "automatic_thought":  "Time is running out, I\u0027ve wasted my life, it\u0027s too late",
+                                                               "cognitive_distortion":  "Time Pressure",
+                                                               "emotion":  {
+                                                                               "type":  "Despair",
+                                                                               "intensity":  80
+                                                                           },
+                                                               "physiological_response":  "Urgency, regret, paralysis",
+                                                               "behavior":  "Impulsive career change, reckless decisions, depression",
+                                                               "consequence":  "Actual wasted time, financial instability, relationship strain",
+                                                               "alternative_thought":  "Life has chapters; this is just the beginning of a new one",
+                                                               "alternative_outcome":  "Reflected on growth, set intentional goals, celebrated survival"
+                                                           },
+                                                           {
+                                                               "id":  45,
+                                                               "category":  "Technology Anxiety",
+                                                               "situation":  "Phone battery at 20%",
+                                                               "automatic_thought":  "I\u0027ll be stranded, unsafe, unable to call for help",
+                                                               "cognitive_distortion":  "Catastrophizing",
+                                                               "emotion":  {
+                                                                               "type":  "Panic",
+                                                                               "intensity":  75
+                                                                           },
+                                                               "physiological_response":  "Urgency, charger seeking, inability to focus",
+                                                               "behavior":  "Rushed home, canceled plans, bought 3 portable chargers",
+                                                               "consequence":  "Limited experiences, dependency, anxiety reinforcement",
+                                                               "alternative_thought":  "I\u0027ve managed before; there are chargers everywhere",
+                                                               "alternative_outcome":  "Noticed battery, put in low power mode, charged at destination"
+                                                           },
+                                                           {
+                                                               "id":  46,
+                                                               "category":  "Technology Anxiety",
+                                                               "situation":  "Work email notification at 10 PM",
+                                                               "automatic_thought":  "It\u0027s an emergency, I must respond immediately or lose job",
+                                                               "cognitive_distortion":  "Urgency Bias",
+                                                               "emotion":  {
+                                                                               "type":  "Anxiety",
+                                                                               "intensity":  80
+                                                                           },
+                                                               "physiological_response":  "Heart racing, immediate checking, cortisol spike",
+                                                               "behavior":  "Read email, replied, couldn\u0027t sleep, resentment built",
+                                                               "consequence":  "Boundary erosion, burnout, sleep deprivation",
+                                                               "alternative_thought":  "Unless it says URGENT, it can wait until morning",
+                                                               "alternative_outcome":  "Ignored until morning, was routine email, good sleep"
+                                                           },
+                                                           {
+                                                               "id":  47,
+                                                               "category":  "Climate/World Anxiety",
+                                                               "situation":  "Reading news about natural disaster",
+                                                               "automatic_thought":  "The world is ending, there\u0027s no hope, why bother with anything",
+                                                               "cognitive_distortion":  "Catastrophizing",
+                                                               "emotion":  {
+                                                                               "type":  "Helplessness",
+                                                                               "intensity":  85
+                                                                           },
+                                                               "physiological_response":  "Doom scrolling, hopelessness, shutdown",
+                                                               "behavior":  "Doom scrolled for hours, skipped work, existential paralysis",
+                                                               "consequence":  "Depression, inaction, despair",
+                                                               "alternative_thought":  "I can control my actions and contribution, even if not the world",
+                                                               "alternative_outcome":  "Donated to relief, limited news, focused on local community"
+                                                           },
+                                                           {
+                                                               "id":  48,
+                                                               "category":  "Climate/World Anxiety",
+                                                               "situation":  "Thinking about having children",
+                                                               "automatic_thought":  "It would be cruel to bring a child into this dying world",
+                                                               "cognitive_distortion":  "Hopelessness Projection",
+                                                               "emotion":  {
+                                                                               "type":  "Guilt/Dread",
+                                                                               "intensity":  80
+                                                                           },
+                                                               "physiological_response":  "Decision paralysis, relationship strain, grief",
+                                                               "behavior":  "Avoided conversation, researched doomsday prep, isolated",
+                                                               "consequence":  "Relationship damage, life plan suspended, despair",
+                                                               "alternative_thought":  "Future generations can be part of solutions; hope exists",
+                                                               "alternative_outcome":  "Discussed fears with partner, joined climate group, felt empowered"
+                                                           },
+                                                           {
+                                                               "id":  49,
+                                                               "category":  "Identity Anxiety",
+                                                               "situation":  "Asked \u0027What do you do?\u0027 at party",
+                                                               "automatic_thought":  "My job defines my worth, and it\u0027s not impressive enough",
+                                                               "cognitive_distortion":  "Identity Fusion",
+                                                               "emotion":  {
+                                                                               "type":  "Shame",
+                                                                               "intensity":  75
+                                                                           },
+                                                               "physiological_response":  "Defensiveness, minimizing, hiding",
+                                                               "behavior":  "Gave vague answer, avoided follow-up, left early",
+                                                               "consequence":  "Missed connections, reinforced career dissatisfaction",
+                                                               "alternative_thought":  "I am more than my job; my values and relationships define me",
+                                                               "alternative_outcome":  "Answered honestly, asked about their passions, genuine connection"
+                                                           },
+                                                           {
+                                                               "id":  50,
+                                                               "category":  "Identity Anxiety",
+                                                               "situation":  "Major life transition (graduation, retirement, divorce)",
+                                                               "automatic_thought":  "I don\u0027t know who I am without this role, I\u0027m lost",
+                                                               "cognitive_distortion":  "Identity Loss",
+                                                               "emotion":  {
+                                                                               "type":  "Terror",
+                                                                               "intensity":  85
+                                                                           },
+                                                               "physiological_response":  "Groundlessness, confusion, grief",
+                                                               "behavior":  "Clung to old patterns, avoided processing, numbed with distractions",
+                                                               "consequence":  "Delayed adaptation, depression, missed growth opportunity",
+                                                               "alternative_thought":  "This is a metamorphosis; I get to discover new aspects of myself",
+                                                               "alternative_outcome":  "Embraced uncertainty, explored new interests, rebuilt identity"
+                                                           }
+                                                       ],
+                                            "cognitive_distortions_reference":  {
+                                                                                    "Mind Reading":  "Assuming you know what others think without evidence",
+                                                                                    "Catastrophizing":  "Expecting the worst possible outcome",
+                                                                                    "All-or-Nothing":  "Viewing situations in black and white categories",
+                                                                                    "Overgeneralization":  "Making broad conclusions from single events",
+                                                                                    "Mental Filter":  "Focusing only on negative aspects",
+                                                                                    "Discounting Positives":  "Rejecting positive experiences as flukes",
+                                                                                    "Emotional Reasoning":  "Believing feelings reflect reality",
+                                                                                    "Should Statements":  "Using self-critical \u0027should\u0027 and \u0027must\u0027",
+                                                                                    "Labeling":  "Assigning global negative labels to self",
+                                                                                    "Personalization":  "Taking excessive responsibility for events"
+                                                                                },
+                                            "therapeutic_applications":  {
+                                                                             "cbt":  "Identify â†’ Challenge â†’ Reframe â†’ Behavioral Experiment",
+                                                                             "act":  "Accept thoughts, commit to values-based action",
+                                                                             "dbt":  "Opposite action, distress tolerance, mindfulness",
+                                                                             "exposure":  "Gradual approach to feared situations to disconfirm predictions"
+                                                                         }
+                                        },
+    "title":  "Trigger-Response Chain Analysis",
+    "description":  "Log trigger, thought, emotion, behavior and outcome to break unhealthy response cycles.",
+    "questions":  [
+                      {
+                          "id":  "trigger_event",
+                          "question":  "Trigger event (what happened?)",
+                          "type":  "text",
+                          "placeholder":  "Describe the exact trigger..."
+                      },
+                      {
+                          "id":  "context_category",
+                          "question":  "Context category",
+                          "type":  "single",
+                          "options":  [
+                                          "Relationship",
+                                          "Work/Study",
+                                          "Health",
+                                          "Family",
+                                          "Social situation",
+                                          "Financial",
+                                          "Other"
+                                      ]
+                      },
+                      {
+                          "id":  "automatic_thought",
+                          "question":  "Automatic thought that came first",
+                          "type":  "text",
+                          "placeholder":  "Write exact self-talk..."
+                      },
+                      {
+                          "id":  "distortion_type",
+                          "question":  "Primary cognitive distortion",
+                          "type":  "single",
+                          "options":  [
+                                          "Mind Reading",
+                                          "Catastrophizing",
+                                          "All-or-Nothing",
+                                          "Overgeneralization",
+                                          "Mental Filter",
+                                          "Discounting Positives",
+                                          "Emotional Reasoning",
+                                          "Should Statements",
+                                          "Labeling",
+                                          "Personalization",
+                                          "Other/Not sure"
+                                      ]
+                      },
+                      {
+                          "id":  "primary_emotion",
+                          "question":  "Primary emotion",
+                          "type":  "single",
+                          "options":  [
+                                          "Anxiety",
+                                          "Fear",
+                                          "Sadness",
+                                          "Shame",
+                                          "Guilt",
+                                          "Anger",
+                                          "Hopelessness",
+                                          "Embarrassment",
+                                          "Other"
+                                      ]
+                      },
+                      {
+                          "id":  "emotion_intensity",
+                          "question":  "Emotion intensity (0-100)",
+                          "type":  "text",
+                          "placeholder":  "0 = none, 100 = extreme"
+                      },
+                      {
+                          "id":  "body_signals",
+                          "question":  "Body signals noticed",
+                          "type":  "multi",
+                          "options":  [
+                                          "Heart racing",
+                                          "Chest tightness",
+                                          "Sweating",
+                                          "Shaking",
+                                          "Nausea",
+                                          "Headache",
+                                          "Muscle tension",
+                                          "Numbness",
+                                          "Other"
+                                      ]
+                      },
+                      {
+                          "id":  "behavior_response",
+                          "question":  "What did you do next?",
+                          "type":  "text",
+                          "placeholder":  "Action/avoidance behavior..."
+                      },
+                      {
+                          "id":  "short_term_consequence",
+                          "question":  "Immediate consequence",
+                          "type":  "text",
+                          "placeholder":  "What happened right after?"
+                      },
+                      {
+                          "id":  "long_term_impact",
+                          "question":  "Long-term impact",
+                          "type":  "text",
+                          "placeholder":  "How this pattern affects you over time..."
+                      },
+                      {
+                          "id":  "balanced_reframe",
+                          "question":  "Balanced alternative thought",
+                          "type":  "text",
+                          "placeholder":  "More realistic and helpful thought..."
+                      },
+                      {
+                          "id":  "next_time_action",
+                          "question":  "Healthier action next time",
+                          "type":  "text",
+                          "placeholder":  "Concrete action plan..."
+                      }
+                  ]
+}

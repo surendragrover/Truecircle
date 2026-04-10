@@ -1,0 +1,54 @@
+﻿{
+    "title":  "Micro Lessons",
+    "description":  "Short mental wellness lessons for daily practice.",
+    "lessons":  [
+                    {
+                        "id":  "ml_01",
+                        "topic":  "Name the Emotion",
+                        "duration_minutes":  2,
+                        "goal":  "Increase emotional awareness",
+                        "micro_action":  "Pause and name one feeling in one word right now.",
+                        "reflection_prompt":  "What triggered this feeling?"
+                    },
+                    {
+                        "id":  "ml_02",
+                        "topic":  "Thought vs Fact",
+                        "duration_minutes":  3,
+                        "goal":  "Reduce cognitive distortion",
+                        "micro_action":  "Write one stressful thought, then write one objective fact.",
+                        "reflection_prompt":  "Is this thought 100% true?"
+                    },
+                    {
+                        "id":  "ml_03",
+                        "topic":  "Body Reset Breath",
+                        "duration_minutes":  2,
+                        "goal":  "Lower stress arousal",
+                        "micro_action":  "Take 5 rounds of slow inhale (4s) and exhale (6s).",
+                        "reflection_prompt":  "How did your body feel before vs after?"
+                    },
+                    {
+                        "id":  "ml_04",
+                        "topic":  "Tiny Action Rule",
+                        "duration_minutes":  3,
+                        "goal":  "Break overwhelm",
+                        "micro_action":  "Choose one task and do it for just 3 minutes.",
+                        "reflection_prompt":  "What changed after starting small?"
+                    },
+                    {
+                        "id":  "ml_05",
+                        "topic":  "Self-Compassion Line",
+                        "duration_minutes":  2,
+                        "goal":  "Reduce harsh self-talk",
+                        "micro_action":  "Say: I am struggling, but I am trying and that matters.",
+                        "reflection_prompt":  "What kinder line can replace your inner critic today?"
+                    },
+                    {
+                        "id":  "ml_06",
+                        "topic":  "Sleep Wind-Down",
+                        "duration_minutes":  4,
+                        "goal":  "Prepare for restful sleep",
+                        "micro_action":  "No screen for 15 minutes and write tomorrow\u0027s top 1 priority.",
+                        "reflection_prompt":  "What worry can you safely park for tomorrow?"
+                    }
+                ]
+}

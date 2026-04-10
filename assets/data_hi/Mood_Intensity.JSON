@@ -1,0 +1,69 @@
+{
+  "assessment_name": "Emotional Check-In Part 2: Mood Intensity",
+  "assessment_code": "EMO_PART_2",
+  "time_estimate_minutes": 2,
+  "questions": [
+    {
+      "id": "mi_1",
+      "question": "What was your overall mood intensity today?",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ]
+    },
+    {
+      "id": "mi_2",
+      "question": "What was your stress level?",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ]
+    },
+    {
+      "id": "mi_3",
+      "question": "What was your energy level?",
+      "options": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ]
+    },
+    {
+      "id": "mi_4",
+      "question": "Did your mood fluctuate a lot during the day?",
+      "options": [
+        "Not at all",
+        "A little",
+        "Moderate",
+        "High",
+        "Extreme"
+      ]
+    }
+  ]
+}

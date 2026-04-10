@@ -1,0 +1,116 @@
+{
+  "title": "रिलेशनशिप मॉनिटरिंग",
+  "description": "रिश्तों के संकेतों को रिकॉर्ड करें ताकि guidance अधिक व्यक्तिगत और सटीक हो।",
+  "sections": {
+    "relationship_monitoring_questions": [
+      {
+        "id": "entry_date",
+        "question": "एंट्री तारीख",
+        "type": "text",
+        "placeholder": "YYYY-MM-DD"
+      },
+      {
+        "id": "relationship_type",
+        "question": "रिश्ते का प्रकार",
+        "type": "single",
+        "options": ["पार्टनर/जीवनसाथी", "माता-पिता", "बच्चा", "भाई/बहन", "दोस्त", "रिश्तेदार", "पड़ोसी", "सहकर्मी", "अन्य"]
+      },
+      {
+        "id": "person_name",
+        "question": "व्यक्ति का नाम या initials",
+        "type": "text",
+        "placeholder": "नाम या initials"
+      },
+      {
+        "id": "today_interaction_summary",
+        "question": "आज इस व्यक्ति से क्या बातचीत हुई?",
+        "type": "text",
+        "placeholder": "मुख्य विषय, बात करने का tone और जरूरी बिंदु लिखें..."
+      },
+      {
+        "id": "special_event_or_trigger",
+        "question": "कोई विशेष घटना या ट्रिगर था?",
+        "type": "text",
+        "placeholder": "जैसे पैसे, भरोसा, समय, पारिवारिक दबाव आदि"
+      },
+      {
+        "id": "interaction_frequency",
+        "question": "आपकी बातचीत कितनी बार होती है?",
+        "type": "single",
+        "options": ["रोज", "हफ्ते में कई बार", "साप्ताहिक", "कभी-कभी"]
+      },
+      {
+        "id": "trust_level",
+        "question": "वर्तमान भरोसा स्तर (0 से 10)",
+        "type": "text",
+        "placeholder": "0 = बिल्कुल भरोसा नहीं, 10 = पूरा भरोसा"
+      },
+      {
+        "id": "emotional_safety",
+        "question": "क्या इस रिश्ते में आप भावनात्मक रूप से सुरक्षित महसूस करते हैं?",
+        "type": "single",
+        "options": ["हां", "ज्यादातर हां", "कभी-कभी", "बहुत कम", "नहीं"]
+      },
+      {
+        "id": "strengths",
+        "question": "इस रिश्ते की वर्तमान ताकतें",
+        "type": "multi",
+        "options": ["सम्मान", "भरोसा", "ख्याल", "भावनात्मक सहयोग", "व्यवहारिक सहयोग", "अच्छा संवाद", "साझा मूल्य", "साझा लक्ष्य"]
+      },
+      {
+        "id": "stress_patterns",
+        "question": "कौन-से तनाव पैटर्न दिख रहे हैं?",
+        "type": "multi",
+        "options": ["बार-बार गलतफहमी", "चुप्पी साधना", "कठोर tone", "दोष/आलोचना", "control behavior", "सीमा उल्लंघन", "आर्थिक तनाव", "कोई बड़ा तनाव पैटर्न नहीं"]
+      },
+      {
+        "id": "recent_conflict",
+        "question": "हाल में कोई टकराव हुआ?",
+        "type": "single",
+        "options": ["नहीं", "हां, हल्का", "हां, मध्यम", "हां, गंभीर"]
+      },
+      {
+        "id": "conflict_details",
+        "question": "अगर टकराव हुआ, तो किस बारे में था?",
+        "type": "text",
+        "placeholder": "संक्षेप में लिखें..."
+      },
+      {
+        "id": "repair_attempt",
+        "question": "क्या किसी ने रिश्ता सुधारने की कोशिश की?",
+        "type": "single",
+        "options": ["हां, दोनों ने", "हां, सिर्फ मैंने", "हां, सिर्फ दूसरे ने", "नहीं", "जरूरत नहीं थी"]
+      },
+      {
+        "id": "after_interaction_feeling",
+        "question": "बातचीत के बाद आप कैसा महसूस करते हैं?",
+        "type": "multi",
+        "options": ["शांत", "जुड़ाव", "उम्मीद", "उलझन", "थकान", "चिंता", "उदासी", "गुस्सा"]
+      },
+      {
+        "id": "my_reaction_pattern",
+        "question": "आज आपकी प्रतिक्रिया कैसी रही?",
+        "type": "multi",
+        "options": ["शांत होकर सुना", "सम्मान से समझाया", "बात टाल दी", "आवाज ऊंची की", "चुप/दूर हो गया", "रोया/घबराया", "pause लेकर reset किया"]
+      },
+      {
+        "id": "stress_intensity",
+        "question": "आज रिश्ते का तनाव स्तर (0 से 10)",
+        "type": "text",
+        "placeholder": "0 = तनाव नहीं, 10 = बहुत अधिक तनाव"
+      },
+      {
+        "id": "next_boundary_or_step",
+        "question": "अगला स्वस्थ कदम क्या लेना चाहते हैं?",
+        "type": "multi",
+        "options": ["उम्मीदें साफ करना", "सम्मानपूर्वक boundary सेट करना", "शांत बातचीत तय करना", "थोड़ा भावनात्मक space लेना", "counseling/support लेना", "active listening अभ्यास", "फिलहाल कोई कदम नहीं"]
+      },
+      {
+        "id": "reflection_notes",
+        "question": "Reflection notes",
+        "type": "text",
+        "placeholder": "याद रखने योग्य बात..."
+      }
+    ]
+  }
+}

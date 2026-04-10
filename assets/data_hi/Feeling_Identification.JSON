@@ -1,0 +1,46 @@
+{
+  "assessment_name": "Emotional Check-In Part 1: Feeling Identification",
+  "assessment_code": "EMO_PART_1",
+  "time_estimate_minutes": 2,
+  "questions": [
+    {
+      "id": "fi_1",
+      "question": "What is your primary emotion today?",
+      "options": [
+        "Calm",
+        "Happy",
+        "Sad",
+        "Anxious",
+        "Angry",
+        "Overwhelmed"
+      ]
+    },
+    {
+      "id": "fi_2",
+      "question": "When did you feel this emotion the most?",
+      "options": [
+        "Morning",
+        "Afternoon",
+        "Evening",
+        "Late Night"
+      ]
+    },
+    {
+      "id": "fi_3",
+      "question": "What was the strongest trigger for this emotion?",
+      "options": [
+        "Work/Study pressure",
+        "Relationship issue",
+        "Health concern",
+        "Financial stress",
+        "Unknown trigger"
+      ]
+    },
+    {
+      "id": "fi_4",
+      "question": "How would you describe your emotion in one line?",
+      "type": "text",
+      "placeholder": "Example: I felt heaviness in my chest and restlessness in my mind."
+    }
+  ]
+}

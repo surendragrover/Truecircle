@@ -44,13 +44,27 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# TrueCircle - ignore offline models
-assets/models/
-*.pt
+# Local AI artifacts (do not commit)
+/models/
+/model/
+/assets/models/
+/assets/model/
 *.onnx
-*.onnx.data
-*.bin
-*.gguf
 *.tflite
-*.log
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.gguf
 
+# Prompt engine files (local only)
+/prompt_engine.py
+/pipeline/prompt_engine.py
+**/prompt_engine.py
+/pipeline/
+
+# Datasets (local only)
+/datasets/
+/dataset/
+/assets/data/
+*.parquet

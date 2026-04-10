@@ -1,0 +1,522 @@
+﻿{
+    "exposure_ladder":  {
+                            "title":  "Anxiety Exposure Hierarchy - 50 Graded Steps",
+                            "description":  "Progressive exposure steps for anxiety management, ordered from least to most distressing",
+                            "total_steps":  50,
+                            "steps":  [
+                                          {
+                                              "id":  1,
+                                              "step":  "Write down the word \u0027anxiety\u0027 on paper",
+                                              "difficulty":  1,
+                                              "category":  "Writing/Reflection",
+                                              "estimated_suds":  10,
+                                              "duration_minutes":  2
+                                          },
+                                          {
+                                              "id":  2,
+                                              "step":  "Read an article about anxiety symptoms",
+                                              "difficulty":  1,
+                                              "category":  "Reading",
+                                              "estimated_suds":  15,
+                                              "duration_minutes":  5
+                                          },
+                                          {
+                                              "id":  3,
+                                              "step":  "Watch a documentary about mental health",
+                                              "difficulty":  2,
+                                              "category":  "Media",
+                                              "estimated_suds":  20,
+                                              "duration_minutes":  30
+                                          },
+                                          {
+                                              "id":  4,
+                                              "step":  "Practice deep breathing exercises alone",
+                                              "difficulty":  2,
+                                              "category":  "Physical",
+                                              "estimated_suds":  15,
+                                              "duration_minutes":  5
+                                          },
+                                          {
+                                              "id":  5,
+                                              "step":  "Sit in a quiet room with eyes closed for 5 minutes",
+                                              "difficulty":  2,
+                                              "category":  "Physical",
+                                              "estimated_suds":  20,
+                                              "duration_minutes":  5
+                                          },
+                                          {
+                                              "id":  6,
+                                              "step":  "Listen to a guided meditation about anxiety",
+                                              "difficulty":  2,
+                                              "category":  "Audio",
+                                              "estimated_suds":  25,
+                                              "duration_minutes":  10
+                                          },
+                                          {
+                                              "id":  7,
+                                              "step":  "Write about a past mild anxiety experience",
+                                              "difficulty":  3,
+                                              "category":  "Writing/Reflection",
+                                              "estimated_suds":  25,
+                                              "duration_minutes":  10
+                                          },
+                                          {
+                                              "id":  8,
+                                              "step":  "Look at photos of crowded places",
+                                              "difficulty":  3,
+                                              "category":  "Visual",
+                                              "estimated_suds":  30,
+                                              "duration_minutes":  5
+                                          },
+                                          {
+                                              "id":  9,
+                                              "step":  "Watch a video of someone giving a speech",
+                                              "difficulty":  3,
+                                              "category":  "Media",
+                                              "estimated_suds":  30,
+                                              "duration_minutes":  10
+                                          },
+                                          {
+                                              "id":  10,
+                                              "step":  "Practice progressive muscle relaxation",
+                                              "difficulty":  3,
+                                              "category":  "Physical",
+                                              "estimated_suds":  25,
+                                              "duration_minutes":  15
+                                          },
+                                          {
+                                              "id":  11,
+                                              "step":  "Walk to the mailbox and back alone",
+                                              "difficulty":  4,
+                                              "category":  "Outdoor",
+                                              "estimated_suds":  35,
+                                              "duration_minutes":  5
+                                          },
+                                          {
+                                              "id":  12,
+                                              "step":  "Make a phone call to a family member",
+                                              "difficulty":  4,
+                                              "category":  "Social",
+                                              "estimated_suds":  35,
+                                              "duration_minutes":  5
+                                          },
+                                          {
+                                              "id":  13,
+                                              "step":  "Send a text message to a friend",
+                                              "difficulty":  4,
+                                              "category":  "Social",
+                                              "estimated_suds":  30,
+                                              "duration_minutes":  2
+                                          },
+                                          {
+                                              "id":  14,
+                                              "step":  "Order food via delivery app",
+                                              "difficulty":  4,
+                                              "category":  "Social",
+                                              "estimated_suds":  35,
+                                              "duration_minutes":  10
+                                          },
+                                          {
+                                              "id":  15,
+                                              "step":  "Sit in a parked car in the driveway",
+                                              "difficulty":  4,
+                                              "category":  "Outdoor",
+                                              "estimated_suds":  35,
+                                              "duration_minutes":  10
+                                          },
+                                          {
+                                              "id":  16,
+                                              "step":  "Visit a quiet park during off-peak hours",
+                                              "difficulty":  5,
+                                              "category":  "Outdoor",
+                                              "estimated_suds":  40,
+                                              "duration_minutes":  15
+                                          },
+                                          {
+                                              "id":  17,
+                                              "step":  "Go to a small local shop with one companion",
+                                              "difficulty":  5,
+                                              "category":  "Social",
+                                              "estimated_suds":  45,
+                                              "duration_minutes":  15
+                                          },
+                                          {
+                                              "id":  18,
+                                              "step":  "Attend a virtual meeting with camera off",
+                                              "difficulty":  5,
+                                              "category":  "Social",
+                                              "estimated_suds":  40,
+                                              "duration_minutes":  30
+                                          },
+                                          {
+                                              "id":  19,
+                                              "step":  "Make a doctor\u0027s appointment by phone",
+                                              "difficulty":  5,
+                                              "category":  "Social",
+                                              "estimated_suds":  45,
+                                              "duration_minutes":  5
+                                          },
+                                          {
+                                              "id":  20,
+                                              "step":  "Eat at a restaurant during quiet hours with friend",
+                                              "difficulty":  5,
+                                              "category":  "Social",
+                                              "estimated_suds":  45,
+                                              "duration_minutes":  45
+                                          },
+                                          {
+                                              "id":  21,
+                                              "step":  "Drive to a nearby town alone",
+                                              "difficulty":  6,
+                                              "category":  "Outdoor",
+                                              "estimated_suds":  50,
+                                              "duration_minutes":  30
+                                          },
+                                          {
+                                              "id":  22,
+                                              "step":  "Attend a small gathering (3-5 people)",
+                                              "difficulty":  6,
+                                              "category":  "Social",
+                                              "estimated_suds":  55,
+                                              "duration_minutes":  60
+                                          },
+                                          {
+                                              "id":  23,
+                                              "step":  "Speak up in a small group discussion",
+                                              "difficulty":  6,
+                                              "category":  "Social",
+                                              "estimated_suds":  55,
+                                              "duration_minutes":  15
+                                          },
+                                          {
+                                              "id":  24,
+                                              "step":  "Go to a movie theater with a friend",
+                                              "difficulty":  6,
+                                              "category":  "Social",
+                                              "estimated_suds":  50,
+                                              "duration_minutes":  120
+                                          },
+                                          {
+                                              "id":  25,
+                                              "step":  "Take public transportation during off-peak",
+                                              "difficulty":  6,
+                                              "category":  "Outdoor",
+                                              "estimated_suds":  55,
+                                              "duration_minutes":  30
+                                          },
+                                          {
+                                              "id":  26,
+                                              "step":  "Shop alone at a grocery store",
+                                              "difficulty":  7,
+                                              "category":  "Outdoor",
+                                              "estimated_suds":  60,
+                                              "duration_minutes":  30
+                                          },
+                                          {
+                                              "id":  27,
+                                              "step":  "Attend a virtual meeting with camera on",
+                                              "difficulty":  7,
+                                              "category":  "Social",
+                                              "estimated_suds":  60,
+                                              "duration_minutes":  45
+                                          },
+                                          {
+                                              "id":  28,
+                                              "step":  "Make small talk with a cashier",
+                                              "difficulty":  7,
+                                              "category":  "Social",
+                                              "estimated_suds":  65,
+                                              "duration_minutes":  5
+                                          },
+                                          {
+                                              "id":  29,
+                                              "step":  "Go to a busy shopping mall",
+                                              "difficulty":  7,
+                                              "category":  "Outdoor",
+                                              "estimated_suds":  65,
+                                              "duration_minutes":  45
+                                          },
+                                          {
+                                              "id":  30,
+                                              "step":  "Attend a work meeting in person",
+                                              "difficulty":  7,
+                                              "category":  "Social",
+                                              "estimated_suds":  65,
+                                              "duration_minutes":  60
+                                          },
+                                          {
+                                              "id":  31,
+                                              "step":  "Eat alone at a restaurant",
+                                              "difficulty":  8,
+                                              "category":  "Social",
+                                              "estimated_suds":  70,
+                                              "duration_minutes":  45
+                                          },
+                                          {
+                                              "id":  32,
+                                              "step":  "Give a short presentation to 2-3 people",
+                                              "difficulty":  8,
+                                              "category":  "Social",
+                                              "estimated_suds":  75,
+                                              "duration_minutes":  15
+                                          },
+                                          {
+                                              "id":  33,
+                                              "step":  "Take public transportation during rush hour",
+                                              "difficulty":  8,
+                                              "category":  "Outdoor",
+                                              "estimated_suds":  70,
+                                              "duration_minutes":  45
+                                          },
+                                          {
+                                              "id":  34,
+                                              "step":  "Attend a party with 10+ people",
+                                              "difficulty":  8,
+                                              "category":  "Social",
+                                              "estimated_suds":  75,
+                                              "duration_minutes":  120
+                                          },
+                                          {
+                                              "id":  35,
+                                              "step":  "Make a complaint or return an item at a store",
+                                              "difficulty":  8,
+                                              "category":  "Social",
+                                              "estimated_suds":  75,
+                                              "duration_minutes":  15
+                                          },
+                                          {
+                                              "id":  36,
+                                              "step":  "Go to a crowded concert or event",
+                                              "difficulty":  9,
+                                              "category":  "Social",
+                                              "estimated_suds":  80,
+                                              "duration_minutes":  180
+                                          },
+                                          {
+                                              "id":  37,
+                                              "step":  "Speak up in a large group meeting (10+ people)",
+                                              "difficulty":  9,
+                                              "category":  "Social",
+                                              "estimated_suds":  80,
+                                              "duration_minutes":  30
+                                          },
+                                          {
+                                              "id":  38,
+                                              "step":  "Travel alone to an unfamiliar city",
+                                              "difficulty":  9,
+                                              "category":  "Outdoor",
+                                              "estimated_suds":  80,
+                                              "duration_minutes":  480
+                                          },
+                                          {
+                                              "id":  39,
+                                              "step":  "Attend a job interview",
+                                              "difficulty":  9,
+                                              "category":  "Social",
+                                              "estimated_suds":  85,
+                                              "duration_minutes":  60
+                                          },
+                                          {
+                                              "id":  40,
+                                              "step":  "Give a presentation to a large group (20+ people)",
+                                              "difficulty":  9,
+                                              "category":  "Social",
+                                              "estimated_suds":  85,
+                                              "duration_minutes":  30
+                                          },
+                                          {
+                                              "id":  41,
+                                              "step":  "Go on a first date",
+                                              "difficulty":  10,
+                                              "category":  "Social",
+                                              "estimated_suds":  85,
+                                              "duration_minutes":  120
+                                          },
+                                          {
+                                              "id":  42,
+                                              "step":  "Attend a networking event alone",
+                                              "difficulty":  10,
+                                              "category":  "Social",
+                                              "estimated_suds":  90,
+                                              "duration_minutes":  120
+                                          },
+                                          {
+                                              "id":  43,
+                                              "step":  "Speak in front of 50+ people",
+                                              "difficulty":  10,
+                                              "category":  "Social",
+                                              "estimated_suds":  90,
+                                              "duration_minutes":  30
+                                          },
+                                          {
+                                              "id":  44,
+                                              "step":  "Fly on an airplane alone",
+                                              "difficulty":  10,
+                                              "category":  "Outdoor",
+                                              "estimated_suds":  90,
+                                              "duration_minutes":  300
+                                          },
+                                          {
+                                              "id":  45,
+                                              "step":  "Attend a high-stakes performance review",
+                                              "difficulty":  10,
+                                              "category":  "Social",
+                                              "estimated_suds":  90,
+                                              "duration_minutes":  60
+                                          },
+                                          {
+                                              "id":  46,
+                                              "step":  "Give a toast at a wedding",
+                                              "difficulty":  10,
+                                              "category":  "Social",
+                                              "estimated_suds":  95,
+                                              "duration_minutes":  5
+                                          },
+                                          {
+                                              "id":  47,
+                                              "step":  "Lead a workshop or training session",
+                                              "difficulty":  10,
+                                              "category":  "Social",
+                                              "estimated_suds":  95,
+                                              "duration_minutes":  120
+                                          },
+                                          {
+                                              "id":  48,
+                                              "step":  "Appear on live television or radio",
+                                              "difficulty":  10,
+                                              "category":  "Social",
+                                              "estimated_suds":  95,
+                                              "duration_minutes":  30
+                                          },
+                                          {
+                                              "id":  49,
+                                              "step":  "Give a keynote speech to 500+ people",
+                                              "difficulty":  10,
+                                              "category":  "Social",
+                                              "estimated_suds":  100,
+                                              "duration_minutes":  60
+                                          },
+                                          {
+                                              "id":  50,
+                                              "step":  "Confront the worst-case scenario visualization for 30 minutes",
+                                              "difficulty":  10,
+                                              "category":  "Imaginal",
+                                              "estimated_suds":  100,
+                                              "duration_minutes":  30
+                                          }
+                                      ],
+                            "usage_guidelines":  {
+                                                     "start_at_lowest":  "Begin with steps rated 1-3 difficulty",
+                                                     "mastery_criteria":  "Complete step 3 times with anxiety reducing by 50% before moving up",
+                                                     "suds_scale":  "Subjective Units of Distress Scale (0-100)",
+                                                     "safety_behavior_elimination":  "Gradually remove crutches (e.g., phone, companion)",
+                                                     "frequency":  "Practice daily or every other day for best results",
+                                                     "therapist_guidance":  "Recommended to work with a CBT therapist for steps 30+"
+                                                 },
+                            "categories":  [
+                                               "Writing/Reflection",
+                                               "Reading",
+                                               "Media",
+                                               "Physical",
+                                               "Audio",
+                                               "Visual",
+                                               "Outdoor",
+                                               "Social",
+                                               "Imaginal"
+                                           ]
+                        },
+    "title":  "Exposure Ladder",
+    "description":  "Plan and log graded exposure attempts using SUDS, completion, and learnings.",
+    "questions":  [
+                      {
+                          "id":  "fear_topic",
+                          "question":  "Fear topic you are targeting",
+                          "type":  "text",
+                          "placeholder":  "Example: public speaking / crowd anxiety"
+                      },
+                      {
+                          "id":  "selected_step_id",
+                          "question":  "Selected ladder step ID",
+                          "type":  "text",
+                          "placeholder":  "1 to 50"
+                      },
+                      {
+                          "id":  "selected_step_description",
+                          "question":  "Selected step description",
+                          "type":  "text",
+                          "placeholder":  "Copy/paste step from ladder above"
+                      },
+                      {
+                          "id":  "pre_suds",
+                          "question":  "SUDS before exposure (0-100)",
+                          "type":  "text",
+                          "placeholder":  "0 = calm, 100 = extreme distress"
+                      },
+                      {
+                          "id":  "predicted_outcome",
+                          "question":  "What do you predict will happen?",
+                          "type":  "text",
+                          "placeholder":  "Your feared prediction..."
+                      },
+                      {
+                          "id":  "safety_behaviors_used",
+                          "question":  "Safety behaviors used",
+                          "type":  "multi",
+                          "options":  [
+                                          "None",
+                                          "Phone checking",
+                                          "Avoiding eye contact",
+                                          "Staying near exit",
+                                          "Companion dependence",
+                                          "Reassurance seeking",
+                                          "Escape plan in mind",
+                                          "Other"
+                                      ]
+                      },
+                      {
+                          "id":  "completion_status",
+                          "question":  "Exposure completion status",
+                          "type":  "single",
+                          "options":  [
+                                          "Completed fully",
+                                          "Completed partially",
+                                          "Attempted but stopped",
+                                          "Skipped today"
+                                      ]
+                      },
+                      {
+                          "id":  "peak_suds",
+                          "question":  "Peak SUDS during exposure (0-100)",
+                          "type":  "text",
+                          "placeholder":  "Highest distress reached"
+                      },
+                      {
+                          "id":  "post_suds",
+                          "question":  "SUDS after exposure (0-100)",
+                          "type":  "text",
+                          "placeholder":  "Distress at end"
+                      },
+                      {
+                          "id":  "disconfirmation",
+                          "question":  "Did feared outcome happen?",
+                          "type":  "single",
+                          "options":  [
+                                          "No",
+                                          "Partially",
+                                          "Yes"
+                                      ]
+                      },
+                      {
+                          "id":  "learning_note",
+                          "question":  "What did you learn from this attempt?",
+                          "type":  "text",
+                          "placeholder":  "Key learning..."
+                      },
+                      {
+                          "id":  "next_step_plan",
+                          "question":  "Next exposure step plan",
+                          "type":  "text",
+                          "placeholder":  "Repeat same step or move to next?"
+                      }
+                  ]
+}

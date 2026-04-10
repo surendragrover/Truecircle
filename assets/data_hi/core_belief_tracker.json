@@ -1,0 +1,1254 @@
+﻿{
+    "core_belief_tracker":  {
+                                "title":  "Core Belief \u0026 Schema Monitoring System",
+                                "description":  "Long-term tracking of deep cognitive structures, their origins, manifestations, and transformation",
+                                "version":  "2.0",
+                                "framework":  {
+                                                  "theoretical_basis":  [
+                                                                            "Jeffrey Young\u0027s Schema Therapy",
+                                                                            "Aaron Beck\u0027s Cognitive Theory",
+                                                                            "John Bowlby\u0027s Attachment Theory",
+                                                                            "Conditional vs Unconditional Core Beliefs"
+                                                                        ],
+                                                  "belief_levels":  {
+                                                                        "automatic_thoughts":  "Surface level, situation-specific",
+                                                                        "intermediate_beliefs":  "Rules, attitudes, assumptions",
+                                                                        "core_beliefs":  "Deep, unconditional, global beliefs about self/others/world"
+                                                                    },
+                                                  "belief_categories":  [
+                                                                            "Defectiveness/Shame",
+                                                                            "Abandonment/Instability",
+                                                                            "Mistrust/Abuse",
+                                                                            "Dependence/Incompetence",
+                                                                            "Vulnerability to Harm",
+                                                                            "Emotional Deprivation",
+                                                                            "Social Isolation/Alienation",
+                                                                            "Failure",
+                                                                            "Entitlement/Grandiosity",
+                                                                            "Subjugation",
+                                                                            "Self-Sacrifice",
+                                                                            "Approval-Seeking",
+                                                                            "Negativity/Pessimism",
+                                                                            "Punitiveness",
+                                                                            "Unrelenting Standards"
+                                                                        ]
+                                              },
+                                "core_beliefs_database":  {
+                                                              "defectiveness_shame":  {
+                                                                                          "schema_name":  "Defectiveness/Shame",
+                                                                                          "core_belief":  "I am inherently flawed, defective, and unlovable",
+                                                                                          "conditional_version":  "If people really knew me, they would reject me",
+                                                                                          "unconditional_version":  "I am defective",
+                                                                                          "origin_themes":  [
+                                                                                                                "Critical, shaming parent",
+                                                                                                                "Bullying or peer rejection",
+                                                                                                                "Physical/sexual abuse",
+                                                                                                                "Visible difference or disability",
+                                                                                                                "Academic struggles in formative years"
+                                                                                                            ],
+                                                                                          "behavioral_manifestations":  [
+                                                                                                                            "Hiding true self",
+                                                                                                                            "Perfectionism to cover flaws",
+                                                                                                                            "Avoiding intimacy",
+                                                                                                                            "Excessive apologizing",
+                                                                                                                            "Accepting poor treatment",
+                                                                                                                            "Compulsive comparison"
+                                                                                                                        ],
+                                                                                          "emotional_patterns":  [
+                                                                                                                     "Shame",
+                                                                                                                     "Inadequacy",
+                                                                                                                     "Sensitivity to criticism",
+                                                                                                                     "Envy",
+                                                                                                                     "Social anxiety"
+                                                                                                                 ],
+                                                                                          "trigger_situations":  [
+                                                                                                                     "Receiving feedback",
+                                                                                                                     "Making mistakes",
+                                                                                                                     "Intimacy initiation",
+                                                                                                                     "Being center of attention",
+                                                                                                                     "Seeing successful peers"
+                                                                                                                 ],
+                                                                                          "coping_modes":  {
+                                                                                                               "surrender":  "Accepting defective label, self-deprecation",
+                                                                                                               "avoidance":  "Social withdrawal, hiding",
+                                                                                                               "overcompensation":  "Perfectionism, status-seeking, arrogance"
+                                                                                                           },
+                                                                                          "assessment":  {
+                                                                                                             "belief_strength_scale":  "0-100%",
+                                                                                                             "typical_rating":  "85%",
+                                                                                                             "emotional_intensity":  "90%",
+                                                                                                             "behavioral_impact":  "High",
+                                                                                                             "daily_interference":  "Moderate to High"
+                                                                                                         },
+                                                                                          "transformation_targets":  {
+                                                                                                                         "new_belief":  "I am worthy of love and belonging exactly as I am",
+                                                                                                                         "intermediate_steps":  [
+                                                                                                                                                    "I have flaws like everyone else",
+                                                                                                                                                    "My imperfections don\u0027t make me unlovable",
+                                                                                                                                                    "Some people will accept me as I am",
+                                                                                                                                                    "I can be vulnerable and still be accepted"
+                                                                                                                                                ],
+                                                                                                                         "evidence_collection":  [
+                                                                                                                                                     "List 5 people who care about me despite knowing my flaws",
+                                                                                                                                                     "Track times when vulnerability led to connection",
+                                                                                                                                                     "Record mistakes that didn\u0027t result in rejection"
+                                                                                                                                                 ]
+                                                                                                                     }
+                                                                                      },
+                                                              "abandonment_instability":  {
+                                                                                              "schema_name":  "Abandonment/Instability",
+                                                                                              "core_belief":  "I will inevitably be abandoned; relationships don\u0027t last",
+                                                                                              "conditional_version":  "If I get too attached, I\u0027ll lose them",
+                                                                                              "unconditional_version":  "I am destined to be alone",
+                                                                                              "origin_themes":  [
+                                                                                                                    "Parental death or divorce",
+                                                                                                                    "Inconsistent caregiving",
+                                                                                                                    "Foster care or frequent moves",
+                                                                                                                    "Parental substance abuse/mental illness",
+                                                                                                                    "Early loss of significant person"
+                                                                                                                ],
+                                                                                              "behavioral_manifestations":  [
+                                                                                                                                "Clinging behavior",
+                                                                                                                                "Preemptive rejection",
+                                                                                                                                "Jealousy and monitoring",
+                                                                                                                                "Rapid attachment",
+                                                                                                                                "Crisis creation for attention",
+                                                                                                                                "Settling for poor relationships"
+                                                                                                                            ],
+                                                                                              "emotional_patterns":  [
+                                                                                                                         "Abandonment anxiety",
+                                                                                                                         "Panic at perceived distance",
+                                                                                                                         "Grief/loss anticipation",
+                                                                                                                         "Rage at inconsistency",
+                                                                                                                         "Desperation"
+                                                                                                                     ],
+                                                                                              "trigger_situations":  [
+                                                                                                                         "Partner going out without you",
+                                                                                                                         "Delayed text responses",
+                                                                                                                         "Planned separations",
+                                                                                                                         "Partner making new friends",
+                                                                                                                         "Any hint of conflict"
+                                                                                                                     ],
+                                                                                              "coping_modes":  {
+                                                                                                                   "surrender":  "Accepting relationships are temporary, not investing",
+                                                                                                                   "avoidance":  "Ending relationships first, emotional unavailability",
+                                                                                                                   "overcompensation":  "Excessive caretaking, inability to be alone"
+                                                                                                               },
+                                                                                              "assessment":  {
+                                                                                                                 "belief_strength_scale":  "0-100%",
+                                                                                                                 "typical_rating":  "80%",
+                                                                                                                 "emotional_intensity":  "95%",
+                                                                                                                 "behavioral_impact":  "Very High",
+                                                                                                                 "daily_interference":  "High"
+                                                                                                             },
+                                                                                              "transformation_targets":  {
+                                                                                                                             "new_belief":  "I can handle being alone and I can trust in lasting relationships",
+                                                                                                                             "intermediate_steps":  [
+                                                                                                                                                        "Some relationships do last",
+                                                                                                                                                        "I can survive if someone leaves",
+                                                                                                                                                        "My needs don\u0027t drive people away",
+                                                                                                                                                        "I can tolerate uncertainty in relationships"
+                                                                                                                                                    ],
+                                                                                                                             "evidence_collection":  [
+                                                                                                                                                         "Track relationship durations that exceeded expectations",
+                                                                                                                                                         "Practice small separations without catastrophe",
+                                                                                                                                                         "Identify stable relationships in life"
+                                                                                                                                                     ]
+                                                                                                                         }
+                                                                                          },
+                                                              "mistrust_abuse":  {
+                                                                                     "schema_name":  "Mistrust/Abuse",
+                                                                                     "core_belief":  "People will hurt, use, or take advantage of me",
+                                                                                     "conditional_version":  "If I trust someone, they will betray me",
+                                                                                     "unconditional_version":  "The world is dangerous and people are malicious",
+                                                                                     "origin_themes":  [
+                                                                                                           "Childhood abuse (physical, sexual, emotional)",
+                                                                                                           "Domestic violence exposure",
+                                                                                                           "Crime victimization",
+                                                                                                           "Betrayal by trusted person",
+                                                                                                           "War or community violence"
+                                                                                                       ],
+                                                                                     "behavioral_manifestations":  [
+                                                                                                                       "Hypervigilance",
+                                                                                                                       "Testing others\u0027 loyalty",
+                                                                                                                       "Reluctance to trust",
+                                                                                                                       "Aggression as preemption",
+                                                                                                                       "Isolation for protection",
+                                                                                                                       "Scanning for threats"
+                                                                                                                   ],
+                                                                                     "emotional_patterns":  [
+                                                                                                                "Suspicion",
+                                                                                                                "Anger",
+                                                                                                                "Fear",
+                                                                                                                "Bitterness",
+                                                                                                                "Hyperarousal"
+                                                                                                            ],
+                                                                                     "trigger_situations":  [
+                                                                                                                "Someone being nice (ulterior motive)",
+                                                                                                                "Intimacy requests",
+                                                                                                                "Authority figures",
+                                                                                                                "Vulnerable situations",
+                                                                                                                "Past abuser reminders"
+                                                                                                            ],
+                                                                                     "coping_modes":  {
+                                                                                                          "surrender":  "Accepting victim role, staying in abusive situations",
+                                                                                                          "avoidance":  "Complete isolation, no relationships",
+                                                                                                          "overcompensation":  "Counter-attack, controlling behavior, paranoia"
+                                                                                                      },
+                                                                                     "assessment":  {
+                                                                                                        "belief_strength_scale":  "0-100%",
+                                                                                                        "typical_rating":  "90%",
+                                                                                                        "emotional_intensity":  "85%",
+                                                                                                        "behavioral_impact":  "Very High",
+                                                                                                        "daily_interference":  "Very High"
+                                                                                                    },
+                                                                                     "transformation_targets":  {
+                                                                                                                    "new_belief":  "I can protect myself and still have healthy connections with trustworthy people",
+                                                                                                                    "intermediate_steps":  [
+                                                                                                                                               "Not everyone is dangerous",
+                                                                                                                                               "I can spot red flags now",
+                                                                                                                                               "Some people have proven trustworthy",
+                                                                                                                                               "Vulnerability doesn\u0027t guarantee harm"
+                                                                                                                                           ],
+                                                                                                                    "evidence_collection":  [
+                                                                                                                                                "List people who have been consistently trustworthy",
+                                                                                                                                                "Track times when trust was rewarded",
+                                                                                                                                                "Identify own improved boundary-setting abilities"
+                                                                                                                                            ]
+                                                                                                                }
+                                                                                 },
+                                                              "dependence_incompetence":  {
+                                                                                              "schema_name":  "Dependence/Incompetence",
+                                                                                              "core_belief":  "I am incapable of handling life independently",
+                                                                                              "conditional_version":  "If I don\u0027t have help, I will fail",
+                                                                                              "unconditional_version":  "I am incompetent and need others to survive",
+                                                                                              "origin_themes":  [
+                                                                                                                    "Overprotective parenting",
+                                                                                                                    "Learned helplessness",
+                                                                                                                    "Chronic illness in childhood",
+                                                                                                                    "Never allowed to fail",
+                                                                                                                    "Developmental delays"
+                                                                                                                ],
+                                                                                              "behavioral_manifestations":  [
+                                                                                                                                "Excessive advice-seeking",
+                                                                                                                                "Inability to make decisions",
+                                                                                                                                "Staying in dependent situations",
+                                                                                                                                "Avoiding adult responsibilities",
+                                                                                                                                "Learned helplessness",
+                                                                                                                                "Underachievement despite capability"
+                                                                                                                            ],
+                                                                                              "emotional_patterns":  [
+                                                                                                                         "Inadequacy",
+                                                                                                                         "Overwhelm",
+                                                                                                                         "Fear of failure",
+                                                                                                                         "Childlike feeling",
+                                                                                                                         "Resentment of dependence"
+                                                                                                                     ],
+                                                                                              "trigger_situations":  [
+                                                                                                                         "Making independent decisions",
+                                                                                                                         "Living alone",
+                                                                                                                         "Financial management",
+                                                                                                                         "Job applications",
+                                                                                                                         "Any new challenge"
+                                                                                                                     ],
+                                                                                              "coping_modes":  {
+                                                                                                                   "surrender":  "Staying dependent, not trying",
+                                                                                                                   "avoidance":  "Refusing to leave dependent situation",
+                                                                                                                   "overcompensation":  "Refusing all help, dangerous independence"
+                                                                                                               },
+                                                                                              "assessment":  {
+                                                                                                                 "belief_strength_scale":  "0-100%",
+                                                                                                                 "typical_rating":  "75%",
+                                                                                                                 "emotional_intensity":  "80%",
+                                                                                                                 "behavioral_impact":  "High",
+                                                                                                                 "daily_interference":  "High"
+                                                                                                             },
+                                                                                              "transformation_targets":  {
+                                                                                                                             "new_belief":  "I am capable of learning and handling life\u0027s challenges",
+                                                                                                                             "intermediate_steps":  [
+                                                                                                                                                        "I have succeeded at some things alone",
+                                                                                                                                                        "I can learn what I don\u0027t know",
+                                                                                                                                                        "Asking for help is different from dependence",
+                                                                                                                                                        "Failure is part of learning, not proof of incompetence"
+                                                                                                                                                    ],
+                                                                                                                             "evidence_collection":  [
+                                                                                                                                                         "Log independent successes daily",
+                                                                                                                                                         "Track new skills learned",
+                                                                                                                                                         "Identify times when help wasn\u0027t needed"
+                                                                                                                                                     ]
+                                                                                                                         }
+                                                                                          },
+                                                              "vulnerability_harm":  {
+                                                                                         "schema_name":  "Vulnerability to Harm",
+                                                                                         "core_belief":  "Catastrophe is always about to happen; I cannot cope",
+                                                                                         "conditional_version":  "If I\u0027m not constantly vigilant, disaster will strike",
+                                                                                         "unconditional_version":  "The world is dangerous and I am vulnerable",
+                                                                                         "origin_themes":  [
+                                                                                                               "Parental overprotection and catastrophizing",
+                                                                                                               "Traumatic events",
+                                                                                                               "Chaotic childhood environment",
+                                                                                                               "Medical trauma",
+                                                                                                               "Anxious attachment modeling"
+                                                                                                           ],
+                                                                                         "behavioral_manifestations":  [
+                                                                                                                           "Excessive worry and planning",
+                                                                                                                           "Safety behaviors",
+                                                                                                                           "Avoidance of perceived risks",
+                                                                                                                           "Reassurance seeking",
+                                                                                                                           "Hypervigilance",
+                                                                                                                           "Catastrophizing conversations"
+                                                                                                                       ],
+                                                                                         "emotional_patterns":  [
+                                                                                                                    "Anxiety",
+                                                                                                                    "Dread",
+                                                                                                                    "Hypervigilance",
+                                                                                                                    "Exhaustion",
+                                                                                                                    "Irritability"
+                                                                                                                ],
+                                                                                         "trigger_situations":  [
+                                                                                                                    "Health symptoms",
+                                                                                                                    "Financial uncertainty",
+                                                                                                                    "Safety of loved ones",
+                                                                                                                    "World news",
+                                                                                                                    "Any change in routine"
+                                                                                                                ],
+                                                                                         "coping_modes":  {
+                                                                                                              "surrender":  "Staying in safe bubble, limited living",
+                                                                                                              "avoidance":  "Avoiding all potential risks",
+                                                                                                              "overcompensation":  "Excessive control, safety rituals, micromanagement"
+                                                                                                          },
+                                                                                         "assessment":  {
+                                                                                                            "belief_strength_scale":  "0-100%",
+                                                                                                            "typical_rating":  "85%",
+                                                                                                            "emotional_intensity":  "90%",
+                                                                                                            "behavioral_impact":  "High",
+                                                                                                            "daily_interference":  "Very High"
+                                                                                                        },
+                                                                                         "transformation_targets":  {
+                                                                                                                        "new_belief":  "I can handle challenges when they arise; I don\u0027t need to predict the future",
+                                                                                                                        "intermediate_steps":  [
+                                                                                                                                                   "Most worries never happen",
+                                                                                                                                                   "I have survived past difficulties",
+                                                                                                                                                   "Worry doesn\u0027t prevent bad things",
+                                                                                                                                                   "I can cope with uncertainty"
+                                                                                                                                               ],
+                                                                                                                        "evidence_collection":  [
+                                                                                                                                                    "Track worry predictions vs outcomes",
+                                                                                                                                                    "List past crises survived",
+                                                                                                                                                    "Record times when lack of worry didn\u0027t cause disaster"
+                                                                                                                                                ]
+                                                                                                                    }
+                                                                                     },
+                                                              "emotional_deprivation":  {
+                                                                                            "schema_name":  "Emotional Deprivation",
+                                                                                            "core_belief":  "My emotional needs will never be met by others",
+                                                                                            "conditional_version":  "If I express needs, I will be disappointed or burdensome",
+                                                                                            "unconditional_version":  "I am destined to be emotionally alone",
+                                                                                            "origin_themes":  [
+                                                                                                                  "Cold, unresponsive parent",
+                                                                                                                  "Parental depression/absence",
+                                                                                                                  "Emotional neglect",
+                                                                                                                  "Only child with distant parents",
+                                                                                                                  "Parentification (child met parent\u0027s needs)"
+                                                                                                              ],
+                                                                                            "behavioral_manifestations":  [
+                                                                                                                              "Not expressing needs",
+                                                                                                                              "Attracting cold partners",
+                                                                                                                              "Emotional numbing",
+                                                                                                                              "Settling for less in relationships",
+                                                                                                                              "Self-soothing through substances/food",
+                                                                                                                              "Chronic loneliness despite relationships"
+                                                                                                                          ],
+                                                                                            "emotional_patterns":  [
+                                                                                                                       "Loneliness",
+                                                                                                                       "Longing",
+                                                                                                                       "Bitterness",
+                                                                                                                       "Numbness",
+                                                                                                                       "Depression"
+                                                                                                                   ],
+                                                                                            "trigger_situations":  [
+                                                                                                                       "Partner not noticing needs",
+                                                                                                                       "Having to ask for affection",
+                                                                                                                       "Seeing affectionate couples",
+                                                                                                                       "Being sick or vulnerable",
+                                                                                                                       "Holidays and birthdays"
+                                                                                                                   ],
+                                                                                            "coping_modes":  {
+                                                                                                                 "surrender":  "Accepting emotional starvation, not asking",
+                                                                                                                 "avoidance":  "Avoiding relationships entirely",
+                                                                                                                 "overcompensation":  "Demanding constant attention, clinging"
+                                                                                                             },
+                                                                                            "assessment":  {
+                                                                                                               "belief_strength_scale":  "0-100%",
+                                                                                                               "typical_rating":  "80%",
+                                                                                                               "emotional_intensity":  "85%",
+                                                                                                               "behavioral_impact":  "High",
+                                                                                                               "daily_interference":  "Moderate to High"
+                                                                                                           },
+                                                                                            "transformation_targets":  {
+                                                                                                                           "new_belief":  "I deserve emotional nourishment and can ask for it",
+                                                                                                                           "intermediate_steps":  [
+                                                                                                                                                      "My needs are valid, not burdensome",
+                                                                                                                                                      "Some people are capable of meeting needs",
+                                                                                                                                                      "I can meet some of my own emotional needs",
+                                                                                                                                                      "Asking doesn\u0027t guarantee disappointment"
+                                                                                                                                                  ],
+                                                                                                                           "evidence_collection":  [
+                                                                                                                                                       "Track times when needs were met when expressed",
+                                                                                                                                                       "Identify safe people to practice with",
+                                                                                                                                                       "Record self-nurturing activities"
+                                                                                                                                                   ]
+                                                                                                                       }
+                                                                                        },
+                                                              "social_isolation":  {
+                                                                                       "schema_name":  "Social Isolation/Alienation",
+                                                                                       "core_belief":  "I am fundamentally different and don\u0027t belong anywhere",
+                                                                                       "conditional_version":  "If I try to fit in, people will see how different I am",
+                                                                                       "unconditional_version":  "I am an outsider",
+                                                                                       "origin_themes":  [
+                                                                                                             "Moving frequently in childhood",
+                                                                                                             "Cultural or racial differences",
+                                                                                                             "Neurodivergence without support",
+                                                                                                             "Giftedness or high intelligence",
+                                                                                                             "LGBTQ+ in unsupportive environment",
+                                                                                                             "Unique family circumstances"
+                                                                                                         ],
+                                                                                       "behavioral_manifestations":  [
+                                                                                                                         "Staying on periphery of groups",
+                                                                                                                         "Feeling like observer not participant",
+                                                                                                                         "Masking or camouflaging true self",
+                                                                                                                         "Attraction to marginalized subcultures",
+                                                                                                                         "Online relationships preferred",
+                                                                                                                         "Identity confusion"
+                                                                                                                     ],
+                                                                                       "emotional_patterns":  [
+                                                                                                                  "Alienation",
+                                                                                                                  "Loneliness",
+                                                                                                                  "Existential emptiness",
+                                                                                                                  "Bitterness",
+                                                                                                                  "Superiority/inferiority conflict"
+                                                                                                              ],
+                                                                                       "trigger_situations":  [
+                                                                                                                  "Group gatherings",
+                                                                                                                  "Family events",
+                                                                                                                  "Work socializing",
+                                                                                                                  "Seeing communities of shared interest",
+                                                                                                                  "Returning to hometown"
+                                                                                                              ],
+                                                                                       "coping_modes":  {
+                                                                                                            "surrender":  "Accepting outsider status, not trying",
+                                                                                                            "avoidance":  "Complete isolation",
+                                                                                                            "overcompensation":  "Conformity at cost of authenticity, people-pleasing"
+                                                                                                        },
+                                                                                       "assessment":  {
+                                                                                                          "belief_strength_scale":  "0-100%",
+                                                                                                          "typical_rating":  "75%",
+                                                                                                          "emotional_intensity":  "80%",
+                                                                                                          "behavioral_impact":  "Moderate to High",
+                                                                                                          "daily_interference":  "Moderate"
+                                                                                                      },
+                                                                                       "transformation_targets":  {
+                                                                                                                      "new_belief":  "I can find my people and belong while being authentically myself",
+                                                                                                                      "intermediate_steps":  [
+                                                                                                                                                 "Difference doesn\u0027t mean exclusion",
+                                                                                                                                                 "There are communities for my specific interests/identity",
+                                                                                                                                                 "I can connect over shared humanity",
+                                                                                                                                                 "Authenticity attracts right people"
+                                                                                                                                             ],
+                                                                                                                      "evidence_collection":  [
+                                                                                                                                                  "Identify times when you felt belonging",
+                                                                                                                                                  "Find niche communities online or local",
+                                                                                                                                                  "Track authentic connections made"
+                                                                                                                                              ]
+                                                                                                                  }
+                                                                                   },
+                                                              "failure":  {
+                                                                              "schema_name":  "Failure",
+                                                                              "core_belief":  "I am incompetent and will fail at important life tasks",
+                                                                              "conditional_version":  "If I try something important, I will fail",
+                                                                              "unconditional_version":  "I am a failure",
+                                                                              "origin_themes":  [
+                                                                                                    "Parental emphasis on achievement",
+                                                                                                    "Shaming around mistakes",
+                                                                                                    "Sibling comparisons",
+                                                                                                    "Academic struggles",
+                                                                                                    "Early career setbacks"
+                                                                                                ],
+                                                                              "behavioral_manifestations":  [
+                                                                                                                "Procrastination",
+                                                                                                                "Underachievement despite talent",
+                                                                                                                "Avoiding challenges",
+                                                                                                                "Self-sabotage",
+                                                                                                                "Imposter syndrome",
+                                                                                                                "Giving up quickly"
+                                                                                                            ],
+                                                                              "emotional_patterns":  [
+                                                                                                         "Shame",
+                                                                                                         "Inadequacy",
+                                                                                                         "Anxiety",
+                                                                                                         "Hopelessness",
+                                                                                                         "Envy"
+                                                                                                     ],
+                                                                              "trigger_situations":  [
+                                                                                                         "New projects",
+                                                                                                         "Performance reviews",
+                                                                                                         "Competitive situations",
+                                                                                                         "Public recognition",
+                                                                                                         "Comparing to successful peers"
+                                                                                                     ],
+                                                                              "coping_modes":  {
+                                                                                                   "surrender":  "Not trying, accepting failure identity",
+                                                                                                   "avoidance":  "Avoiding any situation where failure possible",
+                                                                                                   "overcompensation":  "Workaholism, perfectionism, burnout"
+                                                                                               },
+                                                                              "assessment":  {
+                                                                                                 "belief_strength_scale":  "0-100%",
+                                                                                                 "typical_rating":  "85%",
+                                                                                                 "emotional_intensity":  "90%",
+                                                                                                 "behavioral_impact":  "Very High",
+                                                                                                 "daily_interference":  "High"
+                                                                                             },
+                                                                              "transformation_targets":  {
+                                                                                                             "new_belief":  "I am capable of growth and can learn from setbacks",
+                                                                                                             "intermediate_steps":  [
+                                                                                                                                        "Failure is feedback, not identity",
+                                                                                                                                        "I have succeeded at some things",
+                                                                                                                                        "Effort matters more than outcome",
+                                                                                                                                        "Everyone fails; it\u0027s part of success"
+                                                                                                                                    ],
+                                                                                                             "evidence_collection":  [
+                                                                                                                                         "Log all successes, especially small ones",
+                                                                                                                                         "Reframe past failures as learning",
+                                                                                                                                         "Track effort vs outcome separation"
+                                                                                                                                     ]
+                                                                                                         }
+                                                                          },
+                                                              "entitlement_grandiosity":  {
+                                                                                              "schema_name":  "Entitlement/Grandiosity",
+                                                                                              "core_belief":  "I am superior and deserving of special treatment",
+                                                                                              "conditional_version":  "If I don\u0027t get what I want, it\u0027s an injustice",
+                                                                                              "unconditional_version":  "Rules don\u0027t apply to me; I am special",
+                                                                                              "origin_themes":  [
+                                                                                                                    "Excessive parental pampering",
+                                                                                                                    "Only child syndrome",
+                                                                                                                    "Early success without effort",
+                                                                                                                    "Narcissistic parent modeling",
+                                                                                                                    "Wealth or status privilege"
+                                                                                                                ],
+                                                                                              "behavioral_manifestations":  [
+                                                                                                                                "Demanding special treatment",
+                                                                                                                                "Difficulty with criticism",
+                                                                                                                                "Exploitation of others",
+                                                                                                                                "Rule-breaking",
+                                                                                                                                "Envy of others\u0027 success",
+                                                                                                                                "Rage when frustrated"
+                                                                                                                            ],
+                                                                                              "emotional_patterns":  [
+                                                                                                                         "Anger",
+                                                                                                                         "Contempt",
+                                                                                                                         "Envy",
+                                                                                                                         "Boredom",
+                                                                                                                         "Emptiness"
+                                                                                                                     ],
+                                                                                              "trigger_situations":  [
+                                                                                                                         "Not getting immediate service",
+                                                                                                                         "Someone else receiving attention",
+                                                                                                                         "Being told no",
+                                                                                                                         "Having to wait",
+                                                                                                                         "Rules enforcement"
+                                                                                                                     ],
+                                                                                              "coping_modes":  {
+                                                                                                                   "surrender":  "Demanding, controlling behavior",
+                                                                                                                   "avoidance":  "Cutting off anyone who doesn\u0027t comply",
+                                                                                                                   "overcompensation":  "False humility, secret superiority"
+                                                                                                               },
+                                                                                              "assessment":  {
+                                                                                                                 "belief_strength_scale":  "0-100%",
+                                                                                                                 "typical_rating":  "70%",
+                                                                                                                 "emotional_intensity":  "75%",
+                                                                                                                 "behavioral_impact":  "High",
+                                                                                                                 "daily_interference":  "Moderate to High"
+                                                                                                             },
+                                                                                              "transformation_targets":  {
+                                                                                                                             "new_belief":  "I am equal to others; my worth doesn\u0027t depend on being special",
+                                                                                                                             "intermediate_steps":  [
+                                                                                                                                                        "Everyone has equal inherent worth",
+                                                                                                                                                        "Cooperation brings more than domination",
+                                                                                                                                                        "Vulnerability creates real connection",
+                                                                                                                                                        "Humility is strength, not weakness"
+                                                                                                                                                    ],
+                                                                                                                             "evidence_collection":  [
+                                                                                                                                                         "Track consequences of entitled behavior",
+                                                                                                                                                         "Practice gratitude and appreciation",
+                                                                                                                                                         "Notice others\u0027 contributions and worth"
+                                                                                                                                                     ]
+                                                                                                                         }
+                                                                                          },
+                                                              "subjugation":  {
+                                                                                  "schema_name":  "Subjugation",
+                                                                                  "core_belief":  "My needs are less important; I must yield to others",
+                                                                                  "conditional_version":  "If I express needs, I will be rejected or punished",
+                                                                                  "unconditional_version":  "I don\u0027t count; others come first",
+                                                                                  "origin_themes":  [
+                                                                                                        "Controlling, domineering parent",
+                                                                                                        "Cultural/family role expectations",
+                                                                                                        "Abuse with submission demands",
+                                                                                                        "Parental illness requiring child compliance",
+                                                                                                        "Codependent family system"
+                                                                                                    ],
+                                                                                  "behavioral_manifestations":  [
+                                                                                                                    "Automatic compliance",
+                                                                                                                    "Difficulty saying no",
+                                                                                                                    "Suppressed anger",
+                                                                                                                    "Resentment buildup",
+                                                                                                                    "Losing self in relationships",
+                                                                                                                    "Attracting controlling partners"
+                                                                                                                ],
+                                                                                  "emotional_patterns":  [
+                                                                                                             "Resentment",
+                                                                                                             "Depression",
+                                                                                                             "Anxiety",
+                                                                                                             "Suppressed anger",
+                                                                                                             "Identity confusion"
+                                                                                                         ],
+                                                                                  "trigger_situations":  [
+                                                                                                             "Someone asking for help",
+                                                                                                             "Conflict situations",
+                                                                                                             "Needing to assert boundaries",
+                                                                                                             "Making personal choices",
+                                                                                                             "Seeing others prioritize themselves"
+                                                                                                         ],
+                                                                                  "coping_modes":  {
+                                                                                                       "surrender":  "Automatic compliance, self-suppression",
+                                                                                                       "avoidance":  "Avoiding any situation requiring assertiveness",
+                                                                                                       "overcompensation":  "Rebellion, passive-aggression, control flipping"
+                                                                                                   },
+                                                                                  "assessment":  {
+                                                                                                     "belief_strength_scale":  "0-100%",
+                                                                                                     "typical_rating":  "80%",
+                                                                                                     "emotional_intensity":  "75%",
+                                                                                                     "behavioral_impact":  "High",
+                                                                                                     "daily_interference":  "High"
+                                                                                                 },
+                                                                                  "transformation_targets":  {
+                                                                                                                 "new_belief":  "My needs matter equally; I can assert myself without guilt",
+                                                                                                                 "intermediate_steps":  [
+                                                                                                                                            "My needs are valid, not selfish",
+                                                                                                                                            "Saying no doesn\u0027t make me bad",
+                                                                                                                                            "Healthy relationships allow for both people\u0027s needs",
+                                                                                                                                            "I can tolerate others\u0027 disappointment"
+                                                                                                                                        ],
+                                                                                                                 "evidence_collection":  [
+                                                                                                                                             "Track times when asserting needs didn\u0027t cause rejection",
+                                                                                                                                             "Identify relationships that survived your boundaries",
+                                                                                                                                             "Record self-care activities without guilt"
+                                                                                                                                         ]
+                                                                                                             }
+                                                                              },
+                                                              "self_sacrifice":  {
+                                                                                     "schema_name":  "Self-Sacrifice",
+                                                                                     "core_belief":  "I must meet others\u0027 needs at my own expense to be good",
+                                                                                     "conditional_version":  "If I prioritize myself, I am selfish and bad",
+                                                                                     "unconditional_version":  "My worth comes from helping others",
+                                                                                     "origin_themes":  [
+                                                                                                           "Parentified role in family",
+                                                                                                           "Sick sibling requiring care",
+                                                                                                           "Parental message that needs are selfish",
+                                                                                                           "Cultural/family emphasis on duty",
+                                                                                                           "Guilt-based parenting"
+                                                                                                       ],
+                                                                                     "behavioral_manifestations":  [
+                                                                                                                       "Overcommitment",
+                                                                                                                       "Neglecting own health",
+                                                                                                                       "Resentment despite \u0027willing\u0027 help",
+                                                                                                                       "Difficulty receiving help",
+                                                                                                                       "Martyr role",
+                                                                                                                       "Burnout"
+                                                                                                                   ],
+                                                                                     "emotional_patterns":  [
+                                                                                                                "Resentment",
+                                                                                                                "Exhaustion",
+                                                                                                                "Guilt when resting",
+                                                                                                                "Low-level depression",
+                                                                                                                "Pride in suffering"
+                                                                                                            ],
+                                                                                     "trigger_situations":  [
+                                                                                                                "Someone in need",
+                                                                                                                "Opportunity to volunteer",
+                                                                                                                "Taking time for self",
+                                                                                                                "Receiving help from others",
+                                                                                                                "Saying no to request"
+                                                                                                            ],
+                                                                                     "coping_modes":  {
+                                                                                                          "surrender":  "Excessive giving until depletion",
+                                                                                                          "avoidance":  "Avoiding relationships to prevent giving",
+                                                                                                          "overcompensation":  "Selfish behavior with guilt, then overcompensating"
+                                                                                                      },
+                                                                                     "assessment":  {
+                                                                                                        "belief_strength_scale":  "0-100%",
+                                                                                                        "typical_rating":  "85%",
+                                                                                                        "emotional_intensity":  "70%",
+                                                                                                        "behavioral_impact":  "Very High",
+                                                                                                        "daily_interference":  "High"
+                                                                                                    },
+                                                                                     "transformation_targets":  {
+                                                                                                                    "new_belief":  "I can care for others while also caring for myself",
+                                                                                                                    "intermediate_steps":  [
+                                                                                                                                               "Self-care enables sustainable helping",
+                                                                                                                                               "I matter too",
+                                                                                                                                               "Healthy giving feels good, not depleting",
+                                                                                                                                               "I can receive as well as give"
+                                                                                                                                           ],
+                                                                                                                    "evidence_collection":  [
+                                                                                                                                                "Track resentment as indicator of overgiving",
+                                                                                                                                                "Record times when self-care improved helping capacity",
+                                                                                                                                                "Identify people who give to you"
+                                                                                                                                            ]
+                                                                                                                }
+                                                                                 },
+                                                              "approval_seeking":  {
+                                                                                       "schema_name":  "Approval-Seeking/Recognition-Seeking",
+                                                                                       "core_belief":  "I must be approved of and admired to have worth",
+                                                                                       "conditional_version":  "If I\u0027m not praised, I am worthless",
+                                                                                       "unconditional_version":  "My value depends on others\u0027 opinions",
+                                                                                       "origin_themes":  [
+                                                                                                             "Conditional love based on achievement",
+                                                                                                             "Neglect with intermittent praise",
+                                                                                                             "Parental narcissism using child for status",
+                                                                                                             "Early fame or recognition",
+                                                                                                             "Bullying with social status emphasis"
+                                                                                                         ],
+                                                                                       "behavioral_manifestations":  [
+                                                                                                                         "People-pleasing",
+                                                                                                                         "Status obsession",
+                                                                                                                         "Difficulty with criticism",
+                                                                                                                         "Changing self to fit in",
+                                                                                                                         "Social media obsession",
+                                                                                                                         "Attracting to high-status people"
+                                                                                                                     ],
+                                                                                       "emotional_patterns":  [
+                                                                                                                  "Anxiety",
+                                                                                                                  "Shame",
+                                                                                                                  "Emptiness without validation",
+                                                                                                                  "Envy",
+                                                                                                                  "Depression when ignored"
+                                                                                                              ],
+                                                                                       "trigger_situations":  [
+                                                                                                                  "Social media posting",
+                                                                                                                  "Performance situations",
+                                                                                                                  "Criticism or silence",
+                                                                                                                  "Others receiving attention",
+                                                                                                                  "Being average or normal"
+                                                                                                              ],
+                                                                                       "coping_modes":  {
+                                                                                                            "surrender":  "Constant performing for approval",
+                                                                                                            "avoidance":  "Avoiding any situation where might not shine",
+                                                                                                            "overcompensation":  "Rejection of all approval, false indifference"
+                                                                                                        },
+                                                                                       "assessment":  {
+                                                                                                          "belief_strength_scale":  "0-100%",
+                                                                                                          "typical_rating":  "80%",
+                                                                                                          "emotional_intensity":  "85%",
+                                                                                                          "behavioral_impact":  "High",
+                                                                                                          "daily_interference":  "High"
+                                                                                                      },
+                                                                                       "transformation_targets":  {
+                                                                                                                      "new_belief":  "I have inherent worth regardless of others\u0027 opinions",
+                                                                                                                      "intermediate_steps":  [
+                                                                                                                                                 "Approval is nice but not necessary",
+                                                                                                                                                 "I can validate myself",
+                                                                                                                                                 "Not everyone will like me, and that\u0027s okay",
+                                                                                                                                                 "Authenticity brings deeper connection than performance"
+                                                                                                                                             ],
+                                                                                                                      "evidence_collection":  [
+                                                                                                                                                  "Track internal vs external validation sources",
+                                                                                                                                                  "Practice acting without seeking approval",
+                                                                                                                                                  "Notice when criticism doesn\u0027t destroy you"
+                                                                                                                                              ]
+                                                                                                                  }
+                                                                                   },
+                                                              "negativity_pessimism":  {
+                                                                                           "schema_name":  "Negativity/Pessimism",
+                                                                                           "core_belief":  "Life is suffering; the worst will always happen",
+                                                                                           "conditional_version":  "If I expect the worst, I won\u0027t be disappointed",
+                                                                                           "unconditional_version":  "The world is bleak and hopeless",
+                                                                                           "origin_themes":  [
+                                                                                                                 "Depressed parent modeling",
+                                                                                                                 "Chronic trauma or loss",
+                                                                                                                 "Pessimistic culture/family",
+                                                                                                                 "Learned helplessness",
+                                                                                                                 "Cynicism as protection"
+                                                                                                             ],
+                                                                                           "behavioral_manifestations":  [
+                                                                                                                             "Chronic complaining",
+                                                                                                                             "Shooting down ideas",
+                                                                                                                             "Not trying due to predicted failure",
+                                                                                                                             "Irritating others with negativity",
+                                                                                                                             "Missing opportunities",
+                                                                                                                             "Confirmation bias for bad news"
+                                                                                                                         ],
+                                                                                           "emotional_patterns":  [
+                                                                                                                      "Depression",
+                                                                                                                      "Bitterness",
+                                                                                                                      "Anxiety",
+                                                                                                                      "Hopelessness",
+                                                                                                                      "Chronic dissatisfaction"
+                                                                                                                  ],
+                                                                                           "trigger_situations":  [
+                                                                                                                      "New opportunities",
+                                                                                                                      "Positive events (waiting for other shoe)",
+                                                                                                                      "Optimistic people",
+                                                                                                                      "Hopeful news",
+                                                                                                                      "Planning for future"
+                                                                                                                  ],
+                                                                                           "coping_modes":  {
+                                                                                                                "surrender":  "Resignation and chronic misery",
+                                                                                                                "avoidance":  "Not engaging with life to avoid disappointment",
+                                                                                                                "overcompensation":  "Toxic positivity, denial of reality"
+                                                                                                            },
+                                                                                           "assessment":  {
+                                                                                                              "belief_strength_scale":  "0-100%",
+                                                                                                              "typical_rating":  "85%",
+                                                                                                              "emotional_intensity":  "80%",
+                                                                                                              "behavioral_impact":  "High",
+                                                                                                              "daily_interference":  "Moderate to High"
+                                                                                                          },
+                                                                                           "transformation_targets":  {
+                                                                                                                          "new_belief":  "Life contains both joy and pain; I can hope while being realistic",
+                                                                                                                          "intermediate_steps":  [
+                                                                                                                                                     "Pessimism hasn\u0027t protected me from pain",
+                                                                                                                                                     "Good things do happen sometimes",
+                                                                                                                                                     "Hope feels better than dread",
+                                                                                                                                                     "I can handle disappointment if it comes"
+                                                                                                                                                 ],
+                                                                                                                          "evidence_collection":  [
+                                                                                                                                                      "Log positive events and good outcomes",
+                                                                                                                                                      "Track accuracy of negative predictions",
+                                                                                                                                                      "Practice hope in small ways"
+                                                                                                                                                  ]
+                                                                                                                      }
+                                                                                       },
+                                                              "punitiveness":  {
+                                                                                   "schema_name":  "Punitiveness",
+                                                                                   "core_belief":  "People should be punished harshly for mistakes; forgiveness is weak",
+                                                                                   "conditional_version":  "If I forgive, they will just hurt me again",
+                                                                                   "unconditional_version":  "Justice requires punishment, not mercy",
+                                                                                   "origin_themes":  [
+                                                                                                         "Harsh, punitive parenting",
+                                                                                                         "Rigid religious upbringing",
+                                                                                                         "Justice system involvement",
+                                                                                                         "Betrayal without accountability",
+                                                                                                         "Cultural emphasis on honor/shame"
+                                                                                                     ],
+                                                                                   "behavioral_manifestations":  [
+                                                                                                                     "Holding grudges",
+                                                                                                                     "Difficulty forgiving",
+                                                                                                                     "Harsh self-criticism",
+                                                                                                                     "Demanding excessive apologies",
+                                                                                                                     "Cutting people off permanently",
+                                                                                                                     "Vindictive behavior"
+                                                                                                                 ],
+                                                                                   "emotional_patterns":  [
+                                                                                                              "Anger",
+                                                                                                              "Bitterness",
+                                                                                                              "Self-righteousness",
+                                                                                                              "Isolation",
+                                                                                                              "Chronic resentment"
+                                                                                                          ],
+                                                                                   "trigger_situations":  [
+                                                                                                              "Someone making mistake",
+                                                                                                              "Receiving apology",
+                                                                                                              "Seeing others forgiven",
+                                                                                                              "Own mistakes",
+                                                                                                              "Unfairness in world"
+                                                                                                          ],
+                                                                                   "coping_modes":  {
+                                                                                                        "surrender":  "Chronic anger and grudge-holding",
+                                                                                                        "avoidance":  "Avoiding all potential offenders",
+                                                                                                        "overcompensation":  "Excessive forgiveness without boundaries"
+                                                                                                    },
+                                                                                   "assessment":  {
+                                                                                                      "belief_strength_scale":  "0-100%",
+                                                                                                      "typical_rating":  "75%",
+                                                                                                      "emotional_intensity":  "80%",
+                                                                                                      "behavioral_impact":  "Moderate to High",
+                                                                                                      "daily_interference":  "Moderate"
+                                                                                                  },
+                                                                                   "transformation_targets":  {
+                                                                                                                  "new_belief":  "People make mistakes; accountability can coexist with compassion",
+                                                                                                                  "intermediate_steps":  [
+                                                                                                                                             "Punishment doesn\u0027t prevent future harm",
+                                                                                                                                             "Forgiveness is for me, not them",
+                                                                                                                                             "I have made mistakes too",
+                                                                                                                                             "Justice can include restoration"
+                                                                                                                                         ],
+                                                                                                                  "evidence_collection":  [
+                                                                                                                                              "Track cost of holding grudges on self",
+                                                                                                                                              "Notice when compassion leads to better outcomes",
+                                                                                                                                              "Practice self-forgiveness"
+                                                                                                                                          ]
+                                                                                                              }
+                                                                               },
+                                                              "unrelenting_standards":  {
+                                                                                            "schema_name":  "Unrelenting Standards/Hypercriticalness",
+                                                                                            "core_belief":  "I must always achieve at the highest standards; otherwise I am worthless",
+                                                                                            "conditional_version":  "If I relax, everything will fall apart",
+                                                                                            "unconditional_version":  "I must be perfect to be acceptable",
+                                                                                            "origin_themes":  [
+                                                                                                                  "High-achieving parent expectations",
+                                                                                                                  "Conditional love based on performance",
+                                                                                                                  "Early success creating pressure",
+                                                                                                                  "Fear of failure",
+                                                                                                                  "Compensating for defectiveness"
+                                                                                                              ],
+                                                                                            "behavioral_manifestations":  [
+                                                                                                                              "Workaholism",
+                                                                                                                              "No time for relaxation",
+                                                                                                                              "Chronic dissatisfaction",
+                                                                                                                              "Impatience with others\u0027 pace",
+                                                                                                                              "Health neglect",
+                                                                                                                              "Relationship sacrifice for achievement"
+                                                                                                                          ],
+                                                                                            "emotional_patterns":  [
+                                                                                                                       "Pressure",
+                                                                                                                       "Anxiety",
+                                                                                                                       "Brief satisfaction then new goal",
+                                                                                                                       "Irritability",
+                                                                                                                       "Burnout"
+                                                                                                                   ],
+                                                                                            "trigger_situations":  [
+                                                                                                                       "Making minor error",
+                                                                                                                       "Seeing others relax",
+                                                                                                                       "Unstructured time",
+                                                                                                                       "Receiving criticism",
+                                                                                                                       "Not winning/being best"
+                                                                                                                   ],
+                                                                                            "coping_modes":  {
+                                                                                                                 "surrender":  "Relentless achievement until breakdown",
+                                                                                                                 "avoidance":  "Procrastination due to fear of imperfect result",
+                                                                                                                 "overcompensation":  "Complete giving up, rebellion against standards"
+                                                                                                             },
+                                                                                            "assessment":  {
+                                                                                                               "belief_strength_scale":  "0-100%",
+                                                                                                               "typical_rating":  "90%",
+                                                                                                               "emotional_intensity":  "85%",
+                                                                                                               "behavioral_impact":  "Very High",
+                                                                                                               "daily_interference":  "Very High"
+                                                                                                           },
+                                                                                            "transformation_targets":  {
+                                                                                                                           "new_belief":  "I am worthy regardless of achievement; good enough is enough",
+                                                                                                                           "intermediate_steps":  [
+                                                                                                                                                      "Perfection is impossible and unnecessary",
+                                                                                                                                                      "Rest improves performance",
+                                                                                                                                                      "I can be loved without earning it",
+                                                                                                                                                      "Done is better than perfect"
+                                                                                                                                                  ],
+                                                                                                                           "evidence_collection":  [
+                                                                                                                                                       "Track times when \u0027good enough\u0027 worked",
+                                                                                                                                                       "Record consequences of overwork",
+                                                                                                                                                       "Notice acceptance from others despite imperfection"
+                                                                                                                                                   ]
+                                                                                                                       }
+                                                                                        }
+                                                          },
+                                "assessment_tools":  {
+                                                         "young_schema_questionnaire_short":  {
+                                                                                                  "description":  "75-item self-report measure",
+                                                                                                  "scoring":  "1-6 Likert scale",
+                                                                                                  "domains":  "All 18 schemas",
+                                                                                                  "frequency":  "Every 3 months",
+                                                                                                  "clinical_cutoff":  "Mean score \u003e 3.0 indicates schema presence"
+                                                                                              },
+                                                         "schema_mode_inventory":  {
+                                                                                       "description":  "Identifies active coping modes",
+                                                                                       "modes_assessed":  [
+                                                                                                              "Child modes (Vulnerable, Angry, Impulsive)",
+                                                                                                              "Maladaptive coping (Compliant, Detached, Overcompensator)",
+                                                                                                              "Maladaptive parent (Punitive, Demanding)",
+                                                                                                              "Healthy adult"
+                                                                                                          ],
+                                                                                       "frequency":  "Monthly",
+                                                                                       "use":  "Track mode shifts during treatment"
+                                                                                   },
+                                                         "core_belief_log":  {
+                                                                                 "structure":  {
+                                                                                                   "date":  "YYYY-MM-DD",
+                                                                                                   "triggering_event":  "Situation that activated belief",
+                                                                                                   "automatic_thoughts":  "Surface thoughts",
+                                                                                                   "core_belief_activated":  "Which deep belief",
+                                                                                                   "belief_strength_pre":  "0-100%",
+                                                                                                   "evidence_for":  "Why belief feels true",
+                                                                                                   "evidence_against":  "Contradictory data",
+                                                                                                   "balanced_perspective":  "Middle ground",
+                                                                                                   "belief_strength_post":  "0-100%",
+                                                                                                   "emotion_shift":  "Change in feeling",
+                                                                                                   "behavioral_experiment":  "Test of new belief"
+                                                                                               },
+                                                                                 "frequency":  "Daily during active work, weekly maintenance"
+                                                                             },
+                                                         "longitudinal_tracking":  {
+                                                                                       "belief_strength_graph":  "Visual trend over months/years",
+                                                                                       "activation_frequency":  "How often belief is triggered",
+                                                                                       "emotional_intensity":  "Peak distress when activated",
+                                                                                       "behavioral_impact":  "Life areas affected",
+                                                                                       "resilience_factors":  "What\u0027s helping",
+                                                                                       "setbacks":  "Relapses and their context"
+                                                                                   }
+                                                     },
+                                "intervention_strategies":  {
+                                                                "cognitive_restructuring":  {
+                                                                                                "description":  "Challenging and modifying core beliefs",
+                                                                                                "techniques":  [
+                                                                                                                   "Continuum method (not all-or-nothing)",
+                                                                                                                   "Historical test of evidence",
+                                                                                                                   "Pie chart of responsibility",
+                                                                                                                   "Point-counterpoint",
+                                                                                                                   "Rational role-play"
+                                                                                                               ],
+                                                                                                "frequency":  "Weekly sessions"
+                                                                                            },
+                                                                "experiential_techniques":  {
+                                                                                                "description":  "Emotional processing of schema origins",
+                                                                                                "techniques":  [
+                                                                                                                   "Imagery rescripting",
+                                                                                                                   "Chair work (dialogue with critical parent)",
+                                                                                                                   "Empty chair for unmet needs",
+                                                                                                                   "Letter writing (unsent)",
+                                                                                                                   "Inner child work"
+                                                                                                               ],
+                                                                                                "frequency":  "Bi-weekly or as needed"
+                                                                                            },
+                                                                "behavioral_pattern_breaking":  {
+                                                                                                    "description":  "Changing schema-driven behaviors",
+                                                                                                    "techniques":  [
+                                                                                                                       "Graded exposure to avoided situations",
+                                                                                                                       "Assertiveness training",
+                                                                                                                       "Setting limits on overcompensation",
+                                                                                                                       "Self-care scheduling",
+                                                                                                                       "Healthy risk-taking"
+                                                                                                                   ],
+                                                                                                    "frequency":  "Daily homework"
+                                                                                                },
+                                                                "limited_reparenting":  {
+                                                                                            "description":  "Therapist meets unmet childhood needs",
+                                                                                            "techniques":  [
+                                                                                                               "Empathic confrontation",
+                                                                                                               "Validating emotional needs",
+                                                                                                               "Modeling healthy limits",
+                                                                                                               "Consistent availability",
+                                                                                                               "Appropriate self-disclosure"
+                                                                                                           ],
+                                                                                            "frequency":  "Ongoing therapeutic relationship"
+                                                                                        },
+                                                                "flashcards":  {
+                                                                                   "description":  "Portable belief challenges",
+                                                                                   "structure":  {
+                                                                                                     "front":  "Core belief statement",
+                                                                                                     "back":  "Evidence against, alternative belief, action plan"
+                                                                                                 },
+                                                                                   "usage":  "Read when belief activated",
+                                                                                   "update_frequency":  "Weekly as belief shifts"
+                                                                               }
+                                                            },
+                                "transformation_stages":  {
+                                                              "stage_1_awareness":  {
+                                                                                        "duration":  "1-3 months",
+                                                                                        "tasks":  [
+                                                                                                      "Identify core beliefs",
+                                                                                                      "Map belief origins",
+                                                                                                      "Recognize activation patterns",
+                                                                                                      "Understand impact on life"
+                                                                                                  ],
+                                                                                        "markers":  "Can name beliefs and their triggers"
+                                                                                    },
+                                                              "stage_2_emotional_processing":  {
+                                                                                                   "duration":  "3-9 months",
+                                                                                                   "tasks":  [
+                                                                                                                 "Grieve unmet childhood needs",
+                                                                                                                 "Express anger at origins",
+                                                                                                                 "Imagery rescripting",
+                                                                                                                 "Develop self-compassion"
+                                                                                                             ],
+                                                                                                   "markers":  "Emotional charge around origins decreases"
+                                                                                               },
+                                                              "stage_3_cognitive_change":  {
+                                                                                               "duration":  "6-12 months",
+                                                                                               "tasks":  [
+                                                                                                             "Challenge belief evidence",
+                                                                                                             "Develop alternative beliefs",
+                                                                                                             "Behavioral experiments",
+                                                                                                             "Flashcard use"
+                                                                                                         ],
+                                                                                               "markers":  "Belief strength decreases 20-30%"
+                                                                                           },
+                                                              "stage_4_behavioral_change":  {
+                                                                                                "duration":  "12-18 months",
+                                                                                                "tasks":  [
+                                                                                                              "Act against old belief",
+                                                                                                              "New coping responses",
+                                                                                                              "Healthy mode strengthening",
+                                                                                                              "Relationship pattern changes"
+                                                                                                          ],
+                                                                                                "markers":  "New behaviors feel natural"
+                                                                                            },
+                                                              "stage_5_integration":  {
+                                                                                          "duration":  "18+ months",
+                                                                                          "tasks":  [
+                                                                                                        "New belief automatic",
+                                                                                                        "Old belief rarely activated",
+                                                                                                        "Healthy adult mode dominant",
+                                                                                                        "Relapse prevention"
+                                                                                                    ],
+                                                                                          "markers":  "Old belief \u003c30% strength, new belief \u003e70%"
+                                                                                      }
+                                                          },
+                                "relapse_prevention":  {
+                                                           "high_risk_situations":  [
+                                                                                        "Significant stress or loss",
+                                                                                        "Relationship breakup",
+                                                                                        "Job loss or failure",
+                                                                                        "Physical illness",
+                                                                                        "Anniversary of trauma",
+                                                                                        "Substance use",
+                                                                                        "Isolation from support"
+                                                                                    ],
+                                                           "early_warning_signs":  [
+                                                                                       "Old belief language returning",
+                                                                                       "Coping modes reactivating",
+                                                                                       "Relationship conflict increase",
+                                                                                       "Perfectionism or avoidance",
+                                                                                       "Emotional numbing"
+                                                                                   ],
+                                                           "maintenance_strategies":  [
+                                                                                          "Monthly belief strength check",
+                                                                                          "Quarterly schema questionnaire",
+                                                                                          "Annual imagery rescripting",
+                                                                                          "Ongoing support group",
+                                                                                          "Booster therapy sessions",
+                                                                                          "Healthy adult mode strengthening"
+                                                                                      ]
+                                                       },
+                                "outcome_measures":  {
+                                                         "belief_strength_reduction":  "Target: 50%+ decrease in 12 months",
+                                                         "emotional_intensity":  "Target: Peak distress reduced by 40%",
+                                                         "behavioral_change":  "Target: 3+ life areas improved",
+                                                         "quality_of_life":  "Target: Significant increase on WHO-QOL",
+                                                         "relationship_satisfaction":  "Target: Improved attachment security",
+                                                         "relapse_rate":  "Target: \u003c20% return to baseline beliefs"
+                                                     }
+                            },
+    "title":  "Core Belief Tracker",
+    "description":  "Track activated core beliefs, evidence checks, and belief shift over time.",
+    "questions":  [
+                      {
+                          "id":  "entry_date",
+                          "question":  "Entry date",
+                          "type":  "text",
+                          "placeholder":  "YYYY-MM-DD"
+                      },
+                      {
+                          "id":  "trigger_event",
+                          "question":  "Trigger event",
+                          "type":  "text",
+                          "placeholder":  "What happened just before the belief activated?"
+                      },
+                      {
+                          "id":  "core_belief_category",
+                          "question":  "Core belief category",
+                          "type":  "single",
+                          "options":  [
+                                          "Defectiveness/Shame",
+                                          "Abandonment/Instability",
+                                          "Mistrust/Abuse",
+                                          "Dependence/Incompetence",
+                                          "Vulnerability to Harm",
+                                          "Emotional Deprivation",
+                                          "Social Isolation/Alienation",
+                                          "Failure",
+                                          "Subjugation",
+                                          "Self-Sacrifice",
+                                          "Approval-Seeking",
+                                          "Negativity/Pessimism",
+                                          "Punitiveness",
+                                          "Unrelenting Standards",
+                                          "Other"
+                                      ]
+                      },
+                      {
+                          "id":  "core_belief_statement",
+                          "question":  "Activated core belief statement",
+                          "type":  "text",
+                          "placeholder":  "Example: I am not good enough"
+                      },
+                      {
+                          "id":  "belief_strength_pre",
+                          "question":  "Belief strength before reframing (0-100)",
+                          "type":  "text",
+                          "placeholder":  "0 = not true, 100 = absolutely true"
+                      },
+                      {
+                          "id":  "automatic_thoughts",
+                          "question":  "Automatic thoughts noticed",
+                          "type":  "text",
+                          "placeholder":  "First thoughts that came up..."
+                      },
+                      {
+                          "id":  "primary_emotions",
+                          "question":  "Primary emotions",
+                          "type":  "multi",
+                          "options":  [
+                                          "Shame",
+                                          "Fear",
+                                          "Sadness",
+                                          "Anger",
+                                          "Guilt",
+                                          "Hopelessness",
+                                          "Anxiety",
+                                          "Emptiness",
+                                          "Other"
+                                      ]
+                      },
+                      {
+                          "id":  "emotion_intensity",
+                          "question":  "Emotion intensity (0-100)",
+                          "type":  "text",
+                          "placeholder":  "Peak emotional intensity"
+                      },
+                      {
+                          "id":  "evidence_for",
+                          "question":  "Evidence supporting this belief",
+                          "type":  "text",
+                          "placeholder":  "Facts that seem to support it..."
+                      },
+                      {
+                          "id":  "evidence_against",
+                          "question":  "Evidence against this belief",
+                          "type":  "text",
+                          "placeholder":  "Facts that challenge it..."
+                      },
+                      {
+                          "id":  "balanced_perspective",
+                          "question":  "Balanced alternative belief/thought",
+                          "type":  "text",
+                          "placeholder":  "A more accurate and compassionate view..."
+                      },
+                      {
+                          "id":  "belief_strength_post",
+                          "question":  "Belief strength after reframing (0-100)",
+                          "type":  "text",
+                          "placeholder":  "Updated strength after reflection"
+                      },
+                      {
+                          "id":  "behavioral_experiment",
+                          "question":  "Behavioral experiment you will try",
+                          "type":  "text",
+                          "placeholder":  "One small action to test the new belief"
+                      },
+                      {
+                          "id":  "follow_up_note",
+                          "question":  "Follow-up result or note",
+                          "type":  "text",
+                          "placeholder":  "What happened after trying the action?"
+                      }
+                  ]
+}

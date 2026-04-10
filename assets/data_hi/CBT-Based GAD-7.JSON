@@ -1,0 +1,1503 @@
+﻿{
+    "assessment_name":  "CBT-Based GAD-7 Comprehensive Anxiety Assessment",
+    "assessment_code":  "GAD7_CBT_V1",
+    "total_questions":  50,
+    "time_estimate_minutes":  25,
+    "scoring":  {
+                    "max_total_score":  150,
+                    "severity_levels":  {
+                                            "minimal":  {
+                                                            "min":  0,
+                                                            "max":  27,
+                                                            "label":  "Minimal Anxiety",
+                                                            "recommendation":  "Preventive CBT techniques and stress management"
+                                                        },
+                                            "mild":  {
+                                                         "min":  28,
+                                                         "max":  54,
+                                                         "label":  "Mild Anxiety",
+                                                         "recommendation":  "Self-help CBT strategies and lifestyle modifications"
+                                                     },
+                                            "moderate":  {
+                                                             "min":  55,
+                                                             "max":  81,
+                                                             "label":  "Moderate Anxiety",
+                                                             "recommendation":  "Structured CBT program recommended"
+                                                         },
+                                            "moderately_severe":  {
+                                                                      "min":  82,
+                                                                      "max":  108,
+                                                                      "label":  "Moderately Severe Anxiety",
+                                                                      "recommendation":  "Professional CBT therapy strongly advised"
+                                                                  },
+                                            "severe":  {
+                                                           "min":  109,
+                                                           "max":  150,
+                                                           "label":  "Severe Anxiety",
+                                                           "recommendation":  "Immediate professional intervention required"
+                                                       }
+                                        }
+                },
+    "categories":  [
+                       "Core Anxiety Symptoms",
+                       "Worry Patterns",
+                       "Physical Anxiety Symptoms",
+                       "Avoidance Patterns",
+                       "Safety Behaviors",
+                       "Functional Impact"
+                   ],
+    "questions":  [
+                      {
+                          "id":  1,
+                          "category":  "Core Anxiety Symptoms",
+                          "question":  "Over the last 2 weeks, how often have you felt nervous, anxious, or on edge?",
+                          "options":  [
+                                          {
+                                              "text":  "Not at all",
+                                              "score":  0,
+                                              "value":  "not_at_all"
+                                          },
+                                          {
+                                              "text":  "Several days",
+                                              "score":  1,
+                                              "value":  "several_days"
+                                          },
+                                          {
+                                              "text":  "More than half the days",
+                                              "score":  2,
+                                              "value":  "more_than_half"
+                                          },
+                                          {
+                                              "text":  "Nearly every day",
+                                              "score":  3,
+                                              "value":  "nearly_every_day"
+                                          }
+                                      ],
+                          "text_field_prompt":  "Describe what triggers this nervous feeling and where you feel it in your body:",
+                          "cbt_focus":  "Physiological awareness and trigger identification"
+                      },
+                      {
+                          "id":  2,
+                          "category":  "Core Anxiety Symptoms",
+                          "question":  "Over the last 2 weeks, how often have you been unable to stop or control worrying?",
+                          "options":  [
+                                          {
+                                              "text":  "Not at all",
+                                              "score":  0,
+                                              "value":  "not_at_all"
+                                          },
+                                          {
+                                              "text":  "Several days",
+                                              "score":  1,
+                                              "value":  "several_days"
+                                          },
+                                          {
+                                              "text":  "More than half the days",
+                                              "score":  2,
+                                              "value":  "more_than_half"
+                                          },
+                                          {
+                                              "text":  "Nearly every day",
+                                              "score":  3,
+                                              "value":  "nearly_every_day"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What topics do you worry about most? What have you tried to stop the worry?",
+                          "cbt_focus":  "Worry control and thought stopping"
+                      },
+                      {
+                          "id":  3,
+                          "category":  "Core Anxiety Symptoms",
+                          "question":  "Over the last 2 weeks, how often have you worried too much about different things?",
+                          "options":  [
+                                          {
+                                              "text":  "Not at all",
+                                              "score":  0,
+                                              "value":  "not_at_all"
+                                          },
+                                          {
+                                              "text":  "Several days",
+                                              "score":  1,
+                                              "value":  "several_days"
+                                          },
+                                          {
+                                              "text":  "More than half the days",
+                                              "score":  2,
+                                              "value":  "more_than_half"
+                                          },
+                                          {
+                                              "text":  "Nearly every day",
+                                              "score":  3,
+                                              "value":  "nearly_every_day"
+                                          }
+                                      ],
+                          "text_field_prompt":  "List the main categories of things you worry about (health, work, relationships, etc.):",
+                          "cbt_focus":  "Worry categorization and problem-solving"
+                      },
+                      {
+                          "id":  4,
+                          "category":  "Core Anxiety Symptoms",
+                          "question":  "Over the last 2 weeks, how often have you had trouble relaxing?",
+                          "options":  [
+                                          {
+                                              "text":  "Not at all",
+                                              "score":  0,
+                                              "value":  "not_at_all"
+                                          },
+                                          {
+                                              "text":  "Several days",
+                                              "score":  1,
+                                              "value":  "several_days"
+                                          },
+                                          {
+                                              "text":  "More than half the days",
+                                              "score":  2,
+                                              "value":  "more_than_half"
+                                          },
+                                          {
+                                              "text":  "Nearly every day",
+                                              "score":  3,
+                                              "value":  "nearly_every_day"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What prevents you from relaxing? What thoughts run through your mind when you try to relax?",
+                          "cbt_focus":  "Relaxation training and cognitive interference"
+                      },
+                      {
+                          "id":  5,
+                          "category":  "Core Anxiety Symptoms",
+                          "question":  "Over the last 2 weeks, how often have you been so restless that it is hard to sit still?",
+                          "options":  [
+                                          {
+                                              "text":  "Not at all",
+                                              "score":  0,
+                                              "value":  "not_at_all"
+                                          },
+                                          {
+                                              "text":  "Several days",
+                                              "score":  1,
+                                              "value":  "several_days"
+                                          },
+                                          {
+                                              "text":  "More than half the days",
+                                              "score":  2,
+                                              "value":  "more_than_half"
+                                          },
+                                          {
+                                              "text":  "Nearly every day",
+                                              "score":  3,
+                                              "value":  "nearly_every_day"
+                                          }
+                                      ],
+                          "text_field_prompt":  "Describe your restlessness. What do you do when you feel this way?",
+                          "cbt_focus":  "Psychomotor agitation and grounding techniques"
+                      },
+                      {
+                          "id":  6,
+                          "category":  "Core Anxiety Symptoms",
+                          "question":  "Over the last 2 weeks, how often have you become easily annoyed or irritable?",
+                          "options":  [
+                                          {
+                                              "text":  "Not at all",
+                                              "score":  0,
+                                              "value":  "not_at_all"
+                                          },
+                                          {
+                                              "text":  "Several days",
+                                              "score":  1,
+                                              "value":  "several_days"
+                                          },
+                                          {
+                                              "text":  "More than half the days",
+                                              "score":  2,
+                                              "value":  "more_than_half"
+                                          },
+                                          {
+                                              "text":  "Nearly every day",
+                                              "score":  3,
+                                              "value":  "nearly_every_day"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What situations trigger your irritability? How do you typically respond?",
+                          "cbt_focus":  "Irritability and emotional regulation"
+                      },
+                      {
+                          "id":  7,
+                          "category":  "Core Anxiety Symptoms",
+                          "question":  "Over the last 2 weeks, how often have you felt afraid as if something awful might happen?",
+                          "options":  [
+                                          {
+                                              "text":  "Not at all",
+                                              "score":  0,
+                                              "value":  "not_at_all"
+                                          },
+                                          {
+                                              "text":  "Several days",
+                                              "score":  1,
+                                              "value":  "several_days"
+                                          },
+                                          {
+                                              "text":  "More than half the days",
+                                              "score":  2,
+                                              "value":  "more_than_half"
+                                          },
+                                          {
+                                              "text":  "Nearly every day",
+                                              "score":  3,
+                                              "value":  "nearly_every_day"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What specific awful things do you fear? How likely do you think they actually are?",
+                          "cbt_focus":  "Catastrophic thinking and probability estimation"
+                      },
+                      {
+                          "id":  8,
+                          "category":  "Worry Patterns",
+                          "question":  "How often do you worry about things that are unlikely to happen?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "Give examples of unlikely events you worry about. What makes these fears feel real?",
+                          "cbt_focus":  "Probability overestimation"
+                      },
+                      {
+                          "id":  9,
+                          "category":  "Worry Patterns",
+                          "question":  "How often do you seek reassurance from others to reduce your anxiety?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "Who do you seek reassurance from? What do you ask them? Does it help long-term?",
+                          "cbt_focus":  "Reassurance seeking and self-reliance"
+                      },
+                      {
+                          "id":  10,
+                          "category":  "Worry Patterns",
+                          "question":  "How often do you engage in \u0027what if\u0027 thinking about future problems?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "List your most common \u0027what if\u0027 thoughts. How far into the future do they go?",
+                          "cbt_focus":  "Anticipatory anxiety and present focus"
+                      },
+                      {
+                          "id":  11,
+                          "category":  "Worry Patterns",
+                          "question":  "How often do you feel you must worry to prevent bad things from happening?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What bad things do you believe worrying prevents? Is there evidence for this belief?",
+                          "cbt_focus":  "Positive beliefs about worry"
+                      },
+                      {
+                          "id":  12,
+                          "category":  "Worry Patterns",
+                          "question":  "How often do you have difficulty tolerating uncertainty about the future?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What uncertainties are hardest to tolerate? What do you do to try to eliminate uncertainty?",
+                          "cbt_focus":  "Intolerance of uncertainty"
+                      },
+                      {
+                          "id":  13,
+                          "category":  "Worry Patterns",
+                          "question":  "How often do you mentally rehearse conversations or scenarios to prepare for them?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What situations do you rehearse? Does this preparation actually help or increase anxiety?",
+                          "cbt_focus":  "Mental rehearsal and worry as preparation"
+                      },
+                      {
+                          "id":  14,
+                          "category":  "Worry Patterns",
+                          "question":  "How often do you worry about your health or physical symptoms?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What health concerns do you have? How often do you check your body or research symptoms?",
+                          "cbt_focus":  "Health anxiety and somatic checking"
+                      },
+                      {
+                          "id":  15,
+                          "category":  "Worry Patterns",
+                          "question":  "How often do you worry about finances or job security?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What specific financial or work worries do you have? What would resolve these concerns?",
+                          "cbt_focus":  "Practical problem-solving vs. worry"
+                      },
+                      {
+                          "id":  16,
+                          "category":  "Worry Patterns",
+                          "question":  "How often do you worry about the safety of loved ones?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "Who do you worry about most? What specific dangers do you imagine?",
+                          "cbt_focus":  "Attachment anxiety and realistic risk assessment"
+                      },
+                      {
+                          "id":  17,
+                          "category":  "Physical Anxiety Symptoms",
+                          "question":  "How often do you experience rapid heartbeat or heart palpitations?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "When does your heart race? What thoughts accompany this sensation?",
+                          "cbt_focus":  "Cardiac anxiety and catastrophic interpretation"
+                      },
+                      {
+                          "id":  18,
+                          "category":  "Physical Anxiety Symptoms",
+                          "question":  "How often do you experience shortness of breath or feeling smothered?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "Describe these breathing episodes. What do you fear is happening when they occur?",
+                          "cbt_focus":  "Respiratory anxiety and breathing retraining"
+                      },
+                      {
+                          "id":  19,
+                          "category":  "Physical Anxiety Symptoms",
+                          "question":  "How often do you experience dizziness or lightheadedness?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "When do you feel dizzy? Do you avoid situations where this might happen?",
+                          "cbt_focus":  "Vestibular anxiety and exposure"
+                      },
+                      {
+                          "id":  20,
+                          "category":  "Physical Anxiety Symptoms",
+                          "question":  "How often do you experience muscle tension or tightness?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "Where in your body do you hold tension? When is it worst?",
+                          "cbt_focus":  "Progressive muscle relaxation"
+                      },
+                      {
+                          "id":  21,
+                          "category":  "Physical Anxiety Symptoms",
+                          "question":  "How often do you experience sweating or hot flashes when anxious?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "In what situations does this occur? How does it affect your behavior?",
+                          "cbt_focus":  "Thermoregulatory anxiety and acceptance"
+                      },
+                      {
+                          "id":  22,
+                          "category":  "Physical Anxiety Symptoms",
+                          "question":  "How often do you experience nausea or stomach upset?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "When does your stomach bother you? Do you avoid eating or certain foods because of this?",
+                          "cbt_focus":  "Gastrointestinal anxiety and gut-brain connection"
+                      },
+                      {
+                          "id":  23,
+                          "category":  "Physical Anxiety Symptoms",
+                          "question":  "How often do you experience trembling or shaking?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "When do you notice shaking? What do you fear others will think if they notice?",
+                          "cbt_focus":  "Social anxiety and physical symptoms"
+                      },
+                      {
+                          "id":  24,
+                          "category":  "Physical Anxiety Symptoms",
+                          "question":  "How often do you feel detached from yourself or your surroundings (derealization)?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "Describe these experiences. What triggers them? How do you respond?",
+                          "cbt_focus":  "Depersonalization and grounding techniques"
+                      },
+                      {
+                          "id":  25,
+                          "category":  "Physical Anxiety Symptoms",
+                          "question":  "How often do you experience chest pain or tightness?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "Have you had medical evaluation for chest pain? What do you fear when this happens?",
+                          "cbt_focus":  "Cardiac anxiety and medical reassurance"
+                      },
+                      {
+                          "id":  26,
+                          "category":  "Avoidance Patterns",
+                          "question":  "How often do you avoid social situations due to anxiety?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What social situations do you avoid? What do you fear will happen if you attend?",
+                          "cbt_focus":  "Social avoidance and exposure hierarchy"
+                      },
+                      {
+                          "id":  27,
+                          "category":  "Avoidance Patterns",
+                          "question":  "How often do you avoid places or situations where escape might be difficult?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "List places you avoid (crowds, public transport, etc.). What is your specific fear?",
+                          "cbt_focus":  "Agoraphobic avoidance and graded exposure"
+                      },
+                      {
+                          "id":  28,
+                          "category":  "Avoidance Patterns",
+                          "question":  "How often do you avoid physical exercise fearing it will trigger anxiety symptoms?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What exercise do you avoid? What symptoms do you fear will occur?",
+                          "cbt_focus":  "Interoceptive avoidance and symptom induction"
+                      },
+                      {
+                          "id":  29,
+                          "category":  "Avoidance Patterns",
+                          "question":  "How often do you avoid watching news or distressing media content?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What specific content triggers your anxiety? Do you completely avoid it or limit exposure?",
+                          "cbt_focus":  "Information avoidance and anxiety sensitivity"
+                      },
+                      {
+                          "id":  30,
+                          "category":  "Avoidance Patterns",
+                          "question":  "How often do you avoid making decisions to prevent anxiety?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What types of decisions are hardest? What do you fear will happen if you choose wrong?",
+                          "cbt_focus":  "Decision-making anxiety and perfectionism"
+                      },
+                      {
+                          "id":  31,
+                          "category":  "Avoidance Patterns",
+                          "question":  "How often do you avoid being alone because anxiety increases?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What thoughts or fears arise when you\u0027re alone? Who do you seek out for company?",
+                          "cbt_focus":  "Autophobia and self-sufficiency"
+                      },
+                      {
+                          "id":  32,
+                          "category":  "Avoidance Patterns",
+                          "question":  "How often do you avoid traveling far from home?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "How far from home feels safe? What do you fear will happen if you travel further?",
+                          "cbt_focus":  "Territorial anxiety and graduated exposure"
+                      },
+                      {
+                          "id":  33,
+                          "category":  "Avoidance Patterns",
+                          "question":  "How often do you avoid confrontations or difficult conversations?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What conversations do you avoid? What catastrophic outcome do you imagine?",
+                          "cbt_focus":  "Conflict anxiety and assertiveness training"
+                      },
+                      {
+                          "id":  34,
+                          "category":  "Avoidance Patterns",
+                          "question":  "How often do you avoid trying new things due to fear of failure?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What new experiences do you avoid? What does failure mean to you personally?",
+                          "cbt_focus":  "Fear of failure and behavioral experiments"
+                      },
+                      {
+                          "id":  35,
+                          "category":  "Safety Behaviors",
+                          "question":  "How often do you check your body for signs of illness or problems?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What do you check (pulse, lumps, breathing)? How many times per day?",
+                          "cbt_focus":  "Body checking and health anxiety"
+                      },
+                      {
+                          "id":  36,
+                          "category":  "Safety Behaviors",
+                          "question":  "How often do you carry safety items (water, medication, phone) \u0027just in case\u0027?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What items do you carry? What do you fear would happen without them?",
+                          "cbt_focus":  "Safety items and self-efficacy"
+                      },
+                      {
+                          "id":  37,
+                          "category":  "Safety Behaviors",
+                          "question":  "How often do you research symptoms or health information online?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "How many hours per week do you spend researching? Does it reduce or increase your anxiety?",
+                          "cbt_focus":  "Cyberchondria and information seeking"
+                      },
+                      {
+                          "id":  38,
+                          "category":  "Safety Behaviors",
+                          "question":  "How often do you have escape plans or know exits when entering buildings?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "When did you start noticing exits? What do you fear would happen without an escape route?",
+                          "cbt_focus":  "Vigilance and threat scanning"
+                      },
+                      {
+                          "id":  39,
+                          "category":  "Safety Behaviors",
+                          "question":  "How often do you ask others to accompany you to anxiety-provoking situations?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "Who do you rely on? What do you believe they prevent from happening?",
+                          "cbt_focus":  "Attachment figures and dependency"
+                      },
+                      {
+                          "id":  40,
+                          "category":  "Safety Behaviors",
+                          "question":  "How often do you practice breathing or relaxation techniques to prevent anxiety?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "When do you use these techniques? Are they preventative or responsive?",
+                          "cbt_focus":  "Relaxation as safety behavior vs. skill"
+                      },
+                      {
+                          "id":  41,
+                          "category":  "Safety Behaviors",
+                          "question":  "How often do you rehearse what you\u0027ll say before speaking in groups?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What do you rehearse? Does preparation help or increase pressure?",
+                          "cbt_focus":  "Performance preparation and perfectionism"
+                      },
+                      {
+                          "id":  42,
+                          "category":  "Safety Behaviors",
+                          "question":  "How often do you check and recheck work or tasks for errors?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "How many times do you check? What errors do you fear making?",
+                          "cbt_focus":  "Checking compulsions and intolerance of uncertainty"
+                      },
+                      {
+                          "id":  43,
+                          "category":  "Safety Behaviors",
+                          "question":  "How often do you avoid caffeine or other substances that might increase anxiety?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  1,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Often",
+                                              "score":  2,
+                                              "value":  "often"
+                                          },
+                                          {
+                                              "text":  "Always",
+                                              "score":  3,
+                                              "value":  "always"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What substances do you avoid? What physical sensations do you fear?",
+                          "cbt_focus":  "Substance avoidance and interoceptive fears"
+                      },
+                      {
+                          "id":  44,
+                          "category":  "Functional Impact",
+                          "question":  "How much do your anxiety symptoms interfere with your work or school performance?",
+                          "options":  [
+                                          {
+                                              "text":  "Not at all",
+                                              "score":  0,
+                                              "value":  "not_at_all"
+                                          },
+                                          {
+                                              "text":  "Slightly",
+                                              "score":  1,
+                                              "value":  "slightly"
+                                          },
+                                          {
+                                              "text":  "Moderately",
+                                              "score":  2,
+                                              "value":  "moderately"
+                                          },
+                                          {
+                                              "text":  "Severely",
+                                              "score":  3,
+                                              "value":  "severely"
+                                          }
+                                      ],
+                          "text_field_prompt":  "Describe specific ways anxiety affects your productivity or attendance:",
+                          "cbt_focus":  "Functional assessment and accommodations"
+                      },
+                      {
+                          "id":  45,
+                          "category":  "Functional Impact",
+                          "question":  "How much do your anxiety symptoms interfere with your social life?",
+                          "options":  [
+                                          {
+                                              "text":  "Not at all",
+                                              "score":  0,
+                                              "value":  "not_at_all"
+                                          },
+                                          {
+                                              "text":  "Slightly",
+                                              "score":  1,
+                                              "value":  "slightly"
+                                          },
+                                          {
+                                              "text":  "Moderately",
+                                              "score":  2,
+                                              "value":  "moderately"
+                                          },
+                                          {
+                                              "text":  "Severely",
+                                              "score":  3,
+                                              "value":  "severely"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What social activities have you given up? How has this affected relationships?",
+                          "cbt_focus":  "Social functioning and behavioral activation"
+                      },
+                      {
+                          "id":  46,
+                          "category":  "Functional Impact",
+                          "question":  "How much do your anxiety symptoms interfere with your family responsibilities?",
+                          "options":  [
+                                          {
+                                              "text":  "Not at all",
+                                              "score":  0,
+                                              "value":  "not_at_all"
+                                          },
+                                          {
+                                              "text":  "Slightly",
+                                              "score":  1,
+                                              "value":  "slightly"
+                                          },
+                                          {
+                                              "text":  "Moderately",
+                                              "score":  2,
+                                              "value":  "moderately"
+                                          },
+                                          {
+                                              "text":  "Severely",
+                                              "score":  3,
+                                              "value":  "severely"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What family duties are affected? How do family members respond to your anxiety?",
+                          "cbt_focus":  "Family dynamics and role functioning"
+                      },
+                      {
+                          "id":  47,
+                          "category":  "Functional Impact",
+                          "question":  "How often do you experience panic attacks (sudden intense fear with physical symptoms)?",
+                          "options":  [
+                                          {
+                                              "text":  "Never",
+                                              "score":  0,
+                                              "value":  "never"
+                                          },
+                                          {
+                                              "text":  "Rarely",
+                                              "score":  1,
+                                              "value":  "rarely"
+                                          },
+                                          {
+                                              "text":  "Monthly",
+                                              "score":  2,
+                                              "value":  "monthly"
+                                          },
+                                          {
+                                              "text":  "Weekly or more",
+                                              "score":  3,
+                                              "value":  "weekly"
+                                          }
+                                      ],
+                          "text_field_prompt":  "Describe your most recent panic attack. What triggered it? How long did it last?",
+                          "cbt_focus":  "Panic assessment and interoceptive exposure"
+                      },
+                      {
+                          "id":  48,
+                          "category":  "Functional Impact",
+                          "question":  "How much time per day do you spend worrying or feeling anxious?",
+                          "options":  [
+                                          {
+                                              "text":  "Less than 1 hour",
+                                              "score":  0,
+                                              "value":  "less_than_1hr"
+                                          },
+                                          {
+                                              "text":  "1-3 hours",
+                                              "score":  1,
+                                              "value":  "1_to_3_hrs"
+                                          },
+                                          {
+                                              "text":  "3-6 hours",
+                                              "score":  2,
+                                              "value":  "3_to_6_hrs"
+                                          },
+                                          {
+                                              "text":  "More than 6 hours",
+                                              "score":  3,
+                                              "value":  "more_than_6hrs"
+                                          }
+                                      ],
+                          "text_field_prompt":  "When during the day is worry worst? What activities are disrupted by worry time?",
+                          "cbt_focus":  "Worry time monitoring and scheduling"
+                      },
+                      {
+                          "id":  49,
+                          "category":  "Functional Impact",
+                          "question":  "How often do you feel in control of your anxiety?",
+                          "options":  [
+                                          {
+                                              "text":  "Always",
+                                              "score":  0,
+                                              "value":  "always"
+                                          },
+                                          {
+                                              "text":  "Usually",
+                                              "score":  1,
+                                              "value":  "usually"
+                                          },
+                                          {
+                                              "text":  "Sometimes",
+                                              "score":  2,
+                                              "value":  "sometimes"
+                                          },
+                                          {
+                                              "text":  "Never",
+                                              "score":  3,
+                                              "value":  "never"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What strategies help you feel in control? When do you feel most helpless?",
+                          "cbt_focus":  "Self-efficacy and coping resources",
+                          "reverse_scored":  true
+                      },
+                      {
+                          "id":  50,
+                          "category":  "Functional Impact",
+                          "question":  "How hopeful are you that your anxiety can be effectively managed?",
+                          "options":  [
+                                          {
+                                              "text":  "Very hopeful",
+                                              "score":  0,
+                                              "value":  "very_hopeful"
+                                          },
+                                          {
+                                              "text":  "Somewhat hopeful",
+                                              "score":  1,
+                                              "value":  "somewhat_hopeful"
+                                          },
+                                          {
+                                              "text":  "Not very hopeful",
+                                              "score":  2,
+                                              "value":  "not_hopeful"
+                                          },
+                                          {
+                                              "text":  "Not at all hopeful",
+                                              "score":  3,
+                                              "value":  "no_hope"
+                                          }
+                                      ],
+                          "text_field_prompt":  "What would give you more hope? What previous attempts have succeeded or failed?",
+                          "cbt_focus":  "Treatment motivation and outcome expectancy",
+                          "reverse_scored":  true
+                      }
+                  ]
+}

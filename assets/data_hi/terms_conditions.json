@@ -1,0 +1,28 @@
+﻿{
+    "en":  {
+               "last_updated":  "2026-02-09",
+               "support_contact":  "In-app WhatsApp Support (Settings) | hi@truecircleai.com",
+               "sections":  [
+                                {
+                                    "title":  "1. NOT A MEDICAL DEVICE",
+                                    "content":  "TrueCircle is NOT a medical device, therapy replacement, or diagnostic tool. It provides emotional support and self-reflection tools ONLY. For clinical conditions, consult a licensed healthcare professional."
+                                },
+                                {
+                                    "title":  "2. DATA PRIVACY",
+                                    "content":  "All conversation data is encrypted with AES-256 and stored LOCALLY on your device. We do NOT upload conversation content to servers. Your contact details are used only for account verification and essential support workflows. Support: Settings -\u003e WhatsApp Support or hi@truecircleai.com."
+                                },
+                                {
+                                    "title":  "3. THREE-BRAIN ARCHITECTURE",
+                                    "content":  "Brain-A (104MB): Voice and emotion analysis. Brain-1 (208MB): Pattern recognition. Brain-2 (68MB): Response generation. All models run exclusively on your device. No conversation data is transmitted."
+                                },
+                                {
+                                    "title":  "4. RELATIONSHIP INTELLIGENCE FEATURES",
+                                    "content":  "Relationship Monitoring and Communication Tracker collect structured entries about interaction quality, stress patterns, and emotional impact. These inputs improve personalized guidance quality over time."
+                                },
+                                {
+                                    "title":  "5. OFFLINE MODE LIMITATIONS",
+                                    "content":  "While offline mode ensures privacy, it means we cannot provide real-time human intervention. You are responsible for contacting emergency services when needed."
+                                }
+                            ]
+           }
+}
