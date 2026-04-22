@@ -45,6 +45,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 /android/build/
+**/.gradle/
 
 # Local AI artifacts (do not commit)
 /models/
@@ -70,3 +71,7 @@ app.*.map.json
 /dataset/
 /assets/data/
 *.parquet
+
+# Local snapshots created during emergency backup
+/_snapshot_*/
+/_snapshot_*.zip

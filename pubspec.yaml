@@ -29,7 +29,6 @@ dependencies:
   http: ^1.1.0
   dio: ^5.9.2
   url_launcher: ^6.3.2
-  speech_to_text: ^7.3.0
 
   path_provider: ^2.1.1
   path: ^1.8.3
@@ -38,12 +37,21 @@ dependencies:
   crypto: ^3.0.3
   collection: ^1.18.0
   equatable: ^2.0.5
+  firebase_core: ^3.15.2
+  firebase_auth: ^5.7.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.3
+
+dependency_overrides:
+  path_provider_android: 2.2.23
+  jni:
+    path: vendor/jni
+  jni_flutter:
+    path: vendor/jni_flutter
 
 flutter:
   uses-material-design: true

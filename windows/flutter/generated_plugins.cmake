@@ -4,7 +4,8 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   audioplayers_windows
-  speech_to_text_windows
+  firebase_auth
+  firebase_core
   url_launcher_windows
 )
 

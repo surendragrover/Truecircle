@@ -1,25 +1,64 @@
-# truecircle
+# TrueCircle
 
-A new Flutter project.
+TrueCircle is a Flutter app focused on emotional support, guided reflection, and structured conversation flows.
 
-## Getting Started
+## Project Status
 
-This project is a starting point for a Flutter application.
+- Android build is stabilized after native toolchain alignment.
+- Prompt engine routing supports:
+  - `relationship`
+  - `app_management`
+  - `general`
+- Hindi/Urdu native script and roman cues are supported in prompt routing.
 
-A few resources to get you started if this is your first Flutter project:
+## Requirements
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter SDK (stable)
+- Dart SDK (bundled with Flutter)
+- Android Studio + Android SDK + NDK + CMake
+- Java 17
+- For iOS builds: macOS + Xcode + CocoaPods
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Local Setup
+
+```bash
+flutter pub get
+```
+
+Run app (debug):
+
+```bash
+flutter run
+```
+
+## Android Build
+
+Debug APK:
+
+```bash
+flutter build apk --debug
+```
+
+Release AAB (recommended for Play Store):
+
+```bash
+flutter build appbundle --release
+```
+
+Notes:
+
+- Native toolchain is pinned for compatibility in Gradle config.
+- If native cache issues appear, clear and rebuild:
+
+```bash
+flutter clean
+flutter pub get
+flutter build apk --debug
+```
 
 ## iOS Build
 
-iOS build ke liye macOS machine (Xcode + CocoaPods) required hai.
-
-Local build commands (macOS):
+iOS build requires macOS machine with Xcode and CocoaPods.
 
 ```bash
 flutter pub get
@@ -27,31 +66,27 @@ cd ios && pod install && cd ..
 flutter build ios --release --no-codesign --obfuscate --split-debug-info=build/ios/symbols
 ```
 
-Repository me CI workflow add hai:
-
-- File: `.github/workflows/ios-build.yml`
-- Trigger: `main/master` push ya manual `workflow_dispatch`
-- Output artifact: `ios-runner-app` (`Runner.app.zip`)
-
-Signed IPA banane ke liye Apple signing/certificates ke saath:
+Signed IPA:
 
 ```bash
 flutter build ipa --release
 ```
 
-`ExportOptions.plist` based signed IPA (recommended for repeatable release):
+With export options:
 
 ```bash
 flutter build ipa --release --export-options-plist=ios/ExportOptions-AppStore.plist
 ```
 
-Signing checklist:
+## Investor/Release Docs
 
-1. Xcode me `Runner` target ka bundle identifier set karo (example: `com.yourcompany.truecircle`).
-2. Apple Developer portal me App ID create/verify karo.
-3. Distribution certificate install karo (Keychain me).
-4. App Store provisioning profile create karke machine par install karo.
-5. `ios/ExportOptions-AppStore.plist` me:
-   - `teamID` update karo
-   - `provisioningProfiles` key me actual bundle id aur profile name set karo
-6. Release archive/IPA generate karke TestFlight/App Store Connect me upload karo.
+Plain text docs are available in:
+
+- `investers/INVESTOR_UPDATE.txt`
+- `investers/PLAY_STORE_RELEASE_NOTES.txt`
+- `investers/PRE_ROLLOUT_QA_CHECKLIST.txt`
+
+## Useful Links
+
+- [Flutter Docs](https://docs.flutter.dev/)
+- [Flutter Cookbook](https://docs.flutter.dev/cookbook)
