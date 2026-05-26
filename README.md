@@ -1,57 +1,157 @@
-# truecircle
+# TrueCircle
 
-A new Flutter project.
+<div align="center">
 
-## Getting Started
+### Human Understanding. Privacy First.
 
-This project is a starting point for a Flutter application.
+TrueCircle is an emotional health and relationship intelligence platform designed to understand people while keeping privacy under the user's control.
 
-A few resources to get you started if this is your first Flutter project:
+100% Offline • User Controlled • Privacy by Design
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+</div>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
 
-## iOS Build
+## Overview
 
-iOS build ke liye macOS machine (Xcode + CocoaPods) required hai.
+TrueCircle is built around a multi-brain architecture that separates essential emotional intelligence from optional features.
 
-Local build commands (macOS):
+The system is designed so that core understanding remains active while sensitive capabilities stay under complete user control.
 
-```bash
-flutter pub get
-cd ios && pod install && cd ..
-flutter build ios --release --no-codesign --obfuscate --split-debug-info=build/ios/symbols
-```
+Our goal is not simply to create another AI assistant.
 
-Repository me CI workflow add hai:
+We aim to create a system that understands emotions, relationships, and human context while protecting privacy.
 
-- File: `.github/workflows/ios-build.yml`
-- Trigger: `main/master` push ya manual `workflow_dispatch`
-- Output artifact: `ios-runner-app` (`Runner.app.zip`)
+---
 
-Signed IPA banane ke liye Apple signing/certificates ke saath:
+# Architecture
 
-```bash
-flutter build ipa --release
-```
+## Core Intelligence [Always Active]
 
-`ExportOptions.plist` based signed IPA (recommended for repeatable release):
+### Brain 1: Emotional Understanding
 
-```bash
-flutter build ipa --release --export-options-plist=ios/ExportOptions-AppStore.plist
-```
+Purpose:
 
-Signing checklist:
+- Understand emotional patterns
+- Detect emotional context
+- Improve supportive responses
+- Help monitor emotional well-being
 
-1. Xcode me `Runner` target ka bundle identifier set karo (example: `com.yourcompany.truecircle`).
-2. Apple Developer portal me App ID create/verify karo.
-3. Distribution certificate install karo (Keychain me).
-4. App Store provisioning profile create karke machine par install karo.
-5. `ios/ExportOptions-AppStore.plist` me:
-   - `teamID` update karo
-   - `provisioningProfiles` key me actual bundle id aur profile name set karo
-6. Release archive/IPA generate karke TestFlight/App Store Connect me upload karo.
+---
+
+### Brain 2: Cultural Understanding
+
+Purpose:
+
+- Understand language nuances
+- Adapt to cultural context
+- Improve communication quality
+- Reduce misunderstanding
+
+---
+
+Both Brain 1 and Brain 2 form the foundation of TrueCircle.
+
+These are always active because they provide the essential intelligence layer required for the system.
+
+---
+
+## Voice Analysis [Optional]
+
+### Brain A
+
+Purpose:
+
+- Analyze voice tone
+- Detect vocal emotional signals
+- Improve contextual understanding
+
+Characteristics:
+
+✅ Completely optional
+
+✅ User controlled
+
+✅ Can be enabled or disabled anytime
+
+✅ Offline processing
+
+Brain A is intentionally separated from the core architecture.
+
+Voice analysis should never be treated as mandatory functionality.
+
+---
+
+# Privacy Model
+
+TrueCircle follows a strict privacy-first approach.
+
+Principles:
+
+- User owns their data
+- User controls processing
+- User can delete data anytime
+- No forced cloud dependency
+- Sensitive processing stays offline
+
+---
+
+# User Control
+
+Users always remain in control.
+
+Capabilities:
+
+🗑 Delete all personal data instantly
+
+🔘 Enable or disable optional modules
+
+🔒 Local privacy protection
+
+⚙ Customize experience
+
+---
+
+# Design Philosophy
+
+We did not build AI to collect more data.
+
+We built AI to respect people.
+
+TrueCircle focuses on:
+
+- Emotional health
+- Relationship support
+- Trust
+- Privacy
+- Human-centered intelligence
+
+---
+
+# Future Roadmap
+
+Planned development:
+
+- Advanced emotional understanding
+- Relationship pattern intelligence
+- Improved offline processing
+- Personal well-being insights
+- Enhanced user customization
+
+---
+
+# Core Principle
+
+> Your Data.
+> Your Choice.
+> Your Privacy.
+
+---
+
+<div align="center">
+
+### TrueCircle
+
+"We did not build AI. We changed AI."
+
+</div>
