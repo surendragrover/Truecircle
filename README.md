@@ -154,4 +154,36 @@ Planned development:
 
 "We did not build AI. We changed AI."
 
+# License
+
+TrueCircle is released under the TrueCircle Custom License.
+
+Permissions:
+
+✅ Personal use
+
+✅ Research and educational use
+
+✅ Viewing and learning from source code
+
+Restrictions:
+
+❌ Commercial use without permission
+
+❌ Reselling or redistributing modified versions
+
+❌ Training external AI systems using this code or datasets
+
+❌ Using the project name, branding, or architecture without authorization
+
+For commercial partnerships or licensing inquiries:
+
+Author: Surendra Grover
+
+---
+
+Copyright (c) 2026 Surendra Grover
+
+All rights reserved.
+
 </div>
